@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { FaFistRaised } from "react-icons/fa";
 
 export default function AboutUs() {
     return <>
@@ -36,25 +37,27 @@ export default function AboutUs() {
                 </div>
             </div>
         </section>
-        <section className="bg-blue-900">
+        <section className="bg-blue-900 py-20">
             <div className=" mx-24 text-center text-white ">
-                <h2 className="py-8 text-4xl">Our Core Values</h2>
-                <div className="flex">
+                <h2 className="pb-8 text-4xl">Our Core Values</h2>
+                <div className="flex ">
                     <div className="w-2/4">
-                        <h2 className="text-xl">Empowerment</h2>
-                        <i></i>
+                        <h2 className="text-2xl font-medium	">Empowerment</h2>
+                        <FaFistRaised size={160} />
                     </div>
                     <div className="w-2/4">
-                        <h2 className="text-xl">Development</h2>
-                        <i></i>
+                        <h2 className="text-2xl font-medium	">Development</h2>
+                        <FaFistRaised size={160} />
+
                     </div>
                     <div className="w-2/4">
-                        <h2 className="text-xl">Entrepreneurship</h2>
-                        <i></i>
+                        <h2 className="text-2xl font-medium	">Entrepreneurship</h2>
+                        <FaFistRaised size={160} />
+
                     </div>
                     <div className="w-2/4">
-                        <h2 className="text-xl">Growth</h2>
-                        <i></i>
+                        <h2 className="text-2xl font-medium	">Growth</h2>
+                        <FaFistRaised size={160} />
                     </div>
                 </div>
             </div>
@@ -89,5 +92,5 @@ export default function AboutUs() {
                 </div>
             </div>
         </section>
-    </>;
+    </>
 }

@@ -1,6 +1,7 @@
-import Image from "next/image";
+import Image from 'next/image'
+import React from 'react'
 
-export default function Home() {
+export default function ForLearner() {
     return (
         <>
             <section className="px-24 bg-gray-100">
@@ -66,3 +67,4 @@ export default function Home() {
             </section></>
     )
 }
+
