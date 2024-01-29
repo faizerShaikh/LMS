@@ -6,7 +6,7 @@ export default function Career() {
         <section className="px-24 bg-gray-100">
             <div className="flex">
                 <div className="w-1/2 flex justify-around">
-                    <Image height={200} width={200} alt="test" src="/img/career-page.jpg" className="w-96" />
+                    <Image height={380} width={450} alt="test" src="/img/career-page.jpg"  />
                 </div>
                 <div className="w-1/2 px-4 m-auto">
                     <p className="font-semibold mb-4">Join RiseBack's dynamic team at the forefront of EdTech innovation, connecting Indian universities with global students.</p>
@@ -17,21 +17,21 @@ export default function Career() {
             </div>
         </section>
         <section className="px-24 py-12">
-            <div className="flex my-12">
+            <div className="flex my-12 ">
                 <div className="w-1/4 bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
-                    <h2 className="pb-3 font-bold text-2xl">Diversity</h2>
+                    <h2 className=" font-bold text-2xl">Diversity</h2>
                     <p>We are committed to fostering an inclusive culture that values diversity. Our teams consist of individuals from various backgrounds, each contributing their unique experiences.</p>
                 </div>
                 <div className="w-1/4 bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
-                    <h2 className="pb-3 font-bold text-2xl">Innovation</h2>
+                    <h2 className="font-bold text-2xl">Innovation</h2>
                     <p>Embracing a culture of innovation and prioritizing technology, our experiences and processes are in a constant state of evolution.</p>
                 </div>
                 <div className="w-1/4 bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
-                    <h2 className="pb-3 font-bold text-2xl">Creativity</h2>
+                    <h2 className=" font-bold text-2xl">Creativity</h2>
                     <p>Elevate your career in a space that celebrates creativity. Join our team, where innovation is not just encouraged.Unleash your potential with us.</p>
                 </div>
                 <div className="w-1/4 bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
-                    <h2 className="pb-3 font-bold text-2xl">Empowerment</h2>
+                    <h2 className=" font-bold text-2xl">Empowerment</h2>
                     <p>Empowerment is our ethos. Join us to contribute your talent to a team that values individual growth and societal impact. Together, let's shape a brighter future.</p>
                 </div>
             </div>
@@ -41,7 +41,7 @@ export default function Career() {
                     <div>
                         <form action="" className="bg-gray-100 p-2 flex flex-col ">
                             <h2 className="font-bold mb-2">Department</h2>
-                            <input type="text" placeholder="Search" className="border border-black" /><br />
+                            <input type="text" placeholder="Search" className="border  p-2" /><br />
                             <div>
                                 <input type="checkbox" id="accounting" />
                                 <label htmlFor="accounting">Accounting</label><br />
@@ -72,7 +72,7 @@ export default function Career() {
                             </div>
 
                             <h2 className="font-bold mb-2 ">Country</h2>
-                            <input type="text" placeholder="Search" className="border border-black" /><br />
+                            <input type="text" placeholder="Search" className="border  p-2" /><br />
                             <div>
                                 <input type="checkbox" id="cnanda" />
                                 <label htmlFor="cnanda">Cnanda</label><br />
@@ -94,9 +94,9 @@ export default function Career() {
                 </div>
                 <div className="w-3/4">
                     <div className="mb-8">
-                        <input type="text" placeholder="Search by job title, location, department, catagory, etc." className="w-3/4 border-2" />
-                        <button className="bg-blue-600 py-1 px-4 border rounded-md hover:bg-white hover:border-blue-700 hover:text-blue-700">Search</button>
-                        <button className="bg-blue-600 py-1 px-4 border rounded-md hover:bg-white hover:border-blue-700 hover:text-blue-700">Job Near Me</button>
+                        <input type="text" placeholder="Search by job title, location, department, catagory, etc." className="w-3/4 border-2 p-2 mr-2" />
+                        <button className="bg-blue-600 py-2 px-4 border rounded-md hover:bg-white hover:border-blue-700 hover:text-blue-700 mr-2">Search</button>
+                        <button className="bg-blue-600 py-2 px-4 border rounded-md hover:bg-white hover:border-blue-700 hover:text-blue-700">Job Near Me</button>
                     </div>
                     <div>
                         <table className="w-full">

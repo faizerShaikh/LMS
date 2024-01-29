@@ -2,23 +2,23 @@ import Image from "next/image";
 
 export default function Blogs() {
     return (
-        <>
+        <>  
             <section className="px-24 mt-12">
                 <h2 className="font-bold">FEATURED BLOG POSTS</h2>
                 <span className=" border-b-2 w-8 mb-4"></span>
                 <div className="flex">
                     <div className="w-[70%] shadow-2xl ">
-                        <Image height={200} width={200} alt="Test" src="/img/blog-page-1.jpg" className="w-full" />
+                        <Image height={400} width={200} alt="Test" src="/img/blog-page-1.jpg" className="w-full" />
                         <p className="font-bold py-4 px-4 text-xl">Can an Information Technology University degree be the road to achieving the American Dream ?</p>
                     </div>
                     <div className="w-[30%] px-8 ">
                         <div className="shadow-2xl">
-                            <Image height={200} width={200} alt="Test" src="/img/blog-page-2.jpg" className="w-full" />
-                            <p className="p-4 font-bold">Unlocking Lucrative Opportunities : IT Courses in AI, ML, WebApps, Cloud, and Blockchain for Indonesians</p>
+                            <Image height={150} width={150} alt="Test" src="/img/blog-page-2.jpg" className="w-full" />
+                            <p className="p-4 font-bold m-0">Unlocking Lucrative Opportunities : IT Courses in AI, ML, WebApps, Cloud, and Blockchain for Indonesians</p>
                         </div>
                         <div className="shadow-2xl mt-8">
-                            <Image height={200} width={200} alt="Test" src="/img/blog-page-2.jpg" className="w-full" />
-                            <p className="p-4 font-bold">Unlocking Lucrative Opportunities : IT Courses in AI, ML, WebApps, Cloud, and Blockchain for Indonesians</p>
+                            <Image height={150} width={200} alt="Test" src="/img/blog-page-2.jpg" className="w-full" />
+                            <p className="p-4 font-bold m-0">Unlocking Lucrative Opportunities : IT Courses in AI, ML, WebApps, Cloud, and Blockchain for Indonesians</p>
                         </div>
                     </div>
                 </div>
@@ -78,18 +78,18 @@ export default function Blogs() {
                         </div>
                     </div>
                     <div className="w-[30%] px-8">
-                        <input type="text" placeholder="Search here" className="border w-full mb-4" />
+                        <input type="text" placeholder="Search here" className="border w-full mb-4 p-3" />
                         <h2 className="font-bold mb-4">Catagories</h2>
-                        <p className="mb-4">Academics</p>
-                        <hr />
-                        <p className="mb-4">Academics</p>
-                        <hr />
-                        <p className="mb-4">Academics</p>
-                        <hr />
-                        <p className="mb-4">Academics</p>
-                        <hr />
-                        <p className="mb-4">Academics</p>
-                        <hr />
+                        <p className="my-2 border-b-2 pb-3">Academics</p>
+                        
+                        <p className="my-2 border-b-2 pb-3">Academics</p>
+                        
+                        <p className="my-2 border-b-2 pb-3">Academics</p>
+                        
+                        <p className="my-2 border-b-2 pb-3">Academics</p>
+                        
+                        <p className="my-2 border-b-2 pb-3">Academics</p>
+                        
                     </div>
                 </div>
                 <div className="flex justify-center">
