@@ -6,11 +6,11 @@ export default function Home() {
             <section className="px-24 bg-gray-100">
                 <div className="flex ">
                     <div className="w-1/2 flex justify-center ">
-                        <Image height={400} width={400} alt="test" src="/img/home-page.jpg" className="w-3/4" />
+                        <Image height={400} width={400} alt="test" src="/img2/Home Page.jpg" className="w-3/4" />
                     </div>
                     <div className="w-1/2 px-4 m-auto">
                         <h2 className="font-bold text-4xl mb-4">Educate, Empower, Elevate & Excel</h2>
-                        <p className="font-semibold mb-4 text-xl">Elevate your career with RiseBack! Explore our budget-friendly professional certificate programs, commencing at just $250, and university degree programs starting at an affordable $60 per month. Step in to a brighter future with us !</p>
+                        <p className="font-medium mb-4 text-xl">Elevate your career with RiseBack! Explore our budget-friendly professional certificate programs, commencing at just $250, and university degree programs starting at an affordable $60 per month. Step in to a brighter future with us !</p>
                     </div>
                 </div>
             </section>

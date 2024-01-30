@@ -1,14 +1,14 @@
 import Image from "next/image"
 
 export default function ContactUs() {
-    return <> <section className="bg-gray-50 ">
+    return <> <section className="bg-gray-50 h-[414px]">
         <div className="flex px-24 py-8 ">
             <div className="w-2/4 flex justify-evenly">
-                <Image alt="hehje" width={500} height={350} src="/img/contact.jpg"  />
+                <Image alt="hehje" width={550} height={350} src="/img2/Contact-Us-Page.jpg"  />
             </div>
             <div className="w-2/4 px-8 m-auto ">
                 <h2 className="font-bold text-4xl mt-0 mb-4">Contact RiseBack</h2>
-                <p className="font-semibold text-xl">RiseBack.org stands as the world's premier affordable EdTech platform, pioneering accessible online university degree programs encompassing both undergraduate ,graduate studies and, specialized IT courses are available for as low as $250, ensuring quality education is with in reach for aspiring learners around the world.</p>
+                <p className="font-medium text-xl">RiseBack.org stands as the world's premier affordable EdTech platform, pioneering accessible online university degree programs encompassing both undergraduate ,graduate studies and, specialized IT courses are available for as low as $250, ensuring quality education is with in reach for aspiring learners around the world.</p>
             </div>
         </div>
     </section>
@@ -54,27 +54,27 @@ export default function ContactUs() {
                 <h2 className=" text-4xl m-0 py-16 font-semibold">Global Offices</h2>
                 <div className="flex justify-between">
                     <div>
-                        <Image alt="hehje" width={50} height={50} src="/img/usa flag.png" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/USA.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
                         <p className="font-bold mt-2 text-lg">USA</p>
                     </div>
                     <div>
-                        <Image alt="hehje" width={50} height={50} src="/img/Indonesia flag.png" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/Indonesia.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
                         <p className="font-bold mt-2 text-lg">Indonesia</p>
                     </div>
                     <div>
-                        <Image alt="hehje" width={50} height={50} src="/img/Nigeria flag.png" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/Nigeria.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
                         <p className="font-bold mt-2 text-lg ">Nigeria</p>
                     </div>
                     <div>
-                        <Image alt="hehje" width={50} height={50} src="/img/Ethopia flag.png" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/Ethiopia.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
                         <p className="font-bold mt-2 text-lg ">Ethopia</p>
                     </div>
                     <div>
-                        <Image alt="hehje" width={50} height={50} src="/img/Egypt flag.png" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/Egypt.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
                         <p className="font-bold mt-2 text-lg ">Egypt</p>
                     </div>
                     <div>
-                        <Image alt="hehje" width={50} height={50} src="/img/philippine flag.png" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/Philippines.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
                         <p className="font-bold mt-2 text-lg ">Philippines</p>
                     </div>
                 </div>

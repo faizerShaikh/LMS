@@ -1,11 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const Footer = () => {
     return <>
         <footer className="bg-black px-24">
             <div className="text-white flex py-8">
                 <div className="w-1/5">
-                    <Image height={50} width={50} src="/img/logo-for-footer-80x80.png" className="mb-4 size-24" alt="ks" />
+                    <Image height={50} width={200} src="/img2/RiseBack-Final-Logo.png" className="mb-4 size-24" alt="ks" />
                     <div className="flex mb-4">
                         <div className=" flex items-center">
                             <i className="fa-solid fa-phone pr-3"></i>
@@ -48,10 +49,11 @@ export const Footer = () => {
                     <h2 className="mb-4 text-lg">Follow Us</h2>
                     <span className="border-b-2 w-4 mb-4"></span>
                     <div className="flex ">
-                        <a href="https://www.facebook.com/campaign/landing.php?campaign_id=14884913640&extra_1=s%7aCc%7C550525804797%7Cb%7Cfacebook%7C&placement=&creative=550525804797&keyword=facebook&partner_id=googlesem&extra_2=campaignid%3D14884913640%26adgroupid%3D128696220912%26matchtype%3Db%26network%3Dg%26source%3Dnotmobile%26search_or_content%3Ds%26device%3Dc%26devicemodel%3D%26adposition%3D%26target%3D%26targetid%3Dkwd-592856129%26loc_physical_ms%3D9062116%26loc_interest_ms%3D%26feeditemid%3D%26param1%3D%26param2%3D&gclid=CjwKCAiAzJOtBhALEiwAtwj8tlRLfa3D8Xk-IzJia0f_qOBSkzf_lcm107Mv-YvgJLFknd5DKEA7mhoCCwQQAvD_BwE" className="pr-2"><Image height={50} width={50} src="/img/Facebook.png" alt="" className="size-9"/></a>
-                        <a href="https://twitter.com/?lang=en" className="pr-2"><Image height={50} width={50} src="/img/Twitter.png" alt="dd" className="size-9" /></a>
-                        <a href="https://in.linkedin.com/" className="pr-2" ><Image height={50} width={50} src="/img/Linkedin.png" alt="dd" className="size-9" /></a>
-                        <a href="https://www.instagram.com/accounts/login/?hl=en" className="pr-2"><Image height={50} width={50} src="/img/Instagram.png" alt="ss"  className="size-9"/></a>
+                    <Link href="https://www.facebook.com/campaign/landing.php?campaign_id=14884913640&extra_1=s%7aCc%7C550525804797%7Cb%7Cfacebook%7C&placement=&creative=550525804797&keyword=facebook&partner_id=googlesem&extra_2=campaignid%3D14884913640%26adgroupid%3D128696220912%26matchtype%3Db%26network%3Dg%26source%3Dnotmobile%26search_or_content%3Ds%26device%3Dc%26devicemodel%3D%26adposition%3D%26target%3D%26targetid%3Dkwd-592856129%26loc_physical_ms%3D9062116%26loc_interest_ms%3D%26feeditemid%3D%26param1%3D%26param2%3D&gclid=CjwKCAiAzJOtBhALEiwAtwj8tlRLfa3D8Xk-IzJia0f_qOBSkzf_lcm107Mv-YvgJLFknd5DKEA7mhoCCwQQAvD_BwE" /><Image alt="img" height={20} width={20} src="/img2/Facebook.png" className="size-9 mr-3" />
+                    <Link href="https://twitter.com/?lang=en" /><Image alt="img" height={30} width={30} src="/img2/Twitter.png" className="size-9 mr-3" />
+                    <Link href="https://in.linkedin.com/" /><Image alt="img" height={30} width={30} src="/img2/Linkedin.png" className="size-9 mr-3" />
+                    <Link href="https://www.instagram.com/accounts/login/?hl=en" /><Image alt="img" height={30} width={30} src="/img2/Instagram.png" className="size-9 mr-3" />
+                    <Link href="https://www.youtube.com/" /><Image alt="img" height={30} width={30} src="/img2/YouTube.png" className="size-9 mr-3" />
                     </div>
                 </div>
             </div>

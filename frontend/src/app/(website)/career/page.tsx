@@ -6,12 +6,12 @@ export default function Career() {
         <section className="px-24 bg-gray-100">
             <div className="flex">
                 <div className="w-1/2 flex justify-around">
-                    <Image height={380} width={450} alt="test" src="/img/career-page.jpg"  />
+                    <Image height={380} width={500} alt="test" src="/img2/Career-Page.jpg"  />
                 </div>
                 <div className="w-1/2 px-4 m-auto">
-                    <p className="font-semibold mb-4">Join RiseBack's dynamic team at the forefront of EdTech innovation, connecting Indian universities with global students.</p>
-                    <p className="font-semibold mb-4">We're looking for passionate team members to contribute to reshaping the future of education. If you'r edriven by empowerment, innovation, andcollaboration,seizetheopportunitytomake a meaningful impact.</p>
-                    <p className="font-semibold mb-4">Join us at RiseBack, where your talents meet purpose in transforming the education landscape</p>
+                    <p className="font-medium text-xl mb-4">Join RiseBack's dynamic team at the forefront of EdTech innovation, connecting Indian universities with global students.</p>
+                    <p className="font-medium text-xl mb-4">We're looking for passionate team members to contribute to reshaping the future of education. If you'r edriven by empowerment, innovation, andcollaboration,seizetheopportunitytomake a meaningful impact.</p>
+                    <p className="font-medium text-xl mb-4">Join us at RiseBack, where your talents meet purpose in transforming the education landscape</p>
                     <button className="bg-blue-900 text-white py-2 w-full rounded-lg ">Open Positions</button>
                 </div>
             </div>
@@ -40,7 +40,7 @@ export default function Career() {
                 <div className="w-1/5">
                     <div>
                         <form action="" className="bg-gray-100 p-2 flex flex-col ">
-                            <h2 className="font-bold mb-2">Department</h2>
+                            <h2 className="font-bold mb-2 ">Department</h2>
                             <input type="text" placeholder="Search" className="border  p-2" /><br />
                             <div>
                                 <input type="checkbox" id="accounting" />

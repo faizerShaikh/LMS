@@ -4,13 +4,13 @@ export default function courses(){
     return<>
     <section className="bg-gray-100">
         <div className="flex px-24 py-8">
-            <div className="w-2/4">
-                <Image height={350} width={50} src="/img/contact.jpg" alt="" className="w-full"/>
+            <div className="w-2/4 flex justify-around">
+                <Image height={400} width={450} src="/img2/IT-Course-page.jpg" alt="" />
             </div>
             <div className="w-2/4 px-8 m-auto">
-                <h2 className="font-bold text-2xl ">Papular IT Courses</h2>
-                <p className="font-semibold mb-4">Explore a world of possibilities in the digital realm with our IT courses designed to unlock global opportunities.</p>
-                <p className="font-semibold mb-4">Divein to cutting-edge technologies such as AI, ML, web applications, cloud computing, and blockchain, and gain the skills needed to navigate the dynamic digital landscape.</p>
+                <h2 className="font-bold text-4xl ">Papular IT Courses</h2>
+                <p className="font-medium text-xl mb-4">Explore a world of possibilities in the digital realm with our IT courses designed to unlock global opportunities.</p>
+                <p className="font-medium text-xl mb-4">Divein to cutting-edge technologies such as AI, ML, web applications, cloud computing, and blockchain, and gain the skills needed to navigate the dynamic digital landscape.</p>
                 <button className="bg-blue-700 py-2 px-4 text-white">Explore Professional Courses</button>
             </div>
         </div>
@@ -23,44 +23,44 @@ export default function courses(){
         <div className="flex">
             <div className="w-3/4 flex flex-wrap">
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={350} src="/img/courses-page2.jpg" alt="" className="w-full rounded-t-md"/>
+                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
-                        <p className="font-bold mb-4">Cloud Computing using AWS (Amazon Web Services)</p>
+                        <p className="font-bold m-0 mb-6">Cloud Computing using AWS (Amazon Web Services)</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={350} src="/img/courses-page2.jpg" alt="" className="w-full rounded-t-md"/>
+                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
-                        <p className="font-bold mb-4">Cyber Security and Ethical Hacking</p>
+                        <p className="font-bold m-0 mb-6">Cyber Security and Ethical Hacking</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={350} src="/img/courses-page2.jpg" alt="" className="w-full rounded-t-md"/>
+                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
-                        <p className="font-bold mb-4">AI Data Science and Machine Learning using Python</p>
+                        <p className="font-bold m-0 mb-6">AI Data Science and Machine Learning using Python</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={350} src="/img/courses-page2.jpg" alt="" className="w-full rounded-t-md"/>
+                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
-                        <p className="font-bold mb-4">Mobile Application Development with Flutter</p>
+                        <p className="font-bold m-0 mb-6">Mobile Application Development with Flutter</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={350} src="/img/courses-page2.jpg" alt="" className="w-full rounded-t-md"/>
+                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
-                        <p className="font-bold mb-4">Python Programming and its Applications</p>
+                        <p className="font-bold m-0 mb-6">Python Programming and its Applications</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={350} src="/img/courses-page2.jpg" alt="" className="w-full rounded-t-md"/>
+                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
-                        <p className="font-bold mb-4">Full Stack Web Development Using PHP and MYSQL</p>
+                        <p className="font-bold m-0 mb-6">Full Stack Web Development Using PHP and MYSQL</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>

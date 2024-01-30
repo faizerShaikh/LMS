@@ -5,10 +5,10 @@ export default function AboutUs() {
     return <>
         <section className="bg-gray-100 flex justify-between px-28 h-[400px] ">
             <div className="flex w-2/4 ">
-                <Image width={500} height={400} src={"/img/images (1).jpg"} className="flex mx-auto" alt="IMG" />
+                <Image width={500} height={400} src={"/img2/About-Us-page.jpg"} className="flex mx-auto" alt="IMG" />
             </div>
             <div className="flex items-center w-2/4">
-                <p className="text-center px-8 text-2xl">Inspired by the Native American adage <span className="font-bold">"RiseBack like Phoenix”</span>, the platform embodies renewal, hope, and empowerment.</p>
+                <p className="text-center font-medium px-8 text-xl">Inspired by the Native American adage <span className="font-bold">"RiseBack like Phoenix”</span>, the platform embodies renewal, hope, and empowerment.</p>
             </div>
         </section>
         <section className="my-16 px-28 text-center">
@@ -24,12 +24,12 @@ export default function AboutUs() {
                     <p>Our vision at RiseBack is to create a world where access to affordable education empowers individuals, transcending barriers and unlocking bound less opportunities for personal and professional growth.</p>
                 </div>
                 <div className="w-2/4 text-center">
-                    <Image width={50} height={350} src="/img/aboutrow-1.jpg" className="w-full rounded-lg" alt="img" />
+                    <Image width={500} height={400} src="/img2/businessman-big-office.jpg" className=" w-full rounded-lg" alt="img" />
                 </div>
             </div>
             <div className="flex px-28 items-center">
                 <div className="w-2/4 text-center">
-                    <Image width={50} height={350} src="/img/aboutrow2.jpg" className="w-full rounded-lg" alt="img" />
+                    <Image width={500} height={400} src="/img2/motivational-composition-goal.jpg" className="w-full rounded-lg" alt="img" />
                 </div>
                 <div className="w-2/4 text-center p-8">
                     <h2 className="text-2xl font-bold mb-6 ">Mission</h2>
@@ -67,27 +67,27 @@ export default function AboutUs() {
             <p className="text-base pb-8">pursuit of our commitment to affordable education, RiseBack has forged partnerships with individuals and organizations worldwide, extending our reach and impact across countries such as the USA, Egypt, Nigeria, Indonesia, Ethiopia, and the Philippines.Our dedication to fostering global connectivity between Indian universities and students is inspired by the transformative symbolism of the phoenix.Through these collaborations, RiseBack strives to make quality education accessible to everyone, transcending geographical boundaries and creating a global network for knowledged is semination and empowerment.</p>
             <div className="flex justify-between mb-8">
                 <div>
-                    <Image width={50} height={50} src="/img/usa flag.png" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/USA.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
                     <p className="font-bold mt-2 text-lg">USA</p>
                 </div>
                 <div>
-                    <Image width={50} height={50} src="/img/Indonesia flag.png" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/Indonesia.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
                     <p className="font-bold mt-2 text-lg">Indonesia</p>
                 </div>
                 <div>
-                    <Image width={50} height={50} src="/img/Nigeria flag.png" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/Nigeria.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
                     <p className="font-bold mt-2 text-lg">Nigeria</p>
                 </div>
                 <div>
-                    <Image width={50} height={50} src="/img/Ethopia flag.png" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/Ethiopia.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
                     <p className="font-bold mt-2 text-lg">Ethopia</p>
                 </div>
                 <div>
-                    <Image width={50} height={50} src="/img/Egypt flag.png" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/Egypt.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
                     <p className="font-bold mt-2 text-lg">Egypt</p>
                 </div>
                 <div>
-                    <Image width={50} height={50} src="/img/philippine flag.png" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/Philippines.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
                     <p className="font-bold mt-2 text-lg">Philippines</p>
                 </div>
             </div>
