@@ -11,7 +11,7 @@ export default function ForLearner() {
                     </div>
                     <div className="w-1/2 px-4">
                         <h2 className="font-bold text-4xl mb-4">Educate, Empower, Elevate & Excel</h2>
-                        <p className="font-semibold mb-4 text-xl">Elevate your career with RiseBack! Explore our budget-friendly professional certificate programs, commencing at just $250, and university degree programs starting at an affordable $60 per month. Step in to a brighter future with us !</p>
+                        <p className="font-medium  mb-4 text-xl">Elevate your career with RiseBack! Explore our budget-friendly professional certificate programs, commencing at just $250, and university degree programs starting at an affordable $60 per month. Step in to a brighter future with us !</p>
                     </div>
                 </div>
             </section>
