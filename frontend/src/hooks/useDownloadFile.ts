@@ -1,13 +1,13 @@
-import { VoidFunction } from "types/functionTypes";
+// import { VoidFunction } from "types/functionTypes";
 import { onError } from "utils/onError";
 import { useGetAll } from "./useGetAll";
 
 export const useDownaloadFile = (path: string, onSuccess?: VoidFunction) => {
   return useGetAll({
     key: path,
-    select: (data) => data?.data,
+    select: (data: any) => data?.data,
     enabled: false,
-    onSuccess: (data) => {
+    onSuccess: (data:any) => {
       let a = document.createElement("a");
 
       a.href = `${process.env.NEXT_PUBLIC_API_URL?.split("/api/v1")[0]}${
@@ -20,7 +20,7 @@ export const useDownaloadFile = (path: string, onSuccess?: VoidFunction) => {
       a.click();
       onSuccess && onSuccess();
     },
-    onError(err) {
+    onError(err:Error) {
       onError(err);
     },
   });

@@ -1,4 +1,4 @@
-import { VoidFunction } from "types";
+// import { VoidFunction } from 'types';
 
 export type AppBarProps = {
   handleDrawerToggle: VoidFunction;
