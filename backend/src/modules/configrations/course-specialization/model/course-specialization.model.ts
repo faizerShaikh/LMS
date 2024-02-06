@@ -17,7 +17,7 @@ import { ProgramStructure } from './program-structure.model';
 import { FeesStructure } from './fees-structure.model';
 
 @Table({
-  tableName: 'course-specialization',
+  tableName: 'course-specializations',
   modelName: 'CourseSpecialization',
   paranoid: true,
 })
@@ -239,17 +239,18 @@ export class CourseSpecialization extends Model<CourseSpecialization> {
   @BelongsTo(() => Course)
   course: Course;
 
-  // @HasMany(() => ProgramStructure, {
-  //   onUpdate: 'CASCADE',
-  //   onDelete: 'CASCADE',
-  //   hooks: true,
-  // })
-  // programStructures: ProgramStructure[];
+  @HasMany(() => ProgramStructure, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+  program_structures: ProgramStructure[];
 
-  // @HasOne(() => FeesStructure, {
-  //   onUpdate: 'CASCADE',
-  //   onDelete: 'CASCADE',
-  //   hooks: true,
-  // })
-  // feesStructure: FeesStructure;
+  @HasOne(() => FeesStructure, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+    foreignKey: 'course_specialization_id',
+  })
+  fees_structure: FeesStructure;
 }

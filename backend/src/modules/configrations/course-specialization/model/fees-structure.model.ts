@@ -12,7 +12,7 @@ import {
 import { CourseSpecialization } from './course-specialization.model';
 
 @Table({
-  tableName: 'fees-structure',
+  tableName: 'fees-structures',
   modelName: 'FeesStructure',
   paranoid: true,
 })

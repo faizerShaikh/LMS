@@ -6,8 +6,10 @@ import {
   PrimaryKey,
   Default,
   Model,
+  HasMany,
 } from 'sequelize-typescript';
 import { RoleEnum } from '../../interface';
+import { Blog } from 'src/modules/blog/model';
 
 @Table({
   tableName: 'users',
@@ -94,4 +96,11 @@ export class User extends Model<User> {
     },
   })
   role: string;
+
+  @HasMany(() => Blog, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+  blogs: Blog[];
 }

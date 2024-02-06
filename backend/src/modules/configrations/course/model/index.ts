@@ -11,7 +11,7 @@ import {
 import { CourseSpecialization } from '../../course-specialization/model';
 
 @Table({
-  tableName: 'course',
+  tableName: 'courses',
   modelName: 'Course',
   paranoid: true,
 })

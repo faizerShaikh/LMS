@@ -8,6 +8,7 @@ import { JwtAuthGuard } from './core/guards';
 import { ResponseInterceptor } from './core/interceptors';
 import { UsersModule } from './modules/user';
 import { ConfigrationModule } from './modules/configrations/configration.module';
+import { BlogModule } from './modules/blog/blog.module';
 
 @Module({
   imports: [
@@ -25,6 +26,8 @@ import { ConfigrationModule } from './modules/configrations/configration.module'
 
     //Configrations Module
     ConfigrationModule,
+    //Blogs Module
+    BlogModule,
   ],
   providers: [
     {

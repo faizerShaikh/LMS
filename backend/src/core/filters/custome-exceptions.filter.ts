@@ -38,35 +38,38 @@ export class CustomeExceptionsFilter implements ExceptionFilter {
     let statusCode =
       exception instanceof HttpException
         ? exception.getStatus()
-        : HttpStatus.INTERNAL_SERVER_ERROR;
+        : exception.statusCode || HttpStatus.INTERNAL_SERVER_ERROR;
+    if (statusCode === 404) {
+      message = '404 Not Found - Invalid URL or Invalid Method called';
+    } else {
+      if (exception.response) {
+        message = exception.response.message;
+      }
 
-    if (exception.response) {
-      message = exception.response.message;
-    }
+      if (!request.url.startsWith('/media/tenant/')) {
+        console.log(exception);
+      }
 
-    if (!request.url.startsWith('/media/tenant/')) {
-      console.log(exception);
-    }
+      if (exception.errors) {
+        message = exception.errors.map((err: any) => err.message);
+      }
 
-    if (exception.errors) {
-      message = exception.errors.map((err: any) => err.message);
-    }
+      if (exception?.name === 'SequelizeValidationError') {
+        statusCode = HttpStatus.BAD_REQUEST;
+        message = exception.errors.map((err: any) => err.message);
+      } else if (exception?.name === 'SequelizeForeignKeyConstraintError') {
+        statusCode = HttpStatus.BAD_REQUEST;
+        message = `Invalid ID for foregion ${exception.parent.detail
+          .split('=')[0]
+          .replace(/\(|\)/g, '')} in ${exception.parent.table} table`;
+      } else if (
+        exception &&
+        exception?.name === 'SequelizeUniqueConstraintError'
+      ) {
+        statusCode = HttpStatus.BAD_REQUEST;
 
-    if (exception?.name === 'SequelizeValidationError') {
-      statusCode = HttpStatus.BAD_REQUEST;
-      message = exception.errors.map((err: any) => err.message);
-    } else if (exception?.name === 'SequelizeForeignKeyConstraintError') {
-      statusCode = HttpStatus.BAD_REQUEST;
-      message = `Invalid ID for foregion ${exception.parent.detail
-        .split('=')[0]
-        .replace(/\(|\)/g, '')} in ${exception.parent.table} table`;
-    } else if (
-      exception &&
-      exception?.name === 'SequelizeUniqueConstraintError'
-    ) {
-      statusCode = HttpStatus.BAD_REQUEST;
-
-      message = exception.errors.map((err: any) => err.message);
+        message = exception.errors.map((err: any) => err.message);
+      }
     }
 
     const logBody: any = {
