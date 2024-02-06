@@ -9,6 +9,7 @@ import { databaseConfig } from './config';
       ...databaseConfig[process.env.NODE_ENV || 'development'],
       autoLoadModels: true,
       sync: false,
+      alter: false,
     }),
   ],
 })
