@@ -87,6 +87,14 @@ export class Blog extends Model<Blog> {
       },
     },
   })
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+    })
+  is_featured: boolean;
+
+
   @ForeignKey(() => BlogCategory)
   blog_category_id: string;
 
