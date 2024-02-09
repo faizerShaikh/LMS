@@ -21,6 +21,7 @@ export class BlogService extends GenericService<
 
   async updateBlogImage(file: Express.Multer.File, id: string) {
     const blog = await this.getOne<Blog>(id);
+console.log(blog,file);
 
     if (blog.blog_image) {
       unlink(
@@ -35,7 +36,7 @@ export class BlogService extends GenericService<
     }
 
     await blog.update({
-      blog_image: file?.path?.split('src/public')[1],
+      blog_image: '/media/blog/About-Us-page-1707399391277-505639148.jpg',
     });
     return 'Blog Image Uploaded Successfully';
   }

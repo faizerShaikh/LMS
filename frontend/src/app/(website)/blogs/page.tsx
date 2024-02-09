@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { BlogCard } from "components/layout/cards/blog-cards";
+import axios from "axios";
+import { useEffect } from "react";
 
-export default function Blogs() {
-  const data = [
+export default async function Blogs() {
+  const _data = [
     {
       BlogCardImg: "/img2/college-savings-concept_700248-1580.jpg",
       BlogCardDate: "22 September 2023",
@@ -52,6 +54,23 @@ export default function Blogs() {
         "I am excited to announce that I have been appointed as Brand Ambassador Nigeria for RiseBack, an Edtech organization...",
     },
   ];
+
+  let data: any = [];
+
+  // const getBlogs = async () => {
+  //   return await axios.get("http://localhost:5000/api/v1/blog");
+  // };
+  console.log(`${process.env.BASE_API_URL}/blog`)
+  const response = await axios.get(`${process.env.BASE_API_URL}/blog`)
+
+  data = response.data.data.rows;
+  
+  
+
+  //   useEffect(()=> {
+  // let data = getBlogs();
+  //   },[])
+
   return (
     <>
       <section className="text-center">
@@ -112,16 +131,15 @@ export default function Blogs() {
       <section className="px-24 py-24">
         <div className="flex">
           <div className="w-[70%] flex flex-wrap justify-between">
-            {data.map((item, index) => {
-              return (
-                <BlogCard
-                  BlogCardImg={item.BlogCardImg}
-                  BlogCardDate={item.BlogCardDate}
-                  BlogCardHeading={item.BlogCardHeading}
-                  BlogCardtext={item.BlogCardtext}
-                />
-              );
-            })}
+            {data.map((item: any) => (
+              <BlogCard
+                key={item.id}
+                BlogCardImg={item.blog_image}
+                BlogCardDate={item.createdAt}
+                BlogCardHeading={item.title}
+                BlogCardtext={item.description}
+              />
+            ))}
           </div>
 
           <div className="w-[30%] px-8">
