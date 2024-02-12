@@ -13,12 +13,12 @@ export const Navbar = () => {
             </div>
             <div>
                 <ul className="flex text-white space-x-4 list-none">
-                    <li><Link href="/">For Learner </Link></li>
-                    <li><Link href="/for-organizations">For Organizations </Link></li>
-                    <li><Link href="/for-government">For Government </Link></li>
-                    <li><Link href="/for-partnership">For Patnership </Link></li>
-                    <li><Link href="/for-universities">For Universities </Link></li>
-                    <li><Link href="/for-placements">For Placements </Link></li>
+                    <li><Link href="/" className="text-white">For Learner </Link></li>
+                    <li><Link href="/for-organizations" className="text-white">For Organizations </Link></li>
+                    <li><Link href="/for-government" className="text-white">For Government </Link></li>
+                    <li><Link href="/for-partnership" className="text-white">For Patnership </Link></li>
+                    <li><Link href="/for-universities" className="text-white">For Universities </Link></li>
+                    <li><Link href="/for-placements" className="text-white">For Placements </Link></li>
                 </ul>
             </div>
 
@@ -29,14 +29,14 @@ export const Navbar = () => {
             </div>
             <div>
                 <ul className="flex space-x-7 text-blue-900 list-none">
-                    <li><Link href="/courses" className="item item1">Courses <i className="fa-solid fa-chevron-down"></i> </Link></li>
-                    <li><Link href="/about" className="item item2">About Us</Link></li>
-                    <li><Link href="/global-partner" className="item item3">Global Partner <i className="fa-solid fa-chevron-down"></i></Link></li>
-                    <li><Link href="#" className="item item4">Events <i className="fa-solid fa-chevron-down"></i></Link></li>
-                    <li><Link href="/blogs" className="item item5">Blog</Link></li>
-                    <li><Link href="/media" className="item item6">Media</Link></li>
-                    <li><Link href="/career" className="item item7">Career</Link></li>
-                    <li><Link href="/contact-us" className="item item8">Contact</Link></li>
+                    <li><Link href="/courses" className=" text-blue-900">Courses <i className="fa-solid fa-chevron-down"></i> </Link></li>
+                    <li><Link href="/about" className=" text-blue-900">About Us</Link></li>
+                    <li><Link href="/global-partner" className=" text-blue-900">Global Partner <i className="fa-solid fa-chevron-down"></i></Link></li>
+                    <li><Link href="/event" className=" text-blue-900">Events <i className="fa-solid fa-chevron-down"></i></Link></li>
+                    <li><Link href="/blogs" className=" text-blue-900">Blog</Link></li>
+                    <li><Link href="/media" className=" text-blue-900">Media</Link></li>
+                    <li><Link href="/career" className=" text-blue-900">Career</Link></li>
+                    <li><Link href="/contact-us" className=" text-blue-900">Contact</Link></li>
                     <button className="bg-blue-900 px-3 py-1 text-white rounded">Log in</button>
                 </ul>
             </div>

@@ -2,74 +2,22 @@ import Image from "next/image";
 import { BlogCard } from "components/layout/cards/blog-cards";
 import axios from "axios";
 import { useEffect } from "react";
+import { Categories } from "@carbon/icons-react";
 
 export default async function Blogs() {
-  const _data = [
-    {
-      BlogCardImg: "/img2/college-savings-concept_700248-1580.jpg",
-      BlogCardDate: "22 September 2023",
-      BlogCardHeading:
-        "How affordable University education helps individuals, organizations, and the economy?",
-      BlogCardtext:
-        "Many people would argue current education needs a reboot,I totally agree and online education has the answer to it....",
-    },
-    {
-      BlogCardImg: "/img2/lagos-city-Nigeria (1).jpg",
-      BlogCardDate: "27 December 2023",
-      BlogCardHeading:
-        "How IT University Education can be game changer for Nigeria Startups & IT sector changer for Nigeria Startups &IT sector",
-      BlogCardtext:
-        "I am excited to announce that I have been appointed as Brand Ambassador Nigeria for RiseBack, an Edtech organization...",
-    },
-    {
-      BlogCardImg: "/img2/college-savings-concept_700248-1580.jpg",
-      BlogCardDate: "22 September 2023",
-      BlogCardHeading:
-        "How affordable University education helps individuals, organizations, and the economy?",
-      BlogCardtext:
-        "Many people would argue current education needs a reboot,I totally agree and online education has the answer to it....",
-    },
-    {
-      BlogCardImg: "/img2/lagos-city-Nigeria (1).jpg",
-      BlogCardDate: "27 December 2023",
-      BlogCardHeading:
-        "How IT University Education can be game changer for Nigeria Startups & IT sector changer for Nigeria Startups &IT sector",
-      BlogCardtext:
-        "I am excited to announce that I have been appointed as Brand Ambassador Nigeria for RiseBack, an Edtech organization...",
-    },
-    {
-      BlogCardImg: "/img2/college-savings-concept_700248-1580.jpg",
-      BlogCardDate: "22 September 2023",
-      BlogCardHeading:
-        "How affordable University education helps individuals, organizations, and the economy?",
-      BlogCardtext:
-        "Many people would argue current education needs a reboot,I totally agree and online education has the answer to it....",
-    },
-    {
-      BlogCardImg: "/img2/lagos-city-Nigeria (1).jpg",
-      BlogCardDate: "27 December 2023",
-      BlogCardHeading:
-        "How IT University Education can be game changer for Nigeria Startups & IT sector changer for Nigeria Startups &IT sector",
-      BlogCardtext:
-        "I am excited to announce that I have been appointed as Brand Ambassador Nigeria for RiseBack, an Edtech organization...",
-    },
-  ];
+  // const CategoriesList = () => {
 
   let data: any = [];
-
-  // const getBlogs = async () => {
-  //   return await axios.get("http://localhost:5000/api/v1/blog");
-  // };
-  console.log(`${process.env.BASE_API_URL}/blog`)
-  const response = await axios.get(`${process.env.BASE_API_URL}/blog`)
-
+  console.log(`${process.env.BASE_API_URL}/blog`);
+  const response = await axios.get(`${process.env.BASE_API_URL}/blog`);
   data = response.data.data.rows;
-  
-  
 
-  //   useEffect(()=> {
-  // let data = getBlogs();
-  //   },[])
+  let data2 = [];
+  const response2 = await axios.get(
+    `${process.env.BASE_API_URL}/blog/blog-category`
+  );
+  data2 = response2.data.data.rows;
+  // console.log(data2);
 
   return (
     <>
@@ -84,47 +32,14 @@ export default async function Blogs() {
         <h2 className="font-bold">FEATURED BLOG POSTS</h2>
         <span className=" border-b-2 w-8 mb-4"></span>
         <div className="flex">
-          <div className="w-[70%] shadow-2xl ">
-            <Image
-              height={400}
-              width={500}
-              alt="Test"
-              src="/img2/Information-Technology.jpg"
-              className="w-full"
-            />
-            <p className="font-bold py-4 px-4 text-xl">
-              Can an Information Technology University degree be the road to
-              achieving the American Dream ?
-            </p>
-          </div>
-          <div className="w-[30%] px-8 ">
-            <div className="shadow-2xl">
-              <Image
-                height={150}
-                width={150}
-                alt="Test"
-                src="/img2/motivational-composition-goal-achievement_23-2150490032.jpg"
-                className="w-full"
-              />
-              <p className="p-4 font-bold m-0">
-                Unlocking Lucrative Opportunities : IT Courses in AI, ML,
-                WebApps, Cloud, and Blockchain for Indonesians
-              </p>
-            </div>
-            <div className="shadow-2xl mt-8">
-              <Image
-                height={150}
-                width={200}
-                alt="Test"
-                src="/img2/motivational-composition-goal-achievement_23-2150490032.jpg"
-                className="w-full"
-              />
-              <p className="p-4 font-bold m-0">
-                Unlocking Lucrative Opportunities : IT Courses in AI, ML,
-                WebApps, Cloud, and Blockchain for Indonesians
-              </p>
-            </div>
-          </div>
+          {data.map((item: any) => {
+            <BlogCard
+              variant="primary"
+              key={item.id}
+              BlogCardImg={item.blog_image}
+              BlogCardHeading={item.title}
+            />;
+          })}
         </div>
       </section>
 
@@ -133,6 +48,7 @@ export default async function Blogs() {
           <div className="w-[70%] flex flex-wrap justify-between">
             {data.map((item: any) => (
               <BlogCard
+                variant="secondary"
                 key={item.id}
                 BlogCardImg={item.blog_image}
                 BlogCardDate={item.createdAt}
@@ -149,15 +65,10 @@ export default async function Blogs() {
               className="border w-full mb-4 p-3"
             />
             <h2 className="font-bold mb-4">Catagories</h2>
-            <p className="my-2 border-b-2 pb-3">Academics</p>
 
-            <p className="my-2 border-b-2 pb-3">Academics</p>
-
-            <p className="my-2 border-b-2 pb-3">Academics</p>
-
-            <p className="my-2 border-b-2 pb-3">Academics</p>
-
-            <p className="my-2 border-b-2 pb-3">Academics</p>
+            {data2.map((item: any) => (
+              <p key={item.id}>{item.name}</p>
+            ))}
           </div>
         </div>
         <div className="flex justify-center">

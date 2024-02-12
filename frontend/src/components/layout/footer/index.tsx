@@ -12,8 +12,8 @@ export const Footer = () => {
                             <i className="fa-solid fa-phone pr-3"></i>
                         </div>
                         <div>
-                            <a href="#" className="pb-3">+91 - 7972802372 (India)</a><br />
-                            <a href="#" className="pb-3">+1 - 77353 69786 (USA)</a>
+                            <a href="#" className="pb-3 text-white">+91 - 7972802372 (India)</a><br />
+                            <a href="#" className="pb-3 text-white">+1 - 77353 69786 (USA)</a>
                         </div>
                     </div>
                     <div className="w-1/5 flex">
@@ -21,29 +21,29 @@ export const Footer = () => {
                             <i className="fa-solid fa-envelope pr-3"></i>
                         </div>
                         <div>
-                            <a href="#">info@riseback.org</a>
+                            <a href="#" className="text-white">info@riseback.org</a>
                         </div>
                     </div>
                 </div>
                 <div className="w-1/5 flex flex-col">
                     <h2 className="mb-4 text-lg">LINKS</h2>
                     <span className="border-b-2 w-4 mb-4"></span>
-                    <a href="#" className="mb-2">Professional Courses</a>
-                    <a href="#" className="mb-2">Undergraduate Degree’s</a>
-                    <a href="#" className="mb-2">Master Degree’s</a>
+                    <a href="#" className="mb-2 text-white">Professional Courses</a>
+                    <a href="#" className="mb-2 text-white">Undergraduate Degree’s</a>
+                    <a href="#" className="mb-2 text-white">Master Degree’s</a>
                 </div>
                 <div className="w-1/5 flex flex-col">
                     <h2 className="mb-4 text-lg">COMPANY</h2>
                     <span className="border-b-2 w-4 mb-4"></span>
-                    <a href="#" className="mb-2">About Us</a>
-                    <a href="#" className="mb-2">Contact</a>
-                    <a href="#" className="mb-2">Career</a>
+                    <a href="#" className="mb-2 text-white">About Us</a>
+                    <a href="#" className="mb-2 text-white">Contact</a>
+                    <a href="#" className="mb-2 text-white">Career</a>
                 </div>
                 <div className="w-1/5 flex flex-col">
                     <h2 className="mb-4 text-lg">SUPPORT</h2>
                     <span className="border-b-2 w-4 mb-4"></span>
-                    <a href="#" className="mb-2">Privacy Policy</a>
-                    <a href="#" className="mb-2">Terms & Condition</a>
+                    <a href="#" className="mb-2 text-white">Privacy Policy</a>
+                    <a href="#" className="mb-2 text-white">Terms & Condition</a>
                 </div>
                 <div className="w-1/5 flex flex-col">
                     <h2 className="mb-4 text-lg">Follow Us</h2>
@@ -60,7 +60,7 @@ export const Footer = () => {
 
             <div className="text-gray-300 pb-4">
                 <p>Copyright © 2022. All right reserved by Riseback Edutech.</p>
-                <p>Design & Developed By <span className="text-white hover:underline"><a href="#">TMA Worldwide.</a></span></p>
+                <p>Design & Developed By <span className=" hover:underline"><a href="#" className="text-white">TMA Worldwide.</a></span></p>
             </div>
         </footer></>
 }

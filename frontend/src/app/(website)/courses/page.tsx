@@ -23,42 +23,42 @@ export default function courses(){
         <div className="flex">
             <div className="w-3/4 flex flex-wrap">
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
+                    <Image width={500} height={180} src="/img2/cloud computing.jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
                         <p className="font-bold m-0 mb-6">Cloud Computing using AWS (Amazon Web Services)</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
+                    <Image width={500} height={180} src="/img2/cyber security.jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
                         <p className="font-bold m-0 mb-6">Cyber Security and Ethical Hacking</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
+                    <Image width={500} height={180} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
                         <p className="font-bold m-0 mb-6">AI Data Science and Machine Learning using Python</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
+                    <Image width={500} height={180} src="/img2/Mobile application.jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
                         <p className="font-bold m-0 mb-6">Mobile Application Development with Flutter</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
+                    <Image width={500} height={180} src="/img2/python programming.jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
                         <p className="font-bold m-0 mb-6">Python Programming and its Applications</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
                 <div className="w-[30%] mx-2  shadow-2xl rounded-md mb-4">
-                    <Image width={500} height={150} src="/img2/person-using-ai-tool-job (1).jpg" alt="img" className="w-full rounded-t-md"/>
+                    <Image width={500} height={180} src="/img2/php programming.jpg" alt="img" className="w-full rounded-t-md"/>
                     <div className="p-4">
                         <p className="font-bold m-0 mb-6">Full Stack Web Development Using PHP and MYSQL</p>
                         <button className="bg-blue-800 py-1 w-full rounded-md text-white">View Details <i className="fa-solid fa-arrow-right"></i></button>
