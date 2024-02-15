@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-export default function SingleBlog() {
+export default async function SingleBlog({params} : {params : {id : string}}) {
     return (
         <>
         <section className="px-36">

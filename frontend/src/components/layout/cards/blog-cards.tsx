@@ -9,9 +9,10 @@ export interface BlogCardProps{
     variant: 'primary' | 'secondary'
 }
 
-export function BlogCard ({BlogCardImg ,BlogCardDate, BlogCardHeading, BlogCardtext, variant='primary'} : BlogCardProps){
+export function BlogCard ({BlogCardImg ,BlogCardDate, BlogCardHeading, BlogCardtext, variant} : BlogCardProps){
+console.log(BlogCardImg ,BlogCardDate, BlogCardHeading, BlogCardtext, variant);
 
-    if(variant == 'primary'){
+    if(variant === 'primary'){
         return (
             <div className="w-[70%] shadow-2xl ">
             <Image
@@ -26,10 +27,10 @@ export function BlogCard ({BlogCardImg ,BlogCardDate, BlogCardHeading, BlogCardt
             </p>
           </div>
         );
-    }
-    else if(variant='secondary'){
+    } else if(variant==='secondary'){
         return(
             <div className="w-[45%] shadow-2xl rounded-lg mb-10">
+               
                <Image height={200} width={400} alt="Test" src={'http://localhost:5000/'+BlogCardImg} className="w-full mb-4 rounded-t-lg object-center" />
                <div className="px-4">
                    <p className="text-gray-400 mb-4">{BlogCardDate}</p>

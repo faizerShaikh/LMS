@@ -1,13 +1,26 @@
+import axios from "axios";
+import { CourseSpecializationInterface } from "interfaces";
 import Image from "next/image";
 
-export default function SingleCourse() {
+export default async function SingleCourse({
+  params,
+}: {
+  params: { id: string };
+}) {
+  let data:CourseSpecializationInterface;
+  let url = `${process.env.BASE_API_URL}/configrations/course-specialization/${params.id}/`
+  console.log(url)
+  const response = await axios.get(url);
+  data = response.data.data;
+
+
   return (
     <>
       <section className="bg-gray-100">
         <div className="flex px-24 py-8">
           <div className="w-2/4">
             <Image
-              src="/img2/person-using-ai-tool-job (1).jpg"
+              src={`${process.env.BASE_MEDIA_URL}${data.course.course_image}`}
               height={400}
               width={300}
               alt=""
@@ -16,16 +29,16 @@ export default function SingleCourse() {
           </div>
           <div className="w-2/4 px-8  ">
             <h2 className="font-bold text-2xl py-6">
-              Data Science Artificial Intelligence and Machine Learning using
-              Python
+              {data.name}
             </h2>
             <p className="font-semibold mb-10">
-              This Data Science, Artificial Intelligence, and Machine Learning
+              {data.description}
+              {/* This Data Science, Artificial Intelligence, and Machine Learning
               using Python course dives into the basics of machine learning
               using an approachable, and well-known, programming language. The
               learner will learn about Supervised vs. Unsupervised Learning,
               look into how Statistical Modeling relates to Machine Learning,
-              and do a comparison of each.
+              and do a comparison of each. */}
             </p>
 
             <div className="flex justify-between">

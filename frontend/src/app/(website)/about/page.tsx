@@ -43,21 +43,23 @@ export default function AboutUs() {
                 <div className="flex ">
                     <div className="w-2/4">
                         <h2 className="text-2xl font-medium	">Empowerment</h2>
-                        <FaFistRaised size={130} />
+                        <Image width={50} height={40} alt="test" src="/img2/Developement.svg" className="fill-white " />
+                        
                     </div>
                     <div className="w-2/4">
                         <h2 className="text-2xl font-medium	">Development</h2>
-                        <FaFistRaised size={130} />
+                        <Image width={50} height={40} alt="test" src="/img2/Developement.svg" className="fill-current text-white"/>
 
                     </div>
                     <div className="w-2/4">
                         <h2 className="text-2xl font-medium	">Entrepreneurship</h2>
-                        <FaFistRaised size={130} />
+                        <Image width={50} height={40} alt="test" src="/img2/Developement.svg" />
 
                     </div>
                     <div className="w-2/4">
                         <h2 className="text-2xl font-medium	">Growth</h2>
-                        <FaFistRaised size={130} />
+                        <Image width={50} height={40} alt="test" src="/img2/Developement.svg" />
+
                     </div>
                 </div>
             </div>

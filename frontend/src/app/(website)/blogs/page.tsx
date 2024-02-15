@@ -7,17 +7,23 @@ import { Categories } from "@carbon/icons-react";
 export default async function Blogs() {
   // const CategoriesList = () => {
 
-  let data: any = [];
-  console.log(`${process.env.BASE_API_URL}/blog`);
-  const response = await axios.get(`${process.env.BASE_API_URL}/blog`);
-  data = response.data.data.rows;
-
-  let data2 = [];
-  const response2 = await axios.get(
+  let BlogCardData: any = [];
+  const BlogCardresponse = await axios.get(`${process.env.BASE_API_URL}/blog`);
+  BlogCardData = BlogCardresponse.data.data.rows;
+  // console.log(BlogCardData)
+  let BlogCatagoriData = [];
+  const BlogCatagoriResponse = await axios.get(
     `${process.env.BASE_API_URL}/blog/blog-category`
   );
-  data2 = response2.data.data.rows;
-  // console.log(data2);
+  BlogCatagoriData = BlogCatagoriResponse.data.data.rows;
+  // console.log(BlogCatagoriData)
+
+  let FeaturedBlogData: any = [];
+  const FeaturedBlogResponse = await axios.get(
+    `${process.env.BASE_API_URL}/blog/featured`
+  );
+  FeaturedBlogData = FeaturedBlogResponse.data.data;
+  console.log(FeaturedBlogData);
 
   return (
     <>
@@ -32,21 +38,21 @@ export default async function Blogs() {
         <h2 className="font-bold">FEATURED BLOG POSTS</h2>
         <span className=" border-b-2 w-8 mb-4"></span>
         <div className="flex">
-          {data.map((item: any) => {
+          {FeaturedBlogData.map((item: any) => (
             <BlogCard
               variant="primary"
               key={item.id}
               BlogCardImg={item.blog_image}
               BlogCardHeading={item.title}
-            />;
-          })}
+            />
+          ))}
         </div>
       </section>
 
       <section className="px-24 py-24">
         <div className="flex">
           <div className="w-[70%] flex flex-wrap justify-between">
-            {data.map((item: any) => (
+            {BlogCardData.map((item: any) => (
               <BlogCard
                 variant="secondary"
                 key={item.id}
@@ -66,7 +72,7 @@ export default async function Blogs() {
             />
             <h2 className="font-bold mb-4">Catagories</h2>
 
-            {data2.map((item: any) => (
+            {BlogCatagoriData.map((item: any) => (
               <p key={item.id}>{item.name}</p>
             ))}
           </div>
