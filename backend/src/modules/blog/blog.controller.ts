@@ -41,4 +41,9 @@ export class BlogController extends GenericController<
   ) {
     return this.blogService.updateBlogImage(file, id);
   }
+
+  @Get('featured')
+  async findFeaturedBlogs(): Promise<Blog[]> {
+    return this.blogService.findFeaturedBlogs();
+  }
 }

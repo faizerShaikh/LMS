@@ -9,7 +9,7 @@ import { BlogCategoryService } from './modules/blog-category/blog-category.servi
 import { BlogCategory } from './modules/blog-category/model';
 
 @Module({
-  imports: [SequelizeModule.forFeature([Blog,BlogCategory]),],
+  imports: [SequelizeModule.forFeature([Blog,BlogCategory,]),],
   controllers: [BlogCategoryController, BlogController, ],
   providers: [BlogService,BlogCategoryService],
 })

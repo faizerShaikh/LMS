@@ -21,8 +21,6 @@ export class BlogService extends GenericService<
 
   async updateBlogImage(file: Express.Multer.File, id: string) {
     const blog = await this.getOne<Blog>(id);
-console.log(blog,file);
-
     if (blog.blog_image) {
       unlink(
         join(__dirname, '../../../../', 'src/public/media' + blog.blog_image),
@@ -36,8 +34,13 @@ console.log(blog,file);
     }
 
     await blog.update({
-      blog_image: '/media/blog/About-Us-page-1707399391277-505639148.jpg',
+      blog_image: '/media/blog/'+file.filename,
     });
     return 'Blog Image Uploaded Successfully';
+  }
+  async findFeaturedBlogs(): Promise<Blog[]> {
+    return this.blog.findAll({
+      where: { is_featured: true },
+    });
   }
 }

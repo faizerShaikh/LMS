@@ -39,7 +39,7 @@ export class CourseService extends GenericService<
     }
 
     await course.update({
-      course_image: file?.path?.split('src/public')[1],
+      course_image: '/media/course/'+ file.filename,
     });
     return 'Course Image Uploaded Successfully';
   }

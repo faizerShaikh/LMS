@@ -20,7 +20,7 @@ import { BlogModule } from './modules/blog/blog.module';
     // Globle Modules
     RequestParamsModule,
     JwtModule,
-
+  
     //User Module
     UsersModule,
 
