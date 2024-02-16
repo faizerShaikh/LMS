@@ -5,9 +5,9 @@ import { InjectModel } from "@nestjs/sequelize";
 import { unlink } from "fs";
 import { join } from "path";
 import { CreateEventDTO, UpdateEventDTO } from "./dtos";
-
+import { User } from "src/modules/user/users/models/user.model";
 @Injectable()
-export class eventService extends GenericService<Events,CreateEventDTO,UpdateEventDTO>({}){
+export class eventService extends GenericService<Events,CreateEventDTO,UpdateEventDTO>({includes:User}){
     constructor(
       @InjectModel (Events) private event : typeof Events,
       private reqParams:RequestParamsService

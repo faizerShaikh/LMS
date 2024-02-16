@@ -5,13 +5,14 @@ import { CreateBlogDTO, UpdateBlogDTO } from './dtos';
 import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
+import { User } from '../user/users/models/user.model';
 
 @Injectable()
 export class BlogService extends GenericService<
   Blog,
   CreateBlogDTO,
   UpdateBlogDTO
->({}) {
+>({includes:User}) {
   constructor(
     @InjectModel(Blog) private blog: typeof Blog,
     private reqParams: RequestParamsService,
@@ -39,13 +40,13 @@ export class BlogService extends GenericService<
     return 'Blog Image Uploaded Successfully';
   }
   async findFeaturedBlogs(): Promise<Blog[]> {
-    return this.blog.findAll({
+    return this.blog.findAll({include:[User],
       where: { is_featured: true },
     });
   }
 
   async notFeaturedBLogs(): Promise<Blog[]> {
-    return this.blog.findAll({
+    return this.blog.findAll({include:[User],
       where: { is_featured: false },
     });
   }
