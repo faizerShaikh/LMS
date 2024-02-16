@@ -46,4 +46,8 @@ export class BlogController extends GenericController<
   async findFeaturedBlogs(): Promise<Blog[]> {
     return this.blogService.findFeaturedBlogs();
   }
+  @Get('not-featured')
+  async notFeaturedBLogs(): Promise<Blog[]> {
+    return this.blogService.notFeaturedBLogs();
+  }
 }

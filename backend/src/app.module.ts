@@ -9,6 +9,7 @@ import { ResponseInterceptor } from './core/interceptors';
 import { UsersModule } from './modules/user';
 import { ConfigrationModule } from './modules/configrations/configration.module';
 import { BlogModule } from './modules/blog/blog.module';
+import { EventModule } from './modules/configrations/event/event.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { BlogModule } from './modules/blog/blog.module';
     ConfigrationModule,
     //Blogs Module
     BlogModule,
+    EventModule
   ],
   providers: [
     {

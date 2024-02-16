@@ -43,4 +43,10 @@ export class BlogService extends GenericService<
       where: { is_featured: true },
     });
   }
+
+  async notFeaturedBLogs(): Promise<Blog[]> {
+    return this.blog.findAll({
+      where: { is_featured: false },
+    });
+  }
 }
