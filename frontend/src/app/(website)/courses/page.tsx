@@ -15,9 +15,8 @@ export default async function courses() {
   );
   CoursesCardData = response.data.data.rows;
   console.log(CoursesCardData)
-
  
-  return (
+ return (
     <>
       <section className="bg-gray-100">
         <div className="flex px-24 py-8">
@@ -40,7 +39,7 @@ export default async function courses() {
               applications, cloud computing, and blockchain, and gain the skills
               needed to navigate the dynamic digital landscape.
             </p>
-            <button className="bg-blue-700 py-2 px-4 text-white">
+            <button className="bg-blue-700 py-2 px-4 text-white"  >
               Explore Professional Courses
             </button>
           </div>

@@ -5,25 +5,22 @@ import { useEffect } from "react";
 import { Categories } from "@carbon/icons-react";
 
 export default async function Blogs() {
-  // const CategoriesList = () => {
 
   let BlogCardData: any = [];
-  const BlogCardresponse = await axios.get(`${process.env.BASE_API_URL}/blog`);
-  BlogCardData = BlogCardresponse.data.data.rows;
-  // console.log(BlogCardData)
+  const BlogCardresponse = await axios.get(`${process.env.BASE_API_URL}/blog/not-featured`);
+  BlogCardData = BlogCardresponse.data.data;
+  console.log(BlogCardData)
+  // console.log(`${process.env.BASE_API_URL}/blog/not-featured`)
+
   let BlogCatagoriData = [];
-  const BlogCatagoriResponse = await axios.get(
-    `${process.env.BASE_API_URL}/blog/blog-category`
-  );
+  const BlogCatagoriResponse = await axios.get(`${process.env.BASE_API_URL}/blog/blog-category`);
   BlogCatagoriData = BlogCatagoriResponse.data.data.rows;
   // console.log(BlogCatagoriData)
 
   let FeaturedBlogData: any = [];
-  const FeaturedBlogResponse = await axios.get(
-    `${process.env.BASE_API_URL}/blog/featured`
-  );
+  const FeaturedBlogResponse = await axios.get(`${process.env.BASE_API_URL}/blog/featured`);
   FeaturedBlogData = FeaturedBlogResponse.data.data;
-  console.log(FeaturedBlogData);
+  // console.log(FeaturedBlogData);
 
   return (
     <>
@@ -37,15 +34,19 @@ export default async function Blogs() {
       <section className="px-24 mt-12">
         <h2 className="font-bold">FEATURED BLOG POSTS</h2>
         <span className=" border-b-2 w-8 mb-4"></span>
-        <div className="flex">
-          {FeaturedBlogData.map((item: any) => (
+        <div className="grid grid-cols-3 gap-8">
+
+        {FeaturedBlogData.map((item : any, index: any) => (
             <BlogCard
+            // extraClasses="mr-6"
               variant="primary"
               key={item.id}
-              BlogCardImg={item.blog_image}
-              BlogCardHeading={item.title}
+              extraClasses={index === 0?'row-span-2 col-span-2':'col-span-1 row-span-1'}
+              specialization={item}
+              size= {index === 0?"l":"s"}
             />
-          ))}
+          
+        ))}
         </div>
       </section>
 
@@ -56,10 +57,7 @@ export default async function Blogs() {
               <BlogCard
                 variant="secondary"
                 key={item.id}
-                BlogCardImg={item.blog_image}
-                BlogCardDate={item.createdAt}
-                BlogCardHeading={item.title}
-                BlogCardtext={item.description}
+                specialization={item}
               />
             ))}
           </div>

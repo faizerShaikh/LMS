@@ -95,8 +95,8 @@ export default function Career() {
                 <div className="w-3/4">
                     <div className="mb-8">
                         <input type="text" placeholder="Search by job title, location, department, catagory, etc." className="w-3/4 border-2 p-2 mr-2" />
-                        <button className="bg-blue-600 py-2 px-4 border rounded-md hover:bg-white hover:border-blue-700 hover:text-blue-700 mr-2">Search</button>
-                        <button className="bg-blue-600 py-2 px-4 border rounded-md hover:bg-white hover:border-blue-700 hover:text-blue-700">Job Near Me</button>
+                        <button className="bg-blue-600 py-2 px-4 border text-white rounded-md hover:bg-white hover:border-blue-700 hover:text-blue-700 mr-2">Search</button>
+                        <button className="bg-blue-600 py-2 px-4 border rounded-md text-white hover:bg-white hover:border-blue-700 hover:text-blue-700">Job Near Me</button>
                     </div>
                     <div>
                         <table className="w-full">

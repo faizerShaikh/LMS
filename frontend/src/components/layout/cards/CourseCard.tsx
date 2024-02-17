@@ -18,12 +18,18 @@ export function CoursesCard({
         alt="img"
         className="w-full rounded-t-md"
       />
-      <div className="p-4 flex flex-col">
-        <p className="font-bold m-0 mb-6">{specialization.name}</p>
-        <Link href={`courses/${specialization.id}`} className="text-white">
-            <button className="bg-blue-900 py-2 w-full rounded-md text-white">View Details </button>
-        </Link>
+      <div className="flex flex-col justify-between">
+        <div className="p-4">
+          <p className="font-bold m-0 min-h-12">{specialization.name}</p>
+          
+        </div>
+        <div className="px-4 mb-3">
+          <Link href={`courses/${specialization.id}`} className="text-white">
+              <button className="bg-blue-900 py-2 w-full rounded-md text-white">View Details </button>
+          </Link>
+        </div>
       </div>
+      
     </div>
   );
 }

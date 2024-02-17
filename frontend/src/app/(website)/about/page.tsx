@@ -43,22 +43,22 @@ export default function AboutUs() {
                 <div className="flex ">
                     <div className="w-2/4">
                         <h2 className="text-2xl font-medium	">Empowerment</h2>
-                        <Image width={50} height={40} alt="test" src="/img2/Developement.svg" className="fill-white " />
+                        <Image width={150} height={150} alt="test" src="/img2/Empowerment.svg"  />
                         
                     </div>
                     <div className="w-2/4">
                         <h2 className="text-2xl font-medium	">Development</h2>
-                        <Image width={50} height={40} alt="test" src="/img2/Developement.svg" className="fill-current text-white"/>
+                        <Image width={150} height={150} alt="test" src="/img2/Developement.svg" />
 
                     </div>
                     <div className="w-2/4">
                         <h2 className="text-2xl font-medium	">Entrepreneurship</h2>
-                        <Image width={50} height={40} alt="test" src="/img2/Developement.svg" />
+                        <Image width={150} height={150} alt="test" src="/img2/Entrepreneurship.svg" />
 
                     </div>
                     <div className="w-2/4">
                         <h2 className="text-2xl font-medium	">Growth</h2>
-                        <Image width={50} height={40} alt="test" src="/img2/Developement.svg" />
+                        <Image width={150} height={150} alt="test" src="/img2/Growth.svg" />
 
                     </div>
                 </div>
@@ -69,27 +69,27 @@ export default function AboutUs() {
             <p className="text-base pb-8">pursuit of our commitment to affordable education, RiseBack has forged partnerships with individuals and organizations worldwide, extending our reach and impact across countries such as the USA, Egypt, Nigeria, Indonesia, Ethiopia, and the Philippines.Our dedication to fostering global connectivity between Indian universities and students is inspired by the transformative symbolism of the phoenix.Through these collaborations, RiseBack strives to make quality education accessible to everyone, transcending geographical boundaries and creating a global network for knowledged is semination and empowerment.</p>
             <div className="flex justify-between mb-8">
                 <div>
-                    <Image width={200} height={200} src="/img2/USA.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/USA.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg hover:scale-125 transition duration-500 cursor-pointer" alt="img" />
                     <p className="font-bold mt-2 text-lg">USA</p>
                 </div>
                 <div>
-                    <Image width={200} height={200} src="/img2/Indonesia.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/Indonesia.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg hover:scale-125 transition duration-500 cursor-pointer" alt="img" />
                     <p className="font-bold mt-2 text-lg">Indonesia</p>
                 </div>
                 <div>
-                    <Image width={200} height={200} src="/img2/Nigeria.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/Nigeria.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg hover:scale-125 transition duration-500 cursor-pointer" alt="img" />
                     <p className="font-bold mt-2 text-lg">Nigeria</p>
                 </div>
                 <div>
-                    <Image width={200} height={200} src="/img2/Ethiopia.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/Ethiopia.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg hover:scale-125 transition duration-500 cursor-pointer" alt="img" />
                     <p className="font-bold mt-2 text-lg">Ethopia</p>
                 </div>
                 <div>
-                    <Image width={200} height={200} src="/img2/Egypt.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/Egypt.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg hover:scale-125 transition duration-500 cursor-pointer" alt="img" />
                     <p className="font-bold mt-2 text-lg">Egypt</p>
                 </div>
                 <div>
-                    <Image width={200} height={200} src="/img2/Philippines.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg" alt="img" />
+                    <Image width={200} height={200} src="/img2/Philippines.jpg" className="w-48 h-24 mb-4 shadow-lg rounded-lg hover:scale-125 transition duration-500 cursor-pointer" alt="img" />
                     <p className="font-bold mt-2 text-lg">Philippines</p>
                 </div>
             </div>

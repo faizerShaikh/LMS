@@ -54,27 +54,27 @@ export default function ContactUs() {
                 <h2 className=" text-4xl m-0 py-16 font-semibold">Global Offices</h2>
                 <div className="flex justify-between">
                     <div>
-                        <Image alt="hehje" width={200} height={200} src="/img2/USA.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/USA.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-125 transition duration-500 cursor-pointer" />
                         <p className="font-bold mt-2 text-lg">USA</p>
                     </div>
                     <div>
-                        <Image alt="hehje" width={200} height={200} src="/img2/Indonesia.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/Indonesia.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-125 transition duration-500 cursor-pointer" />
                         <p className="font-bold mt-2 text-lg">Indonesia</p>
                     </div>
                     <div>
-                        <Image alt="hehje" width={200} height={200} src="/img2/Nigeria.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/Nigeria.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-125 transition duration-500 cursor-pointer" />
                         <p className="font-bold mt-2 text-lg ">Nigeria</p>
                     </div>
                     <div>
-                        <Image alt="hehje" width={200} height={200} src="/img2/Ethiopia.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/Ethiopia.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-125 transition duration-500 cursor-pointer" />
                         <p className="font-bold mt-2 text-lg ">Ethopia</p>
                     </div>
                     <div>
-                        <Image alt="hehje" width={200} height={200} src="/img2/Egypt.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/Egypt.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-125 transition duration-500 cursor-pointer" />
                         <p className="font-bold mt-2 text-lg ">Egypt</p>
                     </div>
                     <div>
-                        <Image alt="hehje" width={200} height={200} src="/img2/Philippines.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md" />
+                        <Image alt="hehje" width={200} height={200} src="/img2/Philippines.jpg" className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-125 transition duration-500 cursor-pointer" />
                         <p className="font-bold mt-2 text-lg ">Philippines</p>
                     </div>
                 </div>

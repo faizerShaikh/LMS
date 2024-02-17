@@ -1,10 +1,21 @@
-"use client";
+// "use client";
 
+import axios from "axios";
+import moment from "moment";
 import Image from "next/image";
-import { useState } from "react";
+// import { useState } from "react";
 
-export default function Home() {
-  const [accordionOpen, setAccordionOpen] = useState(false);
+export default async function Home() {
+  // const [accordionOpen, setAccordionOpen] = useState(false);
+  
+
+  let events = [];
+  const res = await axios.get(
+    `${process.env.BASE_API_URL}/configrations/event`
+  );
+  events = res.data.data.rows;
+  // const firstThreeEvents = events.slice(0, 3);
+
   return (
     <>
       <section className="px-24 bg-gray-100">
@@ -31,89 +42,37 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>
-        
-      </section>
+      <section></section>
 
       <section className="px-24">
         <div className="mb-8">
           <h2 className="font-bold text-3xl mb-4">Events</h2>
           <p>Upcoming Education Events to feed your brain</p>
         </div>
-        <div className="flex mb-8">
-          <div className="w-1/4">
-            <h2>
-              <span style={{ color: "#ffcc00", fontSize: "60px" }}>02</span>
-            </h2>
-            <p>January</p>
+        
+        {events.map((event: any) => (
+          <div className="flex mb-8">
+            <div className="w-1/4">
+              <h2>
+                <span style={{ color: "#ffcc00", fontSize: "60px" }}>{new Date(event.createdAt).getDate()}</span>
+              </h2>
+              <p>{new Date(event.createdAt).toLocaleString('en-US', { month: 'long' })}</p>
+            </div>
+            <div className="w-1/2 px-2">
+              <h2 className="font-bold mb-4 text-lg">{event.name}</h2>
+              <p className="mb-4">🕒{moment(event.startDayTime).format('h:mm A')} – {moment(event.endDayTime).format('h:mm A')}</p>
+              <p>{event.description}</p>
+            </div>
+            <div className="w-1/4 m-auto px-4">
+              <Image
+                height={150}
+                width={300}
+                src={`${process.env.BASE_MEDIA_URL}${event.eventImage}`}
+                alt=""
+              />
+            </div>
           </div>
-          <div className="w-1/2 px-2">
-            <h2 className="font-bold mb-4 text-lg">
-              Rise N Start Ignite: Nigeria’s First Startup Pitch Competition For
-              Students
-            </h2>
-            <p className="mb-4">🕒10:00 Am – 5:00 Pm</p>
-            <p>
-              Register Now Date: February 2nd – February 3rd, 2024 Time: 10 AM –
-              5 PM Deadline for application: January 21 st, 2024 Application;
-              Free…
-            </p>
-          </div>
-          <div className="w-1/4 m-auto px-4">
-            <Image height={150} width={300} src="/img/events1.jpg" alt="" />
-          </div>
-        </div>
-        <div className="flex mb-8">
-          <div className="w-1/4">
-            <h2>
-              <span style={{ color: "#ffcc00", fontSize: "60px" }}>06</span>
-            </h2>
-            <p>January</p>
-          </div>
-          <div className="w-1/2 px-2">
-            <h2 className="font-bold  mb-4 text-lg">
-              Perkenalkan Rise N Start Ignite: Kompetisi Pitch Startup Pertama
-              di Indonesia untuk Pelajar dan Mahasiswa
-            </h2>
-            <p className="time">🕒10:00 Am – 5:00 Pm</p>
-            <p>
-              Register Now Date: February 2nd – February 3rd, 2024 Time: 10 AM –
-              5 PM Deadline for application: January 21 st, 2024 Application;
-              Free…
-            </p>
-          </div>
-          <div className="w-1/4 m-auto px-4">
-            <Image height={150} width={300} src="/img/events2.jpg" alt="qquq" />
-          </div>
-        </div>
-        <div className="flex mb-8">
-          <div className="w-1/4">
-            <h2>
-              <span style={{ color: "#ffcc00", fontSize: "60px" }}>19</span>
-            </h2>
-            <p>January</p>
-          </div>
-          <div className="w-1/2 px-2">
-            <h2 className="font-bold mb-4 text-lg">
-              Rise N Start Ignite: Ethiopia’s First Startup Pitch Competition
-              For Students
-            </h2>
-            <p className="time">🕒10:00 Am – 5:00 Pm</p>
-            <p>
-              Register Now Date: February 2nd – February 3rd, 2024 Time: 10 AM –
-              5 PM Deadline for application: January 21 st, 2024 Application;
-              Free…
-            </p>
-          </div>
-          <div className="w-1/4 m-auto px-4">
-            <Image
-              height={150}
-              width={300}
-              src="/img/events3.jpg"
-              alt="event"
-            />
-          </div>
-        </div>
+        ))}
       </section>
     </>
   );

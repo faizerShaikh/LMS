@@ -33,12 +33,7 @@ export default async function SingleCourse({
             </h2>
             <p className="font-semibold mb-10">
               {data.description}
-              {/* This Data Science, Artificial Intelligence, and Machine Learning
-              using Python course dives into the basics of machine learning
-              using an approachable, and well-known, programming language. The
-              learner will learn about Supervised vs. Unsupervised Learning,
-              look into how Statistical Modeling relates to Machine Learning,
-              and do a comparison of each. */}
+              
             </p>
 
             <div className="flex justify-between">

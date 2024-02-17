@@ -6,7 +6,7 @@ export default function Blogs() {
             <section className="bg-gray-50 h-[414px]">
                 <div className="flex px-24 py-8 ">
                     <div className="w-2/4 flex justify-evenly">
-                        <Image alt="hehje" width={550} height={350} src="/img2/Ethiopia.jpg" />
+                        <Image alt="hehje" width={550} height={350} src="/img2/Ethopia-Flag.jpg" />
                     </div>
                     <div className="w-2/4 px-8 m-auto ">
                         <h2 className="font-bold text-4xl mt-0 mb-4">Ethopia</h2>
@@ -18,23 +18,23 @@ export default function Blogs() {
                 <h2 className="text-center mb-12 font-medium">Contact Details</h2>
                 <div className="flex  justify-between text-center">
                     <div className="w-[300px] rounded-md py-8 px-12 shadow-lg">
-                        <Image src="/img2/Ethiopia.jpg" alt="" width={80} height={80} className="rounded-full"/>
+                        <Image src="/img2/Location.png" alt="" width={80} height={80} className="rounded-full bg-blue-900 fill-white"/>
                         <h2>Address</h2>
                         <p className="font-medium">Bole Atlast, TK Building, 7th Floor, Addis Ababa Ethiopia</p>
                     </div>
                     <div className="w-[300px] rounded-md py-8 px-12 shadow-lg">
-                        <Image src="/img2/Ethiopia.jpg" alt="" width={80} height={80} className="rounded-full"/>
+                        <Image src="/img2/Phone.png" alt="" width={80} height={80} className="rounded-full bg-blue-900"/>
                         <h2>Phone</h2>
                         <p className="font-medium">+2519 1142 8980</p>
                         <p className="font-medium">+2519 1987 9517</p>
                     </div>
                     <div className="w-[300px] rounded-md py-8 px-12 shadow-lg">
-                        <Image src="/img2/Ethiopia.jpg" alt="" width={80} height={80} className="rounded-full"/>
+                        <Image src="/img2/website.png" alt="" width={80} height={80} className="rounded-full bg-blue-900"/>
                         <h2>Website</h2>
                         <p className="font-medium">www.risebackj.org/ethiopia</p>
                     </div>
                     <div className="w-[300px] rounded-md py-8 px-12 shadow-lg">
-                        <Image src="/img2/Ethiopia.jpg" alt="" width={80} height={80} className="rounded-full"/>
+                        <Image src="/img2/Mail.png" alt="" width={80} height={80} className="rounded-full bg-blue-900"/>
                         <h2>Email</h2>
                         <p className="font-medium" >zebib@riseback.org</p>
                     </div>
