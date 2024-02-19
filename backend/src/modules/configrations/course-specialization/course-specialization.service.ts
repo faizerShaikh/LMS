@@ -19,7 +19,7 @@ export class CourseSpecializationService extends GenericService<
   CreateCourseSpecializationDTO,
   UpdateCourseSpecializationDTO
 >({
-  includes: [FeesStructure, ProgramStructure, Course, University],
+  includes: [ Course,University],
 }) {
   constructor(
     @InjectModel(CourseSpecialization)
@@ -45,11 +45,14 @@ export class CourseSpecializationService extends GenericService<
     data: UpdateCourseSpecializationDTO,
     id: string,
   ): Promise<CourseSpecialization> {
-    const courseSpecialization = await super.update(data, id);
-    await this.createOtherObjects(data, courseSpecialization, false);
-    return courseSpecialization;
+    try {
+      const courseSpecialization = await super.update(data, id);
+      await this.createOtherObjects(data, courseSpecialization, false);
+      return courseSpecialization;
+    } catch (err) {
+      console.error("Error occurred in update method:", err);
+    }
   }
-
   async updateCourseSpecializationImage(file: Express.Multer.File, id: string) {
     const courseSpecialization = await this.getOne<CourseSpecialization>(id);
 

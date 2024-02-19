@@ -58,6 +58,11 @@ export class Blog extends Model<Blog> {
   blog_image: string;
 
   @Column({
+    type: DataType.BOOLEAN,
+    })
+  is_featured: boolean;
+
+  @Column({
     type: DataType.STRING,
     allowNull: false,
     validate: {
@@ -75,18 +80,21 @@ export class Blog extends Model<Blog> {
   @BelongsTo(() => User)
   created_by: User;
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Blog Category can not be empty',
-      },
-      notEmpty: {
-        msg: 'Blog Category can not be empty',
-      },
-    },
-  })
+  // @Column({
+  //   type: DataType.STRING,
+  //   allowNull: false,
+  //   validate: {
+  //     notNull: {
+  //       msg: 'Blog Category can not be empty',
+  //     },
+  //     notEmpty: {
+  //       msg: 'Blog Category can not be empty',
+  //     },
+  //   },
+  // })
+
+
+
   @ForeignKey(() => BlogCategory)
   blog_category_id: string;
 

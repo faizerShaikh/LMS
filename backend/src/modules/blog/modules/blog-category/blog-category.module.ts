@@ -6,7 +6,7 @@ import { BlogCategory } from './model';
 
 @Module({
   imports: [SequelizeModule.forFeature([BlogCategory])],
-  controllers: [BlogCategoryController],
+  controllers: [],
   providers: [BlogCategoryService],
 })
 export class BlogCategoryModule {}

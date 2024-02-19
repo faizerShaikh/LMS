@@ -1,5 +1,6 @@
 import {
   Controller,
+  Get,
   Param,
   Post,
   Put,
@@ -39,5 +40,14 @@ export class BlogController extends GenericController<
     @Param('id') id: string,
   ) {
     return this.blogService.updateBlogImage(file, id);
+  }
+
+  @Get('featured')
+  async findFeaturedBlogs(): Promise<Blog[]> {
+    return this.blogService.findFeaturedBlogs();
+  }
+  @Get('not-featured')
+  async notFeaturedBLogs(): Promise<Blog[]> {
+    return this.blogService.notFeaturedBLogs();
   }
 }

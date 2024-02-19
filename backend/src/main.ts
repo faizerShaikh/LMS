@@ -27,7 +27,13 @@ async function bootstrap() {
   app.useGlobalFilters(new CustomeExceptionsFilter());
 
   // set Globle Pipes
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({
+    skipMissingProperties:false,
+    skipNullProperties:false,
+    skipUndefinedProperties:false,
+    forbidNonWhitelisted:false,
+    forbidUnknownValues:false,
+  }));
   await app.listen(config.get('PORT'));
 }
 bootstrap();
