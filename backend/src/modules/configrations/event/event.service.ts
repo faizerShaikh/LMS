@@ -22,8 +22,7 @@ export class eventService extends GenericService<Events,CreateEventDTO,UpdateEve
             unlink(
                 join(
                     __dirname,
-            '../../../../',
-            'src/public/media'+event.eventImage
+                    '../../../../', '/src/public/'+event.eventImage
                 ),
                 (err)=>{
                     if(err){

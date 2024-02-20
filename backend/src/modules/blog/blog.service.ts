@@ -22,22 +22,25 @@ export class BlogService extends GenericService<
 
   async updateBlogImage(file: Express.Multer.File, id: string) {
     const blog = await this.getOne<Blog>(id);
-    if (blog.blog_image) {
-      unlink(
-        join(__dirname, '../../../../', 'src/public/media' + blog.blog_image),
-        (err) => {
-          if (err) {
-            throw new InternalServerErrorException(err);
-          }
-          console.log('file deleted...');
-        },
-      );
+    try {
+      if (blog.blog_image) {
+        unlink(
+          join(__dirname, '../../../../', 'backend/src/public/' + blog.blog_image),
+          (err) => {
+            if (err) {
+              throw new InternalServerErrorException(err);
+            }
+            console.log('file deleted...');
+          },
+        );
+      }
+      await blog.update({
+        blog_image: '/media/blog/'+file.filename,
+      });
+      return 'Blog Image Uploaded Successfully';
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
     }
-
-    await blog.update({
-      blog_image: '/media/blog/'+file.filename,
-    });
-    return 'Blog Image Uploaded Successfully';
   }
   async findFeaturedBlogs(): Promise<Blog[]> {
     return this.blog.findAll({include:[User],
