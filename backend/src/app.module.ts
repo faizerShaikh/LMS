@@ -10,6 +10,8 @@ import { UsersModule } from './modules/user';
 import { ConfigrationModule } from './modules/configrations/configration.module';
 import { BlogModule } from './modules/blog/blog.module';
 import { EventModule } from './modules/configrations/event/event.module';
+import { PageContentModule } from './modules/configrations/PageContent/pageContent.module';
+import { EnquiryModule } from './modules/configrations/Enquiry/enquiry.module';
 
 @Module({
   imports: [
@@ -29,7 +31,9 @@ import { EventModule } from './modules/configrations/event/event.module';
     ConfigrationModule,
     //Blogs Module
     BlogModule,
-    EventModule
+    EventModule,
+    PageContentModule,
+    EnquiryModule
   ],
   providers: [
     {
