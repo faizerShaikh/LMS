@@ -9,7 +9,7 @@ export default async function Blogs() {
   let BlogCardData: any = [];
   const BlogCardresponse = await axios.get(`${process.env.BASE_API_URL}/blog/not-featured`);
   BlogCardData = BlogCardresponse.data.data;
-  console.log(BlogCardData)
+  // console.log(BlogCardData)
   // console.log(`${process.env.BASE_API_URL}/blog/not-featured`)
 
   let BlogCatagoriData = [];
