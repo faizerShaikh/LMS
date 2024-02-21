@@ -3,23 +3,6 @@ import { CommonPageInterface } from "interfaces/commonPage";
 import { ImgProps } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 
-// export interface CommonPageProps {
-//   heroText: string;
-//   belowText: string;
-//   heroImgSrc?: string;
-//   rowImg1?: string;
-//   rowImg2?: string;
-//   rowImg3?: string;
-//   rowImg4?: string;
-//   rowHeading1: string;
-//   rowHeading2: string;
-//   rowHeading3: string;
-//   rowHeading4: string;
-//   rowtext1: string;
-//   rowtext2: string;
-//   rowtext3: string;
-//   rowtext4: string;
-// }
 
 export interface CommonPageProps {
   specialization: CommonPageInterface;
@@ -41,10 +24,11 @@ export async function CommonPage({
   specialization, rowImg1,rowImg2,rowImg3,rowImg4,rowHeading1,rowHeading2,rowHeading3,rowHeading4,rowtext1,rowtext2,rowtext3,rowtext4
 }: CommonPageProps) {
 
-  let data: any = [];
+  let commonPageData: any = [];
   const res = await axios.get(`${process.env.BASE_API_URL}/configrations/page-content`);
-data = res.data.row;
-console.log(data)
+  console.log(res)
+  commonPageData = res.data.data.rows;
+  console.log(commonPageData)
   return (
     <>
       <section className="bg-gray-50 py-8 h-[400px]">
@@ -79,7 +63,7 @@ console.log(data)
               alt="test"
               height={180}
               width={300}
-              src={rowImg1}
+              src={'rowImg1'}
               className="w-full rounded-t-xl"
             />
             <h2 className="font-bold text-xl my-2">{'rowHeading1'}</h2>
@@ -105,7 +89,7 @@ console.log(data)
               alt="test"
               height={180}
               width={300}
-              src={rowImg3}
+              src={'rowImg3'}
               className="w-full rounded-t-xl"
             />
             <h2 className="font-bold text-xl my-2">{rowHeading3}</h2>
@@ -118,7 +102,7 @@ console.log(data)
               alt="test"
               height={180}
               width={300}
-              src={rowImg4}
+              src={'rowImg4'}
               className="w-full rounded-t-xl"
             />
             <h2 className="font-bold text-xl my-2">{rowHeading4}</h2>

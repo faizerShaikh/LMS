@@ -64,7 +64,7 @@ export const Navbar = () => {
             </li>
             <li className="h-full">
               <Link
-                href="/for-organizations"
+                href="/for-organization"
                 className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white mr-4 px-1"
               >
                 For Organizations{" "}
@@ -96,7 +96,7 @@ export const Navbar = () => {
             </li>
             <li className="h-full">
               <Link
-                href="/for-placements"
+                href="/for-placement"
                 className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white mr-4 px-1"
               >
                 For Placements{" "}

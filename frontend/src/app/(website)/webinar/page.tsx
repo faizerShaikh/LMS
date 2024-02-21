@@ -8,57 +8,9 @@ function webinar() {
         <div className=" container ">
           <div className=" py-16 flex justify-between">
             <div className=" w-[60%] ">
-              <div className="bg-black px-8 py-2">
-                <div className="w-[30%] text-center ">
-                  <p className="font-bold bg-yellow-400 mb-2">
-                    PGP TBM Campus Tour{" "}
-                  </p>
+                <div className="">
+                  <Image src= "/img2/mokmqemopiljipjgdaxn.jpg" alt="test" width={1000} height={200} className="w-full h-72" />
                 </div>
-                <h2 className="text-white text-3xl m-0 mb-2">Campus Tour</h2>
-                <h3 className="text-white font-normal m-0">
-                  Experience our Gurugram Campus
-                </h3>
-                <div className="flex">
-                  <div className="flex items-center">
-                    <Image
-                      src="/img2/calanderyellow.png"
-                      width={20}
-                      height={20}
-                      alt="test"
-                      className="size-5 mr-2"
-                    />
-                    <p className="text-white mr-4">14th February</p>
-                  </div>
-                  <div className="flex items-center m-0">
-                    <Image
-                      src="/img2/clock yellow.png"
-                      width={20}
-                      height={20}
-                      alt="test"
-                      className="size-6 mr-1"
-                    />
-                    <p className="text-white">
-                      1:00 PM - 2:00 PM{" "}
-                      <span className="text-yellow-300">|</span>
-                      {"  "}
-                      6:00 PM - 7:00 PM
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center m-0">
-                  <Image
-                    src="/img2/location-yellow (2).png"
-                    width={20}
-                    height={20}
-                    alt="test"
-                    className="size-8 ml-0"
-                  />
-                  <p className="text-white m-0">
-                    {" "}
-                    Masters'Union Gurugram Campus
-                  </p>
-                </div>
-              </div>
               <div>
                 <h2 className="text-4xl">Speakers</h2>
                 <div className=" flex justify-between">
@@ -85,8 +37,9 @@ function webinar() {
                     <p>Director of Customer Sucess at Coursera</p>
                   </div>
                 </div>
+                </div>
               </div>
-            </div>
+            
             <div className="w-[30%]">
               <form action="#" className="shadow-xl border-2 px-4">
                 <h2 className="text-center">Webinar Registration Form</h2>
@@ -153,7 +106,7 @@ function webinar() {
               </form>
             </div>
           </div>
-        </div>
+          </div>
       </section>
 
       <section className="bg-gray-100">
