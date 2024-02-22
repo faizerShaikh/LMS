@@ -83,7 +83,7 @@ export const Navbar = () => {
                 href="/for-partnership"
                 className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
               >
-                For Patnership{" "}
+                For Partnership{" "}
               </Link>
             </li>
             <li className="h-full">
@@ -180,7 +180,7 @@ export const Navbar = () => {
                 Contact
               </Link>
             </li>
-            <button className="bg-blue-900 px-3 py-1 text-white rounded">
+            <button className="bg-blue-900 px-3 py-1 text-base  text-white rounded">
               Log in
             </button>
           </ul>
