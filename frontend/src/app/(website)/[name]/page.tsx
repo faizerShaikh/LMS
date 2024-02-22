@@ -31,23 +31,23 @@ export default async function SinglePage({
             />
           </div>
           <div className="w-1/2 px-8 ">
-            <h2 className="font-semibold text-5xl mt-0 mb-4">
+            <h1 className="font-extrabold text-5xl leading-[56px] mt-0 mb-4">
               {commonPageData?.title}
-            </h2>
+            </h1>
             <p className="font-medium mb-4 text-xl">
               {commonPageData?.titleDescription}
             </p>
-            <button className="bg-blue-900 py-1 px-4 text-white font-medium text-lg">
+            <button className="bg-blue-900 py-1 px-4 text-white font-medium text-lg rounded-md">
               Contact us
             </button>
           </div>
         </div>
       </section>
       <section className="py-24 container ">
-        <div className="flex justify-between text-center">
+        <div className="flex justify-between text-center gap-5">
           {commonPageData.gallery.map((item: GalleryInterface) => {
             return (
-              <div className="w-[300px]  rounded-xl shadow-xl h-[436px]">
+              <div className="w-1/4  rounded-xl shadow-xl h-[436px]">
                 <Image
                   alt="Gallery image"
                   height={180}

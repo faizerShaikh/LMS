@@ -11,18 +11,29 @@ export const EnquiryForm = () => {
     type: "",
   });
 
+  const [emailError, setEmailError] = useState("");
+
   const handleInput = (event: any) => {
+     const { id, value } = event.target;
+      if (id === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setEmailError(emailRegex.test(value) ? "" : "Invalid email address");
+    }
     setData({ ...data, [event.target.id]:event.target.value });
   };
 
-  console.log(process.env.NEXT_PUBLIC_BASE_API_URL,"<==base sapiii")
   function handleSubmit(event: any) {
-
-    event.preventDefault();
+    // event.preventDefault();
+    alert("Your Enqury form is submited")
+    if (emailError) {
+      console.log("Invalid form submission");
+      return;
+    }
+    
     axios
-      .post(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configrations/enquiry`, {
-        ...data
-      })
+      .post(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configrations/enquiry`, 
+        data
+      )
       .then((response) => console.log(response))
       .catch((err) => console.log(err));
   }
@@ -38,6 +49,7 @@ export const EnquiryForm = () => {
             Please complete and submit the Enquiry form, one of our team member
             would contact you.
           </p>
+          {emailError && <p className="text-red-500">{emailError}</p>}
           <input
             type="text"
             placeholder="Name "
@@ -75,8 +87,11 @@ export const EnquiryForm = () => {
             id="email"
             value={data.email}
             onChange={handleInput}
-            className="w-full mb-4 border-2 rounded-md p-2"
+            className={`w-full mb-4 border-2 rounded-md p-2 ${
+              emailError ? "border-red-500" : ""
+            }`}
           />
+           
           <br />
           <select
             onChange={handleInput}
@@ -87,8 +102,8 @@ export const EnquiryForm = () => {
             <option value="" disabled selected hidden>
               Type of traning
             </option>
-            <option value="online">online</option>
-            <option value="university">universitie</option>
+            <option  value="online">online</option>
+            <option  value="university">university</option>
           </select>
           <br />
           <input

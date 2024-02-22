@@ -13,7 +13,7 @@ export default function ContactUs() {
               className="object-center " src="/img2/Contact-Us-Page.jpg"  />
             </div>
             <div className="w-1/2 px-8 m-auto ">
-                <h2 className="font-bold text-5xl mt-0 mb-4">Contact RiseBack</h2>
+                <h2 className="font-extrabold text-5xl leading-[56px] mt-0 mb-4">Contact RiseBack</h2>
                 <p className="font-medium text-xl">RiseBack.org stands as the world's premier affordable EdTech platform, pioneering accessible online university degree programs encompassing both undergraduate ,graduate studies and, specialized IT courses are available for as low as $250, ensuring quality education is with in reach for aspiring learners around the world.</p>
             </div>
         </div>

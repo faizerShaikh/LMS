@@ -1,6 +1,15 @@
+import axios from "axios";
 import Image from "next/image";
+import { MediaPressRelease } from "interfaces/midiaPressRelese";
 
-export default function Media() {
+export default async function Media() {
+  let PressRealeseCards: Array<MediaPressRelease>;
+  const PressREaleseCardResponse = await axios.get(
+    `${process.env.BASE_API_URL}/configration/press-release`
+  );
+  PressRealeseCards = PressREaleseCardResponse.data.data.rows;
+  console.log(PressRealeseCards);
+
   return (
     <>
       <section className="bg-gray-50 h-[400px] ">
@@ -14,7 +23,7 @@ export default function Media() {
             />
           </div>
           <div className="w-1/2 m-auto px-4">
-            <h2 className="text-5xl font-bold m-0 mb-2">Media</h2>
+            <h2 className="font-extrabold text-5xl leading-[56px] m-0 mb-2">Media</h2>
             <h3 className="text-2xl m-0 mb-2 font-medium ">
               Press Releases, announcements, interviews & comments. For
               press-related questions, e-mails.
@@ -35,124 +44,23 @@ export default function Media() {
       </section>
       <section className=" py-16">
         <h2 className="font-bold text-4xl text-center mb-8">Press Release</h2>
-        <div className="flex flex-wrap container justify-around items-center">
-          <div className="w-96  mr-4 p-4 border border-black mb-8 rounded-md">
-            <Image
-              height={200}
-              width={200}
-              alt="tets"
-              src="/img2/Untitled-1.jpg"
-              className="mb-4 w-full"
-            />
-            <p className="font-bold text-lg m-0 text-lg">
-              RiseBack Launched in Indonesia to propel Tech Entrepreneurship and
-              foster lucrative Tech Careers
-            </p>
-          </div>
-          <div className="w-96 mr-4 p-4 border border-black mb-8 rounded-md">
-            <Image
-              height={200}
-              width={200}
-              alt="tets"
-              src="/img2/Untitled-1.jpg"
-              className="mb-4 w-full"
-            />
-            <p className="font-bold text-lg m-0">
-              RiseBack Launched in Indonesia to propel Tech Entrepreneurship and
-              foster lucrative Tech Careers
-            </p>
-          </div>
-          <div className="w-96 mr-4 p-4 border border-black mb-8 rounded-md">
-            <Image
-              height={200}
-              width={200}
-              alt="tets"
-              src="/img2/Untitled-1.jpg"
-              className="mb-4 w-full"
-            />
-            <p className="font-bold text-lg m-0">
-              RiseBack Launched in Indonesia to propel Tech Entrepreneurship and
-              foster lucrative Tech Careers
-            </p>
-          </div>
-          <div className="w-96 mr-4 p-4 border  border-black mb-8 rounded-md">
-            <Image
-              height={200}
-              width={200}
-              alt="tets"
-              src="/img2/Untitled-1.jpg"
-              className="mb-4 w-full"
-            />
-            <p className="font-bold text-lg m-0">
-              RiseBack Launched in Indonesia to propel Tech Entrepreneurship and
-              foster lucrative Tech Careers
-            </p>
-          </div>
-          <div className="w-96 mr-4 p-4 border border-black mb-8 rounded-md">
-            <Image
-              height={200}
-              width={200}
-              alt="tets"
-              src="/img2/Untitled-1.jpg"
-              className="mb-4 w-full"
-            />
-            <p className="font-bold text-lg m-0">
-              RiseBack Launched in Indonesia to propel Tech Entrepreneurship and
-              foster lucrative Tech Careers
-            </p>
-          </div>
-          <div className="w-96 mr-4 p-4 border  border-black mb-8 rounded-md">
-            <Image
-              height={200}
-              width={200}
-              alt="tets"
-              src="/img2/Untitled-1.jpg"
-              className="mb-4 w-full"
-            />
-            <p className="font-bold text-lg m-0">
-              RiseBack Launched in Indonesia to propel Tech Entrepreneurship and
-              foster lucrative Tech Careers
-            </p>
-          </div>
-          <div className="w-96 mr-4 p-4 border  border-black mb-8 rounded-md">
-            <Image
-              height={200}
-              width={200}
-              alt="tets"
-              src="/img2/Untitled-1.jpg"
-              className="mb-4 w-full"
-            />
-            <p className="font-bold text-lg m-0">
-              RiseBack Launched in Indonesia to propel Tech Entrepreneurship and
-              foster lucrative Tech Careers
-            </p>
-          </div>
-          <div className="w-96 mr-4 p-4 border  border-black mb-8 rounded-md">
-            <Image
-              height={200}
-              width={200}
-              alt="tets"
-              src="/img2/Untitled-1.jpg"
-              className="mb-4 w-full"
-            />
-            <p className="font-bold text-lg m-0">
-              RiseBack Launched in Indonesia to propel Tech Entrepreneurship and
-              foster lucrative Tech Careers
-            </p>
-          </div>
-          <div className="w-96 mr-4 p-4 border  border-black mb-8 rounded-md">
-            <Image
-              height={200}
-              width={200}
-              alt="tets"
-              src="/img2/Untitled-1.jpg"
-              className="mb-4 w-full"
-            />
-            <p className="font-bold text-lg m-0">
-              RiseBack Launched in Indonesia to propel Tech Entrepreneurship and
-              foster lucrative Tech Careers
-            </p>
-          </div>
+        <div className="flex flex-wrap container justify-around items-center gap-1">
+          {PressRealeseCards.map((PressRealeseCard: any) => {
+            return (
+              <div className="w-[30%] p-4 border border-black mb-8 rounded-md">
+                <Image
+                  height={200}
+                  width={200}
+                  alt="tets"
+                  src={`${process.env.BASE_MEDIA_URL}${PressRealeseCard.coverImage}`}
+                  className="mb-4 w-full"
+                />
+                <p className="font-bold text-lg m-0 ">
+                  {PressRealeseCard.title}
+                </p>
+              </div>
+            )
+          })}
         </div>
       </section>
     </>

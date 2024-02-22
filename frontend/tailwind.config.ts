@@ -49,7 +49,7 @@ const config: Config = {
       // "century-gotic": ["Century Gothic", "sans-serif"],
     },
     container: {
-      padding: "8rem"
+      padding: "10rem"
     },
   },
   plugins: [],

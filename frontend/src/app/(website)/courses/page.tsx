@@ -30,7 +30,7 @@ export default async function courses() {
             />
           </div>
           <div className="w-2/4 px-8 ">
-            <h2 className="font-semibold text-5xl ">Papular IT Courses</h2>
+            <h2 className="ffont-extrabold text-5xl leading-[56px]  mb-4">Papular IT Courses</h2>
             <p className="font-medium text-xl mb-4">
               Explore a world of possibilities in the digital realm with our IT
               courses designed to unlock global opportunities.

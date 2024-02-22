@@ -25,7 +25,7 @@ export default async function Blogs() {
   return (
     <>
       <section className="text-center">
-        <h2 className="font-bold text-4xl">RiseBack Blogs</h2>
+        <h2 className="font-extrabold text-5xl leading-[56px]">RiseBack Blogs</h2>
         <p>
           Updates on the latest career opportunities, Online Education, Online
           Universities, <span className="font-medium">& More</span>

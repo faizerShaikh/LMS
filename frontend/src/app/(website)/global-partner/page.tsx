@@ -15,7 +15,7 @@ export default function Blogs() {
               />
             </div>
             <div className="w-1/2 px-8 ">
-              <h2 className="font-bold text-5xl mt-0 mb-4">Ethopia</h2>
+              <h2 className="font-extrabold text-5xl  leading-[56px] mt-0 mb-4">Ethopia</h2>
               <p className="font-medium text-xl">
                 Tadias Training Center proudly partners with RiseBack Edutech to
                 introduce RiseBack Ethiopia. With a focus on advancing
@@ -32,8 +32,8 @@ export default function Blogs() {
       </section>
       <section className="container my-16">
         <h2 className="text-center text-3xl mb-12 font-medium">Contact Details</h2>
-        <div className="flex  justify-between text-center">
-          <div className="w-[300px] rounded-md py-8 px-12 shadow-lg">
+        <div className="flex  justify-between text-center gap-7">
+          <div className="w-1/4  rounded-md py-8 px-12 shadow-xl  grow-1">
             <Image
               src="/img2/Location.png"
               alt=""
@@ -46,7 +46,7 @@ export default function Blogs() {
               Bole Atlast, TK Building, 7th Floor, Addis Ababa Ethiopia
             </p>
           </div>
-          <div className="w-[300px] rounded-md py-8 px-12 shadow-lg">
+          <div className="w-1/4  rounded-md py-8 px-12  shadow-xl  grow-1">
             <Image
               src="/img2/Phone.png"
               alt=""
@@ -58,7 +58,7 @@ export default function Blogs() {
             <p className="font-medium">+2519 1142 8980</p>
             <p className="font-medium">+2519 1987 9517</p>
           </div>
-          <div className="w-[300px] rounded-md py-8 px-12 shadow-lg">
+          <div className="w-1/4  rounded-md py-8 px-12 shadow-xl grow-1">
             <Image
               src="/img2/website.png"
               alt=""
@@ -69,7 +69,7 @@ export default function Blogs() {
             <h2>Website</h2>
             <p className="font-medium">www.risebackj.org/ethiopia</p>
           </div>
-          <div className="w-[300px] rounded-md py-8 px-12 shadow-lg">
+          <div className="w-1/4  rounded-md py-8 px-12 shadow-xl  grow-1">
             <Image
               src="/img2/Mail.png"
               alt=""

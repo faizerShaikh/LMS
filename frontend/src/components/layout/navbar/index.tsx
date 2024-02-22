@@ -5,50 +5,50 @@ export const Navbar = () => {
   return (
     <>
       <header className="bg-blue-900 h-12 flex justify-between items-center px-16">
-        <div className="flex space-x-2">
+        <div className="flex  items-center space-x-2">
           <Link href="https://www.facebook.com/campaign/landing.php?campaign_id=14884913640&extra_1=s%7aCc%7C550525804797%7Cb%7Cfacebook%7C&placement=&creative=550525804797&keyword=facebook&partner_id=googlesem&extra_2=campaignid%3D14884913640%26adgroupid%3D128696220912%26matchtype%3Db%26network%3Dg%26source%3Dnotmobile%26search_or_content%3Ds%26device%3Dc%26devicemodel%3D%26adposition%3D%26target%3D%26targetid%3Dkwd-592856129%26loc_physical_ms%3D9062116%26loc_interest_ms%3D%26feeditemid%3D%26param1%3D%26param2%3D&gclid=CjwKCAiAzJOtBhALEiwAtwj8tlRLfa3D8Xk-IzJia0f_qOBSkzf_lcm107Mv-YvgJLFknd5DKEA7mhoCCwQQAvD_BwE">
             <Image
               alt="img"
-              height={40}
-              width={40}
-              src="/img2/Facebook.png"
-              className="size-8 mr-1"
+              height={100}
+              width={100}
+              src="/img2/Group.svg"
+              className="size-7 "
             />
           </Link>
           <Link href="https://twitter.com/?lang=en">
             <Image
               alt="img"
-              height={30}
-              width={30}
-              src="/img2/Twitter.png"
-              className="size-8 mr-1"
+              height={100}
+              width={100}
+              src="/img2/xlogo.svg"
+              className="size-7 "
             />
           </Link>
           <Link href="https://in.linkedin.com/">
             <Image
               alt="img"
-              height={30}
-              width={30}
-              src="/img2/Linkedin.png"
-              className="size-8 mr-1"
+              height={100}
+              width={100}
+              src="/img2/linkdinlogo.svg"
+              className="size-7 "
             />
           </Link>
           <Link href="https://www.instagram.com/accounts/login/?hl=en">
             <Image
               alt="img"
-              height={30}
-              width={30}
-              src="/img2/Instagram.png"
-              className="size-8 mr-1"
+              height={100}
+              width={100}
+              src="/img2/instagramlogo.svg"
+              className="size-7 "
             />
           </Link>
           <Link href="https://www.youtube.com/">
             <Image
               alt="img"
-              height={30}
-              width={30}
-              src="/img2/YouTube.png"
-              className="size-8 mr-1"
+              height={100}
+              width={100}
+              src="/img2/youtubeLogo.svg"
+              className="size-7 "
             />
           </Link>
         </div>
@@ -57,7 +57,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white mr-4 px-1"
+                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
               >
                 For Learner{" "}
               </Link>
@@ -65,7 +65,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-organization"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white mr-4 px-1"
+                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white px-4"
               >
                 For Organizations{" "}
               </Link>
@@ -73,7 +73,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-government"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white mr-4 px-1"
+                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
               >
                 For Government{" "}
               </Link>
@@ -81,7 +81,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-partnership"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white mr-4 px-1"
+                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
               >
                 For Patnership{" "}
               </Link>
@@ -89,7 +89,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-universities"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white mr-4 px-1"
+                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
               >
                 For Universities{" "}
               </Link>
@@ -97,7 +97,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-placement"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white mr-4 px-1"
+                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
               >
                 For Placements{" "}
               </Link>

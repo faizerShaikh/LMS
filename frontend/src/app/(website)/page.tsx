@@ -29,7 +29,7 @@ export default async function Home() {
             />
           </div>
           <div className="w-1/2 ">
-            <h2 className="font-bold text-5xl mb-4">
+            <h2 className="font-extrabold text-[52px] leading-[56px] mb-4">
               Educate, Empower, Elevate & Excel
             </h2>
             <p className="font-medium mb-4 text-xl">

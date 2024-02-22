@@ -31,7 +31,7 @@ export default async function EventsPage() {
                 />
                 <div className="px-4 pb-4 pt-2">
                     <div className="min-h-12">
-                  <p className="font-bold m-0">{event.name.length > 40 ? `${event.name.slice(0, 50)}...` : event.name }</p>
+                  <p className="font-bold m-0">{event.name.length > 40 ? `${event.name.slice(0, 45)}...` : event.name }</p>
                     </div>
                   <div className="flex justify-between ">
                     <p className="mt-4 m-0">{moment(event.createdAt).format("Do MMM YYYY")}</p>
