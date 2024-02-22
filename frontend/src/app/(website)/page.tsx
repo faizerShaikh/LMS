@@ -18,19 +18,18 @@ export default async function Home() {
 
   return (
     <>
-      <section className="px-24 bg-gray-100">
-        <div className="flex ">
-          <div className="w-1/2 flex justify-center ">
+      <section className=" bg-gray-100 h-[400px]">
+        <div className="flex justify-between container ">
+          <div className=" ">
             <Image
-              height={400}
-              width={400}
+              width={500} height={400}
               alt="test"
               src="/img2/Home Page.jpg"
               className="w-3/4"
             />
           </div>
-          <div className="w-1/2 px-4 m-auto">
-            <h2 className="font-bold text-4xl mb-4">
+          <div className="w-1/2 ">
+            <h2 className="font-bold text-5xl mb-4">
               Educate, Empower, Elevate & Excel
             </h2>
             <p className="font-medium mb-4 text-xl">
@@ -42,16 +41,18 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section></section>
+      <section>
 
-      <section className="px-24">
-        <div className="mb-8">
+      </section>
+
+      <section >
+        <div className="mb-8 container">
           <h2 className="font-bold text-3xl mb-4">Events</h2>
           <p>Upcoming Education Events to feed your brain</p>
         </div>
         
-        {events.map((event: any) => (
-          <div className="flex mb-8">
+        {events.slice(0, 3).map((event: any) => (
+          <div className="flex mb-8 container">
             <div className="w-1/4">
               <h2>
                 <span style={{ color: "#ffcc00", fontSize: "60px" }}>{new Date(event.createdAt).getDate()}</span>

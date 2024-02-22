@@ -11,7 +11,7 @@ export default async function EventsPage() {
   console.log(events)
   return (
     <>
-      <section className="bg-gray-100">
+      <section className="bg-gray-100 hover:text-white">
         <div className="flex justify-center py-14">
             <p className="border-2 bg-white px-2 py-2 hover:bg-blue-900 "><a href="#" className="hover:text-white text-blue-900">Upcoming Events</a></p>
             <p className="border-2 bg-white px-2 py-2 hover:bg-blue-900 "><a href="#" className="hover:text-white text-blue-900">Past Events</a></p>
