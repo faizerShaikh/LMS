@@ -25,9 +25,7 @@ export class CourseService extends GenericService<
     if (course.course_image) {
       unlink(
         join(
-          __dirname,
-          '../../../../',
-          'src/public/media' + course.course_image,
+          __dirname,'../../../../', '/src/public/' + course.course_image,
         ),
         (err) => {
           if (err) {

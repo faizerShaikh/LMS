@@ -7,7 +7,9 @@ import { join } from "path";
 import { CreateEventDTO, UpdateEventDTO } from "./dtos";
 import { User } from "src/modules/user/users/models/user.model";
 @Injectable()
-export class eventService extends GenericService<Events,CreateEventDTO,UpdateEventDTO>({includes:User}){
+export class eventService extends GenericService<Events,CreateEventDTO,UpdateEventDTO>({
+    
+}){
     constructor(
       @InjectModel (Events) private event : typeof Events,
       private reqParams:RequestParamsService
@@ -22,8 +24,7 @@ export class eventService extends GenericService<Events,CreateEventDTO,UpdateEve
             unlink(
                 join(
                     __dirname,
-            '../../../../',
-            'src/public/media'+event.eventImage
+                    '../../../../', '/src/public/'+event.eventImage
                 ),
                 (err)=>{
                     if(err){
