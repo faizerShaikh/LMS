@@ -26,6 +26,7 @@ export class Enquiry extends Model{
     @Column
     type: type;
 
+    @Default("new")
     @Column
     status: status;
 

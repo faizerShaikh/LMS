@@ -16,7 +16,7 @@ export class GalleryService extends GenericService<
     @InjectModel(gallery) private Gallery: typeof gallery,
     private reqParams: RequestParamsService,
   ) {
-    super(Gallery);
+    super(Gallery,reqParams);
   }
 
   async UpdateGalleryImage(file: Express.Multer.File, id: string) {
@@ -33,7 +33,7 @@ export class GalleryService extends GenericService<
       );
     }
     await gallery.update({
-      coverImage: '/media/gallery' + file.filename,
+      coverImage: '/media/gallery/' + file.filename,
     });
 
     return 'Gallery Image Uploaded Successfully';

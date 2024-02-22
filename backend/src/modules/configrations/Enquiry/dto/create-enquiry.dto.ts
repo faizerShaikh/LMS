@@ -1,4 +1,4 @@
-import { IsString, IsEmail, IsEnum, IsNotEmpty } from 'class-validator';
+import { IsString, IsEmail, IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
 import { type, status } from './enquiry.enum';
 
 export class EnquiryDto {
@@ -19,6 +19,7 @@ export class EnquiryDto {
     @IsEnum(type)
     type: type;
 
+    @IsOptional()
     @IsEnum(status)
     status: status;
 }

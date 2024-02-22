@@ -5,9 +5,12 @@ import { GenericService, RequestParamsService } from "src/core/modules";
 import { CreatePageDto, UpdatePageContent } from "./dtos";
 import { unlink } from "fs";
 import { join } from "path";
+import { gallery } from "../Gallery/gallery.model";
 
 @Injectable()
-export class PageContentService extends GenericService<PageContent,CreatePageDto,UpdatePageContent>({}){
+export class PageContentService extends GenericService<PageContent,CreatePageDto,UpdatePageContent>({
+    includes:[gallery]
+}){
     constructor(
         @InjectModel(PageContent) private pageContent: typeof PageContent,
         private reqParams: RequestParamsService
@@ -28,13 +31,13 @@ export class PageContentService extends GenericService<PageContent,CreatePageDto
         )
         }
         await page.update({
-            coverImage:'/media/pageContent'+file.filename
+            coverImage:'/media/pageContent/'+file.filename
         })
         return 'Cover Image Uploaded Successfully'
     }
 
 
     async findOneByName(name: string): Promise<PageContent | null> {
-        return PageContent.findOne({ where: { name } });
+        return PageContent.findOne({ where: { name } , include:[gallery]});
     }
 }

@@ -6,5 +6,5 @@ export enum status{
 
 export enum type{
     ONLINE='online',
-    UNIVERSITY='UNIVERSITY'
+    UNIVERSITY='university'
 }
