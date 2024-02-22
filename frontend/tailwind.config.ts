@@ -47,9 +47,10 @@ const config: Config = {
       // "aller-display": ["Aller Display", "sans-serif"],
       // "aller-light": ["Aller Light", "sans-serif"],
       // "century-gotic": ["Century Gothic", "sans-serif"],
+      Inter: ['Inter var', 'sans-serif'],
     },
     container: {
-      padding: "10rem"
+      padding: "8rem"
     },
   },
   plugins: [],
