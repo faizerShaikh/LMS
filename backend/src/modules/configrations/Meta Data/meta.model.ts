@@ -6,6 +6,10 @@ import { Blog } from "src/modules/blog/model";
 import { CourseSpecialization } from "../course-specialization/model";
 import { Press } from "../Press Release/press.model";
 import { PageContent } from "../PageContent/pageContent.model";
+import { University } from "../university/model";
+import { Course } from "../course/model";
+import { GlobalPartner } from "../Global Partner/global-partner.model";
+import { Contacts } from "../Contact Details/contact.model";
 
 @Table({
     tableName:'meta-data'
@@ -83,19 +87,19 @@ export class MetaData extends Model{
     event:Event
 
     @ForeignKey(()=>Faq)
-    faqID:Faq
+    faqID:string
 
     @BelongsTo(()=>Faq)
     faq:Faq
 
     @ForeignKey(()=>Blog)
-    blogID:Blog
+    blogID:string
 
     @BelongsTo(()=>Blog)
     blog:Blog
 
     @ForeignKey(()=>CourseSpecialization)
-    courseSplID:CourseSpecialization
+    courseSplID:string
 
     @BelongsTo(()=>CourseSpecialization)
     courseSpl:CourseSpecialization
@@ -107,9 +111,33 @@ export class MetaData extends Model{
     press:Press
 
     @ForeignKey(()=>PageContent)
-    pageID:PageContent
+    pageID:string
 
     @BelongsTo(()=>PageContent)
     page:PageContent
+
+    @ForeignKey(()=>University)
+    universityID:string
+
+    @BelongsTo(()=>University)
+    university:University
+
+    @ForeignKey(()=>Course)
+    courseID:string
+
+    @BelongsTo(()=>Course)
+    course:Course
+
+    @ForeignKey(()=>GlobalPartner)
+    globaPartnerID:string
+
+    @BelongsTo(()=>GlobalPartner)
+    GlobalPartner:GlobalPartner
+
+    @ForeignKey(()=>Contacts)
+    contactID:string
+
+    @BelongsTo(()=>Contacts)
+    contact:Contacts
 
 }

@@ -2,6 +2,9 @@
 import { IsBoolean, IsEnum, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 import { type } from './type.enum';
 import { BelongsTo } from 'sequelize-typescript';
+import { CourseSpecialization } from '../../course-specialization/model';
+import { GlobalPartner } from '../../Global Partner/global-partner.model';
+import { Contacts } from '../../Contact Details/contact.model';
 
 export class MetaDataDto {
   
@@ -90,10 +93,29 @@ export class MetaDataDto {
 
   @IsString()
   @IsOptional()
+  courseSplID:CourseSpecialization
+
+  @IsString()
+  @IsOptional()
   pageID:string
 
   @IsString()
   @IsOptional()
   pressID:string
 
+  @IsString()
+  @IsOptional()
+  universityID:string
+
+  @IsString()
+  @IsOptional()
+  courseID:string
+
+  @IsString()
+  @IsOptional()
+  globaPartnerID:GlobalPartner
+
+  @IsString()
+  @IsOptional()
+  contactID:Contacts
 }
