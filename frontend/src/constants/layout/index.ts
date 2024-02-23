@@ -15,4 +15,5 @@ export const menuItems: menuType[] = [
   { icon: "Events", title: "Faculties", path: "/admin/faculty" },
   { icon: "Catalog", title: "Courses", path: "/admin/courses" },
   { icon: "Events", title: "Students", path: "/admin/students" },
+  { icon: "Events", title: "Page Content", path: "/admin/page-content" },
 ];
