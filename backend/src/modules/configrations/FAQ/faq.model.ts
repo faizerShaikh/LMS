@@ -1,5 +1,6 @@
-import { Column, DataType, Default, HasMany, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { Column, DataType, Default, HasOne, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { FaqTopic } from "./FAQ Topics/faqTopic.model";
+import { MetaData } from "../Meta Data/meta.model";
 
 @Table({
     tableName:'faqs'
@@ -18,6 +19,9 @@ export class Faq extends Model{
     @Column
     visiblity:Boolean
 
-    @HasMany(()=>FaqTopic)
+    @HasOne(()=>FaqTopic)
     faqTopic:FaqTopic
+
+    @HasOne(()=>MetaData)
+    metadata:MetaData
 }

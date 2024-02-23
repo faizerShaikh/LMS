@@ -1,4 +1,5 @@
-import { Column, DataType, Default, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { Column, DataType, Default, HasOne, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { MetaData } from "../Meta Data/meta.model";
 
 @Table({
   tableName:'press-releases'
@@ -29,4 +30,8 @@ export class Press extends Model{
     @Column
     isFeatured:string
 
+    @HasOne(()=>MetaData)
+    metaData:string
+    
+    
 }

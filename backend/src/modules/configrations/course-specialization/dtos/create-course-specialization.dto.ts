@@ -10,6 +10,7 @@ import {
 import { ProgramStructureDTO } from './program-structure.dto';
 import { FeesStructureDTO } from './fees-structure.dto';
 import { Type } from 'class-transformer';
+import { MetaData } from '../../Meta Data/meta.model';
 
 export class CreateCourseSpecializationDTO {
   @IsString()
@@ -75,4 +76,10 @@ export class CreateCourseSpecializationDTO {
   @Type(() => FeesStructureDTO)
   @ValidateNested({ each: true })
   fees_structure: FeesStructureDTO;
+
+  @IsNotEmpty()
+  @IsObject()
+  @Type(()=>MetaData)
+  @ValidateNested({each:true})
+  metaData:MetaData
 }

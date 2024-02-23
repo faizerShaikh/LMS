@@ -466,5 +466,137 @@ module.exports = {
     ]
     await queryInterface.bulkInsert('events',events,{})
     console.log('Events data seeded successfully')
+    
+    const blog =[
+      {
+        "id": "09831b0a-f384-4396-9edc-73af85681e14",
+        "title": "Unlocking Lucrative Opportunities:ITCoursesinAI,ML,WebApps,Cloud,and Blockchain for Indonesians",
+        "description": "This is a sample blog description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "blog_image": "/media/blog/Information-Technology-1708088285977-503098286.jpg",
+        "is_featured": true,
+        "created_by_id": "c28512ff-aa8a-4ff3-ada8-fce8f8164f83",
+        "createdAt": "2024-02-16T07:08:06.386Z",
+        "updatedAt": "2024-02-16T12:51:42.775Z",
+        "deletedAt": null,
+        "blog_category_id": "70f738e0-934d-4351-ac01-6b69ba42e4ca"
+    },
+    {
+        "id": "aa21324e-507e-4737-a200-8fa2372fef33",
+        "title": "Can an Information Technology University degree be the road to achieving the AmericanDream?",
+        "description": "This is a sample blog description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "blog_image": "/media/blog/Economic-Growth-1708088150080-964617154.jpg",
+        "is_featured": true,
+        "created_by_id": "c28512ff-aa8a-4ff3-ada8-fce8f8164f83",
+        "createdAt": "2024-02-15T12:38:51.078Z",
+        "updatedAt": "2024-02-16T12:55:50.159Z",
+        "deletedAt": null,
+        "blog_category_id": "70f738e0-934d-4351-ac01-6b69ba42e4ca"
+    },
+    {
+        "id": "0723da37-d507-4a20-8ffa-bd829a120dbf",
+        "title": "How affordable University education helps individuals, organizations, and the economy",
+        "description": "Affordable university education stands as a cornerstone of societal advancement, empowering individuals to unlock their full potential and pursue their dreams without the burden of financial constraints. By providing access to quality education, universities serve as catalysts for social mobility, allowing students to break free from the cycle of poverty and achieve upward economic mobility. Moreover, the acquisition of specialized knowledge and skills equips graduates with the tools they need to thrive in an increasingly competitive job market, enhancing their earning potential and long-term financial stability. Universities also fuel organizational growth by serving as incubators of talent, producing a diverse pool of skilled graduates ready to contribute to the workforce. Partnerships between universities and industry stakeholders facilitate research collaborations, technology transfer, and knowledge exchange, driving innovation and economic development. The benefits of affordable education extend beyond individual success stories to broader economic prosperity, as a well-educated workforce is essential for driving innovation, increasing productivity, and fostering entrepreneurship. By investing in higher education, governments can cultivate a skilled workforce capable of meeting the demands of emerging industries and driving technological advancements, leading to increased consumer spending, a stronger tax base, and economic growth. In conclusion, affordable university education is a powerful catalyst for individual empowerment, organizational growth, and economic prosperity, and it is essential to ensure its accessibility for all who seek it to build a more prosperous society for the future.",
+        "blog_image": "/media/blog/Economic-Growth-1708082326610-624479333.jpg",
+        "is_featured": true,
+        "created_by_id": "c28512ff-aa8a-4ff3-ada8-fce8f8164f83",
+        "createdAt": "2024-02-15T12:33:48.056Z",
+        "updatedAt": "2024-02-16T11:18:46.676Z",
+        "deletedAt": null,
+        "blog_category_id": "70f738e0-934d-4351-ac01-6b69ba42e4ca"
+    },
+    {
+        "id": "43154aea-2a71-4a28-9b4c-196ea3e5bcec",
+        "title": "Mastering Data Science: A Practical Approach",
+        "description": "Dive deep into the world of data science with our practical guide. Learn essential concepts, techniques, and tools used by data scientists to extract insights from data and make informed decisions. Whether you're a beginner or an experienced professional, this guide will help you enhance your skills and advance your career in data science.",
+        "blog_image": "/media/blog/motivational-composition-goal-achievement_23-2150490032-1708088757175-875984100.jpg",
+        "is_featured": false,
+        "created_by_id": "c28512ff-aa8a-4ff3-ada8-fce8f8164f83",
+        "createdAt": "2024-02-16T13:04:07.829Z",
+        "updatedAt": "2024-02-16T13:05:57.212Z",
+        "deletedAt": null,
+        "blog_category_id": "70f738e0-934d-4351-ac01-6b69ba42e4ca"
+    },
+    {
+        "id": "53bebbcd-d190-482c-b71c-7fd65db7ee36",
+        "title": "The Art of Photography: Capturing Moments in Time",
+        "description": "Discover the artistry and magic of photography. From capturing breathtaking landscapes to candid portraits, photography allows us to freeze moments in time and immortalize memories. Join us as we explore the techniques, equipment, and creativity behind great photography.",
+        "blog_image": "/media/blog/college-savings-concept_700248-1580-1708089187419-672654493.jpg",
+        "is_featured": false,
+        "created_by_id": "c28512ff-aa8a-4ff3-ada8-fce8f8164f83",
+        "createdAt": "2024-02-16T13:07:45.790Z",
+        "updatedAt": "2024-02-16T13:13:07.484Z",
+        "deletedAt": null,
+        "blog_category_id": "70f738e0-934d-4351-ac01-6b69ba42e4ca"
+    },
+    {
+        "id": "9cf9f3af-d9ed-4f0e-8512-7a46ad1555e1",
+        "title": "Exploring the Cosmos: A Journey Through Space",
+        "description": "Embark on an awe-inspiring journey through the cosmos. From distant galaxies to mysterious black holes, join us as we explore the wonders of the universe and uncover the secrets of space exploration. Get ready for an adventure of cosmic proportions!",
+        "blog_image": "/media/blog/college-savings-concept_700248-1580-1708089245264-786064872.jpg",
+        "is_featured": false,
+        "created_by_id": "c28512ff-aa8a-4ff3-ada8-fce8f8164f83",
+        "createdAt": "2024-02-16T13:11:14.304Z",
+        "updatedAt": "2024-02-16T13:14:05.320Z",
+        "deletedAt": null,
+        "blog_category_id": "70f738e0-934d-4351-ac01-6b69ba42e4ca"
+    },
+    {
+        "id": "e0d49591-061d-4cd9-9897-542440587035",
+        "title": "The Art of Photography: Capturing Moments in Time",
+        "description": "Discover the artistry and magic of photography. From capturing breathtaking landscapes to candid portraits, photography allows us to freeze moments in time and immortalize memories. Join us as we explore the techniques, equipment, and creativity behind great photography.",
+        "blog_image": "/media/blog/person-using-ai-tool-job (1)-1708089285485-722373932.jpg",
+        "is_featured": false,
+        "created_by_id": "c28512ff-aa8a-4ff3-ada8-fce8f8164f83",
+        "createdAt": "2024-02-16T13:09:31.660Z",
+        "updatedAt": "2024-02-16T13:14:45.582Z",
+        "deletedAt": null,
+        "blog_category_id": "70f738e0-934d-4351-ac01-6b69ba42e4ca"
+    },
+    {
+        "id": "42f3a64f-bf66-4199-8d9a-756e888e28b6",
+        "title": "Mastering Data Science: A Practical Approach",
+        "description": "Dive deep into the world of data science with our practical guide. Learn essential concepts, techniques, and tools used by data scientists to extract insights from data and make informed decisions. Whether you're a beginner or an experienced professional, this comprehensive guide will help you enhance your skills and advance your career in data science.",
+        "blog_image": "/media/blog/person-using-ai-tool-job (1)-1708089307178-351242411.jpg",
+        "is_featured": false,
+        "created_by_id": "c28512ff-aa8a-4ff3-ada8-fce8f8164f83",
+        "createdAt": "2024-02-16T13:08:48.597Z",
+        "updatedAt": "2024-02-16T13:15:07.236Z",
+        "deletedAt": null,
+        "blog_category_id": "70f738e0-934d-4351-ac01-6b69ba42e4ca"
+    },
+    {
+        "id": "c91bb661-2b10-43a9-8404-4f3765dfc1de",
+        "title": "Unveiling the Future of Technology",
+        "description": "In the fast-paced realm of technology, staying ahead of the curve is paramount. Welcome to TechGuru Chronicles, your go-to destination for all things tech-related, where we delve deep into the realms of innovation, cutting-edge advancements, and the transformative power of technology shaping our world. Join us on an exhilarating journey through the digital landscape as we explore the latest trends in artificial intelligence, machine learning, augmented reality, virtual reality, blockchain, and beyond. Our expert team of writers and tech enthusiasts are dedicated to uncovering the hidden gems of the tech world, providing insightful analysis, and offering expert commentary on the most pressing issues facing the industry today. From groundbreaking startups disrupting traditional industries to the latest gadgets and gizmos making waves in the consumer market, TechGuru Chronicles is your ultimate guide to navigating the ever-evolving tech ecosystem. Whether you're a seasoned tech aficionado or just dipping your toes into the world of technology, our comprehensive coverage caters to all levels of expertise, ensuring that everyone can stay informed and inspired. But we're more than just a source of news and information. TechGuru Chronicles is a community of like-minded individuals passionate about pushing the boundaries of what's possible with technology. Join the conversation, share your insights, and connect with fellow tech enthusiasts from around the globe as we collectively chart the course towards a brighter, more innovative future. So, whether you're eager to learn about the latest breakthroughs in artificial intelligence, explore the potential of blockchain technology, or simply geek out over the newest gadgets hitting the market, TechGuru Chronicles has you covered. Get ready to unlock the secrets of tomorrow and embark on a journey of discovery with us. The future of technology awaits – let's explore it together.",
+        "blog_image": "/media/blog/motivational-composition-goal-achievement_23-2150490032-1708421898576-209284664.jpg",
+        "is_featured": false,
+        "created_by_id": "c28512ff-aa8a-4ff3-ada8-fce8f8164f83",
+        "createdAt": "2024-02-16T06:50:39.612Z",
+        "updatedAt": "2024-02-20T09:38:18.602Z",
+        "deletedAt": null,
+        "blog_category_id": "70f738e0-934d-4351-ac01-6b69ba42e4ca"
+    }
+    ] 
+    await queryInterface.bulkInsert('blogs',blog,{})
+    console.log('Blogs data added successfully')
+
+    const blogCategory=[
+        {
+            "id": "70f738e0-934d-4351-ac01-6b69ba42e4ca",
+            "name": "Acadamics",
+            "createdAt": "2024-02-09T12:42:26.543Z",
+            "updatedAt": "2024-02-09T12:42:26.543Z",
+            "deletedAt": null
+        },
+        {
+            "id": "7abc1d25-ee28-4584-8c92-9afc0b99b9ea",
+            "name": "Acadamics 222",
+            "createdAt": "2024-02-09T12:56:19.173Z",
+            "updatedAt": "2024-02-09T12:56:19.173Z",
+            "deletedAt": null
+        }
+    ]
+    await queryInterface.bulkInsert('blog-categories',blogCategory,{})
+    console.log('Blogs Categories added successfully')
   },
 }
