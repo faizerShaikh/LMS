@@ -1,9 +1,23 @@
+import { HeroSection } from "components/layout/hero-section";
 import Image from "next/image";
 
 export default function Blogs() {
   return (
     <>
-      <section className="bg-gray-50 h-[400px]">
+      <HeroSection 
+      HeroImage="/img2/Ethopia-Flag.jpg"
+      Herotitle= "Ethopia"
+      description="Tadias Training Center proudly partners with RiseBack Edutech to
+      introduce RiseBack Ethiopia. With a focus on advancing
+      affordable IT education, the center aims to fuel
+      technopreneurship and entrepreneurship, fostering new startups
+      and job opportunities for Ethiopia's youth. <br />
+      This initiative not only stimulates economic activity but also
+      broadens existing economic horizons in alignment with the
+      country's aspirations"
+      viewButton = {false}
+      ></HeroSection>
+      {/* <section className="bg-gray-50 h-[400px]">
         <div className="container">
           <div className="flex  py-8">
             <div className="w-1/2">
@@ -15,7 +29,9 @@ export default function Blogs() {
               />
             </div>
             <div className="w-1/2 px-8 ">
-              <h2 className="font-extrabold text-5xl  leading-[56px] mt-0 mb-4">Ethopia</h2>
+              <h2 className="font-extrabold text-5xl  leading-[56px] mt-0 mb-4">
+                Ethopia
+              </h2>
               <p className="font-medium text-xl">
                 Tadias Training Center proudly partners with RiseBack Edutech to
                 introduce RiseBack Ethiopia. With a focus on advancing
@@ -29,9 +45,11 @@ export default function Blogs() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       <section className="container my-16">
-        <h2 className="text-center text-3xl mb-12 font-medium">Contact Details</h2>
+        <h2 className="text-center text-3xl mb-12 font-medium">
+          Contact Details
+        </h2>
         <div className="flex  justify-between text-center gap-7">
           <div className="w-1/4  rounded-md py-8 px-12 shadow-xl  grow-1">
             <Image
@@ -90,7 +108,9 @@ export default function Blogs() {
             <li className="font-medium text-xl ">
               Full Stack Web Development using MERN Stack
             </li>
-            <li className="font-medium text-xl ">Cyber Security and Ethical Hacking</li>
+            <li className="font-medium text-xl ">
+              Cyber Security and Ethical Hacking
+            </li>
             <li className="font-medium text-xl ">
               Data Science Artificial Intelligence and Machine Learning using
               Python

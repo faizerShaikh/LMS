@@ -114,8 +114,8 @@ export const Navbar = () => {
             src="/img2/Riseback logo.png"
           />
         </div>
-        <div>
-          <ul className="flex space-x-7 text-blue-900 list-none">
+        <div >
+          <ul className="flex space-x-7 text-blue-900 list-none items-center">
             <li>
               <Link
                 href="/courses"
