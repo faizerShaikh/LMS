@@ -3,12 +3,14 @@ import {
   DataType,
   Default,
   HasMany,
+  HasOne,
   IsUUID,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { CourseSpecialization } from '../../course-specialization/model';
+import { MetaData } from '../../Meta Data/meta.model';
 
 @Table({
   tableName: 'universities',
@@ -85,4 +87,7 @@ export class University extends Model<University> {
     hooks: true,
   })
   specializations: CourseSpecialization[];
+
+  @HasOne(()=>MetaData)
+  metaData:string
 }

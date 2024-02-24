@@ -1,4 +1,6 @@
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsBoolean, IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator';
+import { MetaData } from '../../Meta Data/meta.model';
 
 export class CreateEventDTO{
     @IsString()
@@ -24,4 +26,10 @@ export class CreateEventDTO{
 
     @IsBoolean()
     isFeatured: boolean;
+
+    @IsNotEmpty()
+    @Type(()=>MetaData)
+    @ValidateNested({each:true})
+    @IsObject()
+    metaData:MetaData
 }

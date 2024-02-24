@@ -1,6 +1,7 @@
 import { DATE} from "sequelize";
-import { Column, DataType, PrimaryKey, Table,Model, IsUUID, Default,ForeignKey,BelongsTo } from "sequelize-typescript";
+import { Column, DataType, PrimaryKey, Table,Model, IsUUID, Default,ForeignKey,BelongsTo, HasOne } from "sequelize-typescript";
 import { User } from "src/modules/user/users/models/user.model";
+import { MetaData } from "../Meta Data/meta.model";
 @Table({
     tableName:'events',
     modelName: 'Events',
@@ -61,5 +62,8 @@ export class Events extends Model{
   
     @BelongsTo(() => User)
     created_by: User;
+    
+    @HasOne(()=>MetaData)
+    metaData: MetaData
   
 }

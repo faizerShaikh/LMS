@@ -4,6 +4,7 @@ import {
   DataType,
   Default,
   ForeignKey,
+  HasOne,
   IsUUID,
   Model,
   PrimaryKey,
@@ -11,6 +12,7 @@ import {
 } from 'sequelize-typescript';
 import { User } from 'src/modules/user/users/models/user.model';
 import { BlogCategory } from '../modules/blog-category/model';
+import { MetaData } from 'src/modules/configrations/Meta Data/meta.model';
 
 @Table({
   tableName: 'blogs',
@@ -100,4 +102,7 @@ export class Blog extends Model<Blog> {
 
   @BelongsTo(() => BlogCategory)
   blog_category: BlogCategory;
+
+  @HasOne(()=>MetaData)
+  metaData:MetaData
 }

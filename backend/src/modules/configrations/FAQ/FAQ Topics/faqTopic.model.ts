@@ -2,7 +2,7 @@ import { BelongsTo, Column, DataType, Default, ForeignKey, IsUUID, Model, Primar
 import { Faq } from "../faq.model";
 
 @Table({
-    tableName:'faq topics'
+    tableName:'faq-topics'
 })
 export class FaqTopic extends Model{
     @IsUUID(4)

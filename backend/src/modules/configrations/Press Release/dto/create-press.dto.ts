@@ -1,4 +1,6 @@
-import { IsString, IsNotEmpty, IsBoolean, IsOptional } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsString, IsNotEmpty, IsBoolean, IsOptional, IsObject, ValidateNested } from 'class-validator';
+import { MetaData } from '../../Meta Data/meta.model';
 
 export class PressDTO {
     @IsString()
@@ -21,4 +23,10 @@ export class PressDTO {
     @IsBoolean()
     @IsNotEmpty()
     isFeatured: string;
+    
+    @IsNotEmpty()
+    @IsObject()
+    @Type(()=>MetaData)
+    @ValidateNested({each:true})
+    metaData:MetaData
 }

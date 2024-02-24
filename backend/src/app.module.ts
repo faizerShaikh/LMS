@@ -30,10 +30,7 @@ import { EnquiryModule } from './modules/configrations/Enquiry/enquiry.module';
     //Configrations Module
     ConfigrationModule,
     //Blogs Module
-    BlogModule,
-    EventModule,
-    PageContentModule,
-    EnquiryModule
+    
   ],
   providers: [
     {

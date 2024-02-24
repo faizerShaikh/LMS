@@ -3,12 +3,14 @@ import {
   DataType,
   Default,
   HasMany,
+  HasOne,
   IsUUID,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { gallery } from '../Gallery/gallery.model';
+import { MetaData } from '../Meta Data/meta.model';
 
 @Table({
   tableName: 'page contents',
@@ -45,4 +47,7 @@ export class PageContent extends Model {
     hooks: true,
   })
   gallery: gallery;
+
+  @HasOne(()=>MetaData)
+  metaData:MetaData
 }
