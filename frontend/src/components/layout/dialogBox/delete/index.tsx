@@ -1,5 +1,6 @@
 import { RowDelete } from "@carbon/icons-react";
 import { Button } from "components/layout/buttons";
+import { useDelete } from "hooks/useDelete";
 import { ReactElement, ReactNode } from "react";
 import { useQueryClient } from "react-query";
 import { Confirm } from "../confirm";
@@ -23,31 +24,31 @@ export const DeleteBox = ({
   button,
 }: DeleteInterface) => {
   const queryClient = useQueryClient();
-  // const { mutate, isLoading } = useDelete({
-  //   url,
-  //   name: title || "",
-  //   refetch: () =>
-  //     queryClient.refetchQueries(refetchUrl ? refetchUrl : url, {
-  //       exact: false,
-  //       stale: true,
-  //     }),
-  // });
+  const { mutate, isLoading } = useDelete({
+    url,
+    name: title || "",
+    refetch: () =>
+      queryClient.refetchQueries(refetchUrl ? refetchUrl : url, {
+        exact: false,
+        stale: true,
+      }),
+  });
   return (
     <Confirm
-      isLoading={false}
+      isLoading={isLoading}
       button={
         button ? (
           button
         ) : (
           <Button
-            isLoading={false}
-            variant='text'
+            isLoading={isLoading}
+            variant="text"
             startIcon={<RowDelete />}
             color={"secondary"}
-            className='capitalize'
+            className="capitalize"
           >
             <Typography
-              className='capitalize xl:text-sm 2xl:text-semi-base'
+              className="capitalize xl:text-sm 2xl:text-semi-base"
               sx={{
                 lineHeight: "18px",
               }}
@@ -58,13 +59,17 @@ export const DeleteBox = ({
         )
       }
       submitHandler={(onClose) => {
-        // mutate(data, {
-        //   onSuccess: onClose,
-        // });
+        mutate(data, {
+          onSuccess: onClose,
+        });
       }}
-      title={`Delete ${title}` || "Delete"}
+      title={
+        title?.toLowerCase() === "tenant"
+          ? `Client`
+          : `Delete ${title}` || "Delete"
+      }
     >
-      <p className='m-0 text-fc-main'>
+      <p className="m-0 text-fc-main">
         {children || "Are you sure do you want to delete this item?"}{" "}
       </p>
     </Confirm>

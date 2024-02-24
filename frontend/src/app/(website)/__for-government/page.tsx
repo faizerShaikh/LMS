@@ -1,5 +1,5 @@
 import { CommonPage } from "components/layout/commonPage";
-import { CommonPageInterface } from "interfaces/commonPage";
+import { PageContentInterface } from "interfaces/commonPage";
 
 export default function ForGovernment() {
     return (

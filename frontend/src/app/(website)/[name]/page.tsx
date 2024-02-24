@@ -1,6 +1,6 @@
 import axios from "axios";
 import { EnquiryForm } from "components/enquiry-form";
-import { CommonPageInterface, GalleryInterface } from "interfaces/commonPage";
+import { PageContentInterface, GalleryInterface } from "interfaces/commonPage";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroSection } from "components/layout/hero-section";
@@ -10,7 +10,7 @@ export default async function SinglePage({
 }: {
   params: { name: string };
 }) {
-  let commonPageData: CommonPageInterface;
+  let commonPageData: PageContentInterface;
   const res = await axios.get(
     `${process.env.BASE_API_URL}/configrations/page-content/${params.name}`
   );
@@ -28,7 +28,7 @@ export default async function SinglePage({
 
       <section className="py-24 container ">
         <div className="flex justify-between text-center gap-5 flex-warp">
-          {commonPageData.gallery.map((item: GalleryInterface) => {
+          {commonPageData?.gallery.map((item: GalleryInterface) => {
             return (
               <div className="w-1/4  rounded-xl shadow-xl">
                 <Image

@@ -1,11 +1,6 @@
 "use client";
-import { DataGrid } from "@mui/x-data-grid";
-import axios from "axios";
-import { PageHeader } from "components/layout";
-import React, { useEffect, useState } from "react";
-
-
-
+import { DataGrid, PageHeader } from "components/layout";
+import { useGetAll } from "hooks";
 
 const columns = [
   {
@@ -46,24 +41,22 @@ const columns = [
   },
 ];
 export default function EnquiriesPage() {
- 
+  // const [data, setData] = useState([]);
+  // const getEnquiries = async () => {
+  //   const response = await axios.get(
+  //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/configrations/enquiry`
+  //   );
+  //   // console.log(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configrations/enquiry`);
+  //   setData(response.data.data.rows)
+  // };
 
-  const [data, setData] = useState([]);
-  const getEnquiries = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/configrations/enquiry`
-    );
-    // console.log(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configrations/enquiry`);
-    setData(response.data.data.rows)
-  };
-
-  useEffect(()=> {
-    getEnquiries()
-  }, [])
+  // useEffect(()=> {
+  //   getEnquiries()
+  // }, [])
+  const { data } = useGetAll({ key: '/configrations/enquiry' })
   return (
     <>
       <PageHeader title="Enquiries" />
-      
       <DataGrid columns={columns} rows={data} />
     </>
   );

@@ -1,9 +1,9 @@
 import axios from "axios";
 import Image from "next/image";
-import { MediaPressRelease } from "interfaces/midiaPressRelese";
+import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
 
 export default async function Media() {
-  let PressRealeseCards: Array<MediaPressRelease>;
+  let PressRealeseCards: Array<MediaPressReleaseInterface>;
   const PressREaleseCardResponse = await axios.get(
     `${process.env.BASE_API_URL}/configration/press-release`
   );

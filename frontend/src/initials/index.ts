@@ -1,0 +1,18 @@
+export const MetaDataInitial = {
+    slug: '',
+    keywords: '',
+    str: '',
+    description: '',
+    subject: '',
+    copyright: '',
+    summary: '',
+    classification: '',
+    author: '',
+    owner: '',
+    url: '',
+    pageName: '',
+    category: '',
+    subtitle: '',
+    replyTo: '',
+    type: '',
+}

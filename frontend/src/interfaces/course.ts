@@ -1,3 +1,5 @@
+import { BaseObjInterface, MetaDataInterface } from "./base";
+
 export interface Course {
     id: string;
     name: string;
@@ -8,16 +10,13 @@ export interface Course {
     deletedAt: string | null
 }
 
-export interface University {
-    id: string;
+export interface UniversityInterface extends BaseObjInterface {
     name: string;
     short_name: string;
     description: string;
     university_image: string | null;
-    no_of_courses: number;
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: string | null
+    no_of_courses?: number;
+    metaData?: MetaDataInterface;
 }
 
 export interface CourseSpecializationInterface {

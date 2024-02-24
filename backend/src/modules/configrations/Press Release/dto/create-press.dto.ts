@@ -24,9 +24,9 @@ export class PressDTO {
     @IsNotEmpty()
     isFeatured: string;
     
-    @IsNotEmpty()
-    @IsObject()
-    @Type(()=>MetaData)
-    @ValidateNested({each:true})
-    metaData:MetaData
+    // @IsNotEmpty()
+    // @IsObject()
+    // @Type(()=>MetaData)
+    // @ValidateNested({each:true})
+    // metaData:MetaData
 }

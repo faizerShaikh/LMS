@@ -1,21 +1,18 @@
-export interface GalleryInterface {
-  id: string;
+import { BaseObjInterface, MetaDataInterface } from "./base";
+
+export interface GalleryInterface extends BaseObjInterface {
   coverImage: string;
   name: string;
   description: string;
-  createdAt: string;
-  updatedAt: string;
   pageId: string;
 }
 
-export interface CommonPageInterface {
-  id: string;
+export interface PageContentInterface extends BaseObjInterface{
   name: string;
-  coverImage: string;
+  coverImage: string | null;
   title: string;
   titleDescription: string;
   pageDescription: string;
-  createdAt: string;
-  updatedAt: string;
   gallery: GalleryInterface[];
+  metaData?: MetaDataInterface;
 }

@@ -1,10 +1,12 @@
 "use client";
 import Checkbox from "@mui/material/Checkbox";
-import { DataGrid } from "@mui/x-data-grid";
-import axios from "axios";
-import { PageHeader } from "components/layout";
-import { Field } from "formik";
-import React, { useEffect, useState } from "react";
+// import axios from "axios";
+import { DataGrid, DeleteBox, PageHeader } from "components/layout";
+// import { Field } from "formik";
+import { useGetAll } from "hooks";
+import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
+import { MediaDialog } from "./_components/MediaDialog";
+// import React, { useEffect, useState } from "react";
 
 const columns = [
   {
@@ -16,7 +18,7 @@ const columns = [
   {
     headerName: "Description",
     field: "description",
-    flex: 1,
+    flex: 2,
     cellClassName: "text-dark",
   },
   {
@@ -30,30 +32,27 @@ const columns = [
     field: "isFeatured",
     flex: 1,
     cellClassName: "text-dark",
-    renderCell: (params: any) => {
-        console.log(params.row.isFeatured, params)
-      if(params.row.isFeatured === "true") {
-        return <Checkbox disabled defaultChecked />;
-      } else {
-        return <Checkbox  />;
-      }
+    renderCell: (params: { row: MediaPressReleaseInterface }) => {
+      const checkboxProps = params.row.isFeatured ? { disabled: true, checked: true } : {};
+      return <Checkbox {...checkboxProps} />;
     },
+  },
+  {
+    headerName: "Action",
+    field: "action",
+    flex: 1,
+    cellClassName: "text-dark",
+    renderCell: (params: { row: MediaPressReleaseInterface }) => {
+      return <>
+        <MediaDialog isUpdate={true} data={params.row} />
+        <DeleteBox url={`/configrations/press-release`} refetchUrl="/configrations/press-release" title={`Delete ${params.row.title}`} data={params.row.id} />
+      </>
+    }
   },
 ];
 
 export default function MediaPage() {
-  const [data, setData] = useState([]);
-  const getData = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/configration/press-release`
-    );
-    setData(response.data.data.rows);
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
+  const { data } = useGetAll({ key: '/configration/press-release' })
   return (
     <>
       <PageHeader title="Media Page" />

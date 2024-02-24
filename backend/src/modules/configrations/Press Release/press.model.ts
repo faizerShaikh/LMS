@@ -27,8 +27,9 @@ export class Press extends Model{
     @Column
     coverImage:string
 
+    @Default(false)
     @Column
-    isFeatured:string
+    isFeatured:boolean
 
     @HasOne(()=>MetaData)
     metaData:string

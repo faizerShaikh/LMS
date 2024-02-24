@@ -15,9 +15,9 @@ export class CreateUniversityDTO {
   @IsNotEmpty()
   description: string;
 
-  @IsNotEmpty()
-  @IsObject()
-  @Type(()=>MetaData)
-  @ValidateNested({each:true})
-  metaData:MetaData
+  // @IsNotEmpty()
+  // @IsObject()
+  // @Type(()=>MetaData)
+  // @ValidateNested({each:true})
+  // metaData:MetaData
 }

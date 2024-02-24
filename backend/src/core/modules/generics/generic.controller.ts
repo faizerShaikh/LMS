@@ -80,6 +80,7 @@ export function GenericController<Model, CreateObjDTO, UpdateObjDTO>({
 
     private async validateData(body: any, dto: any): Promise<any> {
       let obj;
+      console.log(body, dto)
       if (dto) {
         obj = plainToClass(dto, body) as typeof dto;
 
