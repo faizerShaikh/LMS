@@ -105,7 +105,7 @@ export const DataGrid = ({
   const search = useDebounce(query || "", 1000);
 
   useEffect(() => {
-    if (rows) {
+        if (rows) {
       if (Array.isArray(rows) && rows.length) {
         setData(rows);
       }
@@ -122,16 +122,16 @@ export const DataGrid = ({
   }, [refetchInside, url]);
 
   // useGetAll({
-  //   key: url,
-  //   params: {
-  //     page: pagination.page,
-  //     limit: pagination.limit,
-  //     search: search,
-  //   },
-  //   enabled: refetchInside || Boolean(queryKey),
-  //   onSuccess(data) {
-  //     setData(data);
-  //   },
+    //   key: url,
+    //   params: {
+      //     page: pagination.page,
+      //     limit: pagination.limit,
+      //     search: search,
+    //   },
+    //   enabled: refetchInside || Boolean(queryKey),
+    //   onSuccess(data) {
+      //     setData(data);
+    //   },
   // });
 
   const onPageChange = useCallback(
