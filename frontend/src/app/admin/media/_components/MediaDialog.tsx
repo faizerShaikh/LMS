@@ -21,7 +21,7 @@ const initialValues: MediaPressReleaseInterface = {
 export const MediaDialog = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
     const queryClient = useQueryClient();
 
-    const { setFieldValue } = useFormikContext()
+    // const { setFieldValue } = useFormikContext()
     const { mutate, isLoading } = useCreateOrUpdate({
         url: isUpdate ? `/configration/press-release/${data.id}` : '/configration/press-release',
         method: isUpdate ? 'put' : 'post',
@@ -59,7 +59,7 @@ export const MediaDialog = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => 
                                         if (typeof initialValues[key] == 'boolean') {
                                             return (<Box className="mb-4">
                                                 <Label text={key.replaceAll('_', '')} className="capitalize" />
-                                                <Checkbox name={key} onChange={(event: any) => { setFieldValue(key, event.target.checked) }} />
+                                                <Checkbox name={key} onChange={(event: any) => {  }} />
                                             </Box>)
                                         }
                                         return (

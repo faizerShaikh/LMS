@@ -34,6 +34,10 @@ export const UniversityDialog = ({ data, isUpdate }: CreateUpdateDialogBaseProps
                     mutate(values, {
                         onSuccess(data, variables, context) {
                             console.log('ONS SJSHSSHHS');
+                            toast(
+                                `University ${isUpdate ? "updated" : "added"
+                                } successfully`
+                            );
 
                             resetForm();
                             queryClient.refetchQueries(
@@ -42,10 +46,6 @@ export const UniversityDialog = ({ data, isUpdate }: CreateUpdateDialogBaseProps
                                     exact: false,
                                     stale: true,
                                 }
-                            );
-                            toast(
-                                `University ${isUpdate ? "updated" : "added"
-                                } successfully`
                             );
                             onClose();
                         },
