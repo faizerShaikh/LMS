@@ -77,8 +77,8 @@ export class MetaDataDto {
   @IsString()
   slug: string;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   event_id:string
 
   

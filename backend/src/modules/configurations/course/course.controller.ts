@@ -12,7 +12,7 @@ import { CourseService } from './course.service';
 import { MulterIntercepter } from 'src/core/interceptors';
 import { MulterEnum } from 'src/core/interfaces';
 
-@Controller('configrations/course')
+@Controller('configurations/course')
 export class CourseController extends GenericController<
   Course,
   CreateCourseDTO,

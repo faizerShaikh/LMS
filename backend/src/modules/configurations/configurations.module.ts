@@ -32,4 +32,4 @@ import { ContactModule } from './Contact Details/contact.module';
   controllers: [],
   providers: [],
 })
-export class ConfigrationModule {}
+export class configurationsModule {}

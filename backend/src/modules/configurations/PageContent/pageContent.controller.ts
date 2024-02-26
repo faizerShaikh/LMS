@@ -7,10 +7,11 @@ import { MulterIntercepter } from "src/core/interceptors";
 import { MulterEnum } from "src/core/interfaces";
 import { FileInterceptor } from "@nestjs/platform-express";
 
-@Controller('configrations/page-content')
+@Controller('configurations/page-content')
 export class PageContentController extends GenericController<PageContent,CreatePageDto,UpdatePageContent>({
     createObjDTO:CreatePageDto,
-    updateObjDTO:UpdatePageContent
+    updateObjDTO:UpdatePageContent,
+    notAllowedMethods:[0,4]
 }){
     constructor(private readonly PageContentService: PageContentService){
         super(PageContentService);

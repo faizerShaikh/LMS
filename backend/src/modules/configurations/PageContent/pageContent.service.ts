@@ -9,7 +9,7 @@ import { gallery } from "../Gallery/gallery.model";
 
 @Injectable()
 export class PageContentService extends GenericService<PageContent,CreatePageDto,UpdatePageContent>({
-    includes:[gallery]
+    includes:[gallery], 
 }){
     constructor(
         @InjectModel(PageContent) private pageContent: typeof PageContent,

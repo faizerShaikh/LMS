@@ -7,11 +7,7 @@ import { APP_INTERCEPTOR, APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './core/guards';
 import { ResponseInterceptor } from './core/interceptors';
 import { UsersModule } from './modules/user';
-import { ConfigrationModule } from './modules/configrations/configration.module';
-import { BlogModule } from './modules/blog/blog.module';
-import { EventModule } from './modules/configrations/event/event.module';
-import { PageContentModule } from './modules/configrations/PageContent/pageContent.module';
-import { EnquiryModule } from './modules/configrations/Enquiry/enquiry.module';
+import { configurationsModule } from './modules/configurations/configurations.module';
 
 @Module({
   imports: [
@@ -27,8 +23,8 @@ import { EnquiryModule } from './modules/configrations/Enquiry/enquiry.module';
     //User Module
     UsersModule,
 
-    //Configrations Module
-    ConfigrationModule,
+    //configurations Module
+    configurationsModule,
     //Blogs Module
     
   ],

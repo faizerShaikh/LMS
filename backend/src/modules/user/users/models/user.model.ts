@@ -10,7 +10,7 @@ import {
 } from 'sequelize-typescript';
 import { RoleEnum } from '../../interface';
 import { Blog } from 'src/modules/blog/model';
-import { Events } from 'src/modules/configrations/event/event.model';
+import { Events } from 'src/modules/configurations/event/event.model';
 
 @Table({
   tableName: 'users',

@@ -12,7 +12,7 @@ import { UniversityService } from './university.service';
 import { MulterIntercepter } from 'src/core/interceptors';
 import { MulterEnum } from 'src/core/interfaces';
 
-@Controller('configrations/university')
+@Controller('configurations/university')
 export class UniversityController extends GenericController<
   University,
   CreateUniversityDTO,

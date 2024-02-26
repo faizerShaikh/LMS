@@ -6,7 +6,7 @@ import { PressService } from './press.service';
 import { MulterIntercepter } from 'src/core/interceptors';
 import { MulterEnum } from 'src/core/interfaces';
 
-@Controller('configration/press-release')
+@Controller('configurations/press-release')
 export class PressController extends GenericController<
   Press,
   PressDTO,
