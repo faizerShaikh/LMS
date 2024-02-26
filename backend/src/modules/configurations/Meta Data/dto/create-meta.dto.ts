@@ -14,58 +14,58 @@ export class MetaDataDto {
 
   @IsNotEmpty()
   @IsString()
-  str: string;
+  title:string
 
   @IsNotEmpty()
   @IsString()
   @Length(1, 150)
   description: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   subject: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   copyright: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   summary: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   classification: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   author: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   owner: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   url: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   pageName: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   category: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   subtitle: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   replyTo: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsEnum(type)
   type: type;
 
@@ -73,7 +73,7 @@ export class MetaDataDto {
   @IsBoolean()
   isRefrenced: boolean;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   slug: string;
 

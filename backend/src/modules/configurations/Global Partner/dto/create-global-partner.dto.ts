@@ -1,4 +1,6 @@
-import { IsNotEmpty,IsString,IsBoolean, IsOptional } from "class-validator";
+import { IsNotEmpty,IsString,IsBoolean, IsOptional, IsObject, ValidateNested } from "class-validator";
+import { MetaDataDto } from "../../Meta Data/dto";
+import { Type } from "class-transformer";
 
 export class GlobalPartnerDTO{
     @IsNotEmpty()
@@ -29,4 +31,10 @@ export class GlobalPartnerDTO{
     @IsNotEmpty()
     @IsBoolean()
     popular_course: boolean;
+
+    @IsNotEmpty()
+    @IsObject()
+    @Type(()=>MetaDataDto)
+    @ValidateNested({each:true})
+    metaData:MetaDataDto
 }

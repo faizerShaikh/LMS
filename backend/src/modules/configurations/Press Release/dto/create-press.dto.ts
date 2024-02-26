@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsString, IsNotEmpty, IsBoolean, IsOptional, IsObject, ValidateNested } from 'class-validator';
 import { MetaData } from '../../Meta Data/meta.model';
+import { MetaDataDto } from '../../Meta Data/dto';
 
 export class PressDTO {
     @IsString()
@@ -16,7 +17,6 @@ export class PressDTO {
     link: string;
 
     @IsString()
-    @IsNotEmpty()
     @IsOptional()
     coverImage: string;
 
@@ -26,7 +26,7 @@ export class PressDTO {
     
     @IsNotEmpty()
     @IsObject()
-    @Type(()=>MetaData)
+    @Type(()=>MetaDataDto)
     @ValidateNested({each:true})
-    metaData:MetaData
+    metaData:MetaDataDto
 }

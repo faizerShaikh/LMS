@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator';
 import { MetaData } from '../../Meta Data/meta.model';
+import { MetaDataDto } from '../../Meta Data/dto';
 
 export class CreateCourseDTO {
   @IsString()
@@ -13,8 +14,8 @@ export class CreateCourseDTO {
 
   @IsNotEmpty()
   @IsObject()
-  @Type(()=>MetaData)
+  @Type(()=>MetaDataDto)
   @ValidateNested({each:true})
-  metaData:MetaData
+  metaData:MetaDataDto
 
 }

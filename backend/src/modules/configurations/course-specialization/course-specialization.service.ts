@@ -12,6 +12,7 @@ import { FeesStructure } from './model/fees-structure.model';
 import { ProgramStructure } from './model/program-structure.model';
 import { Course } from '../course/model';
 import { University } from '../university/model';
+import { MetaData } from '../Meta Data/meta.model';
 
 @Injectable()
 export class CourseSpecializationService extends GenericService<
@@ -19,7 +20,7 @@ export class CourseSpecializationService extends GenericService<
   CreateCourseSpecializationDTO,
   UpdateCourseSpecializationDTO
 >({
-  includes: [ Course,University],
+  includes: [Course, University],
 }) {
   constructor(
     @InjectModel(CourseSpecialization)
@@ -29,6 +30,8 @@ export class CourseSpecializationService extends GenericService<
     @InjectModel(ProgramStructure)
     private programStructure: typeof ProgramStructure,
     private reqParams: RequestParamsService,
+    @InjectModel(MetaData)
+    private metaData: typeof MetaData,
   ) {
     super(courseSpecialization, reqParams);
   }
@@ -50,7 +53,7 @@ export class CourseSpecializationService extends GenericService<
       await this.createOtherObjects(data, courseSpecialization, false);
       return courseSpecialization;
     } catch (err) {
-      console.error("Error occurred in update method:", err);
+      console.error('Error occurred in update method:', err);
     }
   }
   async updateCourseSpecializationImage(file: Express.Multer.File, id: string) {
@@ -91,12 +94,20 @@ export class CourseSpecializationService extends GenericService<
       });
     }
     if (isNewRecord) {
+      await this.metaData.create({
+        ...dto.metaData,
+        courseSpl: courseSpecialization.id,
+      });
       await this.feesStructure.create({
         ...dto.fees_structure,
         course_specialization_id: courseSpecialization.id,
       });
     } else {
       if (dto.fees_structure) {
+        await this.metaData.update<MetaData>(
+          { ...dto.metaData },
+          { where: { courseSplID: courseSpecialization.id } },
+        );
         await this.feesStructure.update<FeesStructure>(
           { ...dto.fees_structure },
           {

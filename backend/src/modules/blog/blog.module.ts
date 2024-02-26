@@ -8,9 +8,10 @@ import { BlogCategoryController } from './modules/blog-category/blog-category.co
 import { BlogCategoryService } from './modules/blog-category/blog-category.service';
 import { BlogCategory } from './modules/blog-category/model';
 import { User } from '../user/users/models/user.model';
+import { MetaData } from '../configurations/Meta Data/meta.model';
 
 @Module({
-  imports: [SequelizeModule.forFeature([Blog,BlogCategory,User]),],
+  imports: [SequelizeModule.forFeature([Blog,BlogCategory,User,MetaData]),],
   controllers: [BlogCategoryController, BlogController, ],
   providers: [BlogService,BlogCategoryService],
 })

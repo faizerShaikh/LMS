@@ -1,143 +1,154 @@
-import { BelongsTo, Column, DataType, Default, ForeignKey, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { type } from "./dto/type.enum";
-import { Events } from "../event/event.model";
-import { Faq } from "../FAQ/faq.model";
-import { Blog } from "src/modules/blog/model";
-import { CourseSpecialization } from "../course-specialization/model";
-import { Press } from "../Press Release/press.model";
-import { PageContent } from "../PageContent/pageContent.model";
-import { University } from "../university/model";
-import { Course } from "../course/model";
-import { GlobalPartner } from "../Global Partner/global-partner.model";
-import { Contacts } from "../Contact Details/contact.model";
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  Default,
+  ForeignKey,
+  IsUUID,
+  Model,
+  PrimaryKey,
+  Table,
+} from 'sequelize-typescript';
+import { type } from './dto/type.enum';
+import { Events } from '../event/event.model';
+import { Faq } from '../FAQ/faq.model';
+import { Blog } from 'src/modules/blog/model';
+import { CourseSpecialization } from '../course-specialization/model';
+import { Press } from '../Press Release/press.model';
+import { PageContent } from '../PageContent/pageContent.model';
+import { University } from '../university/model';
+import { Course } from '../course/model';
+import { GlobalPartner } from '../Global Partner/global-partner.model';
+import { Contacts } from '../Contact Details/contact.model';
 
 @Table({
-    tableName:'meta-data'
+  tableName: 'meta-data',
 })
-export class MetaData extends Model{
-    
-    @IsUUID(4)
-    @Default(DataType.UUIDV4)
-    @PrimaryKey
-    @Column
-    id:string
-    
-    @Column
-    keywords:string
+export class MetaData extends Model {
+  @IsUUID(4)
+  @Default(DataType.UUIDV4)
+  @PrimaryKey
+  @Column
+  id: string;
 
-    @Column
-    str:string
+  @Column
+  keywords: string;
 
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-        validate: {
-        len: [1, 150]
-        }
-    })
-    description:string
+  @Column
+  str: string;
 
-    @Column
-    subject:string
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    validate: {
+      len: [1, 150],
+    },
+  })
+  description: string;
 
-    @Column
-    copyright:string
+  @Column
+  title: string;
 
-    @Column
-    summary:string
+  @Column
+  subject: string;
 
-    @Column
-    classification:string
+  @Column
+  copyright: string;
 
-    @Column
-    author:string
+  @Column
+  summary: string;
 
-    @Column
-    owner:string
+  @Column
+  classification: string;
 
-    @Column
-    url:string
+  @Column
+  author: string;
 
-    @Column
-    pageName:string
+  @Column
+  owner: string;
 
-    @Column
-    category:string
+  @Column
+  url: string;
 
-    @Column
-    subtitle:string
+  @Column
+  pageName: string;
 
-    @Column
-    replyTo:string
+  @Column
+  category: string;
 
-    @Column
-    type:type
+  @Column
+  subtitle: string;
 
-    @Default(false)
-    @Column
-    isRefrenced:boolean
+  @Column
+  replyTo: string;
 
-    @Column
-    slug:string
+  @Column
+  type: type;
 
-    @ForeignKey(()=>Events)
-    event_id:string
+  @Default(false)
+  @Column
+  isRefrenced: boolean;
 
-    @BelongsTo(()=>Events)
-    event:Event
+  @Column
+  slug: string;
 
-    @ForeignKey(()=>Faq)
-    faqID:string
+  @ForeignKey(() => Events)
+  event_id: string;
 
-    @BelongsTo(()=>Faq)
-    faq:Faq
+  @BelongsTo(() => Events)
+  event: Event;
 
-    @ForeignKey(()=>Blog)
-    blogID:string
+  @ForeignKey(() => Faq)
+  faqID: string;
 
-    @BelongsTo(()=>Blog)
-    blog:Blog
+  @BelongsTo(() => Faq)
+  faq: Faq;
 
-    @ForeignKey(()=>CourseSpecialization)
-    courseSplID:string
+  @ForeignKey(() => Blog)
+  blogID: string;
 
-    @BelongsTo(()=>CourseSpecialization)
-    courseSpl:CourseSpecialization
+  @BelongsTo(() => Blog)
+  blog: Blog;
 
-    @ForeignKey(()=> Press)
-    pressID:string
+  @ForeignKey(() => CourseSpecialization)
+  courseSplID: string;
 
-    @BelongsTo(()=>Press)
-    press:Press
+  @BelongsTo(() => CourseSpecialization)
+  courseSpl: CourseSpecialization;
 
-    @ForeignKey(()=>PageContent)
-    pageID:string
+  @ForeignKey(() => Press)
+  pressID: string;
 
-    @BelongsTo(()=>PageContent)
-    page:PageContent
+  @BelongsTo(() => Press)
+  press: Press;
 
-    @ForeignKey(()=>University)
-    universityID:string
+  @ForeignKey(() => PageContent)
+  pageID: string;
 
-    @BelongsTo(()=>University)
-    university:University
+  @BelongsTo(() => PageContent)
+  page: PageContent;
 
-    @ForeignKey(()=>Course)
-    courseID:string
+  @ForeignKey(() => University)
+  universityID: string;
 
-    @BelongsTo(()=>Course)
-    course:Course
+  @BelongsTo(() => University)
+  university: University;
 
-    @ForeignKey(()=>GlobalPartner)
-    globaPartnerID:string
+  @ForeignKey(() => Course)
+  courseID: string;
 
-    @BelongsTo(()=>GlobalPartner)
-    GlobalPartner:GlobalPartner
+  @BelongsTo(() => Course)
+  course: Course;
 
-    @ForeignKey(()=>Contacts)
-    contactID:string
+  @ForeignKey(() => GlobalPartner)
+  globaPartnerID: string;
 
-    @BelongsTo(()=>Contacts)
-    contact:Contacts
+  @BelongsTo(() => GlobalPartner)
+  GlobalPartner: GlobalPartner;
 
+  @ForeignKey(() => Contacts)
+  contactID: string;
+
+  @BelongsTo(() => Contacts)
+  contact: Contacts;
 }

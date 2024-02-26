@@ -6,16 +6,19 @@ import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
 import { User } from '../user/users/models/user.model';
+import { MetaData } from '../configurations/Meta Data/meta.model';
+import { type } from '../configurations/Meta Data/dto/type.enum';
 
 @Injectable()
 export class BlogService extends GenericService<
   Blog,
   CreateBlogDTO,
   UpdateBlogDTO
->({includes:User}) {
+>({includes:[User,MetaData]}) {
   constructor(
     @InjectModel(Blog) private blog: typeof Blog,
     private reqParams: RequestParamsService,
+    @InjectModel(MetaData) private metaData : typeof MetaData
   ) {
     super(blog, reqParams);
   }
@@ -52,5 +55,43 @@ export class BlogService extends GenericService<
     return this.blog.findAll({include:[User],
       where: { is_featured: false },
     });
+  }
+
+  async createOtherObjet(
+    dto:CreateBlogDTO|UpdateBlogDTO,
+    blog:Blog,
+    isNewRecord:boolean,
+  ){
+    if(isNewRecord){
+      await this.metaData.create({
+        ...dto.metaData,
+        blogID:blog.id,
+        type:type.BLOG
+      })
+    }
+    else{
+      if(dto.metaData){
+        await this.metaData.update<MetaData>(
+          {...dto.metaData},
+          {
+            where:{
+              blogID:blog.id
+            }
+          }
+        )
+      }
+    }
+  }
+
+  async create<Blog>(dto: CreateBlogDTO): Promise<Blog> {
+    const blog = await super.create(dto)
+    await this.createOtherObjet(dto,blog,true)
+    return blog
+  }
+
+  async update<Blog>(data: UpdateBlogDTO, id: string): Promise<Blog> {
+    const blog = await super.update(data,id)
+    await this.createOtherObjet(data,blog,false)  
+    return 
   }
 }

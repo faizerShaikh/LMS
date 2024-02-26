@@ -6,9 +6,10 @@ import { faqTopicController } from "./FAQ Topics/faqTopic.controller";
 import { FaqService } from "./faq.service";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { FAQTopicModule } from "./FAQ Topics/faqTpoic.module";
+import { MetaData } from "../Meta Data/meta.model";
 
 @Module({
-    imports:[SequelizeModule.forFeature([Faq]),FAQTopicModule],
+    imports:[SequelizeModule.forFeature([Faq,MetaData]),FAQTopicModule],
     controllers:[FaqController],
     providers:[FaqService]
 })

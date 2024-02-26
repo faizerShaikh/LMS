@@ -7,6 +7,8 @@ export enum type{
     GALLERY='gallery',
     UNIVERSITY='university',
     PAGE_CONTENT='page-content',
-    MEDIA='media'
+    MEDIA='media',
+    FAQ='FAQ',
+    GLOBAL_PARTNER='global-partner'
 
 }

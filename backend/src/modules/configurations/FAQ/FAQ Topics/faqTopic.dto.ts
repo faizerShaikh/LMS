@@ -13,4 +13,5 @@ export class FaqTopicDto {
     @IsUUID(4)
     @IsNotEmpty()
     faqId: string;
+    
 }

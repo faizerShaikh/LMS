@@ -4,9 +4,10 @@ import { PageContent } from "./pageContent.model";
 import { Module } from "@nestjs/common";
 import { PageContentController } from "./pageContent.controller";
 import { PageContentService } from "./pageContent.service";
+import { MetaData } from "../Meta Data/meta.model";
 
 @Module({
-    imports:[SequelizeModule.forFeature([PageContent])],
+    imports:[SequelizeModule.forFeature([PageContent,MetaData])],
     controllers:[PageContentController],
     providers:[PageContentService]
 })

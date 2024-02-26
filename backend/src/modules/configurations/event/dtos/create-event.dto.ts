@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsBoolean, IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator';
 import { MetaData } from '../../Meta Data/meta.model';
+import { MetaDataDto } from '../../Meta Data/dto';
 
 export class CreateEventDTO{
     @IsString()
@@ -28,8 +29,8 @@ export class CreateEventDTO{
     isFeatured: boolean;
 
     @IsNotEmpty()
-    @Type(()=>MetaData)
+    @Type(()=>MetaDataDto)
     @ValidateNested({each:true})
     @IsObject()
-    metaData:MetaData
+    metaData:MetaDataDto
 }

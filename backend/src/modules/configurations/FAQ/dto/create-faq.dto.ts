@@ -1,6 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsObject, IsOptional, IsString, ValidateNested } from "class-validator";
-import { MetaData } from "../../Meta Data/meta.model";
 import { Type } from "class-transformer";
+import { MetaDataDto } from "../../Meta Data/dto";
 
 export class CreateFaqDTO{
     @IsString()
@@ -12,7 +12,7 @@ export class CreateFaqDTO{
 
     @IsNotEmpty()
     @IsObject()
-    @Type(()=>MetaData)
+    @Type(()=>MetaDataDto)
     @ValidateNested({each:true})
-    metaData:MetaData
+    metaData:MetaDataDto
 }
