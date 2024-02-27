@@ -1,6 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsObject, IsOptional, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { MetaDataDto } from "../../Meta Data/dto";
+import { MetaDataDto } from "../../metaData/dto";
 
 export class CreateFaqDTO{
     @IsString()

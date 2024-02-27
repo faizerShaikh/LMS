@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator';
-import { MetaData } from '../../Meta Data/meta.model';
+import { MetaData } from '../../metaData/meta.model';
 import { Type } from 'class-transformer';
 
 export class ContactsDto {

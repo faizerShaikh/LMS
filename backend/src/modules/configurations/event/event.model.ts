@@ -1,7 +1,7 @@
 import { DATE} from "sequelize";
 import { Column, DataType, PrimaryKey, Table,Model, IsUUID, Default,ForeignKey,BelongsTo, HasOne } from "sequelize-typescript";
 import { User } from "src/modules/user/users/models/user.model";
-import { MetaData } from "../Meta Data/meta.model";
+import { MetaData } from "../metaData/meta.model";
 @Table({
     tableName:'events',
     modelName: 'Events',

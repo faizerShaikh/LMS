@@ -10,7 +10,7 @@ import {
 import { ProgramStructureDTO } from './program-structure.dto';
 import { FeesStructureDTO } from './fees-structure.dto';
 import { Type } from 'class-transformer';
-import { MetaData } from '../../Meta Data/meta.model';
+import { MetaData } from '../../metaData/meta.model';
 
 export class CreateCourseSpecializationDTO {
   @IsString()

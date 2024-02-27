@@ -3,20 +3,20 @@ import { IsBoolean, IsEnum, IsNotEmpty, IsOptional, IsString, Length } from 'cla
 import { type } from './type.enum';
 import { BelongsTo } from 'sequelize-typescript';
 import { CourseSpecialization } from '../../course-specialization/model';
-import { GlobalPartner } from '../../Global Partner/global-partner.model';
-import { Contacts } from '../../Contact Details/contact.model';
+import { GlobalPartner } from '../../globalPartner/global-partner.model';
+import { Contacts } from '../../cotacDetails/contact.model';
 
 export class MetaDataDto {
   
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   keywords: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   title:string
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @Length(1, 150)
   description: string;

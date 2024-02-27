@@ -15,7 +15,7 @@ import { Course } from '../../course/model';
 import { University } from '../../university/model';
 import { ProgramStructure } from './program-structure.model';
 import { FeesStructure } from './fees-structure.model';
-import { MetaData } from '../../Meta Data/meta.model';
+import { MetaData } from '../../metaData/meta.model';
 
 @Table({
   tableName: 'course-specializations',

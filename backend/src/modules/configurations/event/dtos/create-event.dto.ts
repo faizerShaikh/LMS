@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsBoolean, IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator';
-import { MetaData } from '../../Meta Data/meta.model';
-import { MetaDataDto } from '../../Meta Data/dto';
+import { MetaData } from '../../metaData/meta.model';
+import { MetaDataDto } from '../../metaData/dto';
 
 export class CreateEventDTO{
     @IsString()

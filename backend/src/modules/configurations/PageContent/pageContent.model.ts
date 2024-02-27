@@ -1,4 +1,5 @@
 import {
+  BelongsTo,
   Column,
   DataType,
   Default,
@@ -10,12 +11,13 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { gallery } from '../Gallery/gallery.model';
-import { MetaData } from '../Meta Data/meta.model';
+import { MetaData } from '../metaData/meta.model';
+import { BaseModel } from 'src/core/modules/generics/base.model';
 
 @Table({
   tableName: 'page contents',
 })
-export class PageContent extends Model {
+export class PageContent extends BaseModel {
   @IsUUID(4)
   @PrimaryKey
   @Default(DataType.UUIDV4)
@@ -48,6 +50,4 @@ export class PageContent extends Model {
   })
   gallery: gallery;
 
-  @HasOne(()=>MetaData)
-  metaData:MetaData
 }

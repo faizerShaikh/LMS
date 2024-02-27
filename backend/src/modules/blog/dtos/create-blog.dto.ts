@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsBoolean, IsNotEmpty, IsObject, IsOptional, IsString, ValidateNested } from 'class-validator';
-import { MetaData } from 'src/modules/configurations/Meta Data/meta.model';
+import { MetaData } from 'src/modules/configurations/metaData/meta.model';
 
 export class CreateBlogDTO {
   @IsString()

@@ -6,8 +6,8 @@ import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
 import { User } from '../user/users/models/user.model';
-import { MetaData } from '../configurations/Meta Data/meta.model';
-import { type } from '../configurations/Meta Data/dto/type.enum';
+import { MetaData } from '../configurations/metaData/meta.model';
+import { type } from '../configurations/metaData/dto/type.enum';
 
 @Injectable()
 export class BlogService extends GenericService<

@@ -6,8 +6,8 @@ import { unlink } from "fs";
 import { join } from "path";
 import { CreateEventDTO, UpdateEventDTO } from "./dtos";
 import { User } from "src/modules/user/users/models/user.model";
-import { MetaData } from "../Meta Data/meta.model";
-import { type } from "../Meta Data/dto/type.enum";
+import { MetaData } from "../metaData/meta.model";
+import { type } from "../metaData/dto/type.enum";
 @Injectable()
 export class eventService extends GenericService<Events,CreateEventDTO,UpdateEventDTO>({
     includes:[MetaData]

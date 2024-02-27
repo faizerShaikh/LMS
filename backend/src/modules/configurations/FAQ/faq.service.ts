@@ -3,9 +3,9 @@ import { GenericService, RequestParamsService } from 'src/core/modules';
 import { Faq } from './faq.model';
 import { CreateFaqDTO, UpdateFAQ } from './dto';
 import { InjectModel } from '@nestjs/sequelize';
-import { FaqTopic } from './FAQ Topics/faqTopic.model';
-import { MetaData } from '../Meta Data/meta.model';
-import { type } from '../Meta Data/dto/type.enum';
+import { FaqTopic } from './faqTopic/faqTopic.model';
+import { MetaData } from '../metaData/meta.model';
+import { type } from '../metaData/dto/type.enum';
 
 @Injectable()
 export class FaqService extends GenericService<Faq, CreateFaqDTO, UpdateFAQ>({

@@ -10,7 +10,7 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { CourseSpecialization } from '../../course-specialization/model';
-import { MetaData } from '../../Meta Data/meta.model';
+import { MetaData } from '../../metaData/meta.model';
 
 @Table({
   tableName: 'universities',

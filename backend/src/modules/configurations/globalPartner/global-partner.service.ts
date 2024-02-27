@@ -4,10 +4,10 @@ import { GenericService, RequestParamsService } from 'src/core/modules';
 import { GlobalPartner } from './global-partner.model';
 import { join } from 'path';
 import { unlink } from 'fs';
-import { MetaData } from '../Meta Data/meta.model';
-import { Contacts } from '../Contact Details/contact.model';
+import { MetaData } from '../metaData/meta.model';
+import { Contacts } from '../cotacDetails/contact.model';
 import { GlobalPartnerDTO, UpdateGlobalPartnerDTO } from './dto';
-import { type } from '../Meta Data/dto/type.enum';
+import { type } from '../metaData/dto/type.enum';
 
 @Injectable()
 export class GlobalPartnerService extends GenericService({

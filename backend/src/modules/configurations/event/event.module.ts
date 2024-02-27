@@ -3,7 +3,7 @@ import { SequelizeModule } from "@nestjs/sequelize";
 import { Events } from "./event.model";
 import { eventController } from "./event.controller";
 import { eventService } from "./event.service";
-import { MetaData } from "../Meta Data/meta.model";
+import { MetaData } from "../metaData/meta.model";
 
 @Module({
     imports:[SequelizeModule.forFeature([Events,MetaData])],

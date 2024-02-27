@@ -1,5 +1,5 @@
 import { IsNotEmpty,IsString,IsBoolean, IsOptional, IsObject, ValidateNested } from "class-validator";
-import { MetaDataDto } from "../../Meta Data/dto";
+import { MetaDataDto } from "../../metaData/dto";
 import { Type } from "class-transformer";
 
 export class GlobalPartnerDTO{

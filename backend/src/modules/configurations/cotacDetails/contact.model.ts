@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, Default, ForeignKey, HasOne, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { MetaData } from "../Meta Data/meta.model";
-import { GlobalPartner } from "../Global Partner/global-partner.model";
+import { MetaData } from "../metaData/meta.model";
+import { GlobalPartner } from "../globalPartner/global-partner.model";
 
 @Table({
     tableName:'contacts'

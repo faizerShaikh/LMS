@@ -3,15 +3,15 @@ import { UniversityModule } from './university/university.module';
 import { CourseModule } from './course/course.module';
 import { CourseSpecializationModule } from './course-specialization/course-specialization.module';
 import { GalleryModule } from './Gallery/gallery.module';
-import { PressModule } from './Press Release/press.module';
-import { FAQModule } from './FAQ/faq.module';
-import { MetaDataModule } from './Meta Data/meta.module';
+import { PressModule } from './pressRelease/press.module';
+import { FAQModule } from './faq/faq.module';
+import { MetaDataModule } from './metaData/meta.module';
 import { BlogModule } from '../blog/blog.module';
 import { EventModule } from './event/event.module';
 import { PageContentModule } from './PageContent/pageContent.module';
 import { EnquiryModule } from './Enquiry/enquiry.module';
-import { GlobalPartnerModule } from './Global Partner/global-partner.module';
-import { ContactModule } from './Contact Details/contact.module';
+import { GlobalPartnerModule } from './globalPartner/global-partner.module';
+import { ContactModule } from './cotacDetails/contact.module';
 
 @Module({
   imports: [

@@ -5,8 +5,7 @@ import { CreateUniversityDTO, UpdateUniversityDTO } from './dtos';
 import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
-import { MetaData } from '../Meta Data/meta.model';
-import { type } from '../Meta Data/dto/type.enum';
+import { MetaData } from '../metaData/meta.model';
 
 @Injectable()
 export class UniversityService extends GenericService<
@@ -49,47 +48,5 @@ export class UniversityService extends GenericService<
     });
     return 'University Image Uploaded Successfully';
   }
-
-  async create<University>(dto: CreateUniversityDTO,): Promise<University> {
-    const university = await super.create(dto)
-    await this.createOtherObjects(dto,university,true);
-    return university
-  }
-
-  async createOtherObjects(
-    dto: CreateUniversityDTO|UpdateUniversityDTO,
-    university:University,
-    isNewRecord:boolean
-  ){
-    if(isNewRecord){
-      await this.metaData.create({
-        ...dto.metaData,
-        universityID:university.id,
-        type:type.UNIVERSITY
-      })
-    }
-    else {
-      if(dto.metaData){
-        await this.metaData.update<MetaData>(
-          {...dto.metaData},
-          {
-            where:{
-              universityID:university.id
-            }
-          }
-        )
-      }
-    }
-  }
-  
-  async update<University >(data: UpdateUniversityDTO, id: string): Promise<University> {
-    try{
-      
-    const university= await super.update(data,id) ;
-    await this.createOtherObjects(data,university,false);
-    return university
-    } catch (err){
-      console.error("Error occurred in update method",err)
-    } }
 
 }

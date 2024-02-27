@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsObject, IsString, IsUUID, ValidateNested } from 'class-validator';
-import { MetaData } from '../../Meta Data/meta.model';
+import { MetaData } from '../../metaData/meta.model';
 import { Type } from 'class-transformer';
-import { MetaDataDto } from '../../Meta Data/dto';
+import { MetaDataDto } from '../../metaData/dto';
 
 export class CreatePageDto {
 
@@ -24,9 +24,4 @@ export class CreatePageDto {
     @IsString()
     pageDescription: string;
 
-    @IsNotEmpty()
-    @IsObject()
-    @Type(()=>MetaDataDto)
-    @ValidateNested({each:true})
-    metaData:MetaDataDto
 }

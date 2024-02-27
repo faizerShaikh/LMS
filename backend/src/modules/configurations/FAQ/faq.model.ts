@@ -1,6 +1,6 @@
 import { Column, DataType, Default, HasOne, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { FaqTopic } from "./FAQ Topics/faqTopic.model";
-import { MetaData } from "../Meta Data/meta.model";
+import { FaqTopic } from "./faqTopic/faqTopic.model";
+import { MetaData } from "../metaData/meta.model";
 
 @Table({
     tableName:'faqs'

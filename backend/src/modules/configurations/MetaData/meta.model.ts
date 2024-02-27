@@ -4,6 +4,7 @@ import {
   DataType,
   Default,
   ForeignKey,
+  HasOne,
   IsUUID,
   Model,
   PrimaryKey,
@@ -11,15 +12,15 @@ import {
 } from 'sequelize-typescript';
 import { type } from './dto/type.enum';
 import { Events } from '../event/event.model';
-import { Faq } from '../FAQ/faq.model';
+import { Faq } from '../faq/faq.model';
 import { Blog } from 'src/modules/blog/model';
 import { CourseSpecialization } from '../course-specialization/model';
-import { Press } from '../Press Release/press.model';
+import { Press } from '../pressRelease/press.model';
 import { PageContent } from '../PageContent/pageContent.model';
 import { University } from '../university/model';
 import { Course } from '../course/model';
-import { GlobalPartner } from '../Global Partner/global-partner.model';
-import { Contacts } from '../Contact Details/contact.model';
+import { GlobalPartner } from '../globalPartner/global-partner.model';
+import { Contacts } from '../cotacDetails/contact.model';
 
 @Table({
   tableName: 'meta-data',
@@ -31,7 +32,9 @@ export class MetaData extends Model {
   @Column
   id: string;
 
-  @Column
+  @Column({
+    allowNull:true,
+  })
   keywords: string;
 
   @Column
@@ -39,7 +42,7 @@ export class MetaData extends Model {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
     validate: {
       len: [1, 150],
     },
@@ -92,6 +95,12 @@ export class MetaData extends Model {
   @Column
   slug: string;
 
+  @HasOne(() => Press)
+  press: Press;
+
+  @HasOne(() => PageContent)
+  page: PageContent; 
+
   @ForeignKey(() => Events)
   event_id: string;
 
@@ -116,17 +125,7 @@ export class MetaData extends Model {
   @BelongsTo(() => CourseSpecialization)
   courseSpl: CourseSpecialization;
 
-  @ForeignKey(() => Press)
-  pressID: string;
 
-  @BelongsTo(() => Press)
-  press: Press;
-
-  @ForeignKey(() => PageContent)
-  pageID: string;
-
-  @BelongsTo(() => PageContent)
-  page: PageContent;
 
   @ForeignKey(() => University)
   universityID: string;

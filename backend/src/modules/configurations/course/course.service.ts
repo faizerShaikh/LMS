@@ -5,8 +5,8 @@ import { CreateCourseDTO, UpdateCourseDTO } from './dtos';
 import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
-import { MetaData } from '../Meta Data/meta.model';
-import { type } from '../Meta Data/dto/type.enum';
+import { MetaData } from '../metaData/meta.model';
+import { type } from '../metaData/dto/type.enum';
 
 @Injectable()
 export class CourseService extends GenericService<

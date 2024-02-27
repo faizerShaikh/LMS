@@ -5,7 +5,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { CourseSpecialization } from './model';
 import { FeesStructure } from './model/fees-structure.model';
 import { ProgramStructure } from './model/program-structure.model';
-import { MetaData } from '../Meta Data/meta.model';
+import { MetaData } from '../metaData/meta.model';
 
 @Module({
   imports: [

@@ -12,7 +12,7 @@ import {
 } from 'sequelize-typescript';
 import { User } from 'src/modules/user/users/models/user.model';
 import { BlogCategory } from '../modules/blog-category/model';
-import { MetaData } from 'src/modules/configurations/Meta Data/meta.model';
+import { MetaData } from 'src/modules/configurations/metaData/meta.model';
 
 @Table({
   tableName: 'blogs',

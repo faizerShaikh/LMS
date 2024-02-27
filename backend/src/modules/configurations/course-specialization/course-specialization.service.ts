@@ -12,7 +12,7 @@ import { FeesStructure } from './model/fees-structure.model';
 import { ProgramStructure } from './model/program-structure.model';
 import { Course } from '../course/model';
 import { University } from '../university/model';
-import { MetaData } from '../Meta Data/meta.model';
+import { MetaData } from '../metaData/meta.model';
 
 @Injectable()
 export class CourseSpecializationService extends GenericService<

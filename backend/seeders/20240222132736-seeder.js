@@ -75,7 +75,7 @@ module.exports = {
     }
     ]
     await queryInterface.bulkInsert('faq-topics', FAQTopic, {});
-    console.log('FAQ Topics seeded successfully.');
+    console.log('faqTopic seeded successfully.');
 
     const PressRelease=[
       {
