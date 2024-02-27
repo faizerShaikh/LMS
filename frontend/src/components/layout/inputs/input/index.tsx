@@ -34,6 +34,7 @@ export const inputStyles = {
     "&:after, &:before": {
       display: "none",
     },
+    
   },
 };
 
@@ -49,6 +50,7 @@ export const Input = ({
     ...otherProps,
     sx: { ...inputStyles, ...otherProps.sx },
   };
+  
   if (name) {
     //eslint-disable-next-line
     const [field, meta] = useField(name || "");

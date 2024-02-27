@@ -5,7 +5,7 @@ import moment from "moment";
 export default async function EventsPage() {
   let events = [];
   const res = await axios.get(
-    `${process.env.BASE_API_URL}/configrations/event`
+    `${process.env.BASE_API_URL}/configurations/event`
   );
   events = res.data.data.rows;
   console.log(events)

@@ -1,97 +1,137 @@
-import { CreateUpdateDialogBaseProps, PageContentInterface } from "interfaces"
-import { Button, Dialog, Input, Label } from "../../../../components"
-import { Form, Formik } from "formik"
+import { CreateUpdateDialogBaseProps, PageContentInterface } from "interfaces";
+import { Button, Dialog, DropZone, Input, Label } from "../../../../components";
+import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "hooks";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Icon, IconButton } from "@mui/material";
 import { MetaDataForm } from "../../../../components/admin";
 import { MetaDataInitial } from "initials";
 import { Edit } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
+import { useState } from "react";
+import { API } from "configs";
 
 const initialValues: PageContentInterface = {
-    name: "",
-    title: '',
-    titleDescription: '',
-    pageDescription: '',
-    coverImage: null,
-    gallery: [],
-    metaData: MetaDataInitial,
+  name: "",
+  title: "",
+  titleDescription: "",
+  pageDescription: "",
+  coverImage: null,
+  gallery: [],
+  metaData: MetaDataInitial,
 };
 
-export const PageContentDialog = ({ data, isUpdate = true }: CreateUpdateDialogBaseProps) => {
-    const queryClient = useQueryClient();
+export const PageContentDialog = ({
+  data,
+  isUpdate = true,
+}: CreateUpdateDialogBaseProps) => {
+  const queryClient = useQueryClient();
+  const [id, setId] = useState(null);
 
-    const { mutate, isLoading } = useCreateOrUpdate({
-        url: `/configrations/page-content/${data.id}`,
-        method: 'put',
-    })
-    return (
-        <Dialog
-            button={<Button startIcon={<Edit />}>Edit</Button>}
-            title="Edit Page Content"
+
+  const { mutate, isLoading } = useCreateOrUpdate({
+    url: `/configurations/page-content/${data.id}`,
+    method: "put",
+  });
+
+  const { mutate: fileUploadMutate } = useCreateOrUpdate({
+    url: `/configurations/page-content/update-page-image/${id}`,
+    method: "put",
+  });
+
+  const handleFileUpload = async (
+    file: File,
+    id: string,
+    onSuccess: VoidFunction
+  ) => {
+    const formData = new FormData();
+    formData.append("coverImage", file);
+    await API.put(`/configurations/page-content/update-page-image/${id}`,formData);
+    onSuccess();
+  }; 
+  return (
+    <Dialog
+      button={
+        <IconButton>
+          <Edit />
+        </IconButton>
+      }
+      title="Edit Page Content"
+    >
+      {({ onClose }) => (
+        <Formik
+          initialValues={{ ...initialValues, ...data }}
+          onSubmit={(values, { resetForm }) => {
+            mutate(values, {
+              onSuccess(resp, variables, context) {
+                handleFileUpload(values.coverImage, resp.data.data.id, () => {
+                  resetForm();
+                  queryClient.refetchQueries(`/configurations/press-release`, {
+                    exact: false,
+                    stale: true,
+                  });
+                  toast(
+                    `Press release ${
+                      isUpdate ? "updated" : "added"
+                    } successfully`
+                  );
+                  onClose();
+                });
+              },
+            });
+          }}
         >
-            {({ onClose }) => (
-                <Formik initialValues={{ ...initialValues, ...data }} onSubmit={(values, { resetForm }) => {
-                    mutate(values, {
-                        onSuccess(data, variables, context) {
-                            console.log('ONS SJSHSSHHS');
-
-                            resetForm();
-                            queryClient.refetchQueries(
-                                `/configrations/page-content`,
-                                {
-                                    exact: false,
-                                    stale: true,
-                                }
-                            );
-                            toast(
-                                `Page content updated successfully`
-                            );
-                            onClose();
-                        },
-                    })
-                }}>
-                    <Form>
-                        <Grid container columnSpacing={10} className="mt-8" gap={3}>
-                            <Grid xs={12} item>
-                                {
-                                    Object.keys(initialValues).filter((key: string) => (typeof initialValues[key] == 'string')).map((key: string) => {
-                                        return (
-                                            <Box className="mb-4">
-                                                <Label text={key.replaceAll('_', '')} className="capitalize" />
-                                                <Input name={key} />
-                                            </Box>)
-                                    })
-                                }
-                                <MetaDataForm />
-                            </Grid>
-                            <Grid xs={12} item>
-                                <Box className="flex justify-end">
-                                    <Button
-                                        color="secondary"
-                                        className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
-                                        variant="contained"
-                                        disabled={isLoading}
-                                        onClick={() => {
-                                            onClose();
-                                        }}
-                                    >
-                                        Discard
-                                    </Button>
-                                    <Button
-                                        variant="contained"
-                                        className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
-                                        type="submit"
-                                        isLoading={isLoading}
-                                    >
-                                        Save
-                                    </Button>
-                                </Box>
-                            </Grid>
-                        </Grid>
-                    </Form>
-                </Formik>
-            )}
-        </Dialog>)
-} 
+          <Form>
+            <Grid container columnSpacing={10} className="mt-8" gap={3}>
+              <Grid xs={12} item>
+              <Box>
+                  <Label text="Upload your image" required/>
+                  <DropZone name="coverImage" />
+                </Box>
+                <Box className="mt-4">
+                  <Label text="Name" required/>
+                  <Input name="title" />
+                </Box>
+                <Box className="mt-4">
+                  <Label text="Title" required/>
+                  <Input name="title" />
+                </Box>
+                <Box className="mt-4">
+                  <Label text="Title Description" required/>
+                  <Input name="titleDescription" />
+                </Box>
+                <Box className="mt-4">
+                  <Label text="Paqge Description" />
+                  <Input name="pageDescription" />
+                </Box>
+              </Grid>
+              <Grid xs={12} item>
+                <Box className="flex justify-end">
+                  <Button
+                    color="secondary"
+                    className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
+                    variant="contained"
+                    disabled={isLoading}
+                    onClick={() => {
+                      onClose();
+                    }}
+                  >
+                    Discard
+                  </Button>
+                  <Button
+                    variant="contained"
+                    className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
+                    type="submit"
+                    isLoading={isLoading}
+                  >
+                    Save
+                  </Button>
+                </Box>
+              </Grid>
+            </Grid>
+          </Form>
+        </Formik>
+      )}
+    </Dialog>
+  );
+};

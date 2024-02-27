@@ -6,6 +6,7 @@ interface LabelProps {
   colorClass?: string;
   className?: string;
   outerClassName?: string;
+  required?: boolean;
 }
 
 export const Label = ({
@@ -13,13 +14,14 @@ export const Label = ({
   className,
   colorClass,
   outerClassName,
+  required=false,
 }: LabelProps) => {
   return (
     <p className={outerClassName ? outerClassName : "my-0"}>
       <InputLabel
         className={`${colorClass ? colorClass : "text-dark"} ${className} `}
       >
-        {text}
+        {text}{required ? <span className="text-red-700"> *</span> : ''}
       </InputLabel>
     </p>
   );

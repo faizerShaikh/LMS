@@ -4,7 +4,7 @@ import { CreateFaqDTO, UpdateFAQ } from "./dto";
 import { Faq } from "./faq.model";
 import { FaqService } from "./faq.service";
 
-@Controller('configrations/faq')
+@Controller('configurations/faq')
 export class FaqController extends GenericController<Faq,CreateFaqDTO,UpdateFAQ>({
     createObjDTO: CreateFaqDTO,
     updateObjDTO: UpdateFAQ

@@ -6,13 +6,13 @@ import { CoursesCard } from "components/layout/cards/CourseCard";
 export default async function courses() {
   let CoursesCatagoriData = [];
   const CatagorieResponse = await axios.get(
-    `${process.env.BASE_API_URL}/configrations/course/`
+    `${process.env.BASE_API_URL}/configurations/course/`
   );
   CoursesCatagoriData = CatagorieResponse.data.data.rows;
 
   let CoursesCardData: any = [];
   const response = await axios.get(
-    `${process.env.BASE_API_URL}/configrations/course-specialization`
+    `${process.env.BASE_API_URL}/configurations/course-specialization`
   );
   CoursesCardData = response.data.data.rows;
   // console.log(CoursesCardData);
@@ -61,8 +61,10 @@ export default async function courses() {
           <div className="flex">
             <div className="w-3/4 flex flex-wrap">
               {CoursesCardData.map((item: any) => {
+                console.log(CoursesCardData)
                 return <CoursesCard specialization={item} />;
               })}
+              
             </div>
 
             <div className="w-1/4 shadow-2xl mb-4 rounded-md p-4 border-2">

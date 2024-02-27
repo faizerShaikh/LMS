@@ -1,8 +1,9 @@
-'use client';
+"use client";
 import { DataGrid, DeleteBox, PageHeader } from "components/layout";
 import { useGetAll } from "hooks";
 import { UniversityInterface } from "interfaces";
 import { UniversityDialog } from "./_components/UniversityDialog";
+import { MetaDataForm } from "components/admin";
 
 const columns = [
   {
@@ -35,29 +36,41 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: UniversityInterface }) => {
-      return <>
-        <UniversityDialog isUpdate={true} data={params.row} />
-        <DeleteBox 
-            title={`Item`} 
-            url={`/configrations/university`} 
+      return (
+        <>
+          <UniversityDialog isUpdate={true} data={params.row} />
+          <DeleteBox
+            title={`Item`}
+            url={`/configurations/university`}
             data={params.row.id}
-            refetchUrl="/configrations/university" 
-           />
-      </>
-    }
+            refetchUrl="/configurations/university"
+          />
+          <MetaDataForm
+            isUpdate={true}
+            data={
+              params.row.metaData
+                ? params.row.metaData
+                : { id: params.row.metaID }
+            }
+          />
+        </>
+      );
+    },
   },
-]
+];
 
 export default function University() {
   const { data } = useGetAll({
-    key: '/configrations/university',
-  })
-  return <>
-    <PageHeader title="Univerities" />
-    <DataGrid
-      addButton={<UniversityDialog />}
-      columns={columns}
-      rows={data}
-    />
-  </>
-} 
+    key: "/configurations/university",
+  });
+  return (
+    <>
+      <PageHeader title="Univerities" />
+      <DataGrid
+        addButton={<UniversityDialog />}
+        columns={columns}
+        rows={data}
+      />
+    </>
+  );
+}

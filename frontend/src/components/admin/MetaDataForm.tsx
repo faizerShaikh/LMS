@@ -1,82 +1,190 @@
-import { Box, Grid, Typography } from '@mui/material'
-import React from 'react'
-import { Input, Label } from '..'
+import { Box, Grid, IconButton, MenuItem, Typography } from "@mui/material";
+import React from "react";
+import { AutoComplete, Button, Input, Label, Select, Dialog } from "..";
+import { Formik, Form, FormikContext, useFormikContext } from "formik";
+import { MetaDataInitial } from "initials";
+import { MetaDatavalidateSchema } from "initials";
+import { CreateUpdateDialogBaseProps, MetaDataInterface } from "interfaces";
+import { Add, Edit } from "@carbon/icons-react";
+import { useQueryClient } from "react-query";
+import { useCreateOrUpdate } from "hooks";
+import * as Yup from "yup";
+import { toast } from "utils";
 
-export const MetaDataForm = () => {
-    return (
-        <Grid container>
-            <Grid xs={12} item>
-                <Typography >
-                    Meta Data Information
-                </Typography>
-            </Grid>
-            <Grid container>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="slug" />
-                    <Input name="metaData.slug" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="Keywords" />
-                    <Input name="metaData.keywords" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="str" />
-                    <Input name="metaData.str" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="description" />
-                    <Input name="metaData.description" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="subject" />
-                    <Input name="metaData.subject" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="copyright" />
-                    <Input name="metaData.copyright" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="summary" />
-                    <Input name="metaData.summary" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="classification" />
-                    <Input name="metaData.classification" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="author" />
-                    <Input name="metaData.author" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="owner" />
-                    <Input name="metaData.owner" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="url" />
-                    <Input name="metaData.url" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="pageName" />
-                    <Input name="metaData.pageName" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="category" />
-                    <Input name="metaData.category" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="subtitle" />
-                    <Input name="metaData.subtitle" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="replyTo" />
-                    <Input name="metaData.replyTo" />
-                </Grid>
-                <Grid xs={6} item className="mt-4">
-                    <Label text="type" />
-                    <Input name="metaData.type" />
-                </Grid>
+const initialValues: MetaDataInterface = {
+  slug: "",
+  keywords: "",
+  title: "",
+  description: "",
+  subject: "",
+  copyright: "",
+  summary: "",
+  classification: "",
+  author: "",
+  owner: "",
+  url: "",
+  pageName: "",
+  category: "",
+  subtitle: "",
+  replyTo: "",
+  type: "",
+};
+const validationSchema = Yup.object({
+  slug: Yup.string().required("Slug is Required"),
+  keywords: Yup.string().required("Keywords are Required"),
+  title: Yup.string().required("Title is Required"),
+  description: Yup.string().required("Description is Required"),
+});
 
+export const MetaDataForm = ({
+  data={},
+  isUpdate
+}: CreateUpdateDialogBaseProps) => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isLoading } = useCreateOrUpdate({
+    url: isUpdate
+     ?`/configurations/meta-data/${data!.id}`
+     : "/configurations/meta-data",
+     
+    method: isUpdate ? "put" : "post",
+  });
+
+  // const { values } = useFormikContext();
+  return (
+    <Dialog
+      button={<IconButton ><Add /></IconButton>}
+      title={"Add Meta Data"}
+    >
+      {({ onClose }) => (
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={{ ...initialValues, ...data }}
+        onSubmit={(values, { resetForm }) => {
+          mutate(values, {
+            onSuccess() {
+              resetForm();
+              queryClient.refetchQueries(`/configurations/press-release`, {
+                exact: false,
+                stale: true,
+              });
+              toast("Press release added successfully");
+              onClose();
+            },
+          });
+        }}
+      >
+        <Form>
+          <Grid container>
+            
+            <Grid container spacing={2}>
+              <Grid xs={6} item>
+                <Label text="Slug" required/>
+                <Input name="slug" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Keywords" required/>
+                <Input name="keywords" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Title" required/>
+                <Input name="title" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Description" required/>
+                <Input name="description" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Subject" />
+                <Input name="subject" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Copyright" />
+                <Input name="copyright" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Summary" />
+                <Input name="summary" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Classification" />
+                <Input name="classification" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Author" />
+                <Input name="author" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Owner" />
+                <Input name="owner" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="URL" />
+                <Input name="url" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Page Name" />
+                <Input name="pageName" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Category" />
+                <Input name="category" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Subtitle" />
+                <Input name="subtitle" />
+              </Grid>
+              <Grid xs={6} item>
+                <Label text="Reply To" />
+                <Input name="replyTo" />
+              </Grid>
+              <Grid xs={12} item>
+              <Box className="flex justify-end">
+                  <Button
+                    color="secondary"
+                    className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
+                    variant="contained"
+                    disabled={isLoading}
+                    onClick={() => {
+                      onClose();
+                    }}
+                  >
+                    Discard
+                  </Button>
+                  <Button
+                    variant="contained"
+                    className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
+                    type="submit"
+                    isLoading={isLoading}
+                    onClick={() => {
+                      onClose();
+                    }}
+                  >
+                    Save
+                  </Button>
+                </Box>
+              </Grid>
+              {/* <Grid xs={6} item>
+          <Label text="Type" />
+          <AutoComplete
+            name="metaData.type"
+            options={[
+              "course",
+              "course_specialization",
+              "blog",
+              "event",
+              "gallery",
+              "university",
+              "page-content",
+              "media",
+            ]}
+          />
+        </Grid> */}
             </Grid>
-        </Grid>
-    )
-}
+          </Grid>
+        </Form>
+      </Formik>
+      )}
+    </Dialog>
+  );
+};

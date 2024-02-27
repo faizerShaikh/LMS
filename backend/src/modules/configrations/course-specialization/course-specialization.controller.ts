@@ -15,7 +15,7 @@ import { CourseSpecializationService } from './course-specialization.service';
 import { MulterIntercepter } from 'src/core/interceptors';
 import { MulterEnum } from 'src/core/interfaces';
 
-@Controller('configrations/course-specialization')
+@Controller('configurations/course-specialization')
 export class CourseSpecializationController extends GenericController<
   CourseSpecialization,
   CreateCourseSpecializationDTO,

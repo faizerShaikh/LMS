@@ -4,7 +4,8 @@ import { PageContentInterface, GalleryInterface } from "interfaces/commonPage";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroSection } from "components/layout/hero-section";
-
+export let metadata ={
+}
 export default async function SinglePage({
   params,
 }: {
@@ -12,9 +13,12 @@ export default async function SinglePage({
 }) {
   let commonPageData: PageContentInterface;
   const res = await axios.get(
-    `${process.env.BASE_API_URL}/configrations/page-content/${params.name}`
+    `${process.env.BASE_API_URL}/configurations/page-content/${params.name}`
   );
   commonPageData = res?.data?.data;
+  // if(commonPageData.metaData){
+  //   metadata = commonPageData.metaData
+  // }
 
   return (
     <>
@@ -35,7 +39,7 @@ export default async function SinglePage({
                   alt="Gallery image"
                   height={180}
                   width={300}
-                  src={`${process.env.BASE_MEDIA_URL}${item?.coverImage}`}
+                  src={`${process.env.BASE_MEDIA_URL}/${item?.coverImage}`}
                   className="w-full rounded-t-xl"
                 />
                 <div className="mb-8">

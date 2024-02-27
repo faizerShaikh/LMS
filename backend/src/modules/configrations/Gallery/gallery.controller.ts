@@ -6,7 +6,7 @@ import { GalleryService } from "./gallery.service";
 import { MulterIntercepter } from "src/core/interceptors";
 import { MulterEnum } from "src/core/interfaces";
 
-@Controller('configrations/gallery')
+@Controller('configurations/gallery')
 export class GalleryController extends GenericController<gallery,GalleryDto,UpdateGalleryDTO>({
     createObjDTO:GalleryDto,
     updateObjDTO:UpdateGalleryDTO

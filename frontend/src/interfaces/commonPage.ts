@@ -14,5 +14,6 @@ export interface PageContentInterface extends BaseObjInterface{
   titleDescription: string;
   pageDescription: string;
   gallery: GalleryInterface[];
+  metaID?:string
   metaData?: MetaDataInterface;
 }

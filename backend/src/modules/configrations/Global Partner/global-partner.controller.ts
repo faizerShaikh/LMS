@@ -6,7 +6,7 @@ import { GlobalPartnerService } from "./global-partner.service";
 import { MulterIntercepter } from "src/core/interceptors";
 import { MulterEnum } from "src/core/interfaces";
 
-@Controller('configrations/global-partner')
+@Controller('configurations/global-partner')
 export class GlobalPartnerController extends GenericController<GlobalPartner,GlobalPartnerDTO,UpdateGlobalPartnerDTO>({createObjDTO:GlobalPartnerDTO,updateObjDTO:UpdateGlobalPartnerDTO}){
 
     constructor(private readonly globalPartnerService : GlobalPartnerService){super(globalPartnerService)}

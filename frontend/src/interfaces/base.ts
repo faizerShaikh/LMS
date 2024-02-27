@@ -36,7 +36,7 @@ export interface ActionInterface {
 export interface MetaDataInterface {
   slug: string;
   keywords: string;
-  str: string;
+  title: string;
   description: string;
   subject: string;
   copyright: string;

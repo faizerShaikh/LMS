@@ -17,7 +17,7 @@ export function HeroSection({ HeroImage , Herotitle, description , viewButton = 
         return(
         <section className="bg-gray-50 py-24 ">
         <div className="flex justify-between items-center container  gap-10  ">
-          <div className="w-1/2 flex flec-col justify-center ">
+          <div className="w-1/2 flex flex-col justify-center ">
             <Image
               alt="test"
               width={0}

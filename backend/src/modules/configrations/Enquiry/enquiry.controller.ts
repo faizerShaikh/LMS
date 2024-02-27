@@ -4,7 +4,7 @@ import { Enquiry } from "./enquiry.model";
 import { EnquiryDto, UpdateEnquiryDTO } from "./dto";
 import { EnquiryService } from "./enquiry.service";
 
-@Controller('configrations/enquiry')
+@Controller('configurations/enquiry')
 export class EnquiryController extends GenericController<Enquiry,EnquiryDto,UpdateEnquiryDTO>({
     createObjDTO:EnquiryDto,
     updateObjDTO:UpdateEnquiryDTO,

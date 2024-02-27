@@ -6,6 +6,7 @@ import { DataGrid, PageHeader } from "components/layout";
 import { useGetAll } from "hooks";
 import { PageContentInterface } from "interfaces";
 import { PageContentDialog } from "./_components/PageContentDialog";
+import { MetaDataForm } from "components/admin";
 
 const columns = [
     {
@@ -34,6 +35,14 @@ const columns = [
         renderCell: (params: { row: PageContentInterface }) => {
             return <>
               <PageContentDialog isUpdate={true} data={params.row} />
+              <MetaDataForm
+            isUpdate={true}
+            data={
+              params.row.metaData
+                ? params.row.metaData
+                : { id: params.row.metaID }
+            }
+          />
             </>
           }
     }
@@ -43,7 +52,7 @@ export default function PageContent() {
     
     // const[data, setData] = useState([])
     // const getPageContent = async()=>{
-    //     const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configrations/page-content`)
+    //     const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configurations/page-content`)
     //     setData(response.data.data.rows)
     // }
     // useEffect(()=>{
@@ -51,7 +60,7 @@ export default function PageContent() {
     // }, [])
 
     const { data } = useGetAll({
-        key: '/configrations/page-content',
+        key: '/configurations/page-content',
       })
 
     return <>

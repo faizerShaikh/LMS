@@ -6,13 +6,13 @@ function page() {
     <>
       <section>
         <div className="h-[400px]">
-        <Image
-          src="/img2/gamification-creative-collage-concept-800x445.jpeg"
-          width={500}
-          height={50}
-          alt=""
-          className="w-full h-[400px] "
-        />
+          <Image
+            src="/img2/gamification-creative-collage-concept-800x445.jpeg"
+            width={500}
+            height={50}
+            alt=""
+            className="w-full h-[400px] "
+          />
         </div>
       </section>
       <section className="bg-gray-100 py-8">
@@ -116,62 +116,182 @@ function page() {
       </section>
       <section className="bg-blue-900">
         <div className="container text-center py-8 ">
-            <h2 className="text-white font-semibold text-3xl">About Rise N Start Ignite</h2>
-            <p className="text-white text-lg mb-6">Hosted by RiseBack.org, Rise N Start Ignite is a groundbreaking startup pitch competition that promises an immersive experience for all participants. This event offers hands-on skill development, exposure to industry experts, and a platform for collaboration.</p>
-            <p className="text-white text-lg font-semibold mb-6">Join the Transformation: Don't miss the chance to be a part of Ethiopia's tech transformation.</p>
-            <p className="text-white text-lg">Rise N Start Ignite is where innovative ideas meet real-world challenges, where collaboration sparks entrepreneurship, and where the future of Ethiopia's tech landscape begins to take shape.</p>
+          <h2 className="text-white font-semibold text-3xl">
+            About Rise N Start Ignite
+          </h2>
+          <p className="text-white text-lg mb-6">
+            Hosted by RiseBack.org, Rise N Start Ignite is a groundbreaking
+            startup pitch competition that promises an immersive experience for
+            all participants. This event offers hands-on skill development,
+            exposure to industry experts, and a platform for collaboration.
+          </p>
+          <p className="text-white text-lg font-semibold mb-6">
+            Join the Transformation: Don't miss the chance to be a part of
+            Ethiopia's tech transformation.
+          </p>
+          <p className="text-white text-lg">
+            Rise N Start Ignite is where innovative ideas meet real-world
+            challenges, where collaboration sparks entrepreneurship, and where
+            the future of Ethiopia's tech landscape begins to take shape.
+          </p>
         </div>
       </section>
 
       <section>
         <div className="container">
-            <div className="text-center">
-                <h2 className="uppercase text-3xl">what to expect</h2>
+          <div className="text-center">
+            <h2 className="uppercase text-3xl">what to expect</h2>
+          </div>
+          <div className="flex flex-wrap justify-evenly gap-8">
+            <div className="relative   w-[35%] overflow-hidden ">
+              <Image
+                src="/img2/Empowering-Youth.jpg"
+                width={300}
+                height={300}
+                alt="test "
+                className="w-full h-64 rounded-md"
+              />
+              <div className="absolute inset-0 text-center flex flex-col justify-end">
+                <h2 className="text-white font-semibold m-0">
+                  Empowring Youth
+                </h2>
+                <p className="text-white mt-1">
+                  We firmly believe that Ethiopia's youth hold the key to
+                  technological innovation. Rise N Start Ignite equips them with
+                  the skills, knowledge, and mindset needed to thrive in the
+                  digital age
+                </p>
+              </div>
             </div>
-            <div className="flex flex-wrap justify-evenly gap-8">
-                <div className="relative   w-[35%] overflow-hidden ">
-                    <Image src="/img2/Empowering-Youth.jpg" width={300} height={300} alt="test " className="w-full h-64 rounded-md"/>
-                    <div className="absolute inset-0 text-center flex flex-col justify-end">
-                        <h2 className="text-white font-semibold m-0">Empowring Youth</h2>
-                        <p className="text-white mt-1">We firmly believe that Ethiopia's youth hold the key to technological innovation. Rise N Start Ignite equips them with the skills, knowledge, and mindset needed to thrive in the digital age</p>
-                    </div>
-                </div>
-                <div className="relative  overflow-hidden w-[35%]">
-                    <Image src="/img2/Fostering-Innovation.jpg" width={300} height={300} alt="test" className="w-full h-64 rounded-md"/>
-                    <div className="absolute inset-0 text-center flex flex-col justify-end ">
-                        <h2 className="text-white font-semibold m-0">Fostering Innovation</h2>
-                        <p className="text-white mt-1">Innovation is the heart of progress. Through hands-on experiences, mentorship, and collaborative problem-solving, we cultivate a culture of innovation that will shape Indonesia's technological future.</p>
-                    </div>
-                </div>
-                <div className="relative  overflow-hidden w-[35%]">
-                    <Image src="/img2/Catalyzing-Entrepreneurship.jpg" width={300} height={300} alt="test " className="w-full h-64 rounded-md"/>
-                    <div className="absolute inset-0 text-center flex flex-col justify-end">
-                        <h2 className="text-white font-semibold m-0">Catalyzing Entrepreneurship</h2>
-                        <p className="text-white mt-1">Rise N Start Ignite, ignites the entrepreneurial spirit within participants by exposing them to real-world challenges and encouraging creative solutions. We're here to nurture the next wave of tech-driven startups.</p>
-                    </div>
-                </div>
-                <div className="relative  overflow-hidden w-[35%]">
-                    <Image src="/img2/Connecting-Industry-Experts.jpg" width={300} height={300} alt="test " className="w-full h-64 rounded-md"/>
-                    <div className="absolute inset-0 text-center flex flex-col justify-end">
-                        <h2 className="text-white font-semibold m-0">Connecting Industry Experts</h2>
-                        <p className="text-white mt-1">We bring together seasoned professionals and industry leaders to guide and mentor participants, bridging the gap between theory and practical application.</p>
-                    </div>
-                </div>
-                <div className="relative  overflow-hidden w-[35%]">
-                    <Image src="/img2/Driving-Economic-Growth.jpg" width={300} height={300} alt="test " className="w-full h-64 rounded-md"/>
-                    <div className="absolute inset-0 text-center flex flex-col justify-end">
-                        <h2 className="text-white font-semibold m-0">Driving Economic Growth</h2>
-                        <p className="text-white mt-1">As Ethiopia strives to solidify its position as a pioneering African economy, Rise N Start Ignite contributes to the nation's economic growth by equipping youth with skills that align with industry demands</p>
-                    </div>
-                </div>
-                <div className="relative  overflow-hidden w-[35%]  ">
-                    <Image src="/img2/Join-the-Transformation.jpg" width={300} height={300} alt="test " className="w-full h-64 rounded-md"/>
-                    <div className="absolute inset-0 text-center flex flex-col justify-end">
-                        <h2 className="text-white font-semibold m-0">EJoin the Transformation</h2>
-                        <p className="text-white mt-1">Don't miss the chance to be a part of Ethiopia's tech transformation. Rise N Start Ignite is where innovative ideas meet real-world challenges, where collaboration sparks entrepreneurship, and where the future of Ethiopia's tech landscape begins to take shape</p>
-                    </div>
-                </div>
+            <div className="relative  overflow-hidden w-[35%]">
+              <Image
+                src="/img2/Fostering-Innovation.jpg"
+                width={300}
+                height={300}
+                alt="test"
+                className="w-full h-64 rounded-md"
+              />
+              <div className="absolute inset-0 text-center flex flex-col justify-end ">
+                <h2 className="text-white font-semibold m-0">
+                  Fostering Innovation
+                </h2>
+                <p className="text-white mt-1">
+                  Innovation is the heart of progress. Through hands-on
+                  experiences, mentorship, and collaborative problem-solving, we
+                  cultivate a culture of innovation that will shape Indonesia's
+                  technological future.
+                </p>
+              </div>
             </div>
+            <div className="relative  overflow-hidden w-[35%]">
+              <Image
+                src="/img2/Catalyzing-Entrepreneurship.jpg"
+                width={300}
+                height={300}
+                alt="test "
+                className="w-full h-64 rounded-md"
+              />
+              <div className="absolute inset-0 text-center flex flex-col justify-end">
+                <h2 className="text-white font-semibold m-0">
+                  Catalyzing Entrepreneurship
+                </h2>
+                <p className="text-white mt-1">
+                  Rise N Start Ignite, ignites the entrepreneurial spirit within
+                  participants by exposing them to real-world challenges and
+                  encouraging creative solutions. We're here to nurture the next
+                  wave of tech-driven startups.
+                </p>
+              </div>
+            </div>
+            <div className="relative  overflow-hidden w-[35%]">
+              <Image
+                src="/img2/Connecting-Industry-Experts.jpg"
+                width={300}
+                height={300}
+                alt="test "
+                className="w-full h-64 rounded-md"
+              />
+              <div className="absolute inset-0 text-center flex flex-col justify-end">
+                <h2 className="text-white font-semibold m-0">
+                  Connecting Industry Experts
+                </h2>
+                <p className="text-white mt-1">
+                  We bring together seasoned professionals and industry leaders
+                  to guide and mentor participants, bridging the gap between
+                  theory and practical application.
+                </p>
+              </div>
+            </div>
+            <div className="relative  overflow-hidden w-[35%]">
+              <Image
+                src="/img2/Driving-Economic-Growth.jpg"
+                width={300}
+                height={300}
+                alt="test "
+                className="w-full h-64 rounded-md"
+              />
+              <div className="absolute inset-0 text-center flex flex-col justify-end">
+                <h2 className="text-white font-semibold m-0">
+                  Driving Economic Growth
+                </h2>
+                <p className="text-white mt-1">
+                  As Ethiopia strives to solidify its position as a pioneering
+                  African economy, Rise N Start Ignite contributes to the
+                  nation's economic growth by equipping youth with skills that
+                  align with industry demands
+                </p>
+              </div>
+            </div>
+            <div className="relative  overflow-hidden w-[35%]  ">
+              <Image
+                src="/img2/Join-the-Transformation.jpg"
+                width={300}
+                height={300}
+                alt="test "
+                className="w-full h-64 rounded-md"
+              />
+              <div className="absolute inset-0 text-center flex flex-col justify-end">
+                <h2 className="text-white font-semibold m-0">
+                  Join the Transformation
+                </h2>
+                <p className="text-white mt-1">
+                  Don't miss the chance to be a part of Ethiopia's tech
+                  transformation. Rise N Start Ignite is where innovative ideas
+                  meet real-world challenges, where collaboration sparks
+                  entrepreneurship, and where the future of Ethiopia's tech
+                  landscape begins to take shape
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-gray-100">
+        <div className="container">
+          <h1 className="text-center">Application Process</h1>
+          <div className="flex  items-center">
+            <div className="w-2/5 flex justify-center">
+              <div>
+                <Image
+                  src="/img2/resume_942799.png"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                />
+              </div>
+              <div>
+                <h2>1. Registration</h2>
+                <p>
+                  {" "}
+                  Interested participants can register for Free (No Application
+                  Fees) Rise N Start Igniteonour official website. The
+                  registration period typically opens well in advance of the
+                  event dates, allowing ample time for aspiring entrepreneurs to
+                  signup.{" "}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>

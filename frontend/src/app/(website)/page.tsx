@@ -11,7 +11,7 @@ export default async function Home() {
 
   let events = [];
   const res = await axios.get(
-    `${process.env.BASE_API_URL}/configrations/event`
+    `${process.env.BASE_API_URL}/configurations/event`
   );
   events = res.data.data.rows;
   // const firstThreeEvents = events.slice(0, 3);

@@ -6,5 +6,6 @@ export interface MediaPressReleaseInterface extends BaseObjInterface {
     link: string;
     coverImage?: string;
     isFeatured: boolean;
-    metaData: MetaDataInterface;
+    metaID?:string
+    metaData?: MetaDataInterface;
 }

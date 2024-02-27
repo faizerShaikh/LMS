@@ -16,6 +16,7 @@ export interface UniversityInterface extends BaseObjInterface {
     description: string;
     university_image: string | null;
     no_of_courses?: number;
+    metaID?:string
     metaData?: MetaDataInterface;
 }
 

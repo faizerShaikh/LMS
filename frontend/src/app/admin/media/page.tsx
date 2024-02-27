@@ -6,6 +6,7 @@ import { DataGrid, DeleteBox, PageHeader } from "components/layout";
 import { useGetAll } from "hooks";
 import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
 import { MediaDialog } from "./_components/MediaDialog";
+import { MetaDataForm } from "components/admin";
 // import React, { useEffect, useState } from "react";
 
 const columns = [
@@ -33,7 +34,9 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: MediaPressReleaseInterface }) => {
-      const checkboxProps = params.row.isFeatured ? { disabled: true, checked: true } : {};
+      const checkboxProps = params.row.isFeatured
+        ? { disabled: true, checked: true }
+        : {};
       return <Checkbox {...checkboxProps} />;
     },
   },
@@ -43,20 +46,35 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: MediaPressReleaseInterface }) => {
-      return <>
-        <MediaDialog isUpdate={true} data={params.row} />
-        <DeleteBox url={`/configrations/press-release`} refetchUrl="/configrations/press-release" title={`Delete ${params.row.title}`} data={params.row.id} />
-      </>
-    }
+      return (
+        <>
+          <MediaDialog isUpdate={true} data={params.row} />
+          <DeleteBox
+            url={`/configurations/press-release`}
+            refetchUrl="/configurations/press-release"
+            title={`Delete ${params.row.title}`}
+            data={params.row.id}
+          />
+          <MetaDataForm
+            isUpdate={true}
+            data={
+              params.row.metaData
+                ? params.row.metaData
+                : { id: params.row.metaID }
+            }
+          />
+        </>
+      );
+    },
   },
 ];
 
 export default function MediaPage() {
-  const { data } = useGetAll({ key: '/configration/press-release' })
+  const { data } = useGetAll({ key: "/configurations/press-release" });
   return (
     <>
-      <PageHeader title="Media Page" />
-      <DataGrid columns={columns} rows={data} />
+      <PageHeader title="Press Release" />
+      <DataGrid addButton={<MediaDialog />} columns={columns} rows={data} />
     </>
   );
 }

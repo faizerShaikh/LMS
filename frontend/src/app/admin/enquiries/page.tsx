@@ -44,16 +44,16 @@ export default function EnquiriesPage() {
   // const [data, setData] = useState([]);
   // const getEnquiries = async () => {
   //   const response = await axios.get(
-  //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/configrations/enquiry`
+  //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/configurations/enquiry`
   //   );
-  //   // console.log(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configrations/enquiry`);
+  //   // console.log(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configurations/enquiry`);
   //   setData(response.data.data.rows)
   // };
 
   // useEffect(()=> {
   //   getEnquiries()
   // }, [])
-  const { data } = useGetAll({ key: '/configrations/enquiry' })
+  const { data } = useGetAll({ key: '/configurations/enquiry' })
   return (
     <>
       <PageHeader title="Enquiries" />

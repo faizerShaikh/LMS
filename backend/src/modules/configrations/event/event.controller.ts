@@ -6,7 +6,7 @@ import { eventService } from "./event.service";
 import { MulterIntercepter } from "src/core/interceptors";
 import { MulterEnum } from "src/core/interfaces";
 
-@Controller('configrations/event')
+@Controller('configurations/event')
 export class eventController extends GenericController<Events,CreateEventDTO,UpdateEventDTO>({
     createObjDTO:CreateEventDTO,
     updateObjDTO: UpdateEventDTO

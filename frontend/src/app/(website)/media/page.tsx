@@ -1,11 +1,12 @@
 import axios from "axios";
 import Image from "next/image";
 import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
+import Link from "next/link";
 
 export default async function Media() {
   let PressRealeseCards: Array<MediaPressReleaseInterface>;
   const PressREaleseCardResponse = await axios.get(
-    `${process.env.BASE_API_URL}/configration/press-release`
+    `${process.env.BASE_API_URL}/configurations/press-release`
   );
   PressRealeseCards = PressREaleseCardResponse.data.data.rows;
   console.log(PressRealeseCards);
@@ -52,12 +53,14 @@ export default async function Media() {
                   height={200}
                   width={200}
                   alt="tets"
-                  src={`${process.env.BASE_MEDIA_URL}${PressRealeseCard.coverImage}`}
+                  src={`${process.env.BASE_MEDIA_URL}/${PressRealeseCard.coverImage}`}
                   className="mb-4 w-full"
                 />
-                <p className="font-bold text-lg m-0 ">
+                <div className="h-20">
+                <Link href={PressRealeseCard.link} className="font-bold text-black text-lg m-0  ">
                   {PressRealeseCard.title}
-                </p>
+                </Link>
+                </div>
               </div>
             )
           })}
