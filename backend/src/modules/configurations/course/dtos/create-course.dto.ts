@@ -12,10 +12,4 @@ export class CreateCourseDTO {
   @IsNotEmpty()
   description: string;
 
-  @IsNotEmpty()
-  @IsObject()
-  @Type(()=>MetaDataDto)
-  @ValidateNested({each:true})
-  metaData:MetaDataDto
-
 }

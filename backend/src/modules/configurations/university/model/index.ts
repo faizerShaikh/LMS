@@ -10,20 +10,15 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { CourseSpecialization } from '../../course-specialization/model';
-import { MetaData } from '../../metaData/meta.model';
+import { MyBaseModel } from 'src/core/base.model';
 
 @Table({
   tableName: 'universities',
   modelName: 'University',
   paranoid: true,
 })
-export class University extends Model<University> {
-  @IsUUID(4)
-  @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column
-  id: string;
-
+export class University extends MyBaseModel {
+  
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -88,6 +83,4 @@ export class University extends Model<University> {
   })
   specializations: CourseSpecialization[];
 
-  @HasOne(()=>MetaData)
-  metaData:string
 }

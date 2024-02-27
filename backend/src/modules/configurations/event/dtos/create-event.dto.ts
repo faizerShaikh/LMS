@@ -28,9 +28,4 @@ export class CreateEventDTO{
     @IsBoolean()
     isFeatured: boolean;
 
-    @IsNotEmpty()
-    @Type(()=>MetaDataDto)
-    @ValidateNested({each:true})
-    @IsObject()
-    metaData:MetaDataDto
 }

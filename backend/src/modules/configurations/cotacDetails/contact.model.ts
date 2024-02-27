@@ -36,8 +36,6 @@ export class Contacts extends Model{
     @Column
     emailIcon:string
     
-    @HasOne(()=>MetaData)
-    metadata:MetaData
 
     @ForeignKey(()=>GlobalPartner)
     globalPartnerID:string

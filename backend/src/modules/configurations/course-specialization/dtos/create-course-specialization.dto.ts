@@ -77,9 +77,4 @@ export class CreateCourseSpecializationDTO {
   @ValidateNested({ each: true })
   fees_structure: FeesStructureDTO;
 
-  @IsNotEmpty()
-  @IsObject()
-  @Type(()=>MetaData)
-  @ValidateNested({each:true})
-  metaData:MetaData
 }

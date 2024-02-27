@@ -57,41 +57,4 @@ export class BlogService extends GenericService<
     });
   }
 
-  async createOtherObjet(
-    dto:CreateBlogDTO|UpdateBlogDTO,
-    blog:Blog,
-    isNewRecord:boolean,
-  ){
-    if(isNewRecord){
-      await this.metaData.create({
-        ...dto.metaData,
-        blogID:blog.id,
-        type:type.BLOG
-      })
-    }
-    else{
-      if(dto.metaData){
-        await this.metaData.update<MetaData>(
-          {...dto.metaData},
-          {
-            where:{
-              blogID:blog.id
-            }
-          }
-        )
-      }
-    }
-  }
-
-  async create<Blog>(dto: CreateBlogDTO): Promise<Blog> {
-    const blog = await super.create(dto)
-    await this.createOtherObjet(dto,blog,true)
-    return blog
-  }
-
-  async update<Blog>(data: UpdateBlogDTO, id: string): Promise<Blog> {
-    const blog = await super.update(data,id)
-    await this.createOtherObjet(data,blog,false)  
-    return 
-  }
 }

@@ -91,63 +91,8 @@ export class MetaData extends Model {
   @Default(false)
   @Column
   isRefrenced: boolean;
-
+  
   @Column
   slug: string;
-
-  @HasOne(() => Press)
-  press: Press;
-
-  @HasOne(() => PageContent)
-  page: PageContent; 
-
-  @ForeignKey(() => Events)
-  event_id: string;
-
-  @BelongsTo(() => Events)
-  event: Event;
-
-  @ForeignKey(() => Faq)
-  faqID: string;
-
-  @BelongsTo(() => Faq)
-  faq: Faq;
-
-  @ForeignKey(() => Blog)
-  blogID: string;
-
-  @BelongsTo(() => Blog)
-  blog: Blog;
-
-  @ForeignKey(() => CourseSpecialization)
-  courseSplID: string;
-
-  @BelongsTo(() => CourseSpecialization)
-  courseSpl: CourseSpecialization;
-
-
-
-  @ForeignKey(() => University)
-  universityID: string;
-
-  @BelongsTo(() => University)
-  university: University;
-
-  @ForeignKey(() => Course)
-  courseID: string;
-
-  @BelongsTo(() => Course)
-  course: Course;
-
-  @ForeignKey(() => GlobalPartner)
-  globaPartnerID: string;
-
-  @BelongsTo(() => GlobalPartner)
-  GlobalPartner: GlobalPartner;
-
-  @ForeignKey(() => Contacts)
-  contactID: string;
-
-  @BelongsTo(() => Contacts)
-  contact: Contacts;
+  
 }

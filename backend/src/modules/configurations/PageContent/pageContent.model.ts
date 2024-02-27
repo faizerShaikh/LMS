@@ -11,18 +11,12 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { gallery } from '../Gallery/gallery.model';
-import { MetaData } from '../metaData/meta.model';
-import { BaseModel } from 'src/core/modules/generics/base.model';
+import { MyBaseModel } from 'src/core/base.model';
 
 @Table({
   tableName: 'page contents',
 })
-export class PageContent extends BaseModel {
-  @IsUUID(4)
-  @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column
-  id: string;
+export class PageContent extends MyBaseModel { 
 
   @Column
   name: string;

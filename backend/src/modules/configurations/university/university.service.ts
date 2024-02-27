@@ -44,7 +44,7 @@ export class UniversityService extends GenericService<
     }
 
     await university.update({
-      university_image: file?.path?.split('src/public')[1],
+      university_image: '/media/university'+file.filename
     });
     return 'University Image Uploaded Successfully';
   }

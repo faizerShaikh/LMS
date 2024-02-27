@@ -1,15 +1,11 @@
 import { BelongsTo, Column, DataType, Default, ForeignKey, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { PageContent } from "../PageContent/pageContent.model";
+import { MyBaseModel } from "src/core/base.model";
 
 @Table
-export class gallery extends Model{
+export class gallery extends MyBaseModel{
 
 
-    @IsUUID(4)
-    @PrimaryKey
-    @Default(DataType.UUIDV4)
-    @Column
-    id:string
 
     @Column
     coverImage:string

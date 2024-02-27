@@ -32,9 +32,4 @@ export class GlobalPartnerDTO{
     @IsBoolean()
     popular_course: boolean;
 
-    @IsNotEmpty()
-    @IsObject()
-    @Type(()=>MetaDataDto)
-    @ValidateNested({each:true})
-    metaData:MetaDataDto
 }

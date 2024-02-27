@@ -1,17 +1,12 @@
-import { Column, DataType, Default, HasOne, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, Default, HasOne, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { MetaData } from "../metaData/meta.model";
 import { Contacts } from "../cotacDetails/contact.model";
+import { MyBaseModel } from "src/core/base.model";
 
 @Table({
     tableName: 'global-partners'
 })
-export class GlobalPartner extends Model{
-
-    @PrimaryKey
-    @IsUUID(4)
-    @Default(DataType.UUIDV4)
-    @Column
-    id:string
+export class GlobalPartner extends MyBaseModel{
 
     @Column
     name:string
@@ -33,9 +28,6 @@ export class GlobalPartner extends Model{
 
     @Column
     popular_course:boolean
-
-    @HasOne(()=> MetaData)
-    metaData:MetaData
 
     @HasOne(()=>Contacts)
     contacts:Contacts

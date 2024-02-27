@@ -48,43 +48,5 @@ export class GlobalPartnerService extends GenericService({
     return 'Image uploaded Successfully';
   }
 
-  async CreateOtherObject(
-    dto: GlobalPartnerDTO | UpdateGlobalPartnerDTO,
-    globalPartner: GlobalPartner,
-    isNewRecord: boolean,
-  ) {
-    if (isNewRecord) {
-      await this.metaData.create({
-        ...dto.metaData,
-        globalPartnerID: globalPartner.id,
-        type: type.GLOBAL_PARTNER,
-      });
-    } else {
-        if(dto.metaData)
-        {
-          await this.metaData.update<MetaData>(
-            { ...dto.metaData },
-            { where: { globalPartnerID: globalPartner.id } },
-        );
-        }
-    }
-  }
-
-  async create<GlobalPartner>(dto: GlobalPartnerDTO,): Promise<GlobalPartner> {
-    const globalPartner = await super.create(dto)
-    await this.CreateOtherObject(dto,globalPartner,true);
-    return globalPartner
-  }
-
-
-  async update<GlobalPartner >(data: GlobalPartnerDTO, id: string): Promise<GlobalPartner> {
-    try{
-      
-    const globalPartner= await super.update(data,id) ;
-    await this.CreateOtherObject(data,globalPartner,false);
-    return globalPartner
-    } catch (err){
-      console.error("Error occurred in update method",err)
-    } }
-
+  
 }

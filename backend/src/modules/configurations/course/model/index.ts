@@ -1,42 +1,15 @@
-import {
-  Column,
-  DataType,
-  Default,
-  HasMany,
-  HasOne,
-  IsUUID,
-  Model,
-  PrimaryKey,
-  Table,
-} from 'sequelize-typescript';
+
+import { Table, Column, DataType ,HasMany,Model} from 'sequelize-typescript';
 import { CourseSpecialization } from '../../course-specialization/model';
-import { MetaData } from '../../metaData/meta.model';
+import { MyBaseModel } from 'src/core/base.model';
+
 
 @Table({
   tableName: 'courses',
   modelName: 'Course',
   paranoid: true,
 })
-export class Course extends Model<Course> {
-  @IsUUID(4)
-  @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column
-  id: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Name can not be empty',
-      },
-      notEmpty: {
-        msg: 'Name can not be empty',
-      },
-    },
-  })
-  name: string;
+export class Course extends MyBaseModel {
 
   @Column({
     type: DataType.STRING,
@@ -68,6 +41,4 @@ export class Course extends Model<Course> {
   })
   specializations: CourseSpecialization[];
 
-  @HasOne(()=>MetaData)
-  metaData:string
 }

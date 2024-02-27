@@ -37,6 +37,9 @@ export class UniversityController extends GenericController<
     @UploadedFile() file: Express.Multer.File,
     @Param('id') id: string,
   ) {
+
+    console.log(file);
+    
     return this.universityService.updateUniversityImage(file, id);
   }
 }

@@ -30,6 +30,9 @@ export class PressController extends GenericController<
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File
   ){
+
+    console.log(file);
+    
     return this.pressService.updateCoverIamge(file,id)
   }
 

@@ -1,12 +1,10 @@
-import { Column, DataType, Default, Table } from "sequelize-typescript";
-import { BaseModel } from "src/core/modules/generics/base.model";
-import { type } from "../metaData/dto/type.enum";
+import { Column, DataType, Default, Model, Table } from "sequelize-typescript";
+import { MyBaseModel } from "src/core/base.model";
 
 @Table({
   tableName:'press-releases'
 })
-export class Press extends BaseModel {
-  override type= type.MEDIA;
+export class Press extends MyBaseModel {
   @Column
     title: string;
 

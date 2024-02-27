@@ -13,13 +13,9 @@ export class PressDTO {
     @IsNotEmpty()
     link: string;
 
-    @IsString()
-    @IsOptional()
-    coverImage: string;
 
     @IsBoolean()
     @IsNotEmpty()
     isFeatured: string;
-    
 
 }

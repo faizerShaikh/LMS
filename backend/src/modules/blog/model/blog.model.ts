@@ -1,30 +1,15 @@
-import {
-  BelongsTo,
-  Column,
-  DataType,
-  Default,
-  ForeignKey,
-  HasOne,
-  IsUUID,
-  Model,
-  PrimaryKey,
-  Table,
-} from 'sequelize-typescript';
+
 import { User } from 'src/modules/user/users/models/user.model';
 import { BlogCategory } from '../modules/blog-category/model';
-import { MetaData } from 'src/modules/configurations/metaData/meta.model';
+import { BelongsTo, Column, DataType, ForeignKey, Table } from 'sequelize-typescript';
+import { MyBaseModel } from 'src/core/base.model';
 
 @Table({
   tableName: 'blogs',
   modelName: 'Blog',
   paranoid: true,
 })
-export class Blog extends Model<Blog> {
-  @IsUUID(4)
-  @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column
-  id: string;
+export class Blog extends MyBaseModel {
 
   @Column({
     type: DataType.STRING,
@@ -82,20 +67,6 @@ export class Blog extends Model<Blog> {
   @BelongsTo(() => User)
   created_by: User;
 
-  // @Column({
-  //   type: DataType.STRING,
-  //   allowNull: false,
-  //   validate: {
-  //     notNull: {
-  //       msg: 'Blog Category can not be empty',
-  //     },
-  //     notEmpty: {
-  //       msg: 'Blog Category can not be empty',
-  //     },
-  //   },
-  // })
-
-
 
   @ForeignKey(() => BlogCategory)
   blog_category_id: string;
@@ -103,6 +74,4 @@ export class Blog extends Model<Blog> {
   @BelongsTo(() => BlogCategory)
   blog_category: BlogCategory;
 
-  @HasOne(()=>MetaData)
-  metaData:MetaData
 }

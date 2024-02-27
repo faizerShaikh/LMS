@@ -10,9 +10,5 @@ export class CreateFaqDTO{
     @IsOptional()
     visiblity:boolean
 
-    @IsNotEmpty()
-    @IsObject()
-    @Type(()=>MetaDataDto)
-    @ValidateNested({each:true})
-    metaData:MetaDataDto
+    
 }

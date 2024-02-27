@@ -94,20 +94,12 @@ export class CourseSpecializationService extends GenericService<
       });
     }
     if (isNewRecord) {
-      await this.metaData.create({
-        ...dto.metaData,
-        courseSpl: courseSpecialization.id,
-      });
-      await this.feesStructure.create({
+            await this.feesStructure.create({
         ...dto.fees_structure,
         course_specialization_id: courseSpecialization.id,
       });
     } else {
       if (dto.fees_structure) {
-        await this.metaData.update<MetaData>(
-          { ...dto.metaData },
-          { where: { courseSplID: courseSpecialization.id } },
-        );
         await this.feesStructure.update<FeesStructure>(
           { ...dto.fees_structure },
           {

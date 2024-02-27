@@ -45,39 +45,5 @@ export class CourseService extends GenericService<
     return 'Course Image Uploaded Successfully';
   }
 
-  async CreateOtherObject(
-    dto:CreateCourseDTO | UpdateCourseDTO,
-    course:Course,
-    isNewRecord:boolean
-  ){
-    if (isNewRecord) {
-      await this.metaData.create({
-        ...dto.metaData,
-        courseID: course.id,
-        type: type.COURSE,
-      });
-    }else{
-      if(dto.metaData){
-        await this.metaData.update<MetaData>(
-          {...dto.metaData},{
-            where:{
-              courseID:course.id
-            }
-          }
-        )
-      }
-    }
-  }
 
-  async create<Course>(dto: CreateCourseDTO): Promise<Course> {
-    const course= await super.create(dto)
-    await this.CreateOtherObject(dto,course,true)
-    return course 
-  }
-  
-  async update<Course>(data: UpdateCourseDTO, id: string): Promise<Course> {
-    const course= await super.update(data,id)
-    await this.CreateOtherObject(data,course,false)
-    return course
-  }
 }

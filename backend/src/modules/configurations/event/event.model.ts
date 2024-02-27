@@ -1,19 +1,12 @@
-import { DATE} from "sequelize";
-import { Column, DataType, PrimaryKey, Table,Model, IsUUID, Default,ForeignKey,BelongsTo, HasOne } from "sequelize-typescript";
+import { Column, DataType,  Table,ForeignKey,BelongsTo, Model,  } from "sequelize-typescript";
+import { MyBaseModel } from "src/core/base.model";
 import { User } from "src/modules/user/users/models/user.model";
-import { MetaData } from "../metaData/meta.model";
 @Table({
     tableName:'events',
     modelName: 'Events',
     paranoid:true
 })
-export class Events extends Model{
-    @IsUUID(4)
-    @PrimaryKey
-    @Default(DataType.UUIDV4)
-    @Column
-    id:string
-
+export class Events extends MyBaseModel{
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -63,7 +56,5 @@ export class Events extends Model{
     @BelongsTo(() => User)
     created_by: User;
     
-    @HasOne(()=>MetaData)
-    metaData: MetaData
   
 }

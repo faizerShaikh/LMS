@@ -16,13 +16,14 @@ import { University } from '../../university/model';
 import { ProgramStructure } from './program-structure.model';
 import { FeesStructure } from './fees-structure.model';
 import { MetaData } from '../../metaData/meta.model';
+import { MyBaseModel } from 'src/core/base.model';
 
 @Table({
   tableName: 'course-specializations',
   modelName: 'CourseSpecialization',
   paranoid: true,
 })
-export class CourseSpecialization extends Model<CourseSpecialization> {
+export class CourseSpecialization extends MyBaseModel {
   @IsUUID(4)
   @PrimaryKey
   @Default(DataType.UUIDV4)
@@ -255,6 +256,4 @@ export class CourseSpecialization extends Model<CourseSpecialization> {
   })
   fees_structure: FeesStructure;
 
-  @HasOne(()=>MetaData)
-  metadata:string
 }
