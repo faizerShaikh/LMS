@@ -32,6 +32,7 @@ const validationSchema = Yup.object({
 export const UniversityDialog = ({
   data,
   isUpdate,
+  refetchURL
 }: CreateUpdateDialogBaseProps) => {
   const queryClient = useQueryClient();
   const [id, setId] = useState(null);
@@ -84,7 +85,7 @@ export const UniversityDialog = ({
                   resp.data.data.id,
                   () => {
                     resetForm();
-                    queryClient.refetchQueries(`configurations/university`, {
+                    queryClient.refetchQueries(refetchURL, {
                       exact: false,
                       stale: true,
                     });

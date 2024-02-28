@@ -55,7 +55,8 @@ const columns = [
     renderCell: (params: { row: EnquiriesPageInterface }) => {
       return (
         <>
-          <EnquiryDialog isUpdate={true} data={params.row} />
+          <EnquiryDialog isUpdate={true} data={params.row} 
+          refetchURL="/configurations/enquiry"/>
           <DeleteBox
             title={`Item`}
             url={`/configurations/enquiry`}

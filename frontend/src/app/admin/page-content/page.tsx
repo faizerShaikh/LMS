@@ -34,7 +34,8 @@ const columns = [
         cellClassName: "text-dark",
         renderCell: (params: { row: PageContentInterface }) => {
             return <>
-              <PageContentDialog isUpdate={true} data={params.row} />
+              <PageContentDialog isUpdate={true} data={params.row} 
+              refetchURL="/configurations/page-content"/>
               <MetaDataForm
             isUpdate={true}
             data={
@@ -42,6 +43,7 @@ const columns = [
                 ? params.row.metaData
                 : { id: params.row.metaID }
             }
+            refetchURL="/configurations/page-content"
           />
             </>
           }

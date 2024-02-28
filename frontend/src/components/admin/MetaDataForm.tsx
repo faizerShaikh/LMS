@@ -11,6 +11,8 @@ import { useCreateOrUpdate } from "hooks";
 import * as Yup from "yup";
 import { toast } from "utils";
 
+
+
 const initialValues: MetaDataInterface = {
   slug: "",
   keywords: "",
@@ -28,6 +30,7 @@ const initialValues: MetaDataInterface = {
   subtitle: "",
   replyTo: "",
   type: "",
+  
 };
 const validationSchema = Yup.object({
   slug: Yup.string().required("Slug is Required"),
@@ -36,9 +39,12 @@ const validationSchema = Yup.object({
   description: Yup.string().required("Description is Required"),
 });
 
+
+ 
 export const MetaDataForm = ({
   data={},
-  isUpdate
+  isUpdate, 
+  refetchURL,
 }: CreateUpdateDialogBaseProps) => {
   const queryClient = useQueryClient();
 
@@ -64,12 +70,12 @@ export const MetaDataForm = ({
           mutate(values, {
             onSuccess() {
               resetForm();
-              queryClient.refetchQueries(`/configurations/press-release`, {
+              queryClient.refetchQueries(refetchURL, {
                 exact: false,
                 stale: true,
               });
-              toast("Press release added successfully");
-              onClose();
+              toast("Meta Data updated successfully");
+              onClose(); 
             },
           });
         }}
@@ -156,9 +162,6 @@ export const MetaDataForm = ({
                     className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
                     type="submit"
                     isLoading={isLoading}
-                    onClick={() => {
-                      onClose();
-                    }}
                   >
                     Save
                   </Button>

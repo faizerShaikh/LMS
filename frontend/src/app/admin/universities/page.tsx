@@ -38,7 +38,8 @@ const columns = [
     renderCell: (params: { row: UniversityInterface }) => {
       return (
         <>
-          <UniversityDialog isUpdate={true} data={params.row} />
+          <UniversityDialog isUpdate={true} data={params.row} 
+          refetchURL="/configurations/university"/>
           <DeleteBox
             title={`Item`}
             url={`/configurations/university`}
@@ -51,7 +52,9 @@ const columns = [
               params.row.metaData
                 ? params.row.metaData
                 : { id: params.row.metaID }
+          
             }
+            refetchURL = "/configurations/university"
           />
         </>
       );

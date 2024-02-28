@@ -19,6 +19,7 @@ export type BaseProps<T, U extends {} = {}> = NextComponentType<
 export interface CreateUpdateDialogBaseProps {
   isUpdate?: boolean;
   data?: any;
+  refetchURL?: string
 }
 
 export interface FKBaseInterface {
