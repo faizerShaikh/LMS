@@ -6,12 +6,12 @@ import { join } from 'path';
 import { unlink } from 'fs';
 import { MetaData } from '../metaData/meta.model';
 import { Contacts } from '../cotacDetails/contact.model';
-import { GlobalPartnerDTO, UpdateGlobalPartnerDTO } from './dto';
-import { type } from '../metaData/dto/type.enum';
 
 @Injectable()
 export class GlobalPartnerService extends GenericService({
-  includes: [MetaData, Contacts],
+  defaultFindOptions:{
+    include:[MetaData,Contacts]
+  }
 }) {
   constructor(
     @InjectModel(GlobalPartner) private globalPartner: typeof GlobalPartner,

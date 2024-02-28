@@ -19,7 +19,15 @@ export class EnquiryDto {
     @IsEnum(type)
     type: type;
 
+    @IsString()
+    @IsOptional()
+    from:string
+
     @IsOptional()
     @IsEnum(status)
     status: status;
+
+    @IsOptional()
+    @IsString()
+    note:string
 }

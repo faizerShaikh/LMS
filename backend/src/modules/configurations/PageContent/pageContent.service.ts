@@ -10,7 +10,10 @@ import { MetaData } from "../metaData/meta.model";
 
 @Injectable()
 export class PageContentService extends GenericService<PageContent,CreatePageDto,UpdatePageContent>({
-    includes:[gallery], 
+    defaultFindOptions:{
+        include:[gallery],
+        
+    }
 }){
     constructor(
         @InjectModel(PageContent) private pageContent: typeof PageContent,
@@ -43,5 +46,7 @@ export class PageContentService extends GenericService<PageContent,CreatePageDto
     async findOneByName(name: string): Promise<PageContent | null> {
         return PageContent.findOne({ where: { name } , include:[gallery]});
     }
+
+    
 
 }

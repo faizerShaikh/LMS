@@ -30,12 +30,12 @@ export class UniversityController extends GenericController<
     MulterIntercepter({
       type: MulterEnum.single,
       fieldName: 'university_image',
-      path: '/media/university',
-    }),
+      path: '/media/university/',
+    })
   )
   updateUniversityImage(
     @UploadedFile() file: Express.Multer.File,
-    @Param('id') id: string,
+    @Param('id') id: string
   ) {
 
     console.log(file);

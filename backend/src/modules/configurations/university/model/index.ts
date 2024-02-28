@@ -1,16 +1,12 @@
 import {
   Column,
   DataType,
-  Default,
   HasMany,
-  HasOne,
-  IsUUID,
-  Model,
-  PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { CourseSpecialization } from '../../course-specialization/model';
 import { MyBaseModel } from 'src/core/base.model';
+import { type } from '../../metaData/dto/type.enum';
 
 @Table({
   tableName: 'universities',
@@ -18,6 +14,9 @@ import { MyBaseModel } from 'src/core/base.model';
   paranoid: true,
 })
 export class University extends MyBaseModel {
+
+
+  override type=type.UNIVERSITY
   
   @Column({
     type: DataType.STRING,

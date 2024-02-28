@@ -8,7 +8,7 @@ import { EnquiryService } from "./enquiry.service";
 export class EnquiryController extends GenericController<Enquiry,EnquiryDto,UpdateEnquiryDTO>({
     createObjDTO:EnquiryDto,
     updateObjDTO:UpdateEnquiryDTO,
-    notAllowedMethods:[4]
+    // notAllowedMethods:[4]
 }){
     constructor(private readonly EnquiryService : EnquiryService){
         super(EnquiryService)

@@ -10,7 +10,10 @@ import { MetaData } from "../metaData/meta.model";
 import { type } from "../metaData/dto/type.enum";
 @Injectable()
 export class eventService extends GenericService<Events,CreateEventDTO,UpdateEventDTO>({
-    includes:[MetaData]
+
+    defaultFindOptions:{
+        include:[MetaData]
+    }
 }){
     constructor(
       @InjectModel (Events) private event : typeof Events,

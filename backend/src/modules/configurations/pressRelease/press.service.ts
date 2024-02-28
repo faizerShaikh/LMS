@@ -4,19 +4,17 @@ import { GenericService, RequestParamsService } from "src/core/modules";
 import { Press } from "./press.model";
 import { join } from "path";
 import { unlink } from "fs";
-import { PressDTO, UpdatePressDTO } from "./dto";
 import { MetaData } from "../metaData/meta.model";
-import { MetaDataDto } from "../metaData/dto";
-import { type } from "../metaData/dto/type.enum";
 
 @Injectable()
 export class PressService extends GenericService({
-    includes:[MetaData]
+    defaultFindOptions:{
+        include:[MetaData]
+    }
 }){
     constructor(
         @InjectModel(Press)private press : typeof Press,
         private reqParams : RequestParamsService ,
-        @InjectModel(MetaData) private metaData: typeof MetaData
     ){super(press,reqParams)}
 
     async updateCoverIamge(file:Express.Multer.File,id:string){

@@ -1,17 +1,15 @@
 import { BelongsTo, Column, DataType, Default, ForeignKey, HasOne, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { MetaData } from "../metaData/meta.model";
 import { GlobalPartner } from "../globalPartner/global-partner.model";
+import { BaseModel } from "src/core/helpers/BaseModel";
+import { type } from "../metaData/dto/type.enum";
+import { MyBaseModel } from "src/core/base.model";
 
 @Table({
     tableName:'contacts'
 })
-export class Contacts extends Model{
-    @IsUUID(4)
-    @PrimaryKey
-    @Default(DataType.UUIDV4)
-    @Column
-    id:string
-
+export class Contacts extends MyBaseModel{
+    override type=type.CONTACTS
     @Column
     address:string
 

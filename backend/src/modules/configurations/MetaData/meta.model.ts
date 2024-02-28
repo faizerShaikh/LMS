@@ -1,26 +1,13 @@
 import {
-  BelongsTo,
   Column,
   DataType,
   Default,
-  ForeignKey,
-  HasOne,
   IsUUID,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { type } from './dto/type.enum';
-import { Events } from '../event/event.model';
-import { Faq } from '../faq/faq.model';
-import { Blog } from 'src/modules/blog/model';
-import { CourseSpecialization } from '../course-specialization/model';
-import { Press } from '../pressRelease/press.model';
-import { PageContent } from '../PageContent/pageContent.model';
-import { University } from '../university/model';
-import { Course } from '../course/model';
-import { GlobalPartner } from '../globalPartner/global-partner.model';
-import { Contacts } from '../cotacDetails/contact.model';
 
 @Table({
   tableName: 'meta-data',

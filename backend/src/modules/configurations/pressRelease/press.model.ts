@@ -1,26 +1,32 @@
 import { Column, DataType, Default, Model, Table } from "sequelize-typescript";
 import { MyBaseModel } from "src/core/base.model";
+import { type } from "../metaData/dto/type.enum";
 
 @Table({
-  tableName:'press-releases'
+  tableName:'press-releases',
+  paranoid:true,
+  defaultScope:{
+    order:[["updatedAt","ASC"]],
+  }
 })
 export class Press extends MyBaseModel {
+  override type= type.MEDIA;
+
   @Column
-    title: string;
+  title: string;
 
-    @Column({
-        type: DataType.TEXT,
-    })
-    description: string;
+  @Column({
+    type: DataType.TEXT,
+  })
+  description: string;
 
-    @Column
-    link: string;
+  @Column
+  link: string;
 
-    @Column
-    coverImage: string;
+  @Column
+  coverImage: string;
 
-    @Default(false)
-    @Column
-    isFeatured: string;
-
+  @Default(false)
+  @Column
+  isFeatured: string;
 }

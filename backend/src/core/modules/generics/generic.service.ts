@@ -3,6 +3,7 @@ import {
   FindAndCountOptions,
   FindOptions,
   Includeable,
+  OrderItem,
   WhereOptions,
 } from 'sequelize';
 import { getSearchObject } from 'src/core/helpers';
@@ -14,7 +15,7 @@ export function GenericService<
   UpdateObjDTO = any,
 >(defaultOptions: {
   includes?: Includeable | Includeable[];
-  defaultWhere?: WhereOptions;
+  defaultFindOptions?: FindAndCountOptions;
   searchFields?: string[];
 }) {
   return class {
@@ -55,8 +56,9 @@ export function GenericService<
     // findAll records for matching query
     async getAll<Model extends {} = any>(
       findOptions: FindAndCountOptions = {},
+      orderBy:OrderItem[]=[]
     ): Promise<Model[]> {
-      let where = defaultOptions.defaultWhere || {};
+      let where = {};
 
       if (this.reqParam.query) {
         where = {
@@ -66,7 +68,7 @@ export function GenericService<
       }
 
       let options: FindAndCountOptions = {
-        include: defaultOptions.includes,
+        ...defaultOptions.defaultFindOptions,
         ...findOptions,
         ...this.reqParam.pagination,
         subQuery: false,
@@ -101,11 +103,12 @@ export function GenericService<
       let findOptions: any = {};
       if (typeof options === 'string') {
         findOptions = {
-          where: { ...defaultOptions.defaultWhere, id: options },
+          ...defaultOptions.defaultFindOptions,
+          where: { ...(defaultOptions.defaultFindOptions?(defaultOptions.defaultFindOptions.where||{}):{}), id: options },
         };
       } else {
         findOptions = {
-          where: { ...defaultOptions.defaultWhere, ...options.where },
+          where: { ...(defaultOptions.defaultFindOptions?(defaultOptions.defaultFindOptions.where||{}):{}), ...options.where },
           ...options,
         };
       }

@@ -5,7 +5,6 @@ import { CreatePageDto, UpdatePageContent } from "./dtos";
 import { PageContentService } from "./pageContent.service";
 import { MulterIntercepter } from "src/core/interceptors";
 import { MulterEnum } from "src/core/interfaces";
-import { FileInterceptor } from "@nestjs/platform-express";
 
 @Controller('configurations/page-content')
 export class PageContentController extends GenericController<PageContent,CreatePageDto,UpdatePageContent>({

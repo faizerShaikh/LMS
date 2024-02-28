@@ -7,14 +7,16 @@ import { unlink } from 'fs';
 import { join } from 'path';
 import { User } from '../user/users/models/user.model';
 import { MetaData } from '../configurations/metaData/meta.model';
-import { type } from '../configurations/metaData/dto/type.enum';
 
 @Injectable()
 export class BlogService extends GenericService<
   Blog,
   CreateBlogDTO,
   UpdateBlogDTO
->({includes:[User,MetaData]}) {
+>({
+  defaultFindOptions:{
+      include:[User,MetaData]
+  }}){
   constructor(
     @InjectModel(Blog) private blog: typeof Blog,
     private reqParams: RequestParamsService,

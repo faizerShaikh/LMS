@@ -13,13 +13,14 @@ export class UniversityService extends GenericService<
   CreateUniversityDTO,
   UpdateUniversityDTO
 >({
-  includes:[MetaData]
+  defaultFindOptions:{
+    include:[MetaData],
+  }
 }) {
   constructor(
     @InjectModel(University) private university: typeof University,
     private reqParams: RequestParamsService,
-    @InjectModel(MetaData)
-    private metaData: typeof MetaData
+
   ) {
     super(university, reqParams);
   }
@@ -32,19 +33,19 @@ export class UniversityService extends GenericService<
         join(
           __dirname,
           '../../../../',
-          'src/public/media' + university.university_image,
+          'src/public' + university.university_image,
         ),
         (err) => {
           if (err) {
             throw new InternalServerErrorException(err);
           }
           console.log('file deleted...');
-        },
+        }
       );
     }
 
     await university.update({
-      university_image: '/media/university'+file.filename
+      university_image: '/media/university/'+file.filename
     });
     return 'University Image Uploaded Successfully';
   }

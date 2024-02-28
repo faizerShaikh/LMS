@@ -3,6 +3,7 @@ import { User } from 'src/modules/user/users/models/user.model';
 import { BlogCategory } from '../modules/blog-category/model';
 import { BelongsTo, Column, DataType, ForeignKey, Table } from 'sequelize-typescript';
 import { MyBaseModel } from 'src/core/base.model';
+import { type } from 'src/modules/configurations/metaData/dto/type.enum';
 
 @Table({
   tableName: 'blogs',
@@ -10,7 +11,7 @@ import { MyBaseModel } from 'src/core/base.model';
   paranoid: true,
 })
 export class Blog extends MyBaseModel {
-
+  override type = type.BLOG
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -66,7 +67,6 @@ export class Blog extends MyBaseModel {
 
   @BelongsTo(() => User)
   created_by: User;
-
 
   @ForeignKey(() => BlogCategory)
   blog_category_id: string;

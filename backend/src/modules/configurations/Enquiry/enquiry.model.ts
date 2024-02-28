@@ -2,7 +2,8 @@ import { Column, DataType, Default, IsUUID, Model, PrimaryKey, Table } from "seq
 import { status, type } from "./dto/enquiry.enum";
 
 @Table({
-    tableName:'enquiries'
+    tableName:'enquiries',
+    paranoid:true
 })
 export class Enquiry extends Model{
     @IsUUID(4)
@@ -26,8 +27,16 @@ export class Enquiry extends Model{
     @Column
     type: type;
 
+    @Column
+    from:string
+
     @Default("new")
     @Column
     status: status;
+
+    @Column({
+        type:DataType.TEXT
+    })
+    note:string
 
 }

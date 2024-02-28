@@ -9,6 +9,9 @@ export enum type{
     PAGE_CONTENT='page-content',
     MEDIA='media',
     FAQ='FAQ',
-    GLOBAL_PARTNER='global-partner'
+    FAQTOPIC='faq-topic',
+    GLOBAL_PARTNER='global-partner',
+    GENRAL = 'genral',
+    CONTACTS='contacts'
 
 }

@@ -7,7 +7,6 @@ import {
   HasMany,
   HasOne,
   IsUUID,
-  Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
@@ -15,8 +14,8 @@ import { Course } from '../../course/model';
 import { University } from '../../university/model';
 import { ProgramStructure } from './program-structure.model';
 import { FeesStructure } from './fees-structure.model';
-import { MetaData } from '../../metaData/meta.model';
 import { MyBaseModel } from 'src/core/base.model';
+import { type } from '../../metaData/dto/type.enum';
 
 @Table({
   tableName: 'course-specializations',
@@ -24,12 +23,7 @@ import { MyBaseModel } from 'src/core/base.model';
   paranoid: true,
 })
 export class CourseSpecialization extends MyBaseModel {
-  @IsUUID(4)
-  @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column
-  id: string;
-
+  override type= type.COURSE_SPECIALIZATION;
   @Column({
     type: DataType.STRING,
     allowNull: false,

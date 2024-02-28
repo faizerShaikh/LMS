@@ -20,7 +20,11 @@ export class CourseSpecializationService extends GenericService<
   CreateCourseSpecializationDTO,
   UpdateCourseSpecializationDTO
 >({
-  includes: [Course, University],
+  
+  defaultFindOptions:{
+    include:[MetaData,Course,University]
+}
+
 }) {
   constructor(
     @InjectModel(CourseSpecialization)

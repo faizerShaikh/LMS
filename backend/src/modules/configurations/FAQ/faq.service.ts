@@ -8,7 +8,10 @@ import { MetaData } from '../metaData/meta.model';
 
 @Injectable()
 export class FaqService extends GenericService<Faq, CreateFaqDTO, UpdateFAQ>({
-  includes: [FaqTopic, MetaData],
+  
+  defaultFindOptions:{
+    include:[FaqTopic, MetaData]
+  }
 }) {
   constructor(
     @InjectModel(Faq) private faq: typeof Faq,

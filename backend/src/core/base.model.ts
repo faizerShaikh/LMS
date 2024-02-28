@@ -1,5 +1,6 @@
 import {
   AfterCreate,
+  AfterUpdate,
   BelongsTo,
   Column,
   DataType,
@@ -19,7 +20,10 @@ export class MyBaseModel extends Model {
   @Column
   id: string;
 
-  @BelongsTo(() => MetaData)
+  @BelongsTo(() => MetaData,{
+    onUpdate:'cascade',
+    onDelete:'cascade'
+  })
   metaData: MetaData;
 
   @ForeignKey(() => MetaData)
@@ -42,4 +46,15 @@ export class MyBaseModel extends Model {
       throw error;
     }
   }
+
+  @AfterUpdate
+  static async updateMetaData(baseModel: MyBaseModel): Promise<void> {
+    try {
+      await MetaData.update({ type: baseModel.type },{where:{id:baseModel.metaID}});
+    } catch (error) {
+      console.error('Error creating MetaData:', error);
+      throw error;
+    }
+  }
+
 }

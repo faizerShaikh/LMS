@@ -2,6 +2,7 @@
 import { Table, Column, DataType ,HasMany,Model} from 'sequelize-typescript';
 import { CourseSpecialization } from '../../course-specialization/model';
 import { MyBaseModel } from 'src/core/base.model';
+import { type } from '../../metaData/dto/type.enum';
 
 
 @Table({
@@ -10,6 +11,7 @@ import { MyBaseModel } from 'src/core/base.model';
   paranoid: true,
 })
 export class Course extends MyBaseModel {
+  override type: type.COURSE;
 
   @Column({
     type: DataType.STRING,

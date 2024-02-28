@@ -1,7 +1,4 @@
-import { IsNotEmpty, IsObject, IsString, IsUUID, ValidateNested } from 'class-validator';
-import { MetaData } from '../../metaData/meta.model';
-import { Type } from 'class-transformer';
-import { MetaDataDto } from '../../metaData/dto';
+import { IsNotEmpty, IsNumber,  IsOptional, IsString } from 'class-validator';
 
 export class CreatePageDto {
 
@@ -9,7 +6,10 @@ export class CreatePageDto {
     @IsString()
     name: string;
 
-    
+    @IsNumber()
+    @IsOptional()
+    orderBy:number
+
     coverImage: string;
 
     @IsNotEmpty()

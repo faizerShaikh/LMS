@@ -1,24 +1,30 @@
 import {
-  BelongsTo,
   Column,
   DataType,
-  Default,
   HasMany,
-  HasOne,
-  IsUUID,
-  Model,
-  PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { gallery } from '../Gallery/gallery.model';
 import { MyBaseModel } from 'src/core/base.model';
+import { type } from '../metaData/dto/type.enum';
 
 @Table({
-  tableName: 'page contents',
+  tableName: 'page-contents',
+  paranoid:true,
+  defaultScope:{
+    order:[["orderBy","ASC"]]
+  }
 })
 export class PageContent extends MyBaseModel { 
+  override type= type.PAGE_CONTENT;
 
-  @Column
+  @Column({
+  })
+  orderBy:number
+  
+  @Column({
+    unique:true
+  })
   name: string;
 
   @Column

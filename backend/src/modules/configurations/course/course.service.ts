@@ -13,7 +13,11 @@ export class CourseService extends GenericService<
   Course,
   CreateCourseDTO,
   UpdateCourseDTO
->({includes:[MetaData]}) {
+>({
+  defaultFindOptions: {
+    include: [MetaData],
+  },
+}) {
   constructor(
     @InjectModel(Course) private course: typeof Course,
     private reqParams: RequestParamsService,
@@ -27,9 +31,7 @@ export class CourseService extends GenericService<
 
     if (course.course_image) {
       unlink(
-        join(
-          __dirname,'../../../../', '/src/public/' + course.course_image,
-        ),
+        join(__dirname, '../../../../', '/src/public/' + course.course_image),
         (err) => {
           if (err) {
             throw new InternalServerErrorException(err);
@@ -40,10 +42,8 @@ export class CourseService extends GenericService<
     }
 
     await course.update({
-      course_image: '/media/course/'+ file.filename,
+      course_image: '/media/course/' + file.filename,
     });
     return 'Course Image Uploaded Successfully';
   }
-
-
 }

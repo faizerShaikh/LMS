@@ -66,10 +66,6 @@ export class MetaDataDto {
   replyTo: string;
 
   @IsOptional()
-  @IsEnum(type)
-  type: type;
-
-  @IsOptional()
   @IsBoolean()
   isRefrenced: boolean;
 
