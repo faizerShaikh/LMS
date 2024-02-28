@@ -1,6 +1,8 @@
 "use client";
-import { DataGrid, PageHeader } from "components/layout";
+import { DataGrid, DeleteBox, PageHeader } from "components/layout";
 import { useGetAll } from "hooks";
+import { EnquiriesPageInterface } from "interfaces/enquiriesPage";
+import { EnquiryDialog } from "./_compunents/EnquiryDialog";
 
 const columns = [
   {
@@ -39,20 +41,33 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
   },
+  {
+    headerName: "Source",
+    field: "from",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
+  {
+    headerName: "Action",
+    field: "action",
+    flex: 1,
+    cellClassName: "text-dark",
+    renderCell: (params: { row: EnquiriesPageInterface }) => {
+      return (
+        <>
+          <EnquiryDialog isUpdate={true} data={params.row} />
+          <DeleteBox
+            title={`Item`}
+            url={`/configurations/enquiry`}
+            data={params.row.id}
+            refetchUrl="/configurations/enquiry"
+          />
+        </>
+      );
+    },
+  },
 ];
 export default function EnquiriesPage() {
-  // const [data, setData] = useState([]);
-  // const getEnquiries = async () => {
-  //   const response = await axios.get(
-  //     `${process.env.NEXT_PUBLIC_BASE_API_URL}/configurations/enquiry`
-  //   );
-  //   // console.log(`${process.env.NEXT_PUBLIC_BASE_API_URL}/configurations/enquiry`);
-  //   setData(response.data.data.rows)
-  // };
-
-  // useEffect(()=> {
-  //   getEnquiries()
-  // }, [])
   const { data } = useGetAll({ key: '/configurations/enquiry' })
   return (
     <>

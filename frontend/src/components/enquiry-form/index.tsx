@@ -9,7 +9,7 @@ import axios from "axios";
 import { Column, Row } from "@carbon/icons-react";
 import { toast } from "utils";
 
-export const EnquiryForm = () => {
+export const EnquiryForm = ({from}) => {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -17,6 +17,7 @@ export const EnquiryForm = () => {
       title: "",
       email: "",
       type: "",
+      from: from,
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Required"),
@@ -26,6 +27,7 @@ export const EnquiryForm = () => {
       type: Yup.string().required("Required"),
     }),
     onSubmit: (values, { resetForm }) => {
+      
       axios
         .post(
           `${process.env.NEXT_PUBLIC_BASE_API_URL}/configurations/enquiry`,
@@ -38,6 +40,8 @@ export const EnquiryForm = () => {
         .catch((err) => {
           console.log(err);
         });
+
+        console.log("Source :" , values.from)
         
     },
   });

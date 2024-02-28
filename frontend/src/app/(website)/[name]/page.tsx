@@ -4,8 +4,7 @@ import { PageContentInterface, GalleryInterface } from "interfaces/commonPage";
 import Image from "next/image";
 import Link from "next/link";
 import { HeroSection } from "components/layout/hero-section";
-export let metadata ={
-}
+export let metadata = {};
 export default async function SinglePage({
   params,
 }: {
@@ -16,6 +15,7 @@ export default async function SinglePage({
     `${process.env.BASE_API_URL}/configurations/page-content/${params.name}`
   );
   commonPageData = res?.data?.data;
+  console.log("Name :", params.name); 
   // if(commonPageData.metaData){
   //   metadata = commonPageData.metaData
   // }
@@ -62,7 +62,8 @@ export default async function SinglePage({
               {commonPageData?.pageDescription}
             </p>
           </div>
-          <EnquiryForm />
+          <EnquiryForm from={params.name}/>
+          
         </div>
       </section>
     </>

@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import LOGO from '../../../../public/img2/Author.svg';
+
 
 function page() {
   return (
@@ -138,7 +140,7 @@ function page() {
       </section>
 
       <section>
-        <div className="container">
+        <div className="container py-8 mb-8">
           <div className="text-center">
             <h2 className="uppercase text-3xl">what to expect</h2>
           </div>
@@ -267,27 +269,177 @@ function page() {
         </div>
       </section>
       <section className="bg-gray-100">
-        <div className="container">
-          <h1 className="text-center">Application Process</h1>
-          <div className="flex  items-center">
-            <div className="w-2/5 flex justify-center">
-              <div>
+        <div className="container py-6">
+          <h2 className="text-center text-3xl mb-12">Application Process</h2>
+          <div className="flex flex-col  items-center">
+            <div className="w-1/2 flex justify-between bg-blue-900 px-8 py-4 rounded-full h-48 mb-8">
+              <div className="flex items-center  mr-6 rounded-full bg-white w-[30%]">
                 <Image
-                  src="/img2/resume_942799.png"
+                  src="/img2/resume_942799.svg"
                   alt="logo"
                   width={100}
                   height={100}
+                  className="m-auto "
                 />
               </div>
-              <div>
-                <h2>1. Registration</h2>
-                <p>
-                  {" "}
+              <div className="text-white w-[70%]">
+                <h2 className="m-0 text-lg mb-2 font-medium">
+                  1. Registration
+                </h2>
+                <p className="m-0 font-light text-[15px]">
                   Interested participants can register for Free (No Application
                   Fees) Rise N Start Igniteonour official website. The
                   registration period typically opens well in advance of the
                   event dates, allowing ample time for aspiring entrepreneurs to
-                  signup.{" "}
+                  signup.
+                </p>
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-between bg-blue-900 px-8 py-4 rounded-full h-48 mb-8">
+              <div className="flex items-center  mr-6 rounded-full bg-white w-[30%]">
+                <Image
+                  src="/img2/laptop_13258410.svg"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  className="m-auto "
+                />
+              </div>
+              <div className="text-white w-[70%]">
+                <h2 className="m-0 text-lg mb-2 font-medium">
+                  2. Application Submission
+                </h2>
+                <p className="m-0 font-light text-[15px]">
+                  Once registered, participants are required to submit their
+                  startup pitches or ideas through the provided online portal.
+                  These pitches should outline their innovative concepts, market
+                  potential, and how their startups can address real-world
+                  challenges.
+                </p>
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-between bg-blue-900 px-8 py-4 rounded-full h-48 mb-8">
+              <div className="flex items-center  mr-6 rounded-full bg-white w-[30%]">
+                <Image
+                  src="/img2/internet_9776252.svg"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  className="m-auto "
+                />
+              </div>
+              <div className="text-white w-[70%]">
+                <h2 className="m-0 text-lg mb-2 font-medium">
+                  3. Industry domains
+                </h2>
+                <p className="m-0 font-light text-[15px]">
+                  Industry domains for developing Startup ideas E-Commerce,
+                  Health Tech, Agrit Tech & Food Tech and Artificial Technology
+                </p>
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-between bg-blue-900 px-8 py-4 rounded-full h-48 mb-8">
+              <div className="flex items-center  mr-6 rounded-full bg-white w-[30%]">
+                <Image
+                  src="/img2/clipboard_1991245.svg"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  className="m-auto "
+                />
+              </div>
+              <div className="text-white w-[70%]">
+                <h2 className="m-0 text-lg mb-2 font-medium">4. Evaluation</h2>
+                <p className="m-0 font-light text-[15px]">
+                  A dedicated panel of industry experts and judges will
+                  carefully assess all submitted applications. They will
+                  consider factors such as innovation, feasibility, scalability,
+                  and the potential impact of each startup idea.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container py-6">
+          <h2 className="text-center text-3xl mb-12">Selection Process</h2>
+          <div className="flex flex-col  items-center">
+            <div className="w-1/2 flex justify-between  px-8 py-4 rounded-full h-48 mb-8 shadow-xl">
+              <div className="flex items-center  mr-6 rounded-full bg-blue-900  w-[30%]">
+                <Image
+                  src="/img2/deadline_439398.svg"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  className="m-auto "
+                />
+              </div>
+              <div className=" w-[70%]">
+                <h2 className="m-0 text-lg mb-2 font-medium">1. Deadline</h2>
+                <p className="m-0 font-light text-[15px]">
+                  All application should be
+                </p>
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-between px-8 py-4 rounded-full h-48 mb-8 shadow-xl">
+              <div className="flex items-center  mr-6 rounded-full bg-blue-900  w-[30%]">
+                <Image
+                  src="/img2/human-resources_1427805.svg"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  className="m-auto "
+                />
+              </div>
+              <div className=" w-[70%]">
+                <h2 className="m-0 text-lg mb-2 font-medium">
+                  2. Shortlisting
+                </h2>
+                <p className="m-0 font-light text-[15px]">
+                  After a thorough evaluation, as select number of startups will
+                  be shortlisted to participate in the main
+                  competition.Shortlisted teams will be notified via email.
+                </p>
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-between  px-8 py-4 rounded-full h-48 mb-8 shadow-xl">
+              <div className="flex items-center  mr-6 rounded-full bg-blue-900 w-[30%]">
+                <Image
+                  src="/img2/mentorship_12494895.svg"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  className="m-auto "
+                />
+              </div>
+              <div className=" w-[70%]">
+                <h2 className="m-0 text-lg mb-2 font-medium">3. Mentorship</h2>
+                <p className="m-0 font-light text-[15px]">
+                  Shortlisted teams will have the opportunity to engage in
+                  mentorship sessions with experienced professionals to refine
+                  their pitches and business plans.
+                </p>
+              </div>
+            </div>
+            <div className="w-1/2 flex justify-between  px-8 py-4 rounded-full h-48 mb-8 shadow-xl">
+              <div className="flex items-center  mr-6 rounded-full bg-blue-900 w-[30%]">
+                <Image
+                  src="/img2/assessment_11725766.svg"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  className="m-auto !stroke-white	"
+                />
+              </div>
+              <div className="w-[70%]">
+                <h2 className="m-0 text-lg mb-2 font-medium">
+                  4. Final Pitch Preparation
+                </h2>
+                <p className="m-0 font-light text-[15px]">
+                  Shortlisted teams will work diligently to fine-tune
+                  their startup pitches and prepare compelling presentations.
                 </p>
               </div>
             </div>
