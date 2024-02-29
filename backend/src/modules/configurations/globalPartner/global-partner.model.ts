@@ -16,6 +16,7 @@ export class GlobalPartner extends MyBaseModel{
 
     @Column
     coverImage:string
+    
 
     @Column
     backgroundImage:string

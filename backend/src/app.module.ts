@@ -4,7 +4,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR, APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from './core/guards';
 import { ResponseInterceptor } from './core/interceptors';
 import { UsersModule } from './modules/user';
 import { configurationsModule } from './modules/configurations/configurations.module';

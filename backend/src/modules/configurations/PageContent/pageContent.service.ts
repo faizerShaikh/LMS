@@ -4,9 +4,11 @@ import { PageContent } from "./pageContent.model";
 import { GenericService, RequestParamsService } from "src/core/modules";
 import { CreatePageDto, UpdatePageContent } from "./dtos";
 import { unlink } from "fs";
+import * as fs from 'fs';
 import { join } from "path";
 import { gallery } from "../Gallery/gallery.model";
 import { MetaData } from "../metaData/meta.model";
+
 
 @Injectable()
 export class PageContentService extends GenericService<PageContent,CreatePageDto,UpdatePageContent>({
@@ -26,8 +28,9 @@ export class PageContentService extends GenericService<PageContent,CreatePageDto
 
     async updatePageImage(file:Express.Multer.File,id:string ){
         const page= await this.getOne<PageContent>(id)
-        if(page.coverImage){
-            unlink(join(__dirname,'../../../../','/src/public/'+page.coverImage),
+        const filepath=join(__dirname,'../../../../','/src/public/'+page.coverImage)
+        if(fs.existsSync(filepath)){
+            unlink(filepath,
             (err)=>{
                 if(err){
                     throw new InternalServerErrorException(err)
@@ -35,11 +38,19 @@ export class PageContentService extends GenericService<PageContent,CreatePageDto
             console.log('file deleted...')
             },
         )
-        }
         await page.update({
-            coverImage:'/media/pageContent/'+file.filename
+            coverImage:'media/pageContent/'+file.filename
         })
-        return 'Cover Image Uploaded Successfully'
+          return 'Cover Image Uploaded Successfully'
+        }
+        else{
+            
+        await page.update({
+            coverImage:'media/pageContent/'+file.filename
+        })
+          return 'Cover Image Uploaded Successfully'
+        }
+      
     }
 
 

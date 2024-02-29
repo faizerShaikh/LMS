@@ -1,4 +1,4 @@
-import { Controller, Param, Put, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Controller, Param, Put,Post,Body, UploadedFile, UseInterceptors, UploadedFiles } from "@nestjs/common";
 import { GenericController } from "src/core/modules";
 import { gallery } from "./gallery.model";
 import { GalleryDto, UpdateGalleryDTO } from "./dto";
@@ -19,7 +19,7 @@ export class GalleryController extends GenericController<gallery,GalleryDto,Upda
         MulterIntercepter({
             type:MulterEnum.single,
             fieldName:'coverImage',
-            path:'/media/gallery'
+            path:'/media/gallery/'
         })
     )
     async updateGalleryImage(
@@ -27,5 +27,28 @@ export class GalleryController extends GenericController<gallery,GalleryDto,Upda
         @UploadedFile() file:Express.Multer.File
     ){
         return this.GalleryService.UpdateGalleryImage(file,id)
+    }
+
+    @Post('bulk-create')
+@UseInterceptors(
+    MulterIntercepter({
+    type: MulterEnum.any,
+    path: '/media/gallery/'
+}))
+async createBulk(@Body() data: any[], @UploadedFiles() files: Express.Multer.File,@Param() id) {
+    try {
+        const result = await this.GalleryService.createBulk(data, files,id);
+        if (result.success) {
+            return { success: true, message: 'Bulk insert successful', data: result.data };
+        } else {
+            return { success: false, message: 'Bulk insert failed', error: result.error };
+        }
+    } catch (error) {
+        return { success: false, message: 'Internal server error', error: error.message };
+    }
+}
+    @Put('bulk-update')
+    async bulkUpdate(@Body() data: any[]) {
+    const result = await this.GalleryService.updateBulk(data);
     }
 }

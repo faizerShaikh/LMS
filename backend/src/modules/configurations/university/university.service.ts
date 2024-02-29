@@ -6,7 +6,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
 import { MetaData } from '../metaData/meta.model';
-
+import * as fs from 'fs'
 @Injectable()
 export class UniversityService extends GenericService<
   University,
@@ -27,14 +27,14 @@ export class UniversityService extends GenericService<
 
   async updateUniversityImage(file: Express.Multer.File, id: string) {
     const university = await this.getOne<University>(id);
-
-    if (university.university_image) {
+    const filePath=join(
+      __dirname,
+      '../../../../',
+      'src/public' + university.university_image,
+    )
+    if (fs.existsSync(filePath)) {
       unlink(
-        join(
-          __dirname,
-          '../../../../',
-          'src/public' + university.university_image,
-        ),
+        filePath,
         (err) => {
           if (err) {
             throw new InternalServerErrorException(err);
@@ -42,12 +42,19 @@ export class UniversityService extends GenericService<
           console.log('file deleted...');
         }
       );
+      await university.update({
+        university_image: '/media/university/'+file.filename
+      });
+      return 'University Image Uploaded Successfully';
     }
+    else{
 
-    await university.update({
-      university_image: '/media/university/'+file.filename
-    });
-    return 'University Image Uploaded Successfully';
-  }
+      
+      await university.update({
+        university_image: '/media/university/'+file.filename
+      });
+      return 'University Image Uploaded Successfully';
+    }
+    }
 
 }

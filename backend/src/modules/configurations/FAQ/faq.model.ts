@@ -17,6 +17,6 @@ export class Faq extends MyBaseModel{
     visiblity:Boolean
 
     @HasOne(()=>FaqTopic)
-    faqTopic:FaqTopic
+    faqTopic:FaqTopic[]
 
 }

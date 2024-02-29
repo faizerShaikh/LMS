@@ -1,10 +1,14 @@
 import { Type } from 'class-transformer';
-import { IsString, IsEmpty, IsObject, IsNotEmpty } from 'class-validator';
+import { IsString, IsEmpty, IsObject, IsNotEmpty, IsOptional } from 'class-validator';
 import { PageContent } from '../../PageContent/pageContent.model';
 
 export class GalleryDto {
 
     coverImage: string;
+
+    @IsOptional()
+    @IsString()
+    orderBy:number
 
     @IsString()
     @IsNotEmpty()
@@ -15,7 +19,7 @@ export class GalleryDto {
     description: string;
 
     
-    @IsNotEmpty()
-    pageId: string;
+    // @IsNotEmpty()
+    // pageId: string;
 
 }

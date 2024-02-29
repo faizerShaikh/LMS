@@ -11,6 +11,11 @@ export class gallery extends MyBaseModel{
 
     override type=type.GALLERY
 
+    @Column({
+        autoIncrement:true
+    })
+    orderBy:number
+
     @Column
     coverImage:string
 
