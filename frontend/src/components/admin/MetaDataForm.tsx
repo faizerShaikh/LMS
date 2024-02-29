@@ -5,7 +5,7 @@ import { Formik, Form, FormikContext, useFormikContext } from "formik";
 import { MetaDataInitial } from "initials";
 import { MetaDatavalidateSchema } from "initials";
 import { CreateUpdateDialogBaseProps, MetaDataInterface } from "interfaces";
-import { Add, Edit } from "@carbon/icons-react";
+import { Add, Edit, IbmWatsonKnowledgeCatalog } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
 import * as Yup from "yup";
@@ -59,7 +59,7 @@ export const MetaDataForm = ({
   // const { values } = useFormikContext();
   return (
     <Dialog
-      button={<IconButton ><Add /></IconButton>}
+      button={<IconButton className="text-yellow-500"><IbmWatsonKnowledgeCatalog /></IconButton>}
       title={"Add Meta Data"}
     >
       {({ onClose }) => (

@@ -4,6 +4,7 @@ export interface GalleryInterface extends BaseObjInterface {
   coverImage: string;
   name: string;
   description: string;
+  orderBy : number;
   pageId: string;
 }
 

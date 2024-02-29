@@ -117,41 +117,7 @@ export const PageContentDialog = ({
                   <Input name="pageDescription" />
                 </Box>
               </Grid>
-              <Grid xs={12} item>
-                <Label text="Add Gallary Data" />
-                <FieldArray
-                  name="gallery"
-                  render={(FieldArrayProp) => {
-                    console.log("FieldArrayProp", FieldArrayProp);
-                    const { push, remove, form } = FieldArrayProp;
-                    const { values } = form;
-                    const { gallery } = values;
-                    console.log(gallery);
-                    return (
-                      <div>
-                        {gallery.map((item: any, index: number) => (
-                          <div key={index}>
-                            <Label text="Image" />
-                            <DropZone name={`gallary.${index}.coverImage`} />
-                            
-                            <Label text="Name" />
-                            <Input name={`gallary.${index}.name`} />
-                            <Label text="Description" />
-                            <Input name={`gallary.${index}.description`} />
 
-                            <Button type="button" onClick={() => remove(index)}>
-                              Delete
-                            </Button>
-                            <Button type="button" onClick={() => push(index)}>
-                              Add
-                            </Button>
-                          </div>
-                        ))}
-                      </div>
-                    );
-                  }}
-                ></FieldArray>
-              </Grid>
               <Grid xs={12} item>
                 <Box className="flex justify-end">
                   <Button

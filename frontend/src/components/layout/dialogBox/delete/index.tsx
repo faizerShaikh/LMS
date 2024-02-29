@@ -1,4 +1,4 @@
-import { RowDelete } from "@carbon/icons-react";
+import { RowDelete, TrashCan } from "@carbon/icons-react";
 import { Button } from "components/layout/buttons";
 import { useDelete } from "hooks/useDelete";
 import { ReactElement, ReactNode } from "react";
@@ -43,9 +43,9 @@ export const DeleteBox = ({
           <Button
             isLoading={isLoading}
             variant="text"
-            startIcon={<RowDelete />}
+            startIcon={<TrashCan />}
             color={"secondary"}
-            className="capitalize"
+            className="capitalize text-red-500"
           >
             <Typography
               className="capitalize xl:text-sm 2xl:text-semi-base"

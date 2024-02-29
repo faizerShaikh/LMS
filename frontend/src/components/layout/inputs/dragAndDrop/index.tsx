@@ -22,7 +22,7 @@ export const DropZone = <T extends {}>({
 }: DropZoneProps) => {
   const { setFieldValue, values } = useFormikContext<T | any>();
   const [errors, setError] = useState<string[]>([]);
-
+console.log(values.name,"<====values name",name,values)
   return (
     <Dropzone
       minSize={0}
@@ -56,7 +56,7 @@ export const DropZone = <T extends {}>({
             }}
           >
             <input {...getInputProps()} />
-            {Array.isArray(values[name]) || values[name] ? (
+            {Array.isArray(values?.name) || values?.name ? (
               <Typography color='primary'>
                 {Array.isArray(values[name]) ? values[name].length : 1} file
                 selected
