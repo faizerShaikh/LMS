@@ -1,13 +1,20 @@
 // "use client";
 
-import { Accordion } from "@mui/material";
 import axios from "axios";
+import { FAQ } from "components/layout/faq/faq";
 import moment from "moment";
 import Image from "next/image";
 // import { useState } from "react";
 
 export default async function Home() {
   // const [accordionOpen, setAccordionOpen] = useState(false);
+
+  let FAQData = [];
+  const response = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/faq`
+  );
+  FAQData = response.data.data.rows;
+  console.log(FAQData, "<============================");
 
   let events = [];
   const res = await axios.get(
@@ -42,14 +49,20 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-gray-100 py-48">
+      <section className="bg-gray-100 py-24">
         <div className="container ">
           <div>
             <h2 className="font-bold text-3xl m-0 mb-4">FAQ's</h2>
-            <h2 className="font-semibold  m-0  mb-4 text-2xl">Why Indian Universities ?</h2>
+            <h2 className="font-semibold  m-0  mb-4 text-2xl">
+              Why Indian Universities ?
+            </h2>
           </div>
-          <div>
-            <Accordion ></Accordion>
+          <div className="flex flex-wrap gap-4">
+            {FAQData.map((item: any, index: any) => (
+              <FAQ 
+              specialization={item}
+              />
+            ))}
           </div>
         </div>
       </section>

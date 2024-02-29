@@ -121,18 +121,6 @@ export const DataGrid = ({
     }
   }, [refetchInside, url]);
 
-  // useGetAll({
-    //   key: url,
-    //   params: {
-      //     page: pagination.page,
-      //     limit: pagination.limit,
-      //     search: search,
-    //   },
-    //   enabled: refetchInside || Boolean(queryKey),
-    //   onSuccess(data) {
-      //     setData(data);
-    //   },
-  // });
 
   const onPageChange = useCallback(
     (page: number) => {
