@@ -11,7 +11,7 @@ export default async function Home() {
 
   let FAQData = [];
   const response = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/faq`
+    `${process.env.BASE_API_URL}/configurations/faq-topics`
   );
   FAQData = response.data.data.rows;
   console.log(FAQData, "<============================");

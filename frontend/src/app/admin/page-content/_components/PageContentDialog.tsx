@@ -34,10 +34,10 @@ export const PageContentDialog = ({
     method: "put",
   });
 
-  const { mutate: fileUploadMutate } = useCreateOrUpdate({
-    url: `/configurations/page-content/update-page-image/${id}`,
-    method: "put",
-  });
+  // const { mutate: fileUploadMutate } = useCreateOrUpdate({
+  //   url: `/configurations/page-content/update-page-image/${id}`,
+  //   method: "put",
+  // });
 
   const handleFileUpload = async (
     file: File,

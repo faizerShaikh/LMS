@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import { FaqInterface } from "interfaces/faq";
+import { FaqInterface, Topics } from "interfaces/faq";
 import { CaretDown } from "@carbon/icons-react";
 
 export interface FAQProps {
-  specialization: FaqInterface;
+  specialization: Topics;
 }
 
 export function FAQ({ specialization }: FAQProps) {
@@ -21,27 +21,31 @@ export function FAQ({ specialization }: FAQProps) {
     setExpanded(isExpanded ? panel : false);
   };
   
+  console.log(specialization, "<========================== data")
 
   return (
     <div className="w-[48%] mb-4">
       <Accordion
-        expanded={expanded === specialization.faqTopic.topic}
-        onChange={handleChange(specialization.faqTopic.topic)}
+        expanded={expanded === specialization.topic}
+        onChange={handleChange(specialization.topic)}
         className="text-white rounded-md"
       >
         <AccordionSummary
         expandIcon={<CaretDown className="text-white"/>}
-          aria-controls={`${specialization.faqTopic.topic}-content`}
-          id={`${specialization.faqTopic.topic}-header`}
+          aria-controls={`${specialization.topic}-content`}
+          id={`${specialization.topic}-header`}
           className="bg-blue-900 rounded-md"
         >
-          {specialization.faqTopic.topic}
+          {specialization.topic}
         </AccordionSummary>
         <AccordionDetails className="text-black">
-          {specialization.faqTopic.answer}
+          {specialization.answer}
         </AccordionDetails>
       </Accordion>
+      
     </div>
+
+    
   );
 }
 

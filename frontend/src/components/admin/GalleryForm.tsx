@@ -58,6 +58,7 @@ export const GalleryForm = ({
               "description",
               "orderBy",
               "pageId",
+              "id",
             ];
             const fd = new FormData();
             for (let x = 0; x < values?.gallery.length; x++) {
@@ -72,7 +73,7 @@ export const GalleryForm = ({
                   const onSuccess = () => {
                     resetForm();
                     setId(resp.data.data.rows.id);
-                    queryClient.refetchQueries(`/configurations/gallery`, {
+                    queryClient.refetchQueries(refetchURL ,{
                       exact: false,
                       stale: true,
                     });
