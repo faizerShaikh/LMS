@@ -10,7 +10,7 @@ import { MetaData } from '../metaData/meta.model';
 export class FaqService extends GenericService<Faq, CreateFaqDTO, UpdateFAQ>({
   
   defaultFindOptions:{
-    include:[FaqTopic, MetaData]
+    include:[FaqTopic]
   }
 }) {
   constructor(

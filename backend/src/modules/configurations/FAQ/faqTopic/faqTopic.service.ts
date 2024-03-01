@@ -13,4 +13,9 @@ export class faqTopicService extends GenericService({}){
         super(faqTopic,reqParams)
     }
 
+    async bulkcreate(data:any[]){
+        const bulkcreate= await this.faqTopic.bulkCreate(data)
+        console.log(bulkcreate)
+        return bulkcreate
+    }
 }

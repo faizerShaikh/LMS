@@ -16,6 +16,7 @@ export class gallery extends MyBaseModel{
     })
     orderBy:number
 
+    @Default('public/media/default.png')
     @Column
     coverImage:string
 

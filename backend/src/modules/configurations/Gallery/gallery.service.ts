@@ -22,11 +22,11 @@ export class GalleryService extends GenericService<
   async UpdateGalleryImage(file: Express.Multer.File, id: string) {
     const gallery = await this.getOne<gallery>(id);
     const filepath = join(__dirname, '../../../../', '/src/public/' + gallery.coverImage)
-    if (fs.existsSync(filepath)) {
+    if (fs.existsSync(filepath)) { 
       unlink(
         filepath,
         (err) => {
-          if (err) {
+          if (err) { 
             throw new InternalServerErrorException(err);
           }
           console.log('file deleted');
@@ -46,13 +46,16 @@ export class GalleryService extends GenericService<
       return 'Gallery Image Uploaded Successfully';
     }
   }
+
+
+
   async createBulk(data: any, files: Express.Multer.File, id: string): Promise<any> {
     try {
       let dataToCreate = [];
       let dataToUpdate = [];
-  
-      for (const [index, value] of (Object.entries(data.data) as any)) {
-        if (value.id) {
+      console.log(data)
+      for (const [index, value] of Object.entries(data.data) as any) {
+        if (value.id != 'undefined') {
           if (files[index]) {
             dataToUpdate.push({
               ...value,
@@ -68,20 +71,25 @@ export class GalleryService extends GenericService<
               coverImage: 'media/gallery/' + files[index].filename
             });
           } else {
-            // Handle the case where there's no file for creation
-            console.error(`No file found for index ${index} for creation`);
+            dataToCreate.push({
+              ...value,
+              
+            })
           }
         }
       }
   
-      // Bulk create the updated data if there's any
+      // Perform bulk updates
       if (dataToUpdate.length > 0) {
-        await this.Gallery.bulkCreate(dataToUpdate, { updateOnDuplicate: ["id"] });
+        console.log('Bulk update data:', dataToUpdate); // Log the data to be updated
+        const updatedData= await this.Gallery.bulkCreate(dataToUpdate, { updateOnDuplicate: ["name","description","orderBy","coverImage"] });
+        console.log('updated data===============>',updatedData)
       }
   
-      // Bulk create the new data if there's any
+      // Perform bulk inserts
       if (dataToCreate.length > 0) {
         await this.Gallery.bulkCreate(dataToCreate);
+        return dataToCreate
       }
   
       return { success: true, dataToUpdate, dataToCreate };
@@ -91,53 +99,6 @@ export class GalleryService extends GenericService<
     }
   }
   
-
-// async createBulk(data: any, files: Express.Multer.File,id:string): Promise<any> {
-//     try {
-// let dataToCreate=[] 
-// let dataToUpdate=[]
-
-// for (const [index,value] of (Object.entries(data.data) as any)) {
-//   if(value.id){ 
-//     if (files[index]) {
-//     dataToUpdate.push({
-//       ...value,
-//       coverImage: 'media/gallery/' + files[index].filename
-//     });
-//   }else{
-//       dataToUpdate.push({...value})
-//   }
-  
-// }
-// else{
-//   dataToCreate.push({ 
-//     ...value,
-//     coverImage: 'media/gallery/' + files[index].filename, 
-//   })
-// }
-// // await this.Gallery.bulkCreate(dataToUpdate,{updateOnDuplicate:["id"]})
-// await this.Gallery.bulkCreate(dataToCreate);
-//       // const Create = data.data.filter(item=>!item.id)
-//       // const Update = data.data.filter(item=>!!item.id)
-      
-//       // if (Update && !files ) {
-//       //   await this.Gallery.bulkCreate(data,{updateOnDuplicate:["id"]})
-//       // }else{
-
-//       //   const updatedData = data.data.map((item, index) => ({
-//       //     ...item,
-//       //     coverImage: 'media/gallery/' + files[index].filename, 
-//       //   }));
-        
-//       //   console.log("The updated data is", updatedData);
-//       //   const createGallery = await this.Gallery.bulkCreate(updatedData);
-        
-//         return { success: true,dataToUpdate,dataToCreate };
-//       }
-//       } catch (error) {
-//         return { success: false, error: error.message };
-//     }
-// }
 
 
   async updateBulk(data:any[]){

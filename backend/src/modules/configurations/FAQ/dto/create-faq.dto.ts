@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsObject, IsOptional, IsString, ValidateNested } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, ValidateNested, isNotEmpty } from "class-validator";
 import { Type } from "class-transformer";
 import { MetaDataDto } from "../../metaData/dto";
 
@@ -6,9 +6,13 @@ export class CreateFaqDTO{
     @IsString()
     question:string
 
+    @IsNotEmpty()
+    @IsNumber()
+    orderBy:number
+
     @IsBoolean()
     @IsOptional()
-    visiblity:boolean
+    isFeatured:boolean
 
     
 }

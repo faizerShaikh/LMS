@@ -1,22 +1,29 @@
-import { Column,  Default, HasOne, Model, Table } from "sequelize-typescript";
+import { Column,  DataType,  Default, HasMany, HasOne, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { FaqTopic } from "./faqTopic/faqTopic.model";
-import { MyBaseModel } from "src/core/base.model";
-import { type } from "../metaData/dto/type.enum";
 
 @Table({
-    tableName:'faqs',
+    tableName:'faq',
     paranoid:true
 })
-export class Faq extends MyBaseModel{
-    override type= type.FAQ;
+export class Faq extends Model{
+
+    @IsUUID(4)
+    @Default(DataType.UUIDV4)
+    @PrimaryKey
+    @Column
+    id: string;
+
+    @Column
+    orderBy:number
+
     @Column
     question:string
-
+ 
     @Default(false)
     @Column
-    visiblity:Boolean
+    isFeatured:Boolean
 
-    @HasOne(()=>FaqTopic)
+    @HasMany(()=>FaqTopic) 
     faqTopic:FaqTopic[]
 
 }

@@ -29,7 +29,7 @@ export class GalleryController extends GenericController<gallery,GalleryDto,Upda
         return this.GalleryService.UpdateGalleryImage(file,id)
     }
 
-    @Post('bulk-create')
+@Put('bulk-create')
 @UseInterceptors(
     MulterIntercepter({
     type: MulterEnum.any,

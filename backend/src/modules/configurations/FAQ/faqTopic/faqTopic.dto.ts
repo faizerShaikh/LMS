@@ -1,4 +1,4 @@
-import { IsUUID, IsString, IsNotEmpty } from 'class-validator';
+import { IsUUID, IsString, IsNotEmpty} from 'class-validator';
 
 export class FaqTopicDto {
 
@@ -9,6 +9,7 @@ export class FaqTopicDto {
     @IsString()
     @IsNotEmpty()
     answer: string;
+
 
     @IsUUID(4)
     @IsNotEmpty()
