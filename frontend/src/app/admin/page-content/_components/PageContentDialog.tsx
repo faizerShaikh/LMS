@@ -1,16 +1,13 @@
 import { CreateUpdateDialogBaseProps, PageContentInterface } from "interfaces";
 import { Button, Dialog, DropZone, Input, Label } from "../../../../components";
-import { Field, Form, Formik } from "formik";
+import {  Form, Formik } from "formik";
 import { useCreateOrUpdate } from "hooks";
-import { Box, Grid, Icon, IconButton, dividerClasses } from "@mui/material";
-import { MetaDataForm } from "../../../../components/admin";
+import { Box, Grid,  IconButton } from "@mui/material";
 import { MetaDataInitial } from "initials";
 import { Edit } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
-import { useState } from "react";
 import { API } from "configs";
-import { FieldArray } from "formik";
 
 const initialValues: PageContentInterface = {
   name: "",
@@ -27,17 +24,13 @@ export const PageContentDialog = ({
   isUpdate = true,
 }: CreateUpdateDialogBaseProps) => {
   const queryClient = useQueryClient();
-  const [id, setId] = useState(null);
 
   const { mutate, isLoading } = useCreateOrUpdate({
     url: `/configurations/page-content/${data.id}`,
     method: "put",
   });
 
-  // const { mutate: fileUploadMutate } = useCreateOrUpdate({
-  //   url: `/configurations/page-content/update-page-image/${id}`,
-  //   method: "put",
-  // });
+  
 
   const handleFileUpload = async (
     file: File,
@@ -66,7 +59,7 @@ export const PageContentDialog = ({
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(values, {
-              onSuccess(resp, variables, context) {
+              onSuccess(resp) {
                 const onSuccess = () => {
                   resetForm();
                   queryClient.refetchQueries(`/configurations/press-release`, {

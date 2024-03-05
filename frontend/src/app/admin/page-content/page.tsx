@@ -5,7 +5,6 @@ import { PageContentInterface } from "interfaces";
 import { PageContentDialog } from "./_components/PageContentDialog";
 import { MetaDataForm } from "components/admin";
 import { GalleryForm } from "components/admin/GalleryForm";
-import { log } from "console";
 
 const columns = [
   {
@@ -32,7 +31,6 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: PageContentInterface }) => {
-      console.log('ddd', params.row.gallery)
       return (
         <>
           <PageContentDialog
@@ -53,6 +51,7 @@ const columns = [
             isUpdate={true}
             data={{gallery:  params.row.gallery}}
             refetchURL="/configurations/page-content"
+            pageId={params.row.id || ''}
           />
         </>
       );

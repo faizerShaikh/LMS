@@ -20,6 +20,7 @@ import { toast } from "utils";
 const initialTopicsValues: Topics = {
   topic: "",
   answer: "",
+  
 };
 
 
@@ -30,16 +31,7 @@ const initialValues: FaqInterface = {
   isFetured: false,
   faqTopic: initialTopicsValues,
 };
-console.log(initialValues)
-// const opicValidationSchema = Yup.object({
-//   topic: Yup.string().required("Topic Required"),
-//   answer: Yup.string().required("Answer Required"),
-// });
-// const validationSchema = Yup.object({
-//   orderBy: Yup.number().required("Order is Required"),
-//   isFetured: Yup.boolean().required("Required"),
-//   faqTopic: opicValidationSchema.required(),
-// });
+
 
 export const FaqDialog = ({
   data,
@@ -47,7 +39,6 @@ export const FaqDialog = ({
   refetchURL,
 }: CreateUpdateDialogBaseProps) => {
   const queryClient = useQueryClient();
-  const [id, setId] = useState(null);
 
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate ? `/configurations/faq/${data.id}` : "/configurations/faq",
@@ -69,7 +60,6 @@ export const FaqDialog = ({
     >   
       {({ onClose }) => (
         <Formik
-          // validationSchema={{ validationSchema }}
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate({...values,orderBy:+values.orderBy }, {

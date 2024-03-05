@@ -24,7 +24,7 @@ export function FAQ({ specialization }: FAQProps) {
   console.log(specialization, "<========================== data")
 
   return (
-    <div className="w-[48%] mb-4">
+    <div className="w-full mb-4 ">
       <Accordion
         expanded={expanded === specialization.topic}
         onChange={handleChange(specialization.topic)}

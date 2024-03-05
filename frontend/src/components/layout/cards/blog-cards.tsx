@@ -35,7 +35,7 @@ export function BlogCard({
           className="w-full bg-cover bg-center object-center"
         />
         <div className="px-4 pb-4">
-        <Link href= {`/blogs/${specialization.id}`} className={`font-bold text-xl text-black py-2 m-auto ${sizes[size].fontSize}`}>{specialization.title}</Link>
+        <Link href= {`/blogs/${specialization.id}`}> <h2 className={`font-bold text-xl text-black py-2 m-auto ${sizes[size].fontSize}`}>{specialization.title}</h2></Link>
         </div>
       </div>
     );

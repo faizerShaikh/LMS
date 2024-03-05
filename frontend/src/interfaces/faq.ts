@@ -1,9 +1,9 @@
 import { BaseObjInterface } from "./base";
 
 export interface Topics extends BaseObjInterface{
-    topic: string,
-    answer: string
-
+    topic: string;
+    answer: string;
+faqId: string;
 }
 
 export interface FaqInterface extends BaseObjInterface {

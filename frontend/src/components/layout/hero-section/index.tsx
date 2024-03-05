@@ -36,7 +36,7 @@ export function HeroSection({ HeroImage , Herotitle, description , viewButton = 
               {description}
             </p>
             {viewButton && linkText &&
-            <Link href= {linkText}><button className="bg-blue-900  py-2 px-4 font-Inter  text-white font-semibold text-base rounded-md">
+            <Link href= {linkText}><button className="bg-blue-900 cursor-pointer py-2 px-4 font-Inter  text-white font-semibold text-base rounded-md">
               {buttonText}
             </button></Link> 
             }

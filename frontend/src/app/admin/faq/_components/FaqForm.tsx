@@ -1,45 +1,37 @@
 import { Box, Grid, IconButton } from "@mui/material";
 import React, { useState } from "react";
-import { Button, Input, Label, Dialog, DropZone } from "..";
+import { Button, Input, Label, Dialog } from "../../../../components";
 import { Formik, Form, FieldArray } from "formik";
-import { CreateUpdateDialogBaseProps, GalleryFormProps, GalleryInterface } from "interfaces";
-import { Add, Delete, TrashCan } from "@carbon/icons-react";
+import {  faqFormProps } from "interfaces";
+import { Add, TrashCan } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
-import * as Yup from "yup";
 import { toast } from "utils";
-import { API } from "configs";
+import { Topics } from "interfaces/faq";
 
-// const validationSchema = Yup.object({
-//   name: Yup.string().required("name is Required"),-
-//   description: Yup.string().required("Description is Required"),
-// });
 
-export const GalleryForm = ({
+
+export const FaqForm = ({
   data = {},
   isUpdate,
   refetchURL,
-  pageId
-}: GalleryFormProps) => {
-  const initialValues: { gallery: GalleryInterface[] } = {
-    gallery: [
+  faqId,
+}: faqFormProps) => {
+  const initialValues: { faq: Topics[] } = {
+    faq: [
       {
-        coverImage: "",
-        name: "",
-        description: "",
-        orderBy: 1,
-        pageId: pageId,
+        topic: "",
+        answer: "",
+        faqId: faqId,
       },
     ],
   };
   const queryClient = useQueryClient();
   const { mutate, isLoading } = useCreateOrUpdate({
-    url: `/configurations/gallery/bulk-create`,
-    method: "put",
-    headers: { "Content-Type": "multipart/form-data" },
+    url: "/configurations/faq-topics/bulkcreate",
+    method: "post",
   });
-  console.log('pageId', pageId);
-  
+
   return (
     <Dialog
       button={
@@ -47,36 +39,21 @@ export const GalleryForm = ({
           <Add />
         </IconButton>
       }
-      title={"Add Gallery Data"}
+      title={"Add FAQ Data"}
     >
       {({ onClose }) => (
         <Formik
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
-            console.log('valuesvaluesvalues', values)
-            const fields = [
-              "coverImage",
-              "name",
-              "description",
-              "orderBy",
-              "pageId",
-            ];
-            const fd = new FormData();
-            for (let x = 0; x < values?.gallery.length; x++) {
-              fields.forEach((f) => {
-                fd.append(`data[${x}][${f}]`, values?.gallery[x]?.[f]);
-              });
-            }
-            // console.log('djhdjdjkjdk', fd);
-            
-            mutate(fd, {
-              onSuccess(resp, variables, context) {
+            mutate(values, {
+              onSuccess(resp) { 
+                resetForm();
                 queryClient.refetchQueries(refetchURL, {
                   exact: false,
                   stale: true,
                 });
                 toast(
-                  `Gallery ${isUpdate ? "updated" : "added"} successfully`
+                  `FAQ Question ${isUpdate ? "updated" : "added"} successfully`
                 );
                 onClose();
               },
@@ -88,43 +65,29 @@ export const GalleryForm = ({
               <Grid container spacing={2}>
                 <Grid xs={12} item>
                   <FieldArray
-                    name="gallery"
+                    name="faq"
                     render={(FieldArrayProp) => {
-                      // console.log("FieldArrayProp", FieldArrayProp);
                       const { push, remove, form } = FieldArrayProp;
                       const { values } = form;
-                      const { gallery } = values;
-                      console.log("gallerygallerygallerygallery", gallery);
+                      const { faq } = values;
                       return (
                         <div>
-                          {gallery.map((item: any, index: number) => (
+                          {faq.map((item: any, index: number) => (
                             <div key={index}>
                               <Grid xs={12} item>
-                                <Label text="Name" />
+                                <Label text="Question" />
                                 <Input
-                                  name={`gallery.${index}.name`}
+                                  name={`faq.${index}.topic`}
                                   className="mb-4"
                                 />
                               </Grid>
-                              <Grid xs={12} item></Grid>
-                              <Label text="Description" />
+                              <Label text="Answer" />
                               <Input
-                                name={`gallery.${index}.description`}
+                                name={`faq.${index}.answer`}
                                 className="mb-4"
                               />
-                              <div className="flex items-center gap-4">
-                                <Grid xs={6} item>
-                                  <Label text="Image" />
-                                  <DropZone
-                                    name={`gallery.${index}.coverImage`}
-                                  />
-                                </Grid>
-                                <Grid xs={6} item>
-                                  <Label text="Order" />
-                                  <Input name={`gallery.${index}.orderBy`} />
-                                </Grid>
-                              </div>
-                              {index !== gallery.length - 1 && (
+
+                              {index !== faq.length - 1 && (
                                 <IconButton
                                   type="button"
                                   onClick={() => remove(index)}
@@ -133,16 +96,16 @@ export const GalleryForm = ({
                                   <TrashCan />
                                 </IconButton>
                               )}
-                              {index === gallery.length - 1 && (
+                              {index === faq.length - 1 && (
                                 <IconButton
                                   type="button"
-                                  onClick={() => push({
-                                    coverImage: "",
-                                    name: "",
-                                    description: "",
-                                    orderBy: index+1,
-                                    pageId: pageId,
-                                  })}
+                                  onClick={() =>
+                                    push({
+                                      topic: "",
+                                      answer: "",
+                                      faqId: faqId,
+                                    })
+                                  }
                                   className="text-red-500"
                                 >
                                   <Add />

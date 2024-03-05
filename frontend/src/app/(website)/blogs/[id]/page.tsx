@@ -13,7 +13,7 @@ export default async function SingleBlog({
   let url = `${process.env.BASE_API_URL}/blog/${params.id}/`;
   const response = await axios.get(url);
   data = response.data.data;
-  // console.log(data)
+  console.log(data, "<-=============================datatatatatat")
 
   return (
     <>

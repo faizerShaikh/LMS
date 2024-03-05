@@ -1,27 +1,17 @@
-import { CreateUpdateDialogBaseProps, UniversityInterface } from "interfaces";
+import { CreateUpdateDialogBaseProps } from "interfaces";
 import {
   Button,
-  Checkbox,
   Dialog,
-  DropZone,
   Input,
   Label,
 } from "../../../../components";
-import { Form, Formik, useFormik, useFormikContext } from "formik";
+import { Form, Formik} from "formik";
 import { useCreateOrUpdate } from "hooks";
 import { Box, Grid, IconButton } from "@mui/material";
-import { MetaDataForm } from "../../../../components/admin";
-import { MetaDataInitial } from "initials";
-import { Add, Earth, Edit } from "@carbon/icons-react";
+import {  Edit } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
-import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
 import * as Yup from "yup";
-import { MetaDatavalidateSchema } from "initials";
-import Dropzone from "react-dropzone";
-import { useState } from "react";
-import axios from "axios";
-import { API } from "configs";
 import { EnquiriesPageInterface } from "interfaces/enquiriesPage";
 
 const initialValues: EnquiriesPageInterface = {
@@ -46,7 +36,6 @@ export const EnquiryDialog = ({
   isUpdate,
 }: CreateUpdateDialogBaseProps) => {
   const queryClient = useQueryClient();
-  const [id, setId] = useState(null);
 
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate
@@ -54,6 +43,7 @@ export const EnquiryDialog = ({
       : "/configurations/enquiry",
     method: isUpdate ? "put" : "post",
   });
+  
 
   return (
     <Dialog
@@ -98,11 +88,11 @@ export const EnquiryDialog = ({
                   <Input name="email" />
                 </Box>
                 <Box className="mt-4">
-                  <Label text="Type" />
+                  <Label text="Type" required/>
                   <Input name="type" />
                 </Box>
                 <Box className="mt-4">
-                  <Label text="Status" />
+                  <Label text="Status" required/>
                   <Input name="status" />
                 </Box>
               </Grid>

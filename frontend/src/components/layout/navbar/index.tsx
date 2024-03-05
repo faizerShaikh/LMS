@@ -15,7 +15,7 @@ export const Navbar = () => {
               className="size-7 "
             />
           </Link>
-          <Link href="https://twitter.com/?lang=en">
+          <Link href="https://twitter.com/?lang=en" >
             <Image
               alt="img"
               height={100}
@@ -180,7 +180,7 @@ export const Navbar = () => {
                 Contact
               </Link>
             </li>
-            <button className="bg-blue-900 px-3 py-1 text-base  text-white rounded">
+            <button className="bg-blue-900 px-3 py-1 text-base cursor-pointer  text-white rounded">
               Log in
             </button>
           </ul>

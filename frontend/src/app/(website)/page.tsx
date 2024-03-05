@@ -14,6 +14,10 @@ export default async function Home() {
     `${process.env.BASE_API_URL}/configurations/faq-topics`
   );
   FAQData = response.data.data.rows;
+  const middleIndex = Math.ceil(FAQData.length/ 2);
+  const firstHalf = FAQData.slice(0, middleIndex);
+  const secondHalf = FAQData.slice(middleIndex );
+
   console.log(FAQData, "<============================");
 
   let events = [];
@@ -57,12 +61,18 @@ export default async function Home() {
               Why Indian Universities ?
             </h2>
           </div>
-          <div className="flex flex-wrap gap-4">
-            {FAQData.map((item: any, index: any) => (
-              <FAQ 
-              specialization={item}
-              />
-            ))}
+          <div className="flex gap-2">
+            <div className="w-1/2">
+              {firstHalf.map((item: any) => (
+                <FAQ specialization={item} />
+              ))}
+            </div>
+
+            <div  className="w-1/2">
+              {secondHalf.map((item: any) => (
+                <FAQ specialization={item} />
+              ))}
+            </div>
           </div>
         </div>
       </section>

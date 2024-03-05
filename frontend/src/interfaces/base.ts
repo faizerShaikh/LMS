@@ -21,6 +21,13 @@ export interface CreateUpdateDialogBaseProps {
   data?: any;
   refetchURL?: string
 }
+export interface faqFormProps extends CreateUpdateDialogBaseProps{
+  faqId: string;
+}
+
+export interface GalleryFormProps extends CreateUpdateDialogBaseProps{
+  pageId: string;
+}
 
 export interface FKBaseInterface {
   id?: string;

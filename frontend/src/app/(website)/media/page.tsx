@@ -24,7 +24,9 @@ export default async function Media() {
             />
           </div>
           <div className="w-1/2 m-auto px-4">
-            <h2 className="font-extrabold text-5xl leading-[56px] m-0 mb-2">Media</h2>
+            <h2 className="font-extrabold text-5xl leading-[56px] m-0 mb-2">
+              Media
+            </h2>
             <h3 className="text-2xl m-0 mb-2 font-medium ">
               Press Releases, announcements, interviews & comments. For
               press-related questions, e-mails.
@@ -57,12 +59,17 @@ export default async function Media() {
                   className="mb-4 w-full"
                 />
                 <div className="h-20">
-                <Link href={PressRealeseCard.link} className="font-bold text-black text-lg m-0  ">
-                  {PressRealeseCard.title}
-                </Link>
+                  <Link
+                    href={PressRealeseCard.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-bold text-black text-lg m-0  "
+                  >
+                    {PressRealeseCard.title}
+                  </Link>
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       </section>
