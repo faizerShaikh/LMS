@@ -1,13 +1,9 @@
 
 import { IsBoolean, IsEnum, IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
-import { type } from './type.enum';
-import { BelongsTo } from 'sequelize-typescript';
-import { CourseSpecialization } from '../../course-specialization/model';
-import { GlobalPartner } from '../../globalPartner/global-partner.model';
-import { Contacts } from '../../cotacDetails/contact.model';
 
 export class MetaDataDto {
-  
+  id:string
+
   @IsOptional()
   @IsString()
   keywords: string;
@@ -73,45 +69,4 @@ export class MetaDataDto {
   @IsString()
   slug: string;
 
-  @IsOptional()
-  @IsString()
-  event_id:string
-
-  
-  @IsString()
-  @IsOptional()
-  faqID:string
-
-  
-  @IsString()
-  @IsOptional()
-  blogID:string
-
-  @IsString()
-  @IsOptional()
-  courseSplID:CourseSpecialization
-
-  @IsString()
-  @IsOptional()
-  pageID:string
-
-  @IsString()
-  @IsOptional()
-  pressID:string
-
-  @IsString()
-  @IsOptional()
-  universityID:string
-
-  @IsString()
-  @IsOptional()
-  courseID:string
-
-  @IsString()
-  @IsOptional()
-  globaPartnerID:GlobalPartner
-
-  @IsString()
-  @IsOptional()
-  contactID:Contacts
 }

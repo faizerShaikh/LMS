@@ -165,6 +165,7 @@ export class CourseSpecialization extends MyBaseModel {
   })
   certificate_provided: boolean;
 
+  @Default('media/default.png')
   @Column({
     type: DataType.STRING,
   })

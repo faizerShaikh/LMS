@@ -23,7 +23,10 @@ export class Faq extends Model{
     @Column
     isFeatured:Boolean
 
-    @HasMany(()=>FaqTopic) 
+    @HasMany(()=>FaqTopic,
+    {onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,}) 
     faqTopic:FaqTopic[]
 
 }

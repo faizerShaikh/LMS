@@ -47,22 +47,49 @@ export class GalleryService extends GenericService<
     }
   }
 
+  
 
-
+  async newGallery(data: any, files: Express.Multer.File): Promise<any> {
+    const pageIds = data.data.map(item => item.pageId);
+    await this.Gallery.destroy({ where: { pageId: pageIds } });
+    const dataToCreate = []; 
+    console.log(data.data.entries())
+    for (const [index, value] of data.data.entries()) {
+      const { id, ...rest } = value;
+      if (files[index]) {
+        dataToCreate.push({
+          ...rest,
+          coverImage: 'media/gallery/' + files[index].filename
+        });
+      } else {
+        dataToCreate.push({ ...rest });
+      }
+    }
+    if (dataToCreate.length > 0) {
+      console.log('bulk create data:', dataToCreate);
+      await this.Gallery.bulkCreate(dataToCreate);
+      console.log('data:', dataToCreate);
+    }
+    return dataToCreate;
+  }
+  
   async createBulk(data: any, files: Express.Multer.File, id: string): Promise<any> {
     try {
       let dataToCreate = [];
       let dataToUpdate = [];
+      let idsToDelete=[]
       console.log(data)
       for (const [index, value] of Object.entries(data.data) as any) {
         if (value.id != 'undefined') {
+          idsToDelete.push(value.id);
+          const {id,...rest}=value
           if (files[index]) {
             dataToUpdate.push({
-              ...value,
+              ...rest,
               coverImage: 'media/gallery/' + files[index].filename
             });
           } else {
-            dataToUpdate.push({ ...value });
+            dataToUpdate.push({ ...rest });
           }
         } else {
           if (files[index]) {
@@ -78,17 +105,19 @@ export class GalleryService extends GenericService<
           }
         }
       }
-  
-      // Perform bulk updates
-      if (dataToUpdate.length > 0) {
-        console.log('Bulk update data:', dataToUpdate); // Log the data to be updated
-        const updatedData= await this.Gallery.bulkCreate(dataToUpdate, { updateOnDuplicate: ["name","description","orderBy","coverImage"] });
-        console.log('updated data===============>',updatedData)
+      if (idsToDelete.length > 0) {
+        console.log('idsToDelte===============================>',idsToDelete)
+        await this.Gallery.destroy({ where: { id: idsToDelete } });
       }
-  
-      // Perform bulk inserts
+      if (dataToUpdate.length > 0) {
+        dataToCreate.push(...dataToUpdate)
+      }
       if (dataToCreate.length > 0) {
+
+        console.log('bulk create data :',dataToCreate)
         await this.Gallery.bulkCreate(dataToCreate);
+        console.log('data========================================>',dataToCreate)
+        
         return dataToCreate
       }
   

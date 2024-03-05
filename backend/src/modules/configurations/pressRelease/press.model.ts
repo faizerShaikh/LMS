@@ -23,6 +23,7 @@ export class Press extends MyBaseModel {
   @Column
   link: string;
 
+  @Default('media/default.png')
   @Column
   coverImage: string;
 

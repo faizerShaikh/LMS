@@ -1,4 +1,4 @@
-import { Column, DataType,  Table,ForeignKey,BelongsTo, Model,  } from "sequelize-typescript";
+import { Column, DataType,  Table,ForeignKey,BelongsTo, Model, Default,  } from "sequelize-typescript";
 import { MyBaseModel } from "src/core/base.model";
 import { User } from "src/modules/user/users/models/user.model";
 @Table({
@@ -38,6 +38,7 @@ export class Events extends MyBaseModel{
         },})
     description:string
 
+    @Default('media/default.png')
     @Column(DataType.STRING)
     eventImage:string
 

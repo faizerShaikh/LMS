@@ -11,10 +11,10 @@ export class faqTopicController extends GenericController<FaqTopic,FaqTopicDto,U
     updateObjDTO:UpdateFaqTopic
 }){
     constructor(private readonly faqTopicService:faqTopicService){super(faqTopicService)}
-    @Put('/bulkcreate')
+    @Post('/bulkcreate')
     async bulkCreate(@Body() data: any[]) {
       try {
-        const result = await this.faqTopicService.bulkcreate(data);
+        const result = await this.faqTopicService.bulkCreate(data);
         return { success: true, result };
       } catch (error) {
         console.error('Error in bulk create:', error);

@@ -1,5 +1,5 @@
 
-import { Table, Column, DataType ,HasMany,Model} from 'sequelize-typescript';
+import { Table, Column, DataType ,HasMany,Model, Default} from 'sequelize-typescript';
 import { CourseSpecialization } from '../../course-specialization/model';
 import { MyBaseModel } from 'src/core/base.model';
 import { type } from '../../metaData/dto/type.enum';
@@ -31,6 +31,7 @@ export class Course extends MyBaseModel {
   })
   description: string;
 
+  @Default('media/default.png')
   @Column({
     type: DataType.STRING,
   })

@@ -35,17 +35,8 @@ export class GalleryController extends GenericController<gallery,GalleryDto,Upda
     type: MulterEnum.any,
     path: '/media/gallery/'
 }))
-async createBulk(@Body() data: any[], @UploadedFiles() files: Express.Multer.File,@Param() id) {
-    try {
-        const result = await this.GalleryService.createBulk(data, files,id);
-        if (result.success) {
-            return { success: true, message: 'Bulk insert successful', data: result.data };
-        } else {
-            return { success: false, message: 'Bulk insert failed', error: result.error };
-        }
-    } catch (error) {
-        return { success: false, message: 'Internal server error', error: error.message };
-    }
+async newGallery(@Body() data: any[], @UploadedFiles() files: Express.Multer.File,@Param() id) {
+    const result = await this.GalleryService.newGallery(data, files);
 }
     @Put('bulk-update')
     async bulkUpdate(@Body() data: any[]) {

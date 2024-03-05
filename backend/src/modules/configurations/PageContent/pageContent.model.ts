@@ -1,6 +1,7 @@
 import {
   Column,
   DataType,
+  Default,
   HasMany,
   Table,
 } from 'sequelize-typescript';
@@ -27,6 +28,7 @@ export class PageContent extends MyBaseModel {
   })
   name: string;
 
+  @Default('media/default.png')
   @Column
   coverImage: string;
 

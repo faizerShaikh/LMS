@@ -1,4 +1,5 @@
 import {
+  AfterBulkCreate,
   AfterCreate,
   AfterUpdate,
   BelongsTo,
@@ -53,6 +54,37 @@ export class MyBaseModel extends Model {
       await MetaData.update({ type: baseModel.type },{where:{id:baseModel.metaID}});
     } catch (error) {
       console.error('Error creating MetaData:', error);
+      throw error;
+    }
+  }
+  
+
+  private static async createOrUpdateMetaData(baseModel: MyBaseModel): Promise<void> {
+    try {
+      const metaData = await MetaData.findOne({ where: { id: baseModel.metaID } });
+
+      if (!metaData) {
+        await MetaData.create({ type: baseModel.type }).then((createdMetaData) => {
+          baseModel.metaID = createdMetaData.id;
+          return baseModel.save();
+        });
+      } else {
+        await MetaData.update({ type: baseModel.type }, { where: { id: baseModel.metaID } });
+      }
+    } catch (error) {
+      console.error('Error creating/updating MetaData:', error);
+      throw error;
+    }
+  }
+
+  @AfterBulkCreate
+  static async bulkCreateMetaData(baseModels: MyBaseModel[]): Promise<void> {
+    try {
+      for (const baseModel of baseModels) {
+        await this.createOrUpdateMetaData(baseModel);
+      }
+    } catch (error) {
+      console.error('Error creating MetaData in bulk:', error);
       throw error;
     }
   }

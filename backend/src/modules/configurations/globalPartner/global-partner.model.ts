@@ -14,6 +14,7 @@ export class GlobalPartner extends MyBaseModel{
     @Column
     name:string
 
+    @Default('/media/default.png')
     @Column
     coverImage:string
     

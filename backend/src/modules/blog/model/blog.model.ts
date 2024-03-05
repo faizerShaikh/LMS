@@ -1,7 +1,7 @@
 
 import { User } from 'src/modules/user/users/models/user.model';
 import { BlogCategory } from '../modules/blog-category/model';
-import { BelongsTo, Column, DataType, ForeignKey, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, Default, ForeignKey, Table } from 'sequelize-typescript';
 import { MyBaseModel } from 'src/core/base.model';
 import { type } from 'src/modules/configurations/metaData/dto/type.enum';
 
@@ -40,6 +40,7 @@ export class Blog extends MyBaseModel {
   })
   description: string;
 
+  @Default('media/default.png')
   @Column({
     type: DataType.STRING,
   })
