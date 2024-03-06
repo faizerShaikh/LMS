@@ -5,6 +5,7 @@ import { theme } from "configs";
 import { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from 'react-query'
+import "react-quill/dist/quill.snow.css";
 
 export default function Providers({ children }: { children: ReactNode }) {
   const queryClient = new QueryClient();

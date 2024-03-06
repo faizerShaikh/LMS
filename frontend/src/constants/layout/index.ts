@@ -19,5 +19,6 @@ export const menuItems: menuType[] = [
   { icon: "Events", title: "Media", path: "/admin/media" },
   { icon: "Events", title: "Enquiries", path: "/admin/enquiries" },
   { icon: "Events", title: "FAQ's", path: "/admin/faq" },
-
+{icon: "Events", title: "Blog's", path: "/admin/blog"},
+{icon: "Events", title: "Blog's Catagories", path: "/admin/blog-catagories"}
 ];

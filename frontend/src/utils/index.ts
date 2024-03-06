@@ -8,3 +8,4 @@ export * from "./searchData";
 export * from "./getImage";
 export * from "./getRandomNumber";
 export * from "./redirectUser";
+export * from './removeTags'

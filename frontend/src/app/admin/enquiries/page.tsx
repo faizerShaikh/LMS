@@ -42,11 +42,18 @@ const columns = [
     cellClassName: "text-dark",
   },
   {
+    headerName: "Note",
+    field: "note",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
+  {
     headerName: "Source",
     field: "from",
     flex: 1,
     cellClassName: "text-dark",
   },
+  
   {
     headerName: "Action",
     field: "action",

@@ -22,6 +22,7 @@ const initialValues: EnquiriesPageInterface = {
     type: "",
     status: "",
     from: "",
+    note: "",
 };
 const validationSchema = Yup.object({
   name: Yup.string().required("Required"),
@@ -94,6 +95,10 @@ export const EnquiryDialog = ({
                 <Box className="mt-4">
                   <Label text="Status" required/>
                   <Input name="status" />
+                </Box>
+                <Box className="mt-4">
+                  <Label text="Note" />
+                  <Input name="note" />
                 </Box>
               </Grid>
               <Grid xs={12} item>

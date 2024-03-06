@@ -9,18 +9,15 @@ export default async function Blogs() {
   let BlogCardData: any = [];
   const BlogCardresponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/not-featured`);
   BlogCardData = BlogCardresponse.data.data;
-  // console.log(BlogCardData)
-  // console.log(`${process.env.BASE_API_URL}/blog/not-featured`)
+  
 
   let BlogCatagoriData = [];
   const BlogCatagoriResponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/blog-category`);
   BlogCatagoriData = BlogCatagoriResponse.data.data.rows;
-  // console.log(BlogCatagoriData)
 
   let FeaturedBlogData: any = [];
   const FeaturedBlogResponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/featured`);
   FeaturedBlogData = FeaturedBlogResponse.data.data;
-  // console.log(FeaturedBlogData);
 
   return (
     <>
@@ -38,7 +35,6 @@ export default async function Blogs() {
 
         {FeaturedBlogData.map((item : any, index: any) => (
             <BlogCard
-            // extraClasses="mr-6"
               variant="primary"
               key={item.id}
               extraClasses={index === 0?'row-span-2 col-span-2':'col-span-1 row-span-1'}

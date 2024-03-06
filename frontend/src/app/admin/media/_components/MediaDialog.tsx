@@ -1,4 +1,4 @@
-import { CreateUpdateDialogBaseProps, UniversityInterface } from "interfaces";
+import { CreateUpdateDialogBaseProps} from "interfaces";
 import {
   Button,
   Checkbox,
@@ -7,20 +7,15 @@ import {
   Input,
   Label,
 } from "../../../../components";
-import { Form, Formik, useFormik, useFormikContext } from "formik";
+import { Form, Formik} from "formik";
 import { useCreateOrUpdate } from "hooks";
 import { Box, Grid, IconButton } from "@mui/material";
-import { MetaDataForm } from "../../../../components/admin";
-import { MetaDataInitial } from "initials";
-import { Add, Earth, Edit } from "@carbon/icons-react";
+import { Add, Edit } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
 import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
 import * as Yup from "yup";
-import { MetaDatavalidateSchema } from "initials";
-import Dropzone from "react-dropzone";
 import { useState } from "react";
-import axios from "axios";
 import { API } from "configs";
 
 const initialValues: MediaPressReleaseInterface = {
