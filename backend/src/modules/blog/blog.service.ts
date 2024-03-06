@@ -7,7 +7,7 @@ import { unlink } from 'fs';
 import { join } from 'path';
 import { User } from '../user/users/models/user.model';
 import { MetaData } from '../configurations/metaData/meta.model';
-
+import * as fs from 'fs'
 @Injectable()
 export class BlogService extends GenericService<
   Blog,
@@ -26,27 +26,41 @@ export class BlogService extends GenericService<
   }
 
   async updateBlogImage(file: Express.Multer.File, id: string) {
-    const blog = await this.getOne<Blog>(id);
     try {
-      if (blog.blog_image) {
-        unlink(
-          join(__dirname, '../../../../', 'backend/src/public/' + blog.blog_image),
-          (err) => {
-            if (err) {
-              throw new InternalServerErrorException(err);
-            }
-            console.log('file deleted...');
-          },
-        );
+      const blog = await this.getOne<Blog>(id);
+      if (!blog) {
+        throw new InternalServerErrorException("Blog not found");
       }
-      await blog.update({
-        blog_image: '/media/blog/'+file.filename,
-      });
-      return 'Blog Image Uploaded Successfully';
+  
+      const defaultImagePath = 'backend/src/public/media/default.png'; 
+      const filePath = join(__dirname, '../../../../', 'backend/src/public/' + blog.blog_image);
+      
+      if (file && file.filename) {
+        const newImagePath = '/media/blog/' + file.filename;
+  
+        if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
+          unlink(filePath, (err) => {
+            if (err) {
+              console.error("Error deleting old image:", err);
+            } else {
+              console.log('Old image deleted...');
+            }
+          });
+        }
+  
+        await blog.update({
+          blog_image: newImagePath,
+        });
+  
+        return 'Blog Image Uploaded Successfully';
+      } else {
+        return 'No file provided to update';
+      }
     } catch (error) {
       throw new InternalServerErrorException(error.message);
     }
   }
+
   async findFeaturedBlogs(): Promise<Blog[]> {
     return this.blog.findAll({include:[User],
       where: { is_featured: true },

@@ -26,35 +26,39 @@ export class UniversityService extends GenericService<
   }
 
   async updateUniversityImage(file: Express.Multer.File, id: string) {
-    const university = await this.getOne<University>(id);
-    const filePath=join(
-      __dirname,
-      '../../../../',
-      'src/public' + university.university_image,
-    )
-    if (fs.existsSync(filePath)) {
-      unlink(
-        filePath,
-        (err) => {
-          if (err) {
-            throw new InternalServerErrorException(err);
-          }
-          console.log('file deleted...');
-        }
-      );
-      await university.update({
-        university_image: '/media/university/'+file.filename
-      });
-      return 'University Image Uploaded Successfully';
-    }
-    else{
-
+    try {
+      const university = await this.getOne<University>(id);
+      if (!university) {
+        throw new InternalServerErrorException("Blog not found");
+      }
+  
+      const defaultImagePath = 'backend/src/public/media/default.png'; 
+      const filePath = join(__dirname, '../../../../', 'backend/src/public/' + university.university_image);
       
-      await university.update({
-        university_image: '/media/university/'+file.filename
-      });
-      return 'University Image Uploaded Successfully';
+      if (file && file.filename) {
+        const newImagePath = '/media/pressRelease/' + file.filename;
+  
+        if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
+          unlink(filePath, (err) => {
+            if (err) {
+              console.error("Error deleting old image:", err);
+            } else {
+              console.log('Old image deleted...');
+            }
+          });
+        }
+  
+        await university.update({
+          university_image : newImagePath,
+        });
+  
+        return 'University Image Uploaded Successfully';
+      } else {
+        return 'No file provided for Image Update';
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
     }
-    }
+  }
 
 }

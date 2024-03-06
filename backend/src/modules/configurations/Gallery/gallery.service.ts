@@ -20,33 +20,40 @@ export class GalleryService extends GenericService<
   }
 
   async UpdateGalleryImage(file: Express.Multer.File, id: string) {
-    const gallery = await this.getOne<gallery>(id);
-    const filepath = join(__dirname, '../../../../', '/src/public/' + gallery.coverImage)
-    if (fs.existsSync(filepath)) { 
-      unlink(
-        filepath,
-        (err) => {
-          if (err) { 
-            throw new InternalServerErrorException(err);
-          }
-          console.log('file deleted');
-        },
-      );
-      await gallery.update({
-        coverImage: 'media/gallery/' + file.filename,
-      });
+    try {
+      const gallery = await this.getOne<gallery>(id);
+      if (!gallery) {
+        throw new InternalServerErrorException("Blog not found");
+      }
+  
+      const defaultImagePath = 'backend/src/public/media/default.png'; 
+      const filePath = join(__dirname, '../../../../', 'backend/src/public/' + gallery.coverImage);
       
-      return 'Gallery Image Uploaded Successfully';
-    }else{
-
-      await gallery.update({
-        coverImage: 'media/gallery/' + file.filename,
-      });
-      
-      return 'Gallery Image Uploaded Successfully';
+      if (file && file.filename) {
+        const newImagePath = '/media/pressRelease/' + file.filename;
+  
+        if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
+          unlink(filePath, (err) => {
+            if (err) {
+              console.error("Error deleting old image:", err);
+            } else {
+              console.log('Old image deleted...');
+            }
+          });
+        }
+  
+        await gallery.update({
+          coverImage: newImagePath,
+        });
+  
+        return 'gallery Image Uploaded Successfully';
+      } else {
+        return 'No file provided for Image Update';
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
     }
   }
-
   
 
   async newGallery(data: any, files: Express.Multer.File): Promise<any> {

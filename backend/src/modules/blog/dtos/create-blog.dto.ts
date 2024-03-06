@@ -1,4 +1,5 @@
 import { IsBoolean, IsNotEmpty, IsObject, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { User } from 'src/modules/user/users/models/user.model';
 
 export class CreateBlogDTO {
   @IsString()
@@ -10,11 +11,7 @@ export class CreateBlogDTO {
   description: string;
 
   @IsString()
-  @IsNotEmpty()
-  created_by_id: string;
-
-  @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   blog_category_id: string;
 
   @IsBoolean()

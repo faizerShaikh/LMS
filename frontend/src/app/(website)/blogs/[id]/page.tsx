@@ -10,7 +10,7 @@ export default async function SingleBlog({
   params: { id: string };
 }) {
   let data: SingleBlogInterface;
-  let url = `${process.env.BASE_API_URL}/blog/${params.id}/`;
+  let url = `${process.env.BASE_API_URL}/configurations/blog/${params.id}/`;
   const response = await axios.get(url);
   data = response.data.data;
   console.log(data, "<-=============================datatatatatat")
@@ -44,7 +44,7 @@ export default async function SingleBlog({
                 alt="Author"
                 className="bg-blue-500 rounded-full"
               />
-              <p className="pr-8">{data.created_by.name}</p>
+              <p className="pr-8">asdfghjk</p>
               <p className="pr-8">
                 {moment(data.createdAt).format("MMMM DD, YYYY")}
               </p>

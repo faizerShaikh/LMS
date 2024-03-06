@@ -5,7 +5,7 @@ import { Press } from "./press.model";
 import { join } from "path";
 import { unlink } from "fs";
 import { MetaData } from "../metaData/meta.model";
-
+import * as fs from 'fs'
 @Injectable()
 export class PressService extends GenericService({
     defaultFindOptions:{
@@ -17,22 +17,40 @@ export class PressService extends GenericService({
         private reqParams : RequestParamsService ,
     ){super(press,reqParams)}
 
-    async updateCoverIamge(file:Express.Multer.File,id:string){
-        const press= await this.getOne<Press>(id)
-        if(press.coverImage){
-            unlink(join(__dirname,'../../../../','/src/public'+press.coverImage),
-            (err)=>{
-                if(err){
-                    throw new InternalServerErrorException(err)
+    async updateCoverImage(file: Express.Multer.File, id: string) {
+        try {
+          const press = await this.getOne<Press>(id);
+          if (!press) {
+            throw new InternalServerErrorException("Blog not found");
+          }
+      
+          const defaultImagePath = 'backend/src/public/media/default.png'; 
+          const filePath = join(__dirname, '../../../../', 'backend/src/public/' + press.coverImage);
+          
+          if (file && file.filename) {
+            const newImagePath = '/media/pressRelease/' + file.filename;
+      
+            if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
+              unlink(filePath, (err) => {
+                if (err) {
+                  console.error("Error deleting old image:", err);
+                } else {
+                  console.log('Old image deleted...');
                 }
-                console.log('file deleted...')
+              });
             }
-            )
+      
+            await press.update({
+              coverImage: newImagePath,
+            });
+      
+            return 'Press Image Uploaded Successfully';
+          } else {
+            return 'No file provided for Image Update';
+          }
+        } catch (error) {
+          throw new InternalServerErrorException(error.message);
         }
-        await press.update({
-            coverImage:'/media/pressRelease/'+file.filename
-        })
-        return 'Cover Image for pressRelease is Uploaded'
-    }
+      }
 
 }

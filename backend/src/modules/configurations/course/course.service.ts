@@ -7,7 +7,7 @@ import { unlink } from 'fs';
 import { join } from 'path';
 import { MetaData } from '../metaData/meta.model';
 import { type } from '../metaData/dto/type.enum';
-
+import * as fs from 'fs'
 @Injectable()
 export class CourseService extends GenericService<
   Course,
@@ -28,10 +28,12 @@ export class CourseService extends GenericService<
 
   async updateCourseImage(file: Express.Multer.File, id: string) {
     const course = await this.getOne<Course>(id);
+    const defaultImagePath='backend/src/public/media/default.png'; 
+    const filePath= join(__dirname, '../../../../', '/src/public/' + course.course_image)
 
-    if (course.course_image) {
+    if (fs.existsSync(filePath)) {
       unlink(
-        join(__dirname, '../../../../', '/src/public/' + course.course_image),
+        filePath,
         (err) => {
           if (err) {
             throw new InternalServerErrorException(err);

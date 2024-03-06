@@ -29,6 +29,9 @@ export class PageContentService extends GenericService<PageContent,CreatePageDto
     async updatePageImage(file:Express.Multer.File,id:string ){
         const page= await this.getOne<PageContent>(id)
         const filepath=join(__dirname,'../../../../','/src/public/'+page.coverImage)
+        const defaultImagePath=join(__dirname,'../../../../','/src/public/media/default.png'); 
+
+        if(filepath!=defaultImagePath)
         if(fs.existsSync(filepath)){
             unlink(filepath,
             (err)=>{

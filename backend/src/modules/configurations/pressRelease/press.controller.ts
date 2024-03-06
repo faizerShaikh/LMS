@@ -33,7 +33,7 @@ export class PressController extends GenericController<
 
     console.log(file);
     
-    return this.pressService.updateCoverIamge(file,id)
+    return this.pressService.updateCoverImage(file,id)
   }
 
 

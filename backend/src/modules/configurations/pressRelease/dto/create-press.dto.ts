@@ -16,5 +16,5 @@ export class PressDTO {
 
     @IsBoolean()
     @IsNotEmpty()
-    isFeatured: string;
+    isFeatured: boolean;
 }

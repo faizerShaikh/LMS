@@ -19,8 +19,7 @@ import { type } from '../metaData/dto/type.enum';
 export class PageContent extends MyBaseModel { 
   override type= type.PAGE_CONTENT;
 
-  @Column({
-  })
+  @Column
   orderBy:number
   
   @Column({

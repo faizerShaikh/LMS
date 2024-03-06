@@ -29,5 +29,5 @@ export class Press extends MyBaseModel {
 
   @Default(false)
   @Column
-  isFeatured: string;
+  isFeatured: boolean;
 }

@@ -13,7 +13,7 @@ import { ProgramStructure } from './model/program-structure.model';
 import { Course } from '../course/model';
 import { University } from '../university/model';
 import { MetaData } from '../metaData/meta.model';
-
+import * as fs from 'fs'
 @Injectable()
 export class CourseSpecializationService extends GenericService<
   CourseSpecialization,
@@ -62,14 +62,16 @@ export class CourseSpecializationService extends GenericService<
   }
   async updateCourseSpecializationImage(file: Express.Multer.File, id: string) {
     const courseSpecialization = await this.getOne<CourseSpecialization>(id);
-
-    if (courseSpecialization.cover_image) {
-      unlink(
-        join(
-          __dirname,
-          '../../../../',
-          'src/public/media' + courseSpecialization.cover_image,
-        ),
+    const defaultImagePath='backend/src/public/media/default.png'; 
+    const filePath= join(
+      __dirname,
+      '../../../../',
+      'src/public/media' + courseSpecialization.cover_image,
+    )
+    if(!defaultImagePath)
+    if (fs.existsSync(filePath)) {
+      unlink(filePath
+        ,
         (err) => {
           if (err) {
             throw new InternalServerErrorException(err);

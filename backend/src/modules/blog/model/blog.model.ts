@@ -40,7 +40,7 @@ export class Blog extends MyBaseModel {
   })
   description: string;
 
-  @Default('media/default.png')
+  @Default('/media/default.png')
   @Column({
     type: DataType.STRING,
   })
@@ -51,19 +51,10 @@ export class Blog extends MyBaseModel {
     })
   is_featured: boolean;
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Created By can not be empty',
-      },
-      notEmpty: {
-        msg: 'Created By can not be empty',
-      },
-    },
-  })
+
+  @Default('c28512ff-aa8a-4ff3-ada8-fce8f8164f83')
   @ForeignKey(() => User)
+  @Column
   created_by_id: string;
 
   @BelongsTo(() => User)

@@ -1,51 +1,64 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
-import { GenericService, RequestParamsService } from "src/core/modules";
-import { Events } from "./event.model";
-import { InjectModel } from "@nestjs/sequelize";
-import { unlink } from "fs";
-import { join } from "path";
-import { CreateEventDTO, UpdateEventDTO } from "./dtos";
-import { User } from "src/modules/user/users/models/user.model";
-import { MetaData } from "../metaData/meta.model";
-import { type } from "../metaData/dto/type.enum";
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { GenericService, RequestParamsService } from 'src/core/modules';
+import { Events } from './event.model';
+import { InjectModel } from '@nestjs/sequelize';
+import { unlink } from 'fs';
+import { join } from 'path';
+import { CreateEventDTO, UpdateEventDTO } from './dtos';
+import { MetaData } from '../metaData/meta.model';
+import * as fs from 'fs'
 @Injectable()
-export class eventService extends GenericService<Events,CreateEventDTO,UpdateEventDTO>({
+export class eventService extends GenericService<
+  Events,
+  CreateEventDTO,
+  UpdateEventDTO
+>({
+  defaultFindOptions: {
+    include: [MetaData],
+  },
+}) {
+  constructor(
+    @InjectModel(Events) private event: typeof Events,
+    private reqParams: RequestParamsService,
+    @InjectModel(MetaData)
+    private metaData: typeof MetaData,
+  ) {
+    super(event, reqParams);
+  }
 
-    defaultFindOptions:{
-        include:[MetaData]
-    }
-}){
-    constructor(
-      @InjectModel (Events) private event : typeof Events,
-      private reqParams:RequestParamsService,
-      @InjectModel(MetaData)
-      private metaData: typeof MetaData
-    ){
-        super(event,reqParams)
-    }
-
-    async updateEventImage(file: Express.Multer.File, id:string){
-        const event= await this.getOne<Events>(id)
-
-        if(event.eventImage){
-            unlink(
-                join(
-                    __dirname,
-                    '../../../../', '/src/public/'+event.eventImage
-                ),
-                (err)=>{
-                    if(err){
-                        throw new InternalServerErrorException(err)
-                    }
-                    console.log('file deleted...')
-                },
-            )
+  async updateEventImage(file: Express.Multer.File, id: string) {
+    try {
+      const Events = await this.getOne<Events>(id);
+      if (!Events) {
+        throw new InternalServerErrorException("Blog not found");
+      }
+  
+      const defaultImagePath = 'backend/src/public/media/default.png'; 
+      const filePath = join(__dirname, '../../../../', 'backend/src/public/' + Events.eventImage);
+      
+      if (file && file.filename) {
+        const newImagePath = '/media/pressRelease/' + file.filename;
+  
+        if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
+          unlink(filePath, (err) => {
+            if (err) {
+              console.error("Error deleting old image:", err);
+            } else {
+              console.log('Old image deleted...');
+            }
+          });
         }
-
-        await event.update({
-            eventImage:'/media/event/'+file.filename
-        })
-        return 'Event Iamge Uploaded Successfully'
+  
+        await Events.update({
+          eventImage: newImagePath,
+        });
+  
+        return 'Events Image Uploaded Successfully';
+      } else {
+        return 'No file provided for Image Update';
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
     }
-
+  }
 }
