@@ -1,36 +1,35 @@
-// "use client";
-
 import axios from "axios";
 import { FAQ } from "components/layout/faq/faq";
 import moment from "moment";
 import Image from "next/image";
-// import { useState } from "react";
 
 export default async function Home() {
-  // const [accordionOpen, setAccordionOpen] = useState(false);
-
   let FAQData = [];
   const response = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/faq-topics`
+    `${process.env.BASE_API_URL}/configurations/faq`
   );
   FAQData = response.data.data.rows;
-  const middleIndex = Math.ceil(FAQData.length/ 2);
-  const firstHalf = FAQData.slice(0, middleIndex);
-  const secondHalf = FAQData.slice(middleIndex );
+  console.log(FAQData)
 
-  console.log(FAQData, "<============================");
+  // let FAQData = [];
+  // const response = await axios.get(
+  //   `${process.env.BASE_API_URL}/configurations/faq-topics`
+  // );
+  // FAQData = response.data.data.rows;
+  // const middleIndex = Math.ceil(FAQData.faqTopic.length / 2);
+  // const firstHalf = FAQData.faqTopic.slice(0, middleIndex);
+  // const secondHalf = FAQData.faqTopic.slice(middleIndex);
 
   let events = [];
   const res = await axios.get(
     `${process.env.BASE_API_URL}/configurations/event`
   );
   events = res.data.data.rows;
-  // const firstThreeEvents = events.slice(0, 3);
 
   return (
     <>
       <section className=" bg-gray-100 h-[400px]">
-        <div className="flex justify-between container ">
+        <div className="flex justify-between items-center gap-10 container ">
           <div className=" ">
             <Image
               width={500}
@@ -57,22 +56,32 @@ export default async function Home() {
         <div className="container ">
           <div>
             <h2 className="font-bold text-3xl m-0 mb-4">FAQ's</h2>
-            <h2 className="font-semibold  m-0  mb-4 text-2xl">
-              Why Indian Universities ?
-            </h2>
           </div>
-          <div className="flex gap-2">
-            <div className="w-1/2">
-              {firstHalf.map((item: any) => (
-                <FAQ specialization={item} />
-              ))}
-            </div>
+          <div>
+            {FAQData.map((item: any) => {
+              
+              const middleIndex = Math.ceil(item.faqTopic.length / 2);
+              const firstHalf = item.faqTopic.slice(0, middleIndex);
+              const secondHalf = item.faqTopic.slice(middleIndex);
+              return <>
+                <h2 className="font-semibold  m-0  mb-4 text-2xl">
+                  {item.question}
+                </h2>
+                <div className="flex gap-2">
+                  <div className="w-1/2">
+                    {firstHalf.map((item: any) => (
+                      <FAQ specialization={item} />
+                    ))}
+                      </div>
+                      <div className="w-1/2">
 
-            <div  className="w-1/2">
-              {secondHalf.map((item: any) => (
-                <FAQ specialization={item} />
-              ))}
-            </div>
+                    {secondHalf.map((item: any) => (
+                      <FAQ specialization={item} />
+                    ))}
+                    </div>
+                </div>
+              </>
+})}
           </div>
         </div>
       </section>
