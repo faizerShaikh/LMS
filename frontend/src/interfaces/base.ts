@@ -18,8 +18,15 @@ export type BaseProps<T, U extends {} = {}> = NextComponentType<
 
 export interface CreateUpdateDialogBaseProps {
   isUpdate?: boolean;
-  isStandard?: boolean;
   data?: any;
+  refetchURL?: string
+}
+export interface faqFormProps extends CreateUpdateDialogBaseProps{
+  faqId: string;
+}
+
+export interface GalleryFormProps extends CreateUpdateDialogBaseProps{
+  pageId: string;
 }
 
 export interface FKBaseInterface {
@@ -30,5 +37,25 @@ export interface FKBaseInterface {
 
 export interface ActionInterface {
   payload: any;
+  type: string;
+}
+
+
+export interface MetaDataInterface {
+  slug: string;
+  keywords: string;
+  title: string;
+  description: string;
+  subject: string;
+  copyright: string;
+  summary: string;
+  classification: string;
+  author: string;
+  owner: string;
+  url: string;
+  pageName: string;
+  category: string;
+  subtitle: string;
+  replyTo: string;
   type: string;
 }

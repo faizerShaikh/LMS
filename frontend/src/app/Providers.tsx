@@ -1,22 +1,27 @@
-"use client";
-
+// "use client";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { theme } from "configs";
-import { ReactNode, useState } from "react";
-import {Footer, Navbar} from 'components'
+import { ReactNode } from "react";
+import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 export default function Providers({ children }: { children: ReactNode }) {
-  const [queryClient] = useState(() => new QueryClient());
-
+  const queryClient = new QueryClient();
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient} contextSharing={true}>
           {children}
         </QueryClientProvider>
+        <Toaster
+              position='bottom-center'
+              reverseOrder={false}
+              toastOptions={{
+                duration: 3000,
+              }}
+            />
       </ThemeProvider>
     </StyledEngineProvider>
   );

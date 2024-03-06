@@ -1,0 +1,37 @@
+import * as Yup from "yup";
+export const MetaDataInitial = {
+    slug: '',
+    keywords: '',
+    title: '',
+    description: '',
+    subject: '',
+    copyright: '',
+    summary: '',
+    classification: '',
+    author: '',
+    owner: '',
+    url: '',
+    pageName: '',
+    category: '',
+    subtitle: '',
+    replyTo: '',
+    type: '',
+}
+
+export const MetaDatavalidateSchema = Yup.object({
+    // slug: Yup.string().required("Required"),
+    keywords: Yup.string().required("Required"),
+    title: Yup.string().required("Required"),
+    description: Yup.string().required("Required"),
+    // subject: Yup.string().required("Required"),
+    // copyright: Yup.string().required("Required"),
+    // summary: Yup.string().required("Required"),
+    // classification: Yup.string().required("Required"),
+    // author: Yup.string().required("Required"),
+    // owner: Yup.string().required("Required"),
+    // url: Yup.string().required("Required"),
+    // pageName: Yup.string().required("Required"),
+    // category: Yup.string().required("Required"),
+    // subtitle: Yup.string().required("Required"),
+    // replyTo: Yup.string().required("Required"),
+})

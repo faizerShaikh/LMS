@@ -1,25 +1,79 @@
-'use client';
-
-import { DataGrid, PageHeader } from "components/layout";
+"use client";
+import { DataGrid, DeleteBox, PageHeader } from "components/layout";
+import { useGetAll } from "hooks";
+import { UniversityInterface } from "interfaces";
+import { UniversityDialog } from "./_components/UniversityDialog";
+import { MetaDataForm } from "components/admin";
 
 const columns = [
-    {
-      headerName: "Name",
-      field: "Name",
-      flex: 1,
-      cellClassName: "text-dark",
+  {
+    headerName: "Name",
+    field: "name",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
+  {
+    headerName: "Short Name",
+    field: "short_name",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
+  {
+    headerName: "Description",
+    field: "description",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
+  {
+    headerName: "No of Courses",
+    field: "no_of_courses",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
+  {
+    headerName: "Action",
+    field: "action",
+    flex: 1,
+    cellClassName: "text-dark",
+    renderCell: (params: { row: UniversityInterface }) => {
+      return (
+        <>
+          <UniversityDialog isUpdate={true} data={params.row} 
+          refetchURL="/configurations/university"/>
+          <DeleteBox
+            title={`Item`}
+            url={`/configurations/university`}
+            data={params.row.id}
+            refetchUrl="/configurations/university"
+          />
+          <MetaDataForm
+            isUpdate={true}
+            data={
+              params.row.metaData
+                ? params.row.metaData
+                : { id: params.row.metaID }
+          
+            }
+            refetchURL = "/configurations/university"
+          />
+        </>
+      );
     },
-    {
-      headerName: "Location",
-      field: "location",
-      flex: 1,
-      cellClassName: "text-dark",
-    },
-]
+  },
+];
 
-export default function University(){
-    return <>
-        <PageHeader title="Univerities"/>
-        <DataGrid columns={columns} rows={[]}/>
+export default function University() {
+  const { data } = useGetAll({
+    key: "/configurations/university",
+  });
+  return (
+    <>
+      <PageHeader title="Univerities" />
+      <DataGrid
+        addButton={<UniversityDialog />}
+        columns={columns}
+        rows={data}
+      />
     </>
-} 
+  );
+}

@@ -9,6 +9,7 @@ interface useCreateOrUpdateType<TVariables = any, TContext = unknown> {
   url: string;
   method?: "post" | "put";
   name?: string;
+  headers?: object,
   refetch?: VoidFunction;
   onSuccess?: (
     data: ResponseInterface,
@@ -22,10 +23,13 @@ export function useCreateOrUpdate<T = unknown>({
   method = "post",
   refetch,
   onSuccess,
+  headers={ "Content-Type": "application/json" }
 }: useCreateOrUpdateType) {
   function sendData(data: T) {
     setApiHeaders();
-    return API[method](url, data, {});
+    return API[method](url, data, {
+      headers,
+    });
   }
 
   return useMutation(sendData, {

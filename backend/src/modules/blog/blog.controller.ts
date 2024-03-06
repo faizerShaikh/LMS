@@ -11,10 +11,10 @@ import { GenericController } from 'src/core/modules';
 import { Blog } from './model';
 import { CreateBlogDTO, UpdateBlogDTO } from './dtos';
 import { BlogService } from './blog.service';
-import { MulterIntercepter } from 'src/core/interceptors';
+import { MulterIntercepter } from 'src/core/interceptors';  
 import { MulterEnum } from 'src/core/interfaces';
 
-@Controller('blog')
+@Controller('configurations/blog')
 export class BlogController extends GenericController<
   Blog,
   CreateBlogDTO,

@@ -4,7 +4,7 @@ import { CreateBlogCategoryDTO, UpdateBlogCategoryDTO } from './dtos';
 import { BlogCategoryService } from './blog-category.service';
 import { BlogCategory } from './model';
 
-@Controller('blog/blog-category')
+@Controller('configurations/blog/blog-category')
 export class BlogCategoryController extends GenericController<
   BlogCategory,
   CreateBlogCategoryDTO,

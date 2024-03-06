@@ -1,69 +1,130 @@
+import axios from "axios";
+import { FAQ } from "components/layout/faq/faq";
+import moment from "moment";
 import Image from "next/image";
 
-export default function Home() {
-    return (
-        <>
-            <section className="px-24 bg-gray-100">
-                <div className="flex ">
-                    <div className="w-1/2 flex justify-center ">
-                        <Image height={400} width={400} alt="test" src="/img2/Home Page.jpg" className="w-3/4" />
-                    </div>
-                    <div className="w-1/2 px-4 m-auto">
-                        <h2 className="font-bold text-4xl mb-4">Educate, Empower, Elevate & Excel</h2>
-                        <p className="font-medium mb-4 text-xl">Elevate your career with RiseBack! Explore our budget-friendly professional certificate programs, commencing at just $250, and university degree programs starting at an affordable $60 per month. Step in to a brighter future with us !</p>
-                    </div>
-                </div>
-            </section>
+export default async function Home() {
+  let FAQData = [];
+  const response = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/faq`
+  );
+  FAQData = response.data.data.rows;
+  console.log(FAQData)
 
-            <section className="px-24">
-                <div className="mb-8">
-                    <h2 className="font-bold text-3xl mb-4">Events</h2>
-                    <p>Upcoming Education Events to feed your brain</p>
+  // let FAQData = [];
+  // const response = await axios.get(
+  //   `${process.env.BASE_API_URL}/configurations/faq-topics`
+  // );
+  // FAQData = response.data.data.rows;
+  // const middleIndex = Math.ceil(FAQData.faqTopic.length / 2);
+  // const firstHalf = FAQData.faqTopic.slice(0, middleIndex);
+  // const secondHalf = FAQData.faqTopic.slice(middleIndex);
 
-                </div>
-                <div className="flex mb-8">
-                    <div className="w-1/4">
-                        <h2><span style={{ color: '#ffcc00', fontSize: '60px' }}>02</span></h2>
-                        <p>January</p>
-                    </div>
-                    <div className="w-1/2 px-2">
-                        <h2 className="font-bold mb-4 text-lg">Rise N Start Ignite: Nigeria’s First Startup Pitch Competition For Students</h2>
-                        <p className="mb-4">🕒10:00 Am – 5:00 Pm</p>
-                        <p>Register Now Date: February 2nd – February 3rd, 2024 Time: 10 AM – 5 PM Deadline for application: January 21 st, 2024 Application; Free…</p>
-                    </div>
-                    <div className="w-1/4 m-auto px-4">
-                        <Image height={150} width={300} src="/img/events1.jpg" alt="" />
-                    </div>
-                </div>
-                <div className="flex mb-8">
-                    <div className="w-1/4">
-                        <h2><span style={{ color: '#ffcc00', fontSize: '60px' }}>06</span></h2>
-                        <p>January</p>
-                    </div>
-                    <div className="w-1/2 px-2">
-                        <h2 className="font-bold  mb-4 text-lg">Perkenalkan Rise N Start Ignite: Kompetisi Pitch Startup Pertama di Indonesia untuk Pelajar dan Mahasiswa</h2>
-                        <p className="time">🕒10:00 Am – 5:00 Pm</p>
-                        <p>Register Now Date: February 2nd – February 3rd, 2024 Time: 10 AM – 5 PM Deadline for application: January 21 st, 2024 Application; Free…</p>
-                    </div>
-                    <div className="w-1/4 m-auto px-4">
-                        <Image height={150} width={300} src="/img/events2.jpg" alt="qquq" />
-                    </div>
-                </div>
-                <div className="flex mb-8">
-                    <div className="w-1/4">
-                        <h2><span style={{ color: '#ffcc00', fontSize: '60px' }}>19</span></h2>
-                        <p>January</p>
-                    </div>
-                    <div className="w-1/2 px-2">
-                        <h2 className="font-bold mb-4 text-lg">Rise N Start Ignite: Ethiopia’s First Startup Pitch Competition For Students</h2>
-                        <p className="time">🕒10:00 Am – 5:00 Pm</p>
-                        <p>Register Now Date: February 2nd – February 3rd, 2024 Time: 10 AM – 5 PM Deadline for application: January 21 st, 2024 Application; Free…</p>
-                    </div>
-                    <div className="w-1/4 m-auto px-4">
-                        <Image height={150} width={300} src="/img/events3.jpg" alt="event" />
-                    </div>
-                </div>
+  let events = [];
+  const res = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/event`
+  );
+  events = res.data.data.rows;
 
-            </section></>
-    )
+  return (
+    <>
+      <section className=" bg-gray-100 h-[400px]">
+        <div className="flex justify-between items-center gap-10 container ">
+          <div className=" ">
+            <Image
+              width={500}
+              height={400}
+              alt="test"
+              src="/img2/Home Page.jpg"
+              className="w-3/4"
+            />
+          </div>
+          <div className="w-1/2 ">
+            <h2 className="font-extrabold text-[52px] leading-[56px] mb-4">
+              Educate, Empower, Elevate & Excel
+            </h2>
+            <p className="font-medium mb-4 text-xl">
+              Elevate your career with RiseBack! Explore our budget-friendly
+              professional certificate programs, commencing at just $250, and
+              university degree programs starting at an affordable $60 per
+              month. Step in to a brighter future with us !
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className="bg-gray-100 py-24">
+        <div className="container ">
+          <div>
+            <h2 className="font-bold text-3xl m-0 mb-4">FAQ's</h2>
+          </div>
+          <div>
+            {FAQData.map((item: any) => {
+              
+              const middleIndex = Math.ceil(item.faqTopic.length / 2);
+              const firstHalf = item.faqTopic.slice(0, middleIndex);
+              const secondHalf = item.faqTopic.slice(middleIndex);
+              return <>
+                <h2 className="font-semibold  m-0  mb-4 text-2xl">
+                  {item.question}
+                </h2>
+                <div className="flex gap-2">
+                  <div className="w-1/2">
+                    {firstHalf.map((item: any) => (
+                      <FAQ specialization={item} />
+                    ))}
+                      </div>
+                      <div className="w-1/2">
+
+                    {secondHalf.map((item: any) => (
+                      <FAQ specialization={item} />
+                    ))}
+                    </div>
+                </div>
+              </>
+})}
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="mb-8 container">
+          <h2 className="font-bold text-3xl mb-4">Events</h2>
+          <p>Upcoming Education Events to feed your brain</p>
+        </div>
+
+        {events.slice(0, 3).map((event: any) => (
+          <div className="flex mb-8 container">
+            <div className="w-1/4">
+              <h2>
+                <span style={{ color: "#ffcc00", fontSize: "60px" }}>
+                  {new Date(event.createdAt).getDate()}
+                </span>
+              </h2>
+              <p>
+                {new Date(event.createdAt).toLocaleString("en-US", {
+                  month: "long",
+                })}
+              </p>
+            </div>
+            <div className="w-1/2 px-2">
+              <h2 className="font-bold mb-4 text-lg">{event.name}</h2>
+              <p className="mb-4">
+                🕒{moment(event.startDayTime).format("h:mm A")} –{" "}
+                {moment(event.endDayTime).format("h:mm A")}
+              </p>
+              <p>{event.description}</p>
+            </div>
+            <div className="w-1/4 m-auto px-4">
+              <Image
+                height={150}
+                width={300}
+                src={`${process.env.BASE_MEDIA_URL}${event.eventImage}`}
+                alt=""
+              />
+            </div>
+          </div>
+        ))}
+      </section>
+    </>
+  );
 }
