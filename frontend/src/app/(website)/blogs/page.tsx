@@ -7,18 +7,18 @@ import { Categories } from "@carbon/icons-react";
 export default async function Blogs() {
 
   let BlogCardData: any = [];
-  const BlogCardresponse = await axios.get(`${process.env.BASE_API_URL}/blog/not-featured`);
+  const BlogCardresponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/not-featured`);
   BlogCardData = BlogCardresponse.data.data;
   // console.log(BlogCardData)
   // console.log(`${process.env.BASE_API_URL}/blog/not-featured`)
 
   let BlogCatagoriData = [];
-  const BlogCatagoriResponse = await axios.get(`${process.env.BASE_API_URL}/blog/blog-category`);
+  const BlogCatagoriResponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/blog-category`);
   BlogCatagoriData = BlogCatagoriResponse.data.data.rows;
   // console.log(BlogCatagoriData)
 
   let FeaturedBlogData: any = [];
-  const FeaturedBlogResponse = await axios.get(`${process.env.BASE_API_URL}/blog/featured`);
+  const FeaturedBlogResponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/featured`);
   FeaturedBlogData = FeaturedBlogResponse.data.data;
   // console.log(FeaturedBlogData);
 
