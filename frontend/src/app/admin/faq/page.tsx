@@ -34,7 +34,7 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: FaqInterface }) => {
-      const checkboxProps = params.row.isFetured ? { checked: true } : {};
+      const checkboxProps = params.row.isFeatured ? { checked: true } : {};
       return <Checkbox {...checkboxProps} />;
     },
   },

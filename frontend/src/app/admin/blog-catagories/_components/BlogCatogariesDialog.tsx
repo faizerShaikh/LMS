@@ -1,102 +1,71 @@
-import React, { useState } from "react";
-import {
-  Button,
-  Checkbox,
-  Dialog,
-  DropZone,
-  Input,
-  Label,
-} from "../../../../components";
-import { FaqInterface, Topics } from "interfaces/faq";
+import { Box, Grid, IconButton } from "@mui/material";
+import React from "react";
+import { Button, Dialog, Input, Label } from "../../../../components";
+import { Formik, Form } from "formik";
+import { CreateUpdateDialogBaseProps } from "interfaces";
+import { Add, Edit, IbmWatsonKnowledgeCatalog } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
-import { Add, IbmWatsonKnowledgeCatalog } from "@carbon/icons-react";
-import { Box, Grid, IconButton } from "@mui/material";
-import { CreateUpdateDialogBaseProps } from "interfaces";
-import { Form, Formik } from "formik";
 import { toast } from "utils";
+import { BlogCategory } from "interfaces/blogCategory";
 
-const initialTopicsValues: Topics = {
-  topic: "",
-  answer: "",
-  faqId: ""
+const initialValues: BlogCategory = {
+  name: "",
 };
 
-
-
-
-
-export const FaqDialog = ({
-  data,
+export const BlogCategoryDialog = ({
+  data = {},
   isUpdate,
   refetchURL,
 }: CreateUpdateDialogBaseProps) => {
-
-  const initialValues: FaqInterface = {
-    qustion: "",
-    orderBy: 0,
-    isFeatured: false,
-    faqTopic: initialTopicsValues,
-  };
-  
   const queryClient = useQueryClient();
 
   const { mutate, isLoading } = useCreateOrUpdate({
-    url: isUpdate ? `/configurations/faq/${data.id}` : "/configurations/faq",
+    url: isUpdate
+      ? `/configurations/blog/blog-category/${data!.id}`
+      : "/configurations/blog/blog-category",
+
     method: isUpdate ? "put" : "post",
   });
 
   return (
     <Dialog
-      button={
-        isUpdate ?(
-        <IconButton className="text-yellow-500">
-          <IbmWatsonKnowledgeCatalog />
-        </IconButton>
-        ):(
-            <Button startIcon={<Add />}>Add New FAQ</Button>
+    button={
+        isUpdate ? (
+          <IconButton>
+            <Edit />
+          </IconButton>
+        ) : (
+          <Button startIcon={<Add />}>Add New Blog Category</Button>
         )
       }
-      title={"Add FAQ Data"}
-    >   
+      title={isUpdate ? "Edit Blog" : "Add Blog"}
+    >
       {({ onClose }) => (
         <Formik
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
-            mutate({...values,orderBy:+values.orderBy }, {
+            mutate(values, {
               onSuccess() {
                 resetForm();
                 queryClient.refetchQueries(refetchURL, {
                   exact: false,
                   stale: true,
                 });
-                toast(" successfull");
+                toast("Blog Category updated successfully");
                 onClose();
               },
             });
           }}
         >
-          {({ setFieldValue, values }) => (
           <Form>
             <Grid container>
               <Grid container spacing={2}>
-                <Grid xs={12} item>
-                  <Label text="Question" required />
-                  <Input name="question" />
+                <Grid xs={6} item>
+                  <Label text="Name" required />
+                  <Input name="name" />
                 </Grid>
-                
-                <Grid xs={12} item>
-                  <Label text="Order" required />
-                  <Input name="orderBy" />
-                </Grid>
-                <Grid xs={12} item>
-                  <Label text="Is Featured" required />
-                  <Checkbox name="isFeatured"  
-                  checked={values.isFeatured}
-                  onChange={(e) => {
-                    setFieldValue("isFeatured", e.target.checked);
-                  }}/>
-                </Grid>
+
                 <Grid xs={12} item>
                   <Box className="flex justify-end">
                     <Button
@@ -123,11 +92,8 @@ export const FaqDialog = ({
               </Grid>
             </Grid>
           </Form>
-          )}
         </Formik>
       )}
     </Dialog>
   );
 };
-
-export default FaqDialog;

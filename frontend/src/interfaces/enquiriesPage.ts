@@ -7,5 +7,6 @@ export interface EnquiriesPageInterface extends BaseObjInterface {
     email: string;
     type: string;
     status: string;
-    from: string
+    from: string;
+    note :string
 }

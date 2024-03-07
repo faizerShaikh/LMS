@@ -9,6 +9,6 @@ faqId: string;
 export interface FaqInterface extends BaseObjInterface {
   qustion: string,
   orderBy : number,
-  isFetured : boolean,
+  isFeatured : boolean,
   faqTopic: Topics
 }

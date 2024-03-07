@@ -1,6 +1,7 @@
 import { SingleBlogInterface } from "interfaces/blog";
 import Image from "next/image";
 import Link from "next/link";
+import removeTags from "utils/removeTags";
 
 
 
@@ -52,7 +53,7 @@ export function BlogCard({
         <div className="px-4">
           <p className="text-gray-400 mb-4">{specialization.createdAt}</p>
           <Link href={`/blogs/${specialization.id}`}><h2 className="mb-4 text-black font-bold truncate-lines">{specialization.title}</h2></Link>
-          <p className="mb-8 truncate-lines">{ specialization.description.slice(0, 100)}...</p>
+          <p className="mb-8 truncate-lines">{ removeTags(specialization.description.slice(0, 100))}...</p>
         </div>
       </div>
     );

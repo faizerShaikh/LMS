@@ -44,7 +44,11 @@ export default async function SingleBlog({
                 alt="Author"
                 className="bg-blue-500 rounded-full"
               />
+<<<<<<< HEAD
               <p className="pr-8">asdfghjk</p>
+=======
+              <p className="pr-8">asdfghjkl</p>
+>>>>>>> 55307678778fb5c06963ea9b12b5b13ad2612ec1
               <p className="pr-8">
                 {moment(data.createdAt).format("MMMM DD, YYYY")}
               </p>
@@ -102,7 +106,7 @@ export default async function SingleBlog({
           </div>
 
           <div className="mb-14">
-            <p>{data.description}</p>
+            <p dangerouslySetInnerHTML={{ __html: data?.description }}></p>
           </div>
         </div>
       </section>

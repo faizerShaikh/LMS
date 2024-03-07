@@ -1,13 +1,10 @@
 "use client";
 import Checkbox from "@mui/material/Checkbox";
-// import axios from "axios";
 import { DataGrid, DeleteBox, PageHeader } from "components/layout";
-// import { Field } from "formik";
 import { useGetAll } from "hooks";
 import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
 import { MediaDialog } from "./_components/MediaDialog";
 import { MetaDataForm } from "components/admin";
-// import React, { useEffect, useState } from "react";
 
 const columns = [
   {
@@ -62,6 +59,7 @@ const columns = [
                 ? params.row.metaData
                 : { id: params.row.metaID }
             }
+            refetchURL="/configurations/press-release"
           />
         </>
       );
