@@ -8,8 +8,17 @@ import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
 import { toast } from "utils";
 import { Topics } from "interfaces/faq";
+import * as Yup from "yup";
 
-
+// const validationSchema = Yup.object().shape({
+//   faq: Yup.array().of(
+//     Yup.object().shape({
+//       topic: Yup.string().required("Question is required"),
+//       answer: Yup.string().required("Answer is required"),
+//       faqId: Yup.number().required(),
+//     })
+//   ),
+// });
 
 export const FaqForm = ({
   data = {},
@@ -26,11 +35,16 @@ export const FaqForm = ({
       },
     ],
   };
+  
+
+  
+  
   const queryClient = useQueryClient();
   const { mutate, isLoading } = useCreateOrUpdate({
     url: "/configurations/faq-topics/bulkcreate",
     method: "post",
   });
+
 
   return (
     <Dialog
@@ -43,6 +57,9 @@ export const FaqForm = ({
     >
       {({ onClose }) => (
         <Formik
+        // validationSchema={validationSchema}
+        
+
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(values, {

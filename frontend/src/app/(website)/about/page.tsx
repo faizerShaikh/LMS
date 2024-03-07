@@ -4,7 +4,7 @@ import { FaFistRaised } from "react-icons/fa";
 export default function AboutUs() {
     return <>
         <section className="bg-gray-100 flex justify-between h-[400px] ">
-            <div className="container flex">
+            <div className="container flex m-auto">
             <div className="w-1/2 ">
                 <Image width={500} height={400} src={"/img2/About-Us-page.jpg"}  alt="IMG" />
             </div>
@@ -14,7 +14,7 @@ export default function AboutUs() {
             </div>
         </section>
         <section className="my-32 text-center">
-            <div className="container">
+            <div className="container m-auto">
             <h2 className="text-4xl font-bold mt-0 mb-6">Our Story</h2>
             <p className="text-xl text-gray-700 mb-4">Inspired by the Native American adage "RiseBack like Phoenix”, the platform embodies renewal, hope, and empowerment. Founded by Dr.Tausif Malik in 2015, RiseBack initially addressed the need to empower Americans with IT skills for career growth. Amidst the global pandemic, the landscape of education under went as ignificant digital transformation.</p>
             <p className="text-xl text-gray-700 mb-4">Recognizing this shift, redefined its mission. Today, RiseBack stands as the first EdTech platform connecting Indian universities with students worldwide.</p>
@@ -22,7 +22,7 @@ export default function AboutUs() {
             </div>
         </section>
         <section className="bg-gray-100 py-32 ">
-            <div className="container ">
+            <div className="container  m-auto">
             <div className="flex  mb-24 items-center">
                 <div className="w-2/4 text-center  pr-12 flex flex-col items-center">
                     <h2 className="text-4xl font-bold mb-2 ">Vision</h2>
@@ -44,7 +44,7 @@ export default function AboutUs() {
             </div>
         </section>
         <section className="bg-blue-900 py-32">
-            <div className=" mx-24 text-center text-white ">
+            <div className=" text-center text-white container  m-auto">
                 <h2 className="pb-8 text-4xl m-0">Our Core Values</h2>
                 <div className="flex ">
                     <div className="w-2/4">
@@ -71,7 +71,7 @@ export default function AboutUs() {
             </div>
         </section>
         <section className=" text-center py-32">
-            <div className="container">
+            <div className="container m-auto">
             <h2 className=" text-4xl  m-0">Global Partnership</h2>
             <p className="text-xl text-gray-700 pb-8">pursuit of our commitment to affordable education, RiseBack has forged partnerships with individuals and organizations worldwide, extending our reach and impact across countries such as the USA, Egypt, Nigeria, Indonesia, Ethiopia, and the Philippines. <br/><br/>Our dedication to fostering global connectivity between Indian universities and students is inspired by the transformative symbolism of the phoenix.Through these collaborations, RiseBack strives to make quality education accessible to everyone, transcending geographical boundaries and creating a global network for knowledged is semination and empowerment.</p>
             <div className="flex justify-between mb-8">

@@ -12,15 +12,15 @@ export default async function SingleCourse({
   console.log(url)
   const response = await axios.get(url);
   data = response.data.data;
-
+console.log(data)
 
   return (
     <>
       <section className="bg-gray-100">
-        <div className="flex px-24 py-8">
+        <div className="flex container py-8 m-auto">
           <div className="w-2/4">
             <Image
-              src={`${process.env.BASE_MEDIA_URL}${data.course.course_image}`}
+              src={`${process.env.BASE_MEDIA_URL}/${data.cover_image}`}
               height={400}
               width={300}
               alt=""
@@ -48,8 +48,8 @@ export default async function SingleCourse({
         </div>
       </section>
 
-      <section className="px-28 my-14">
-        <div className="flex justify-center text-center  shadow-2xl rounde">
+      <section className="container m-auto my-14">
+        <div className="flex justify-center text-center  shadow-2xl rounde "  >
           <div className="border-r-2  border-black px-8 w-1/4 my-8">
             <i className="fa-regular fa-clock text-3xl mb-8"></i>
             <p>60 Hours (8 to 24 Weeks)</p>
@@ -69,8 +69,8 @@ export default async function SingleCourse({
         </div>
       </section>
 
-      <section className="px-24 mb-20">
-        <div className="border py-4 px-4 rounded-md border-black">
+      <section className="container m-auto mb-20">
+        <div className="border py-4 px-4 rounded-md border-black ">
           <h2 className="font-bold text-2xl mb-2">Introduction</h2>
           <p className="mb-4">
             Riseback is a highly innovative and effective skill-based IT
@@ -105,8 +105,8 @@ export default async function SingleCourse({
         </div>
       </section>
 
-      <section className="px-56 mb-20">
-        <div className="shadow-2xl p-4 rounded-md">
+      <section className="container m-auto mb-20">
+        <div className="shadow-2xl mx-32 p-4 rounded-md ">
           <p>
             <span className="font-bold">Note: </span>As per our policy, we start
             the course/training/internship within 10 days from the date of

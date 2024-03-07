@@ -1,8 +1,6 @@
-import Image from "next/image";
 import { BlogCard } from "components/layout/cards/blog-cards";
 import axios from "axios";
-import { useEffect } from "react";
-import { Categories } from "@carbon/icons-react";
+
 
 export default async function Blogs() {
 
@@ -21,14 +19,14 @@ export default async function Blogs() {
 
   return (
     <>
-      <section className="text-center">
+      <section className="text-center container m-auto">
         <h2 className="font-extrabold text-5xl leading-[56px]">RiseBack Blogs</h2>
         <p>
           Updates on the latest career opportunities, Online Education, Online
           Universities, <span className="font-medium">& More</span>
         </p>
       </section>
-      <section className="px-24 mt-12">
+      <section className="container mt-12 m-auto">
         <h2 className="font-bold">FEATURED BLOG POSTS</h2>
         <span className=" border-b-2 w-8 mb-4"></span>
         <div className="grid grid-cols-3 gap-8">
@@ -46,7 +44,7 @@ export default async function Blogs() {
         </div>
       </section>
 
-      <section className="px-24 py-24">
+      <section className="container py-24 m-auto">
         <div className="flex">
           <div className="w-[70%] flex flex-wrap justify-between">
             {BlogCardData.map((item: any) => (

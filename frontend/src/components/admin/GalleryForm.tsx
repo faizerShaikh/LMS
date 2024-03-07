@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Input, Label, Dialog, DropZone } from "..";
 import { Formik, Form, FieldArray } from "formik";
 import { CreateUpdateDialogBaseProps, GalleryFormProps, GalleryInterface } from "interfaces";
-import { Add, Delete, TrashCan } from "@carbon/icons-react";
+import { Add, Delete, ImageReference, TrashCan } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
 import * as Yup from "yup";
@@ -44,7 +44,7 @@ export const GalleryForm = ({
     <Dialog
       button={
         <IconButton>
-          <Add />
+          <ImageReference />
         </IconButton>
       }
       title={"Add Gallery Data"}
@@ -67,7 +67,6 @@ export const GalleryForm = ({
                 fd.append(`data[${x}][${f}]`, values?.gallery[x]?.[f]);
               });
             }
-            // console.log('djhdjdjkjdk', fd);
             
             mutate(fd, {
               onSuccess(resp, variables, context) {
@@ -90,7 +89,6 @@ export const GalleryForm = ({
                   <FieldArray
                     name="gallery"
                     render={(FieldArrayProp) => {
-                      // console.log("FieldArrayProp", FieldArrayProp);
                       const { push, remove, form } = FieldArrayProp;
                       const { values } = form;
                       const { gallery } = values;
@@ -124,7 +122,7 @@ export const GalleryForm = ({
                                   <Input name={`gallery.${index}.orderBy`} />
                                 </Grid>
                               </div>
-                              {index !== gallery.length - 1 && (
+                              {gallery.length > 1 && (
                                 <IconButton
                                   type="button"
                                   onClick={() => remove(index)}

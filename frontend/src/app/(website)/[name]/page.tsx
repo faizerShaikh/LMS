@@ -30,11 +30,11 @@ export default async function SinglePage({
         buttonText="Contact Us"
       />
 
-      <section className="py-24 container ">
-        <div className="flex justify-between text-center gap-5 flex-warp">
+      <section className="py-24 ">
+        <div className="flex  text-center gap-5 flex-warp m-auto container">
           {commonPageData?.gallery.map((item: GalleryInterface) => {
             return (
-              <div className="w-1/4  rounded-xl shadow-xl">
+              <div className="w-1/4  rounded-xl shadow-xl ">
                 <Image
                   alt="Gallery image"
                   height={180}
@@ -56,7 +56,7 @@ export default async function SinglePage({
         </div>
       </section>
       <section className=" py-14 bg-slate-100  ">
-        <div className=" items-center flex justify-between container">
+        <div className=" items-center flex justify-between container m-auto">
           <div className="w-1/2 p-4">
             <p className="font-medium text-2xl">
               {commonPageData?.pageDescription}

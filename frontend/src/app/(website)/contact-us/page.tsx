@@ -17,7 +17,7 @@ export default function ContactUs() {
     </HeroSection>
       
       <section className=" text-center bg-slate-100">
-        <div className="py-12 container">
+        <div className="py-12 container m-auto">
           <h2 className="font-semibold text-4xl m-0 pb-12">Enquiries</h2>
           <div className="flex flex-wrap items-center justify-around">
             <div className=" flex flex-col items-center mb-8 w-96  bg-white py-4 shadow-2xl rounded-md">
@@ -31,7 +31,7 @@ export default function ContactUs() {
                 />
               </div>
               <h2 className="mb-3">University Degrees</h2>
-              <Link href="" className="text-blue-700">
+              <Link href="/for-universities" className="text-blue-700">
                 Know More{" "}
                 <Image
                   src="/img2/know More.png"
@@ -52,7 +52,7 @@ export default function ContactUs() {
                 />
               </div>
               <h2 className="mb-3">Professional IT Courses</h2>
-              <Link href="" className="text-blue-700">
+              <Link href="/courses" className="text-blue-700">
                 Know More{" "}
                 <Image
                   src="/img2/know More.png"
@@ -73,7 +73,7 @@ export default function ContactUs() {
                 />
               </div>
               <h2 className="mb-3">Government</h2>
-              <Link href="" className="text-blue-700">
+              <Link href="/for-government" className="text-blue-700">
                 Know More{" "}
                 <Image
                   src="/img2/know More.png"
@@ -94,7 +94,7 @@ export default function ContactUs() {
                 />
               </div>
               <h2 className="mb-3">Corporate Training</h2>
-              <Link href="" className="text-blue-700">
+              <Link href="/for-placement" className="text-blue-700">
                 Know More{" "}
                 <Image
                   src="/img2/know More.png"
@@ -115,7 +115,7 @@ export default function ContactUs() {
                 />
               </div>
               <h2 className="mb-3">Organizations</h2>
-              <Link href="" className="text-blue-700">
+              <Link href="/for-organization" className="text-blue-700">
                 Know More{" "}
                 <Image
                   src="/img2/know More.png"
@@ -136,7 +136,7 @@ export default function ContactUs() {
                 />
               </div>
               <h2 className="mb-3">Partnership</h2>
-              <Link href="" className="text-blue-700">
+              <Link href="/for-partnership" className="text-blue-700">
                 Know More{" "}
                 <Image
                   src="/img2/know More.png"
@@ -150,7 +150,7 @@ export default function ContactUs() {
         </div>
       </section>
       <section className="bg-gray-50">
-        <div className="container text-center pb-24">
+        <div className="container text-center pb-24 m-auto">
           <h2 className=" text-4xl m-0 py-16 font-semibold">Global Offices</h2>
           <div className="flex flex-wrap justify-between">
             <div>

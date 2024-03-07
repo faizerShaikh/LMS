@@ -6,10 +6,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import axios from "axios";
-import { Column, Row } from "@carbon/icons-react";
 import { toast } from "utils";
 
-export const EnquiryForm = ({from}) => {
+export const EnquiryForm = ({from} : any) => {
   const formik = useFormik({
     initialValues: {
       name: "",

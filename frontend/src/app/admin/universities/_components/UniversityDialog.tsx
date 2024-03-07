@@ -1,32 +1,26 @@
 import { CreateUpdateDialogBaseProps, UniversityInterface } from "interfaces";
 import { Button, Dialog, DropZone, Input, Label } from "../../../../components";
-import { Form, Formik, useFormik, validateYupSchema } from "formik";
+import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "hooks";
 import { Box, Grid, IconButton } from "@mui/material";
-import { MetaDataForm } from "../../../../components/admin";
-import { MetaDataInitial } from "initials";
 import { Add, Edit } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
 import * as Yup from "yup";
-import { MetaDatavalidateSchema } from "initials";
 import { API } from "configs";
-import { useState } from "react";
 
 const initialValues: UniversityInterface = {
   name: "",
   short_name: "",
   description: "",
   university_image: "",
-  // metaData: MetaDataInitial,
 };
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Required"),
   short_name: Yup.string().required("Required"),
   description: Yup.string().required("Required"),
-  // university_image: Yup.string().required("Required"),
-  // metaData: MetaDatavalidateSchema,
+  
 });
 
 export const UniversityDialog = ({
@@ -35,7 +29,6 @@ export const UniversityDialog = ({
   refetchURL
 }: CreateUpdateDialogBaseProps) => {
   const queryClient = useQueryClient();
-  const [id, setId] = useState(null);
 
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate
@@ -44,10 +37,7 @@ export const UniversityDialog = ({
     method: isUpdate ? "put" : "post",
   });
 
-  const { mutate: fileUploadMutate } = useCreateOrUpdate({
-    url: `/configurations/university/university-image/${id}`,
-    method: "put",
-  });
+ 
 
   const handleFileUpload = async (
     file: File,
@@ -59,6 +49,8 @@ export const UniversityDialog = ({
     await API.put(`configurations/university/university-image/${id}`, formData);
     onSuccess();
   };
+
+  
 
   return (
     <Dialog
@@ -101,15 +93,17 @@ export const UniversityDialog = ({
             });
           }}
         >
-          <Form>
-            <Grid container columnSpacing={10} className="mt-8" gap={3}>
+          {({values})=> (
+            <Form>
+            <Grid container columnSpacing={10} className="mt-2  " gap={3}>
               <Grid xs={12} item>
                 <Box>
+                  {/* {values?.university_image && <Image width={150} height={150} alt="tr" src={URL.createObjectURL(values?.university_image)} className="flex justify-center" ></Image>} */}
                   <Label text="Upload your image" required/>
                   <DropZone name="university_image"/>
                 </Box>
-                <Box>
-                  <Label text="Title" required />
+                <Box>   
+                  <Label text="Title" required  className="mt-4"/>
                   <Input name="name" />
                 </Box>
                 <Box className="mt-4">
@@ -146,6 +140,8 @@ export const UniversityDialog = ({
               </Grid>
             </Grid>
           </Form>
+          )}
+          
         </Formik>
       )}
     </Dialog>

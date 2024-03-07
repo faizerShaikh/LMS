@@ -99,6 +99,7 @@ export const MediaDialog = ({
             });
           }}
         >
+          {({ setFieldValue, values }) => (
           <Form>
             <Grid container columnSpacing={10} className="" gap={3}>
               <Grid xs={12} item>
@@ -121,7 +122,11 @@ export const MediaDialog = ({
                 </Box>
                 <Box className="mt-4">
                   <Label text="Is Featured" />
-                  <Checkbox name="isFeatured" />
+                  <Checkbox name="isFeatured" 
+                   checked={values.isFeatured}
+                   onChange={(e) => {
+                     setFieldValue("isFeatured", e.target.checked);
+                   }}/>
                 </Box>
               </Grid>
               <Grid xs={12} item>
@@ -149,6 +154,7 @@ export const MediaDialog = ({
               </Grid>
             </Grid>
           </Form>
+          )}
         </Formik>
       )}
     </Dialog>

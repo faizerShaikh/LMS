@@ -1,5 +1,6 @@
 import { CreateUpdateDialogBaseProps } from "interfaces";
 import {
+  AutoComplete,
   Button,
   Dialog,
   Input,
@@ -45,7 +46,8 @@ export const EnquiryDialog = ({
     method: isUpdate ? "put" : "post",
   });
   
-
+  const optionsType = ["online", "university"]
+  const optionsStatus = ["new", "in-process", "closed"]
   return (
     <Dialog
     button={<IconButton ><Edit /></IconButton>}
@@ -90,11 +92,17 @@ export const EnquiryDialog = ({
                 </Box>
                 <Box className="mt-4">
                   <Label text="Type" required/>
-                  <Input name="type" />
+                  <AutoComplete
+                  name="type"
+                  options={optionsType}
+                  ></AutoComplete>
                 </Box>
                 <Box className="mt-4">
                   <Label text="Status" required/>
-                  <Input name="status" />
+                  <AutoComplete
+                  name="status"
+                  options={optionsStatus}
+                  ></AutoComplete>
                 </Box>
                 <Box className="mt-4">
                   <Label text="Note" />

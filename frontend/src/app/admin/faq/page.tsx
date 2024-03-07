@@ -34,8 +34,8 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: FaqInterface }) => {
-      const checkboxProps = params.row.isFeatured ? { checked: true } : {};
-      return <Checkbox {...checkboxProps} />;
+      const checkboxProps = params.row.isFeatured ? {disabled:true, checked: true } : {};
+      return <Checkbox {...checkboxProps} disabled/>;
     },
   },
   {
@@ -56,8 +56,10 @@ const columns = [
           <FaqForm
             refetchURL="/configurations/faq"
             isUpdate={true}
-            data={{ faq: params.row.faqTopic }}
-            faqId={params.row.id || ''}
+            data={
+              params.row?.faqTopic?.length > 0 && { faq: params.row.faqTopic }
+            }
+            faqId={params.row.id || ""}
           />
         </>
       );
