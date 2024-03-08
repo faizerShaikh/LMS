@@ -9,7 +9,7 @@ export default async function Home() {
     `${process.env.BASE_API_URL}/configurations/faq`
   );
   FAQData = response.data.data.rows;
-  console.log(FAQData)
+  console.log(FAQData);
 
   // let FAQData = [];
   // const response = await axios.get(
@@ -28,7 +28,7 @@ export default async function Home() {
 
   return (
     <>
-      <section className=" bg-gray-100 h-[400px]">
+      <section className=" bg-gray-100 h-[400px] pt-5">
         <div className="flex justify-between items-center gap-10 container m-auto">
           <div className=" ">
             <Image
@@ -59,29 +59,29 @@ export default async function Home() {
           </div>
           <div>
             {FAQData.map((item: any) => {
-              
               const middleIndex = Math.ceil(item.faqTopic.length / 2);
               const firstHalf = item.faqTopic.slice(0, middleIndex);
               const secondHalf = item.faqTopic.slice(middleIndex);
-              return <>
-                <h2 className="font-semibold  m-0  mb-4 text-2xl">
-                  {item.question}
-                </h2>
-                <div className="flex gap-2">
-                  <div className="w-1/2">
-                    {firstHalf.map((item: any) => (
-                      <FAQ specialization={item} />
-                    ))}
-                      </div>
-                      <div className="w-1/2">
-
-                    {secondHalf.map((item: any) => (
-                      <FAQ specialization={item} />
-                    ))}
+              return (
+                <>
+                  <h2 className="font-semibold  m-0  mb-4 text-2xl">
+                    {item.question}
+                  </h2>
+                  <div className="flex gap-2">
+                    <div className="w-1/2">
+                      {firstHalf.map((item: any) => (
+                        <FAQ specialization={item} />
+                      ))}
                     </div>
-                </div>
-              </>
-})}
+                    <div className="w-1/2">
+                      {secondHalf.map((item: any) => (
+                        <FAQ specialization={item} />
+                      ))}
+                    </div>
+                  </div>
+                </>
+              );
+            })}
           </div>
         </div>
       </section>

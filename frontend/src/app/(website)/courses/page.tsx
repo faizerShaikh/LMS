@@ -74,7 +74,7 @@ export default async function courses() {
                   Most Popular
                 </button>
                 {CoursesCatagoriData.map((item: any) => (
-                  <p key={item.id}>{item.name}</p>
+                  <p key={item.slug}>{item.name}</p>
                 ))}
                 
               </ul>

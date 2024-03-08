@@ -5,10 +5,10 @@ import Image from "next/image";
 export default async function SingleCourse({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string};
 }) {
   let data:CourseSpecializationInterface;
-  let url = `${process.env.BASE_API_URL}/configurations/course-specialization/${params.id}/`
+  let url = `${process.env.BASE_API_URL}/configurations/course-specialization/slug/${params.slug}/`
   console.log(url)
   const response = await axios.get(url);
   data = response.data.data;

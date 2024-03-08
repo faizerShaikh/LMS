@@ -14,8 +14,8 @@ export interface BlogCardProps {
 }
 
 const sizes = {
-  l: {containerWidth:"w-[70%]",imageHeight: 200,fontSize:"text-3xl" },
-  s: {containerWidth:"w-[30%]",imageHeight: 100,fontSize:"text-sm" },
+  l: {containerWidth:"w-[70%]",imageHeight: 350,fontSize:"text-3xl" },
+  s: {containerWidth:"w-[30%]",imageHeight: 130,fontSize:"text-sm" },
 };
 
 export function BlogCard({
@@ -24,7 +24,6 @@ export function BlogCard({
   extraClasses,
   variant
 }: BlogCardProps) {
-  // console.log(BlogCardImg ,BlogCardDate, BlogCardHeading, BlogCardtext, variant);
 
   if (variant === "primary") {
     return (
@@ -37,24 +36,24 @@ export function BlogCard({
           className="w-full bg-cover bg-center object-center"
         />
         <div className="px-4 pb-4">
-        <Link href= {`/blogs/${specialization.slug}`}> <h2 className={`font-bold text-xl text-black py-2 m-auto ${sizes[size].fontSize}`}>{specialization.title}</h2></Link>
+        <Link href= {`/blogs/${specialization.slug}`}> <h2 className={`font-bold text-xl line-clamp-3 text-black py-2 m-auto ${sizes[size].fontSize}`}>{specialization.title}</h2></Link>
         </div>
       </div>
     );
   } else if (variant === "secondary") {
     return (
-      <div className="w-[45%] shadow-2xl rounded-lg mb-10">
+      <div className="w-[45%] shadow-2xl rounded mb-10">
         <Image
           height={200}
           width={400}
           alt="Test"
           src={`${process.env.BASE_MEDIA_URL}${specialization.blog_image}`}
-          className="w-full mb-4 rounded-t-lg object-center"
+          className="w-full mb-4 rounded-t-md object-center object-cover"
         />
         <div className="px-4">
-          <p className="text-gray-400 mb-4 m-0">{moment(specialization.createdAt).format("MMMM DD, YYYY")}</p>
-          <Link href={`/blogs/${specialization.id}`}><h2 className="mb-4 text-black font-bold truncate-lines h-20">{specialization.title.slice(0, 50)}...</h2></Link>
-          <p className="mb-8 truncate-lines">{ removeTags(specialization.description.slice(0, 90))}...</p>
+          <p className="text-gray-500 !mb-1 m-0">{moment(specialization.createdAt).format("MMMM DD, YYYY")}</p>
+          <Link href={`/blogs/${specialization.slug}`}><h2 className="mb-4 text-black font-bold mt-0 line-clamp-3">{specialization.title}</h2></Link>
+          <p className="mb-8 line-clamp-4">{ removeTags(specialization.description)}</p>
         </div>
       </div>
     );

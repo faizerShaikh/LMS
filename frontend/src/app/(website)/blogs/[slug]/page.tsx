@@ -24,9 +24,9 @@ export default async function SingleBlog({
             <Image
               src={`${process.env.BASE_MEDIA_URL}/${data.blog.blog_image}`}
               height={550}
-              width={500}
+              width={700}
               alt=""
-              className="w-full mt-4"
+              className="w-full mt-4 object-fill"
             />
             <h2 className="mt-4 font-semibold py-4 text-3xl mb-8">
               {data.blog.title}
@@ -111,7 +111,7 @@ export default async function SingleBlog({
       <section className=" mb-20">
         <div className="container m-auto">
           <h2 className="text-3xl font-bold mb-8">YOU MAY ALSO LIKE</h2>
-          <div className="flex justify-between">
+          <div className="flex justify-around gap-8">
             {data.relatedBlogs.length
               ? data.relatedBlogs.map((item: relatedBlogInterface) => {
                   return (
@@ -123,12 +123,12 @@ export default async function SingleBlog({
                         alt=""
                         className="w-full h-52 mb-4"
                       />
-                      <Link href={`/blogs/${item.id}`} className="text-black">
-                      <h2 className="font-bold mb-2 text-lg">
+                      <Link href={`/blogs/${item.slug}`} className="text-black">
+                      <h2 className="font-bold px-2 mb-2 m-0 text-lg">
                         {item.title}
                       </h2>
                       </Link>
-                      <p>{moment(item.createdAt).format('Do MMMM  YYYY')}</p>
+                      <p className="px-2">{moment(item.createdAt).format('Do MMMM  YYYY')}</p>
                     </div>
                   );
                 })

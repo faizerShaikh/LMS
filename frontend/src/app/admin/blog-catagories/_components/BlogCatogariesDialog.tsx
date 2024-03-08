@@ -31,7 +31,7 @@ export const BlogCategoryDialog = ({
 
   return (
     <Dialog
-    button={
+      button={
         isUpdate ? (
           <IconButton>
             <Edit />
@@ -62,7 +62,7 @@ export const BlogCategoryDialog = ({
           <Form>
             <Grid container>
               <Grid container spacing={2}>
-                <Grid xs={6} item>
+                <Grid xs={12} item>
                   <Label text="Name" required />
                   <Input name="name" />
                 </Grid>

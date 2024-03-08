@@ -8,6 +8,7 @@ import { Edit } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
 import { API } from "configs";
+import * as Yup from "yup";
 
 const initialValues: PageContentInterface = {
   slug: "",
@@ -20,6 +21,11 @@ const initialValues: PageContentInterface = {
   metaData: MetaDataInitial,
 };
 
+const validationSchema = Yup.object({
+  coverImage : Yup.string().required("Required"),
+  name: Yup.string().required("Required"),
+  description: Yup.string().required("Required")
+})
 export const PageContentDialog = ({
   data,
   isUpdate = true,
@@ -57,6 +63,8 @@ export const PageContentDialog = ({
     >
       {({ onClose }) => (
         <Formik
+        validationSchema={validationSchema}
+
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(values, {

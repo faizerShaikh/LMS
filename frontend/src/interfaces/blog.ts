@@ -31,6 +31,7 @@ export interface SingleBlogInterface extends BaseObjInterface {
 }
 
 export interface relatedBlogInterface {
+  slug: string;
   id: string;
   title: string;
   description: string;

@@ -1,25 +1,28 @@
-import { Box, Grid, IconButton } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Divider, Grid, IconButton } from "@mui/material";
+import React from "react";
 import { Button, Input, Label, Dialog, DropZone } from "..";
 import { Formik, Form, FieldArray } from "formik";
-import { CreateUpdateDialogBaseProps, GalleryFormProps, GalleryInterface } from "interfaces";
+import {
+  GalleryFormProps,
+  GalleryInterface,
+} from "interfaces";
 import { Add, Delete, ImageReference, TrashCan } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
 import * as Yup from "yup";
 import { toast } from "utils";
-import { API } from "configs";
 
-// const validationSchema = Yup.object({
-//   name: Yup.string().required("name is Required"),-
-//   description: Yup.string().required("Description is Required"),
-// });
+const validationSchema = Yup.object({
+  name: Yup.string().required("name is Required"),
+  description: Yup.string().required("Description is Required"),
+  slug: Yup.string().required("Slug is Required"),
+});
 
 export const GalleryForm = ({
   data = {},
   isUpdate,
   refetchURL,
-  pageId
+  pageId,
 }: GalleryFormProps) => {
   const initialValues: { gallery: GalleryInterface[] } = {
     gallery: [
@@ -29,6 +32,7 @@ export const GalleryForm = ({
         description: "",
         orderBy: 1,
         pageId: pageId,
+        slug: ""
       },
     ],
   };
@@ -38,8 +42,8 @@ export const GalleryForm = ({
     method: "put",
     headers: { "Content-Type": "multipart/form-data" },
   });
-  console.log('pageId', pageId);
-  
+  console.log("pageId", pageId);
+
   return (
     <Dialog
       button={
@@ -53,13 +57,14 @@ export const GalleryForm = ({
         <Formik
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
-            console.log('valuesvaluesvalues', values)
+            console.log("valuesvaluesvalues", values);
             const fields = [
               "coverImage",
               "name",
               "description",
               "orderBy",
               "pageId",
+              "slug"
             ];
             const fd = new FormData();
             for (let x = 0; x < values?.gallery.length; x++) {
@@ -67,16 +72,14 @@ export const GalleryForm = ({
                 fd.append(`data[${x}][${f}]`, values?.gallery[x]?.[f]);
               });
             }
-            
+
             mutate(fd, {
               onSuccess(resp, variables, context) {
                 queryClient.refetchQueries(refetchURL, {
                   exact: false,
                   stale: true,
                 });
-                toast(
-                  `Gallery ${isUpdate ? "updated" : "added"} successfully`
-                );
+                toast(`Gallery ${isUpdate ? "updated" : "added"} successfully`);
                 onClose();
               },
             });
@@ -110,6 +113,13 @@ export const GalleryForm = ({
                                 name={`gallery.${index}.description`}
                                 className="mb-4"
                               />
+                               <Grid xs={12} item>
+                                <Label text="Slug" />
+                                <Input
+                                  name={`gallery.${index}.slug`}
+                                  className="mb-4"
+                                />
+                              </Grid>
                               <div className="flex items-center gap-4">
                                 <Grid xs={6} item>
                                   <Label text="Image" />
@@ -131,16 +141,20 @@ export const GalleryForm = ({
                                   <TrashCan />
                                 </IconButton>
                               )}
+
+                              <Divider className="my-5" />
                               {index === gallery.length - 1 && (
                                 <IconButton
                                   type="button"
-                                  onClick={() => push({
-                                    coverImage: "",
-                                    name: "",
-                                    description: "",
-                                    orderBy: index+1,
-                                    pageId: pageId,
-                                  })}
+                                  onClick={() =>
+                                    push({
+                                      coverImage: "",
+                                      name: "",
+                                      description: "",
+                                      orderBy: index + 1,
+                                      pageId: pageId,
+                                    })
+                                  }
                                   className="text-red-500"
                                 >
                                   <Add />

@@ -59,7 +59,7 @@ const columns = [
           <DeleteBox
             url={`/configurations/blog`}
             refetchUrl="/configurations/blog"
-            title={`Delete ${params.row.title}`}
+            title={`${params.row.title}`}
             data={params.row.id}
           />
           <MetaDataForm
