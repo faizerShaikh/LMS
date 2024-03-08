@@ -13,6 +13,7 @@ export interface Created_By extends BaseObjInterface {
 }
 
 export interface SingleBlogInterface extends BaseObjInterface {
+  slug ?: string;
   id?: string;
   title: string;
   description: string;

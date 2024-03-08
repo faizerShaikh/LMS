@@ -2,12 +2,14 @@ import { BlogCard } from "components/layout/cards/blog-cards";
 import axios from "axios";
 
 
-export default async function Blogs() {
+export default async function Blogs({
+  querryParams = "slug"
+}) {
 
   let BlogCardData: any = [];
-  const BlogCardresponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/not-featured`);
+  const BlogCardresponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/not-featured` );
   BlogCardData = BlogCardresponse.data.data;
-  
+  console.log(BlogCardresponse , "< ==================================")
 
   let BlogCatagoriData = [];
   const BlogCatagoriResponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/blog-category`);
@@ -16,6 +18,11 @@ export default async function Blogs() {
   let FeaturedBlogData: any = [];
   const FeaturedBlogResponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/featured`);
   FeaturedBlogData = FeaturedBlogResponse.data.data;
+  console.log('FeaturedBlogDataFeaturedBlogData,', FeaturedBlogData);
+  
+  // const handeleClick = () => {
+  //   BlogCardData = 
+  // }
 
   return (
     <>
@@ -65,7 +72,7 @@ export default async function Blogs() {
             <h2 className="font-bold mb-4">Catagories</h2>
 
             {BlogCatagoriData.map((item: any) => (
-              <p key={item.id}>{item.name}</p>
+              <p key={item.id} >{item.name}</p>
             ))}
           </div>
         </div>

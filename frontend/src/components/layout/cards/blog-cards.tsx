@@ -1,4 +1,5 @@
 import { SingleBlogInterface } from "interfaces/blog";
+import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import removeTags from "utils/removeTags";
@@ -36,7 +37,7 @@ export function BlogCard({
           className="w-full bg-cover bg-center object-center"
         />
         <div className="px-4 pb-4">
-        <Link href= {`/blogs/${specialization.id}`}> <h2 className={`font-bold text-xl text-black py-2 m-auto ${sizes[size].fontSize}`}>{specialization.title}</h2></Link>
+        <Link href= {`/blogs/${specialization.slug}`}> <h2 className={`font-bold text-xl text-black py-2 m-auto ${sizes[size].fontSize}`}>{specialization.title}</h2></Link>
         </div>
       </div>
     );
@@ -51,9 +52,9 @@ export function BlogCard({
           className="w-full mb-4 rounded-t-lg object-center"
         />
         <div className="px-4">
-          <p className="text-gray-400 mb-4">{specialization.createdAt}</p>
-          <Link href={`/blogs/${specialization.id}`}><h2 className="mb-4 text-black font-bold truncate-lines">{specialization.title}</h2></Link>
-          <p className="mb-8 truncate-lines">{ removeTags(specialization.description.slice(0, 100))}...</p>
+          <p className="text-gray-400 mb-4 m-0">{moment(specialization.createdAt).format("MMMM DD, YYYY")}</p>
+          <Link href={`/blogs/${specialization.id}`}><h2 className="mb-4 text-black font-bold truncate-lines h-20">{specialization.title.slice(0, 50)}...</h2></Link>
+          <p className="mb-8 truncate-lines">{ removeTags(specialization.description.slice(0, 90))}...</p>
         </div>
       </div>
     );

@@ -7,10 +7,12 @@ import moment from "moment";
 export default async function SingleBlog({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string};
 }) {
+  console.log('paramsparams', params.slug)
   let data: { blog: SingleBlogInterface; relatedBlogs: relatedBlogInterface[] };
-  let url = `${process.env.BASE_API_URL}/configurations/blog/blog-detail/${params.id}/`;
+  let url = `${process.env.BASE_API_URL}/configurations/blog/blog-detail/${params.slug}`;
+  // console.log(params.id, "<=========================================================================")
   const response = await axios.get(url);
   data = response.data.data;  
   console.log(data.relatedBlogs.length, data.relatedBlogs)

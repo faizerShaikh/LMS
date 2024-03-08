@@ -9,6 +9,7 @@ export interface GalleryInterface extends BaseObjInterface {
 }
 
 export interface PageContentInterface extends BaseObjInterface{
+  slug?: string;
   name: string;
   coverImage: string | null;
   title: string;

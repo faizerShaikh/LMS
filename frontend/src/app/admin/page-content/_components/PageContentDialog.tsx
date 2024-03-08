@@ -10,6 +10,7 @@ import { toast } from "utils";
 import { API } from "configs";
 
 const initialValues: PageContentInterface = {
+  slug: "",
   name: "",
   title: "",
   titleDescription: "",
@@ -96,6 +97,10 @@ export const PageContentDialog = ({
                 <Box className="mt-4">
                   <Label text="Name" required />
                   <Input name="name" disabled />
+                </Box>
+                <Box className="mt-4">
+                  <Label text="Slug" required />
+                  <Input name="slug" />
                 </Box>
                 <Box className="mt-4">
                   <Label text="Title" required />

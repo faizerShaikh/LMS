@@ -19,6 +19,7 @@ import { useState } from "react";
 import { API } from "configs";
 
 const initialValues: MediaPressReleaseInterface = {
+  slug: "",
   title: "",
   link: "",
   description: "",
@@ -26,10 +27,11 @@ const initialValues: MediaPressReleaseInterface = {
   coverImage: "",
 };
 const validationSchema = Yup.object({
-  title: Yup.string().required("Required"),
-  link: Yup.string().required("Required").url("Privioded value must be a URL"),
-  description: Yup.string().required("Required"),
-  coverImage: Yup.string().required("Required"),
+  slug: Yup.string().required("Slug is Required"),
+  title: Yup.string().required("Title is Required"),
+  link: Yup.string().required("Link is Required").url("Privioded value must be a URL"),
+  description: Yup.string().required("Description is Required"),
+  coverImage: Yup.string().required("Cover Image Required"),
 });
 
 export const MediaDialog = ({
@@ -107,6 +109,10 @@ export const MediaDialog = ({
                   <Label text="Upload your image" required/>
                   <DropZone name="coverImage" />
                   {/* <Input name="file" type="file" onChange={handleImage} /> */}
+                </Box>
+                <Box className="mt-4">
+                  <Label text="Slug" required/>
+                  <Input name="slug" />
                 </Box>
                 <Box className="mt-4">
                   <Label text="Title" required/>

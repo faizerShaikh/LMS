@@ -11,6 +11,7 @@ import { BlogCategory } from "interfaces/blogCategory";
 
 const initialValues: BlogCategory = {
   name: "",
+  slug: "",
 };
 
 export const BlogCategoryDialog = ({
@@ -65,7 +66,10 @@ export const BlogCategoryDialog = ({
                   <Label text="Name" required />
                   <Input name="name" />
                 </Grid>
-
+                <Grid xs={6} item>
+                  <Label text="Slug" required />
+                  <Input name="slug" />
+                </Grid>
                 <Grid xs={12} item>
                   <Box className="flex justify-end">
                     <Button
