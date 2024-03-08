@@ -20,7 +20,9 @@ export function CoursesCard({
       />
       <div className="flex flex-col justify-between">
         <div className="p-4">
-          <p className="font-bold m-0 min-h-12">{specialization.name}</p>
+          <p className="font-bold m-0 min-h-12">{specialization.name.length > 40
+                        ? `${specialization.name.slice(0, 45)}...`
+                        : specialization.name}</p>
           
         </div>
         <div className="px-4 mb-3">

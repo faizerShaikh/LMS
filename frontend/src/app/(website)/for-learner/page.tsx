@@ -4,8 +4,8 @@ import React from "react";
 export default function ForLearner() {
   return (
     <>
-      <section className="px-24 bg-gray-100">
-        <div className="flex py-8">
+      <section className=" bg-gray-100">
+        <div className="flex py-8  container m-auto">
           <div className="w-1/2 flex justify-center ">
             <Image
               height={50}
@@ -32,7 +32,7 @@ export default function ForLearner() {
 
      
 
-      <section className="px-24">
+      <section className="container m-auto">
         <div className="mb-8">
           <h2 className="font-bold text-2xl mb-4">Events</h2>
           <p>Upcoming Education Events to feed your brain</p>

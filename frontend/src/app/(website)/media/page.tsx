@@ -14,7 +14,7 @@ export default async function Media() {
   return (
     <>
       <section className="bg-gray-50 h-[400px] ">
-        <div className="flex container">
+        <div className="flex container m-auto">
           <div className="w-1/2 ">
             <Image
               height={400}
@@ -47,7 +47,7 @@ export default async function Media() {
       </section>
       <section className=" py-16">
         <h2 className="font-bold text-4xl text-center mb-8">Press Release</h2>
-        <div className="flex flex-wrap container justify-around items-center gap-1">
+        <div className="flex flex-wrap container m-auto justify-around items-center gap-1">
           {PressRealeseCards.map((PressRealeseCard: any) => {
             return (
               <div className="w-[30%] p-4 border border-black mb-8 rounded-md">

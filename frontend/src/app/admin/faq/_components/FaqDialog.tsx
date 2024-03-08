@@ -25,7 +25,6 @@ const initialTopicsValues: Topics = {
 
 
 
-
 export const FaqDialog = ({
   data,
   isUpdate,
@@ -61,6 +60,7 @@ export const FaqDialog = ({
     >   
       {({ onClose }) => (
         <Formik
+
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate({...values,orderBy:+values.orderBy }, {
@@ -91,7 +91,8 @@ export const FaqDialog = ({
                 </Grid>
                 <Grid xs={12} item>
                   <Label text="Is Featured" required />
-                  <Checkbox name="isFeatured"  
+                  <Checkbox name="isFeatured"
+                  
                   checked={values.isFeatured}
                   onChange={(e) => {
                     setFieldValue("isFeatured", e.target.checked);

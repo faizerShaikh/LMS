@@ -29,7 +29,7 @@ export default async function Home() {
   return (
     <>
       <section className=" bg-gray-100 h-[400px]">
-        <div className="flex justify-between items-center gap-10 container ">
+        <div className="flex justify-between items-center gap-10 container m-auto">
           <div className=" ">
             <Image
               width={500}
@@ -53,7 +53,7 @@ export default async function Home() {
         </div>
       </section>
       <section className="bg-gray-100 py-24">
-        <div className="container ">
+        <div className="container m-auto">
           <div>
             <h2 className="font-bold text-3xl m-0 mb-4">FAQ's</h2>
           </div>
@@ -86,14 +86,14 @@ export default async function Home() {
         </div>
       </section>
 
-      <section>
-        <div className="mb-8 container">
+      <section className="container m-auto">
+        <div className="mb-8 ">
           <h2 className="font-bold text-3xl mb-4">Events</h2>
           <p>Upcoming Education Events to feed your brain</p>
         </div>
 
         {events.slice(0, 3).map((event: any) => (
-          <div className="flex mb-8 container">
+          <div className="flex mb-8 ">
             <div className="w-1/4">
               <h2>
                 <span style={{ color: "#ffcc00", fontSize: "60px" }}>

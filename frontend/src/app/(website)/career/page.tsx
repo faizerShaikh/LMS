@@ -4,7 +4,7 @@ export default function Career() {
   return (
     <>
       <section className=" bg-gray-100 h-[400px] ">
-        <div className="flex container">
+        <div className="flex container m-auto">
           <div className="w-1/2">
             <Image
               height={400}
@@ -35,7 +35,7 @@ export default function Career() {
         </div>
       </section>
       <section className=" py-12">
-        <div className="flex my-12 container ">
+        <div className="flex my-12 container  m-auto">
           <div className="w-1/4 bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
             <h2 className=" font-bold text-2xl">Diversity</h2>
             <p className="text-lg">
@@ -69,7 +69,7 @@ export default function Career() {
           </div>
         </div>
 
-        <div className="flex justify-between container mb-8">
+        <div className="flex justify-between container mb-8 m-auto">
           <div className="w-1/5">
             <div>
               <form action="" className="bg-gray-100 p-2 flex flex-col ">
@@ -233,7 +233,7 @@ export default function Career() {
           </div>
         </div>
 
-        <div className="container text-center ">
+        <div className="container text-center m-auto">
           <p className="text-lg">
             RiseBack.org strictly prohibits any recruitment fees from
             candidates. Be cautious of fraudulent recruitment offers Please

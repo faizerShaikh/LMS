@@ -5,6 +5,8 @@ import { useGetAll } from "hooks";
 
 import { SingleBlogInterface } from "interfaces/blog";
 import { BlogDialog } from "./_components/BlogDialog";
+import { MetaDataForm } from "components/admin";
+import removeTags from "utils/removeTags";
 
 const columns = [
   {
@@ -18,12 +20,20 @@ const columns = [
     field: "description",
     flex: 2,
     cellClassName: "text-dark",
+    renderCell: (params: { row: SingleBlogInterface }) => {
+      const descriptionValue = params.row.description;
+      return removeTags(descriptionValue);
+    },
   },
   {
     headerName: "Created By",
-    field: "createdBy",
+    field: `name`,
     flex: 1,
     cellClassName: "text-dark",
+    valueGetter: (params: { row: SingleBlogInterface }) => {
+      const CreatedByNmae = params.row.created_by?.name;
+      return CreatedByNmae;
+    },
   },
   {
     headerName: "Is Featured",
@@ -52,16 +62,23 @@ const columns = [
             title={`Delete ${params.row.title}`}
             data={params.row.id}
           />
+          <MetaDataForm
+            isUpdate={true}
+            data={
+              params.row.metaData
+                ? params.row.metaData
+                : { id: params.row.metaID }
+            }
+            refetchURL="/configurations/blog"
+          />
         </>
       );
     },
   },
 ];
 
-
 export default function MediaPage() {
   const { data } = useGetAll({ key: "/configurations/blog" });
-  
   return (
     <>
       <PageHeader title="Blog's" />

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
-import { SingleBlogInterface } from "interfaces/blog";
+import { SingleBlogInterface, relatedBlogInterface } from "interfaces/blog";
 import moment from "moment";
 
 export default async function SingleBlog({
@@ -9,48 +9,51 @@ export default async function SingleBlog({
 }: {
   params: { id: string };
 }) {
-  let data: SingleBlogInterface;
-  let url = `${process.env.BASE_API_URL}/configurations/blog/${params.id}/`;
+  let data: { blog: SingleBlogInterface; relatedBlogs: relatedBlogInterface[] };
+  let url = `${process.env.BASE_API_URL}/configurations/blog/blog-detail/${params.id}/`;
   const response = await axios.get(url);
-  data = response.data.data;
-  console.log(data, "<-=============================datatatatatat")
-
+  data = response.data.data;  
+  console.log(data.relatedBlogs.length, data.relatedBlogs)
   return (
     <>
-      <section>
-        <div className="container">
+      <section className="m-auto">
+        <div className="container  m-auto">
           <div>
             <Image
-              src={`${process.env.BASE_MEDIA_URL}${data.blog_image}`}
+              src={`${process.env.BASE_MEDIA_URL}/${data.blog.blog_image}`}
               height={550}
               width={500}
               alt=""
               className="w-full mt-4"
             />
             <h2 className="mt-4 font-semibold py-4 text-3xl mb-8">
-              {data.title}
+              {data.blog.title}
             </h2>
           </div>
         </div>
       </section>
       <section>
-        <div className="container">
-          <div className="flex justify-between mb-8">
-            <div className="flex">
+        <div className="container m-auto">
+          <div className="flex justify-between items-center  mb-8">
+            <div className="flex items-center">
               <Image
-                src="/img2/Author.svg "
-                height={100}
-                width={100}
+                src="/img2/Author.svg"
+                height={50}
+                width={50}
                 alt="Author"
-                className="bg-blue-500 rounded-full"
+                className="size-7 rounded-full mr-4 "
               />
+<<<<<<< HEAD
 <<<<<<< HEAD
               <p className="pr-8">asdfghjk</p>
 =======
               <p className="pr-8">asdfghjkl</p>
 >>>>>>> 55307678778fb5c06963ea9b12b5b13ad2612ec1
+=======
+              <p className="pr-8 font-bold">{data.blog.created_by?.name}</p>
+>>>>>>> c3b79579c5c86c8f6d61ccc608b467693e6c8b0e
               <p className="pr-8">
-                {moment(data.createdAt).format("MMMM DD, YYYY")}
+                {moment(data.blog.createdAt).format("MMMM DD, YYYY")}
               </p>
             </div>
             <div className="flex">
@@ -62,7 +65,7 @@ export default async function SingleBlog({
                     height={100}
                     width={100}
                     src="/img2/Group.svg"
-                    className="size-7 bg-blue-500 rounded-full"
+                    className="size-7 bg-blue-900 rounded-full"
                   />
                 </Link>
                 <Link href="https://twitter.com/?lang=en">
@@ -71,7 +74,7 @@ export default async function SingleBlog({
                     height={100}
                     width={100}
                     src="/img2/xlogo.svg"
-                    className="size-7 bg-blue-500 rounded-full"
+                    className="size-7 bg-blue-900 rounded-full"
                   />
                 </Link>
                 <Link href="https://in.linkedin.com/">
@@ -80,7 +83,7 @@ export default async function SingleBlog({
                     height={100}
                     width={100}
                     src="/img2/linkdinlogo.svg"
-                    className="size-7 bg-blue-500 rounded-full"
+                    className="size-7 bg-blue-900 rounded-full"
                   />
                 </Link>
                 <Link href="https://www.instagram.com/accounts/login/?hl=en">
@@ -89,7 +92,7 @@ export default async function SingleBlog({
                     height={100}
                     width={100}
                     src="/img2/instagramlogo.svg"
-                    className="size-7 bg-blue-500 rounded-full"
+                    className="size-7 bg-blue-900 rounded-full"
                   />
                 </Link>
                 <Link href="https://www.youtube.com/">
@@ -98,7 +101,7 @@ export default async function SingleBlog({
                     height={100}
                     width={100}
                     src="/img2/youtubeLogo.svg"
-                    className="size-7 bg-blue-500 rounded-full"
+                    className="size-7 bg-blue-900 rounded-full"
                   />
                 </Link>
               </div>
@@ -106,58 +109,36 @@ export default async function SingleBlog({
           </div>
 
           <div className="mb-14">
-            <p dangerouslySetInnerHTML={{ __html: data?.description }}></p>
+            <span dangerouslySetInnerHTML={{ __html: data.blog.description }}></span>
           </div>
         </div>
       </section>
 
       <section className=" mb-20">
-        <div className="container">
+        <div className="container m-auto">
           <h2 className="text-3xl font-bold mb-8">YOU MAY ALSO LIKE</h2>
-
           <div className="flex justify-between">
-            <div className="w-[350px]">
-              <Image
-                src="/img2/ncept-with-robot-arms-23-2149739749.jpeg"
-                height={200}
-                width={250}
-                alt=""
-                className="w-full h-52 mb-4"
-              />
-              <h2 className="font-bold mb-2 text-lg">
-                Time Magazine Recognizes Desi and Indian-Origin Techies in
-                Inaugural 'TIME100 AI List
-              </h2>
-              <p>9 September 2023</p>
-            </div>
-            <div className="w-[350px]">
-              <Image
-                src="/img2/motivational-composition-goal-achievement_23-2150490032.jpg"
-                height={200}
-                width={250}
-                alt=""
-                className="w-full h-52 mb-4"
-              />
-              <h2 className="font-bold mb-2 text-lg">
-                Unlocking Lucrative Opportunities: IT Courses in AI, ML, Web
-                Apps, Cloud, and Blockchain for Indonesians
-              </h2>
-              <p>9 September 2023</p>
-            </div>
-            <div className="w-[350px]">
-              <Image
-                src="/img2/lagos-city-Nigeria (1).jpg"
-                height={200}
-                width={250}
-                alt=""
-                className="w-full h-52 mb-4"
-              />
-              <h2 className="font-bold mb-2 text-lg">
-                How IT University Education can be game changer for Nigeria
-                Startups & IT sector
-              </h2>
-              <p>27 December 2022</p>
-            </div>
+            {data.relatedBlogs.length
+              ? data.relatedBlogs.map((item: relatedBlogInterface) => {
+                  return (
+                    <div className="w-[350px]">
+                      <Image
+                        src={`${process.env.BASE_MEDIA_URL}/${item?.blog_image}`}
+                        height={200}
+                        width={250}
+                        alt=""
+                        className="w-full h-52 mb-4"
+                      />
+                      <Link href={`/blogs/${item.id}`} className="text-black">
+                      <h2 className="font-bold mb-2 text-lg">
+                        {item.title}
+                      </h2>
+                      </Link>
+                      <p>{moment(item.createdAt).format('Do MMMM  YYYY')}</p>
+                    </div>
+                  );
+                })
+              : ""}
           </div>
         </div>
       </section>

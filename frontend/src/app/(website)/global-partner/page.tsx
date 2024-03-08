@@ -17,36 +17,8 @@ export default function Blogs() {
       country's aspirations"
       viewButton = {false}
       ></HeroSection>
-      {/* <section className="bg-gray-50 h-[400px]">
-        <div className="container">
-          <div className="flex  py-8">
-            <div className="w-1/2">
-              <Image
-                alt="test"
-                width={550}
-                height={336}
-                src="/img2/Ethopia-Flag.jpg"
-              />
-            </div>
-            <div className="w-1/2 px-8 ">
-              <h2 className="font-extrabold text-5xl  leading-[56px] mt-0 mb-4">
-                Ethopia
-              </h2>
-              <p className="font-medium text-xl">
-                Tadias Training Center proudly partners with RiseBack Edutech to
-                introduce RiseBack Ethiopia. With a focus on advancing
-                affordable IT education, the center aims to fuel
-                technopreneurship and entrepreneurship, fostering new startups
-                and job opportunities for Ethiopia's youth. <br />
-                This initiative not only stimulates economic activity but also
-                broadens existing economic horizons in alignment with the
-                country's aspirations
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}
-      <section className="container my-16">
+      
+      <section className="container m-auto my-16">
         <h2 className="text-center text-3xl mb-12 font-medium">
           Contact Details
         </h2>
@@ -100,7 +72,7 @@ export default function Blogs() {
           </div>
         </div>
       </section>
-      <section className="container mt-4 ">
+      <section className="container m-auto mt-4 ">
         <h2 className="text-center text-3xl">Professional IT Courses</h2>
         <div className="flex justify-center mb-8">
           <ul className="  w-1/2">
@@ -159,7 +131,7 @@ export default function Blogs() {
           </button>
         </div>
       </section>
-      <section className="container text-center mb-20">
+      <section className="container m-auto text-center mb-20">
         <h2 className="text-2xl">Rise N Start Ignite</h2>
         <p className="font-medium text-xl mb-8">
           Rise N Start Ignite, Ethiopia's pioneering Startup Pitch Competition

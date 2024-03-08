@@ -20,7 +20,7 @@ export default async function courses() {
   return (
     <>
       <section className="bg-gray-100 h-[400px] ">
-        <div className="flex container ">
+        <div className="flex container  m-auto">
           <div className="w-2/4 flex justify-around">
             <Image
               height={400}
@@ -48,7 +48,7 @@ export default async function courses() {
       </section>
 
       <section>
-        <div className="container">
+        <div className="container m-auto">
           <div className="text-center my-16">
             <h2 className="font-semibold text-4xl mb-4">
               Start a Brand-New Career in as few as Six Weeks !
@@ -76,6 +76,7 @@ export default async function courses() {
                 {CoursesCatagoriData.map((item: any) => (
                   <p key={item.id}>{item.name}</p>
                 ))}
+                
               </ul>
             </div>
           </div>
@@ -89,7 +90,7 @@ export default async function courses() {
       </section>
 
       <section className="bg-gray-100">
-        <div className="container py-16">
+        <div className="container py-16 m-auto">
           <div className="mb-8">
             <h2 className="text-center font-semibold text-3xl mb-6 ">
               Unlocking Global Opportunities: Navigating the Digital Landscape
@@ -138,7 +139,7 @@ export default async function courses() {
         </div>
       </section>
       <section className="py-16">
-        <div className="text-center">
+        <div className="text-center m-auto">
           <button className=" border-2 bg-white border-blue-900  px-4 text-lg rounded-3xl">
             <Link href = "/webinar" className="text-blue-900">Webinar</Link>
           </button>

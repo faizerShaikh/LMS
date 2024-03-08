@@ -32,9 +32,10 @@ const columns = [
     cellClassName: "text-dark",
     renderCell: (params: { row: MediaPressReleaseInterface }) => {
       const checkboxProps = params.row.isFeatured
-        ? { disabled: true, checked: true }
+      
+      ? {disabled:true,  checked: true }
         : {};
-      return <Checkbox {...checkboxProps} />;
+      return <Checkbox {...checkboxProps} disabled/>;
     },
   },
   {
