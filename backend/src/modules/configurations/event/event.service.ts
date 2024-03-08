@@ -16,6 +16,7 @@ export class eventService extends GenericService<
   defaultFindOptions: {
     include: [MetaData],
   },
+  includes:[MetaData]
 }) {
   constructor(
     @InjectModel(Events) private event: typeof Events,

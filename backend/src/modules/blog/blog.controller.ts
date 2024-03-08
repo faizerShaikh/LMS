@@ -50,4 +50,8 @@ export class BlogController extends GenericController<
   async notFeaturedBLogs(): Promise<Blog[]> {
     return this.blogService.notFeaturedBLogs();
   }
+  @Get('blog-detail/:id')
+  async singleBlogs(@Param('id') id:string,):Promise<Blog>{
+    return this.blogService.getBlogWithRelated(id);
+  }
 }

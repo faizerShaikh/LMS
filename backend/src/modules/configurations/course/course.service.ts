@@ -17,6 +17,7 @@ export class CourseService extends GenericService<
   defaultFindOptions: {
     include: [MetaData],
   },
+  includes:[MetaData]
 }) {
   constructor(
     @InjectModel(Course) private course: typeof Course,

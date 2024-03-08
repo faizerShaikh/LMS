@@ -14,8 +14,8 @@ import { MetaData } from "../metaData/meta.model";
 export class PageContentService extends GenericService<PageContent,CreatePageDto,UpdatePageContent>({
     defaultFindOptions:{
         include:[gallery],
-        
-    }
+    },
+    includes:[gallery]      
 }){
     constructor(
         @InjectModel(PageContent) private pageContent: typeof PageContent,

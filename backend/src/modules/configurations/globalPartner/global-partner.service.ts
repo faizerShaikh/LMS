@@ -11,7 +11,8 @@ import { Contacts } from '../cotacDetails/contact.model';
 export class GlobalPartnerService extends GenericService({
   defaultFindOptions:{
     include:[MetaData,Contacts]
-  }
+  },
+  includes:[MetaData,Contacts]
 }) {
   constructor(
     @InjectModel(GlobalPartner) private globalPartner: typeof GlobalPartner,

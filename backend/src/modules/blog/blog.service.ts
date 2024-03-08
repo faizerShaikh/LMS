@@ -8,6 +8,8 @@ import { join } from 'path';
 import { User } from '../user/users/models/user.model';
 import { MetaData } from '../configurations/metaData/meta.model';
 import * as fs from 'fs'
+import { BlogCategory } from './modules/blog-category/model';
+import { Sequelize } from 'sequelize';
 @Injectable()
 export class BlogService extends GenericService<
   Blog,
@@ -16,14 +18,40 @@ export class BlogService extends GenericService<
 >({
   defaultFindOptions:{
       include:[User,MetaData]
-  }}){
+  },
+  includes:[User]
+}){
   constructor(
     @InjectModel(Blog) private blog: typeof Blog,
     private reqParams: RequestParamsService,
-    @InjectModel(MetaData) private metaData : typeof MetaData
+    @InjectModel(BlogCategory) private category:typeof BlogCategory,
   ) {
     super(blog, reqParams);
   }
+  
+  
+  
+  async getBlogWithRelated(id: string): Promise<any> {
+    try {
+      const blog = await this.blog.findByPk(id, { include: [BlogCategory,User] });
+      
+      if (!blog) {
+        throw new Error('Blog not found');
+      }
+      
+      const relatedBlogs = await this.blog.findAll({
+        where: { blog_category_id: blog.blog_category_id },
+        limit: 3,
+        order: Sequelize.literal('RANDOM()'),  
+      });
+      
+      return { blog, relatedBlogs };
+    
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
 
   async updateBlogImage(file: Express.Multer.File, id: string) {
     try {
@@ -71,6 +99,11 @@ export class BlogService extends GenericService<
     return this.blog.findAll({include:[User],
       where: { is_featured: false },
     });
+  }
+
+  async delete(id?: string): Promise<boolean> {
+    
+    return true
   }
 
 }

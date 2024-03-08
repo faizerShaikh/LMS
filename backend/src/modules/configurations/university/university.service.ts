@@ -15,7 +15,8 @@ export class UniversityService extends GenericService<
 >({
   defaultFindOptions:{
     include:[MetaData],
-  }
+  },
+  includes:[MetaData]
 }) {
   constructor(
     @InjectModel(University) private university: typeof University,
@@ -36,7 +37,6 @@ export class UniversityService extends GenericService<
       const filePath = join(__dirname, '../../../../', 'backend/src/public/' + university.university_image);
       
       if (file && file.filename) {
-        const newImagePath = '/media/pressRelease/' + file.filename;
   
         if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
           unlink(filePath, (err) => {
@@ -46,8 +46,10 @@ export class UniversityService extends GenericService<
               console.log('Old image deleted...');
             }
           });
+        }else{
+          console.log('not deleted')
         }
-  
+        const newImagePath = '/media/university/' + file.filename;
         await university.update({
           university_image : newImagePath,
         });

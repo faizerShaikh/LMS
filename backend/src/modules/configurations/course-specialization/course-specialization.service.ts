@@ -23,7 +23,8 @@ export class CourseSpecializationService extends GenericService<
   
   defaultFindOptions:{
     include:[MetaData,Course,University]
-}
+},
+includes:[MetaData,Course,University]
 
 }) {
   constructor(

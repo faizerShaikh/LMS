@@ -10,7 +10,8 @@ import * as fs from 'fs'
 export class PressService extends GenericService({
     defaultFindOptions:{
         include:[MetaData]
-    }
+    },
+    includes:[MetaData]
 }){
     constructor(
         @InjectModel(Press)private press : typeof Press,

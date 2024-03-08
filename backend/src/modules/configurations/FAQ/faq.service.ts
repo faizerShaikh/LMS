@@ -11,7 +11,8 @@ export class FaqService extends GenericService<Faq, CreateFaqDTO, UpdateFAQ>({
   
   defaultFindOptions:{
     include:[FaqTopic]
-  }
+  },
+  includes:[FaqTopic]
 }) {
   constructor(
     @InjectModel(Faq) private faq: typeof Faq,

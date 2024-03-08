@@ -65,7 +65,7 @@ export class University extends MyBaseModel {
   })
   description: string;
 
-  @Default('media/default.png')
+  @Default('/media/default.png')
   @Column({
     type: DataType.STRING,
   })

@@ -1,6 +1,6 @@
 export enum status{
     NEW='new',
-    INPROCESS='in process',
+    INPROCESS='in-process',
     CLOSED='closed'
 }
 
