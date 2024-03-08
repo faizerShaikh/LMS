@@ -10,11 +10,11 @@ export const inputStyles = {
     "&.Mui-focused": {
       color: colors.text.dark,
     },
-    "color": colors.text.dark,
-    "position": "initial",
-    "fontSize": "20px",
-    "marginBottom": "8px",
-    "fontWeight": "400",
+    color: colors.text.dark,
+    position: "initial",
+    fontSize: "20px",
+    marginBottom: "8px",
+    fontWeight: "400",
   },
   "& .MuiInputBase-root": {
     "&.Mui-disabled": {
@@ -23,9 +23,9 @@ export const inputStyles = {
     "&.MuiInputBase-multiline": {
       padding: "0",
     },
-    "background": `${colors.tertiary.light}70`,
-    "border": `1.5px solid ${colors.tertiary.light}`,
-    "borderRadius": "6px",
+    background: `${colors.tertiary.light}70`,
+    border: `1.5px solid ${colors.tertiary.light}`,
+    borderRadius: "6px",
     "& .MuiInputBase-input": {
       padding: "7px 10px",
       fontSize: "14px",
@@ -34,7 +34,6 @@ export const inputStyles = {
     "&:after, &:before": {
       display: "none",
     },
-    
   },
 };
 
@@ -50,7 +49,7 @@ export const Input = ({
     ...otherProps,
     sx: { ...inputStyles, ...otherProps.sx },
   };
-  
+
   if (name) {
     //eslint-disable-next-line
     const [field, meta] = useField(name || "");

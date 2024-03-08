@@ -1,8 +1,12 @@
-import { Box, Grid, IconButton } from "@mui/material";
+import { Box, Divider, Grid, IconButton } from "@mui/material";
 import React, { useState } from "react";
 import { Button, Input, Label, Dialog, DropZone } from "..";
 import { Formik, Form, FieldArray } from "formik";
-import { CreateUpdateDialogBaseProps, GalleryFormProps, GalleryInterface } from "interfaces";
+import {
+  CreateUpdateDialogBaseProps,
+  GalleryFormProps,
+  GalleryInterface,
+} from "interfaces";
 import { Add, Delete, ImageReference, TrashCan } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
@@ -19,7 +23,7 @@ export const GalleryForm = ({
   data = {},
   isUpdate,
   refetchURL,
-  pageId
+  pageId,
 }: GalleryFormProps) => {
   const initialValues: { gallery: GalleryInterface[] } = {
     gallery: [
@@ -38,8 +42,8 @@ export const GalleryForm = ({
     method: "put",
     headers: { "Content-Type": "multipart/form-data" },
   });
-  console.log('pageId', pageId);
-  
+  console.log("pageId", pageId);
+
   return (
     <Dialog
       button={
@@ -53,7 +57,7 @@ export const GalleryForm = ({
         <Formik
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
-            console.log('valuesvaluesvalues', values)
+            console.log("valuesvaluesvalues", values);
             const fields = [
               "coverImage",
               "name",
@@ -67,16 +71,14 @@ export const GalleryForm = ({
                 fd.append(`data[${x}][${f}]`, values?.gallery[x]?.[f]);
               });
             }
-            
+
             mutate(fd, {
               onSuccess(resp, variables, context) {
                 queryClient.refetchQueries(refetchURL, {
                   exact: false,
                   stale: true,
                 });
-                toast(
-                  `Gallery ${isUpdate ? "updated" : "added"} successfully`
-                );
+                toast(`Gallery ${isUpdate ? "updated" : "added"} successfully`);
                 onClose();
               },
             });
@@ -131,16 +133,20 @@ export const GalleryForm = ({
                                   <TrashCan />
                                 </IconButton>
                               )}
+
+                              <Divider className="my-5" />
                               {index === gallery.length - 1 && (
                                 <IconButton
                                   type="button"
-                                  onClick={() => push({
-                                    coverImage: "",
-                                    name: "",
-                                    description: "",
-                                    orderBy: index+1,
-                                    pageId: pageId,
-                                  })}
+                                  onClick={() =>
+                                    push({
+                                      coverImage: "",
+                                      name: "",
+                                      description: "",
+                                      orderBy: index + 1,
+                                      pageId: pageId,
+                                    })
+                                  }
                                   className="text-red-500"
                                 >
                                   <Add />

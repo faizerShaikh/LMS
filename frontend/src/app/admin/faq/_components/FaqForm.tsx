@@ -1,8 +1,8 @@
-import { Box, Grid, IconButton } from "@mui/material";
+import { Box, Divider, Grid, IconButton } from "@mui/material";
 import React, { useState } from "react";
 import { Button, Input, Label, Dialog } from "../../../../components";
 import { Formik, Form, FieldArray } from "formik";
-import {  faqFormProps } from "interfaces";
+import { faqFormProps } from "interfaces";
 import { Add, TrashCan } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
@@ -35,16 +35,12 @@ export const FaqForm = ({
       },
     ],
   };
-  
 
-  
-  
   const queryClient = useQueryClient();
   const { mutate, isLoading } = useCreateOrUpdate({
     url: "/configurations/faq-topics/bulkcreate",
     method: "post",
   });
-
 
   return (
     <Dialog
@@ -57,13 +53,12 @@ export const FaqForm = ({
     >
       {({ onClose }) => (
         <Formik
-        // validationSchema={validationSchema}
-        
+          // validationSchema={validationSchema}
 
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(values, {
-              onSuccess(resp) { 
+              onSuccess(resp) {
                 resetForm();
                 queryClient.refetchQueries(refetchURL, {
                   exact: false,
@@ -96,12 +91,14 @@ export const FaqForm = ({
                                 <Input
                                   name={`faq.${index}.topic`}
                                   className="mb-4"
+                                  // label="Question"
                                 />
                               </Grid>
                               <Label text="Answer" />
                               <Input
                                 name={`faq.${index}.answer`}
                                 className="mb-4"
+                                // label="Answer"
                               />
 
                               {index !== faq.length - 1 && (
@@ -113,6 +110,8 @@ export const FaqForm = ({
                                   <TrashCan />
                                 </IconButton>
                               )}
+
+                              <Divider className="my-5" />
                               {index === faq.length - 1 && (
                                 <IconButton
                                   type="button"
