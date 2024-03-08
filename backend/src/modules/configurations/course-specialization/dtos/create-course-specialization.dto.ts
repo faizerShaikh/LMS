@@ -77,4 +77,8 @@ export class CreateCourseSpecializationDTO {
   @ValidateNested({ each: true })
   fees_structure: FeesStructureDTO;
 
+  @IsString()
+  @IsNotEmpty()
+  slug:string
+
 }

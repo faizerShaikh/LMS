@@ -17,4 +17,8 @@ export class PressDTO {
     @IsBoolean()
     @IsNotEmpty()
     isFeatured: boolean;
+
+    @IsString()
+    @IsNotEmpty()
+    slug:string
 }

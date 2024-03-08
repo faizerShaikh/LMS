@@ -13,4 +13,8 @@ export class CreateUniversityDTO {
   @IsNotEmpty()
   description: string;
 
+  @IsString()
+  @IsNotEmpty()
+  slug:string
+
 }

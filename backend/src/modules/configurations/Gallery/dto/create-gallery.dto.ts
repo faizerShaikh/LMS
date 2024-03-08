@@ -18,6 +18,9 @@ export class GalleryDto {
     @IsNotEmpty()
     description: string;
 
+    @IsString()
+    @IsNotEmpty()
+    slug:string
     
     // @IsNotEmpty()
     // pageId: string;

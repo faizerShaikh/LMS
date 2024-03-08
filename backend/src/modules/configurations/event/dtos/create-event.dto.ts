@@ -28,4 +28,8 @@ export class CreateEventDTO{
     @IsBoolean()
     isFeatured: boolean;
 
+    @IsString()
+    @IsNotEmpty()
+    slug:string
+
 }

@@ -4,4 +4,8 @@ export class CreateBlogCategoryDTO {
   @IsString()
   @IsNotEmpty()
   name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  slug:string
 }

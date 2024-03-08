@@ -9,18 +9,14 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { Blog } from '../../../model';
+import { MyBaseModel } from 'src/core/base.model';
 
 @Table({
   tableName: 'blog-categories',
   modelName: 'BlogCategory',
   paranoid: true,
 })
-export class BlogCategory extends Model<BlogCategory> {
-  @IsUUID(4)
-  @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column
-  id: string;
+export class BlogCategory extends MyBaseModel {
 
   @Column({
     type: DataType.STRING,

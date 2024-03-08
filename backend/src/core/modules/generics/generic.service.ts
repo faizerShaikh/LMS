@@ -80,12 +80,22 @@ export function GenericService<
 
       return data;
     }
+    async getOneBySlug<Model extends {}= any>(slug?:string) : Promise<Model>{
+      const data = await this.getobjslug<Model>(slug,true)
+      return data
+    }
 
+   async getobjslug<M = any>(slug: string, isJoin: boolean): Promise<M> {
+  const where = { slug };
+  return await this.getOneObj<M>({ where }, isJoin);
+}
     /// find one record for matching query
     async getOne<Model extends {} = any>(id?: string): Promise<Model> {
       const data = await this.getOneObj<Model>(id, true);
       return data;
     }
+
+    
 
     //delete records for matching query
     async delete(id?: string): Promise<boolean> {

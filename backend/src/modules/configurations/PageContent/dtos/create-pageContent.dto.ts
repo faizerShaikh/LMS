@@ -24,4 +24,8 @@ export class CreatePageDto {
     @IsString()
     pageDescription: string;
 
+    @IsString()
+    @IsNotEmpty()
+    slug:string
+
 }

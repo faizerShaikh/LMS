@@ -32,4 +32,8 @@ export class GlobalPartnerDTO{
     @IsBoolean()
     popular_course: boolean;
 
+    @IsString()
+    @IsNotEmpty()
+    slug:string
+
 }

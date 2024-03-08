@@ -42,7 +42,12 @@ export class BlogController extends GenericController<
     return this.blogService.updateBlogImage(file, id);
   }
 
-  @Get('featured')
+  @Get('category-blog/:id')
+  async categoryblog(@Param('id')id:string):Promise <Blog[]>{
+    return this.blogService.categoryblog(id)
+  }
+
+  @Get('featured') 
   async findFeaturedBlogs(): Promise<Blog[]> {
     return this.blogService.findFeaturedBlogs();
   }

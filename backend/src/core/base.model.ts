@@ -2,6 +2,8 @@ import {
   AfterBulkCreate,
   AfterCreate,
   AfterUpdate,
+  BeforeCreate,
+  BeforeSave,
   BelongsTo,
   Column,
   DataType,
@@ -35,6 +37,29 @@ export class MyBaseModel extends Model {
     type: DataType.VIRTUAL,
   })
   type: type;
+
+  @Column({
+    unique:true
+  })
+  slug: string
+
+  @BeforeSave
+  static async generateSlug(baseModel: MyBaseModel): Promise<void> {
+    baseModel.slug=this.toSlugFormat(baseModel.slug)
+  }
+
+  private static toSlugFormat(str: string): string {
+    return str
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-') 
+      .replace(/^-+|-+$/g, '')
+      .replace(/\s+/g, '-') 
+      .replace(/--+/g, '-') 
+      .replace(/[^\w\s-]/g, '') 
+      .trim(); 
+  }
+
+
 
   @AfterCreate
   static async createMetaData(baseModel: MyBaseModel): Promise<void> {

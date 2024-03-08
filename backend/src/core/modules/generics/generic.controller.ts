@@ -43,6 +43,13 @@ export function GenericController<Model, CreateObjDTO, UpdateObjDTO>({
       return this.service?.create(obj || body);
     }
 
+    @Get('slug/:slug')
+    @HttpCode(HttpStatus.OK)
+    async getOneBySlug(@Param('slug') slug: string) {
+      this.validateMethod(methodOptions.getOneByslug);
+      return this.service?.getOneBySlug(slug);
+    }
+
     @Get()
     @HttpCode(HttpStatus.OK)
     getAllObj() {

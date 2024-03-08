@@ -8,4 +8,5 @@ export interface ServiceInterface<Model, CreateObj, UpdateObjDTO> {
     findOptions: FindAndCountOptions,
   ) => Promise<{ data: Model[]; count: number } | Model[]>;
   getOne: (id: string) => Promise<Model>;
+  getOneBySlug:(slug:string)=>Promise<Model>
 }

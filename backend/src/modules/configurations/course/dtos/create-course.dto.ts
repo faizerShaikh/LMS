@@ -11,5 +11,9 @@ export class CreateCourseDTO {
   @IsString()
   @IsNotEmpty()
   description: string;
+  
+  @IsString()
+  @IsNotEmpty()
+  slug:string
 
 }

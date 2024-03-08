@@ -18,5 +18,7 @@ export class CreateBlogDTO {
   @IsOptional()
   is_featured:boolean
 
-
+  @IsString()
+  @IsNotEmpty()
+  slug:string
 }

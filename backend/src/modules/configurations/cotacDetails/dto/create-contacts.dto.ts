@@ -48,5 +48,9 @@ export class ContactsDto {
     @IsNotEmpty()
     @IsString()
     globalPartnerID:string
+
+    @IsString()
+    @IsNotEmpty()
+    slug:string
     
 }

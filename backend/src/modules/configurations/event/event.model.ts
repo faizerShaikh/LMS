@@ -1,6 +1,7 @@
-import { Column, DataType,  Table,ForeignKey,BelongsTo, Model, Default,  } from "sequelize-typescript";
+import { Column, DataType,  Table,ForeignKey,BelongsTo, Model, Default, HasMany,  } from "sequelize-typescript";
 import { MyBaseModel } from "src/core/base.model";
 import { User } from "src/modules/user/users/models/user.model";
+import { EventRegistration } from "./eventRegistration/eventRegistration.model";
 @Table({
     tableName:'events',
     modelName: 'Events',
@@ -56,6 +57,8 @@ export class Events extends MyBaseModel{
   
     @BelongsTo(() => User)
     created_by: User;
-    
+
+    @HasMany(()=>EventRegistration)
+    eventRegistrations: EventRegistration
   
 }
