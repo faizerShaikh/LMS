@@ -2,7 +2,6 @@ import {
   AfterBulkCreate,
   AfterCreate,
   AfterUpdate,
-  BeforeCreate,
   BeforeSave,
   BelongsTo,
   Column,
@@ -49,6 +48,7 @@ export class MyBaseModel extends Model {
   }
 
   private static toSlugFormat(str: string): string {
+    console.log('==========================================================>',str)
     return str
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-') 
@@ -66,6 +66,7 @@ export class MyBaseModel extends Model {
     try {
       const metaData = await MetaData.create({ type: baseModel.type });
       baseModel.metaID = metaData.id;
+      baseModel.slug=this.toSlugFormat(baseModel.slug)
       await baseModel.save();
     } catch (error) {
       console.error('Error creating MetaData:', error);
@@ -76,6 +77,7 @@ export class MyBaseModel extends Model {
   @AfterUpdate
   static async updateMetaData(baseModel: MyBaseModel): Promise<void> {
     try {
+      baseModel.slug=this.toSlugFormat(baseModel.slug)
       await MetaData.update({ type: baseModel.type },{where:{id:baseModel.metaID}});
     } catch (error) {
       console.error('Error creating MetaData:', error);
@@ -106,6 +108,7 @@ export class MyBaseModel extends Model {
   static async bulkCreateMetaData(baseModels: MyBaseModel[]): Promise<void> {
     try {
       for (const baseModel of baseModels) {
+        baseModel.slug=this.toSlugFormat(baseModel.slug)
         await this.createOrUpdateMetaData(baseModel);
       }
     } catch (error) {

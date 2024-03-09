@@ -9,7 +9,7 @@ import { User } from '../user/users/models/user.model';
 import { MetaData } from '../configurations/metaData/meta.model';
 import * as fs from 'fs'
 import { BlogCategory } from './modules/blog-category/model';
-import { BLOB, Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize';
 @Injectable()
 export class BlogService extends GenericService<
   Blog,
@@ -34,7 +34,6 @@ export class BlogService extends GenericService<
   async getBlogWithRelated(id: string): Promise<any> {
     try {
       const blog = await this.blog.findOne({where:{slug:id}, include:[BlogCategory,User]})
-      // const blog = await this.blog.findByPk(id, { include: [BlogCategory,User] });
       
       if (!blog) {
         throw new Error('Blog not found');
@@ -132,9 +131,5 @@ export class BlogService extends GenericService<
     });
   }
 
-  async delete(id?: string): Promise<boolean> {
-    
-    return true
-  }
 
 }
