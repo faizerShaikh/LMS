@@ -1,50 +1,70 @@
 import { BlogCard } from "components/layout/cards/blog-cards";
 import axios from "axios";
+import BlogCategoryFilter from "components/blogs/blog-category";
+import FeaturedBlog from "components/blogs/fratured-blog";
+import { BlogCategory } from "interfaces/blogCategory";
+async function getFeaturedBlogs() {
+  const FeaturedBlogResponse = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/blog/featured`
+  );
+  return FeaturedBlogResponse.data.data;
+}
 
-
-export default async function Blogs() {
-
+export default async function Blogs({
+  searchParams: { category },
+}: {
+  searchParams: { category: string };
+}) {
   let BlogCardData: any = [];
-  const BlogCardresponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/not-featured`);
+  let BlogCardresponse = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/blog/not-featured`,
+    {
+      params: category ? { category } : "",
+    }
+  );
   BlogCardData = BlogCardresponse.data.data;
-  
 
   let BlogCatagoriData = [];
-  const BlogCatagoriResponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/blog-category`);
+  const BlogCatagoriResponse = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/blog/blog-category`
+  );
   BlogCatagoriData = BlogCatagoriResponse.data.data.rows;
+  console.log(
+    BlogCatagoriData,
+    "<====================================================================="
+  );
+  let FeaturedBlogData: any = await getFeaturedBlogs();
 
-  let FeaturedBlogData: any = [];
-  const FeaturedBlogResponse = await axios.get(`${process.env.BASE_API_URL}/configurations/blog/featured`);
-  FeaturedBlogData = FeaturedBlogResponse.data.data;
+  const selectedCategory = BlogCatagoriData.find(
+    (item: BlogCategory) => item.slug === category
+  );
 
   return (
     <>
-      <section className="text-center container m-auto">
-        <h2 className="font-extrabold text-5xl leading-[56px]">RiseBack Blogs</h2>
+      <section className="text-center container m-auto mb-6">
+        <h2 className="font-extrabold text-5xl leading-[56px]">
+          RiseBack Blogs
+        </h2>
         <p>
           Updates on the latest career opportunities, Online Education, Online
           Universities, <span className="font-medium">& More</span>
         </p>
       </section>
-      <section className="container mt-12 m-auto">
-        <h2 className="font-bold">FEATURED BLOG POSTS</h2>
-        <span className=" border-b-2 w-8 mb-4"></span>
-        <div className="grid grid-cols-3 gap-8">
+      {!category && (
+        <FeaturedBlog FeaturedBlogData={FeaturedBlogData}></FeaturedBlog>
+      )}
 
-        {FeaturedBlogData.map((item : any, index: any) => (
-            <BlogCard
-              variant="primary"
-              key={item.id}
-              extraClasses={index === 0?'row-span-2 col-span-2':'col-span-1 row-span-1'}
-              specialization={item}
-              size= {index === 0?"l":"s"}
-            />
-          
-        ))}
-        </div>
-      </section>
+      <section className="container pb-24 pt-12 m-auto">
+        {category ? (
+          <h2 className="font-semibold text-xl font-Inter mb-12 text-gray-600 m-0">
+            {`Showing Blogs of ${selectedCategory.name}`}
+          </h2>
+        ) : (
+          <h2 className="font-semibold text-xl text-gray-600 font-Inter uppercase mb-12">
+            Leatest Blog's
+          </h2>
+        )}
 
-      <section className="container py-24 m-auto">
         <div className="flex">
           <div className="w-[70%] flex flex-wrap justify-between">
             {BlogCardData.map((item: any) => (
@@ -62,11 +82,12 @@ export default async function Blogs() {
               placeholder="Search here"
               className="border w-full mb-4 p-3"
             />
-            <h2 className="font-bold mb-4">Catagories</h2>
+            <h2 className="font-bold mb-4">Categories</h2>
 
-            {BlogCatagoriData.map((item: any) => (
-              <p key={item.id}>{item.name}</p>
-            ))}
+            <BlogCategoryFilter
+              category={category}
+              blogCategories={BlogCatagoriData}
+            ></BlogCategoryFilter>
           </div>
         </div>
         <div className="flex justify-center">

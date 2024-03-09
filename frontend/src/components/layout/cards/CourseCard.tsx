@@ -26,7 +26,7 @@ export function CoursesCard({
           
         </div>
         <div className="px-4 mb-3">
-          <Link href={`courses/${specialization.id}`} className="text-white">
+          <Link href={`courses/${specialization.slug}`} className="text-white">
               <button className="bg-blue-900 py-2 w-full rounded-md text-white">View Details </button>
           </Link>
         </div>

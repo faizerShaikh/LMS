@@ -28,7 +28,7 @@ const initialValues: MetaDataInterface = {
   type: "",
 };
 const validationSchema = Yup.object({
-  slug: Yup.string().required("Slug is Required"),
+  
   keywords: Yup.string().required("Keywords are Required"),
   title: Yup.string().required("Title is Required"),
   description: Yup.string().required("Description is Required"),
@@ -80,7 +80,7 @@ export const MetaDataForm = ({
             <Grid container>
               <Grid container spacing={2}>
                 <Grid xs={6} item>
-                  <Label text="Slug" required />
+                  <Label text="Slug"  />
                   <Input name="slug" />
                 </Grid>
                 <Grid xs={6} item>

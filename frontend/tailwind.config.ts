@@ -53,7 +53,7 @@ const config: Config = {
       padding: "8rem"
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
   corePlugins: {
     preflight: false,
   },

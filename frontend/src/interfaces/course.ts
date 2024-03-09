@@ -21,6 +21,7 @@ export interface UniversityInterface extends BaseObjInterface {
 }
 
 export interface CourseSpecializationInterface {
+    slug: string;
     id: string;
     name: string;
     description: string;

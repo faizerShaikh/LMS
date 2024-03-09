@@ -1,6 +1,7 @@
 import { BaseObjInterface, MetaDataInterface } from "./base";
 
 export interface GalleryInterface extends BaseObjInterface {
+  slug: string;
   coverImage: string;
   name: string;
   description: string;
@@ -9,6 +10,7 @@ export interface GalleryInterface extends BaseObjInterface {
 }
 
 export interface PageContentInterface extends BaseObjInterface{
+  slug?: string;
   name: string;
   coverImage: string | null;
   title: string;

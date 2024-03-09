@@ -1,6 +1,7 @@
 import { BaseObjInterface } from "./base";
 
 export interface BlogCategory  extends BaseObjInterface{
+  slug?: string;
     id?: string;
     name?: string;
     email?: string;

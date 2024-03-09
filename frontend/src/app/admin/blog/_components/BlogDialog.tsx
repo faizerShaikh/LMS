@@ -28,6 +28,7 @@ const initialBlogCategoryValues: BlogCategory = {
 
 export const BlogDialog = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
   const initialValues: SingleBlogInterface = {
+    slug: "",
     title: "",
     description: "",
     is_featured:  false,
@@ -100,6 +101,10 @@ export const BlogDialog = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
                   <Box>
                     <Label text="Upload your image" />
                     <DropZone name="blog_image" />
+                  </Box>
+                  <Box className="mt-4">
+                    <Label text="Slug" />
+                    <Input name="slug" />
                   </Box>
                   <Box className="mt-4">
                     <Label text="Title" />

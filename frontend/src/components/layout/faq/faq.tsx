@@ -9,7 +9,7 @@ import { CaretDown } from "@carbon/icons-react";
 export interface FAQProps {
   specialization: Topics;
 }
-console.log()
+console.log();
 
 export function FAQ({ specialization }: FAQProps) {
   const [expanded, setExpanded] = useState<string | false>(false);
@@ -21,7 +21,6 @@ export function FAQ({ specialization }: FAQProps) {
 
   return (
     <>
-      
       <div className="w-full mb-4 ">
         <Accordion
           expanded={expanded === specialization.topic}

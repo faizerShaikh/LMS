@@ -65,11 +65,11 @@ const DrawerBody = () => {
 
   return (
     <div>
-      <Box height='66px' className='flex items-center justify-center'>
-        <h3 className='font-semibold text-4xl text-center text-primary'>LMS</h3>
+      <Box height="66px" className="flex items-center justify-center">
+        <h3 className="font-semibold text-4xl text-center text-primary">LMS</h3>
       </Box>
-      <Divider color={colors.secondary.dark} className='w-10/12 mx-auto' />
-      <List className='pt-4'>
+      <Divider color={colors.secondary.dark} className="w-10/12 mx-auto" />
+      <List className="pt-4">
         {menus?.length > 0 &&
           menus?.map((item: any, index: number) =>
             item?.children ? (
@@ -85,8 +85,8 @@ const DrawerBody = () => {
                     )
                   }
                 >
-                  <ListItemButton className='pl-8'>
-                    <ListItemIcon sx={{ minWidth: "40px" }} className='pr-3'>
+                  <ListItemButton className="pl-8">
+                    <ListItemIcon sx={{ minWidth: "40px" }} className="pr-3">
                       {item.icon &&
                         (Icons[item.icon] ? Icons[item.icon]() : "")}
                     </ListItemIcon>
@@ -107,12 +107,12 @@ const DrawerBody = () => {
                 </ListItem>
                 <Collapse
                   in={selectedPath.startsWith(item.path)}
-                  timeout='auto'
+                  timeout="auto"
                   unmountOnExit
-                  component='div'
+                  component="div"
                 >
                   <List
-                    component='div'
+                    component="div"
                     className={`border-start border-3 ps-3 py-0 ml-8`}
                   >
                     {item.children.map((subItem: any) => (
@@ -123,7 +123,7 @@ const DrawerBody = () => {
                             subItem.path === pathname ? activeSubMenuStyles : {}
                           }
                         >
-                          <ListItemButton className='pl-8'>
+                          <ListItemButton className="pl-8">
                             <ListItemText
                               primary={subItem.title}
                               primaryTypographyProps={{
@@ -147,13 +147,15 @@ const DrawerBody = () => {
                   style={
                     item.path === "/" && item.path === selectedPath
                       ? activeMenuStyles
+                      : item.path !== "/" && item.path === selectedPath
+                      ? activeMenuStyles
                       : item.path !== "/" && selectedPath.startsWith(item.path)
                       ? activeMenuStyles
                       : {}
                   }
                 >
-                  <ListItemButton className='pl-8'>
-                    <ListItemIcon sx={{ minWidth: "40px" }} className='pr-3'>
+                  <ListItemButton className="pl-8">
+                    <ListItemIcon sx={{ minWidth: "40px" }} className="pr-3">
                       {item.icon &&
                         (Icons[item.icon] ? Icons[item.icon]() : "")}
                     </ListItemIcon>

@@ -1,8 +1,8 @@
-import { Box, Grid, IconButton } from "@mui/material";
+import { Box, Divider, Grid, IconButton } from "@mui/material";
 import React, { useState } from "react";
 import { Button, Input, Label, Dialog } from "../../../../components";
 import { Formik, Form, FieldArray } from "formik";
-import {  faqFormProps } from "interfaces";
+import { faqFormProps } from "interfaces";
 import { Add, TrashCan } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
@@ -10,15 +10,15 @@ import { toast } from "utils";
 import { Topics } from "interfaces/faq";
 import * as Yup from "yup";
 
-// const validationSchema = Yup.object().shape({
-//   faq: Yup.array().of(
-//     Yup.object().shape({
-//       topic: Yup.string().required("Question is required"),
-//       answer: Yup.string().required("Answer is required"),
-//       faqId: Yup.number().required(),
-//     })
-//   ),
-// });
+const validationSchema = Yup.object().shape({
+  faq: Yup.array().of(
+    Yup.object().shape({
+      topic: Yup.string().required("Question is required"),
+      answer: Yup.string().required("Answer is required"),
+      faqId: Yup.string().required(),
+    })
+  ),
+});
 
 export const FaqForm = ({
   data = {},
@@ -35,16 +35,11 @@ export const FaqForm = ({
       },
     ],
   };
-  
-
-  
-  
   const queryClient = useQueryClient();
   const { mutate, isLoading } = useCreateOrUpdate({
     url: "/configurations/faq-topics/bulkcreate",
     method: "post",
   });
-
 
   return (
     <Dialog
@@ -57,13 +52,13 @@ export const FaqForm = ({
     >
       {({ onClose }) => (
         <Formik
-        // validationSchema={validationSchema}
-        
+          validationSchema={validationSchema}
 
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
+            console.log('valuesvalues', values)
             mutate(values, {
-              onSuccess(resp) { 
+              onSuccess() {
                 resetForm();
                 queryClient.refetchQueries(refetchURL, {
                   exact: false,
@@ -96,15 +91,17 @@ export const FaqForm = ({
                                 <Input
                                   name={`faq.${index}.topic`}
                                   className="mb-4"
+                                  // label="Question"
                                 />
                               </Grid>
                               <Label text="Answer" />
                               <Input
                                 name={`faq.${index}.answer`}
                                 className="mb-4"
+                                // label="Answer"
                               />
 
-                              {index !== faq.length - 1 && (
+                              {faq.length > 1 && (
                                 <IconButton
                                   type="button"
                                   onClick={() => remove(index)}
@@ -113,15 +110,18 @@ export const FaqForm = ({
                                   <TrashCan />
                                 </IconButton>
                               )}
+
+                              <Divider className="my-5" />
                               {index === faq.length - 1 && (
                                 <IconButton
                                   type="button"
                                   onClick={() =>
-                                    push({
+                                    {
+                                      push({
                                       topic: "",
                                       answer: "",
                                       faqId: faqId,
-                                    })
+                                    })}
                                   }
                                   className="text-red-500"
                                 >
