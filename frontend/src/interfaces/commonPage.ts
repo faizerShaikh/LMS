@@ -1,6 +1,7 @@
 import { BaseObjInterface, MetaDataInterface } from "./base";
 
 export interface GalleryInterface extends BaseObjInterface {
+  id:string;
   slug: string;
   coverImage: string;
   name: string;
