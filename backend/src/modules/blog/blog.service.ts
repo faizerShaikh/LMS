@@ -52,23 +52,6 @@ export class BlogService extends GenericService<
     }
   }
 
-  async categoryblog(slug:string):Promise<any>{
-    try{
-      const category = await this.category.findOne({where :{slug:slug}})
-      if(!category){
-        throw new Error('Category not found')
-      }
-      const categoryblog= await this.blog.findAll({
-        where:{blog_category_id:category.id},
-        order : [['createdAt','DESC']]
-      })
-
-      return {categoryblog}
-    }
-    catch(error){
-        throw new Error(error.message)
-    }
-  }
 
   async slugBlog(slug:string){
     const blog= await this.category.findOne({where :{slug:slug}})
@@ -125,10 +108,29 @@ export class BlogService extends GenericService<
     });
   }
 
-  async notFeaturedBLogs(): Promise<Blog[]> {
-    return this.blog.findAll({include:[User],
-      where: { is_featured: false },
-    });
+  async notFeaturedBLogs(id:string): Promise<Blog[]> {
+    if(!id){
+      return this.blog.findAll({include:[User],
+        where: { is_featured: false },
+      });
+    }
+    else{
+      try{
+        const category = await this.category.findOne({where :{slug:id}})
+        if(!category){
+          throw new Error('Category not found')
+        }
+        const categoryblog= await this.blog.findAll({
+          where:{blog_category_id:category.id},
+          order : [['createdAt','DESC']]
+        })
+  
+        return categoryblog
+      }
+      catch(error){
+          throw new Error(error.message)
+      }
+    }
   }
 
 

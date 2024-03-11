@@ -7,6 +7,7 @@ import { join } from 'path';
 import { CreateEventDTO, UpdateEventDTO } from './dtos';
 import { MetaData } from '../metaData/meta.model';
 import * as fs from 'fs'
+import { FindAndCountOptions, Op, OrderItem } from 'sequelize';
 @Injectable()
 export class eventService extends GenericService<
   Events,
@@ -62,4 +63,34 @@ export class eventService extends GenericService<
       throw new InternalServerErrorException(error.message);
     }
   }
+s
+  async eventListing(date: string) {
+    if(date){
+
+      const currentDate: Date = new Date();
+      if (date === 'upcoming') {
+      const events = await this.event.findAll({
+        where: {
+                endDayTime: {
+                    [Op.gt]: currentDate 
+                }
+            }
+          });
+          return events;
+        }
+        else if(date==='past'){
+          const events = await this.event.findAll({
+        where: {
+            endDayTime: {
+              [Op.lt]: currentDate 
+            }
+          }
+        });
+        return events;
+      }
+    }else{
+      return await this.event.findAll()
+    }
+  }
+  
 }

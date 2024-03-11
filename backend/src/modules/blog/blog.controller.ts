@@ -4,6 +4,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -42,18 +43,13 @@ export class BlogController extends GenericController<
     return this.blogService.updateBlogImage(file, id);
   }
 
-  @Get('category-blog/:id')
-  async categoryblog(@Param('id')id:string):Promise <Blog[]>{
-    return this.blogService.categoryblog(id)
-  }
-
   @Get('featured') 
   async findFeaturedBlogs(): Promise<Blog[]> {
     return this.blogService.findFeaturedBlogs();
   }
   @Get('not-featured')
-  async notFeaturedBLogs(): Promise<Blog[]> {
-    return this.blogService.notFeaturedBLogs();
+  async notFeaturedBLogs(@Query('category') id:string ): Promise<Blog[]> {
+    return this.blogService.notFeaturedBLogs(id);
   }
   @Get('blog-detail/:id')
   async singleBlogs(@Param('id') id:string,):Promise<Blog>{

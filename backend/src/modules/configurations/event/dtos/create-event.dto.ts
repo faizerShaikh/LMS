@@ -19,7 +19,10 @@ export class CreateEventDTO{
     startDayTime: string;
 
     @IsString()
-    endDayTime: string;
+    endDayTime: Date;
+
+    @IsString()
+    deadLine: Date;
 
     @IsString()
     @IsNotEmpty()

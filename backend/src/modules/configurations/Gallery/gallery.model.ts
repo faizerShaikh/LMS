@@ -1,15 +1,17 @@
 import { BelongsTo, Column, DataType, Default, ForeignKey, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { PageContent } from "../PageContent/pageContent.model";
-import { MyBaseModel } from "src/core/base.model";
-import { type } from "../metaData/dto/type.enum";
 
 @Table({
     tableName:'galleries',
     paranoid:true
 })
-export class gallery extends MyBaseModel{
+export class gallery extends Model{
 
-    override type=type.GALLERY
+    @IsUUID(4)
+    @Default(DataType.UUIDV4)
+    @PrimaryKey
+    @Column
+    id: string;
 
     @Column
     orderBy:number

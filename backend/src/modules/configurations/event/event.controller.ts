@@ -1,4 +1,4 @@
-import { Controller, Param,Put, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Controller, Get, Param,Put, Query, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { GenericController } from "src/core/modules";
 import { Events } from "./event.model";
 import { CreateEventDTO, UpdateEventDTO } from "./dtos";
@@ -28,6 +28,11 @@ export class eventController extends GenericController<Events,CreateEventDTO,Upd
       @Param('id') id: string,
     ) {
       return this.eventService.updateEventImage(file, id);
+    }
+
+    @Get()
+    async eventListing(@Query ('key') date: string): Promise<Events[]>{
+      return this.eventService.eventListing(date)
     }
 }
 

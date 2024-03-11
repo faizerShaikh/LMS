@@ -49,6 +49,9 @@ export class Events extends MyBaseModel{
     @Column(DataType.DATE)
     endDayTime:Date
 
+    @Column(DataType.DATE)
+    deadLine:Date
+
     @Column(DataType.BOOLEAN)
     isFeatured:boolean
 

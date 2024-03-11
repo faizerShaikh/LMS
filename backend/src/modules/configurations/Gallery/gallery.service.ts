@@ -5,7 +5,8 @@ import { GalleryDto, UpdateGalleryDTO } from './dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
-import * as fs from 'fs'
+import * as fs from 'fs';
+
 @Injectable()
 export class GalleryService extends GenericService<
   gallery,
@@ -60,10 +61,10 @@ export class GalleryService extends GenericService<
     const pageIds = data.data.map(item => item.pageId);
     await this.Gallery.destroy({ where: { pageId: pageIds } });
     const dataToCreate = []; 
-    console.log(data.data.entries())
     for (const [index, value] of data.data.entries()) {
       const { id, ...rest } = value;
-      if (files[index]) {
+      if (files[index]) { 
+        console.log('files=============================================================>',files)
         dataToCreate.push({
           ...rest,
           coverImage: 'media/gallery/' + files[index].filename
@@ -79,6 +80,65 @@ export class GalleryService extends GenericService<
     }
     return dataToCreate;
   }
+
+  async createBulk(data: any, files: Express.Multer.File[] ): Promise<any> {
+    try {
+    let dataToCreate = [];
+    let dataToUpdate = [];
+      console.log('=================================>',data)
+    for (const [index, value] of Object.entries(data.data) as any) {
+        const fileIndex = parseInt(index);
+        const file = files.find(file => {
+            const match = file.fieldname.match(/\[(\d+)\]/);
+            return match && parseInt(match[1]) === fileIndex;
+        });
+        if (value.id!='undefined') {
+            if (file) {
+                dataToUpdate.push({
+                    ...value,
+                    coverImage: 'media/gallery/' + file.filename
+                });
+            } else {
+                dataToUpdate.push({ ...value });
+            }
+        } else if (value.id==='undefined') {
+            const{id,...rest}=value
+            if (file) {
+                console.log('=============================================>>>>', file);
+                dataToCreate.push({
+                    ...rest,
+                    coverImage: 'media/gallery/' + file.filename
+                });
+            } else if (!data.data.coverImage){
+              dataToCreate.push({
+                ...rest,
+                coverImage: 'media/default.png'
+            });
+                console.error(`No file found for index ${index} for creation`);
+            }
+        }
+    }
+
+    // Bulk create the updated data if there's any
+    if (dataToUpdate.length > 0) {
+        console.log('data to update=========================================>',dataToUpdate)
+        await this.Gallery.bulkCreate(dataToUpdate, { updateOnDuplicate:["id","name","description","orderBy","coverImage"]});
+    }
+
+    // Bulk create the new data if there's any
+    if (dataToCreate.length > 0) {
+      console.log('data to create=========================================>',dataToCreate)
+        await this.Gallery.bulkCreate(dataToCreate);
+    }
+
+    return { success: true, dataToUpdate, dataToCreate };
+} catch (error) {
+    console.error('Error in createBulk:', error);
+    return { success: false, error: error.message };
+}
+
+  }
+
 
   async updateBulk(data:any[]){
     await this.Gallery.bulkCreate(data,{updateOnDuplicate:["id"]})
