@@ -3,6 +3,7 @@ import axios from "axios";
 import BlogCategoryFilter from "components/blogs/blog-category";
 import FeaturedBlog from "components/blogs/fratured-blog";
 import { BlogCategory } from "interfaces/blogCategory";
+
 async function getFeaturedBlogs() {
   const FeaturedBlogResponse = await axios.get(
     `${process.env.BASE_API_URL}/configurations/blog/featured`
@@ -23,22 +24,22 @@ export default async function Blogs({
     }
   );
   BlogCardData = BlogCardresponse.data.data;
-
   let BlogCatagoriData = [];
   const BlogCatagoriResponse = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/blog/blog-category`
+    `${process.env.BASE_API_URL}/configurations/blog/blog-category`,
+    {
+      params: category ? { category } : "",
+    }
   );
   BlogCatagoriData = BlogCatagoriResponse.data.data.rows;
-  console.log(
-    BlogCatagoriData,
-    "<====================================================================="
-  );
+
   let FeaturedBlogData: any = await getFeaturedBlogs();
 
   const selectedCategory = BlogCatagoriData.find(
     (item: BlogCategory) => item.slug === category
   );
 
+ 
   return (
     <>
       <section className="text-center container m-auto mb-6">
@@ -61,7 +62,7 @@ export default async function Blogs({
           </h2>
         ) : (
           <h2 className="font-semibold text-xl text-gray-600 font-Inter uppercase mb-12">
-            Leatest Blog's
+            Latest Blog's
           </h2>
         )}
 
@@ -96,6 +97,8 @@ export default async function Blogs({
           </button>
         </div>
       </section>
+
+      
     </>
   );
 }

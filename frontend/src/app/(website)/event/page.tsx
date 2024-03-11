@@ -1,28 +1,49 @@
 import Image from "next/image";
 import axios from "axios";
 import moment from "moment";
+import { Events } from "./components/events";
+import MyRadioButtons from "./components/radio";
+import { AutoComplete } from "components/layout";
+import FilterForm from "./components/FilterForm";
 
-export default async function EventsPage() {
+export default async function EventsPage({
+  searchParams: { key },
+}: {
+  searchParams: { key: string };
+}) {
   let events = [];
   const res = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/event`
+    `${process.env.BASE_API_URL}/configurations/event`,
+    {
+      params: key ? { key } : "",
+    }
   );
-  events = res.data.data.rows;
-  console.log(events);
+  events = res.data.data;
+
+  // const options = [
+  //   { value: "all", label: "All" },
+  //   { value: "webinars", label: "Webinars" },
+  //   { value: "onSite", label: "On-Site" },
+  // ];
+
+  // const EventLocationOptions = [
+  //   { value: "Online", label: "Online" },
+  //   { value: "onSite", label: "On-Site" },
+  // ];
+
+  // const ProgramOption = ["abc", "abc", "abc"];
+  // let FilterdEventsData = [];
+  // const response = await axios.get(
+  //   `${process.env.BASE_API_URL}/configurations/event/event-listing/:date`
+  // );
+
+  // FilterdEventsData = response.data.data.rows;
+
   return (
     <>
       <section className="bg-gray-100 hover:text-white">
-        <div className="flex justify-center container m-auto py-14">
-          <p className="border-2 bg-white px-2 py-2 hover:bg-blue-900 ">
-            <a href="#" className="hover:text-white text-blue-900">
-              Upcoming Events
-            </a>
-          </p>
-          <p className="border-2 bg-white px-2 py-2 hover:bg-blue-900 ">
-            <a href="#" className="hover:text-white text-blue-900">
-              Past Events
-            </a>
-          </p>
+        <div className="py-10 ">
+          <Events></Events>
         </div>
       </section>
       <section className=" py-12">
@@ -57,40 +78,23 @@ export default async function EventsPage() {
               </div>
             ))}
           </div>
-          <div className="w-1/4 shadow-2xl mb-4 rounded-md p-4 border-2">
+          {/* <div className="w-1/4 shadow-2xl mb-4 rounded-md p-4 border-2">
             <div className="mb-8 pb-8 border-b-2 border-dashed border-black">
               <h2 className="text-xl font-semibold mb-4 ">Event Types</h2>
-              <input type="radio" name="ALL" id="all" />
-              <label htmlFor="all">ALL</label>
-              <br />
-              <input type="radio" name="webinars" id="webinars" />
-              <label htmlFor="all">Webinars</label>
-              <br />
-              <input type="radio" name="on-site" id="on-site" />
-              <label htmlFor="all">On-site</label>
+              <MyRadioButtons options={options} defaultSelected="all" />
             </div>
 
             <div className="mb-8 pb-8 border-b-2 border-dashed border-black">
               <h2 className="text-xl font-semibold mb-4 ">Event Location</h2>
-              <input type="radio" name="ALL" id="all" />
-              <label htmlFor="all">ALL</label>
-              <br />
-              <input type="radio" name="webinars" id="webinars" />
-              <label htmlFor="all">Webinars</label>
-              <br />
+              <MyRadioButtons options={EventLocationOptions} />
             </div>
 
             <div className="mb-8">
               <h2 className="text-xl font-semibold mb-4 ">Programs</h2>
-              <select name="" id="" className="w-full py-1  border-2">
-                <option value="abc">ABC</option>
-                <option value="abc">ABC</option>
-                <option value="abc">ABC</option>
-                <option value="abc">ABC</option>
-                <option value="abc">ABC </option>
-              </select>
+              <AutoComplete name="program" options={ProgramOption} />
             </div>
-          </div>
+          </div> */}
+         <FilterForm/>
         </div>
       </section>
     </>
