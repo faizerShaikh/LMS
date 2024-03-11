@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export const Navbar = () => {
+  const pathnameHave = usePathname()
+
+  const isActive = (pathname : any) => {
+    return pathnameHave === pathname ? "bg-white font-blue-900" : "text-white hover:text-blue-900 hover:bg-white "
+  }
   return (
     <>
       <header className="bg-blue-900 h-12 flex justify-between items-center px-16">
@@ -57,7 +63,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
+                className={` h-full flex items-center  px-4 ${isActive("/")}`}
               >
                 For Learner{" "}
               </Link>
@@ -65,7 +71,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-organization"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white px-4"
+                className = {` h-full flex items-center  px-4 ${isActive("/for-organization")}`}
               >
                 For Organizations{" "}
               </Link>
@@ -73,7 +79,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-government"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
+                className={` h-full flex items-center  px-4 ${isActive("/for-government")}`}
               >
                 For Government{" "}
               </Link>
@@ -81,7 +87,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-partnership"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
+                className={` h-full flex items-center  px-4 ${isActive("/for-partnership")}`}
               >
                 For Partnership{" "}
               </Link>
@@ -89,7 +95,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-universities"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
+                className={` h-full flex items-center  px-4 ${isActive("/for-universities")}`}
               >
                 For Universities{" "}
               </Link>
@@ -97,7 +103,7 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-placement"
-                className="text-white hover:text-blue-900 h-full flex items-center hover:bg-white  px-4"
+                className={` h-full flex items-center  px-4 ${isActive("/for-placement")}`}
               >
                 For Placements{" "}
               </Link>

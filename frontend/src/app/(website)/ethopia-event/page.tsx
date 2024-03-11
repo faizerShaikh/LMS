@@ -37,7 +37,7 @@ function page() {
               </p>
               <p className="text-lg">
                 <span className="text-blue-900 font-semibold">
-                  spanRegistration Deadline:
+                  Registration Deadline:
                 </span>{" "}
                 January 10th, 2024
               </p>

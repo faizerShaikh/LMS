@@ -23,10 +23,12 @@ export const GalleryForm = ({
   isUpdate,
   refetchURL,
   pageId,
+  
 }: GalleryFormProps) => {
   const initialValues: { gallery: GalleryInterface[] } = {
     gallery: [
       {
+        id:"",
         coverImage: "",
         name: "",
         description: "",
@@ -64,7 +66,8 @@ export const GalleryForm = ({
               "description",
               "orderBy",
               "pageId",
-              "slug"
+              "slug",
+              "id"
             ];
             const fd = new FormData();
             for (let x = 0; x < values?.gallery.length; x++) {

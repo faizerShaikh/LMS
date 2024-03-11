@@ -31,10 +31,10 @@ export default async function SinglePage({
       />
 
       <section className="py-24 ">
-        <div className="flex  text-center gap-5 flex-warp m-auto container">
+        <div className="flex flex-wrap text-center gap-5 m-auto container">
           {commonPageData?.gallery.map((item: GalleryInterface) => {
             return (
-              <div className="w-1/4  rounded-xl shadow-xl ">
+              <div className="w-[300px]  rounded-xl shadow-xl ">
                 <Image
                   alt="Gallery image"
                   height={180}
