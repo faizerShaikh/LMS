@@ -35,4 +35,8 @@ export class CreateEventDTO{
     @IsNotEmpty()
     slug:string
 
+    @IsString()
+    @IsNotEmpty()
+    eventType:string
+
 }

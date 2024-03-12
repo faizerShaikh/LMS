@@ -88,7 +88,19 @@ s
         });
         return events;
       }
-    }else{
+      else if(date==='webinar'|| date==='event'){
+        const events = await this.event.findAll({
+      where: {
+          eventType: {
+            date
+          }
+        }
+      });
+      return events;
+    }
+    }
+    
+    else{
       return await this.event.findAll()
     }
   }
