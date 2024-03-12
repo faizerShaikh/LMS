@@ -40,7 +40,7 @@ export const DropZone = <T extends {}>({
 }: DropZoneProps) => {
   const { setFieldValue, values } = useFormikContext<T | any>();
   const [errors, setError] = useState<string[]>([]);
-  console.log(values.name, "<====values name", name, values);
+  // console.log(values.name, "<====values name", name, values);
   return (
     <Dropzone
       minSize={0}

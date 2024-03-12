@@ -17,10 +17,10 @@ console.log(data)
   return (
     <>
       <section className="bg-gray-100">
-        <div className="flex container py-8 m-auto">
+        <div className="flex container items-center py-8 m-auto">
           <div className="w-2/4">
             <Image
-              src={`${process.env.BASE_MEDIA_URL}/${data.cover_image}`}
+              src={`${process.env.BASE_MEDIA_URL}/${data.course.course_image}`}
               height={400}
               width={300}
               alt=""
@@ -28,7 +28,7 @@ console.log(data)
             />
           </div>
           <div className="w-2/4 px-8  ">
-            <h2 className="font-bold text-2xl py-6">
+            <h2 className="font-bold text-2xl m-0 pb-6">
               {data.name}
             </h2>
             <p className="font-semibold mb-10">
@@ -121,3 +121,5 @@ console.log(data)
     </>
   );
 }
+
+export const revalidate = 60;

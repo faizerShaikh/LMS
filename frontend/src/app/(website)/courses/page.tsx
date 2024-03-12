@@ -9,7 +9,7 @@ import { CoursesCard } from "components/layout/cards/CourseCard";
     `${process.env.BASE_API_URL}/configurations/course/`
   );
   CoursesCatagoriData = CatagorieResponse.data.data.rows;
-
+console.log(CoursesCatagoriData, "<==========CoursesCatagoriDataCoursesCatagoriDataCoursesCatagoriDataCoursesCatagoriData")
   let CoursesCardData: any = [];
   const response = await axios.get(
     `${process.env.BASE_API_URL}/configurations/course-specialization`
@@ -40,7 +40,7 @@ import { CoursesCard } from "components/layout/cards/CourseCard";
               applications, cloud computing, and blockchain, and gain the skills
               needed to navigate the dynamic digital landscape.
             </p>
-            <button className="bg-blue-900 py-2 text-xl px-4 text-white">
+            <button className="bg-blue-900 py-2 text-xl px-4 text-white cursor-pointer">
               Explore Professional Courses
             </button>
           </div>
@@ -150,3 +150,5 @@ import { CoursesCard } from "components/layout/cards/CourseCard";
 }
 
 export default courses;
+
+export const revalidate = 60;

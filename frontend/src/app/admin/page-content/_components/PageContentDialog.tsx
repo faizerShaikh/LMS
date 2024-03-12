@@ -21,11 +21,11 @@ const initialValues: PageContentInterface = {
   metaData: MetaDataInitial,
 };
 
-const validationSchema = Yup.object({
-  coverImage : Yup.string().required("Required"),
-  name: Yup.string().required("Required"),
-  description: Yup.string().required("Required")
-})
+// const validationSchema = Yup.object({
+//   coverImage : Yup.string().required("Required"),
+//   name: Yup.string().required("Required"),
+//   description: Yup.string().required("Required")
+// })
 export const PageContentDialog = ({
   data,
   isUpdate = true,
@@ -63,15 +63,15 @@ export const PageContentDialog = ({
     >
       {({ onClose }) => (
         <Formik
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
 
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(values, {
               onSuccess(resp) {
-                const onSuccess = () => {
+                handleFileUpload(values.coverImage, resp.data.data.id, () => {
                   resetForm();
-                  queryClient.refetchQueries(`/configurations/press-release`, {
+                  queryClient.refetchQueries(`/configurations/page-content`, {
                     exact: false,
                     stale: true,
                   });
@@ -81,19 +81,12 @@ export const PageContentDialog = ({
                     } successfully`
                   );
                   onClose();
-                };
-                if (values.coverImage instanceof File) {
-                  handleFileUpload(
-                    values.coverImage,
-                    resp.data.data.id,
-                    onSuccess
-                  );
-                } else {
-                  onSuccess();
-                }
+                });
               },
             });
           }}
+
+         
         >
           <Form>
             <Grid container columnSpacing={10} className="mt-8" gap={3}>

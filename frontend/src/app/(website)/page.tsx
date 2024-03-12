@@ -3,6 +3,7 @@ import { FAQ } from "components/layout/faq/faq";
 import moment from "moment";
 import Image from "next/image";
 
+export const revalidate = 60;
 export default async function Home() {
   let FAQData = [];
   const response = await axios.get(

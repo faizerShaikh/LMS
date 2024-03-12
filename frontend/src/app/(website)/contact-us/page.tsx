@@ -154,6 +154,7 @@ export default function ContactUs() {
           <h2 className=" text-4xl m-0 py-16 font-semibold">Global Offices</h2>
           <div className="flex flex-wrap justify-between">
             <div>
+            <Link href={"./ethopia-event"}>
               <Image
                 alt="hehje"
                 width={200}
@@ -161,9 +162,11 @@ export default function ContactUs() {
                 src="/img2/USA.jpg"
                 className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
               />
-              <p className="font-bold mt-2 text-lg">USA</p>
+              <p className="text-black font-bold mt-2 text-lg">USA</p>
+              </Link>
             </div>
             <div>
+            <Link href={"./ethopia-event"}>
               <Image
                 alt="hehje"
                 width={200}
@@ -171,9 +174,11 @@ export default function ContactUs() {
                 src="/img2/Indonesia.jpg"
                 className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
               />
-              <p className="font-bold mt-2 text-lg">Indonesia</p>
+              <p className="text-black font-bold mt-2 text-lg">Indonesia</p>
+              </Link>
             </div>
             <div>
+            <Link href={"./ethopia-event"}>
               <Image
                 alt="hehje"
                 width={200}
@@ -181,29 +186,35 @@ export default function ContactUs() {
                 src="/img2/Nigeria.jpg"
                 className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
               />
-              <p className="font-bold mt-2 text-lg ">Nigeria</p>
+              <p className="font-bold mt-2 text-lg text-black">Nigeria</p>
+              </Link>
             </div>
             <div>
+              <Link href={"./ethopia-event"}>
               <Image
                 alt="hehje"
-                width={200}
-                height={200}
+                width={400}
+                height={400}
                 src="/img2/Ethiopia.jpg"
-                className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
+                className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer "
               />
-              <p className="font-bold mt-2 text-lg ">Ethopia</p>
+              <p className="font-bold mt-2 text-lg text-black">Ethopia</p>
+              </Link>
             </div>
             <div>
+            <Link href={"./ethopia-event"}>
               <Image
                 alt="hehje"
-                width={200}
-                height={200}
+                width={300}
+                height={300}
                 src="/img2/Egypt.jpg"
                 className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
               />
-              <p className="font-bold mt-2 text-lg ">Egypt</p>
+              <p className="text-black font-bold mt-2 text-lg ">Egypt</p>
+              </Link>
             </div>
             <div>
+            <Link href={"./ethopia-event"}>
               <Image
                 alt="hehje"
                 width={200}
@@ -211,7 +222,8 @@ export default function ContactUs() {
                 src="/img2/Philippines.jpg"
                 className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
               />
-              <p className="font-bold mt-2 text-lg ">Philippines</p>
+              <p className="text-black font-bold mt-2 text-lg ">Philippines</p>
+              </Link>
             </div>
           </div>
         </div>
@@ -219,3 +231,5 @@ export default function ContactUs() {
     </>
   );
 }
+
+export const revalidate = 60;

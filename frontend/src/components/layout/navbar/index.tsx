@@ -6,7 +6,7 @@ export const Navbar = () => {
   const pathnameHave = usePathname()
 
   const isActive = (pathname : any) => {
-    return pathnameHave === pathname ? "bg-white font-blue-900" : "text-white hover:text-blue-900 hover:bg-white "
+    return pathnameHave === pathname ? "bg-white text-blue-900" : "text-white hover:text-blue-900 hover:bg-white "
   }
   return (
     <>

@@ -152,3 +152,5 @@ export default function Blogs() {
     </>
   );
 }
+
+export const revalidate = 60;

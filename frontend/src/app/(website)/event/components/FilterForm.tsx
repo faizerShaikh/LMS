@@ -32,7 +32,7 @@ const FilterForm = () => {
       }}
     >
       {() => (
-        <Form className="w-1/4 shadow-2xl mb-4 rounded-md p-4 border-2">
+        <Form className="w-1/4 shadow-2xl h-fit mb-4 rounded-md p-4 border-2">
           <div className="mb-8 pb-8 border-b-2 border-dashed border-black">
             <h2 className="text-xl font-semibold mb-4">Event Types</h2>
             <MyRadioButtons name="eventType" options={options} defaultSelected="all" />
