@@ -5,7 +5,7 @@ import { SingleBlogInterface, relatedBlogInterface } from "interfaces/blog";
 import moment from "moment";
 
 export default async function SingleBlog({
-  params, 
+  params,
 }: {
   params: { slug: string};
 }) {
