@@ -142,3 +142,5 @@ export default async function SingleBlog({
     </>
   );
 }
+
+export const revalidate = 60;

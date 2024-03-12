@@ -86,3 +86,5 @@ function CertificatePage() {
 }
 
 export default CertificatePage;
+
+export const revalidate = 60;

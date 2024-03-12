@@ -48,10 +48,10 @@ export default async function EventsPage({
                   </div>
                   <div className="flex justify-between ">
                     <p className="mt-4 m-0">
-                      {moment(event.createdAt).format("Do MMM YYYY")}
+                      {moment(event.startDayTime).format("Do MMM YYYY")}
                     </p>
                     <p className="mt-4 m-0">
-                      {moment(event.createdAt).format("h:mm A")}
+                      {moment(event.startDayTime).format("h:mm A")}
                     </p>
                   </div>
                 </div>
@@ -64,3 +64,5 @@ export default async function EventsPage({
     </>
   );
 }
+
+export const revalidate = 60;

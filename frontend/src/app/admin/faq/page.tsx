@@ -50,7 +50,7 @@ const columns = [
           <DeleteBox
             url={`/configurations/faq`}
             refetchUrl="/configurations/faq"
-            title={`Delete ${params.row.faqTopic}`}
+            title={`Delete ${params.row.qustion}`}
             data={params.row.id}
           />
           <FaqForm

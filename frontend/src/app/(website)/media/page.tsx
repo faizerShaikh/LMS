@@ -76,3 +76,5 @@ export default async function Media() {
     </>
   );
 }
+
+export const revalidate = 60;

@@ -3,6 +3,13 @@ import axios from "axios";
 import BlogCategoryFilter from "components/blogs/blog-category";
 import FeaturedBlog from "components/blogs/fratured-blog";
 import { BlogCategory } from "interfaces/blogCategory";
+import LoadMoreButton from "components/blogs/loadMoreButton";
+
+interface BlogSearchParams {
+  category?: string;
+  limit?: string;
+  page?: string;
+}
 
 async function getFeaturedBlogs() {
   const FeaturedBlogResponse = await axios.get(
@@ -12,18 +19,29 @@ async function getFeaturedBlogs() {
 }
 
 export default async function Blogs({
-  searchParams: { category },
+  searchParams: { category, limit, page },
 }: {
-  searchParams: { category: string };
+  searchParams: { category: string; limit: string; page: string };
 }) {
   let BlogCardData: any = [];
-  let BlogCardresponse = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/blog/not-featured`,
-    {
-      params: category ? { category } : "",
-    }
-  );
-  BlogCardData = BlogCardresponse.data.data;
+  let LoadMoreButtondata = false;
+  try {
+    const queryParams: BlogSearchParams = {};
+    if (category) queryParams.category = category;
+    if (limit) queryParams.limit = limit;
+    if (page) queryParams.page = page;
+
+    let BlogCardresponse = await axios.get(
+      `${process.env.BASE_API_URL}/configurations/blog/not-featured`,
+      {
+        params: queryParams,
+      }
+    );
+    BlogCardData = BlogCardresponse.data.data.blogs;
+    LoadMoreButtondata = BlogCardresponse.data.data.hasMore;
+  } catch (error) {
+    console.error("Error fetching blog data:", error);
+  }
   let BlogCatagoriData = [];
   const BlogCatagoriResponse = await axios.get(
     `${process.env.BASE_API_URL}/configurations/blog/blog-category`,
@@ -39,7 +57,6 @@ export default async function Blogs({
     (item: BlogCategory) => item.slug === category
   );
 
- 
   return (
     <>
       <section className="text-center container m-auto mb-6">
@@ -62,7 +79,7 @@ export default async function Blogs({
           </h2>
         ) : (
           <h2 className="font-semibold text-xl text-gray-600 font-Inter uppercase mb-12">
-            Latest Blog's
+            Latest Blogs
           </h2>
         )}
 
@@ -91,14 +108,11 @@ export default async function Blogs({
             ></BlogCategoryFilter>
           </div>
         </div>
-        <div className="flex justify-center">
-          <button className="bg-blue-700 text-white px-4 py-2">
-            Load More
-          </button>
-        </div>
-      </section>
-
-      
+        {LoadMoreButtondata ? <LoadMoreButton /> : ""}
+        {/* <LoadMoreButton /> */}
+      </section> 
     </>
   );
 }
+
+export const revalidate = 60;

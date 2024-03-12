@@ -105,3 +105,5 @@ export default function AboutUs() {
         </section>
     </>
 }
+
+export const revalidate = 60;

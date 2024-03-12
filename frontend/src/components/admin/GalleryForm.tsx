@@ -12,10 +12,14 @@ import { useCreateOrUpdate } from "hooks";
 import * as Yup from "yup";
 import { toast } from "utils";
 
-const validationSchema = Yup.object({
-  name: Yup.string().required("name is Required"),
-  description: Yup.string().required("Description is Required"),
-  slug: Yup.string().required("Slug is Required"),
+const validationSchema = Yup.object().shape({
+  gallery: Yup.array().of(
+    Yup.object().shape({
+      name: Yup.string().required("name is Required"),
+      description: Yup.string().required("Description is Required"),
+    })
+  )
+  
 });
 
 export const GalleryForm = ({
@@ -25,6 +29,7 @@ export const GalleryForm = ({
   pageId,
   
 }: GalleryFormProps) => {
+  
   const initialValues: { gallery: GalleryInterface[] } = {
     gallery: [
       {
@@ -57,6 +62,8 @@ export const GalleryForm = ({
     >
       {({ onClose }) => (
         <Formik
+        validationSchema={validationSchema}
+
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             console.log("valuesvaluesvalues", values);
@@ -116,13 +123,7 @@ export const GalleryForm = ({
                                 name={`gallery.${index}.description`}
                                 className="mb-4"
                               />
-                               <Grid xs={12} item>
-                                <Label text="Slug" />
-                                <Input
-                                  name={`gallery.${index}.slug`}
-                                  className="mb-4"
-                                />
-                              </Grid>
+                               
                               <div className="flex items-center gap-4">
                                 <Grid xs={6} item>
                                   <Label text="Image" />

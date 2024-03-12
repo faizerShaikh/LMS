@@ -248,3 +248,5 @@ export default function Career() {
     </>
   );
 }
+
+export const revalidate = 60;
