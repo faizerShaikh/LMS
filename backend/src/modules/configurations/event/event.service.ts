@@ -39,7 +39,7 @@ export class eventService extends GenericService<
       const filePath = join(__dirname, '../../../../', 'backend/src/public/' + Events.eventImage);
       
       if (file && file.filename) {
-        const newImagePath = '/media/pressRelease/' + file.filename;
+        const newImagePath = '/media/event/' + file.filename;
   
         if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
           unlink(filePath, (err) => {
@@ -71,7 +71,7 @@ s
       if (date === 'upcoming') {
       const events = await this.event.findAll({
         where: {
-                endDayTime: {
+          startDayTime: {
                     [Op.gt]: currentDate 
                 }
             }
@@ -81,7 +81,7 @@ s
         else if(date==='past'){
           const events = await this.event.findAll({
         where: {
-            endDayTime: {
+            startDayTime: {
               [Op.lt]: currentDate 
             }
           }

@@ -42,7 +42,7 @@ export class Events extends MyBaseModel{
         },})
     description:string
 
-    @Default('media/default.png')
+    @Default('/media/default.png')
     @Column(DataType.STRING)
     eventImage:string
 

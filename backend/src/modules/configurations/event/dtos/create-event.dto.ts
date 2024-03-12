@@ -11,9 +11,6 @@ export class CreateEventDTO{
     @IsString()
     @IsNotEmpty()
     description: string;
-    
-    @IsString()
-    eventImage: string;
 
     @IsString()
     startDayTime: string;

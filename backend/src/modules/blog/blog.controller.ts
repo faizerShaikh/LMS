@@ -12,7 +12,7 @@ import { GenericController } from 'src/core/modules';
 import { Blog } from './model';
 import { CreateBlogDTO, UpdateBlogDTO } from './dtos';
 import { BlogService } from './blog.service';
-import { MulterIntercepter } from 'src/core/interceptors';  
+import { MulterIntercepter } from 'src/core/interceptors';
 import { MulterEnum } from 'src/core/interfaces';
 
 @Controller('configurations/blog')
@@ -43,16 +43,25 @@ export class BlogController extends GenericController<
     return this.blogService.updateBlogImage(file, id);
   }
 
-  @Get('featured') 
+  @Get('featured')
   async findFeaturedBlogs(): Promise<Blog[]> {
     return this.blogService.findFeaturedBlogs();
   }
-  @Get('not-featured')
-  async notFeaturedBLogs(@Query('category') id:string ): Promise<Blog[]> {
-    return this.blogService.notFeaturedBLogs(id);
+  @Get('/not-featured')
+  async getNotFeaturedBlogs(
+    @Query('category') slug: string,
+    @Query('limit') limit: string,
+    @Query('page') page: string,
+  ) {
+    const { blogs, hasMore } = await this.blogService.notFeaturedBlogs(
+      slug,
+      limit,
+      page,
+    );
+    return { blogs, hasMore };
   }
   @Get('blog-detail/:id')
-  async singleBlogs(@Param('id') id:string,):Promise<Blog>{
+  async singleBlogs(@Param('id') id: string): Promise<Blog> {
     return this.blogService.getBlogWithRelated(id);
   }
 }

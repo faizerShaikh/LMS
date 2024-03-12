@@ -52,7 +52,7 @@ export class Blog extends MyBaseModel {
   is_featured: boolean;
 
 
-  @Default('c28512ff-aa8a-4ff3-ada8-fce8f8164f83')
+  //@Default('c28512ff-aa8a-4ff3-ada8-fce8f8164f83')
   @ForeignKey(() => User)
   @Column
   created_by_id: string;
