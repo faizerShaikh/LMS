@@ -45,7 +45,10 @@ export default async function SingleBlog({
                 alt="Author"
                 className="size-7 rounded-full mr-4 "
               />
+
+
               <p className="pr-8 font-bold">{data.blog.created_by?.name}</p>
+
               <p className="pr-8">
                 {moment(data.blog.createdAt).format("MMMM DD, YYYY")}
               </p>

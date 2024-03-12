@@ -16,11 +16,11 @@ import { CreateUpdateDialogBaseProps } from "interfaces";
 import { Form, Formik } from "formik";
 import { toast } from "utils";
 
-const initialTopicsValues: Topics = {
+const initialTopicsValues: Topics[] = [{
   topic: "",
   answer: "",
   faqId: ""
-};
+}];
 
 
 
@@ -94,8 +94,8 @@ export const FaqDialog = ({
                   <Checkbox name="isFeatured"
                   
                   checked={values.isFeatured}
-                  onChange={(e) => {
-                    setFieldValue("isFeatured", e.target.checked);
+                  onChange={(event : any) => {
+                    setFieldValue("isFeatured", event.target.checked);
                   }}/>
                 </Grid>
                 <Grid xs={12} item>

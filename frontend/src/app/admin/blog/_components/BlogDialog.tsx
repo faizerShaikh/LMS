@@ -125,8 +125,8 @@ export const BlogDialog = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
                     <Checkbox
                       name="is_featured"
                       checked={values.is_featured}
-                      onChange={(e) => {
-                        setFieldValue("is_featured", e.target.checked);
+                      onChange={(event: any) => {
+                        setFieldValue("is_featured", event.target.checked);
                       }}
                     />
                   </Box>

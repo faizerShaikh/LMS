@@ -10,5 +10,5 @@ export interface FaqInterface extends BaseObjInterface {
   qustion: string;
   orderBy: number;
   isFeatured: boolean;
-  faqTopic: Topics;
+  faqTopic: Topics[];
 }
