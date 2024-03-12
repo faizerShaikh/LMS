@@ -25,6 +25,7 @@ export default async function Blogs({
 }) {
   let BlogCardData: any = [];
   let LoadMoreButtondata = false;
+  
   try {
     const queryParams: BlogSearchParams = {};
     if (category) queryParams.category = category;
@@ -109,7 +110,6 @@ export default async function Blogs({
           </div>
         </div>
         {LoadMoreButtondata ? <LoadMoreButton /> : ""}
-        {/* <LoadMoreButton /> */}
       </section> 
     </>
   );

@@ -4,7 +4,7 @@ import { DataGrid, DeleteBox, PageHeader } from "components/layout";
 import { useGetAll } from "hooks";
 import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
 import { MediaDialog } from "./_components/MediaDialog";
-import { MetaDataForm } from "components/admin";
+// import { MetaDataForm } from "components/admin";
 
 const columns = [
   {
@@ -53,7 +53,7 @@ const columns = [
             title={`Delete ${params.row.title}`}
             data={params.row.id}
           />
-          <MetaDataForm
+          {/* <MetaDataForm
             isUpdate={true}
             data={
               params.row.metaData
@@ -61,7 +61,7 @@ const columns = [
                 : { id: params.row.metaID }
             }
             refetchURL="/configurations/press-release"
-          />
+          /> */}
         </>
       );
     },

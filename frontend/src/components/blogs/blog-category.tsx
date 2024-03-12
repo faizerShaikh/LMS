@@ -5,11 +5,13 @@ import { useRouter } from "next/navigation";
 type Props = {
   blogCategories: BlogCategory[];
   category: string;
+  
 };
 
 export default function BlogCategoryFilter({
   blogCategories,
   category,
+  
 }: Props) {
   const router = useRouter();
   function handleClick(item: BlogCategory) {

@@ -28,17 +28,7 @@ const modules = {
 export default function TextEditor({ name, label, setFieldValue, value }: any) {
   return (
     <div className="my-3">
-      <label
-        style={{
-          color: "#4F4F4F",
-          fontSize: "0.85rem",
-          fontWeight: 500,
-          paddingLeft: "3px",
-          margin: "0",
-        }}
-      >
-        {label}
-      </label>
+      
       <QuillNoSSRWrapper
         onChange={(e) => setFieldValue(name, e)}
         value={value}

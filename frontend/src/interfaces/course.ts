@@ -11,6 +11,7 @@ export interface Course {
 }
 
 export interface UniversityInterface extends BaseObjInterface {
+    slug: string;
     name: string;
     short_name: string;
     description: string;
