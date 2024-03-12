@@ -5,7 +5,7 @@ import { SingleBlogInterface, relatedBlogInterface } from "interfaces/blog";
 import moment from "moment";
 
 export default async function SingleBlog({
-  params,
+  params, 
 }: {
   params: { slug: string};
 }) {
@@ -45,15 +45,7 @@ export default async function SingleBlog({
                 alt="Author"
                 className="size-7 rounded-full mr-4 "
               />
-<<<<<<< HEAD
-<<<<<<< HEAD
-              <p className="pr-8">asdfghjk</p>
-=======
-              <p className="pr-8">asdfghjkl</p>
->>>>>>> 55307678778fb5c06963ea9b12b5b13ad2612ec1
-=======
               <p className="pr-8 font-bold">{data.blog.created_by?.name}</p>
->>>>>>> c3b79579c5c86c8f6d61ccc608b467693e6c8b0e
               <p className="pr-8">
                 {moment(data.blog.createdAt).format("MMMM DD, YYYY")}
               </p>
