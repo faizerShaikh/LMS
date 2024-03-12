@@ -2,7 +2,7 @@
 import { onError } from "utils/onError";
 import { useGetAll } from "./useGetAll";
 
-export const useDownaloadFile = (path: string, onSuccess?: VoidFunction) => {
+export const useDownloadFile = (path: string, onSuccess?: VoidFunction) => {
   return useGetAll({
     key: path,
     select: (data: any) => data?.data,

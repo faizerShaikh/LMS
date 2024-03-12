@@ -130,7 +130,7 @@ export const MediaDialog = ({
                   <Label text="Is Featured" />
                   <Checkbox name="isFeatured" 
                    checked={values.isFeatured}
-                   onChange={(e) => {
+                   onChange={(e: any) => {
                      setFieldValue("isFeatured", e.target.checked);
                    }}/>
                 </Box>

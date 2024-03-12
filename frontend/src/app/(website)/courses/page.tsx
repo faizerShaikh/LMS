@@ -3,7 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { CoursesCard } from "components/layout/cards/CourseCard";
 
-export default async function courses() {
+ async function courses() {
   let CoursesCatagoriData = [];
   const CatagorieResponse = await axios.get(
     `${process.env.BASE_API_URL}/configurations/course/`
@@ -148,3 +148,5 @@ export default async function courses() {
     </>
   );
 }
+
+export default courses;
