@@ -5,7 +5,7 @@ import { EventRegistrationService } from './eventRegistration.service';
 import { EventRegistrationdto } from './dto/create-eventRegistration.dto';
 import { UpdateEventRegistrationDto } from './dto/update-eventRegiter.dto';
 
-@Controller('event/event-registration')
+@Controller('configurations/event-webinar/registration')
 export class EventRegistrationController extends GenericController<
   EventRegistration,
   EventRegistrationdto,

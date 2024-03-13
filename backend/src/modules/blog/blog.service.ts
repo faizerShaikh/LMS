@@ -9,7 +9,7 @@ import { User } from '../user/users/models/user.model';
 import { MetaData } from '../configurations/metaData/meta.model';
 import * as fs from 'fs';
 import { BlogCategory } from './modules/blog-category/model';
-import { Sequelize } from 'sequelize';
+import { Op, Sequelize } from 'sequelize';
 @Injectable()
 export class BlogService extends GenericService<
   Blog,
@@ -29,24 +29,31 @@ export class BlogService extends GenericService<
     super(blog, reqParams);
   }
 
-  async getBlogWithRelated(id: string): Promise<any> {
+  async getBlogWithRelated(slug: string): Promise<any> {
     try {
       const blog = await this.blog.findOne({
-        where: { slug: id },
+        where: { slug: slug },
         include: [BlogCategory, User],
       });
 
       if (!blog) {
         throw new Error('Blog not found');
       }
-
+      const previous = await this.blog.findOne({
+        where: { createdAt: { [Op.lt]: blog.createdAt } },
+        order: [['createdAt', 'DESC']],
+      });
+      const next = await this.blog.findOne({
+        where: { createdAt: { [Op.lt]: blog.createdAt } },
+        order: [['createdAt', 'ASC']],
+      });
       const relatedBlogs = await this.blog.findAll({
         where: { blog_category_id: blog.blog_category_id },
         limit: 3,
         order: Sequelize.literal('RANDOM()'),
       });
 
-      return { blog, relatedBlogs };
+      return { blog, relatedBlogs,next ,previous};
     } catch (error) {
       throw new Error(error.message);
     }

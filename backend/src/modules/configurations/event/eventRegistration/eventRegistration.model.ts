@@ -1,6 +1,7 @@
 import { UUIDV4 } from "sequelize";
 import { Column, DataType, Default, ForeignKey, HasMany, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { Events } from "../event.model";
+import { Webinar } from "../../webinar/webinar.model";
 
 @Table({
     paranoid:true,
@@ -25,6 +26,9 @@ export class EventRegistration extends Model{
     @Column
     mobileNumber:string
 
+    @Column 
+    experience:string
+
     @Column
     degree:string
 
@@ -32,4 +36,7 @@ export class EventRegistration extends Model{
     @Column
     eventId:string
     
+    @ForeignKey(()=>Webinar)
+    @Column
+    webinarId:string
 }

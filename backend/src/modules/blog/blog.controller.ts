@@ -49,7 +49,7 @@ export class BlogController extends GenericController<
   }
   @Get('/not-featured')
   async getNotFeaturedBlogs(
-    @Query('category') slug: string,
+    @Query('slug') slug: string,
     @Query('limit') limit: string,
     @Query('page') page: string,
   ) {

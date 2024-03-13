@@ -12,6 +12,7 @@ import { PageContentModule } from './PageContent/pageContent.module';
 import { EnquiryModule } from './Enquiry/enquiry.module';
 import { GlobalPartnerModule } from './globalPartner/global-partner.module';
 import { ContactModule } from './cotacDetails/contact.module';
+import { WebinarModule } from './webinar/webinar.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { ContactModule } from './cotacDetails/contact.module';
     PageContentModule,
     EnquiryModule,
     GlobalPartnerModule,
-    ContactModule
+    ContactModule,
+    WebinarModule
   ],
   controllers: [],
   providers: [],

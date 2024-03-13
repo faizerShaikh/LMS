@@ -6,7 +6,7 @@ import { SequelizeModule } from "@nestjs/sequelize";
 import { MetaData } from "../metaData/meta.model";
 
 @Module({
-    imports:[SequelizeModule.forFeature([Press,MetaData])],
+    imports:[SequelizeModule.forFeature([Press])],
     controllers:[PressController],
     providers:[PressService]
 })
