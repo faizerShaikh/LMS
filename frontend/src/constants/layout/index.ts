@@ -25,4 +25,5 @@ export const menuItems: menuType[] = [
     title: "Blog's Catagories",
     path: "/admin/blog-catagories",
   },
+  { icon: "Events", title: "Webinar's", path: "/admin/webinar" },
 ];

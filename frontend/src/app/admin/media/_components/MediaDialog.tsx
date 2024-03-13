@@ -48,10 +48,10 @@ export const MediaDialog = ({
     method: isUpdate ? "put" : "post",
   });
 
-  const { mutate: fileUploadMutate } = useCreateOrUpdate({
-    url: `/configurations/press-release/update-press-image/${id}`,
-    method: "put",
-  });
+  // const { mutate: fileUploadMutate } = useCreateOrUpdate({
+  //   url: `/configurations/press-release/update-press-image/${id}`,
+  //   method: "put",
+  // });
 
   const handleFileUpload = async (
     file: File,

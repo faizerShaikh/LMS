@@ -35,6 +35,7 @@ export default function TextEditor({ name, label, setFieldValue, value }: any) {
         modules={modules}
         placeholder="Type Here..."
         theme="snow"
+        className="h-[200px]"
       />
     </div>
   );
