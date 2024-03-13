@@ -37,7 +37,6 @@ export class UniversityService extends GenericService<
       const filePath = join(__dirname, '../../../../', 'backend/src/public/' + university.university_image);
       
       if (file && file.filename) {
-  
         if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
           unlink(filePath, (err) => {
             if (err) {

@@ -33,7 +33,7 @@ export class BlogController extends GenericController<
     MulterIntercepter({
       type: MulterEnum.single,
       fieldName: 'blog_image',
-      path: '/media/blog',
+      path: '/media/blog/',
     }),
   )
   updateBlogImage(

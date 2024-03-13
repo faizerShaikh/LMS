@@ -44,7 +44,7 @@ export class BlogService extends GenericService<
         order: [['createdAt', 'DESC']],
       });
       const next = await this.blog.findOne({
-        where: { createdAt: { [Op.lt]: blog.createdAt } },
+        where: { createdAt: { [Op.gt]: blog.createdAt } },
         order: [['createdAt', 'ASC']],
       });
       const relatedBlogs = await this.blog.findAll({
@@ -79,7 +79,11 @@ export class BlogService extends GenericService<
         throw new InternalServerErrorException('Blog not found');
       }
 
-      const defaultImagePath = 'backend/src/public/media/default.png';
+      const defaultImagePath =  join(
+        __dirname,
+        '../../../../',
+        'backend/src/public/media/default.png',
+      );
       const filePath = join(
         __dirname,
         '../../../../',
@@ -87,8 +91,8 @@ export class BlogService extends GenericService<
       );
 
       if (file && file.filename) {
-        const newImagePath = '/media/blog/' + file.filename;
-
+        console.log('=================================================>filepath',filePath)
+        console.log('=================================================>filepath',defaultImagePath)
         if (fs.existsSync(filePath) && filePath != defaultImagePath) {
           unlink(filePath, (err) => {
             if (err) {
@@ -97,8 +101,10 @@ export class BlogService extends GenericService<
               console.log('Old image deleted...');
             }
           });
+        }else{
+          console.log('not deleted')
         }
-
+        const newImagePath = '/media/blog/' + file.filename;
         await blog.update({
           blog_image: newImagePath,
         });

@@ -1,17 +1,19 @@
-import { IsNotEmpty, IsString, IsEmail, IsOptional } from 'class-validator';
+
+import { Type } from 'class-transformer';
+import { IsNotEmpty, IsString, IsEmail, IsOptional, ValidateNested, isArray } from 'class-validator';
+
 
 export class CreateWebinarDto {
     @IsNotEmpty()
     @IsString()
     title: string;
 
-    @IsString()
-    @IsOptional()
     coverImage: string;
 
-    @IsNotEmpty()
-    @IsString({ each: true }) 
-    speakers: string[];
+    // @ValidateNested({ each: true })
+    // @Type(() => SpeakerDto)
+    // @IsOptional()
+    // speakers: SpeakerDto[];
 
     @IsNotEmpty()
     @IsString()
@@ -24,4 +26,19 @@ export class CreateWebinarDto {
     @IsString()
     @IsNotEmpty()
     slug:string
+    
 }
+
+
+// export class SpeakerDto {
+
+//     @IsString()
+//     name: string;
+    
+//     @IsString()
+//     bio: string;
+    
+//     @IsString()
+//     @IsOptional()
+//     image: string;
+// }

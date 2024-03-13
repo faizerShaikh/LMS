@@ -6,7 +6,7 @@ import { unlink } from 'fs';
 import { join } from 'path';
 import { CreateEventDTO, UpdateEventDTO } from './dtos';
 import { MetaData } from '../metaData/meta.model';
-import * as fs from 'fs'
+import * as fs from 'fs';
 import { FindAndCountOptions, Op, OrderItem } from 'sequelize';
 @Injectable()
 export class eventService extends GenericService<
@@ -17,7 +17,7 @@ export class eventService extends GenericService<
   defaultFindOptions: {
     include: [MetaData],
   },
-  includes:[MetaData]
+  includes: [MetaData],
 }) {
   constructor(
     @InjectModel(Events) private event: typeof Events,
@@ -32,29 +32,33 @@ export class eventService extends GenericService<
     try {
       const Events = await this.getOne<Events>(id);
       if (!Events) {
-        throw new InternalServerErrorException("Blog not found");
+        throw new InternalServerErrorException('Blog not found');
       }
-  
-      const defaultImagePath = 'backend/src/public/media/default.png'; 
-      const filePath = join(__dirname, '../../../../', 'backend/src/public/' + Events.eventImage);
-      
+
+      const defaultImagePath = 'backend/src/public/media/default.png';
+      const filePath = join(
+        __dirname,
+        '../../../../',
+        'backend/src/public/' + Events.eventImage,
+      );
+
       if (file && file.filename) {
         const newImagePath = '/media/event/' + file.filename;
-  
-        if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
+
+        if (fs.existsSync(filePath) && filePath != defaultImagePath) {
           unlink(filePath, (err) => {
             if (err) {
-              console.error("Error deleting old image:", err);
+              console.error('Error deleting old image:', err);
             } else {
               console.log('Old image deleted...');
             }
           });
         }
-  
+
         await Events.update({
           eventImage: newImagePath,
         });
-  
+
         return 'Events Image Uploaded Successfully';
       } else {
         return 'No file provided for Image Update';
@@ -63,46 +67,40 @@ export class eventService extends GenericService<
       throw new InternalServerErrorException(error.message);
     }
   }
-s
+  s;
   async eventListing(date: string) {
-    if(date){
-
+    if (date) {
       const currentDate: Date = new Date();
       if (date === 'upcoming') {
-      const events = await this.event.findAll({
-        where: {
-          startDayTime: {
-                    [Op.gt]: currentDate 
-                }
-            }
-          });
-          return events;
-        }
-        else if(date==='past'){
-          const events = await this.event.findAll({
-        where: {
+        const events = await this.event.findAll({
+          where: {
             startDayTime: {
-              [Op.lt]: currentDate 
-            }
-          }
+              [Op.gt]: currentDate,
+            },
+          },
+        });
+        return events;
+      } else if (date === 'past') {
+        const events = await this.event.findAll({
+          where: {
+            startDayTime: {
+              [Op.lt]: currentDate,
+            },
+          },
+        });
+        return events;
+      } else if (date === 'webinar' || date === 'event') {
+        const events = await this.event.findAll({
+          where: {
+            eventType: {
+              date,
+            },
+          },
         });
         return events;
       }
-      else if(date==='webinar'|| date==='event'){
-        const events = await this.event.findAll({
-      where: {
-          eventType: {
-            date
-          }
-        }
-      });
-      return events;
-    }
-    }
-    
-    else{
-      return await this.event.findAll()
+    } else {
+      return await this.event.findAll();
     }
   }
-  
 }

@@ -8,34 +8,44 @@ import { EventRegistration } from "../event/eventRegistration/eventRegistration.
 })
 export class Webinar extends MyBaseModel{
     @Column
-    title :string
+    title: string;
 
     @Default('/media/default.png')
     @Column
-    coverImage:string
+    coverImage: string;
 
-    @Column({
-        type: 'TEXT',
-        get() {
-            const value = this.getDataValue('speakers');
-            return value ? value.split(';') : [];
+    @Default(
+    {
+        "name": "John Doe",
+        "bio": "Software Engineer",
+        "image": "/media/default.png"
         },
-        set(value: string[]) {
-            this.setDataValue('speakers', value.join(';'));
-        }
-    })
-    speakers: string[];
+    )
+
+    // @Column({
+    //     // defaultValue: JSON.stringify([{ name: "Default Speaker", bio: "Default Bio", image: "/default-speaker-image.png" }])
+    //     type: DataType.TEXT,
+    //     get() {
+    //         const value = this.getDataValue('speakers');
+    //         console.log('====================================================>values',value)
+    //         return value ? JSON.parse(value) : null;
+    //     },
+    //     set(value: any) {
+    //         this.setDataValue('speakers', JSON.stringify(value));
+    //     }
+    // })
+    // speakers: { name: string; bio: string; image: string }[];
 
     @Column({
-        type:DataType.TEXT
+        type: DataType.TEXT
     })
-    description: string
-   
+    description: string;
+
     @Column({
-        type:DataType.TEXT
+        type: DataType.TEXT
     })
-    agenda:string
+    agenda: string;
     
     @HasMany(()=>EventRegistration)
-    registrations:EventRegistration
+    registrations: EventRegistration[];
 }

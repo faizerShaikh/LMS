@@ -20,6 +20,9 @@ export class EventRegistrationdto {
     experience:string
 
     @IsString()
+    degree:string
+
+    @IsString()
     @IsOptional()
     eventId:string
 

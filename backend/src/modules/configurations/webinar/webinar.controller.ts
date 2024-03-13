@@ -30,7 +30,7 @@ export class WebinarController extends GenericController<
   @UseInterceptors(
     MulterIntercepter({
       type: MulterEnum.single,
-      fieldName: 'CoverImage',
+      fieldName: 'coverImage',
       path: '/media/webinar/',
     }),
   )
