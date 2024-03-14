@@ -58,7 +58,7 @@ export function Tabs({ tabs, query }: TabsProps) {
           onChange={handleChange}
           variant={"standard"}
           aria-label='basic tabs example'
-          className='flex justify-between p-2 bg-red'
+          className='flex justify-between bg-red'
         >
           {tabs.map((item) => (
             <Tab

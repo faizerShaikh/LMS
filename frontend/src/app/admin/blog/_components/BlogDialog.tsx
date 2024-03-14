@@ -33,7 +33,7 @@ export const BlogDialog = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
     description: "",
     is_featured:  false,
     blog_image: "",
-    blog_category_id: initialBlogCategoryValues.id,
+    blog_category_id: "",
   };
 
   const queryClient = useQueryClient();

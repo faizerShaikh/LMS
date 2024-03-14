@@ -18,7 +18,7 @@ interface DropZoneProps extends DropzoneProps {
 const DropZoneImage = ({file}:{file:File |string})=>{
   const src = useMemo(()=>{
     if(typeof file === "string"){
-      return file
+      return process.env.NEXT_PUBLIC_BASE_MEDIA_URL +  file
     }else{
       return URL.createObjectURL(file)
     }
