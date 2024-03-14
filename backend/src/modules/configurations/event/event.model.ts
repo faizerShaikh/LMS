@@ -1,9 +1,10 @@
-import { Column, DataType,  Table,ForeignKey,BelongsTo, Model, Default, HasMany,  } from "sequelize-typescript";
+import { Column, DataType,  Table,ForeignKey,BelongsTo, Model, Default, HasMany, HasOne,  } from "sequelize-typescript";
 import { MyBaseModel } from "src/core/base.model";
 import { User } from "src/modules/user/users/models/user.model";
 import { EventRegistration } from "./eventRegistration/eventRegistration.model";
 import { type } from "../metaData/dto/type.enum";
 import { location } from "./dtos/event.enum";
+import { Webinar } from "../webinar/webinar.model";
 @Table({
     tableName:'events',
     modelName: 'Events',
@@ -58,8 +59,8 @@ export class Events extends MyBaseModel{
     @Column(DataType.STRING)
     eventType:string
 
-    // @Column
-    // eventLocation:location
+    @Column
+    eventLocation:location
 
     @Column(DataType.BOOLEAN)
     isFeatured:boolean
@@ -71,6 +72,10 @@ export class Events extends MyBaseModel{
     created_by: User;
 
     @HasMany(()=>EventRegistration)
-    eventRegistrations: EventRegistration
-  
+    eventRegistrations: EventRegistration[]
+
+    @ForeignKey(()=>Webinar)
+    @Column
+    webinarId:string
+    
 }

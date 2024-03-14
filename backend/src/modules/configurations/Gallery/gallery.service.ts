@@ -33,7 +33,7 @@ export class GalleryService extends GenericService<
       const filePath = join(__dirname, '../../../../', 'backend/src/public/' + gallery.coverImage);
       
       if (file && file.filename) {
-        const newImagePath = '/media/pressRelease/' + file.filename;
+        const newImagePath = '/media/gallery/' + file.filename;
   
         if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
           unlink(filePath, (err) => {

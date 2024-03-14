@@ -1,17 +1,11 @@
-import {
-  Controller,
-  Param,
-  Put,
-  UploadedFile,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Controller, Param, Put, UploadedFile, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { GenericController } from 'src/core/modules';
-import { MulterIntercepter } from 'src/core/interceptors';
-import { MulterEnum } from 'src/core/interfaces';
 import { WebinarService } from './webinar.service';
 import { UpdateWebinarDto } from './dto/update-webinar.dto';
 import { CreateWebinarDto } from './dto/create-webinar.dto';
 import { Webinar } from './webinar.model';
+import { MulterEnum } from 'src/core/interfaces';
+import { MulterIntercepter } from 'src/core/interceptors';
 
 @Controller('configurations/webinar')
 export class WebinarController extends GenericController<
@@ -26,20 +20,15 @@ export class WebinarController extends GenericController<
     super(webinarService);
   }
 
-  @Put('webinar-image/:id')
+  @Put('update-image/:id')
   @UseInterceptors(
     MulterIntercepter({
-      type: MulterEnum.single,
-      fieldName: 'coverImage',
-      path: '/media/webinar/',
-    }),
+      type: MulterEnum.any,
+      fieldName: 'university_image',
+      path: '/media/webinar/speaker/',
+    })
   )
-  updateWebinarImage(
-    @UploadedFile() file: Express.Multer.File,
-    @Param('id') id: string,
-  ) {
-    console.log(file);
-
-    return this.webinarService.updateWebinarImage(file, id);
+  async  updateSpeakersImage(@Param('id') id: string , @UploadedFiles() file: Express.Multer.File[]){
+      const result= await this.webinarService.updateSpeakersImage(file,id)
   }
 }

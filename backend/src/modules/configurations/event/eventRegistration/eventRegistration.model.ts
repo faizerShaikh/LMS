@@ -36,7 +36,4 @@ export class EventRegistration extends Model{
     @Column
     eventId:string
     
-    @ForeignKey(()=>Webinar)
-    @Column
-    webinarId:string
 }

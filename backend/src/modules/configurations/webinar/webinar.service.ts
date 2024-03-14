@@ -1,14 +1,11 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { InjectModel } from '@nestjs/sequelize';
-import { unlink } from 'fs';
-import { join } from 'path';
-import { MetaData } from '../metaData/meta.model';
-import * as fs from 'fs'
-import { Webinar } from './webinar.model';
+import { Webinar} from './webinar.model';
 import { CreateWebinarDto } from './dto/create-webinar.dto';
 import { UpdateWebinarDto } from './dto/update-webinar.dto';
-import { EventRegistration } from '../event/eventRegistration/eventRegistration.model';
+import { Events } from '../event/event.model';
+
 @Injectable()
 export class WebinarService extends GenericService<
   Webinar,
@@ -16,52 +13,87 @@ export class WebinarService extends GenericService<
   UpdateWebinarDto
 >({
   defaultFindOptions:{
-    include:[MetaData,EventRegistration],
+    include:[Events],
   },
-  includes:[MetaData,EventRegistration]
+  includes:[Events]
 }) {
   constructor(
     @InjectModel(Webinar) private webinar: typeof Webinar,
     private reqParams: RequestParamsService,
+    @InjectModel(Events) private event: typeof Events,
 
   ) {
     super(webinar, reqParams);
   }
 
-  async updateWebinarImage(file: Express.Multer.File, id: string) {
-    try {
-      const webinar = await this.getOne<Webinar>(id);
-      if (!webinar) {
-        throw new InternalServerErrorException("Blog not found");
-      }
-  
-      const defaultImagePath = 'backend/src/public/media/default.png'; 
-      const filePath = join(__dirname, '../../../../', 'backend/src/public/' + webinar.coverImage);
-      
-      if (file && file.filename) {
-  
-        if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
-          unlink(filePath, (err) => {
-            if (err) {
-              console.error("Error deleting old image:", err);
-            } else {
-              console.log('Old image deleted...');
-            }
-          });
-        }else{
-          console.log('not deleted')
+  async create<Webinar>(
+    dto:CreateWebinarDto,
+  ):Promise<Webinar>{
+    const webinar=await super.create(dto)
+    await this.CreateEventObject(dto,webinar,true)
+    return
+  }
+
+  async update<Webinar>(
+    data: UpdateWebinarDto,
+    id:string
+  ):Promise<Webinar>{
+    const webinar = await super.update(data,id);
+    await this.CreateEventObject(data,webinar,false)
+    return webinar
+  }
+  async updateSpeakersImage(files:Express.Multer.File[],id:string){
+    const  webinar=await this.getOne<Webinar>(id);
+    if (!webinar) {
+      throw new InternalServerErrorException("Blog not found");
+    }
+    const defaultImagePath='backend/src/public/media/Author.png'; 
+    for (const [index,value] of Object.entries(webinar.speakers) as any){
+      const fileIndex = parseInt(index);
+      const file = files.find(file => {
+        const match = file.fieldname.match(/\[(\d+)\]/);
+        return match && parseInt(match[1])=== fileIndex
+      })
+      if (value.image != defaultImagePath) {
+        if (file) {
+          const updatedSpeakers = [...webinar.speakers];
+          updatedSpeakers[index].image = '/media/webinar/Speaker/' + file.filename;
+          webinar.speakers = updatedSpeakers;
         }
-        const newImagePath = '/media/webinar/' + file.filename;
-        await webinar.update({
-          university_image : newImagePath,
-        });
-  
-        return 'Webinar Image Uploaded Successfully';
-      } else {
-        return 'No file provided for Image Update';
       }
-    } catch (error) {
-      throw new InternalServerErrorException(error.message);
+    }
+    await webinar.save()
+  }
+
+  async CreateEventObject(
+    dto: CreateWebinarDto | UpdateWebinarDto,
+    webinar:Webinar,
+    isNewRecord:boolean
+  ){
+    if(!webinar.isNewRecord){
+      await this.event.destroy({
+        where:{
+          webinarId:webinar.id
+        }
+      })
+    }
+    if(isNewRecord){
+        await this.event.create({
+          ...dto.event,
+          webinarId: webinar.id
+        })
+    }
+    else{
+      if(dto.event){
+        await this.event.update<Events>(
+          {...dto.event},
+          {
+            where:{
+              webinarId: webinar.id
+            }
+          }
+        )
+      }
     }
   }
 

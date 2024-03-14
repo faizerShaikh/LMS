@@ -1,7 +1,4 @@
-import { Type } from 'class-transformer';
-import { IsBoolean, IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator';
-import { MetaData } from '../../metaData/meta.model';
-import { MetaDataDto } from '../../metaData/dto';
+import { IsBoolean, IsNotEmpty,  IsOptional, IsString, ValidateNested } from 'class-validator';
 
 export class CreateEventDTO{
     @IsString()
@@ -13,6 +10,10 @@ export class CreateEventDTO{
     description: string;
 
     @IsString()
+    @IsOptional()
+    eventImage:string
+
+    @IsString()
     startDayTime: string;
 
     @IsString()
@@ -20,7 +21,7 @@ export class CreateEventDTO{
 
     @IsString()
     deadLine: Date;
-
+    
     @IsString()
     @IsNotEmpty()
     created_by_id: string;
@@ -34,6 +35,15 @@ export class CreateEventDTO{
 
     @IsString()
     @IsNotEmpty()
+    eventLocation:string
+
+    @IsString()
+    @IsNotEmpty()
     eventType:string
+
+    @IsString()
+    @IsOptional()
+    webinarId:string
+    
 
 }

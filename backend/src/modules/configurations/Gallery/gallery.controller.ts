@@ -37,6 +37,7 @@ export class GalleryController extends GenericController<gallery,GalleryDto,Upda
 }))
 async newGallery(@Body() data: any[], @UploadedFiles() files: Express.Multer.File[],@Param() id) {
     const result = await this.GalleryService.createBulk(data, files);
+    return result
 }
     @Put('bulk-update')
     async bulkUpdate(@Body() data: any[]) {

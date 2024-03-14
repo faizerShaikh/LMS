@@ -57,10 +57,9 @@ export class PageContentService extends GenericService<PageContent,CreatePageDto
     }
 
 
-    async findOneByName(name: string): Promise<PageContent | null> {
-        return PageContent.findOne({ where: { name } , include:[gallery,MetaData]});
+    async findOneByName(slug: string): Promise<PageContent | null> {
+        return PageContent.findOne({ where: { slug:slug } , include:[gallery,MetaData]});
     }
-
     
 
 }
