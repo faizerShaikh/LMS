@@ -1,21 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
-import { SingleBlogInterface, relatedBlogInterface } from "interfaces/blog";
+import {
+  SingleBlogInterface,
+  nextPreviousInterface,
+  relatedBlogInterface,
+} from "interfaces/blog";
 import moment from "moment";
 
 export default async function SingleBlog({
   params,
 }: {
-  params: { slug: string};
+  params: { slug: string };
 }) {
-  console.log('paramsparams', params.slug)
-  let data: { blog: SingleBlogInterface; relatedBlogs: relatedBlogInterface[] };
+  let data: {
+    blog: SingleBlogInterface;
+    relatedBlogs: relatedBlogInterface[];
+    next: nextPreviousInterface;
+    previous: nextPreviousInterface;
+    // featuredTab: { next: relatedBlogInterface[]; previous: relatedBlogInterface[] };
+  };
   let url = `${process.env.BASE_API_URL}/configurations/blog/blog-detail/${params.slug}`;
-  // console.log(params.id, "<=========================================================================")
   const response = await axios.get(url);
-  data = response.data.data;  
-  console.log(data.relatedBlogs.length, data.relatedBlogs)
+  data = response.data.data;
+  console.log(data.next, "<================================================");
   return (
     <>
       <section className="m-auto">
@@ -45,7 +53,6 @@ export default async function SingleBlog({
                 alt="Author"
                 className="size-7 rounded-full mr-4 "
               />
-
 
               <p className="pr-8 font-bold">{data.blog.created_by?.name}</p>
 
@@ -106,7 +113,37 @@ export default async function SingleBlog({
           </div>
 
           <div className="mb-14">
-            <span dangerouslySetInnerHTML={{ __html: data.blog.description }}></span>
+            <span
+              dangerouslySetInnerHTML={{ __html: data.blog.description }}
+            ></span>
+          </div>
+        </div>
+
+        <div className="flex mb-4 container m-auto">
+          <div className="text-right border-l-2 border-t-2 border-b-2 px-6 w-1/2">
+            <p className="mb-2 text-gray-500 text-xl font-semibold">
+              Previous post
+            </p>
+            <h2 className="font-bold mb-2 text-lg">
+              <Link
+                href={`/blogs/${data.previous.slug}`}
+                className="text-black"
+              >
+                {data.previous.title}
+              </Link>
+            </h2>
+            <p className="mb-2 text-gray-400 font-semibold">January 3 2023</p>
+          </div>
+          <div className=" border-2 px-6 w-1/2">
+            <p className="mb-2 text-gray-500 text-xl font-semibold">
+              Next post
+            </p>
+            <h2 className="font-bold mb-2 text-lg">
+              <Link href={`/blogs/${data.next.slug}`} className="text-black">
+                {data.next.title}
+              </Link>
+            </h2>
+            <p className="mb-2 text-gray-400 font-semibold">September 9 2023</p>
           </div>
         </div>
       </section>
@@ -127,11 +164,13 @@ export default async function SingleBlog({
                         className="w-full h-52 mb-4"
                       />
                       <Link href={`/blogs/${item.slug}`} className="text-black">
-                      <h2 className="font-bold px-2 mb-2 m-0 text-lg">
-                        {item.title}
-                      </h2>
+                        <h2 className="font-bold px-2 mb-2 m-0 text-lg">
+                          {item.title}
+                        </h2>
                       </Link>
-                      <p className="px-2">{moment(item.createdAt).format('Do MMMM  YYYY')}</p>
+                      <p className="px-2">
+                        {moment(item.createdAt).format("Do MMMM  YYYY")}
+                      </p>
                     </div>
                   );
                 })

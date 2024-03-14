@@ -27,6 +27,7 @@ export interface SingleBlogInterface extends BaseObjInterface {
   created_by?: Created_By;
   metaID?: string;
   metaData?: MetaDataInterface;
+
   // relatedBlogs ?: relatedBlogInterface;
 }
 
@@ -41,6 +42,23 @@ export interface relatedBlogInterface {
   createdAt: string;
   updatedAt: string;
   deletedAt: string | null;
+  metaID: string;
+  blog_category_id: string;
+
+}
+
+
+export interface nextPreviousInterface  {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  blog_image: string;
+  is_featured: boolean;
+  created_by_id: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string;
   metaID: string;
   blog_category_id: string;
 }

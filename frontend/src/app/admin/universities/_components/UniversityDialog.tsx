@@ -10,6 +10,7 @@ import * as Yup from "yup";
 import { API } from "configs";
 
 const initialValues: UniversityInterface = {
+  slug: "",
   name: "",
   short_name: "",
   description: "",
@@ -105,6 +106,10 @@ export const UniversityDialog = ({
                 <Box>   
                   <Label text="Title" required  className="mt-4"/>
                   <Input name="name" />
+                </Box>
+                <Box>   
+                  <Label text="Slug" required  className="mt-4"/>
+                  <Input name="slug" />
                 </Box>
                 <Box className="mt-4">
                   <Label text="Short name" required/>
