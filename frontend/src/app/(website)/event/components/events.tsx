@@ -1,33 +1,36 @@
-"use client";
-
+'use client'
 import { ButtonGroup } from "components/layout";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 
-type Props = {};
+type Button = {
+  text: string;
+  url: string;
+  key: string;
+};
 
-export const Events = (props: Props) => {
+type Props = {
+  buttons: Button[];
+};
+
+export const Events = ({ buttons }: Props) => {
   const router = useRouter();
 
-  const handleClick = (key: string) => {
-    router.push(`/event?key=${key}`);
+  const handleClick = (url: string) => {
+    router.push(url);
   };
-  const buttons = [
-    {
-      text: "Upcoming Events",
-      key: "upcoming",
-      clickHandler: () => {
-        handleClick("upcoming");
-      },
-    },
-    {
-      text: "Past Events",
-      key: "past",
-      clickHandler: () => {
-        handleClick("past");
-      },
-    },
-  ];
 
-  return <ButtonGroup buttons={buttons} />;
+  const handleButtonClick = (url: string) => {
+    handleClick(url);
+  };
+
+  return (
+    <ButtonGroup
+      buttons={buttons.map(({ text, url, key }) => ({
+        text,
+        clickHandler: () => handleButtonClick(url),
+        key, 
+      }))}
+    />
+  );
 };

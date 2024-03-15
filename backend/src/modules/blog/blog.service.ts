@@ -39,14 +39,25 @@ export class BlogService extends GenericService<
       if (!blog) {
         throw new Error('Blog not found');
       }
-      const previous = await this.blog.findOne({
+      let previous = await this.blog.findOne({
         where: { createdAt: { [Op.lt]: blog.createdAt } },
         order: [['createdAt', 'DESC']],
       });
-      const next = await this.blog.findOne({
+      let next = await this.blog.findOne({
         where: { createdAt: { [Op.gt]: blog.createdAt } },
         order: [['createdAt', 'ASC']],
       });
+      if (!previous) {
+        previous = await this.blog.findOne({
+          order: [['createdAt', 'DESC']],
+        });
+      }
+      if (!next) {
+        next = await this.blog.findOne({
+          order: [['createdAt', 'ASC']],
+        });
+      }
+  
       const relatedBlogs = await this.blog.findAll({
         where: { blog_category_id: blog.blog_category_id },
         limit: 3,

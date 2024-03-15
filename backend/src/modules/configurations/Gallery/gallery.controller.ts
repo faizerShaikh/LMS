@@ -1,4 +1,4 @@
-import { Controller, Param, Put,Post,Body, UploadedFile, UseInterceptors, UploadedFiles } from "@nestjs/common";
+import { Controller, Param, Put,Post,Body, UploadedFile, UseInterceptors, UploadedFiles, Get } from "@nestjs/common";
 import { GenericController } from "src/core/modules";
 import { gallery } from "./gallery.model";
 import { GalleryDto, UpdateGalleryDTO } from "./dto";
@@ -43,50 +43,9 @@ async newGallery(@Body() data: any[], @UploadedFiles() files: Express.Multer.Fil
     async bulkUpdate(@Body() data: any[]) {
     const result = await this.GalleryService.updateBulk(data);
     }
+
+    @Get('get-by-page/:pageId')
+    async getByPageId(@Param('pageId') id:string):Promise<gallery[]>{
+        return await this.GalleryService.getByPageId(id)
+    }
 }
-
-// async createBulk(data: any, files: Express.Multer.File[], ): Promise<any> {
-//     try {
-//         let dataToCreate = [];
-//         let dataToUpdate = [];
-
-//         for (const file of files) {
-//             // Extract index from fieldname
-//             const index = parseInt(file.fieldname.match(/\[(\d+)\]/)[1]);
-
-//             const value = data.data[index];
-//             console.log('=============================================>>>>>>>>>',value)
-//             if (value) {
-//                 if (value.id) {
-//                     dataToUpdate.push({
-//                         ...value,
-//                         coverImage: 'media/gallery/' + file.filename
-//                     });
-//                 } else {
-//                     //console.log('=============================================>>>>', file);
-//                     dataToCreate.push({
-//                         ...value,
-//                         coverImage: 'media/gallery/' + file.filename
-//                     });
-//                 }
-//             } else {
-//                 console.error(`No data found for index ${index}`);
-//             }
-//         }
-
-//         // Bulk create the updated data if there's any
-//         if (dataToUpdate.length > 0) {
-//             await this.Gallery.bulkCreate(dataToUpdate, { updateOnDuplicate: ["name", "description", "orderBy", "coverImage"] });
-//         }
-
-//         // Bulk create the new data if there's any
-//         if (dataToCreate.length > 0) {
-//             await this.Gallery.bulkCreate(dataToCreate);
-//         }
-
-//         return { success: true, dataToUpdate, dataToCreate };
-//     } catch (error) {
-//         console.error('Error in createBulk:', error);
-//         return { success: false, error: error.message };
-//     }
-// }

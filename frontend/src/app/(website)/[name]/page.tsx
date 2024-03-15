@@ -8,14 +8,16 @@ export let metadata = {};
 export default async function SinglePage({
   params,
 }: {
-  params: { name: string };
+  params: { slug: string , name: string};
 }) {
   let commonPageData: PageContentInterface;
   const res = await axios.get(
     `${process.env.BASE_API_URL}/configurations/page-content/${params.name}`
   );
+  
   commonPageData = res?.data?.data;
-  console.log("Name :", params.name); 
+  console.log(commonPageData,"<============================================================================hello")
+  console.log("Name :", params.slug); 
   // if(commonPageData.metaData){
   //   metadata = commonPageData.metaData
   // }

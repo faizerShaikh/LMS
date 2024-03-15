@@ -2,9 +2,10 @@
 import { DataGrid, PageHeader } from "components/layout";
 import { useGetAll } from "hooks";
 import { PageContentInterface } from "interfaces";
-import { PageContentDialog } from "./_components/PageContentDialog";
 import { MetaDataForm } from "components/admin";
 import { GalleryForm } from "components/admin/GalleryForm";
+import { IconButton } from "@mui/material";
+import { Edit } from "@carbon/icons-react";
 
 const columns = [
   {
@@ -33,11 +34,12 @@ const columns = [
     renderCell: (params: { row: PageContentInterface }) => {
       return (
         <>
-          <PageContentDialog
-            isUpdate={true}
-            data={params.row}
-            refetchURL="/configurations/page-content"
-          />
+          <IconButton
+            href={`/admin/page-content/${params.row.slug}`}
+           
+          >
+            <Edit />
+          </IconButton>
           <MetaDataForm
             isUpdate={true}
             data={
@@ -49,9 +51,9 @@ const columns = [
           />
           <GalleryForm
             isUpdate={true}
-            data={{gallery:  params.row.gallery}}
+            data={{ gallery: params.row.gallery }}
             refetchURL="/configurations/page-content"
-            pageId={params.row.id || ''}
+            pageId={params.row.id || ""}
           />
         </>
       );

@@ -11,11 +11,10 @@ import PhoneNumberField from "./phoneInpute";
 import ToggleButtonForm from "./toggle";
 
 export const WebinarForm = () => {
-
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleToggleChange = (newValue: any) => {
-   setSelectedValue(newValue);
+    setSelectedValue(newValue);
   };
   const [phoneNumber, setPhoneNumber] = useState("");
 
@@ -24,14 +23,14 @@ export const WebinarForm = () => {
   };
 
   console.log(selectedValue, phoneNumber);
-  
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
       email: "",
-      mobileNumber:"" ,
-        degree: "",
+      mobileNumber: "",
+      degree: "",
       experience: "",
     },
     // validationSchema: Yup.object({
@@ -47,7 +46,7 @@ export const WebinarForm = () => {
       axios
         .post(
           `${process.env.NEXT_PUBLIC_BASE_API_URL}/configurations/event-webinar/registration`,
-          {...values}
+          { ...values }
         )
         .then((response) => {
           resetForm();
@@ -136,7 +135,7 @@ export const WebinarForm = () => {
       />
       <div className="border py-2 px-4 my-2 mt-4 rounded-md border-gray-400">
         <PhoneNumberField
-        id= "mobileNumber"
+          id="mobileNumber"
           value={formik.values.mobileNumber}
           onChange={handlePhoneNumberChange}
         ></PhoneNumberField>
@@ -167,10 +166,10 @@ export const WebinarForm = () => {
         Which Degree do you want to persue ?
         <span className="text-red-600">*</span>
       </h2>
-      <ToggleButtonForm 
-      id="degree"
-      value={selectedValue}
-      onToggleChange={handleToggleChange}
+      <ToggleButtonForm
+        id="degree"
+        value={selectedValue}
+        onToggleChange={handleToggleChange}
       />
       <p className="text-xs">
         By submitting your info in the form above ,you agree to our{" "}

@@ -1,12 +1,12 @@
 "use client";
 import Checkbox from "@mui/material/Checkbox";
-import { DataGrid, DeleteBox, PageHeader } from "components/layout";
+import { Button, DataGrid, DeleteBox, PageHeader } from "components/layout";
 import { useGetAll } from "hooks";
-
 import { SingleBlogInterface } from "interfaces/blog";
-import { BlogDialog } from "./_components/BlogDialog";
 import { MetaDataForm } from "components/admin";
 import removeTags from "utils/removeTags";
+import { IconButton } from "@mui/material";
+import { Edit } from "@carbon/icons-react";
 
 const columns = [
   {
@@ -55,7 +55,9 @@ const columns = [
     renderCell: (params: { row: SingleBlogInterface }) => {
       return (
         <>
-          <BlogDialog isUpdate={true} data={params.row} />
+          <IconButton href={`/admin/blog/${params.row.slug}`}>
+            <Edit />
+          </IconButton>
           <DeleteBox
             url={`/configurations/blog`}
             refetchUrl="/configurations/blog"
@@ -82,7 +84,11 @@ export default function MediaPage() {
   return (
     <>
       <PageHeader title="Blog's" />
-      <DataGrid addButton={<BlogDialog />} columns={columns} rows={data} />
+      <DataGrid
+        addButton={<Button href="/admin/blog/add">Add Blog</Button>}
+        columns={columns}
+        rows={data}
+      />
     </>
   );
 }

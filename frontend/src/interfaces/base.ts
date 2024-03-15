@@ -16,10 +16,16 @@ export type BaseProps<T, U extends {} = {}> = NextComponentType<
   } & U
 >;
 
+export interface BasePaginatedDataInterface<T={}>{
+  rows:T[]
+  count:number
+}
+
 export interface CreateUpdateDialogBaseProps {
   isUpdate?: boolean;
   data?: any;
   refetchURL?: string
+  pageId?: string;
 }
 export interface faqFormProps extends CreateUpdateDialogBaseProps{
   faqId: string;

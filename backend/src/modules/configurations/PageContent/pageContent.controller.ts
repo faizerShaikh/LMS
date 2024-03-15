@@ -31,10 +31,9 @@ export class PageContentController extends GenericController<PageContent,CreateP
   ) {
     return this.PageContentService.updatePageImage(file, id);
   }
-  
 
-  @Get(':name')
-  async findOneByName(@Param('name') name: string) {
-    return this.PageContentService.findOneByName(name);
+  @Get(':slug')
+  async findOneByName(@Param('slug') slug: string) {
+    return this.PageContentService.findOneByName(slug);
   }
 }

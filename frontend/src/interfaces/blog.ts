@@ -17,18 +17,25 @@ export interface SingleBlogInterface extends BaseObjInterface {
   id?: string;
   title: string;
   description: string;
-  blog_image?: string;
+  blog_image: string;
   is_featured: boolean;
   created_by_id?: string;
   createdAt?: string;
   updatedAt?: string;
   deletedAt?: string | null;
-  blog_category_id?: string;
+  blog_category_id: string;
   created_by?: Created_By;
   metaID?: string;
   metaData?: MetaDataInterface;
 
   // relatedBlogs ?: relatedBlogInterface;
+}
+
+export interface BlogDetailsInterface  {
+  blog: SingleBlogInterface;
+  relatedBlogs: relatedBlogInterface[];
+  next: nextPreviousInterface;
+  previous: nextPreviousInterface;
 }
 
 export interface relatedBlogInterface {

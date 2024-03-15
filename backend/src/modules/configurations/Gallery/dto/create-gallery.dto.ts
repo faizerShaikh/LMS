@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsString, IsEmpty, IsObject, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsString, IsEmpty, IsObject, IsNotEmpty, IsOptional, IsNumber } from 'class-validator';
 import { PageContent } from '../../PageContent/pageContent.model';
 
 export class GalleryDto {
@@ -7,7 +7,7 @@ export class GalleryDto {
     coverImage: string;
 
     @IsOptional()
-    @IsString()
+    @IsNumber()
     orderBy:number
 
     @IsString()

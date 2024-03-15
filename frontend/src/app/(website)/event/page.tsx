@@ -19,11 +19,28 @@ export default async function EventsPage({
   );
   events = res.data.data;
 
+
+  const EventsButtons = [
+    {
+      text: "Upcoming Events",
+      url: "/event?key=upcoming",
+      key: "upcoming",
+    },
+    {
+      text: "Past Events",
+      url: "/event?key=past",
+      key: "past",
+    },
+  ];
+
+
+
   return (
     <>
       <section className="bg-gray-100 hover:text-white">
         <div className="py-10 ">
-          <Events></Events>
+        <Events buttons={EventsButtons} />
+
         </div>
       </section>
       <section className=" py-12">
