@@ -1,7 +1,7 @@
 'use client'
 
 import { Box, Checkbox, Grid } from "@mui/material";
-import { Button, DropZone, Input, Label } from "components/layout";
+import { AutoComplete, Button, DropZone, Input, Label } from "components/layout";
 import { API } from "configs";
 import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "hooks";
@@ -35,6 +35,8 @@ const EventForm = ({ initialValues, isUpdate, id }: Props) => {
     }
     onSuccess();
   };
+
+  const optionsType = ["webinar", "on-Site"]
   return (
     <Formik
       initialValues={initialValues}
@@ -77,7 +79,7 @@ const EventForm = ({ initialValues, isUpdate, id }: Props) => {
                 <Label text="Slug" />
                 <Input name="slug" />
               </Box>
-              <Grid className="flex flex-wrap">
+              <Grid className="flex flex-wrap ">
               <Grid xs={6} >
               <Box className="mt-4" >
                 <Label text="Start Day Time" />
@@ -96,6 +98,7 @@ const EventForm = ({ initialValues, isUpdate, id }: Props) => {
                 <Input type="datetime-local" name="deadLine" />
               </Box>
               </Grid>
+              
               <Box className="mt-4">
               <Label text="Is Featured" />
               <Checkbox
@@ -107,6 +110,13 @@ const EventForm = ({ initialValues, isUpdate, id }: Props) => {
               />
               </Box>
               </Grid>
+              <Box className="mt-4">
+                  <Label text="Type" required/>
+                  <AutoComplete
+                  name="eventType"
+                  options={optionsType}
+                  ></AutoComplete>
+                </Box>
             </Grid>
             <Grid xs={12} item>
             <Box className="flex justify-end">

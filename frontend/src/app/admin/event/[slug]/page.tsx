@@ -33,7 +33,7 @@ const SingleEvent = async ({ params: { slug } }: Props) => {
   return (
     <>
       <PageHeader title={"Add Event"}></PageHeader>
-      <EventForm initialValues={initialValues} id={data!.id} isUpdate={isUpdate} />
+      <EventForm initialValues={initialValues} id={data?data!.id:undefined} isUpdate={isUpdate} />
     </>
   );
 };

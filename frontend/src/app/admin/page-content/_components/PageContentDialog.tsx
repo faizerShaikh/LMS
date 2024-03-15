@@ -11,12 +11,13 @@ import { API } from "configs";
 import * as Yup from "yup";
 
 const initialValues: PageContentInterface = {
+  id:"",
   slug: "",
   name: "",
   title: "",
   titleDescription: "",
   pageDescription: "",
-  coverImage: null,
+  coverImage: "",
   gallery: [],
   metaData: MetaDataInitial,
 };
