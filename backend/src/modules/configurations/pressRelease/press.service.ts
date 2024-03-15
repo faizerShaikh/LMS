@@ -8,10 +8,7 @@ import { MetaData } from "../metaData/meta.model";
 import * as fs from 'fs'
 @Injectable()
 export class PressService extends GenericService({
-    defaultFindOptions:{
-        include:[MetaData]
-    },
-    includes:[MetaData]
+    
 }){
     constructor(
         @InjectModel(Press)private press : typeof Press,

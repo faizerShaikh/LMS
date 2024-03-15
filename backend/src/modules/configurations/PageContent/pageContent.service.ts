@@ -42,7 +42,7 @@ export class PageContentService extends GenericService<PageContent,CreatePageDto
             },
         )
         await page.update({
-            coverImage:'media/pageContent/'+file.filename
+            coverImage:'/media/pageContent/'+file.filename
         })
           return 'Cover Image Uploaded Successfully'
         }

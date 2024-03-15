@@ -6,6 +6,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
 import * as fs from 'fs';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class GalleryService extends GenericService<
@@ -21,12 +22,13 @@ export class GalleryService extends GenericService<
   }
 
   async UpdateGalleryImage(file: Express.Multer.File, id: string) {
+    
     try {
       const gallery = await this.getOne<gallery>(id);
       if (!gallery) {
-        throw new InternalServerErrorException("Blog not found");
-      }
-  
+        throw new InternalServerErrorException("Card not found");
+      } 
+      
       const defaultImagePath = 'backend/src/public/media/default.png'; 
       const filePath = join(__dirname, '../../../../', 'backend/src/public/' + gallery.coverImage);
       
@@ -57,35 +59,16 @@ export class GalleryService extends GenericService<
   }
   
 
-  async newGallery(data: any, files: Express.Multer.File): Promise<any> {
-    const pageIds = data.data.map(item => item.pageId);
-    await this.Gallery.destroy({ where: { pageId: pageIds } });
-    const dataToCreate = []; 
-    for (const [index, value] of data.data.entries()) {
-      const { id, ...rest } = value;
-      if (files[index]) { 
-        console.log('files=============================================================>',files)
-        dataToCreate.push({
-          ...rest,
-          coverImage: 'media/gallery/' + files[index].filename
-        });
-      } else {
-        dataToCreate.push({ ...rest });
-      }
-    }
-    if (dataToCreate.length > 0) {
-      console.log('bulk create data:', dataToCreate);
-      await this.Gallery.bulkCreate(dataToCreate);
-      console.log('data:', dataToCreate);
-    }
-    return dataToCreate;
-  }
-
   async createBulk(data: any, files: Express.Multer.File[] ): Promise<any> {
     try {
     let dataToCreate = [];
     let dataToUpdate = [];
-      console.log('=================================>',data)
+    
+    const pageIDs= data.data.map(item=>item.pageId)
+
+    const newId = data.data.map(item => item.id);
+    await this.Gallery.destroy({ where: { id: { [Op.notIn]: newId }, pageId: pageIDs} });
+    
     for (const [index, value] of Object.entries(data.data) as any) {
         const fileIndex = parseInt(index);
         const file = files.find(file => {
@@ -119,13 +102,11 @@ export class GalleryService extends GenericService<
         }
     }
 
-    // Bulk create the updated data if there's any
     if (dataToUpdate.length > 0) {
         console.log('data to update=========================================>',dataToUpdate)
         await this.Gallery.bulkCreate(dataToUpdate, { updateOnDuplicate:["id","name","description","orderBy","coverImage"]});
     }
 
-    // Bulk create the new data if there's any
     if (dataToCreate.length > 0) {
       console.log('data to create=========================================>',dataToCreate)
         await this.Gallery.bulkCreate(dataToCreate);

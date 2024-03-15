@@ -1,4 +1,4 @@
-import { Column, DataType, Default, Model, Table } from "sequelize-typescript";
+import { Column, DataType, Default, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { MyBaseModel } from "src/core/base.model";
 import { type } from "../metaData/dto/type.enum";
 
@@ -9,8 +9,12 @@ import { type } from "../metaData/dto/type.enum";
     order:[["updatedAt","ASC"]],
   }
 })
-export class Press extends MyBaseModel {
-  override type= type.MEDIA;
+export class Press extends Model {
+  @IsUUID(4)
+  @Default(DataType.UUIDV4)
+  @PrimaryKey
+  @Column
+  id: string;
 
   @Column
   title: string;

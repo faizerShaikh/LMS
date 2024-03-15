@@ -37,6 +37,9 @@ export class Course extends MyBaseModel {
   })
   course_image: string;
 
+  @Column
+  name:string
+
   @HasMany(() => CourseSpecialization, {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',

@@ -2,12 +2,15 @@ import { Column, DataType,  Table,ForeignKey,BelongsTo, Model, Default, HasMany,
 import { MyBaseModel } from "src/core/base.model";
 import { User } from "src/modules/user/users/models/user.model";
 import { EventRegistration } from "./eventRegistration/eventRegistration.model";
+import { type } from "../metaData/dto/type.enum";
+import { location } from "./dtos/event.enum";
 @Table({
     tableName:'events',
     modelName: 'Events',
     paranoid:true
 })
 export class Events extends MyBaseModel{
+  override type: type.EVENT;
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -39,7 +42,7 @@ export class Events extends MyBaseModel{
         },})
     description:string
 
-    @Default('media/default.png')
+    @Default('/media/default.png')
     @Column(DataType.STRING)
     eventImage:string
 
@@ -51,6 +54,12 @@ export class Events extends MyBaseModel{
 
     @Column(DataType.DATE)
     deadLine:Date
+
+    @Column(DataType.STRING)
+    eventType:string
+
+    // @Column
+    // eventLocation:location
 
     @Column(DataType.BOOLEAN)
     isFeatured:boolean

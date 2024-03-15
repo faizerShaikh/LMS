@@ -1,42 +1,45 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
-import { University } from './model';
-import { CreateUniversityDTO, UpdateUniversityDTO } from './dtos';
 import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
 import { MetaData } from '../metaData/meta.model';
 import * as fs from 'fs'
+import { Webinar } from './webinar.model';
+import { CreateWebinarDto } from './dto/create-webinar.dto';
+import { UpdateWebinarDto } from './dto/update-webinar.dto';
+import { EventRegistration } from '../event/eventRegistration/eventRegistration.model';
 @Injectable()
-export class UniversityService extends GenericService<
-  University,
-  CreateUniversityDTO,
-  UpdateUniversityDTO
+export class WebinarService extends GenericService<
+  Webinar,
+  CreateWebinarDto,
+  UpdateWebinarDto
 >({
   defaultFindOptions:{
-    include:[MetaData],
+    include:[MetaData,EventRegistration],
   },
-  includes:[MetaData]
+  includes:[MetaData,EventRegistration]
 }) {
   constructor(
-    @InjectModel(University) private university: typeof University,
+    @InjectModel(Webinar) private webinar: typeof Webinar,
     private reqParams: RequestParamsService,
 
   ) {
-    super(university, reqParams);
+    super(webinar, reqParams);
   }
 
-  async updateUniversityImage(file: Express.Multer.File, id: string) {
+  async updateWebinarImage(file: Express.Multer.File, id: string) {
     try {
-      const university = await this.getOne<University>(id);
-      if (!university) {
+      const webinar = await this.getOne<Webinar>(id);
+      if (!webinar) {
         throw new InternalServerErrorException("Blog not found");
       }
   
       const defaultImagePath = 'backend/src/public/media/default.png'; 
-      const filePath = join(__dirname, '../../../../', 'backend/src/public/' + university.university_image);
+      const filePath = join(__dirname, '../../../../', 'backend/src/public/' + webinar.coverImage);
       
       if (file && file.filename) {
+  
         if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
           unlink(filePath, (err) => {
             if (err) {
@@ -48,12 +51,12 @@ export class UniversityService extends GenericService<
         }else{
           console.log('not deleted')
         }
-        const newImagePath = '/media/university/' + file.filename;
-        await university.update({
+        const newImagePath = '/media/webinar/' + file.filename;
+        await webinar.update({
           university_image : newImagePath,
         });
   
-        return 'University Image Uploaded Successfully';
+        return 'Webinar Image Uploaded Successfully';
       } else {
         return 'No file provided for Image Update';
       }
