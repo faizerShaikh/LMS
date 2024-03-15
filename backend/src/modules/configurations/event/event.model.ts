@@ -47,6 +47,7 @@ export class Events extends MyBaseModel{
     @Column(DataType.STRING)
     eventImage:string
 
+    
     @Column(DataType.DATE)
     startDayTime:Date
 
@@ -71,7 +72,11 @@ export class Events extends MyBaseModel{
     @BelongsTo(() => User)
     created_by: User;
 
-    @HasMany(()=>EventRegistration)
+    @HasMany(()=>EventRegistration,{
+      onDelete: 'CASCADE',
+      onUpdate:'CASCADE',
+
+    })
     eventRegistrations: EventRegistration[]
 
     @ForeignKey(()=>Webinar)

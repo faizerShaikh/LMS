@@ -14,6 +14,7 @@ import { Course } from '../course/model';
 import { University } from '../university/model';
 import { MetaData } from '../metaData/meta.model';
 import * as fs from 'fs'
+import { AdmissionProcessCards } from './model/admissionProcess.model';
 @Injectable()
 export class CourseSpecializationService extends GenericService<
   CourseSpecialization,
@@ -22,9 +23,9 @@ export class CourseSpecializationService extends GenericService<
 >({
   
   defaultFindOptions:{
-    include:[MetaData,Course,University]
+    include:[MetaData,Course,University,AdmissionProcessCards]
 },
-includes:[MetaData,Course,University]
+includes:[MetaData,Course,University,AdmissionProcessCards]
 
 }) {
   constructor(
@@ -34,9 +35,12 @@ includes:[MetaData,Course,University]
     private feesStructure: typeof FeesStructure,
     @InjectModel(ProgramStructure)
     private programStructure: typeof ProgramStructure,
+    @InjectModel(AdmissionProcessCards)
+    private admissionProcess: typeof AdmissionProcessCards,
+
     private reqParams: RequestParamsService,
-    @InjectModel(MetaData)
-    private metaData: typeof MetaData,
+
+
   ) {
     super(courseSpecialization, reqParams);
   }
@@ -99,6 +103,11 @@ includes:[MetaData,Course,University]
           course_specialization_id: courseSpecialization.id,
         },
       });
+      await this.admissionProcess.destroy({
+        where:{
+          course_specialization_id:courseSpecialization.id
+        }
+      })
     }
     if (isNewRecord) {
             await this.feesStructure.create({
@@ -118,6 +127,12 @@ includes:[MetaData,Course,University]
       }
     }
 
+    await this.admissionProcess.bulkCreate(
+      dto.admissionProcess.map((item)=>({
+        ...item,
+        courseSpecialization:courseSpecialization
+      }))
+    )
     await this.programStructure.bulkCreate(
       dto.program_structures.map((item) => ({
         ...item,

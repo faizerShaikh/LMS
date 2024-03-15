@@ -18,4 +18,8 @@ export class GalleryDto {
     @IsNotEmpty()
     description: string;
 
+    @IsString()
+    @IsNotEmpty()
+    pageId:string
+
 }

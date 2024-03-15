@@ -6,6 +6,7 @@ import { CourseSpecialization } from './model';
 import { FeesStructure } from './model/fees-structure.model';
 import { ProgramStructure } from './model/program-structure.model';
 import { MetaData } from '../metaData/meta.model';
+import { AdmissionProcessCards } from './model/admissionProcess.model';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { MetaData } from '../metaData/meta.model';
       CourseSpecialization,
       ProgramStructure,
       FeesStructure,
+      AdmissionProcessCards,
       MetaData
     ]),
   ],

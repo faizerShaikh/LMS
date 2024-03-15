@@ -2,48 +2,48 @@ import { IsBoolean, IsNotEmpty,  IsOptional, IsString, ValidateNested } from 'cl
 
 export class CreateEventDTO{
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     name: string;
 
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     description: string;
+
 
     @IsString()
     @IsOptional()
-    eventImage:string
-
-    @IsString()
     startDayTime: string;
 
     @IsString()
+    @IsOptional()
     endDayTime: Date;
 
     @IsString()
+    @IsOptional()
     deadLine: Date;
     
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     created_by_id: string;
 
     @IsBoolean()
+    @IsOptional()
     isFeatured: boolean;
 
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     slug:string
 
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     eventLocation:string
 
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     eventType:string
 
     @IsString()
     @IsOptional()
     webinarId:string
-    
 
 }
