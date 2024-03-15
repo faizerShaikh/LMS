@@ -1,7 +1,7 @@
 "use client";
 import { DataGrid} from "components/layout";
 import { useGetAll } from "hooks";
-import { PageContentInterface } from "interfaces";
+import { GalleryInterface, PageContentInterface } from "interfaces";
 import {  GalleryForm1 } from "./GalleryForm";
 
 
@@ -14,7 +14,7 @@ const columns = [
   },
   {
     headerName: "Title Description",
-    field: "titleDescription",
+    field: "description",
     flex: 2,
     cellClassName: "text-dark",
   },
@@ -29,15 +29,14 @@ const columns = [
     field: "action",
     flex: 1,
     cellClassName: "text-dark",
-    renderCell: (params: { row: PageContentInterface }) => {
+    renderCell: (params: { row: GalleryInterface }) => {
       return (
         <>
           <GalleryForm1 
-          isUpdate={true}
-          data = {
-            params.row.gallery
-          }
-          pageId={params.row.id || ""}
+           isUpdate={true}
+           data={params.row}
+           refetchURL={`/configurations/gallery/get-by-page/${params.row.slug}`}
+           pageId={params.row?.pageContent?.id || ""}
           />
         </>
       );
@@ -45,15 +44,15 @@ const columns = [
   },
 ];
 
-export default function PageContent(slug: string) {
+export default function PageGallery({slug , pageId}:any) {
   const { data } = useGetAll({
     key: `/configurations/gallery/get-by-page/${slug}`,
   });
+  console.log(data,"<<<<<<<<<<<<<<<<<<<<<<<<<gallery")
 
   return (
     <>
-
-      <DataGrid columns={columns} rows={data} />
+      <DataGrid addButton={<GalleryForm1 pageId={pageId}/>}  columns={columns} rows={data} />
     </>
   );
 }

@@ -8,6 +8,7 @@ export interface GalleryInterface extends BaseObjInterface {
   description?: string;
   orderBy ?: number;
   pageId?: string;
+  pageContent?: PageContentInterface;
 }
 
 export interface PageContentInterface extends BaseObjInterface{

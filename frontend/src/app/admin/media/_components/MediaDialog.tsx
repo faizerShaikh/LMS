@@ -15,7 +15,6 @@ import { useQueryClient } from "react-query";
 import { toast } from "utils";
 import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
 import * as Yup from "yup";
-import { useState } from "react";
 import { API } from "configs";
 
 const initialValues: MediaPressReleaseInterface = {
@@ -39,8 +38,6 @@ export const MediaDialog = ({
   isUpdate,
 }: CreateUpdateDialogBaseProps) => {
   const queryClient = useQueryClient();
-  const [id, setId] = useState(null);
-
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate
       ? `/configurations/press-release/${data.id}`
@@ -83,7 +80,7 @@ export const MediaDialog = ({
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(values, {
-              onSuccess(resp, variables, context) {
+              onSuccess(resp) {
                 handleFileUpload(values.coverImage, resp.data.data.id, () => {
                   resetForm();
                   queryClient.refetchQueries(`/configurations/press-release`, {

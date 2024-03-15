@@ -70,7 +70,7 @@ const columns = [
 
 export default function MediaPage() {
   const { data } = useGetAll({ key: "/configurations/press-release" });
-  // console.log(data, "<==================ahsdfjhasvfjh")
+  console.log(data, "<==================ahsdfjhasvfjh")
   return (
     <>
       <PageHeader title="Press Release" />
