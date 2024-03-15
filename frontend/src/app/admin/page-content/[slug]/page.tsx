@@ -15,6 +15,7 @@ type Props = {
 const SinglePage = async ({params: {slug}}: Props) => {
     const isUpdate = slug !== "add"
     let initialValues: PageContentInterface = {
+      id:"",
         slug: "",
         name: "",
         title: "",
