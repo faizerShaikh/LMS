@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import LOGO from '../../../../public/img2/Author.svg';
-
+import LOGO from "../../../../public/img2/Author.svg";
 
 function page() {
   return (
@@ -438,11 +437,165 @@ function page() {
                   4. Final Pitch Preparation
                 </h2>
                 <p className="m-0 font-light text-[15px]">
-                  Shortlisted teams will work diligently to fine-tune
-                  their startup pitches and prepare compelling presentations.
+                  Shortlisted teams will work diligently to fine-tune their
+                  startup pitches and prepare compelling presentations.
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-gray-100">
+        <div className="container py-16">
+          <h2 className="text-center m-0 mb-12 text-3xl font-semibold">
+            Winners
+          </h2>
+          <div className="flex flex-wrap justify-between gap-5">
+            <div className="w-[23%] text-center rounded-xl bg-white py-10 px-2  shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+              <Image
+                src="/img2/presentation_4498160.png"
+                height={100}
+                width={100}
+                alt="test"
+              ></Image>
+              <h3>Pitch Day</h3>
+              <p className="text-sm mb-0">
+                On the day of the competition, each shortlisted team will
+                present their startup pitch to a panel of judges and a live
+                audience. This event is the culmination of weeks of preparation
+                and hard work
+              </p>
+            </div>
+
+            <div className="w-[23%] text-center rounded-xl bg-white py-10 px-2  shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+              <Image
+                src="/img2/presentation_4498160.png"
+                height={100}
+                width={100}
+                alt="test"
+              ></Image>
+              <h3>Judging Criteria</h3>
+              <p className="text-sm mb-0">
+                Judges will evaluate the pitches based on criteria such as
+                innovation, market potential, feasibility, scalability, and the
+                overall quality of the presentation.
+              </p>
+            </div>
+
+            <div className="w-[23%] text-center rounded-xl bg-white py-10 px-2  shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+              <Image
+                src="/img2/presentation_4498160.png"
+                height={100}
+                width={100}
+                alt="test"
+              ></Image>
+              <h3>Announcement of Winners</h3>
+              <p className="text-sm mb-0">
+                After careful deliberation, the winners will be announced during
+                a special awards ceremony. Rise N Start Ignite recognizes
+                outstanding startups in several categories, which may include
+              </p>
+            </div>
+
+            <div className="w-[23%] text-center rounded-xl bg-white py-10 px-2  shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+              <Image
+                src="/img2/presentation_4498160.png"
+                height={100}
+                width={100}
+                alt="test"
+              ></Image>
+              <h3>Best Overall Startup</h3>
+              <p className="text-sm mb-0">
+                The startup with the most compelling pitch and potential for
+                growth.
+              </p>
+            </div>
+
+            <div className="w-[23%] text-center rounded-xl bg-white py-10 px-2  shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+              <Image
+                src="/img2/presentation_4498160.png"
+                height={100}
+                width={100}
+                alt="test"
+              ></Image>
+              <h3>Innovation Award</h3>
+              <p className="text-sm mb-0">
+                Recognizing the most innovative and groundbreaking concept
+              </p>
+            </div>
+
+            <div className="w-[23%] text-center rounded-xl bg-white py-10 px-2  shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+              <Image
+                src="/img2/presentation_4498160.png"
+                height={100}
+                width={100}
+                alt="test"
+              ></Image>
+              <h3>Impact Award</h3>
+              <p className="text-sm mb-0">
+                Honoring startups with a clear social or environmental impact
+              </p>
+            </div>
+
+            <div className="w-[23%] text-center rounded-xl bg-white py-10 px-2  shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+              <Image
+                src="/img2/presentation_4498160.png"
+                height={100}
+                width={100}
+                alt="test"
+              ></Image>
+              <h3>Prizes</h3>
+              <p className="text-sm mb-0">
+                Winners will receive a potential range of prizes, which may
+                include cash awards, access to mentorship programs, co-working
+                space memberships, and opportunities for investment or
+                partnerships
+              </p>
+            </div>
+
+            <div className="w-[23%] text-center rounded-xl bg-white py-10 px-2  shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+              <Image
+                src="/img2/presentation_4498160.png"
+                height={100}
+                width={100}
+                alt="test"
+              ></Image>
+              <h3>Post-Event Support</h3>
+              <p className="text-sm mb-0">
+                Rise N Start Ignite e remains committed to supporting all
+                participating startups on their entrepreneurial journey,
+                providing ongoing mentorship, networking opportunities, and
+                access to resources even after the competition concludes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="container text-center">
+          <div>
+            <h2>Strategic Partner</h2>
+            <p>
+              Event is supported by easily recognisable companies and products
+              which we use everyday
+            </p>
+          </div>
+          <div></div>
+          <div className="leading-8">
+            <h2>Calling for Strategic Partners & Sponsors</h2>
+            <p>
+              We extend a warm invitation to strategic partners and sponsors to
+              embark on this incredible journey of empowering Ethiopia's youth
+              in technology.
+              <br /> For partnership opportunities and inquiries, please contact
+              <span className="font-bold"> Mr.Ridwan Adelaja</span>
+              , RiseBack Nigeria.
+              <br />
+              <span className="font-bold">Telephone/WhatsApp:</span>
+              <span className="text-blue-700">+251911428980 +251919879517</span>
+              <span className="font-bold">Email:</span>
+              <span className="text-blue-700">zebib@riseback.org</span>
+            </p>
           </div>
         </div>
       </section>
