@@ -1,42 +1,52 @@
 import { PageHeader } from "components/layout/pageHeader";
-import { EventInterface } from "interfaces/event";
-import { getSingleEvent } from "lib/get-data/event";
 import React from "react";
 import EventWebinarForm from "components/admin/EventWebinarForm";
+import { WebinarInterface } from "interfaces/webinar";
+import { getSingleWebinar } from "lib";
+import { EventInterface } from "interfaces/event";
 
 type Props = {
   params: { slug: string };
 };
 
-const SingleEvent = async ({ params: { slug } }: Props) => {
+const SingleWebinar = async ({ params: { slug } }: Props) => {
   const isUpdate = slug !== "add";
-  let initialValues: EventInterface = {
+  let initialValues: WebinarInterface & EventInterface = {
     id: "",
     slug: "",
-    name: "",
+    title: "",
+    coverImage: "",
     description: "",
-    eventImage: "",
+    agenda: "",
+    createdAt: "",
+    updatedAt: "",
+    deletedAt: "",
     startDayTime: "",
     endDayTime: "",
     deadLine: "",
     eventType: "",
     eventLocation: "",
+    eventImage: "",
+    name: "",
     isFeatured: false,
   };
-  const apiEndPoint = "/configurations/event";
+
+  const apiEndPoint = "/configurations/webinar";
   const apiEndPointImage = "/configurations/event/event-image";
 
-  const isWebinar = false;
-  let data: EventInterface | null = null;
+  const isWebinar = true;
+  let data: WebinarInterface | null = null;
   if (isUpdate) {
-    data = await getSingleEvent(slug);
+    data = await getSingleWebinar(slug);
     if (data) {
       initialValues = { ...initialValues, ...data };
     }
   }
+
+  //   console.log(data, "<======dtatatatatatatatat");
   return (
     <>
-      <PageHeader title={"Add Event"}></PageHeader>
+      <PageHeader title={"Add Webinar"}></PageHeader>
       <EventWebinarForm
         initialValues={initialValues}
         id={data ? data!.id : undefined}
@@ -49,4 +59,4 @@ const SingleEvent = async ({ params: { slug } }: Props) => {
   );
 };
 
-export default SingleEvent;
+export default SingleWebinar;

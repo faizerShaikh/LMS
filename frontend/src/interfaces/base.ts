@@ -16,22 +16,22 @@ export type BaseProps<T, U extends {} = {}> = NextComponentType<
   } & U
 >;
 
-export interface BasePaginatedDataInterface<T={}>{
-  rows:T[]
-  count:number
+export interface BasePaginatedDataInterface<T = {}> {
+  rows: T[];
+  count: number;
 }
 
 export interface CreateUpdateDialogBaseProps {
   isUpdate?: boolean;
   data?: any;
-  refetchURL?: string
+  refetchURL?: string;
   pageId?: string;
 }
-export interface faqFormProps extends CreateUpdateDialogBaseProps{
+export interface faqFormProps extends CreateUpdateDialogBaseProps {
   faqId: string;
 }
 
-export interface GalleryFormProps extends CreateUpdateDialogBaseProps{
+export interface GalleryFormProps extends CreateUpdateDialogBaseProps {
   pageId: string;
 }
 
@@ -46,9 +46,8 @@ export interface ActionInterface {
   type: string;
 }
 
-
 export interface MetaDataInterface {
-  slug: string;
+  slug?: string;
   keywords: string;
   title: string;
   description: string;

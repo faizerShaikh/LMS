@@ -34,10 +34,7 @@ const columns = [
     renderCell: (params: { row: PageContentInterface }) => {
       return (
         <>
-          <IconButton
-            href={`/admin/page-content/${params.row.slug}`}
-           
-          >
+          <IconButton href={`/admin/page-content/${params.row.slug}`}>
             <Edit />
           </IconButton>
           <MetaDataForm
@@ -49,12 +46,6 @@ const columns = [
             }
             refetchURL="/configurations/page-content"
           />
-          <GalleryForm
-            isUpdate={true}
-            data={{ gallery: params.row.gallery }}
-            refetchURL="/configurations/page-content"
-            pageId={params.row.id || ""}
-          />
         </>
       );
     },
@@ -65,7 +56,7 @@ export default function PageContent() {
   const { data } = useGetAll({
     key: "/configurations/page-content",
   });
-console.log(data,"<<<<<<dfghgdfghgfdfgh")
+  console.log(data, "<<<<<<dfghgdfghgfdfgh");
   return (
     <>
       <PageHeader title="Page Content" />

@@ -10,7 +10,7 @@ import * as Yup from "yup";
 import { toast } from "utils";
 
 const initialValues: MetaDataInterface = {
-  slug: "",
+  // slug: "",
   keywords: "",
   title: "",
   description: "",
@@ -28,7 +28,6 @@ const initialValues: MetaDataInterface = {
   type: "",
 };
 const validationSchema = Yup.object({
-  
   keywords: Yup.string().required("Keywords are Required"),
   title: Yup.string().required("Title is Required"),
   description: Yup.string().required("Description is Required"),
@@ -79,10 +78,10 @@ export const MetaDataForm = ({
           <Form>
             <Grid container>
               <Grid container spacing={2}>
-                <Grid xs={6} item>
-                  <Label text="Slug"  />
+                {/* <Grid xs={6} item>
+                  <Label text="Slug" />
                   <Input name="slug" />
-                </Grid>
+                </Grid> */}
                 <Grid xs={6} item>
                   <Label text="Keywords" required />
                   <Input name="keywords" />

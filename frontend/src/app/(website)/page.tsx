@@ -25,8 +25,7 @@ export default async function Home() {
   const res = await axios.get(
     `${process.env.BASE_API_URL}/configurations/event`
   );
-  events = res.data.data;
-
+  events = res.data.data || [];
   return (
     <>
       <section className=" bg-gray-100 h-[400px] ">

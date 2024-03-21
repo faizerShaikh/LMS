@@ -1,12 +1,11 @@
 "use client";
-import Checkbox from "@mui/material/Checkbox";
-import { DataGrid, DeleteBox, PageHeader } from "components/layout";
+import { Button, DataGrid, DeleteBox, PageHeader } from "components/layout";
 import { useGetAll } from "hooks";
 
-import { MetaDataForm } from "components/admin";
 import removeTags from "utils/removeTags";
 import { WebinarInterface } from "interfaces/webinar";
-import { WebinarDialog } from "./_components/WebinarDialog";
+import { IconButton } from "@mui/material";
+import { Edit } from "@carbon/icons-react";
 
 const columns = [
   {
@@ -44,7 +43,9 @@ const columns = [
     renderCell: (params: { row: WebinarInterface }) => {
       return (
         <>
-          <WebinarDialog isUpdate={true} data={params.row} />
+          <IconButton href={`/admin/webinar/${params.row.slug}`}>
+            <Edit />
+          </IconButton>
           <DeleteBox
             url={`/configurations/webinar`}
             refetchUrl="/configurations/webinar"
@@ -62,7 +63,11 @@ export default function MediaPage() {
   return (
     <>
       <PageHeader title="Wbinar's" />
-      <DataGrid addButton={<WebinarDialog />} columns={columns} rows={data} />
+      <DataGrid
+        addButton={<Button href="/admin/webinar/add">Add Webinar </Button>}
+        columns={columns}
+        rows={data}
+      />
     </>
   );
 }
