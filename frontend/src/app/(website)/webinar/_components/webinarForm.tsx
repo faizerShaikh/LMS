@@ -6,11 +6,11 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import { toast } from "utils";
-import { MenuItem } from "@mui/material";
 import PhoneNumberField from "./phoneInpute";
 import ToggleButtonForm from "./toggle";
+import { Value } from "react-phone-number-input/core";
 
-export const WebinarForm = () => {
+export const WebinarForm = ({ title }: any) => {
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleToggleChange = (newValue: any) => {
@@ -55,7 +55,6 @@ export const WebinarForm = () => {
         .catch((err) => {
           console.log(err);
         });
-      console.log(values, "<======================================");
     },
   });
 
@@ -64,9 +63,7 @@ export const WebinarForm = () => {
       className="border-2  w-[400px] px-4 pb-8 bg-white border-black"
       onSubmit={formik.handleSubmit}
     >
-      <p className="font-semibold text-center text-2xl mb-1 mt-4">
-        Webinar Registration Form
-      </p>
+      <p className="font-semibold text-center text-2xl mb-1 mt-4">{title}</p>
 
       <TextField
         id="firstName"
@@ -133,11 +130,13 @@ export const WebinarForm = () => {
         error={formik.touched.email && Boolean(formik.errors.email)}
         helperText={formik.touched.email && formik.errors.email}
       />
-      <div className="border py-2 px-4 my-2 mt-4 rounded-md border-gray-400">
+      <div className="border py-3 px-4 my-2 mt-4 rounded-md border-gray-400">
         <PhoneNumberField
           id="mobileNumber"
           value={formik.values.mobileNumber}
-          onChange={handlePhoneNumberChange}
+          onChange={(value: string) =>
+            formik.setFieldValue("mobileNumber", value)
+          }
         ></PhoneNumberField>
       </div>
 
@@ -168,8 +167,10 @@ export const WebinarForm = () => {
       </h2>
       <ToggleButtonForm
         id="degree"
-        value={selectedValue}
-        onToggleChange={handleToggleChange}
+        value={formik.values.degree}
+        onToggleChange={(value: string) =>
+          formik.setFieldValue("degree", value)
+        }
       />
       <p className="text-xs">
         By submitting your info in the form above ,you agree to our{" "}

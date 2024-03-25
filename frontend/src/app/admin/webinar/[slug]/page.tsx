@@ -1,7 +1,7 @@
 import { PageHeader } from "components/layout/pageHeader";
 import React from "react";
 import EventWebinarForm from "components/admin/EventWebinarForm";
-import { WebinarInterface } from "interfaces/webinar";
+import { WebinarInterface, WebinarResponseInterface } from "interfaces/webinar";
 import { getSingleWebinar } from "lib";
 import { EventInterface } from "interfaces/event";
 
@@ -29,21 +29,32 @@ const SingleWebinar = async ({ params: { slug } }: Props) => {
     eventImage: "",
     name: "",
     isFeatured: false,
+    speakers: [
+      {
+        image: "",
+        bio: "",
+        name: "",
+      },
+    ],
   };
 
   const apiEndPoint = "/configurations/webinar";
   const apiEndPointImage = "/configurations/event/event-image";
 
   const isWebinar = true;
-  let data: WebinarInterface | null = null;
+  let data: WebinarResponseInterface | null = null;
   if (isUpdate) {
     data = await getSingleWebinar(slug);
     if (data) {
-      initialValues = { ...initialValues, ...data };
+      initialValues = {
+        ...initialValues,
+        ...data,
+        ...data.event,
+        id: data?.id,
+      };
     }
   }
 
-  //   console.log(data, "<======dtatatatatatatatat");
   return (
     <>
       <PageHeader title={"Add Webinar"}></PageHeader>

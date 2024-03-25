@@ -8,7 +8,6 @@ export async function getSingleWebinar(
 ): Promise<WebinarInterface | null> {
   try {
     const resp = await API.get("configurations/webinar/slug/" + slug);
-    // console.log(resp?.data.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<");
     return resp?.data.data;
   } catch (error) {
     console.log(error);

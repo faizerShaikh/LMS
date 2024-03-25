@@ -7,6 +7,7 @@ import {
   DropZone,
   Input,
   Label,
+  PageHeader,
 } from "components/layout";
 import { API } from "configs";
 import { FieldArray, Form, Formik } from "formik";
@@ -16,6 +17,7 @@ import React from "react";
 import { toast } from "utils";
 import TextEditor from "./richTextEditor";
 import { Add, TrashCan } from "@carbon/icons-react";
+import moment from "moment";
 
 type Props = {
   initialValues: any;
@@ -47,44 +49,64 @@ const EventWebinarForm = ({
   ) => {
     if (typeof file !== "string") {
       const formData = new FormData();
-      formData.append(isWebinar ? "coverImage" : "eventImage", file);
+      formData.append("eventImage", file);
       await API.put(`${apiEndPointImage}/${id}`, formData);
     }
     onSuccess();
   };
 
+  const speakersFileUpload = async (
+    files: any,
+    id: string,
+    onSuccess: VoidFunction
+  ) => {
+    const fields = ["speakers_images", "bio", "name"];
+    const fd = new FormData();
+    console.log(files);
+
+    for (const [index, file] of Object.entries(files) as any) {
+      fd.append(`images[${index}]`, file.image);
+    }
+
+    await API.put(`/configurations/webinar/update-image/${id}`, fd);
+    onSuccess();
+  };
+
   const optionsType = ["webinar", "on-Site"];
-  const Speakers = [
-    {
-      image: "",
-      bio: "",
-      name: "",
-    },
-  ];
 
   return (
     <Formik
-      initialValues={{ ...initialValues, speakers: Speakers }}
+      initialValues={{ ...initialValues }}
       onSubmit={(values, { resetForm }) => {
+        console.log(values);
         mutate(
-          { ...values },
+          {
+            ...values,
+            speakers: isWebinar
+              ? values.speakers.map((item: any) => ({
+                  ...item,
+                  image: typeof item.image === "string" ? item.image : null,
+                }))
+              : undefined,
+          },
           {
             onSuccess(resp) {
-              handleFileUpload(
-                isWebinar ? values.coverImage : values.eventImage,
-                resp.data.data.id,
-                () => {
-                  resetForm();
-                  toast(
-                    isWebinar
-                      ? `Webinar ${
-                          isUpdate ? "updated" : "Created"
-                        }Successfully`
-                      : `Event ${isUpdate ? "updated" : "Created"}Successfully`
-                  );
-                  router.push("/admin/event");
-                }
-              );
+              handleFileUpload(values.eventImage, resp.data.data.id, () => {
+                resetForm();
+                toast(
+                  isWebinar
+                    ? `Webinar ${isUpdate ? "updated" : "Created"}Successfully`
+                    : `Event ${isUpdate ? "updated" : "Created"} Successfully`
+                );
+                router.push(isWebinar ? "/admin/webinar" : "/admin/event");
+              });
+              if (isWebinar) {
+                speakersFileUpload(
+                  values?.speakers,
+                  resp.data.data.id,
+                  () => {}
+                );
+              }
             },
           }
         );
@@ -96,12 +118,13 @@ const EventWebinarForm = ({
             <Grid xs={12} item>
               <Box>
                 <Label text="Upload Your Image" />
-                <DropZone name={isWebinar ? "coverImage" : "eventImage"} />
+                <DropZone name="eventImage" />
               </Box>
               <Box className="mt-4">
                 <Label text="Name" />
                 <Input name="name" />
               </Box>
+
               <Box className="mt-4 mb-16">
                 <Label text="Description" />
                 <TextEditor
@@ -111,6 +134,7 @@ const EventWebinarForm = ({
                   value={values?.description}
                 />
               </Box>
+
               {isWebinar && (
                 <Box className="mt-4 mb-16">
                   <Label text="Agenda" />
@@ -130,38 +154,63 @@ const EventWebinarForm = ({
                 <Label text="Slug" />
                 <Input name="slug" />
               </Box>
-              <Grid className="flex flex-wrap ">
-                <Grid xs={6}>
+              <Grid
+                columnSpacing={5}
+                container
+                alignItems={"center"}
+                justifyContent={"center"}
+              >
+                <Grid item xs={6}>
                   <Box className="mt-4">
                     <Label text="Start Day Time" />
-                    <Input type="datetime-local" name="startDayTime" />
+                    <Input
+                      type="datetime-local"
+                      name="startDayTime"
+                      value={moment(values.startDayTime).format(
+                        "YYYY-MM-DDTHH:mm"
+                      )}
+                    />
                   </Box>
                 </Grid>
-                <Grid xs={6}>
+                <Grid item xs={6}>
                   <Box className="mt-4">
                     <Label text="End Day Time" />
-                    <Input type="datetime-local" name="endDayTime" />
+                    <Input
+                      type="datetime-local"
+                      name="endDayTime"
+                      value={moment(values.endDayTime).format(
+                        "YYYY-MM-DDTHH:mm"
+                      )}
+                    />
                   </Box>
                 </Grid>
-                <Grid xs={6}>
+                <Grid item xs={6}>
                   <Box className="mt-4">
                     <Label text="Deadline Day Time" />
-                    <Input type="datetime-local" name="deadLine" />
+                    <Input
+                      type="datetime-local"
+                      name="deadLine"
+                      value={moment(values.deadLine).format("YYYY-MM-DDTHH:mm")}
+                    />
                   </Box>
                 </Grid>
 
-                <Box className="mt-4">
-                  <Label text="Is Featured" />
+                <Grid
+                  item
+                  xs={6}
+                  className="flex justify-start items-center gap-3 h-full"
+                >
                   <Checkbox
                     name="is_featured"
                     checked={values.isFeatured}
                     onChange={(event: any) => {
                       setFieldValue("isFeatured", event.target.checked);
                     }}
-                  />
-                </Box>
+                  ></Checkbox>
+                  <Label text="Is Featured" />
+                </Grid>
               </Grid>
-              <Box className="mt-4">
+              <Box className="mt-4 mb-4">
                 <Label text="Type" required />
                 <AutoComplete
                   name="eventType"
@@ -169,63 +218,79 @@ const EventWebinarForm = ({
                 ></AutoComplete>
               </Box>
               {isWebinar && (
-                <FieldArray
-                  name="speakers"
-                  render={(FieldArrayProp) => {
-                    console.log(FieldArrayProp);
-                    const { push, remove, form } = FieldArrayProp;
-                    const { values } = form;
-                    const { speakers } = values;
-                    return (
-                      <div>
-                        {speakers.map((item: any, index: number) => (
-                          <div key={index}>
-                            <Grid xs={12} item>
-                              <Label text="Name" />
-                              <Input
-                                name={`speakers.${index}.name`}
-                                className="mb-4"
-                              />
-                            </Grid>
-                            <Grid xs={12} item>
-                              <Label text="Bio" />
-                              <Input
-                                name={`speakers.${index}.bio`}
-                                className="mb-4"
-                              />
-                            </Grid>
-                            {speakers.length > 1 && (
-                              <IconButton
-                                type="button"
-                                onClick={() => remove(index)}
-                                className="text-red-500"
-                              >
-                                <TrashCan />
-                              </IconButton>
-                            )}
+                <>
+                  <PageHeader title="Speakers" className="mb-5"></PageHeader>
 
-                            <Divider className="my-5" />
-                            {index === speakers.length - 1 && (
-                              <IconButton
-                                type="button"
-                                onClick={() =>
-                                  push({
-                                    image: "",
-                                    bio: "",
-                                    name: "",
-                                  })
-                                }
-                                className="text-red-500"
+                  <FieldArray
+                    name="speakers"
+                    render={(FieldArrayProp) => {
+                      const { push, remove, form } = FieldArrayProp;
+                      const {
+                        values: { speakers },
+                      } = form;
+
+                      return (
+                        <div>
+                          {speakers.map((item: any, index: number) => (
+                            <Grid container key={index} columnSpacing={5}>
+                              <Grid xs={6} item>
+                                <Label text="Name" />
+                                <Input
+                                  name={`speakers.${index}.name`}
+                                  className="mb-4"
+                                />
+                              </Grid>
+                              <Grid
+                                xs={6}
+                                item
+                                className="flex justify-between items-center gap-5"
                               >
-                                <Add />
-                              </IconButton>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    );
-                  }}
-                />
+                                <div className="w-full">
+                                  <Label text="Bio" />
+                                  <Input
+                                    name={`speakers.${index}.bio`}
+                                    className="mb-4"
+                                  />
+                                </div>
+                                {index === speakers.length - 1 && (
+                                  <IconButton
+                                    type="button"
+                                    onClick={() =>
+                                      push({
+                                        speakers_images: "",
+                                        bio: "",
+                                        name: "",
+                                      })
+                                    }
+                                    className="text-primary"
+                                  >
+                                    <Add />
+                                  </IconButton>
+                                )}
+                                {speakers.length > 1 && (
+                                  <IconButton
+                                    type="button"
+                                    onClick={() => remove(index)}
+                                    className="text-red-500"
+                                  >
+                                    <TrashCan />
+                                  </IconButton>
+                                )}
+                              </Grid>
+                              <Grid xs={12} item>
+                                <Label text="Speaker Image" />
+                                <DropZone name={`speakers.${index}.image`} />
+                              </Grid>
+                              <Grid xs={12} item>
+                                <Divider className="my-5"></Divider>
+                              </Grid>
+                            </Grid>
+                          ))}
+                        </div>
+                      );
+                    }}
+                  />
+                </>
               )}
             </Grid>
 
@@ -236,7 +301,7 @@ const EventWebinarForm = ({
                   className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
                   variant="contained"
                   disabled={isLoading}
-                  href="/admin/blog"
+                  href="/admin/webinar"
                 >
                   Discard
                 </Button>

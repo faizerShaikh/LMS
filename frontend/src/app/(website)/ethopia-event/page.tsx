@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import LOGO from "../../../../public/img2/Author.svg";
+import { WebinarForm } from "../webinar/_components/webinarForm";
 
 function page() {
   return (
@@ -17,7 +17,7 @@ function page() {
         </div>
       </section>
       <section className="bg-gray-100 py-8">
-        <div className="container">
+        <div className="container m-auto">
           <div className="text-center">
             <h2 className="text-3xl font-semibold m-0 mb-8">
               Rise N Start Ignite: Ethopia's First Startup Pitch Comprtition For
@@ -46,7 +46,8 @@ function page() {
               </p>
             </div>
             <div className="w-1/2 flex justify-end">
-              <form action="#" className="shadow-2xl border-2 px-4 w-2/3">
+              <WebinarForm title="Event Registration Form"></WebinarForm>
+              {/* <form action="#" className="shadow-2xl border-2 px-4 w-2/3">
                 <h2 className="text-center">Event Registration Form</h2>
                 <input
                   type="text"
@@ -110,13 +111,13 @@ function page() {
                 <button className="w-full bg-blue-900  text-white py-1 text-lg rounded-md mb-4">
                   Submit
                 </button>
-              </form>
+              </form> */}
             </div>
           </div>
         </div>
       </section>
       <section className="bg-blue-900">
-        <div className="container text-center py-8 ">
+        <div className="container text-center py-8 m-auto">
           <h2 className="text-white font-semibold text-3xl">
             About Rise N Start Ignite
           </h2>
@@ -139,7 +140,7 @@ function page() {
       </section>
 
       <section>
-        <div className="container py-8 mb-8">
+        <div className="container py-8 mb-8 m-auto">
           <div className="text-center">
             <h2 className="uppercase text-3xl">what to expect</h2>
           </div>
@@ -268,7 +269,7 @@ function page() {
         </div>
       </section>
       <section className="bg-gray-100">
-        <div className="container py-6">
+        <div className="container py-6 m-auto">
           <h2 className="text-center text-3xl mb-12">Application Process</h2>
           <div className="flex flex-col  items-center">
             <div className="w-1/2 flex justify-between bg-blue-900 px-8 py-4 rounded-full h-48 mb-8">
@@ -362,7 +363,7 @@ function page() {
       </section>
 
       <section>
-        <div className="container py-6">
+        <div className="container m-auto py-6">
           <h2 className="text-center text-3xl mb-12">Selection Process</h2>
           <div className="flex flex-col  items-center">
             <div className="w-1/2 flex justify-between  px-8 py-4 rounded-full h-48 mb-8 shadow-xl">
@@ -446,7 +447,7 @@ function page() {
         </div>
       </section>
       <section className="bg-gray-100">
-        <div className="container py-16">
+        <div className="container m-auto py-16">
           <h2 className="text-center m-0 mb-12 text-3xl font-semibold">
             Winners
           </h2>
@@ -572,7 +573,7 @@ function page() {
         </div>
       </section>
       <section>
-        <div className="container text-center">
+        <div className="container m-auto text-center">
           <div>
             <h2>Strategic Partner</h2>
             <p>
@@ -591,10 +592,12 @@ function page() {
               <span className="font-bold"> Mr.Ridwan Adelaja</span>
               , RiseBack Nigeria.
               <br />
-              <span className="font-bold">Telephone/WhatsApp:</span>
-              <span className="text-blue-700">+251911428980 +251919879517</span>
+              <span className="font-bold">Telephone/WhatsApp: </span>
+              <span className="text-blue-700">
+                +251911428980 +251919879517{" "}
+              </span>
               <span className="font-bold">Email:</span>
-              <span className="text-blue-700">zebib@riseback.org</span>
+              <span className="text-blue-700"> zebib@riseback.org</span>
             </p>
           </div>
         </div>

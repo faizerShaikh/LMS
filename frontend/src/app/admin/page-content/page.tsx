@@ -56,7 +56,6 @@ export default function PageContent() {
   const { data } = useGetAll({
     key: "/configurations/page-content",
   });
-  console.log(data, "<<<<<<dfghgdfghgfdfgh");
   return (
     <>
       <PageHeader title="Page Content" />

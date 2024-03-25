@@ -12,7 +12,7 @@ interface ButtonGroupProps extends MuiButtonGroupProps {
   buttons: {
     text: string;
     key: string;
-    clickHandler?: () => void;
+    clickHandler?: (item: any) => void;
   }[];
   buttonClasses?: string;
   // children: ReactElement | ReactElement[];
@@ -26,7 +26,6 @@ export const ButtonGroup = ({
   const [selectedKey, setSelectedKey] = useState(buttons[0]?.key);
   // console.log(children);
 
-  console.log(selectedKey, "selectedKeyselectedKey");
   return (
     <Grid container>
       <Grid item xs={12} className="flex items-center justify-center">
@@ -45,7 +44,7 @@ export const ButtonGroup = ({
                 item.clickHandler
                   ? () => {
                       if (item.clickHandler) {
-                        item.clickHandler();
+                        item.clickHandler(item);
                       }
                       setSelectedKey(item.key);
                     }

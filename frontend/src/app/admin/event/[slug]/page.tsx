@@ -32,6 +32,7 @@ const SingleEvent = async ({ params: { slug } }: Props) => {
     data = await getSingleEvent(slug);
     if (data) {
       initialValues = { ...initialValues, ...data };
+      console.log("Initial Values:", initialValues);
     }
   }
   return (

@@ -3,16 +3,21 @@ import { Button, DataGrid, DeleteBox, PageHeader } from "components/layout";
 import { useGetAll } from "hooks";
 
 import removeTags from "utils/removeTags";
-import { WebinarInterface } from "interfaces/webinar";
+import { WebinarInterface, WebinarResponseInterface } from "interfaces/webinar";
 import { IconButton } from "@mui/material";
 import { Edit } from "@carbon/icons-react";
+import { MetaDataForm } from "components/admin";
 
 const columns = [
   {
     headerName: "Title",
-    field: "title",
+    field: "name",
     flex: 1,
     cellClassName: "text-dark",
+    renderCell: (params: { row: WebinarResponseInterface }) => {
+      const nameValue = params.row?.event?.name;
+      return nameValue;
+    },
   },
   {
     headerName: "Agenda",
@@ -21,7 +26,7 @@ const columns = [
     cellClassName: "text-dark",
     renderCell: (params: { row: WebinarInterface }) => {
       const agendaValue = params.row.agenda;
-      return removeTags(agendaValue);
+      return agendaValue;
     },
   },
   {
@@ -29,8 +34,8 @@ const columns = [
     field: "description",
     flex: 1,
     cellClassName: "text-dark",
-    renderCell: (params: { row: WebinarInterface }) => {
-      const descriptionValue = params.row.description;
+    renderCell: (params: { row: WebinarResponseInterface }) => {
+      const descriptionValue: any = params?.row?.event?.description;
       return removeTags(descriptionValue);
     },
   },
@@ -40,17 +45,26 @@ const columns = [
     field: "action",
     flex: 1,
     cellClassName: "text-dark",
-    renderCell: (params: { row: WebinarInterface }) => {
+    renderCell: (params: { row: WebinarResponseInterface }) => {
       return (
         <>
-          <IconButton href={`/admin/webinar/${params.row.slug}`}>
+          <IconButton href={`/admin/webinar/${params?.row?.event?.slug}`}>
             <Edit />
           </IconButton>
           <DeleteBox
             url={`/configurations/webinar`}
             refetchUrl="/configurations/webinar"
-            title={`${params.row.title}`}
+            title={`${params?.row?.event?.name}`}
             data={params.row.id}
+          />
+          <MetaDataForm
+            isUpdate={true}
+            data={
+              params.row.metaData
+                ? params.row.metaData
+                : { id: params?.row?.event?.metaID }
+            }
+            refetchURL="/configurations/webinar"
           />
         </>
       );
