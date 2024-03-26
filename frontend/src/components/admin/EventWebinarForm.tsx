@@ -55,6 +55,25 @@ const EventWebinarForm = ({
     onSuccess();
   };
 
+  const handleStratagicPartnerFileUpload = async (
+    files: FileList,
+    id: string,
+    onSuccess: VoidFunction
+  ) => {
+    const newFormData = new FormData();
+    console.log(files);
+
+    Array.from(files).forEach((file: File) => {
+      newFormData.append(`stratigicPartners`, file);
+    });
+
+    // for (const [file] of Object.entries(files) as any) {
+    //   newFormData.append(`stratigicPartners`, file);
+    // }
+    await API.put(`/configurations/event/strategic-partner/${id}`, newFormData);
+
+    onSuccess();
+  };
   const speakersFileUpload = async (
     files: any,
     id: string,
@@ -91,15 +110,28 @@ const EventWebinarForm = ({
           },
           {
             onSuccess(resp) {
-              handleFileUpload(values.eventImage, resp.data.data.id, () => {
-                resetForm();
-                toast(
-                  isWebinar
-                    ? `Webinar ${isUpdate ? "updated" : "Created"}Successfully`
-                    : `Event ${isUpdate ? "updated" : "Created"} Successfully`
-                );
-                router.push(isWebinar ? "/admin/webinar" : "/admin/event");
-              });
+              handleFileUpload(
+                values.eventImage,
+                isWebinar ? resp.data.data.event.id : resp.data.data.id,
+
+                () => {
+                  resetForm();
+                  toast(
+                    isWebinar
+                      ? `Webinar ${
+                          isUpdate ? "updated" : "Created"
+                        }Successfully`
+                      : `Event ${isUpdate ? "updated" : "Created"} Successfully`
+                  );
+                  router.push(isWebinar ? "/admin/webinar" : "/admin/event");
+                }
+              );
+              handleStratagicPartnerFileUpload(
+                values?.stratigicPartners,
+                resp.data.data.id,
+                () => {}
+              );
+
               if (isWebinar) {
                 speakersFileUpload(
                   values?.speakers,
@@ -217,6 +249,10 @@ const EventWebinarForm = ({
                   options={optionsType}
                 ></AutoComplete>
               </Box>
+              <Box>
+                <Label text="Upload Your Image" />
+                <DropZone multiple name="stratigicPartners" />
+              </Box>
               {isWebinar && (
                 <>
                   <PageHeader title="Speakers" className="mb-5"></PageHeader>
@@ -301,7 +337,7 @@ const EventWebinarForm = ({
                   className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
                   variant="contained"
                   disabled={isLoading}
-                  href="/admin/webinar"
+                  href={isWebinar ? "/admin/webinar" : "/admin/event"}
                 >
                   Discard
                 </Button>

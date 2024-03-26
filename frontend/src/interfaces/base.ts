@@ -26,6 +26,7 @@ export interface CreateUpdateDialogBaseProps {
   data?: any;
   refetchURL?: string;
   pageId?: string;
+  type?: string;
 }
 export interface faqFormProps extends CreateUpdateDialogBaseProps {
   faqId: string;

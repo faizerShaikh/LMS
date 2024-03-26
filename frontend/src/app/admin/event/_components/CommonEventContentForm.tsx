@@ -1,4 +1,4 @@
-import { CreateUpdateDialogBaseProps, GalleryInterface } from "interfaces";
+import { CreateUpdateDialogBaseProps } from "interfaces";
 import { Button, Dialog, DropZone, Input, Label } from "../../../../components";
 import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "hooks";
@@ -12,22 +12,25 @@ import { CommonContentEventInterface } from "interfaces/event";
 export const CommonEventContentForm = ({
   data,
   isUpdate,
-
   refetchURL,
+  pageId,
+  type,
 }: CreateUpdateDialogBaseProps) => {
   const initialValues: CommonContentEventInterface = {
+    id: "",
     title: "",
-    description: "",
-    orderBy: 0,
+    desription: "",
+    order: 0,
     image: "",
-    type: "",
+    type: type,
+    eventId: pageId,
   };
   const queryClient = useQueryClient();
   const { mutate, isLoading } = useCreateOrUpdate({
     url:
       isUpdate && data
-        ? `/configurations/gallery/${data.id}`
-        : "/configurations/gallery",
+        ? `/configurations/event/event-feature/${data.id}`
+        : "/configurations/event/event-feature",
     method: isUpdate ? "put" : "post",
   });
 
@@ -37,9 +40,9 @@ export const CommonEventContentForm = ({
     onSuccess: VoidFunction
   ) => {
     const formData = new FormData();
-    formData.append("coverImage", file);
+    formData.append("image", file);
     await API.put(
-      `/configurations/gallery/update-gallery-image/${id}`,
+      `/configurations/event/event-feature/event-feature-image/${id}`,
       formData
     );
     onSuccess();
@@ -53,7 +56,7 @@ export const CommonEventContentForm = ({
             <Edit />
           </IconButton>
         ) : (
-          <Button startIcon={<Add />}>ADD NEW</Button>
+          <Button startIcon={<Add />}>ADD NEW Feature</Button>
         )
       }
       title={isUpdate ? "Edit content" : "Add content"}
@@ -63,10 +66,11 @@ export const CommonEventContentForm = ({
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(
-              { ...values, orderBy: +values.orderBy },
+              { ...values, order: +values.order },
               {
                 onSuccess(resp) {
-                  handleFileUpload(values.coverImage, resp.data.data.id, () => {
+                  console.log(resp, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<for id");
+                  handleFileUpload(values.image, resp.data.data.id, () => {
                     resetForm();
                     queryClient.refetchQueries(refetchURL, {
                       exact: false,
@@ -94,15 +98,11 @@ export const CommonEventContentForm = ({
                 </Box>
                 <Box className="mt-4">
                   <Label text="Description" required />
-                  <Input name="description" />
+                  <Input name="desription" />
                 </Box>
                 <Box className="mt-4">
                   <Label text="Order By" required />
-                  <Input name="orderBy" />
-                </Box>
-                <Box className="mt-4">
-                  <Label text="Type" required />
-                  <Input name="type" />
+                  <Input name="order" />
                 </Box>
               </Grid>
               <Grid xs={12} item>

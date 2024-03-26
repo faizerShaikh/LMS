@@ -14,12 +14,24 @@ export interface EventInterface extends BaseObjInterface {
   isFeatured?: boolean;
   metaData?: MetaDataInterface;
   metaId?: string;
+  eventFeatures?: CommonContentEventInterface[];
+  applicationProcess?: CommonContentEventInterface[];
+  selectionProcess?: CommonContentEventInterface[];
+  winners?: CommonContentEventInterface[];
+  stratigicPartners?: stratigicPartnersInterface[];
 }
 
 export interface CommonContentEventInterface extends BaseObjInterface {
+  slug?: string;
+  id: string;
   title: string;
-  description: string;
+  desription: string;
   image: string;
-  orderBy: number;
-  type: string;
+  order: number;
+  type?: string;
+  eventId?: string;
+}
+
+export interface stratigicPartnersInterface extends BaseObjInterface {
+  stratigicPartners?: string;
 }

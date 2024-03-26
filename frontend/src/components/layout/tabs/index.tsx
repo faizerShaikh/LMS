@@ -12,11 +12,11 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div
-      role='tabpanel'
+      role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      className='h-full overflow-y-auto'
+      className="h-full overflow-y-auto"
       {...other}
     >
       {value === index && <Box sx={{ p: 0 }}>{children}</Box>}
@@ -26,7 +26,7 @@ function TabPanel(props: TabPanelProps) {
 
 function a11yProps(index: number) {
   return {
-    "id": `simple-tab-${index}`,
+    id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
@@ -48,17 +48,17 @@ export function Tabs({ tabs, query }: TabsProps) {
   };
 
   return (
-    <Box className='w-full h-full overflow-y-auto'>
+    <Box className="w-full h-full overflow-y-auto">
       <Box
         sx={{ borderBottom: 1, borderColor: "divider" }}
-        className='h-full overflow-y-auto'
+        className="h-full overflow-y-auto"
       >
         <MuiTabs
           value={value}
           onChange={handleChange}
           variant={"standard"}
-          aria-label='basic tabs example'
-          className='flex justify-between bg-red'
+          aria-label="basic tabs example"
+          className="flex justify-between bg-red"
         >
           {tabs.map((item) => (
             <Tab

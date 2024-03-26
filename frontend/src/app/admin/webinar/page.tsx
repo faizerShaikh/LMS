@@ -26,7 +26,7 @@ const columns = [
     cellClassName: "text-dark",
     renderCell: (params: { row: WebinarInterface }) => {
       const agendaValue = params.row.agenda;
-      return agendaValue;
+      return removeTags(agendaValue);
     },
   },
   {

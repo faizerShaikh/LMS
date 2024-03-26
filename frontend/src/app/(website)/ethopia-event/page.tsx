@@ -1,8 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import { WebinarForm } from "../webinar/_components/webinarForm";
+import axios from "axios";
 
-function page() {
+async function page(params: { slug: string }) {
+  let data = [];
+  const response = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/event/event-by/${params.slug}`
+  );
+  console.log(response, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<resp");
   return (
     <>
       <section>

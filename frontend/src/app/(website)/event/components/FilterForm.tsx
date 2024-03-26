@@ -8,15 +8,15 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 const FilterForm = () => {
   const options = [
-    { value: "all", label: "All" },
-    { value: "webinars", label: "Webinars" },
+    { value: "", label: "All" },
+    { value: "webinar", label: "Webinars" },
     { value: "on-Site", label: "On-Site" },
   ];
 
-  const EventLocationOptions = [
-    { value: "online", label: "Online" },
-    { value: "onSite", label: "On-Site" },
-  ];
+  // const EventLocationOptions = [
+  //   { value: "online", label: "Online" },
+  //   { value: "onSite", label: "On-Site" },
+  // ];
 
   const ProgramOption = ["abc", "abc", "abc"];
 
@@ -28,8 +28,11 @@ const FilterForm = () => {
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString());
       console.log(params);
-
-      params.set(name, value);
+      if (value) {
+        params.set(name, value);
+      } else {
+        params.delete(name);
+      }
 
       return params.toString();
     },
@@ -40,9 +43,9 @@ const FilterForm = () => {
     router.push(`/event?${createQueryString("type", value)}`);
   }
 
-  function handleLocationClick(value: any) {
-    router.push(`/event?${createQueryString("location", value)}`);
-  }
+  // function handleLocationClick(value: any) {
+  //   router.push(`/event?${createQueryString("location", value)}`);
+  // }
   return (
     <Formik
       initialValues={{

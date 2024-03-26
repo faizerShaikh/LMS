@@ -16,11 +16,11 @@ export default async function SinglePage({
   );
 
   commonPageData = res?.data?.data;
-  console.log(
-    commonPageData,
-    "<============================================================================hello"
-  );
-  console.log("Name :", params.slug);
+  // console.log(
+  //   commonPageData,
+  //   "<============================================================================hello"
+  // );
+  // console.log("Name :", params.slug);
   // if (commonPageData.metaData) {
   //   metadata = commonPageData.metaData;
   // }

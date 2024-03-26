@@ -12,15 +12,6 @@ export default async function Home() {
   FAQData = response.data.data.rows;
   console.log(FAQData);
 
-  // let FAQData = [];
-  // const response = await axios.get(
-  //   `${process.env.BASE_API_URL}/configurations/faq-topics`
-  // );
-  // FAQData = response.data.data.rows;
-  // const middleIndex = Math.ceil(FAQData.faqTopic.length / 2);
-  // const firstHalf = FAQData.faqTopic.slice(0, middleIndex);
-  // const secondHalf = FAQData.faqTopic.slice(middleIndex);
-
   let events = [];
   const res = await axios.get(
     `${process.env.BASE_API_URL}/configurations/event`
@@ -92,7 +83,7 @@ export default async function Home() {
           <p>Upcoming Education Events to feed your brain</p>
         </div>
 
-        {events.slice(0, 3).map((event: any) => (
+        {/* {events.slice(0, 3).map((event: any) => (
           <div className="flex mb-8 ">
             <div className="w-1/4">
               <h2>
@@ -123,7 +114,7 @@ export default async function Home() {
               />
             </div>
           </div>
-        ))}
+        ))} */}
       </section>
     </>
   );

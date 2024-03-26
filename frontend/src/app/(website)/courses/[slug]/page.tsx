@@ -5,15 +5,13 @@ import Image from "next/image";
 export default async function SingleCourse({
   params,
 }: {
-  params: { slug: string};
+  params: { slug: string };
 }) {
-  let data:CourseSpecializationInterface;
-  let url = `${process.env.BASE_API_URL}/configurations/course-specialization/slug/${params.slug}/`
-  console.log(url)
+  let data: CourseSpecializationInterface;
+  let url = `${process.env.BASE_API_URL}/configurations/course-specialization/slug/${params.slug}/`;
   const response = await axios.get(url);
   data = response.data.data;
-console.log(data)
-
+  // console.log(url, "<<<<<<<<<<<<<<<");
   return (
     <>
       <section className="bg-gray-100">
@@ -28,13 +26,8 @@ console.log(data)
             />
           </div>
           <div className="w-2/4 px-8  ">
-            <h2 className="font-bold text-2xl m-0 pb-6">
-              {data.name}
-            </h2>
-            <p className="font-semibold mb-10">
-              {data.description}
-              
-            </p>
+            <h2 className="font-bold text-2xl m-0 pb-6">{data.name}</h2>
+            <p className="font-semibold mb-10">{data.description}</p>
 
             <div className="flex justify-between">
               <button className="py-2 px-28 rounded-md hover:bg-blue-900 hover:text-white border-2 border-black">
@@ -49,7 +42,7 @@ console.log(data)
       </section>
 
       <section className="container m-auto my-14">
-        <div className="flex justify-center text-center  shadow-2xl rounde "  >
+        <div className="flex justify-center text-center  shadow-2xl rounde ">
           <div className="border-r-2  border-black px-8 w-1/4 my-8">
             <i className="fa-regular fa-clock text-3xl mb-8"></i>
             <p>60 Hours (8 to 24 Weeks)</p>

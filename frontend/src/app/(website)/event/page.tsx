@@ -4,21 +4,21 @@ import moment from "moment";
 import { Events } from "./components/events";
 
 import FilterForm from "./components/FilterForm";
+import Link from "next/link";
 
 export default async function EventsPage({
-  searchParams: { date },
+  searchParams,
 }: {
-  searchParams: { date: string };
+  searchParams: { date: string; type: string };
 }) {
   let events = [];
   const res = await axios.get(
     `${process.env.BASE_API_URL}/configurations/event/listing`,
     {
-      params: date ? { date } : "",
+      params: searchParams ? searchParams : "",
     }
   );
   events = res.data.data;
-  console.log("datataaaaaaaaaaaaaaaaaaaa", date, events);
 
   const EventsButtons = [
     {
@@ -54,11 +54,13 @@ export default async function EventsPage({
                 />
                 <div className="px-4 pb-4 pt-2">
                   <div className="min-h-12">
-                    <p className="font-bold m-0">
-                      {item.name.length > 40
-                        ? `${item.name.slice(0, 45)}...`
-                        : item.name}
-                    </p>
+                    <Link href={`event/${item.slug}`}>
+                      <p className="font-bold m-0  text-black">
+                        {item.name.length > 40
+                          ? `${item.name.slice(0, 45)}...`
+                          : item.name}
+                      </p>
+                    </Link>
                   </div>
                   <div className="flex justify-between ">
                     <p className="mt-4 m-0">

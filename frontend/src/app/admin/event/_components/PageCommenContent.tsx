@@ -1,5 +1,5 @@
 "use client";
-import { DataGrid } from "components/layout";
+import { DataGrid, DeleteBox } from "components/layout";
 import { useGetAll } from "hooks";
 import { CommonContentEventInterface } from "interfaces/event";
 import { CommonEventContentForm } from "./CommonEventContentForm";
@@ -13,13 +13,13 @@ const columns = [
   },
   {
     headerName: "Description",
-    field: "description",
+    field: "desription",
     flex: 2,
     cellClassName: "text-dark",
   },
   {
     headerName: "Order By",
-    field: "orderBy",
+    field: "order",
     flex: 2,
     cellClassName: "text-dark",
   },
@@ -31,7 +31,17 @@ const columns = [
     renderCell: (params: { row: CommonContentEventInterface }) => {
       return (
         <>
-          <CommonEventContentForm data={params.row} />
+          <CommonEventContentForm
+            isUpdate={true}
+            data={params.row}
+            refetchURL={`configurations/event/event-feature`}
+          />
+          <DeleteBox
+            url={`configurations/event/event-feature`}
+            refetchUrl={`configurations/event/event-feature`}
+            title={`${params.row.title}`}
+            data={params.row.id}
+          />
         </>
       );
     },
@@ -40,13 +50,17 @@ const columns = [
 
 export default function CommonContentEvent({ id, type }: any) {
   const { data } = useGetAll({
-    key: `/configurations/event/event-feature/by-event/:event${id}?type=${type}`,
+    key: `/configurations/event/event-feature/by-event/${id}?type=${type}`,
   });
-
+  // console.log(data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data");
+  // console.log(
+  //   `/configurations/event/event-feature/by-event/:event${id}?type=${type}`,
+  //   "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<key"
+  // );
   return (
     <>
       <DataGrid
-        addButton={<CommonEventContentForm />}
+        addButton={<CommonEventContentForm pageId={id} type={type} />}
         columns={columns}
         rows={data}
       />

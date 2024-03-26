@@ -2,7 +2,7 @@ import { PageHeader } from "components/layout/pageHeader";
 import { EventInterface } from "interfaces/event";
 import { getSingleEvent } from "lib/get-data/event";
 import React from "react";
-import EventWebinarForm from "components/admin/EventWebinarForm";
+import EventContentForm from "../_components/EventContentForm";
 
 type Props = {
   params: { slug: string };
@@ -37,15 +37,16 @@ const SingleEvent = async ({ params: { slug } }: Props) => {
   }
   return (
     <>
-      <PageHeader title={"Add Event"}></PageHeader>
-      <EventWebinarForm
+      <PageHeader title={"Add Event"} className="mb-2"></PageHeader>
+      <EventContentForm
         initialValues={initialValues}
-        id={data ? data!.id : undefined}
+        slug={slug}
+        data={data}
         isUpdate={isUpdate}
         apiEndPoint={apiEndPoint}
         apiEndPointImage={apiEndPointImage}
         isWebinar={isWebinar}
-      />
+      ></EventContentForm>
     </>
   );
 };
