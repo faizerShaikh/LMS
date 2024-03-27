@@ -3,7 +3,7 @@ import { BaseObjInterface, MetaDataInterface } from "./base";
 export interface EventInterface extends BaseObjInterface {
   id?: string;
   slug?: string;
-  name?: string;
+  name: string;
   description: string;
   eventImage: string;
   startDayTime?: string;
@@ -18,7 +18,8 @@ export interface EventInterface extends BaseObjInterface {
   applicationProcess?: CommonContentEventInterface[];
   selectionProcess?: CommonContentEventInterface[];
   winners?: CommonContentEventInterface[];
-  stratigicPartners?: stratigicPartnersInterface[];
+  stratigicPartners?: string[];
+  webinarId?: string;
 }
 
 export interface CommonContentEventInterface extends BaseObjInterface {
@@ -32,6 +33,12 @@ export interface CommonContentEventInterface extends BaseObjInterface {
   eventId?: string;
 }
 
-export interface stratigicPartnersInterface extends BaseObjInterface {
-  stratigicPartners?: string;
+export interface EventWebinarRagistrationInterface extends BaseObjInterface {
+  degree: string;
+  email: string;
+  eventId: string;
+  experience: string;
+  firstName: string;
+  lastName: string;
+  mobileNumber: string;
 }

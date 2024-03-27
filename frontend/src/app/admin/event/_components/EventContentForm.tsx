@@ -5,6 +5,7 @@ import React from "react";
 import EventWebinarForm from "components/admin/EventWebinarForm";
 import { Tabs } from "components/layout";
 import CommonContentEvent from "../_components/PageCommenContent";
+import EventWebinarRagistration from "./PageRegistration";
 
 type Props = {
   initialValues: EventInterface;
@@ -79,6 +80,11 @@ const EventContentForm = ({
                 component: (
                   <CommonContentEvent id={initialValues.id} type="Winner" />
                 ),
+              },
+              {
+                id: 5,
+                buttonLabel: "Registration View",
+                component: <EventWebinarRagistration id={initialValues.id} />,
               },
             ]}
           />

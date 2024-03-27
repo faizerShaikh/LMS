@@ -3,9 +3,14 @@ import { EventInterface } from "interfaces/event";
 import { getSingleEvent } from "lib/get-data/event";
 import React from "react";
 import EventContentForm from "../_components/EventContentForm";
+import { Metadata } from "next";
 
 type Props = {
   params: { slug: string };
+};
+export let metadata: Metadata = {
+  title: "",
+  description: "",
 };
 
 const SingleEvent = async ({ params: { slug } }: Props) => {
@@ -22,6 +27,7 @@ const SingleEvent = async ({ params: { slug } }: Props) => {
     eventType: "",
     eventLocation: "",
     isFeatured: false,
+    stratigicPartners: [],
   };
   const apiEndPoint = "/configurations/event";
   const apiEndPointImage = "/configurations/event/event-image";
@@ -32,9 +38,13 @@ const SingleEvent = async ({ params: { slug } }: Props) => {
     data = await getSingleEvent(slug);
     if (data) {
       initialValues = { ...initialValues, ...data };
-      console.log("Initial Values:", initialValues);
+      if (data.metaData) {
+        metadata = { ...data.metaData };
+        console.log(metadata);
+      }
     }
   }
+  console.log("data:", data);
   return (
     <>
       <PageHeader title={"Add Event"} className="mb-2"></PageHeader>

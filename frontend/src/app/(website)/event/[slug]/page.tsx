@@ -2,30 +2,25 @@ import React from "react";
 import Image from "next/image";
 import axios from "axios";
 import { WebinarForm } from "app/(website)/webinar/_components/webinarForm";
-import {
-  CommonContentEventInterface,
-  EventInterface,
-  stratigicPartnersInterface,
-} from "interfaces/event";
+import { CommonContentEventInterface, EventInterface } from "interfaces/event";
 import moment from "moment";
 import removeTags from "utils/removeTags";
+import CarouselCard from "../components/CarouselCard";
 async function SingleEventPage({ params }: { params: { slug: string } }) {
   let data: EventInterface;
   let url = `${process.env.BASE_API_URL}/configurations/event/slug/${params.slug}`;
   const response = await axios.get(url);
   data = response.data.data;
-  console.log(data, "<<<<<<<<<<<<<<<<<<");
-  // console.log(`${process.env.BASE_MEDIA_URL}/${data.eventFeatures?.image}`);
   return (
     <>
       <section>
-        <div className="h-[400px]">
+        <div className="h-[70vh]">
           <Image
             src={`${process.env.BASE_MEDIA_URL}/${data.eventImage}`}
             width={500}
             height={50}
             alt=""
-            className="w-full h-[400px] "
+            className="w-full h-full object-cover"
           />
         </div>
       </section>
@@ -68,7 +63,10 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
               </p>
             </div>
             <div className="w-1/2 flex justify-end">
-              <WebinarForm title="Event Registration Form"></WebinarForm>
+              <WebinarForm
+                title="Event Registration Form"
+                eventId={data.id}
+              ></WebinarForm>
             </div>
           </div>
         </div>
@@ -205,16 +203,7 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
             </p>
           </div>
           <div>
-            {data.stratigicPartners?.map((item: stratigicPartnersInterface) => {
-              return (
-                <Image
-                  src={`${process.env.BASE_MEDIA_URL}/${item.stratigicPartners}`}
-                  height={100}
-                  width={100}
-                  alt="test"
-                ></Image>
-              );
-            })}
+            <CarouselCard data={data.stratigicPartners}></CarouselCard>
           </div>
           <div className="leading-8">
             <h2>Calling for Strategic Partners & Sponsors</h2>

@@ -13,15 +13,14 @@ const FilterForm = () => {
     { value: "on-Site", label: "On-Site" },
   ];
 
-  // const EventLocationOptions = [
-  //   { value: "online", label: "Online" },
-  //   { value: "onSite", label: "On-Site" },
-  // ];
+  const EventLocationOptions = [
+    { value: "online", label: "Online" },
+    { value: "onSite", label: "On-Site" },
+  ];
 
   const ProgramOption = ["abc", "abc", "abc"];
 
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const createQueryString = useCallback(
@@ -39,44 +38,49 @@ const FilterForm = () => {
     [searchParams]
   );
 
-  function handleClick(value: any) {
-    router.push(`/event?${createQueryString("type", value)}`);
+  function handleClick(key: string, value: any) {
+    router.push(`/event?${createQueryString(key, value)}`);
   }
 
-  // function handleLocationClick(value: any) {
-  //   router.push(`/event?${createQueryString("location", value)}`);
-  // }
+  function clearFilters() {
+    router.push(`/event`);
+  }
   return (
     <Formik
       initialValues={{
-        eventType: "all",
-        eventLocation: "online",
+        type: searchParams.get("type") || "",
+        location: searchParams.get("location"),
         program: "",
       }}
       onSubmit={(values) => {
         console.log(values);
       }}
     >
-      {() => (
+      {({ values, setFieldValue, resetForm }) => (
         <Form className="w-1/4 shadow-2xl h-fit mb-4 rounded-md p-4 border-2">
           <div className="mb-8 pb-8 border-b-2 border-dashed border-black">
             <h2 className="text-xl font-semibold mb-4">Event Types</h2>
             <MyRadioButtons
-              name="eventType"
+              name="type"
               options={options}
-              defaultSelected="all"
-              handleChange={handleClick}
+              handleChange={(value: string) => {
+                setFieldValue("type", value);
+                handleClick("type", value);
+              }}
             />
           </div>
-          {/* 
+
           <div className="mb-8 pb-8 border-b-2 border-dashed border-black">
             <h2 className="text-xl font-semibold mb-4">Event Location</h2>
             <MyRadioButtons
-              name="eventLocation"
+              name="location"
               options={EventLocationOptions}
-              handleChange={handleLocationClick}
+              handleChange={(value: string) => {
+                setFieldValue("location", value);
+                handleClick("location", value);
+              }}
             />
-          </div> */}
+          </div>
 
           <div className="mb-8">
             <h2 className="text-xl font-semibold mb-4">Programs</h2>
@@ -87,8 +91,15 @@ const FilterForm = () => {
             </Field>
           </div>
 
-          <Button type="submit" className="bg-blue-900 text-white">
-            Submit
+          <Button
+            type="button"
+            className="bg-blue-900 text-white"
+            onClick={() => {
+              clearFilters();
+              resetForm();
+            }}
+          >
+            Clear Filters
           </Button>
         </Form>
       )}

@@ -21,8 +21,8 @@ export interface WebinarResponseInterface extends CreateUpdateDialogBaseProps {
   title?: string;
   event?: {
     name?: string;
-    coverImage?: string;
-    description?: string;
+    eventImage?: string;
+    description: string;
     metaID?: string;
     slug?: string;
   };
@@ -30,4 +30,11 @@ export interface WebinarResponseInterface extends CreateUpdateDialogBaseProps {
   updatedAt?: string;
   deletedAt?: string;
   metaData?: MetaDataInterface;
+  speakers?: SpeakersInterface[];
+}
+
+export interface SpeakersInterface extends CreateUpdateDialogBaseProps {
+  name: string;
+  bio: string;
+  image: string;
 }

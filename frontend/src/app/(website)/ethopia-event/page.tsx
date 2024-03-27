@@ -8,7 +8,6 @@ async function page(params: { slug: string }) {
   const response = await axios.get(
     `${process.env.BASE_API_URL}/configurations/event/event-by/${params.slug}`
   );
-  console.log(response, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<resp");
   return (
     <>
       <section>

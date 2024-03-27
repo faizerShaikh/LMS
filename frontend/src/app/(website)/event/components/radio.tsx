@@ -8,22 +8,17 @@ export default function MyRadioButtons({
   defaultSelected,
   handleChange = null,
 }: any) {
-  const { setFieldValue } = useFormikContext();
-  const [selectedValue, setSelectedValue] = React.useState(defaultSelected);
-
-  React.useEffect(() => {
-    setFieldValue(name, selectedValue);
-  }, [name, selectedValue, setFieldValue]);
+  const { setFieldValue, values } = useFormikContext();
 
   let _handleChange;
-  if (!handleChange) {
+  if (!name) {
     _handleChange = (event: any) => {
-      setSelectedValue(event.target.value);
+      handleChange(event.target.value);
     };
   } else {
     _handleChange = (event: any) => {
-      handleChange(event.target.value);
-      setSelectedValue(event.target.value);
+      setFieldValue(name, event.target.value);
+      handleChange && handleChange(event.target.value);
     };
   }
 
@@ -31,7 +26,7 @@ export default function MyRadioButtons({
     <RadioGroup
       aria-label={name}
       name={name}
-      value={selectedValue}
+      value={name ? values[name] : defaultSelected}
       onChange={_handleChange}
     >
       {options.map((option: any) => (

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Form, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -8,9 +8,8 @@ import axios from "axios";
 import { toast } from "utils";
 import PhoneNumberField from "./phoneInpute";
 import ToggleButtonForm from "./toggle";
-import { Value } from "react-phone-number-input/core";
 
-export const WebinarForm = ({ title }: any) => {
+export const WebinarForm = ({ title, eventId }: any) => {
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleToggleChange = (newValue: any) => {
@@ -26,12 +25,14 @@ export const WebinarForm = ({ title }: any) => {
 
   const formik = useFormik({
     initialValues: {
+      id: "",
       firstName: "",
       lastName: "",
       email: "",
       mobileNumber: "",
       degree: "",
       experience: "",
+      eventId: eventId,
     },
     // validationSchema: Yup.object({
     //   firstName: Yup.string().required("Required"),
@@ -46,7 +47,7 @@ export const WebinarForm = ({ title }: any) => {
       axios
         .post(
           `${process.env.NEXT_PUBLIC_BASE_API_URL}/configurations/event-webinar/registration`,
-          { ...values }
+          { ...values, eventId: eventId }
         )
         .then((response) => {
           resetForm();

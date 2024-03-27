@@ -72,18 +72,20 @@ export function Tabs({ tabs, query }: TabsProps) {
           ))}
         </MuiTabs>
       </Box>
-      {tabs.map((item) => (
-        <TabPanel value={value} index={item.id} key={item.id}>
-          {typeof item.component === "string"
-            ? item.component
-            : React.cloneElement(
-                item.component as React.ReactElement,
-                item?.componentProps
-                  ? { ...item?.componentProps, query }
-                  : { query }
-              )}
-        </TabPanel>
-      ))}
+      <Box className="mt-5 pt-1">
+        {tabs.map((item) => (
+          <TabPanel value={value} index={item.id} key={item.id}>
+            {typeof item.component === "string"
+              ? item.component
+              : React.cloneElement(
+                  item.component as React.ReactElement,
+                  item?.componentProps
+                    ? { ...item?.componentProps, query }
+                    : { query }
+                )}
+          </TabPanel>
+        ))}
+      </Box>
     </Box>
   );
 }

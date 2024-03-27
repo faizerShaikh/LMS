@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import {
   Button,
   ButtonGroup as MuiButtonGroup,
@@ -20,11 +20,22 @@ interface ButtonGroupProps extends MuiButtonGroupProps {
 export const ButtonGroup = ({
   buttons,
   // children,
+  defaultValue,
   buttonClasses = "",
   ...otherProps
 }: ButtonGroupProps) => {
-  const [selectedKey, setSelectedKey] = useState(buttons[0]?.key);
+  const [selectedKey, setSelectedKey] = useState(
+    defaultValue || buttons[0]?.key
+  );
   // console.log(children);
+
+  useEffect(() => {
+    if (defaultValue) {
+      setSelectedKey(defaultValue);
+    } else {
+      setSelectedKey(buttons[0]?.key);
+    }
+  }, [defaultValue]);
 
   return (
     <Grid container>

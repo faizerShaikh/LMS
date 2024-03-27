@@ -36,6 +36,7 @@ const EventWebinarForm = ({
   apiEndPointImage,
   isWebinar,
 }: Props) => {
+  console.log(`${apiEndPoint}/${id}`);
   const router = useRouter();
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate ? `${apiEndPoint}/${id}` : apiEndPoint,
@@ -61,15 +62,12 @@ const EventWebinarForm = ({
     onSuccess: VoidFunction
   ) => {
     const newFormData = new FormData();
-    console.log(files);
+    console.log(files, { files: "files" });
 
     Array.from(files).forEach((file: File) => {
       newFormData.append(`stratigicPartners`, file);
     });
 
-    // for (const [file] of Object.entries(files) as any) {
-    //   newFormData.append(`stratigicPartners`, file);
-    // }
     await API.put(`/configurations/event/strategic-partner/${id}`, newFormData);
 
     onSuccess();
@@ -249,10 +247,14 @@ const EventWebinarForm = ({
                   options={optionsType}
                 ></AutoComplete>
               </Box>
-              <Box>
-                <Label text="Upload Your Image" />
-                <DropZone multiple name="stratigicPartners" />
-              </Box>
+
+              {!isWebinar && (
+                <Box>
+                  <Label text="Upload Your Image" />
+                  <DropZone multiple name="stratigicPartners" />
+                </Box>
+              )}
+
               {isWebinar && (
                 <>
                   <PageHeader title="Speakers" className="mb-5"></PageHeader>
