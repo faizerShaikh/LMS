@@ -6,7 +6,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
 import { User } from '../user/users/models/user.model';
-import { MetaData } from '../configurations/metaData/meta.model';
+import { MetaData } from '../configurations/MetaData/meta.model';
 import * as fs from 'fs';
 import { BlogCategory } from './modules/blog-category/model';
 import { Op, Sequelize } from 'sequelize';
@@ -57,14 +57,14 @@ export class BlogService extends GenericService<
           order: [['createdAt', 'ASC']],
         });
       }
-  
+
       const relatedBlogs = await this.blog.findAll({
         where: { blog_category_id: blog.blog_category_id },
         limit: 3,
         order: Sequelize.literal('RANDOM()'),
       });
 
-      return { blog, relatedBlogs,next ,previous};
+      return { blog, relatedBlogs, next, previous };
     } catch (error) {
       throw new Error(error.message);
     }
@@ -90,7 +90,7 @@ export class BlogService extends GenericService<
         throw new InternalServerErrorException('Blog not found');
       }
 
-      const defaultImagePath =  join(
+      const defaultImagePath = join(
         __dirname,
         '../../../../',
         'backend/src/public/media/default.png',
@@ -102,8 +102,14 @@ export class BlogService extends GenericService<
       );
 
       if (file && file.filename) {
-        console.log('=================================================>filepath',filePath)
-        console.log('=================================================>filepath',defaultImagePath)
+        console.log(
+          '=================================================>filepath',
+          filePath,
+        );
+        console.log(
+          '=================================================>filepath',
+          defaultImagePath,
+        );
         if (fs.existsSync(filePath) && filePath != defaultImagePath) {
           unlink(filePath, (err) => {
             if (err) {
@@ -112,8 +118,8 @@ export class BlogService extends GenericService<
               console.log('Old image deleted...');
             }
           });
-        }else{
-          console.log('not deleted')
+        } else {
+          console.log('not deleted');
         }
         const newImagePath = '/media/blog/' + file.filename;
         await blog.update({

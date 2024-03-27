@@ -7,8 +7,9 @@ import { unlink } from 'fs';
 import * as fs from 'fs';
 import { join } from 'path';
 import { gallery } from '../Gallery/gallery.model';
-import { MetaData } from '../metaData/meta.model';
+import { MetaData } from '../MetaData/meta.model';
 import { Op } from 'sequelize';
+import { PageContentSeedData } from './data';
 
 @Injectable()
 export class PageContentService extends GenericService<
@@ -20,6 +21,7 @@ export class PageContentService extends GenericService<
     include: [gallery, MetaData],
   },
   includes: [gallery, MetaData],
+  seedData: PageContentSeedData,
 }) {
   constructor(
     @InjectModel(PageContent) private pageContent: typeof PageContent,

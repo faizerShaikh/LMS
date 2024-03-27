@@ -11,9 +11,7 @@ import {
 import { ProgramStructureDTO } from './program-structure.dto';
 import { FeesStructureDTO } from './fees-structure.dto';
 import { Type } from 'class-transformer';
-import { MetaData } from '../../metaData/meta.model';
-import { SpeakerDto } from '../../webinar/dto/create-webinar.dto';
-import { AdmissionProcessCards } from '../model/admissionProcess.model';
+import { SpeakerDto } from '../../event/modules/webinar/dto/create-webinar.dto';
 import { CreateAdmissionProcessCardsDTO } from './create-admissionProcessCards.dto';
 
 export class CreateCourseSpecializationDTO {
@@ -36,7 +34,7 @@ export class CreateCourseSpecializationDTO {
   @IsNumber()
   @IsNotEmpty()
   credits: number;
-  
+
   @IsString()
   @IsNotEmpty()
   duration: string;
@@ -51,7 +49,7 @@ export class CreateCourseSpecializationDTO {
 
   @IsNumber()
   @IsOptional()
-  student_enrolled: number
+  student_enrolled: number;
 
   @IsBoolean()
   @IsNotEmpty()
@@ -59,7 +57,7 @@ export class CreateCourseSpecializationDTO {
 
   @IsNumber()
   @IsNotEmpty()
-  courses: number
+  courses: number;
 
   @IsString()
   @IsNotEmpty()
@@ -67,7 +65,7 @@ export class CreateCourseSpecializationDTO {
 
   @IsString()
   @IsNotEmpty()
-  brouchre:string
+  brouchre: string;
 
   @IsString()
   @IsNotEmpty()
@@ -79,19 +77,19 @@ export class CreateCourseSpecializationDTO {
 
   @IsString()
   @IsOptional()
-  specialization:string
+  specialization: string;
 
   @IsString()
   @IsOptional()
-  beneficiaries:string
+  beneficiaries: string;
 
   @ValidateNested({ each: true })
-  @Type(()=> SpeakerDto)
-  association:SpeakerDto[]
+  @Type(() => SpeakerDto)
+  association: SpeakerDto[];
 
   @IsNumber()
   @IsNotEmpty()
-  course : number
+  course: number;
 
   @IsNotEmpty()
   @IsArray()
@@ -107,12 +105,11 @@ export class CreateCourseSpecializationDTO {
 
   @IsNotEmpty()
   @IsArray()
-  @Type(()=>CreateAdmissionProcessCardsDTO)
-  @ValidateNested({each:true})
-  admissionProcess:CreateAdmissionProcessCardsDTO[]
+  @Type(() => CreateAdmissionProcessCardsDTO)
+  @ValidateNested({ each: true })
+  admissionProcess: CreateAdmissionProcessCardsDTO[];
 
   @IsString()
   @IsNotEmpty()
-  slug:string
-
+  slug: string;
 }

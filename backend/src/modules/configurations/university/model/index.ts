@@ -7,7 +7,7 @@ import {
 } from 'sequelize-typescript';
 import { CourseSpecialization } from '../../course-specialization/model';
 import { MyBaseModel } from 'src/core/base.model';
-import { type } from '../../metaData/dto/type.enum';
+import { MetaDataType } from '../../MetaData/dto/type.enum';
 
 @Table({
   tableName: 'universities',
@@ -15,10 +15,8 @@ import { type } from '../../metaData/dto/type.enum';
   paranoid: true,
 })
 export class University extends MyBaseModel {
+  override type = MetaDataType.UNIVERSITY;
 
-
-  override type=type.UNIVERSITY
-  
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -83,5 +81,4 @@ export class University extends MyBaseModel {
     hooks: true,
   })
   specializations: CourseSpecialization[];
-
 }

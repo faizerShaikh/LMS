@@ -7,7 +7,7 @@ import {
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
-import { type } from './dto/type.enum';
+import { MetaDataType } from './dto/type.enum';
 
 @Table({
   tableName: 'meta-data',
@@ -20,7 +20,7 @@ export class MetaData extends Model {
   id: string;
 
   @Column({
-    allowNull:true,
+    allowNull: true,
   })
   keywords: string;
 
@@ -72,14 +72,16 @@ export class MetaData extends Model {
   @Column
   replyTo: string;
 
-  @Column
-  type: type;
+  @Column({
+    type: DataType.ENUM,
+    values: Object.values(MetaDataType),
+  })
+  type: MetaDataType;
 
   @Default(false)
   @Column
   isRefrenced: boolean;
-  
+
   @Column
   slug: string;
-  
 }

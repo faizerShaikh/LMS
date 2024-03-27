@@ -12,8 +12,8 @@ import { FeesStructure } from './model/fees-structure.model';
 import { ProgramStructure } from './model/program-structure.model';
 import { Course } from '../course/model';
 import { University } from '../university/model';
-import { MetaData } from '../metaData/meta.model';
-import * as fs from 'fs'
+import { MetaData } from '../MetaData/meta.model';
+import * as fs from 'fs';
 import { AdmissionProcessCards } from './model/admissionProcess.model';
 @Injectable()
 export class CourseSpecializationService extends GenericService<
@@ -21,12 +21,10 @@ export class CourseSpecializationService extends GenericService<
   CreateCourseSpecializationDTO,
   UpdateCourseSpecializationDTO
 >({
-  
-  defaultFindOptions:{
-    include:[MetaData,Course,University,AdmissionProcessCards]
-},
-includes:[MetaData,Course,University,AdmissionProcessCards]
-
+  defaultFindOptions: {
+    include: [MetaData, Course, University, AdmissionProcessCards],
+  },
+  includes: [MetaData, Course, University, AdmissionProcessCards],
 }) {
   constructor(
     @InjectModel(CourseSpecialization)
@@ -39,8 +37,6 @@ includes:[MetaData,Course,University,AdmissionProcessCards]
     private admissionProcess: typeof AdmissionProcessCards,
 
     private reqParams: RequestParamsService,
-
-
   ) {
     super(courseSpecialization, reqParams);
   }
@@ -67,24 +63,21 @@ includes:[MetaData,Course,University,AdmissionProcessCards]
   }
   async updateCourseSpecializationImage(file: Express.Multer.File, id: string) {
     const courseSpecialization = await this.getOne<CourseSpecialization>(id);
-    const defaultImagePath='backend/src/public/media/default.png'; 
-    const filePath= join(
+    const defaultImagePath = 'backend/src/public/media/default.png';
+    const filePath = join(
       __dirname,
       '../../../../',
       'src/public/media' + courseSpecialization.cover_image,
-    )
-    if(!defaultImagePath)
-    if (fs.existsSync(filePath)) {
-      unlink(filePath
-        ,
-        (err) => {
+    );
+    if (!defaultImagePath)
+      if (fs.existsSync(filePath)) {
+        unlink(filePath, (err) => {
           if (err) {
             throw new InternalServerErrorException(err);
           }
           console.log('file deleted...');
-        },
-      );
-    }
+        });
+      }
 
     await courseSpecialization.update({
       cover_image: file?.path?.split('src/public')[1],
@@ -104,13 +97,13 @@ includes:[MetaData,Course,University,AdmissionProcessCards]
         },
       });
       await this.admissionProcess.destroy({
-        where:{
-          course_specialization_id:courseSpecialization.id
-        }
-      })
+        where: {
+          course_specialization_id: courseSpecialization.id,
+        },
+      });
     }
     if (isNewRecord) {
-            await this.feesStructure.create({
+      await this.feesStructure.create({
         ...dto.fees_structure,
         course_specialization_id: courseSpecialization.id,
       });
@@ -128,11 +121,11 @@ includes:[MetaData,Course,University,AdmissionProcessCards]
     }
 
     await this.admissionProcess.bulkCreate(
-      dto.admissionProcess.map((item)=>({
+      dto.admissionProcess.map((item) => ({
         ...item,
-        courseSpecialization:courseSpecialization
-      }))
-    )
+        courseSpecialization: courseSpecialization,
+      })),
+    );
     await this.programStructure.bulkCreate(
       dto.program_structures.map((item) => ({
         ...item,

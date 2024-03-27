@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { GenericController } from 'src/core/modules';
 import { EventRegistration } from './eventRegistration.model';
 import { EventRegistrationService } from './eventRegistration.service';
@@ -18,5 +18,10 @@ export class EventRegistrationController extends GenericController<
     private readonly eventregistrationService: EventRegistrationService,
   ) {
     super(eventregistrationService);
+  }
+
+  @Get('by-event/:eventId')
+  getByEvent(@Param('eventId') eventId: string) {
+    return this.eventregistrationService.getByEvent(eventId);
   }
 }

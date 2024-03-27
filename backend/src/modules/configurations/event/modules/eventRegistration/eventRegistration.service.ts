@@ -16,6 +16,14 @@ export class EventRegistrationService extends GenericService<
     private eventregistration: typeof EventRegistration,
     private reqparams: RequestParamsService,
   ) {
-    super(eventregistration,reqparams);
+    super(eventregistration, reqparams);
+  }
+
+  getByEvent(eventId: string) {
+    return this.getAll({
+      where: {
+        eventId: eventId,
+      },
+    });
   }
 }

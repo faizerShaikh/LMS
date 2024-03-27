@@ -4,15 +4,15 @@ import { CourseModule } from './course/course.module';
 import { CourseSpecializationModule } from './course-specialization/course-specialization.module';
 import { GalleryModule } from './Gallery/gallery.module';
 import { PressModule } from './pressRelease/press.module';
-import { FAQModule } from './faq/faq.module';
-import { MetaDataModule } from './metaData/meta.module';
 import { BlogModule } from '../blog/blog.module';
 import { EventModule } from './event/event.module';
 import { PageContentModule } from './PageContent/pageContent.module';
 import { EnquiryModule } from './Enquiry/enquiry.module';
 import { GlobalPartnerModule } from './globalPartner/global-partner.module';
 import { ContactModule } from './cotacDetails/contact.module';
-import { WebinarModule } from './webinar/webinar.module';
+import { WebinarModule } from './event/modules/webinar/webinar.module';
+import { FAQModule } from './FAQ/faq.module';
+import { MetaDataModule } from './MetaData/meta.module';
 
 @Module({
   imports: [
@@ -29,7 +29,7 @@ import { WebinarModule } from './webinar/webinar.module';
     EnquiryModule,
     GlobalPartnerModule,
     ContactModule,
-    WebinarModule
+    WebinarModule,
   ],
   controllers: [],
   providers: [],

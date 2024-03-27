@@ -17,8 +17,10 @@ export function GenericService<
   includes?: Includeable | Includeable[];
   defaultFindOptions?: FindAndCountOptions;
   searchFields?: string[];
+  seedData?: any[];
 }) {
   return class {
+    options = defaultOptions;
     constructor(
       protected model: any,
       protected reqParam?: RequestParamsService,
@@ -56,9 +58,12 @@ export function GenericService<
     // findAll records for matching query
     async getAll<Model extends {} = any>(
       findOptions: FindAndCountOptions = {},
-      orderBy:OrderItem[]=[]
+      orderBy: OrderItem[] = [],
     ): Promise<Model[]> {
-      let where = {};
+      let where = {
+        ...defaultOptions.defaultFindOptions.where,
+        ...findOptions.where,
+      };
 
       if (this.reqParam.query) {
         where = {
@@ -71,6 +76,7 @@ export function GenericService<
         ...defaultOptions.defaultFindOptions,
         ...findOptions,
         ...this.reqParam.pagination,
+        include: defaultOptions.includes,
         subQuery: false,
         distinct: true,
         where,
@@ -80,22 +86,20 @@ export function GenericService<
 
       return data;
     }
-    async getOneBySlug<Model extends {}= any>(slug?:string) : Promise<Model>{
-      const data = await this.getobjslug<Model>(slug,true)
-      return data
+    async getOneBySlug<Model extends {} = any>(slug?: string): Promise<Model> {
+      const data = await this.getobjslug<Model>(slug, true);
+      return data;
     }
 
-   async getobjslug<M = any>(slug: string, isJoin: boolean): Promise<M> {
-  const where = { slug };
-  return await this.getOneObj<M>({ where }, isJoin);
-}
+    async getobjslug<M = any>(slug: string, isJoin: boolean): Promise<M> {
+      const where = { slug };
+      return await this.getOneObj<M>({ where }, isJoin);
+    }
     /// find one record for matching query
     async getOne<Model extends {} = any>(id?: string): Promise<Model> {
       const data = await this.getOneObj<Model>(id, true);
       return data;
     }
-
-    
 
     //delete records for matching query
     async delete(id?: string): Promise<boolean> {
@@ -114,11 +118,21 @@ export function GenericService<
       if (typeof options === 'string') {
         findOptions = {
           ...defaultOptions.defaultFindOptions,
-          where: { ...(defaultOptions.defaultFindOptions?(defaultOptions.defaultFindOptions.where||{}):{}), id: options },
+          where: {
+            ...(defaultOptions.defaultFindOptions
+              ? defaultOptions.defaultFindOptions.where || {}
+              : {}),
+            id: options,
+          },
         };
       } else {
         findOptions = {
-          where: { ...(defaultOptions.defaultFindOptions?(defaultOptions.defaultFindOptions.where||{}):{}), ...options.where },
+          where: {
+            ...(defaultOptions.defaultFindOptions
+              ? defaultOptions.defaultFindOptions.where || {}
+              : {}),
+            ...options.where,
+          },
           ...options,
         };
       }
@@ -131,6 +145,14 @@ export function GenericService<
         throw new NotFoundException(`${this.model.name} not found!`);
       }
       return obj;
+    }
+
+    async seedData() {
+      if (defaultOptions.seedData) {
+        await this.model.bulkCreate(defaultOptions.seedData);
+      }
+
+      return 'Migration completed';
     }
   };
 }

@@ -1,23 +1,65 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
-import { Events } from './event.model';
+import { EventFeature, Events } from './event.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
 import { CreateEventDTO, UpdateEventDTO } from './dtos';
-import { MetaData } from '../metaData/meta.model';
+import { MetaData } from '../MetaData/meta.model';
 import * as fs from 'fs';
-import { FindAndCountOptions, Op, OrderItem } from 'sequelize';
+import { Op, col, literal } from 'sequelize';
+import { EventFeatureType } from './enum';
+
 @Injectable()
-export class eventService extends GenericService<
+export class EventService extends GenericService<
   Events,
   CreateEventDTO,
   UpdateEventDTO
 >({
   defaultFindOptions: {
-    include: [MetaData],
+    where: {
+      webinarId: null,
+    },
   },
-  includes: [MetaData],
+  includes: [
+    { model: MetaData },
+    {
+      model: EventFeature,
+      foreignKey: 'eventId',
+      as: 'eventFeatures',
+      required: false,
+      where: {
+        type: EventFeatureType.FEATURE,
+      },
+    },
+    {
+      model: EventFeature,
+      foreignKey: 'eventId',
+      as: 'applicationProcess',
+      required: false,
+      where: {
+        type: EventFeatureType.APPLICATION_PROCESS,
+      },
+    },
+    {
+      model: EventFeature,
+      foreignKey: 'eventId',
+      as: 'selectionProcess',
+      required: false,
+      where: {
+        type: EventFeatureType.SELCTION_PROCESS,
+      },
+    },
+    {
+      model: EventFeature,
+      foreignKey: 'eventId',
+      as: 'winners',
+      required: false,
+      where: {
+        type: EventFeatureType.WINNER,
+      },
+    },
+  ],
 }) {
   constructor(
     @InjectModel(Events) private event: typeof Events,
@@ -28,18 +70,22 @@ export class eventService extends GenericService<
     super(event, reqParams);
   }
 
+  async create<Model extends {} = any>(dto: CreateEventDTO): Promise<Model> {
+    return super.create(dto);
+  }
+
   async updateEventImage(file: Express.Multer.File, id: string) {
     try {
-      const Events = await this.getOne<Events>(id);
-      if (!Events) {
-        throw new InternalServerErrorException('Blog not found');
+      const events = await this.event.findByPk<Events>(id);
+      if (!events) {
+        throw new InternalServerErrorException('Event not found');
       }
 
       const defaultImagePath = 'backend/src/public/media/default.png';
       const filePath = join(
         __dirname,
         '../../../../',
-        'backend/src/public/' + Events.eventImage,
+        'backend/src/public/' + events.eventImage,
       );
 
       if (file && file.filename) {
@@ -55,7 +101,7 @@ export class eventService extends GenericService<
           });
         }
 
-        await Events.update({
+        await events.update({
           eventImage: newImagePath,
         });
 
@@ -67,40 +113,76 @@ export class eventService extends GenericService<
       throw new InternalServerErrorException(error.message);
     }
   }
-  s;
-  async eventListing(date: string) {
-    if (date) {
-      const currentDate: Date = new Date();
-      if (date === 'upcoming') {
-        const events = await this.event.findAll({
-          where: {
-            startDayTime: {
-              [Op.gt]: currentDate,
-            },
-          },
-        });
-        return events;
-      } else if (date === 'past') {
-        const events = await this.event.findAll({
-          where: {
-            startDayTime: {
-              [Op.lt]: currentDate,
-            },
-          },
-        });
-        return events;
-      } else if (date === 'webinar' || date === 'event') {
-        const events = await this.event.findAll({
-          where: {
-            eventType: {
-              date,
-            },
-          },
-        });
-        return events;
+
+  async updateStratigicPartners(files: Express.Multer.File[], id: string) {
+    try {
+      const events = await this.event.findByPk(id);
+      if (!events) {
+        throw new InternalServerErrorException('Blog not found');
       }
-    } else {
-      return await this.event.findAll();
+
+      if (files && files.length) {
+        let stratigicPartners: any = [];
+        for (const item of events.stratigicPartners) {
+          const filePath = join(
+            __dirname,
+            '../../../../',
+            'backend/src/public/' + item,
+          );
+          if (fs.existsSync(filePath)) {
+            unlink(filePath, (err) => {
+              if (err) {
+                console.error('Error deleting old image:', err);
+              } else {
+                console.log('Old image deleted...');
+              }
+            });
+          }
+        }
+        for (const file of files) {
+          stratigicPartners.push(
+            '/media/event/strategic-partner/' + file.filename,
+          );
+        }
+
+        events.stratigicPartners = stratigicPartners;
+        await events.save();
+
+        return 'Events Image Uploaded Successfully';
+      } else {
+        return 'No file provided for Image Update';
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
     }
+  }
+
+  async eventListing(data: any) {
+    let filters = {};
+
+    const currentDate: Date = new Date();
+    if (data.date === 'upcoming') {
+      filters['startDayTime'] = {
+        [Op.gt]: currentDate,
+      };
+    }
+
+    if (data.date === 'past') {
+      filters['startDayTime'] = {
+        [Op.lt]: currentDate,
+      };
+    }
+
+    if (data.type) {
+      filters['eventType'] = data.type;
+    }
+
+    const resp = await this.event.findAll({
+      where: {
+        ...filters,
+      },
+    });
+
+    return resp;
   }
 }

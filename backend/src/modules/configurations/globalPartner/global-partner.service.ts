@@ -4,15 +4,15 @@ import { GenericService, RequestParamsService } from 'src/core/modules';
 import { GlobalPartner } from './global-partner.model';
 import { join } from 'path';
 import { unlink } from 'fs';
-import { MetaData } from '../metaData/meta.model';
 import { Contacts } from '../cotacDetails/contact.model';
+import { MetaData } from '../MetaData/meta.model';
 
 @Injectable()
 export class GlobalPartnerService extends GenericService({
-  defaultFindOptions:{
-    include:[MetaData,Contacts]
+  defaultFindOptions: {
+    include: [MetaData, Contacts],
   },
-  includes:[MetaData,Contacts]
+  includes: [MetaData, Contacts],
 }) {
   constructor(
     @InjectModel(GlobalPartner) private globalPartner: typeof GlobalPartner,
@@ -48,6 +48,4 @@ export class GlobalPartnerService extends GenericService({
     });
     return 'Image uploaded Successfully';
   }
-
-  
 }

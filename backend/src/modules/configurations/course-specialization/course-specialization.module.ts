@@ -5,7 +5,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { CourseSpecialization } from './model';
 import { FeesStructure } from './model/fees-structure.model';
 import { ProgramStructure } from './model/program-structure.model';
-import { MetaData } from '../metaData/meta.model';
+import { MetaData } from '../MetaData/meta.model';
 import { AdmissionProcessCards } from './model/admissionProcess.model';
 
 @Module({
@@ -15,7 +15,7 @@ import { AdmissionProcessCards } from './model/admissionProcess.model';
       ProgramStructure,
       FeesStructure,
       AdmissionProcessCards,
-      MetaData
+      MetaData,
     ]),
   ],
   controllers: [CourseSpecializationController],

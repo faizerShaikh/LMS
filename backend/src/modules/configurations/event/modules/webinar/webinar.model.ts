@@ -8,7 +8,7 @@ import {
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
-import { Events } from '../event/event.model';
+import { Events } from '../../event.model';
 
 @Table({
   tableName: 'webinars',

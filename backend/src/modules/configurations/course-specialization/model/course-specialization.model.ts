@@ -6,8 +6,6 @@ import {
   ForeignKey,
   HasMany,
   HasOne,
-  IsUUID,
-  PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { Course } from '../../course/model';
@@ -15,8 +13,8 @@ import { University } from '../../university/model';
 import { ProgramStructure } from './program-structure.model';
 import { FeesStructure } from './fees-structure.model';
 import { MyBaseModel } from 'src/core/base.model';
-import { type } from '../../metaData/dto/type.enum';
 import { AdmissionProcessCards } from './admissionProcess.model';
+import { MetaDataType } from '../../MetaData/dto/type.enum';
 
 @Table({
   tableName: 'course-specializations',
@@ -24,7 +22,7 @@ import { AdmissionProcessCards } from './admissionProcess.model';
   paranoid: true,
 })
 export class CourseSpecialization extends MyBaseModel {
-  override type= type.COURSE_SPECIALIZATION;
+  override type = MetaDataType.COURSE_SPECIALIZATION;
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -95,7 +93,6 @@ export class CourseSpecialization extends MyBaseModel {
   })
   credits: number;
 
-
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -152,51 +149,51 @@ export class CourseSpecialization extends MyBaseModel {
   is_published: boolean;
 
   @Column({
-    type:DataType.INTEGER,
-    defaultValue:0,
+    type: DataType.INTEGER,
+    defaultValue: 0,
   })
-  courses:number
+  courses: number;
 
   @Column({
-    type:DataType.BOOLEAN,
-    defaultValue:false,
+    type: DataType.BOOLEAN,
+    defaultValue: false,
   })
-  webinar:boolean
+  webinar: boolean;
 
   @Column({
-    type:DataType.STRING,
+    type: DataType.STRING,
   })
-  learningPath: string
+  learningPath: string;
 
   @Column({
-    type:DataType.STRING
+    type: DataType.STRING,
   })
-  brouchre:string
-
-  @Column({
-    type: DataType.TEXT,
-    allowNull: true,
-  })
-  specialization:string
+  brouchre: string;
 
   @Column({
     type: DataType.TEXT,
     allowNull: true,
   })
-  beneficiaries:string
+  specialization: string;
 
   @Column({
     type: DataType.TEXT,
     allowNull: true,
-    get(){
-      const value= this.getDataValue('association');
-      return value ? JSON.parse(value): null;
+  })
+  beneficiaries: string;
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: true,
+    get() {
+      const value = this.getDataValue('association');
+      return value ? JSON.parse(value) : null;
     },
-    set(value:any){
-      this.setDataValue('association',JSON.stringify(value))
+    set(value: any) {
+      this.setDataValue('association', JSON.stringify(value));
     },
   })
-  association:{name: string ; bio:string; image:string}
+  association: { name: string; bio: string; image: string };
 
   @Column({
     type: DataType.STRING,
@@ -241,12 +238,12 @@ export class CourseSpecialization extends MyBaseModel {
   })
   program_structures: ProgramStructure[];
 
-  @HasMany(() => AdmissionProcessCards , {
+  @HasMany(() => AdmissionProcessCards, {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
   })
-  admissionProcess:AdmissionProcessCards[];
+  admissionProcess: AdmissionProcessCards[];
 
   @HasOne(() => FeesStructure, {
     onUpdate: 'CASCADE',
@@ -255,5 +252,4 @@ export class CourseSpecialization extends MyBaseModel {
     foreignKey: 'course_specialization_id',
   })
   fees_structure: FeesStructure;
-
 }

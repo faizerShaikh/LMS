@@ -1,9 +1,13 @@
-
-import { Table, Column, DataType ,HasMany,Model, Default} from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  DataType,
+  HasMany,
+  Default,
+} from 'sequelize-typescript';
 import { CourseSpecialization } from '../../course-specialization/model';
 import { MyBaseModel } from 'src/core/base.model';
-import { type } from '../../metaData/dto/type.enum';
-
+import { MetaDataType } from '../../MetaData/dto/type.enum';
 
 @Table({
   tableName: 'courses',
@@ -11,7 +15,7 @@ import { type } from '../../metaData/dto/type.enum';
   paranoid: true,
 })
 export class Course extends MyBaseModel {
-  override type: type.COURSE;
+  override type: MetaDataType.COURSE;
 
   @Column({
     type: DataType.STRING,
@@ -38,7 +42,7 @@ export class Course extends MyBaseModel {
   course_image: string;
 
   @Column
-  name:string
+  name: string;
 
   @HasMany(() => CourseSpecialization, {
     onUpdate: 'CASCADE',
@@ -46,5 +50,4 @@ export class Course extends MyBaseModel {
     hooks: true,
   })
   specializations: CourseSpecialization[];
-
 }
