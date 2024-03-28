@@ -1,41 +1,31 @@
 "use client";
 
-import { Grid, Box, Checkbox } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import TextEditor from "components/admin/richTextEditor";
-import {
-  DropZone,
-  AutoComplete,
-  Button,
-  Label,
-  Input,
-} from "components/layout";
+import { DropZone, Button, Label, Input } from "components/layout";
 import { API } from "configs";
 import { Formik, Form } from "formik";
 import { useCreateOrUpdate } from "hooks";
-import { SingleBlogInterface } from "interfaces/blog";
-import { BlogCategory } from "interfaces/blogCategory";
+
+import { GlobalPartnerInterface } from "interfaces/globalPartner";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "utils";
 
 type Props = {
-  initialValues: SingleBlogInterface;
+  initialValues: GlobalPartnerInterface;
   isUpdate: boolean;
   slug: string;
   id?: string;
-  categoryData: BlogCategory[];
 };
 
-const BlogForm = ({
-  initialValues,
-  isUpdate,
-  slug,
-  categoryData,
-  id,
-}: Props) => {
+const GlobalPartnerForm = ({ initialValues, isUpdate, id }: Props) => {
+  console.log(`/configurations/global-partner/update-coverImage/${id}`);
   const router = useRouter();
   const { mutate, isLoading } = useCreateOrUpdate({
-    url: isUpdate ? `/configurations/blog/${id}` : "/configurations/blog",
+    url: isUpdate
+      ? `/configurations/global-partner/${id}`
+      : "/configurations/global-partner",
     method: isUpdate ? "put" : "post",
   });
 
@@ -46,8 +36,11 @@ const BlogForm = ({
   ) => {
     if (typeof file !== "string") {
       const formData = new FormData();
-      formData.append("blog_image", file);
-      await API.put(`/configurations/blog/blog-image/${slug}`, formData);
+      formData.append("coverImage", file);
+      await API.put(
+        `/configurations/global-partner/update-cover-image/${slug}`,
+        formData
+      );
     }
     onSuccess();
   };
@@ -58,14 +51,17 @@ const BlogForm = ({
         mutate(
           {
             ...values,
-            blog_category_id: (values?.blog_category_id as any)?.id,
           },
           {
             onSuccess(resp) {
-              handleFileUpload(values.blog_image, resp.data.data.id, () => {
+              handleFileUpload(values.coverImage, resp.data.data.id, () => {
                 resetForm();
-                toast(`Blog ${isUpdate ? "Updated" : "Created"} Successfully`);
-                router.push("/admin/blog");
+                toast(
+                  `Global Partner ${
+                    isUpdate ? "Updated" : "Created"
+                  } Successfully`
+                );
+                router.push("/admin/global-partner");
               });
             },
           }
@@ -78,17 +74,26 @@ const BlogForm = ({
             <Grid xs={12} item>
               <Box>
                 <Label text="Upload your image" />
-                <DropZone name="blog_image" />
+                <DropZone name="coverImage" />
+              </Box>
+              <Box className="mt-4">
+                <Label text="Name" />
+                <Input name="name" />
               </Box>
               <Box className="mt-4">
                 <Label text="Slug" />
                 <Input name="slug" />
               </Box>
-              <Box className="mt-4">
-                <Label text="Title" />
-                <Input name="title" />
+              <Box className="mt-4 mb-14">
+                <Label text="Vision" />
+                <TextEditor
+                  name="vision"
+                  label="Vision"
+                  setFieldValue={setFieldValue}
+                  value={values?.vision}
+                />
               </Box>
-              <Box className="mt-4 mb-12">
+              <Box className="mt-4 mb-14">
                 <Label text="Description" />
                 <TextEditor
                   name="description"
@@ -97,24 +102,34 @@ const BlogForm = ({
                   value={values?.description}
                 />
               </Box>
-
-              <Box className="mt-4">
-                <Label text="Is Featured" />
-                <Checkbox
-                  name="is_featured"
-                  checked={values.is_featured}
-                  onChange={(event: any) => {
-                    setFieldValue("is_featured", event.target.checked);
-                  }}
+              <Box className="mt-4  mb-14">
+                <Label text="Objective" />
+                <TextEditor
+                  name="objective"
+                  label="Objective"
+                  setFieldValue={setFieldValue}
+                  value={values?.objective}
                 />
               </Box>
               <Box className="mt-4">
-                <AutoComplete
-                  name="blog_category_id"
-                  options={categoryData || []}
-                  getOptionLabel={(value: any) => value.name}
-                  label="Category"
-                ></AutoComplete>
+                <Label text="Popular Course" />
+                <Input name="popular_course" />
+              </Box>
+              <Box className="mt-4">
+                <Label text="Address" />
+                <Input name="address" />
+              </Box>
+              <Box className="mt-4">
+                <Label text="Phone Number" />
+                <Input name="phone" />
+              </Box>
+              <Box className="mt-4">
+                <Label text="Website" />
+                <Input name="website" />
+              </Box>
+              <Box className="mt-4">
+                <Label text="Email" />
+                <Input name="email" />
               </Box>
             </Grid>
             <Grid xs={12} item>
@@ -124,7 +139,7 @@ const BlogForm = ({
                   className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
                   variant="contained"
                   disabled={isLoading}
-                  href="/admin/blog"
+                  href="/admin/global-partner"
                 >
                   Discard
                 </Button>
@@ -145,4 +160,4 @@ const BlogForm = ({
   );
 };
 
-export default BlogForm;
+export default GlobalPartnerForm;

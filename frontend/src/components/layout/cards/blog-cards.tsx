@@ -1,30 +1,28 @@
+import { dataTagSymbol } from "@tanstack/react-query";
 import { SingleBlogInterface } from "interfaces/blog";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import removeTags from "utils/removeTags";
 
-
-
 export interface BlogCardProps {
   specialization: SingleBlogInterface;
-  size?: "l" | "s" ;
-  extraClasses ?: string
-  variant : "primary" | "secondary"
+  size?: "l" | "s";
+  extraClasses?: string;
+  variant: "primary" | "secondary";
 }
 
 const sizes = {
-  l: {containerWidth:"w-[70%]",imageHeight: 350,fontSize:"text-3xl" },
-  s: {containerWidth:"w-[30%]",imageHeight: 130,fontSize:"text-sm" },
+  l: { containerWidth: "w-[70%]", imageHeight: 350, fontSize: "text-3xl" },
+  s: { containerWidth: "w-[30%]", imageHeight: 130, fontSize: "text-sm" },
 };
 
 export function BlogCard({
   specialization,
   size = "s",
   extraClasses,
-  variant
+  variant,
 }: BlogCardProps) {
-
   if (variant === "primary") {
     return (
       <div className={`w-full shadow-2xl ${extraClasses}`}>
@@ -36,7 +34,14 @@ export function BlogCard({
           className="w-full bg-cover bg-center object-center"
         />
         <div className="px-4 pb-4">
-        <Link href= {`/blogs/${specialization.slug}`}> <h2 className={`font-bold text-xl line-clamp-3 text-black py-2 m-auto ${sizes[size].fontSize}`}>{specialization.title}</h2></Link>
+          <Link href={`/blogs/${specialization.slug}`}>
+            {" "}
+            <h2
+              className={`font-bold text-xl line-clamp-3 text-black py-2 m-auto ${sizes[size].fontSize}`}
+            >
+              {specialization.title}
+            </h2>
+          </Link>
         </div>
       </div>
     );
@@ -51,9 +56,18 @@ export function BlogCard({
           className="w-full mb-4 rounded-t-md object-center object-cover"
         />
         <div className="px-4">
-          <p className="text-gray-500 !mb-1 m-0">{moment(specialization.createdAt).format("MMMM DD, YYYY")}</p>
-          <Link href={`/blogs/${specialization.slug}`}><h2 className="mb-4 text-black font-bold mt-0 line-clamp-3">{specialization.title}</h2></Link>
-          <p className="mb-8 line-clamp-4">{ removeTags(specialization.description)}</p>
+          <p className="text-gray-500 !mb-1 m-0">
+            {moment(specialization.createdAt).format("MMMM DD, YYYY")}
+          </p>
+          <Link href={`/blogs/${specialization.slug}`}>
+            <h2 className="mb-4 text-black font-bold mt-0 line-clamp-3">
+              {specialization.title}
+            </h2>
+          </Link>
+          <div
+            className="mb-8 line-clamp-4"
+            dangerouslySetInnerHTML={{ __html: specialization.description }}
+          ></div>
         </div>
       </div>
     );

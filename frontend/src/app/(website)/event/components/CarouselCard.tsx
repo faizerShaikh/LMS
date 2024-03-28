@@ -13,7 +13,7 @@ export default function CarouselCard({ data }: any) {
               height={150}
               width={200}
               alt="test"
-              className="shadow-2xl !w-auto my-10 "
+              className="shadow-2xl !w-auto my-10 object-none"
             />
           );
         })}

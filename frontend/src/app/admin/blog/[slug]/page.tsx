@@ -21,22 +21,25 @@ const SingleBlog = async ({ params: { slug } }: Props) => {
 
   const categoryData = await getBlogCategories();
 
-  let data :BlogDetailsInterface|null= null;
+  let data: BlogDetailsInterface | null = null;
   if (isUpdate) {
     data = await getSingleBlog(slug);
-    
-    if(data){
-      initialValues = {...initialValues,...data.blog}
+
+    if (data) {
+      initialValues = { ...initialValues, ...data.blog };
     }
-
-    
   }
-
 
   return (
     <>
       <PageHeader title={"Add Blog"}></PageHeader>
-      <BlogForm categoryData={categoryData.rows} initialValues={initialValues} slug={slug} isUpdate={isUpdate}/>
+      <BlogForm
+        categoryData={categoryData.rows}
+        initialValues={initialValues}
+        slug={slug}
+        isUpdate={isUpdate}
+        id={data?.blog.id}
+      />
     </>
   );
 };
