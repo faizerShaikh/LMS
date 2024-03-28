@@ -41,6 +41,7 @@ export class PageContentService extends GenericService<
     const updatedpagecontent = await super.update(data, pagecontent.id);
     return updatedpagecontent;
   }
+
   async updatePageImage(file: Express.Multer.File, id: string) {
     const page = await this.getOne<PageContent>(id);
     const filepath = join(
@@ -68,7 +69,7 @@ export class PageContentService extends GenericService<
         return 'Cover Image Uploaded Successfully';
       } else {
         await page.update({
-          coverImage: 'media/pageContent/' + file.filename,
+          coverImage: '/media/pageContent/' + file.filename,
         });
         return 'Cover Image Uploaded Successfully';
       }

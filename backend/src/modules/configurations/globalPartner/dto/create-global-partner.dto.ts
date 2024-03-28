@@ -5,14 +5,6 @@ export class GlobalPartnerDTO {
   @IsString()
   name: string;
 
-  @IsOptional()
-  @IsString()
-  coverImage: string;
-
-  @IsOptional()
-  @IsString()
-  backgroundImage: string;
-
   @IsNotEmpty()
   @IsString()
   description: string;
@@ -26,10 +18,26 @@ export class GlobalPartnerDTO {
   objective: string;
 
   @IsNotEmpty()
-  @IsBoolean()
-  popular_course: boolean;
+  @IsString()
+  popular_course: string;
 
   @IsString()
   @IsNotEmpty()
   slug: string;
+
+  @IsString()
+  @IsNotEmpty()
+  address: string;
+
+  @IsString()
+  @IsNotEmpty()
+  phone: string;
+
+  @IsString()
+  @IsNotEmpty()
+  website: string;
+
+  @IsNotEmpty()
+  @IsString()
+  email: string;
 }

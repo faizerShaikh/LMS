@@ -4,15 +4,14 @@ import { GenericService, RequestParamsService } from 'src/core/modules';
 import { GlobalPartner } from './global-partner.model';
 import { join } from 'path';
 import { unlink } from 'fs';
-import { Contacts } from '../cotacDetails/contact.model';
 import { MetaData } from '../MetaData/meta.model';
 
 @Injectable()
 export class GlobalPartnerService extends GenericService({
   defaultFindOptions: {
-    include: [MetaData, Contacts],
+    include: [MetaData],
   },
-  includes: [MetaData, Contacts],
+  includes: [MetaData],
 }) {
   constructor(
     @InjectModel(GlobalPartner) private globalPartner: typeof GlobalPartner,
@@ -23,20 +22,16 @@ export class GlobalPartnerService extends GenericService({
     super(globalPartner, reqParams);
   }
 
-  async UpdateImages(
-    file: Express.Multer.File,
-    id: string,
-    feild: 'coverImage' | 'backgroundImage',
-  ) {
+  async UpdateImages(file: Express.Multer.File, id: string) {
     const Partner = await this.getOne<GlobalPartner>(id);
-    const existingImage = Partner[feild];
+    const existingImage = Partner['coverImage'];
 
     if (existingImage) {
       unlink(
         join(__dirname, '../../../../', '/src/public/' + existingImage),
         (err) => {
           if (err) {
-            throw new InternalServerErrorException(err);
+            console.log(err);
           }
           console.log('file deleted.... ');
         },
@@ -44,7 +39,7 @@ export class GlobalPartnerService extends GenericService({
     }
 
     await Partner.update({
-      existingImage: '/media/global-partner' + file.filename,
+      coverImage: '/media/global-partner/' + file.filename,
     });
     return 'Image uploaded Successfully';
   }

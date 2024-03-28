@@ -152,6 +152,7 @@ export class BlogService extends GenericService<
         throw new Error('Category not found');
       }
     }
+    console.log(category, slug);
 
     let totalBlogs: number;
     if (!slug) {

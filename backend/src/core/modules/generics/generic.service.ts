@@ -61,8 +61,11 @@ export function GenericService<
       orderBy: OrderItem[] = [],
     ): Promise<Model[]> {
       let where = {
-        ...defaultOptions.defaultFindOptions.where,
-        ...findOptions.where,
+        ...(defaultOptions.defaultFindOptions &&
+        defaultOptions.defaultFindOptions
+          ? defaultOptions.defaultFindOptions.where
+          : {}),
+        ...(findOptions && findOptions.where ? findOptions.where : {}),
       };
 
       if (this.reqParam.query) {

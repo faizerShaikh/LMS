@@ -1,5 +1,4 @@
-import { Column, DataType, Default, HasOne, Table } from 'sequelize-typescript';
-import { Contacts } from '../cotacDetails/contact.model';
+import { Column, DataType, Default, Table } from 'sequelize-typescript';
 import { MyBaseModel } from 'src/core/base.model';
 import { MetaDataType } from '../MetaData/dto/type.enum';
 
@@ -17,9 +16,6 @@ export class GlobalPartner extends MyBaseModel {
   @Column
   coverImage: string;
 
-  @Column
-  backgroundImage: string;
-
   @Column(DataType.TEXT)
   description: string;
 
@@ -30,8 +26,17 @@ export class GlobalPartner extends MyBaseModel {
   objective: string;
 
   @Column
-  popular_course: boolean;
+  popular_course: string;
 
-  @HasOne(() => Contacts)
-  contacts: Contacts;
+  @Column
+  address: string;
+
+  @Column
+  phone: string;
+
+  @Column
+  website: string;
+
+  @Column
+  email: string;
 }

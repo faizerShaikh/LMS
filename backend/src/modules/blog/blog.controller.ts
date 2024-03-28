@@ -49,12 +49,12 @@ export class BlogController extends GenericController<
   }
   @Get('/not-featured')
   async getNotFeaturedBlogs(
-    @Query('slug') slug: string,
+    @Query('category') category: string,
     @Query('limit') limit: string,
     @Query('page') page: string,
   ) {
     const { blogs, hasMore } = await this.blogService.notFeaturedBlogs(
-      slug,
+      category,
       limit,
       page,
     );
