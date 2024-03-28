@@ -3,13 +3,12 @@ import axios from "axios";
 import Link from "next/link";
 import { CoursesCard } from "components/layout/cards/CourseCard";
 
- async function courses() {
+async function courses() {
   let CoursesCatagoriData = [];
   const CatagorieResponse = await axios.get(
     `${process.env.BASE_API_URL}/configurations/course/`
   );
   CoursesCatagoriData = CatagorieResponse.data.data.rows;
-console.log(CoursesCatagoriData, "<==========CoursesCatagoriDataCoursesCatagoriDataCoursesCatagoriDataCoursesCatagoriData")
   let CoursesCardData: any = [];
   const response = await axios.get(
     `${process.env.BASE_API_URL}/configurations/course-specialization`
@@ -30,7 +29,9 @@ console.log(CoursesCatagoriData, "<==========CoursesCatagoriDataCoursesCatagoriD
             />
           </div>
           <div className="w-2/4 px-8 ">
-            <h2 className="ffont-extrabold text-5xl leading-[56px]  mb-4">Popular IT Courses</h2>
+            <h2 className="ffont-extrabold text-5xl leading-[56px]  mb-4">
+              Popular IT Courses
+            </h2>
             <p className="font-medium text-xl mb-4">
               Explore a world of possibilities in the digital realm with our IT
               courses designed to unlock global opportunities.
@@ -61,10 +62,9 @@ console.log(CoursesCatagoriData, "<==========CoursesCatagoriDataCoursesCatagoriD
           <div className="flex">
             <div className="w-3/4 flex flex-wrap">
               {CoursesCardData.map((item: any) => {
-                console.log(CoursesCardData)
+                console.log(CoursesCardData);
                 return <CoursesCard specialization={item} />;
               })}
-              
             </div>
 
             <div className="w-1/4 shadow-2xl mb-4 rounded-md p-4 border-2">
@@ -76,7 +76,6 @@ console.log(CoursesCatagoriData, "<==========CoursesCatagoriDataCoursesCatagoriD
                 {CoursesCatagoriData.map((item: any) => (
                   <p key={item.slug}>{item.name}</p>
                 ))}
-                
               </ul>
             </div>
           </div>
@@ -141,7 +140,9 @@ console.log(CoursesCatagoriData, "<==========CoursesCatagoriDataCoursesCatagoriD
       <section className="py-16">
         <div className="text-center m-auto">
           <button className=" border-2 bg-white border-blue-900  px-4 text-lg rounded-3xl">
-            <Link href = "/webinar" className="text-blue-900">Webinar</Link>
+            <Link href="/event" className="text-blue-900">
+              Webinar
+            </Link>
           </button>
         </div>
       </section>

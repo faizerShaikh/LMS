@@ -113,9 +113,9 @@ export default async function SingleBlog({
           </div>
 
           <div className="mb-14">
-            <span
+            <div
               dangerouslySetInnerHTML={{ __html: data.blog.description }}
-            ></span>
+            ></div>
           </div>
         </div>
 

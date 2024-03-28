@@ -8,7 +8,7 @@ export default function MyRadioButtons({
   defaultSelected,
   handleChange = null,
 }: any) {
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext<any>();
 
   let _handleChange;
   if (!name) {

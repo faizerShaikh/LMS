@@ -3,13 +3,12 @@ import Image from "next/image";
 import axios from "axios";
 import {
   SpeakersInterface,
-  WebinarInterface,
   WebinarResponseInterface,
 } from "interfaces/webinar";
 import { WebinarForm } from "../_components/webinarForm";
 
 async function SingleWebinarPage({ params }: { params: { slug: string } }) {
-  let data = [];
+  let data: WebinarResponseInterface;
   let url = `${process.env.BASE_API_URL}/configurations/webinar/slug/${params.slug}`;
   const response = await axios.get(url);
   data = response.data.data;
@@ -23,7 +22,7 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
               <div className=" w-[60%] ">
                 <div className="">
                   <Image
-                    src={`${process.env.BASE_MEDIA_URL}/${data.event.eventImage}`}
+                    src={`${process.env.BASE_MEDIA_URL}/${data.event?.eventImage}`}
                     alt="test"
                     width={1000}
                     height={200}
@@ -64,22 +63,22 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
         <section className="bg-gray-100">
           <div className="container m-auto">
             <div className="w-[60%] py-10">
-              <p
-                dangerouslySetInnerHTML={{ __html: data.agenda }}
+              <div
+                dangerouslySetInnerHTML={{ __html: data.agenda || "" }}
                 className="font-medium break-words"
-              ></p>
+              ></div>
             </div>
           </div>
         </section>
         <section>
           <div className="container m-auto">
             <div className="w-[60%] py-10">
-              <p
+              <div
                 dangerouslySetInnerHTML={{
-                  __html: data.event?.description,
+                  __html: data.event.description || "",
                 }}
                 className="font-medium break-words"
-              ></p>
+              ></div>
             </div>
           </div>
         </section>

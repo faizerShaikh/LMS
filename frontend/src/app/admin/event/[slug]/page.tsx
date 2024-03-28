@@ -51,7 +51,7 @@ const SingleEvent = async ({ params: { slug } }: Props) => {
       <EventContentForm
         initialValues={initialValues}
         slug={slug}
-        data={data}
+        data={data || initialValues}
         isUpdate={isUpdate}
         apiEndPoint={apiEndPoint}
         apiEndPointImage={apiEndPointImage}

@@ -1,21 +1,21 @@
 import { Flag } from "@carbon/icons-react";
 import { HeroSection } from "components/layout/hero-section";
+import { getGlobalPartners } from "lib";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ContactUs() {
+export default async function ContactUs() {
+  let data = await getGlobalPartners();
+  console.log(data, "<<<<<<<<<<<<<<<<<<<");
   return (
     <>
+      <HeroSection
+        HeroImage="/img2/Contact-Us-Page.jpg"
+        Herotitle="Contact RiseBack"
+        description="RiseBack.org stands as the world's premier affordable EdTech platform, pioneering accessible online university degree programs encompassing both undergraduate ,graduate studies and, specialized IT courses are available for as low as $250, ensuring quality education is with in reach for aspiring learners around the world."
+        viewButton={false}
+      ></HeroSection>
 
-    <HeroSection 
-    HeroImage= "/img2/Contact-Us-Page.jpg"
-    Herotitle= "Contact RiseBack"
-    description= "RiseBack.org stands as the world's premier affordable EdTech platform, pioneering accessible online university degree programs encompassing both undergraduate ,graduate studies and, specialized IT courses are available for as low as $250, ensuring quality education is with in reach for aspiring learners around the world."
-    viewButton={false}
-    >
-
-    </HeroSection>
-      
       <section className=" text-center bg-slate-100">
         <div className="py-12 container m-auto">
           <h2 className="font-semibold text-4xl m-0 pb-12">Enquiries</h2>
@@ -154,75 +154,77 @@ export default function ContactUs() {
           <h2 className=" text-4xl m-0 py-16 font-semibold">Global Offices</h2>
           <div className="flex flex-wrap justify-between">
             <div>
-            <Link href={"./ethopia-event"}>
-              <Image
-                alt="hehje"
-                width={200}
-                height={200}
-                src="/img2/USA.jpg"
-                className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
-              />
-              <p className="text-black font-bold mt-2 text-lg">USA</p>
-              </Link>
-            </div>
-            <div>
-            <Link href={"./ethopia-event"}>
-              <Image
-                alt="hehje"
-                width={200}
-                height={200}
-                src="/img2/Indonesia.jpg"
-                className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
-              />
-              <p className="text-black font-bold mt-2 text-lg">Indonesia</p>
-              </Link>
-            </div>
-            <div>
-            <Link href={"./ethopia-event"}>
-              <Image
-                alt="hehje"
-                width={200}
-                height={200}
-                src="/img2/Nigeria.jpg"
-                className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
-              />
-              <p className="font-bold mt-2 text-lg text-black">Nigeria</p>
+              <Link href={"./ethopia-event"}>
+                <Image
+                  alt="hehje"
+                  width={200}
+                  height={200}
+                  src="/img2/USA.jpg"
+                  className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
+                />
+                <p className="text-black font-bold mt-2 text-lg">USA</p>
               </Link>
             </div>
             <div>
               <Link href={"./ethopia-event"}>
-              <Image
-                alt="hehje"
-                width={400}
-                height={400}
-                src="/img2/Ethiopia.jpg"
-                className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer "
-              />
-              <p className="font-bold mt-2 text-lg text-black">Ethopia</p>
+                <Image
+                  alt="hehje"
+                  width={200}
+                  height={200}
+                  src="/img2/Indonesia.jpg"
+                  className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
+                />
+                <p className="text-black font-bold mt-2 text-lg">Indonesia</p>
               </Link>
             </div>
             <div>
-            <Link href={"./ethopia-event"}>
-              <Image
-                alt="hehje"
-                width={300}
-                height={300}
-                src="/img2/Egypt.jpg"
-                className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
-              />
-              <p className="text-black font-bold mt-2 text-lg ">Egypt</p>
+              <Link href={"./ethopia-event"}>
+                <Image
+                  alt="hehje"
+                  width={200}
+                  height={200}
+                  src="/img2/Nigeria.jpg"
+                  className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
+                />
+                <p className="font-bold mt-2 text-lg text-black">Nigeria</p>
               </Link>
             </div>
             <div>
-            <Link href={"./ethopia-event"}>
-              <Image
-                alt="hehje"
-                width={200}
-                height={200}
-                src="/img2/Philippines.jpg"
-                className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
-              />
-              <p className="text-black font-bold mt-2 text-lg ">Philippines</p>
+              <Link href={"./ethopia-event"}>
+                <Image
+                  alt="hehje"
+                  width={400}
+                  height={400}
+                  src="/img2/Ethiopia.jpg"
+                  className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer "
+                />
+                <p className="font-bold mt-2 text-lg text-black">Ethopia</p>
+              </Link>
+            </div>
+            <div>
+              <Link href={"./ethopia-event"}>
+                <Image
+                  alt="hehje"
+                  width={300}
+                  height={300}
+                  src="/img2/Egypt.jpg"
+                  className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
+                />
+                <p className="text-black font-bold mt-2 text-lg ">Egypt</p>
+              </Link>
+            </div>
+            <div>
+              <Link href={"./ethopia-event"}>
+                <Image
+                  alt="hehje"
+                  width={200}
+                  height={200}
+                  src="/img2/Philippines.jpg"
+                  className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
+                />
+                <p className="text-black font-bold mt-2 text-lg ">
+                  Philippines
+                </p>
               </Link>
             </div>
           </div>

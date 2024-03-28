@@ -70,20 +70,20 @@ async function webinar() {
             <section className="bg-gray-100">
               <div className="container ">
                 <div className="w-[60%] py-10">
-                  <span
-                    dangerouslySetInnerHTML={{ __html: data.agenda }}
+                  <div
+                    dangerouslySetInnerHTML={{ __html: data.agenda || "" }}
                     className="font-medium"
-                  ></span>
+                  ></div>
                 </div>
               </div>
             </section>
             <section>
               <div className="container ">
                 <div className="w-[60%] py-10">
-                  <span
-                    dangerouslySetInnerHTML={{ __html: data.description }}
+                  <div
+                    dangerouslySetInnerHTML={{ __html: data.description || "" }}
                     className="font-medium"
-                  ></span>
+                  ></div>
                 </div>
               </div>
             </section>

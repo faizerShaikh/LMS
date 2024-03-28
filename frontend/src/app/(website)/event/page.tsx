@@ -23,6 +23,12 @@ export default async function EventsPage({
   events = res.data.data;
   const EventsButtons = [
     {
+      text: "All Events",
+      url: "/event",
+      key: "all",
+      query: {},
+    },
+    {
       text: "Upcoming Events",
       url: "/event",
       key: "upcoming",
