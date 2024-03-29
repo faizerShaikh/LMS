@@ -24,4 +24,12 @@ export class EventRegistrationController extends GenericController<
   getByEvent(@Param('eventId') eventId: string) {
     return this.eventregistrationService.getByEvent(eventId);
   }
+
+  @Get('/export/:eventId')
+  async exportToExcel(@Param('eventId') eventId: string) {
+    const registrations = await this.eventregistrationService.getByEvent(eventId);
+    const filename = `registrations_${eventId}`;
+    const filePath = await this.eventregistrationService.exportToExcel(registrations, filename);
+    return { filePath };
+  }
 }
