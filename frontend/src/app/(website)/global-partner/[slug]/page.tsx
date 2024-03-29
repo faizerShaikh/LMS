@@ -1,23 +1,25 @@
 import { HeroSection } from "components/layout/hero-section";
+import { getSingleGlobalPartner } from "lib";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-export default function Blogs() {
+export default async function GlobalPartner({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
+  const data = await getSingleGlobalPartner(slug);
+
+  if (!data) return redirect("/404");
+
   return (
     <>
-      <HeroSection 
-      HeroImage="/img2/Ethopia-Flag.jpg"
-      Herotitle= "Ethopia"
-      description="Tadias Training Center proudly partners with RiseBack Edutech to
-      introduce RiseBack Ethiopia. With a focus on advancing
-      affordable IT education, the center aims to fuel
-      technopreneurship and entrepreneurship, fostering new startups
-      and job opportunities for Ethiopia's youth. <br />
-      This initiative not only stimulates economic activity but also
-      broadens existing economic horizons in alignment with the
-      country's aspirations"
-      viewButton = {false}
+      <HeroSection
+        HeroImage={process.env.BASE_MEDIA_URL + data.coverImage}
+        Herotitle={data.name}
+        description={`${data?.description}`}
+        viewButton={false}
       ></HeroSection>
-      
       <section className="container m-auto my-16">
         <h2 className="text-center text-3xl mb-12 font-medium">
           Contact Details
@@ -32,9 +34,7 @@ export default function Blogs() {
               className="rounded-full bg-blue-900 fill-white"
             />
             <h2>Address</h2>
-            <p className="font-medium">
-              Bole Atlast, TK Building, 7th Floor, Addis Ababa Ethiopia
-            </p>
+            <p className="font-medium">{data.address}</p>
           </div>
           <div className="w-1/4  rounded-md py-8 px-12  shadow-xl  grow-1">
             <Image
@@ -45,8 +45,7 @@ export default function Blogs() {
               className="rounded-full bg-blue-900"
             />
             <h2>Phone</h2>
-            <p className="font-medium">+2519 1142 8980</p>
-            <p className="font-medium">+2519 1987 9517</p>
+            <p className="font-medium">{data.phone}</p>
           </div>
           <div className="w-1/4  rounded-md py-8 px-12 shadow-xl grow-1">
             <Image
@@ -57,7 +56,7 @@ export default function Blogs() {
               className="rounded-full bg-blue-900"
             />
             <h2>Website</h2>
-            <p className="font-medium">www.risebackj.org/ethiopia</p>
+            <p className="font-medium">{data.website}</p>
           </div>
           <div className="w-1/4  rounded-md py-8 px-12 shadow-xl  grow-1">
             <Image
@@ -68,7 +67,7 @@ export default function Blogs() {
               className="rounded-full bg-blue-900"
             />
             <h2>Email</h2>
-            <p className="font-medium">zebib@riseback.org</p>
+            <p className="font-medium">{data.email}</p>
           </div>
         </div>
       </section>
@@ -131,24 +130,10 @@ export default function Blogs() {
           </button>
         </div>
       </section>
-      <section className="container m-auto text-center mb-20">
-        <h2 className="text-2xl">Rise N Start Ignite</h2>
-        <p className="font-medium text-xl mb-8">
-          Rise N Start Ignite, Ethiopia's pioneering Startup Pitch Competition
-          for students. This competition, hosted by RiseBack.org, is set to
-          shape Ethiopia's youth into tech trailblazers and emerging startup
-          leaders, in alignment with the Ethiopian government's vision of
-          fostering innovation-driven economic growth. Participants are
-          encouraged to tackle challenges in sustainable development, Health
-          Tech, Agritech, EV, and Al, inspiring them to craft inventive
-          solutions.
-        </p>
-        <p>
-          <a href="#" className="text-xl">
-            Click here to know more about Rise N Start Ignite and registration.
-          </a>
-        </p>
-      </section>
+      <section
+        className="container m-auto text-center mb-20"
+        dangerouslySetInnerHTML={{ __html: data.vision }}
+      ></section>
     </>
   );
 }

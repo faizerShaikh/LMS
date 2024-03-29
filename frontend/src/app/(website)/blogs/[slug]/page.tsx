@@ -23,7 +23,7 @@ export default async function SingleBlog({
   let url = `${process.env.BASE_API_URL}/configurations/blog/blog-detail/${params.slug}`;
   const response = await axios.get(url);
   data = response.data.data;
-  console.log(data.next, "<================================================");
+  console.log(url);
   return (
     <>
       <section className="m-auto">
@@ -113,9 +113,9 @@ export default async function SingleBlog({
           </div>
 
           <div className="mb-14">
-            <span
+            <div
               dangerouslySetInnerHTML={{ __html: data.blog.description }}
-            ></span>
+            ></div>
           </div>
         </div>
 

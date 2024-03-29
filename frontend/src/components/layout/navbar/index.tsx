@@ -1,13 +1,17 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import GlobalPartnerMenu from "./GlobalPartnerMenu";
 
 export const Navbar = () => {
-  const pathnameHave = usePathname()
+  const pathnameHave = usePathname();
 
-  const isActive = (pathname : any) => {
-    return pathnameHave === pathname ? "bg-white text-blue-900" : "text-white hover:text-blue-900 hover:bg-white "
-  }
+  const isActive = (pathname: any) => {
+    return pathnameHave === pathname
+      ? "bg-white text-blue-900"
+      : "text-white hover:text-blue-900 hover:bg-white ";
+  };
   return (
     <>
       <header className="bg-blue-900 h-12 flex justify-between items-center px-16">
@@ -21,7 +25,7 @@ export const Navbar = () => {
               className="size-7 "
             />
           </Link>
-          <Link href="https://twitter.com/?lang=en" >
+          <Link href="https://twitter.com/?lang=en">
             <Image
               alt="img"
               height={100}
@@ -71,7 +75,9 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-organization"
-                className = {` h-full flex items-center  px-4 ${isActive("/for-organization")}`}
+                className={` h-full flex items-center  px-4 ${isActive(
+                  "/for-organization"
+                )}`}
               >
                 For Organizations{" "}
               </Link>
@@ -79,7 +85,9 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-government"
-                className={` h-full flex items-center  px-4 ${isActive("/for-government")}`}
+                className={` h-full flex items-center  px-4 ${isActive(
+                  "/for-government"
+                )}`}
               >
                 For Government{" "}
               </Link>
@@ -87,7 +95,9 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-partnership"
-                className={` h-full flex items-center  px-4 ${isActive("/for-partnership")}`}
+                className={` h-full flex items-center  px-4 ${isActive(
+                  "/for-partnership"
+                )}`}
               >
                 For Partnership{" "}
               </Link>
@@ -95,7 +105,9 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-universities"
-                className={` h-full flex items-center  px-4 ${isActive("/for-universities")}`}
+                className={` h-full flex items-center  px-4 ${isActive(
+                  "/for-universities"
+                )}`}
               >
                 For Universities{" "}
               </Link>
@@ -103,7 +115,9 @@ export const Navbar = () => {
             <li className="h-full">
               <Link
                 href="/for-placement"
-                className={` h-full flex items-center  px-4 ${isActive("/for-placement")}`}
+                className={` h-full flex items-center  px-4 ${isActive(
+                  "/for-placement"
+                )}`}
               >
                 For Placements{" "}
               </Link>
@@ -120,7 +134,7 @@ export const Navbar = () => {
             src="/img2/Riseback logo.png"
           />
         </div>
-        <div >
+        <div>
           <ul className="flex space-x-7 text-blue-900 list-none items-center">
             <li>
               <Link
@@ -139,19 +153,31 @@ export const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link
+              {/* <Link
                 href="/global-partner"
                 className=" text-blue-900 uppercase font-semibold"
               >
-                Global Partner <i className="fa-solid fa-chevron-down"></i>
-              </Link>
+                Global Partner
+              </Link> */}
+              {/* <DropDown buttonText="Global Partner">
+                <MenuItem>
+                  {" "}
+                  <Link
+                    href="/global-partner"
+                    className=" text-blue-900 uppercase font-semibold w-full"
+                  >
+                    Global Partner
+                  </Link>
+                </MenuItem>
+              </DropDown> */}
+              <GlobalPartnerMenu />
             </li>
             <li>
               <Link
                 href="/event"
                 className=" text-blue-900 uppercase font-semibold"
               >
-                Events <i className="fa-solid fa-chevron-down"></i>
+                Events
               </Link>
             </li>
             <li>

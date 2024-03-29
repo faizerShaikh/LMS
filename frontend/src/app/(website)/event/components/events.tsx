@@ -1,35 +1,61 @@
-'use client'
+"use client";
 import { ButtonGroup } from "components/layout";
-import { useRouter } from "next/navigation";
-import React from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useCallback } from "react";
 
 type Button = {
   text: string;
   url: string;
   key: string;
+  query: any;
 };
 
 type Props = {
   buttons: Button[];
+  defaultValue?: string;
 };
 
-export const Events = ({ buttons }: Props) => {
+export const Events = ({ buttons, defaultValue }: Props) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const handleClick = (url: string) => {
-    router.push(url);
-  };
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (value) {
+        params.set(name, value);
+      } else {
+        params.delete(name);
+      }
 
-  const handleButtonClick = (url: string) => {
-    handleClick(url);
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+  const handleClick = (url: string, query: any = {}) => {
+    if (router) {
+      console.log(
+        `${url}?${Object.keys(query)
+          .map((key) => createQueryString(key, query[key]))
+          .join("&")}`
+      );
+
+      router.push(
+        `${url}?${Object.keys(query)
+          .map((key) => createQueryString(key, query[key]))
+          .join("&")}`
+      );
+    }
   };
 
   return (
     <ButtonGroup
-      buttons={buttons.map(({ text, url, key }) => ({
+      defaultValue={defaultValue}
+      buttons={buttons.map(({ text, url, key, query }) => ({
         text,
-        clickHandler: () => handleButtonClick(url),
-        key, 
+        clickHandler: () => handleClick(url, query),
+        key,
       }))}
     />
   );

@@ -3,13 +3,12 @@ import { IsString, IsEmpty, IsObject, IsNotEmpty, IsOptional, IsNumber } from 'c
 import { PageContent } from '../../PageContent/pageContent.model';
 
 export class GalleryDto {
+  coverImage: string;
 
-    coverImage: string;
-
-    @IsOptional()
-    @IsNumber()
-    orderBy:number
-
+  @IsOptional()
+  @IsNumber()
+  orderBy: number;
+  
     @IsString()
     @IsNotEmpty()
     name: string;

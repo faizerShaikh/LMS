@@ -63,7 +63,7 @@ export default async function Media() {
                     href={PressRealeseCard.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-bold text-black text-lg m-0  "
+                    className="font-bold text-black text-lg m-0  line-clamp-3"
                   >
                     {PressRealeseCard.title}
                   </Link>

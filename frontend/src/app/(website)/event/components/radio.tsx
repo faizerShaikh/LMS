@@ -1,29 +1,36 @@
-'use client'
-import React from 'react';
-import { RadioGroup, FormControlLabel, Radio } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import React from "react";
+import { useFormikContext } from "formik";
+import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
 
-export default function MyRadioButtons({ options, defaultSelected } : any) {
-  const [selectedValue, setSelectedValue] = React.useState(defaultSelected);
+export default function MyRadioButtons({
+  name,
+  options,
+  defaultSelected,
+  handleChange = null,
+}: any) {
+  const { setFieldValue, values } = useFormikContext<any>();
 
-  const handleChange = (event :any) => {
-    setSelectedValue(event.target.value);
-  };
-  // const router = useRouter();
-  // const handleClick = (values : string) => {
-  //     router.push(`/event?key=${values}`)
-  // }
+  let _handleChange;
+  if (!name) {
+    _handleChange = (event: any) => {
+      handleChange(event.target.value);
+    };
+  } else {
+    _handleChange = (event: any) => {
+      setFieldValue(name, event.target.value);
+      handleChange && handleChange(event.target.value);
+    };
+  }
 
   return (
     <RadioGroup
-      aria-label="options"
-      name="options"
-      value={selectedValue}
-      onChange={handleChange}
+      aria-label={name}
+      name={name}
+      value={name ? values[name] : defaultSelected}
+      onChange={_handleChange}
     >
-      {options.map((option : any) => (
+      {options.map((option: any) => (
         <FormControlLabel
-        // onClick={() => handleClick(option.value)}
           key={option.value}
           value={option.value}
           control={<Radio />}

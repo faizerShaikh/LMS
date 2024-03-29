@@ -2,6 +2,7 @@ import axios from "axios";
 import { FAQ } from "components/layout/faq/faq";
 import moment from "moment";
 import Image from "next/image";
+import removeTags from "utils/removeTags";
 
 export const revalidate = 60;
 export default async function Home() {
@@ -12,21 +13,12 @@ export default async function Home() {
   FAQData = response.data.data.rows;
   console.log(FAQData);
 
-  // let FAQData = [];
-  // const response = await axios.get(
-  //   `${process.env.BASE_API_URL}/configurations/faq-topics`
-  // );
-  // FAQData = response.data.data.rows;
-  // const middleIndex = Math.ceil(FAQData.faqTopic.length / 2);
-  // const firstHalf = FAQData.faqTopic.slice(0, middleIndex);
-  // const secondHalf = FAQData.faqTopic.slice(middleIndex);
-
   let events = [];
   const res = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/event`
+    `${process.env.BASE_API_URL}/configurations/event/listing`
   );
-  events = res.data.data;
-
+  events = res.data.data || [];
+  console.log(events, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
   return (
     <>
       <section className=" bg-gray-100 h-[400px] ">
@@ -94,7 +86,7 @@ export default async function Home() {
         </div>
 
         {events.slice(0, 3).map((event: any) => (
-          <div className="flex mb-8 ">
+          <div className="flex mb-8">
             <div className="w-1/4">
               <h2>
                 <span style={{ color: "#ffcc00", fontSize: "60px" }}>
@@ -113,7 +105,9 @@ export default async function Home() {
                 🕒{moment(event.startDayTime).format("h:mm A")} –{" "}
                 {moment(event.endDayTime).format("h:mm A")}
               </p>
-              <p>{event.description}</p>
+              <div className="line-clamp-2">
+                {removeTags(event.description)}
+              </div>
             </div>
             <div className="w-1/4 m-auto px-4">
               <Image

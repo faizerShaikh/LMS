@@ -25,7 +25,7 @@ export default async function Blogs({
 }) {
   let BlogCardData: any = [];
   let LoadMoreButtondata = false;
-  
+
   try {
     const queryParams: BlogSearchParams = {};
     if (category) queryParams.category = category;
@@ -38,6 +38,8 @@ export default async function Blogs({
         params: queryParams,
       }
     );
+    console.log(BlogCardresponse.data);
+
     BlogCardData = BlogCardresponse.data.data.blogs;
     LoadMoreButtondata = BlogCardresponse.data.data.hasMore;
   } catch (error) {
@@ -110,7 +112,7 @@ export default async function Blogs({
           </div>
         </div>
         {LoadMoreButtondata ? <LoadMoreButton /> : ""}
-      </section> 
+      </section>
     </>
   );
 }

@@ -2,10 +2,7 @@ import { Box, Divider, Grid, IconButton } from "@mui/material";
 import React from "react";
 import { Button, Input, Label, Dialog, DropZone } from "..";
 import { Formik, Form, FieldArray } from "formik";
-import {
-  GalleryFormProps,
-  GalleryInterface,
-} from "interfaces";
+import { GalleryFormProps, GalleryInterface } from "interfaces";
 import { Add, Delete, ImageReference, TrashCan } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
@@ -18,8 +15,7 @@ const validationSchema = Yup.object().shape({
       name: Yup.string().required("name is Required"),
       description: Yup.string().required("Description is Required"),
     })
-  )
-  
+  ),
 });
 
 export const GalleryForm = ({
@@ -27,19 +23,17 @@ export const GalleryForm = ({
   isUpdate,
   refetchURL,
   pageId,
-  
 }: GalleryFormProps) => {
-  
   const initialValues: { gallery: GalleryInterface[] } = {
     gallery: [
       {
-        id:"",
+        id: "",
         coverImage: "",
         name: "",
         description: "",
         orderBy: 1,
         pageId: pageId,
-        slug: ""
+        slug: "",
       },
     ],
   };
@@ -49,7 +43,6 @@ export const GalleryForm = ({
     method: "put",
     headers: { "Content-Type": "multipart/form-data" },
   });
-  console.log("pageId", pageId);
 
   return (
     <Dialog
@@ -62,11 +55,9 @@ export const GalleryForm = ({
     >
       {({ onClose }) => (
         <Formik
-        validationSchema={validationSchema}
-
+          validationSchema={validationSchema}
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
-            console.log("valuesvaluesvalues", values);
             const fields = [
               "coverImage",
               "name",
@@ -74,7 +65,7 @@ export const GalleryForm = ({
               "orderBy",
               "pageId",
               "slug",
-              "id"
+              "id",
             ];
             const fd = new FormData();
             for (let x = 0; x < values?.gallery.length; x++) {
@@ -123,7 +114,7 @@ export const GalleryForm = ({
                                 name={`gallery.${index}.description`}
                                 className="mb-4"
                               />
-                               
+
                               <div className="flex items-center gap-4">
                                 <Grid xs={6} item>
                                   <Label text="Image" />
