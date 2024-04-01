@@ -46,7 +46,10 @@ export default async function Media() {
         </div>
       </section>
       <section className=" py-16">
-        <h2 className="font-bold text-4xl text-center mb-8">Press Release</h2>
+        <h2 className="font-bold text-4xl text-center mb-8">
+          {" "}
+          Published Articles
+        </h2>
         <div className="flex flex-wrap container m-auto justify-around items-center gap-1">
           {PressRealeseCards.map((PressRealeseCard: any) => {
             return (

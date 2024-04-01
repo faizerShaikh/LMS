@@ -17,7 +17,7 @@ export async function getSingleGlobalPartner(
 
 export async function getGlobalPartners() {
   try {
-    const resp = await API.get("/configurations/global-partners");
+    const resp = await API.get("/configurations/global-partner");
     return resp?.data.data;
   } catch (error) {
     console.log(error);

@@ -2,7 +2,7 @@
 import React, { useCallback } from "react";
 import { Formik, Form, Field } from "formik";
 import MyRadioButtons from "./radio";
-import { AutoComplete } from "components/layout";
+// import { AutoComplete } from "components/layout";
 import { Button } from "@mui/material";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
@@ -70,6 +70,7 @@ const FilterForm = () => {
             />
           </div>
 
+          {/* 
           <div className="mb-8 pb-8 border-b-2 border-dashed border-black">
             <h2 className="text-xl font-semibold mb-4">Event Location</h2>
             <MyRadioButtons
@@ -89,7 +90,7 @@ const FilterForm = () => {
                 <AutoComplete {...field} options={ProgramOption} />
               )}
             </Field>
-          </div>
+          </div> */}
 
           <Button
             type="button"
