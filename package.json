@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@nestjs-modules/mailer": "^1.11.2",
+    "@nestjs/bull": "^10.1.1",
+    "bull": "^4.12.2",
+    "nodemailer": "^6.9.13"
+  }
+}
