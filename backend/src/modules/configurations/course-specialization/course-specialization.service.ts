@@ -15,6 +15,8 @@ import { University } from '../university/model';
 import { MetaData } from '../MetaData/meta.model';
 import * as fs from 'fs';
 import { AdmissionProcessCards } from './model/admissionProcess.model';
+import { ProgramHighlight } from './model/program-highlights.model';
+import { Associations } from './model/associations.model';
 @Injectable()
 export class CourseSpecializationService extends GenericService<
   CourseSpecialization,
@@ -33,6 +35,10 @@ export class CourseSpecializationService extends GenericService<
     private feesStructure: typeof FeesStructure,
     @InjectModel(ProgramStructure)
     private programStructure: typeof ProgramStructure,
+    @InjectModel(ProgramHighlight)
+    private programHighlight: typeof ProgramHighlight,
+    @InjectModel(Associations)
+    private associations: typeof Associations,
     @InjectModel(AdmissionProcessCards)
     private admissionProcess: typeof AdmissionProcessCards,
 
@@ -123,7 +129,7 @@ export class CourseSpecializationService extends GenericService<
     await this.admissionProcess.bulkCreate(
       dto.admissionProcess.map((item) => ({
         ...item,
-        courseSpecialization: courseSpecialization,
+        courseSpecialization: courseSpecialization.id,
       })),
     );
     await this.programStructure.bulkCreate(
@@ -131,6 +137,20 @@ export class CourseSpecializationService extends GenericService<
         ...item,
         course_specialization_id: courseSpecialization.id,
       })),
+    
     );
+    await this.programHighlight.bulkCreate(
+      dto.program_highlight.map((item) => ({
+        ...item,
+        course_specialization_id: courseSpecialization.id,
+      }))
+    )
+    await this.associations.bulkCreate(
+      dto.associations.map((item) => ({
+        ...item,
+        course_specialization_id: courseSpecialization.id,
+      }))
+    )
   }
+ 
 }

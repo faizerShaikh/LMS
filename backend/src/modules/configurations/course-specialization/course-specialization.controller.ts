@@ -1,6 +1,8 @@
 import {
+  Body,
   Controller,
   Param,
+  Post,
   Put,
   UploadedFile,
   UseInterceptors,
@@ -41,5 +43,22 @@ export class CourseSpecializationController extends GenericController<
     @Param('id') id: string,
   ) {
     return this.courseService.updateCourseSpecializationImage(file, id);
+  }
+
+  @Put('update-obj-image/:id')
+  @UseInterceptors(
+    MulterIntercepter({
+      type: MulterEnum.any,
+      fieldName:'image',
+      path: '/media/course-specialization/extras',
+    }),
+  )
+  async createCourseSpecialization(
+    @UploadedFile() files: Express.Multer.File[],
+    @Param('id') id: string,
+     dto : CreateCourseSpecializationDTO,
+     @Body() body : CourseSpecialization
+  ) {
+    return this.courseService.createOtherObjects(dto, body,true);
   }
 }

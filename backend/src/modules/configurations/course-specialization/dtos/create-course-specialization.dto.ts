@@ -13,6 +13,9 @@ import { FeesStructureDTO } from './fees-structure.dto';
 import { Type } from 'class-transformer';
 import { SpeakerDto } from '../../event/modules/webinar/dto/create-webinar.dto';
 import { CreateAdmissionProcessCardsDTO } from './create-admissionProcessCards.dto';
+import { AssociationsDTO } from './associations.dto';
+import { ProgramHighlightDTO } from './program-highlights.dto';
+import { Associations } from '../model/associations.model';
 
 export class CreateCourseSpecializationDTO {
   @IsString()
@@ -84,8 +87,16 @@ export class CreateCourseSpecializationDTO {
   beneficiaries: string;
 
   @ValidateNested({ each: true })
-  @Type(() => SpeakerDto)
-  association: SpeakerDto[];
+  @Type(() => AssociationsDTO)
+  association: AssociationsDTO[];
+
+  @ValidateNested({ each: true })
+  @Type(() => ProgramHighlightDTO)
+  program_highlight: ProgramHighlightDTO[];
+
+  @ValidateNested({ each: true })
+  @Type(() => Associations)
+  associations: Associations[];
 
   @IsNumber()
   @IsNotEmpty()

@@ -7,6 +7,8 @@ import { FeesStructure } from './model/fees-structure.model';
 import { ProgramStructure } from './model/program-structure.model';
 import { MetaData } from '../MetaData/meta.model';
 import { AdmissionProcessCards } from './model/admissionProcess.model';
+import { ProgramHighlight } from './model/program-highlights.model';
+import { Associations } from './model/associations.model';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { AdmissionProcessCards } from './model/admissionProcess.model';
       FeesStructure,
       AdmissionProcessCards,
       MetaData,
+      ProgramHighlight,
+      Associations
     ]),
   ],
   controllers: [CourseSpecializationController],
