@@ -4,10 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import GlobalPartnerMenu from "./GlobalPartnerMenu";
 import { CaretSortDown } from "@carbon/icons-react";
-
+import { Button } from "..";
+import { getCookie } from "cookies-next";
 export const Navbar = () => {
+  const values = getCookie("userData");
+  if (values) {
+  }
   const pathnameHave = usePathname();
-
   const isActive = (pathname: any) => {
     return pathnameHave === pathname
       ? "bg-white text-blue-900"
@@ -128,12 +131,14 @@ export const Navbar = () => {
       </header>
       <nav className="h-16 flex justify-between items-center  px-16">
         <div>
-          <Image
-            alt="img"
-            height={100}
-            width={200}
-            src="/img2/Riseback logo.png"
-          />
+          <Link href={"/"}>
+            <Image
+              alt="img"
+              height={100}
+              width={200}
+              src="/img2/Riseback logo.png"
+            />
+          </Link>
         </div>
         <div>
           <ul className="flex space-x-7 text-blue-900 list-none items-center">
@@ -154,23 +159,6 @@ export const Navbar = () => {
               </Link>
             </li>
             <li className="flex">
-              {/* <Link
-                href="/global-partner"
-                className=" text-blue-900 uppercase font-semibold"
-              >
-                Global Partner
-              </Link> */}
-              {/* <DropDown buttonText="Global Partner">
-                <MenuItem>
-                  {" "}
-                  <Link
-                    href="/global-partner"
-                    className=" text-blue-900 uppercase font-semibold w-full"
-                  >
-                    Global Partner
-                  </Link>
-                </MenuItem>
-              </DropDown> */}
               <GlobalPartnerMenu />
               <CaretSortDown className="size-5" />
             </li>
@@ -214,9 +202,11 @@ export const Navbar = () => {
                 Contact
               </Link>
             </li>
-            <button className="bg-blue-900 px-3 py-1 text-base cursor-pointer  text-white rounded">
-              Log in
-            </button>
+            <Button>
+              <Link href="/login" className=" text-white uppercase ">
+                {values ? "Admin" : "log in"}
+              </Link>
+            </Button>
           </ul>
         </div>
       </nav>

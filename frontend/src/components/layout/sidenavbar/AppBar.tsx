@@ -44,7 +44,7 @@ const AppBar = ({ handleDrawerToggle }: AppBarProps) => {
   );
 
   const logout = () => {
-    replace("/sign-in");
+    replace("/");
 
     Object.keys(getCookies()).forEach((cookie) => {
       deleteCookie(cookie);
@@ -53,7 +53,7 @@ const AppBar = ({ handleDrawerToggle }: AppBarProps) => {
 
   return (
     <MuiAppBar
-      position='fixed'
+      position="fixed"
       sx={{
         height: "66px",
         width: {
@@ -73,36 +73,36 @@ const AppBar = ({ handleDrawerToggle }: AppBarProps) => {
     >
       <Toolbar>
         <IconButton
-          color='inherit'
-          aria-label='open drawer'
-          edge='start'
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
           onClick={handleDrawerToggle}
           sx={{ mr: 2, display: { sm: "none" } }}
         >
-          <MdMenu className='my-auto block' />
+          <MdMenu className="my-auto block" />
         </IconButton>
-        <Box className='flex justify-between items-center w-full'>
+        <Box className="flex justify-between items-center w-full">
           <Typography
-            variant='h6'
+            variant="h6"
             noWrap
-            component='div'
+            component="div"
             color={colors.text.dark}
-            display='flex'
-            alignItems='center'
-            className='capitalize lg:text-base xl::text-lg'
+            display="flex"
+            alignItems="center"
+            className="capitalize lg:text-base xl::text-lg"
           >
             <div
               style={{
                 background: colors.secondary.light,
               }}
-              className='flex justify-center items-center px-2 py-2 rounded-md mr-4 cursor-pointer'
+              className="flex justify-center items-center px-2 py-2 rounded-md mr-4 cursor-pointer"
               onClick={back}
             >
               <IoIosArrowBack fill={colors.secondary.dark} />
             </div>
             {title ? <>{title}</> : "dashboard"}
           </Typography>
-          <Box className='flex justify-end items-center'>
+          <Box className="flex justify-end items-center">
             <IconButton>
               <BsFillBellFill fill={colors.secondary.dark} />
             </IconButton>
@@ -124,7 +124,7 @@ const AppBar = ({ handleDrawerToggle }: AppBarProps) => {
               </MenuItem>
               <Divider />
               <MenuItem onClick={logout}>
-                <IconButton size='small' className='mr-1'>
+                <IconButton size="small" className="mr-1">
                   <MdLogout />
                 </IconButton>{" "}
                 Logout

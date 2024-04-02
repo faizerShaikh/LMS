@@ -13,7 +13,12 @@ export const menuItems: menuType[] = [
   // { icon: "Settings", title: "Components", path: "/components" },
   { icon: "ChatLaunch", title: "Universities", path: "/admin/universities" },
   // { icon: "Events", title: "Faculties", path: "/admin/faculty" },
-  // { icon: "Catalog", title: "Courses", path: "/admin/courses" },
+  { icon: "Catalog", title: "Courses", path: "/admin/courses" },
+  {
+    icon: "Catalog",
+    title: "Courses Specialization",
+    path: "/admin/course-spetalization",
+  },
   // { icon: "Events", title: "Students", path: "/admin/students" },
   { icon: "Events", title: "Page Content", path: "/admin/page-content" },
   { icon: "Events", title: "Media", path: "/admin/media" },

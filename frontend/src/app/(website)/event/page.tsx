@@ -21,7 +21,6 @@ export default async function EventsPage({
     }
   );
   events = res.data.data;
-  console.log(events, "<<<<<<<<<<<<<<<<<<");
   const EventsButtons = [
     {
       text: "All Events",
