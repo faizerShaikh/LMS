@@ -6,7 +6,7 @@ import { CoursesCard } from "components/layout/cards/CourseCard";
 async function courses() {
   let CoursesCatagoriData = [];
   const CatagorieResponse = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/course/`
+    `${process.env.BASE_API_URL}/configurations/course`
   );
   CoursesCatagoriData = CatagorieResponse.data.data.rows;
   let CoursesCardData: any = [];
@@ -14,8 +14,7 @@ async function courses() {
     `${process.env.BASE_API_URL}/configurations/course-specialization`
   );
   CoursesCardData = response.data.data.rows;
-  // console.log(CoursesCardData);
-
+  // console.log(response, "<<<<<<<response");
   return (
     <>
       <section className="bg-gray-100 h-[400px] ">
@@ -62,7 +61,6 @@ async function courses() {
           <div className="flex">
             <div className="w-3/4 flex flex-wrap">
               {CoursesCardData.map((item: any) => {
-                console.log(CoursesCardData);
                 return <CoursesCard specialization={item} />;
               })}
             </div>

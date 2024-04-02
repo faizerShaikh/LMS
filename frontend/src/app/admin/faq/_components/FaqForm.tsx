@@ -53,10 +53,9 @@ export const FaqForm = ({
       {({ onClose }) => (
         <Formik
           validationSchema={validationSchema}
-
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
-            console.log('valuesvalues', values)
+            console.log("valuesvalues", values);
             mutate(values, {
               onSuccess() {
                 resetForm();
@@ -115,14 +114,13 @@ export const FaqForm = ({
                               {index === faq.length - 1 && (
                                 <IconButton
                                   type="button"
-                                  onClick={() =>
-                                    {
-                                      push({
+                                  onClick={() => {
+                                    push({
                                       topic: "",
                                       answer: "",
                                       faqId: faqId,
-                                    })}
-                                  }
+                                    });
+                                  }}
                                   className="text-red-500"
                                 >
                                   <Add />

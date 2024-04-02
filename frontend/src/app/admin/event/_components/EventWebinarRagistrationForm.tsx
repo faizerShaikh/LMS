@@ -18,7 +18,6 @@ export const EventWebinarRagistrationForm = ({
     lastName: "",
     mobileNumber: "",
   };
-  console.log(data, "<<<<<<<<<<<<<<<<<<<<<,data");
 
   return (
     <Dialog

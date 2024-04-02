@@ -69,7 +69,6 @@ export const CommonEventContentForm = ({
               { ...values, order: +values.order },
               {
                 onSuccess(resp) {
-                  console.log(resp, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<for id");
                   handleFileUpload(values.image, resp.data.data.id, () => {
                     resetForm();
                     queryClient.refetchQueries(refetchURL, {
