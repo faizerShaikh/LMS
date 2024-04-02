@@ -6,7 +6,10 @@ import { UpdateEventRegistrationDto } from './dto/update-eventRegiter.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import * as XLSX from 'xlsx';
 import { join } from 'path';
-import { existsSync, mkdirSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync } from 'fs';
+import { MailsService } from 'src/common/modules';
+import { MailerServices } from 'src/modules/configurations/Enquiry/mail/mail.service';
+import { Events } from '../../event.model';
 
 
 @Injectable()
@@ -14,10 +17,15 @@ export class EventRegistrationService extends GenericService<
   EventRegistration,
   EventRegistrationdto,
   UpdateEventRegistrationDto
->({ defaultFindOptions: {} }) {
+>({ defaultFindOptions: {
+  include:Events
+} }) {
   constructor(
     @InjectModel(EventRegistration)
     private eventregistration: typeof EventRegistration,
+    
+    private mailservice: MailsService,
+    private mailerService: MailerServices, 
     private reqparams: RequestParamsService,
   ) {
     super(eventregistration, reqparams);
@@ -31,6 +39,24 @@ export class EventRegistrationService extends GenericService<
     });
   }
 
+  async create<EventRegistration extends {} = any>(dto: EventRegistrationdto): Promise<EventRegistration> {
+    try {
+      const registration = await super.create(dto);
+      console.log('registration created successfully');
+
+      // Read the content of the email template file
+      const emailTemplatePath = 'src/public/email-templates/registrationNotification.hbs'; // Modify this with the correct path
+      const emailContent = readFileSync(emailTemplatePath, 'utf-8');
+
+      // Send email after registration creation
+      await this.mailerService.sendMail(dto.email, 'You have been registered successfully', emailContent);
+
+      return registration;
+    } catch (error) {
+      console.error('Error creating registration:', error);
+      throw error;
+    }
+  }
   async exportToExcel(data: any, filename: string): Promise<string> {
     try {
       if (!data || !Array.isArray(data.rows) || data.rows.length === 0) {

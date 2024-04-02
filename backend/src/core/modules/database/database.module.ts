@@ -8,8 +8,8 @@ import { databaseConfig } from './config';
     SequelizeModule.forRoot({
       ...databaseConfig[process.env.NODE_ENV || 'development'],
       autoLoadModels: true,
-      sync: true,
-      alter: true,
+      sync: false,
+      alter: false,
     }),
   ],
 })

@@ -2,11 +2,13 @@ import { Module } from '@nestjs/common';
 import { DatabaseModule, JwtModule, RequestParamsModule } from './core/modules';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_INTERCEPTOR, APP_GUARD } from '@nestjs/core';
 import { ResponseInterceptor } from './core/interceptors';
 import { UsersModule } from './modules/user';
 import { configurationsModule } from './modules/configurations/configurations.module';
+import { MailModule } from './modules/configurations/enquiry/mail/mail.module';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
   imports: [
@@ -25,6 +27,23 @@ import { configurationsModule } from './modules/configurations/configurations.mo
     //configurations Module
     configurationsModule,
     //Blogs Module
+
+    MailModule,
+
+    // ConfigModule.forRoot(),
+    // MailerModule.forRootAsync({
+    //   useFactory: async(ConfigService:ConfigService)=>({
+    //     transport :{
+    //       host:ConfigService.get<string>('MAIL_HOST'),
+    //       port:ConfigService.get<string>('MAIL_PORT'),
+    //       secure:false,
+    //       auth:{
+    //         user:ConfigService.get<string>('MAIL_USER'),
+    //         pass:ConfigService.get<string>('MAIL_PASSWORD')
+    //     }
+    //     }
+    //   })
+    // })
     
   ],
   providers: [

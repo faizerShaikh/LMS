@@ -9,6 +9,7 @@ import { EventRegistrationController } from './modules/eventRegistration/eventRe
 import { EventRegistrationService } from './modules/eventRegistration/eventRegistration.service';
 import { EventFeatureController } from './event-feature.controller';
 import { EventFeatureService } from './event-feature.service';
+import { MailModule } from '../Enquiry/mail/mail.module';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { EventFeatureService } from './event-feature.service';
       EventFeature,
       MetaData,
       EventRegistration,
-    ]),
+    ]),MailModule
   ],
   controllers: [
     EventController,

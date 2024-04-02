@@ -11,6 +11,7 @@ export class MailsService {
 
   async SendMail(body: MailType) {
     try {
+      console.log(body)
       await this.mailQueue.add(
         SEND_MAIL,
         { ...body },
@@ -19,6 +20,7 @@ export class MailsService {
           delay: 3000,
         },
       );
+      console.log('mail sent successfully')
     } catch (error) {
       console.log('Error while adding task for ' + SEND_MAIL + 'email');
     }

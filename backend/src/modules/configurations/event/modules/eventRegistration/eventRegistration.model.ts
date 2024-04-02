@@ -1,4 +1,5 @@
 import {
+  BelongsTo,
   Column,
   DataType,
   Default,
@@ -42,4 +43,7 @@ export class EventRegistration extends Model {
   @ForeignKey(() => Events)
   @Column
   eventId: string;
+
+  @BelongsTo(()=>Events)
+  event:Events
 }
