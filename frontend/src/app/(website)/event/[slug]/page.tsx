@@ -33,22 +33,27 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
             <div className="w-1/2 ">
               <p className="text-lg">
                 <span className="text-blue-900 font-semibold">
-                  Event Start Date and Time:
+                  Event Start Date:
                 </span>{" "}
-                {moment(data.startDayTime).format("MMMM Do YYYY, h:mm:ss a")}
+                {moment(data.startDayTime).format("MMMM Do YYYY")}
               </p>
               <p className="text-lg">
+                <span className="text-blue-900 font-semibold">Time:</span>{" "}
+                {moment(data.startDayTime).format("h:mm:ss a")}
+              </p>
+
+              {/* <p className="text-lg">
                 <span className="text-blue-900 font-semibold">
                   Event End Date and Time:
                 </span>{" "}
-                {moment(data.endDayTime).format("MMMM Do YYYY, h:mm:ss a")}
-              </p>
+                {moment(data.endDayTime).format("MMMM Do YYYY")}
+              </p> */}
 
               <p className="text-lg">
                 <span className="text-blue-900 font-semibold">
                   Registration Deadline:
                 </span>{" "}
-                {moment(data.deadLine).format("MMMM Do YYYY, h:mm:ss a")}
+                {moment(data.deadLine).format("MMMM Do YYYY")}
               </p>
               <p className="text-lg">
                 <span className="text-blue-900 font-semibold">

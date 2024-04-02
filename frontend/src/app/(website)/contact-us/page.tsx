@@ -1,12 +1,14 @@
 import { Flag } from "@carbon/icons-react";
 import { HeroSection } from "components/layout/hero-section";
+import { GlobalPartnerInterface } from "interfaces/globalPartner";
 import { getGlobalPartners } from "lib";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function ContactUs() {
-  let data = await getGlobalPartners();
-  console.log(data, "<<<<<<<<<<<<<<<<<<<");
+  let data: GlobalPartnerInterface[];
+  let response = await getGlobalPartners();
+  data = response.rows;
   return (
     <>
       <HeroSection
@@ -152,20 +154,27 @@ export default async function ContactUs() {
       <section className="bg-gray-50">
         <div className="container text-center pb-24 m-auto">
           <h2 className=" text-4xl m-0 py-16 font-semibold">Global Offices</h2>
-          <div className="flex flex-wrap justify-between">
-            <div>
-              <Link href={"./ethopia-event"}>
-                <Image
-                  alt="hehje"
-                  width={200}
-                  height={200}
-                  src="/img2/USA.jpg"
-                  className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
-                />
-                <p className="text-black font-bold mt-2 text-lg">USA</p>
-              </Link>
-            </div>
-            <div>
+          <div className="flex flex-wrap justify-center gap-10">
+            {data.map((item: GlobalPartnerInterface) => {
+              return (
+                <div>
+                  <Link href={`global-partner/${item.slug}`}>
+                    <Image
+                      alt="hehje"
+                      width={200}
+                      height={200}
+                      src={`${process.env.BASE_MEDIA_URL}/${item.coverImage}`}
+                      className="w-48 h-24 mb-4 shadow-xl rounded-md hover:scale-110 transition duration-500 cursor-pointer"
+                    />
+                    <p className="text-black font-bold mt-2 text-lg">
+                      {item.name}
+                    </p>
+                  </Link>
+                </div>
+              );
+            })}
+
+            {/* <div>
               <Link href={"./ethopia-event"}>
                 <Image
                   alt="hehje"
@@ -226,7 +235,7 @@ export default async function ContactUs() {
                   Philippines
                 </p>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

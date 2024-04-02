@@ -21,6 +21,7 @@ export default async function EventsPage({
     }
   );
   events = res.data.data;
+  console.log(events, "<<<<<<<<<<<<<<<<<<");
   const EventsButtons = [
     {
       text: "All Events",
@@ -62,7 +63,7 @@ export default async function EventsPage({
           ) : (
             <div className="w-3/4  flex  flex-wrap ">
               {events.map((item: EventInterface) => (
-                <div className="w-[30%] mx-2  h-[300px] shadow-2xl rounded-md mb-4">
+                <div className="w-[30%] mx-2  h-[330px] shadow-2xl rounded-md mb-4">
                   <Image
                     src={`${process.env.BASE_MEDIA_URL}${item.eventImage}`}
                     width={200}
@@ -83,6 +84,11 @@ export default async function EventsPage({
                             : item.name}
                         </p>
                       </Link>
+                    </div>
+                    <div>
+                      <p className="m-0 mt-3 font-medium">
+                        {item.webinarId ? "Webinar" : "Event"}
+                      </p>
                     </div>
                     <div className="flex justify-between ">
                       <p className="mt-4 m-0">

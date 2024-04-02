@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import GlobalPartnerMenu from "./GlobalPartnerMenu";
+import { CaretSortDown } from "@carbon/icons-react";
 
 export const Navbar = () => {
   const pathnameHave = usePathname();
@@ -152,7 +153,7 @@ export const Navbar = () => {
                 About Us
               </Link>
             </li>
-            <li>
+            <li className="flex">
               {/* <Link
                 href="/global-partner"
                 className=" text-blue-900 uppercase font-semibold"
@@ -171,6 +172,7 @@ export const Navbar = () => {
                 </MenuItem>
               </DropDown> */}
               <GlobalPartnerMenu />
+              <CaretSortDown className="size-5" />
             </li>
             <li>
               <Link

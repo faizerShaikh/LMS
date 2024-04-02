@@ -22,5 +22,27 @@ export const CustomCarousel = ({ children }: { children: React.ReactNode }) => {
       items: 1,
     },
   };
-  return <Carousel responsive={responsive}>{children}</Carousel>;
+  return (
+    <Carousel
+      additionalTransfrom={0}
+      arrows
+      autoPlay={true}
+      autoPlaySpeed={2000}
+      centerMode={false}
+      className=""
+      containerClass="container-with-dots"
+      dotListClass=""
+      draggable
+      focusOnSelect={true}
+      infinite
+      itemClass=""
+      keyBoardControl
+      minimumTouchDrag={80}
+      renderButtonGroupOutside={false}
+      renderDotsOutside={false}
+      responsive={responsive}
+    >
+      {children}
+    </Carousel>
+  );
 };

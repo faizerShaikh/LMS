@@ -53,7 +53,7 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
                 </div>
               </div>
 
-              <div className="w-[30%]">
+              <div className="w-[30%] sticky top-0">
                 <WebinarForm title="Webinar Ragistration Form" />
               </div>
             </div>

@@ -1,7 +1,9 @@
 import axios from "axios";
 import { FAQ } from "components/layout/faq/faq";
+import { EventInterface } from "interfaces/event";
 import moment from "moment";
 import Image from "next/image";
+import Link from "next/link";
 import removeTags from "utils/removeTags";
 
 export const revalidate = 60;
@@ -13,7 +15,7 @@ export default async function Home() {
   FAQData = response.data.data.rows;
   console.log(FAQData);
 
-  let events = [];
+  let events: EventInterface[];
   const res = await axios.get(
     `${process.env.BASE_API_URL}/configurations/event/listing`
   );
@@ -100,7 +102,16 @@ export default async function Home() {
               </p>
             </div>
             <div className="w-1/2 px-2">
-              <h2 className="font-bold mb-4 text-lg">{event.name}</h2>
+              <h2 className="font-bold mb-4 text-lg ">
+                <Link
+                  href={`${event.webinarId ? "webinar" : "event"}/${
+                    event.slug
+                  }`}
+                  className="text-black"
+                >
+                  {event.name}
+                </Link>
+              </h2>
               <p className="mb-4">
                 🕒{moment(event.startDayTime).format("h:mm A")} –{" "}
                 {moment(event.endDayTime).format("h:mm A")}
