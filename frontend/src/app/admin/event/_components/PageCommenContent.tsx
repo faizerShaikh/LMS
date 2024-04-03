@@ -52,11 +52,7 @@ export default function CommonContentEvent({ id, type }: any) {
   const { data } = useGetAll({
     key: `/configurations/event/event-feature/by-event/${id}?type=${type}`,
   });
-  // console.log(data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data");
-  // console.log(
-  //   `/configurations/event/event-feature/by-event/:event${id}?type=${type}`,
-  //   "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<key"
-  // );
+
   return (
     <>
       <DataGrid

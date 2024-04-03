@@ -14,6 +14,7 @@ export interface Course {
 export interface UniversityInterface extends BaseObjInterface {
   slug: string;
   name: string;
+  id: string;
   short_name: string;
   description: string;
   university_image: string | null;
@@ -30,20 +31,37 @@ export interface CourseSpecializationInterface {
   eligibilty: string;
   delivery_mode: string;
   credits: number;
-  is_internationally_recognised: boolean;
-  learning_pedagogy: string;
+  internationalRegonization: boolean;
+  learningPedagogy: string;
+  learningPath: string;
   duration: string;
   medium_of_instructions: string;
   certificate_provided: boolean;
-  cover_image: string | null;
-  students_enrolled: number;
+  cover_image?: string | null;
+  student_enrolled: number;
   is_published: boolean;
+  webinar: boolean;
   university_id: string;
   course_id: string;
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: string | null;
-  course: Course;
+  createdAt?: string;
+  updatedAt?: string;
+  deletedAt?: string | null;
+  courses: number;
+  course?: Course | null;
+  university?: UniversityInterface | null;
   metaID?: string;
   metaData?: MetaDataInterface;
+}
+
+export interface FeesStructureInterface {
+  id?: string;
+  indian_semester_fees: number;
+  indian_annual_fees: number;
+  foreign_semester_fees: number;
+  foreign_annual_fees: number;
+  notes: string;
+  course_specialization_id: string;
+  createdAt?: string;
+  updatedAt?: string;
+  deletedAt?: string;
 }

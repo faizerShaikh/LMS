@@ -1,3 +1,4 @@
+"use client";
 import { InputLabel } from "@mui/material";
 import React from "react";
 
@@ -14,14 +15,15 @@ export const Label = ({
   className,
   colorClass,
   outerClassName,
-  required=false,
+  required = false,
 }: LabelProps) => {
   return (
     <p className={outerClassName ? outerClassName : "my-0"}>
       <InputLabel
         className={`${colorClass ? colorClass : "text-dark"} ${className} `}
       >
-        {text}{required ? <span className="text-red-700"> *</span> : ''}
+        {text}
+        {required ? <span className="text-red-700"> *</span> : ""}
       </InputLabel>
     </p>
   );
