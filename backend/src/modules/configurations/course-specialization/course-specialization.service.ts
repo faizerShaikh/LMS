@@ -3,6 +3,7 @@ import { GenericService, RequestParamsService } from 'src/core/modules';
 import { CourseSpecialization } from './model';
 import {
   CreateCourseSpecializationDTO,
+  FeesStructureDTO,
   UpdateCourseSpecializationDTO,
 } from './dtos';
 import { InjectModel } from '@nestjs/sequelize';
@@ -24,9 +25,27 @@ export class CourseSpecializationService extends GenericService<
   UpdateCourseSpecializationDTO
 >({
   defaultFindOptions: {
-    include: [MetaData, Course, University, AdmissionProcessCards],
+    include: [
+      MetaData,
+      Course,
+      University,
+      AdmissionProcessCards,
+      FeesStructure,
+      ProgramHighlight,
+      ProgramStructure,
+      Associations,
+    ],
   },
-  includes: [MetaData, Course, University, AdmissionProcessCards],
+  includes: [
+    MetaData,
+    Course,
+    University,
+    AdmissionProcessCards,
+    FeesStructure,
+    ProgramHighlight,
+    ProgramStructure,
+    Associations,
+  ],
 }) {
   constructor(
     @InjectModel(CourseSpecialization)
@@ -51,7 +70,7 @@ export class CourseSpecializationService extends GenericService<
     dto: CreateCourseSpecializationDTO,
   ): Promise<CourseSpecialization> {
     const courseSpecialization = await super.create(dto);
-    await this.createOtherObjects(dto, courseSpecialization, true);
+    // await this.createOtherObjects(dto, courseSpecialization, true);
     return courseSpecialization;
   }
 
@@ -96,7 +115,7 @@ export class CourseSpecializationService extends GenericService<
     courseSpecialization: CourseSpecialization,
     isNewRecord: boolean,
   ) {
-    if (!courseSpecialization.isNewRecord) {
+    if (!courseSpecialization?.isNewRecord) {
       await this.programStructure.destroy({
         where: {
           course_specialization_id: courseSpecialization.id,
@@ -111,6 +130,7 @@ export class CourseSpecializationService extends GenericService<
     if (isNewRecord) {
       await this.feesStructure.create({
         ...dto.fees_structure,
+
         course_specialization_id: courseSpecialization.id,
       });
     } else {
@@ -129,28 +149,57 @@ export class CourseSpecializationService extends GenericService<
     await this.admissionProcess.bulkCreate(
       dto.admissionProcess.map((item) => ({
         ...item,
+        image: `/media/course-specialization/extras/${item?.image}`,
         courseSpecialization: courseSpecialization.id,
       })),
     );
     await this.programStructure.bulkCreate(
       dto.program_structures.map((item) => ({
         ...item,
+        image: `/media/course-specialization/extras/${item?.image}`,
         course_specialization_id: courseSpecialization.id,
       })),
-    
     );
     await this.programHighlight.bulkCreate(
       dto.program_highlight.map((item) => ({
         ...item,
+        image: `/media/course-specialization/extras/${item?.image}`,
         course_specialization_id: courseSpecialization.id,
-      }))
-    )
+      })),
+    );
     await this.associations.bulkCreate(
       dto.associations.map((item) => ({
         ...item,
+        image: `/media/course-specialization/extras/${item?.image}`,
         course_specialization_id: courseSpecialization.id,
-      }))
-    )
+      })),
+    );
   }
- 
+
+  async createFeesStructure(
+    dto: FeesStructureDTO ,
+    course_specialization_id:string
+  ) {
+    const data = await this.feesStructure.findOne({
+      where: { course_specialization_id:course_specialization_id },
+    });
+    if (data) {
+      await this.feesStructure.update<FeesStructure>(
+        { ...dto },
+        {
+          where: {
+            course_specialization_id:course_specialization_id,
+          },
+        },
+      );
+      return 'Fees Structure Updated Successfully';
+    } else {
+      await this.feesStructure.create({
+        ...dto,
+
+        course_specialization_id:course_specialization_id,
+      });
+      return 'Fees Structure Created Successfully';
+    }
+  }
 }

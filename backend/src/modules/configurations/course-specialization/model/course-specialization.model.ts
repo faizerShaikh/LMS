@@ -172,10 +172,10 @@ export class CourseSpecialization extends MyBaseModel {
   })
   brouchre: string;
 
-  @Column({
-    type: DataType.BOOLEAN,
-  })
-  internationalRegonization: boolean;
+  // @Column({
+  //   type: DataType.BOOLEAN,
+  // })
+  // internationalRegonization: boolean;
   
   @Column({
     type: DataType.STRING,
@@ -275,7 +275,7 @@ export class CourseSpecialization extends MyBaseModel {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
-    foreignKey: 'course_specialization_id',
+    // foreignKey: 'course_specialization_id',
   })
   fees_structure: FeesStructure;
 }

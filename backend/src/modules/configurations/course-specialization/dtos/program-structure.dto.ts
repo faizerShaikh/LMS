@@ -8,4 +8,8 @@ export class ProgramStructureDTO {
   @IsString()
   @IsOptional()
   image: string;
+
+  @IsNotEmpty()
+    @IsString()
+    course_specialization_id:string
 }

@@ -68,6 +68,10 @@ export class CreateCourseSpecializationDTO {
 
   @IsString()
   @IsNotEmpty()
+  learningPedagogy: string;
+
+  @IsString()
+  @IsNotEmpty()
   brouchre: string;
 
   @IsString()
@@ -77,6 +81,9 @@ export class CreateCourseSpecializationDTO {
   @IsString()
   @IsNotEmpty()
   course_id: string;
+
+  @IsBoolean()
+  internationalRegonization: boolean;
 
   @IsString()
   @IsOptional()
@@ -98,24 +105,25 @@ export class CreateCourseSpecializationDTO {
   @Type(() => Associations)
   associations: Associations[];
 
-  @IsNumber()
-  @IsNotEmpty()
-  course: number;
+  // @IsNumber()
+  // @IsNotEmpty()
+  // course: number;
 
-  @IsNotEmpty()
-  @IsArray()
+  // @IsNotEmpty()
+  // @IsArray()
   @Type(() => ProgramStructureDTO)
   @ValidateNested({ each: true })
   program_structures: ProgramStructureDTO[];
 
-  @IsNotEmpty()
-  @IsObject()
+  // @IsNotEmpty()
+  // @IsObject()
+  @IsOptional()
   @Type(() => FeesStructureDTO)
   @ValidateNested({ each: true })
   fees_structure: FeesStructureDTO;
 
-  @IsNotEmpty()
-  @IsArray()
+  // @IsNotEmpty()
+  // @IsArray()
   @Type(() => CreateAdmissionProcessCardsDTO)
   @ValidateNested({ each: true })
   admissionProcess: CreateAdmissionProcessCardsDTO[];
