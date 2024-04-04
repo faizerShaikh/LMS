@@ -5,11 +5,7 @@ import { usePathname } from "next/navigation";
 import GlobalPartnerMenu from "./GlobalPartnerMenu";
 import { CaretSortDown } from "@carbon/icons-react";
 import { Button } from "..";
-import { getCookie } from "cookies-next";
-export const Navbar = () => {
-  const values = getCookie("userData");
-  if (values) {
-  }
+export const Navbar = ({ values }: any) => {
   const pathnameHave = usePathname();
   const isActive = (pathname: any) => {
     return pathnameHave === pathname

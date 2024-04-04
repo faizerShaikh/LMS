@@ -54,7 +54,11 @@ const CourseSpecializationForm = ({
           {
             onSuccess(resp) {
               resetForm();
-              toast(`Blog ${isUpdate ? "Updated" : "Created"} Successfully`);
+              toast(
+                `Course Specialization ${
+                  isUpdate ? "Updated" : "Created"
+                } Successfully`
+              );
               router.push(`/admin/course-spetalization/${values.slug}`);
             },
           }

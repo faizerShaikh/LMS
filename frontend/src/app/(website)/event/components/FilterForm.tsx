@@ -26,7 +26,6 @@ const FilterForm = () => {
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString());
-      console.log(params);
       if (value) {
         params.set(name, value);
       } else {

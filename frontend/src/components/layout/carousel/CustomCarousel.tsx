@@ -1,48 +1,52 @@
-"use client";
 import React from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./carousel.css";
+import { ChevronLeft, ChevronRight } from "@carbon/icons-react";
+function NextArrow({ onClick }: any) {
+  return (
+    <div
+      className="hover:bg-gray-50 cursor-pointer rounded-full p-3 flex justify-center items-center"
+      onClick={onClick}
+    >
+      <ChevronRight size={32} />
+    </div>
+  );
+}
+
+function PrevArrow({ onClick }: any) {
+  return (
+    <div
+      className="hover:bg-gray-50 cursor-pointer rounded-full p-3 flex justify-center items-center"
+      onClick={onClick}
+    >
+      <ChevronLeft size={32} />
+    </div>
+  );
+}
 
 export const CustomCarousel = ({ children }: { children: React.ReactNode }) => {
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
+  const settings = {
+    dots: false,
+    infinite: false,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
   return (
-    <Carousel
-      additionalTransfrom={0}
-      arrows
-      autoPlay={true}
-      autoPlaySpeed={2000}
-      centerMode={false}
-      className=""
-      containerClass="container-with-dots"
-      dotListClass=""
-      draggable
-      focusOnSelect={true}
-      infinite
-      itemClass=""
-      keyBoardControl
-      minimumTouchDrag={80}
-      renderButtonGroupOutside={false}
-      renderDotsOutside={false}
-      responsive={responsive}
-    >
-      {children}
-    </Carousel>
+    <div className="slider-container">
+      <Slider
+        {...settings}
+        className="flex justify-center items-center gap-5 z-10"
+      >
+        {children}
+      </Slider>
+    </div>
   );
 };

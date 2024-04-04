@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import axios from "axios";
 import { toast } from "utils";
 
-export const EnquiryForm = ({from} : any) => {
+export const EnquiryForm = ({ from }: any) => {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -26,7 +26,6 @@ export const EnquiryForm = ({from} : any) => {
       type: Yup.string().required("Required"),
     }),
     onSubmit: (values, { resetForm }) => {
-      
       axios
         .post(
           `${process.env.NEXT_PUBLIC_BASE_API_URL}/configurations/enquiry`,
@@ -34,14 +33,11 @@ export const EnquiryForm = ({from} : any) => {
         )
         .then((response) => {
           resetForm();
-          toast("Form Submitted Successfull")
+          toast("Form Submitted Successfull");
         })
         .catch((err) => {
           console.log(err);
         });
-
-        console.log("Source :" , values.from)
-        
     },
   });
 

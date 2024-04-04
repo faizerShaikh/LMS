@@ -21,8 +21,6 @@ export const WebinarForm = ({ title, eventId }: any) => {
     setPhoneNumber(value);
   };
 
-  console.log(selectedValue, phoneNumber);
-
   const formik = useFormik({
     initialValues: {
       id: "",

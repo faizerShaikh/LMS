@@ -35,12 +35,6 @@ export const Events = ({ buttons, defaultValue }: Props) => {
 
   const handleClick = (url: string, query: any = {}) => {
     if (router) {
-      console.log(
-        `${url}?${Object.keys(query)
-          .map((key) => createQueryString(key, query[key]))
-          .join("&")}`
-      );
-
       router.push(
         `${url}?${Object.keys(query)
           .map((key) => createQueryString(key, query[key]))

@@ -1,0 +1,9 @@
+.slick-slide {
+  float: none;
+}
+.slick-track {
+  display: flex;
+  justify-items: start;
+  align-items: center;
+  gap: 30px;
+}

@@ -51,6 +51,7 @@ export interface CourseSpecializationInterface {
   university?: UniversityInterface | null;
   metaID?: string;
   metaData?: MetaDataInterface;
+  fees_structure?: FeesStructureInterface;
 }
 
 export interface FeesStructureInterface {
@@ -64,4 +65,30 @@ export interface FeesStructureInterface {
   createdAt?: string;
   updatedAt?: string;
   deletedAt?: string;
+}
+
+export interface ProgramHiglightsInterface {
+  id?: string;
+  name: string;
+  image: string;
+  courseSpecialization?: CourseSpecializationInterface;
+  course_specialization_id: string;
+}
+
+export interface AssociationInterface {
+  id?: string;
+  title: string;
+  subTitle: string;
+  image: string;
+  course_specialization_id?: string;
+  courseSpecialization?: CourseSpecializationInterface;
+}
+
+export interface AdmissionProcessInterface {
+  id?: string;
+  title: string;
+  description: string;
+  image: string;
+  course_specialization_id?: string;
+  courseSpecialization?: CourseSpecializationInterface;
 }

@@ -10,7 +10,6 @@ async function webinar() {
     `${process.env.BASE_API_URL}/configurations/webinar`
   );
   data = response.data.data.rows;
-  console.log(data, "<==============================response");
   return (
     <>
       {data.map((data: any) => {

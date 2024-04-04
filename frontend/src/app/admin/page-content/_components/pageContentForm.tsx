@@ -1,9 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { Formik, Form } from "formik";
-import { Grid, Box, Button } from "@mui/material";
-import { DropZone, Input, Label, Tabs } from "components/layout";
-import toast from "react-hot-toast";
+import React from "react";
+import { Tabs } from "components/layout";
 import { useCreateOrUpdate } from "hooks";
 import { API } from "configs";
 import { PageContentInterface } from "interfaces";

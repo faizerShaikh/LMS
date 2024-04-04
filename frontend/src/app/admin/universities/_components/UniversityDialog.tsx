@@ -10,24 +10,25 @@ import * as Yup from "yup";
 import { API } from "configs";
 
 const initialValues: UniversityInterface = {
+  id: "",
   slug: "",
   name: "",
   short_name: "",
   description: "",
   university_image: "",
+  no_of_courses: 0,
 };
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Required"),
   short_name: Yup.string().required("Required"),
   description: Yup.string().required("Required"),
-  
 });
 
 export const UniversityDialog = ({
   data,
   isUpdate,
-  refetchURL
+  refetchURL,
 }: CreateUpdateDialogBaseProps) => {
   const queryClient = useQueryClient();
 
@@ -37,8 +38,6 @@ export const UniversityDialog = ({
       : "/configurations/university",
     method: isUpdate ? "put" : "post",
   });
-
- 
 
   const handleFileUpload = async (
     file: File,
@@ -50,8 +49,6 @@ export const UniversityDialog = ({
     await API.put(`configurations/university/university-image/${id}`, formData);
     onSuccess();
   };
-
-  
 
   return (
     <Dialog
@@ -94,59 +91,62 @@ export const UniversityDialog = ({
             });
           }}
         >
-          {({values})=> (
+          {({ values }) => (
             <Form>
-            <Grid container columnSpacing={10} className="mt-2  " gap={3}>
-              <Grid xs={12} item>
-                <Box>
-                  {/* {values?.university_image && <Image width={150} height={150} alt="tr" src={URL.createObjectURL(values?.university_image)} className="flex justify-center" ></Image>} */}
-                  <Label text="Upload your image" required/>
-                  <DropZone name="university_image"/>
-                </Box>
-                <Box>   
-                  <Label text="Title" required  className="mt-4"/>
-                  <Input name="name" />
-                </Box>
-                <Box>   
-                  <Label text="Slug" required  className="mt-4"/>
-                  <Input name="slug" />
-                </Box>
-                <Box className="mt-4">
-                  <Label text="Short name" required/>
-                  <Input name="short_name" />
-                </Box>
-                <Box className="mt-4">
-                  <Label text="Description" required/>
-                  <Input name="description" />
-                </Box>
+              <Grid container columnSpacing={10} className="mt-2  " gap={3}>
+                <Grid xs={12} item>
+                  <Box>
+                    {/* {values?.university_image && <Image width={150} height={150} alt="tr" src={URL.createObjectURL(values?.university_image)} className="flex justify-center" ></Image>} */}
+                    <Label text="Upload your image" required />
+                    <DropZone name="university_image" />
+                  </Box>
+                  <Box>
+                    <Label text="Title" required className="mt-4" />
+                    <Input name="name" />
+                  </Box>
+                  <Box>
+                    <Label text="Slug" required className="mt-4" />
+                    <Input name="slug" />
+                  </Box>
+                  <Box className="mt-4">
+                    <Label text="Short name" required />
+                    <Input name="short_name" />
+                  </Box>
+                  <Box className="mt-4">
+                    <Label text="Description" required />
+                    <Input name="description" />
+                  </Box>
+                  <Box className="mt-4">
+                    <Label text="Number of courses" required />
+                    <Input name="no_of_courses" />
+                  </Box>
+                </Grid>
+                <Grid xs={12} item>
+                  <Box className="flex justify-end">
+                    <Button
+                      color="secondary"
+                      className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
+                      variant="contained"
+                      disabled={isLoading}
+                      onClick={() => {
+                        onClose();
+                      }}
+                    >
+                      Discard
+                    </Button>
+                    <Button
+                      variant="contained"
+                      className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
+                      type="submit"
+                      isLoading={isLoading}
+                    >
+                      Save
+                    </Button>
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid xs={12} item>
-                <Box className="flex justify-end">
-                  <Button
-                    color="secondary"
-                    className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
-                    variant="contained"
-                    disabled={isLoading}
-                    onClick={() => {
-                      onClose();
-                    }}
-                  >
-                    Discard
-                  </Button>
-                  <Button
-                    variant="contained"
-                    className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
-                    type="submit"
-                    isLoading={isLoading}
-                  >
-                    Save
-                  </Button>
-                </Box>
-              </Grid>
-            </Grid>
-          </Form>
+            </Form>
           )}
-          
         </Formik>
       )}
     </Dialog>

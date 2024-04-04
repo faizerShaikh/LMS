@@ -9,16 +9,17 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "utils";
 
-const initialValues: FeesStructureInterface = {
-  indian_semester_fees: 0,
-  indian_annual_fees: 0,
-  foreign_semester_fees: 0,
-  foreign_annual_fees: 0,
-  notes: "",
-  course_specialization_id: "",
-};
+const FeesForm = ({ isUpdate, id, data }: any) => {
+  const initialValues: FeesStructureInterface = {
+    indian_semester_fees: 0,
+    indian_annual_fees: 0,
+    foreign_semester_fees: 0,
+    foreign_annual_fees: 0,
+    notes: "",
+    course_specialization_id: "",
+    ...data,
+  };
 
-const FeesForm = ({ isUpdate, id }: any) => {
   const router = useRouter();
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate
@@ -49,7 +50,6 @@ const FeesForm = ({ isUpdate, id }: any) => {
                   isUpdate ? "Updated" : "Created"
                 } Successfully`
               );
-              router.push("/admin/course-spetalization");
             },
           }
         );

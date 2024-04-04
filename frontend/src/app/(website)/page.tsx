@@ -8,8 +8,7 @@ import Link from "next/link";
 import removeTags from "utils/removeTags";
 import CarouselCard from "./event/components/CarouselCard";
 import { CourseSpecializationInterface, UniversityInterface } from "interfaces";
-import { Tabs } from "components/layout";
-import CourseSpecializationCard from "components/layout/cards/CourseSpecializationCard";
+import { CourseTabs } from "components/home/tabs";
 
 export const revalidate = 60;
 export default async function Home() {
@@ -18,7 +17,7 @@ export default async function Home() {
     `${process.env.BASE_API_URL}/configurations/faq`
   );
   FAQData = response.data.data.rows;
-  console.log(FAQData);
+  // console.log(FAQData);
 
   let events: EventInterface[];
   const res = await axios.get(
@@ -35,11 +34,15 @@ export default async function Home() {
     (item: UniversityInterface) => item?.university_image
   );
 
-  // let CourseSpecializationCardData: CourseSpecializationInterface[];
-  // const specializationResponse = await axios.get(
-  //   "/configurations/course-specialization"
-  // );
-  // CourseSpecializationCardData = specializationResponse.data.data.rows;
+  let CourseSpecializationCardData: CourseSpecializationInterface[];
+  const specializationResponse = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/course-specialization`
+  );
+  CourseSpecializationCardData = specializationResponse.data.data.rows;
+  console.log(
+    specializationResponse.data.data.rows,
+    "<<<<<<<<<<<CourseSpecializationCardData"
+  );
   return (
     <>
       <section className=" bg-gray-100 h-[400px] ">
@@ -136,40 +139,10 @@ export default async function Home() {
         </div>
       </section>
       <section>
-        <div>
+        <div className="container m-auto">
           <h2>Master's Degree</h2>
           <div>
-            {/* <Tabs
-              tabs={[
-                {
-                  id: 0,
-                  buttonLabel: "MBA(Master of Business Administration)",
-                  component: (
-                    <CourseSpecializationCard
-                      item={CourseSpecializationCardData}
-                    />
-                  ),
-                },
-                {
-                  id: 1,
-                  buttonLabel: "MCA(Master of Computer Applications)",
-                  component: (
-                    <CourseSpecializationCard
-                      item={CourseSpecializationCardData}
-                    />
-                  ),
-                },
-                {
-                  id: 2,
-                  buttonLabel: "M.Com(Master of Commerce)",
-                  component: (
-                    <CourseSpecializationCard
-                      item={CourseSpecializationCardData}
-                    />
-                  ),
-                },
-              ]}
-            ></Tabs> */}
+            <CourseTabs cardsdata={CourseSpecializationCardData} />
           </div>
         </div>
       </section>

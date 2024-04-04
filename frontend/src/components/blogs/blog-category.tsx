@@ -5,17 +5,14 @@ import { useRouter } from "next/navigation";
 type Props = {
   blogCategories: BlogCategory[];
   category: string;
-  
 };
 
 export default function BlogCategoryFilter({
   blogCategories,
   category,
-  
 }: Props) {
   const router = useRouter();
   function handleClick(item: BlogCategory) {
-    console.log(router);
     router.push(`/blogs?category=${item.slug}`);
   }
 
@@ -26,11 +23,10 @@ export default function BlogCategoryFilter({
         onClick={() => handleClick(item)}
         className={`cursor-pointer ${
           category === item.slug ? "font-semibold text-primary" : ""
-        } border-b-2 pb-2` }
+        } border-b-2 pb-2`}
       >
         {item.name}
       </p>
-
     </>
   ));
 }

@@ -2,7 +2,6 @@ import { toast } from "./toaster";
 
 export const onError = async (err: any) => {
   if (err.response) {
-    console.log(err.response);
     if (err.response.status === 404) {
       let message = err.response?.data?.message || `404 Not Found!`;
       message = message;
