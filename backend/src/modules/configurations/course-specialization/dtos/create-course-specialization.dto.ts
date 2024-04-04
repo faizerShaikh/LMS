@@ -13,6 +13,9 @@ import { FeesStructureDTO } from './fees-structure.dto';
 import { Type } from 'class-transformer';
 import { SpeakerDto } from '../../event/modules/webinar/dto/create-webinar.dto';
 import { CreateAdmissionProcessCardsDTO } from './create-admissionProcessCards.dto';
+import { AssociationsDTO } from './associations.dto';
+import { ProgramHighlightDTO } from './program-highlights.dto';
+import { Associations } from '../model/associations.model';
 
 export class CreateCourseSpecializationDTO {
   @IsString()
@@ -65,6 +68,10 @@ export class CreateCourseSpecializationDTO {
 
   @IsString()
   @IsNotEmpty()
+  learningPedagogy: string;
+
+  @IsString()
+  @IsNotEmpty()
   brouchre: string;
 
   @IsString()
@@ -75,6 +82,9 @@ export class CreateCourseSpecializationDTO {
   @IsNotEmpty()
   course_id: string;
 
+  @IsBoolean()
+  internationalRegonization: boolean;
+
   @IsString()
   @IsOptional()
   specialization: string;
@@ -84,27 +94,36 @@ export class CreateCourseSpecializationDTO {
   beneficiaries: string;
 
   @ValidateNested({ each: true })
-  @Type(() => SpeakerDto)
-  association: SpeakerDto[];
+  @Type(() => AssociationsDTO)
+  association: AssociationsDTO[];
 
-  @IsNumber()
-  @IsNotEmpty()
-  course: number;
+  @ValidateNested({ each: true })
+  @Type(() => ProgramHighlightDTO)
+  program_highlight: ProgramHighlightDTO[];
 
-  @IsNotEmpty()
-  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => Associations)
+  associations: Associations[];
+
+  // @IsNumber()
+  // @IsNotEmpty()
+  // course: number;
+
+  // @IsNotEmpty()
+  // @IsArray()
   @Type(() => ProgramStructureDTO)
   @ValidateNested({ each: true })
   program_structures: ProgramStructureDTO[];
 
-  @IsNotEmpty()
-  @IsObject()
+  // @IsNotEmpty()
+  // @IsObject()
+  @IsOptional()
   @Type(() => FeesStructureDTO)
   @ValidateNested({ each: true })
   fees_structure: FeesStructureDTO;
 
-  @IsNotEmpty()
-  @IsArray()
+  // @IsNotEmpty()
+  // @IsArray()
   @Type(() => CreateAdmissionProcessCardsDTO)
   @ValidateNested({ each: true })
   admissionProcess: CreateAdmissionProcessCardsDTO[];

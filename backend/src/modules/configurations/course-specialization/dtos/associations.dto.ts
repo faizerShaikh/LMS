@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class ProgramStructureDTO {
+export class AssociationsDTO {
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -10,6 +10,5 @@ export class ProgramStructureDTO {
   image: string;
 
   @IsNotEmpty()
-    @IsString()
-    course_specialization_id:string
+  course_specialization_id: string;
 }

@@ -14,4 +14,8 @@ export class CreateAdmissionProcessCardsDTO{
     @IsNotEmpty()
     @IsString()
     description:string
+
+    @IsNotEmpty()
+    @IsString()
+    course_specialization_id:string
 }

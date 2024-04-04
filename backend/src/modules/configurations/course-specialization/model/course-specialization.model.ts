@@ -15,6 +15,8 @@ import { FeesStructure } from './fees-structure.model';
 import { MyBaseModel } from 'src/core/base.model';
 import { AdmissionProcessCards } from './admissionProcess.model';
 import { MetaDataType } from '../../MetaData/dto/type.enum';
+import { ProgramHighlight } from './program-highlights.model';
+import { Associations } from './associations.model';
 
 @Table({
   tableName: 'course-specializations',
@@ -170,6 +172,16 @@ export class CourseSpecialization extends MyBaseModel {
   })
   brouchre: string;
 
+  // @Column({
+  //   type: DataType.BOOLEAN,
+  // })
+  // internationalRegonization: boolean;
+  
+  @Column({
+    type: DataType.STRING,
+  })
+  learningPedagogy: string;
+
   @Column({
     type: DataType.TEXT,
     allowNull: true,
@@ -182,18 +194,18 @@ export class CourseSpecialization extends MyBaseModel {
   })
   beneficiaries: string;
 
-  @Column({
-    type: DataType.TEXT,
-    allowNull: true,
-    get() {
-      const value = this.getDataValue('association');
-      return value ? JSON.parse(value) : null;
-    },
-    set(value: any) {
-      this.setDataValue('association', JSON.stringify(value));
-    },
-  })
-  association: { name: string; bio: string; image: string };
+  // @Column({
+  //   type: DataType.TEXT,
+  //   allowNull: true,
+  //   get() {
+  //     const value = this.getDataValue('association');
+  //     return value ? JSON.parse(value) : null;
+  //   },
+  //   set(value: any) {
+  //     this.setDataValue('association', JSON.stringify(value));
+  //   },
+  // })
+  // association: { name: string; bio: string; image: string };
 
   @Column({
     type: DataType.STRING,
@@ -245,11 +257,25 @@ export class CourseSpecialization extends MyBaseModel {
   })
   admissionProcess: AdmissionProcessCards[];
 
+  @HasMany(() => Associations, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+  association: Associations[];
+
+  @HasMany(() => ProgramHighlight, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+  programHiglights: ProgramHighlight[];
+
   @HasOne(() => FeesStructure, {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
-    foreignKey: 'course_specialization_id',
+    // foreignKey: 'course_specialization_id',
   })
   fees_structure: FeesStructure;
 }
