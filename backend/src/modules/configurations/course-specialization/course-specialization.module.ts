@@ -27,10 +27,22 @@ import { ProgramStructureService } from './extras/program-structure.service';
       AdmissionProcessCards,
       MetaData,
       ProgramHighlight,
-      Associations
+      Associations,
     ]),
   ],
-  controllers: [CourseSpecializationController,AdmissionProcessController,AssociationController,ProgramHighlightController,ProgramStructureController],
-  providers: [CourseSpecializationService,AdmissionProcessService,AssociationService,ProgramHighlightService,ProgramStructureService],
+  controllers: [
+    CourseSpecializationController,
+    AdmissionProcessController,
+    AssociationController,
+    ProgramHighlightController,
+    ProgramStructureController,
+  ],
+  providers: [
+    CourseSpecializationService,
+    AdmissionProcessService,
+    AssociationService,
+    ProgramHighlightService,
+    ProgramStructureService,
+  ],
 })
 export class CourseSpecializationModule {}

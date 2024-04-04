@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "nodemailer": "^6.9.13",
     "@nestjs-modules/mailer": "^1.10.3",
     "@nestjs/bull": "^10.0.1",
     "@nestjs/common": "^10.0.0",

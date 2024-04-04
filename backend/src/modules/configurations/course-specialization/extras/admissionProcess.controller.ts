@@ -15,7 +15,7 @@ import { AdmissionProcessCards } from '../model/admissionProcess.model';
 import { CreateAdmissionProcessCardsDTO } from '../dtos';
 import { AdmissionProcessService } from './admissionProcess.service';
 
-@Controller('configurations/admission-process')
+@Controller('course-specialization/admission-process')
 export class AdmissionProcessController extends GenericController<
   AdmissionProcessCards,
   CreateAdmissionProcessCardsDTO,
@@ -24,7 +24,9 @@ export class AdmissionProcessController extends GenericController<
   createObjDTO: CreateAdmissionProcessCardsDTO,
   updateObjDTO: CreateAdmissionProcessCardsDTO,
 }) {
-  constructor(private readonly admissionProcessService: AdmissionProcessService) {
+  constructor(
+    private readonly admissionProcessService: AdmissionProcessService,
+  ) {
     super(admissionProcessService);
   }
 
@@ -42,5 +44,4 @@ export class AdmissionProcessController extends GenericController<
   ) {
     return this.admissionProcessService.updateAdmissionProcessImage(file, id);
   }
-
 }
