@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Param,
   Post,
   Put,
@@ -62,6 +63,11 @@ export class CourseSpecializationController extends GenericController<
   // ) {
   //   return this.courseService.createOtherObjects(dto, body,true);
   // }
+
+  @Get('courses-list/:courseId')
+  async findByCourseId(@Param('courseId') courseId: string): Promise<CourseSpecialization[]> {
+    return this.courseService.findbyCourses(courseId);
+  }
 
   @Post('fees/:id')
   async feesStructure(
