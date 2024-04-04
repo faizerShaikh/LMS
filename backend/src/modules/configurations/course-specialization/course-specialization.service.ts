@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { CourseSpecialization } from './model';
 import {
@@ -200,6 +200,22 @@ export class CourseSpecializationService extends GenericService<
         course_specialization_id:course_specialization_id,
       });
       return 'Fees Structure Created Successfully';
+    }
+  }
+
+  async findbyCourses(courseID: string): Promise<CourseSpecialization[]> {
+    try {
+      const specializations = await CourseSpecialization.findAll({
+        where: { course_id: courseID },
+      });
+
+      if (!specializations || specializations.length === 0) {
+        throw new NotFoundException(`No specializations found for course ID ${courseID}`);
+      }
+
+      return specializations;
+    } catch (error) {
+      throw error;
     }
   }
 }
