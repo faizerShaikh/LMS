@@ -39,8 +39,24 @@ export function GenericController<Model, CreateObjDTO, UpdateObjDTO>({
     @HttpCode(HttpStatus.CREATED)
     async createObj(@Body() body: any) {
       this.validateMethod(methodOptions.create);
+
       const obj = await this.validateData(body, createObjDTO);
       return this.service?.create(obj || body);
+    }
+
+    @Get()
+    @HttpCode(HttpStatus.OK)
+    getAllObj() {
+      this.validateMethod(methodOptions.getAll);
+
+      return this.service?.getAll({});
+    }
+
+    @Post('/seed')
+    @HttpCode(HttpStatus.CREATED)
+    async seedData() {
+      this.validateMethod(methodOptions.seedData);
+      return this.service?.seedData();
     }
 
     @Get('slug/:slug')
@@ -50,18 +66,10 @@ export function GenericController<Model, CreateObjDTO, UpdateObjDTO>({
       return this.service?.getOneBySlug(slug);
     }
 
-    @Get()
-    @HttpCode(HttpStatus.OK)
-    getAllObj() {
-      this.validateMethod(methodOptions.getAll);
-      return this.service?.getAll({});
-    }
-
     @Get(':id')
     @HttpCode(HttpStatus.OK)
     getOneObj(@Param('id') id: string) {
       this.validateMethod(methodOptions.getOne);
-
       return this.service?.getOne(id);
     }
 
@@ -87,7 +95,7 @@ export function GenericController<Model, CreateObjDTO, UpdateObjDTO>({
 
     private async validateData(body: any, dto: any): Promise<any> {
       let obj;
-      console.log(body, dto)
+      console.log(body, dto);
       if (dto) {
         obj = plainToClass(dto, body) as typeof dto;
 

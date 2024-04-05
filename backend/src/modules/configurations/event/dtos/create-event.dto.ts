@@ -1,39 +1,47 @@
-import { Type } from 'class-transformer';
-import { IsBoolean, IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator';
-import { MetaData } from '../../metaData/meta.model';
-import { MetaDataDto } from '../../metaData/dto';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 
-export class CreateEventDTO{
-    @IsString()
-    @IsNotEmpty()
-    name: string;
+export class CreateEventDTO {
+  @IsString()
+  @IsOptional()
+  name: string;
 
-    @IsString()
-    @IsNotEmpty()
-    description: string;
+  @IsString()
+  @IsOptional()
+  description: string;
 
-    @IsString()
-    startDayTime: string;
+  @IsString()
+  @IsOptional()
+  startDayTime: string;
 
-    @IsString()
-    endDayTime: Date;
+  @IsString()
+  @IsOptional()
+  endDayTime: Date;
 
-    @IsString()
-    deadLine: Date;
+  @IsString()
+  @IsOptional()
+  deadLine: Date;
 
-    @IsString()
-    @IsNotEmpty()
-    created_by_id: string;
+  @IsString()
+  @IsOptional()
+  created_by_id: string;
 
-    @IsBoolean()
-    isFeatured: boolean;
+  @IsBoolean()
+  @IsOptional()
+  isFeatured: boolean;
 
-    @IsString()
-    @IsNotEmpty()
-    slug:string
+  @IsString()
+  @IsOptional()
+  slug: string;
 
-    @IsString()
-    @IsNotEmpty()
-    eventType:string
+  @IsString()
+  @IsOptional()
+  eventLocation: string;
 
+  @IsString()
+  @IsOptional()
+  eventType: string;
+
+  @IsString()
+  @IsOptional()
+  webinarId: string;
 }

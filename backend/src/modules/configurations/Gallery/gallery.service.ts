@@ -6,20 +6,27 @@ import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
 import * as fs from 'fs';
-import { Op } from 'sequelize';
+import { FindAndCountOptions, Op, OrderItem } from 'sequelize';
+import { PageContent } from '../PageContent/pageContent.model';
 
 @Injectable()
 export class GalleryService extends GenericService<
   gallery,
   GalleryDto,
   UpdateGalleryDTO
->({}) {
+>({
+  defaultFindOptions: {
+    include: [PageContent],
+  },
+  includes: [PageContent],
+}) {
   constructor(
     @InjectModel(gallery) private Gallery: typeof gallery,
     private reqParams: RequestParamsService,
   ) {
     super(Gallery,reqParams);
   }
+  
 
   async UpdateGalleryImage(file: Express.Multer.File, id: string) {
     
@@ -33,7 +40,7 @@ export class GalleryService extends GenericService<
       const filePath = join(__dirname, '../../../../', 'backend/src/public/' + gallery.coverImage);
       
       if (file && file.filename) {
-        const newImagePath = '/media/pressRelease/' + file.filename;
+        const newImagePath = '/media/gallery/' + file.filename;
   
         if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
           unlink(filePath, (err) => {
@@ -57,7 +64,11 @@ export class GalleryService extends GenericService<
       throw new InternalServerErrorException(error.message);
     }
   }
-  
+ 
+  async getByPageId(slug:string):Promise<gallery[]>{
+    const gallery = await this.Gallery.findAll({ include:[{model:PageContent, where:{slug:slug}}]})
+    return gallery
+  }
 
   async createBulk(data: any, files: Express.Multer.File[] ): Promise<any> {
     try {
@@ -87,7 +98,6 @@ export class GalleryService extends GenericService<
         } else if (value.id==='undefined') {
             const{id,...rest}=value
             if (file) {
-                console.log('=============================================>>>>', file);
                 dataToCreate.push({
                     ...rest,
                     coverImage: 'media/gallery/' + file.filename
@@ -103,12 +113,10 @@ export class GalleryService extends GenericService<
     }
 
     if (dataToUpdate.length > 0) {
-        console.log('data to update=========================================>',dataToUpdate)
         await this.Gallery.bulkCreate(dataToUpdate, { updateOnDuplicate:["id","name","description","orderBy","coverImage"]});
     }
 
     if (dataToCreate.length > 0) {
-      console.log('data to create=========================================>',dataToCreate)
         await this.Gallery.bulkCreate(dataToCreate);
     }
 

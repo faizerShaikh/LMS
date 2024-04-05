@@ -4,7 +4,7 @@ import { Global, Module } from '@nestjs/common';
 import { MailsService } from './mails.service';
 import { BullModule } from '@nestjs/bull';
 import { MAILS_QUEUE } from './constants';
-
+import * as dotenv from 'dotenv';
 import { ConfigService } from '@nestjs/config';
 import { MailsProcessor } from './mails.processor';
 
@@ -21,18 +21,18 @@ import { MailsProcessor } from './mails.processor';
           maxConnections: 3, //<-----------ADD THIS LINE
           pool: true, //<-----------ADD THIS LINE
           requireTLS: false,
-          host: configService.get('EMAIL_HOST'),
-          port: configService.get('EMAIL_PORT'),
+          host: configService.get(process.env.EMAIL_HOST),
+          port: configService.get(process.env.EMAIL_PORT),
           ignoreTLS: false,
           secure: false,
 
           auth: {
-            user: configService.get('EMAIL_USER'),
-            pass: configService.get('EMAIL_PASSWORD'),
+            user: configService.get(process.env.EMAIL_USER),
+            pass: configService.get(process.env.EMAIL_PASSWORD),
           },
         },
         defaults: {
-          from: configService.get('EMAIL_FROM'),
+          from: configService.get(process.env.EMAIL_FROM),
         },
         preview: false,
         template: {

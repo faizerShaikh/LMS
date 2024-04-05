@@ -37,19 +37,8 @@ export class ProgramStructure extends Model<ProgramStructure> {
   })
   name: string;
 
-  @Column({
-    type: DataType.TEXT,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Description can not be empty',
-      },
-      notEmpty: {
-        msg: 'Description can not be empty',
-      },
-    },
-  })
-  description: string;
+  @Column
+  image: string;
 
   @Column({
     type: DataType.STRING,

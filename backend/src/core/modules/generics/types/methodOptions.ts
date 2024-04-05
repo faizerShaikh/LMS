@@ -4,5 +4,6 @@ export enum methodOptions {
   update,
   getOne,
   delete,
-  getOneByslug
+  getOneByslug,
+  seedData,
 }

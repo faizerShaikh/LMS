@@ -1,7 +1,4 @@
-import { Type } from 'class-transformer';
-import { IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator';
-import { MetaData } from '../../metaData/meta.model';
-import { MetaDataDto } from '../../metaData/dto';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateCourseDTO {
   @IsString()
@@ -11,9 +8,8 @@ export class CreateCourseDTO {
   @IsString()
   @IsNotEmpty()
   description: string;
-  
+
   @IsString()
   @IsNotEmpty()
-  slug:string
-
+  slug: string;
 }

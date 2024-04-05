@@ -1,38 +1,65 @@
-import { Controller, Get, Param,Put, Query, UploadedFile, UseInterceptors } from "@nestjs/common";
-import { GenericController } from "src/core/modules";
-import { Events } from "./event.model";
-import { CreateEventDTO, UpdateEventDTO } from "./dtos";
-import { eventService } from "./event.service";
-import { MulterIntercepter } from "src/core/interceptors";
-import { MulterEnum } from "src/core/interfaces";
+import {
+  Controller,
+  Get,
+  Param,
+  Put,
+  Query,
+  UploadedFile,
+  UploadedFiles,
+  UseInterceptors,
+} from '@nestjs/common';
+import { GenericController } from 'src/core/modules';
+import { Events } from './event.model';
+import { CreateEventDTO, UpdateEventDTO } from './dtos';
+import { EventService } from './event.service';
+import { MulterIntercepter } from 'src/core/interceptors';
+import { MulterEnum } from 'src/core/interfaces';
 
 @Controller('configurations/event')
-export class eventController extends GenericController<Events,CreateEventDTO,UpdateEventDTO>({
-    createObjDTO:CreateEventDTO,
-    updateObjDTO: UpdateEventDTO
-}){
-    constructor(private readonly eventService: eventService){
-        super(eventService);
-    }
+export class EventController extends GenericController<
+  Events,
+  CreateEventDTO,
+  UpdateEventDTO
+>({
+  createObjDTO: CreateEventDTO,
+  updateObjDTO: UpdateEventDTO,
+}) {
+  constructor(private readonly eventService: EventService) {
+    super(eventService);
+  }
 
-    @Put('event-image/:id')
-    @UseInterceptors(
-      MulterIntercepter({
-        type: MulterEnum.single,
-        fieldName: 'eventImage',
-        path: '/media/event',
-      }),
-    )
-    updateEventImage(
-      @UploadedFile() file: Express.Multer.File,
-      @Param('id') id: string,
-    ) {
-      return this.eventService.updateEventImage(file, id);
-    }
+  @Get('/listing')
+  async eventListing(@Query() query: any): Promise<Events[]> {
+    return this.eventService.eventListing(query);
+  }
 
-    @Get()
-    async eventListing(@Query ('key') date: string): Promise<Events[]>{
-      return this.eventService.eventListing(date)
-    }
+  @Put('event-image/:id')
+  @UseInterceptors(
+    MulterIntercepter({
+      type: MulterEnum.single,
+      fieldName: 'eventImage',
+      path: '/media/event',
+    }),
+  )
+  updateEventImage(
+    @UploadedFile() file: Express.Multer.File,
+    @Param('id') id: string,
+  ) {
+    return this.eventService.updateEventImage(file, id);
+  }
+
+  @Put('strategic-partner/:id')
+  @UseInterceptors(
+    MulterIntercepter({
+      type: MulterEnum.multiple,
+      fieldName: 'stratigicPartners',
+      path: '/media/event/strategic-partner',
+    }),
+  )
+  updateStratigicPartners(
+    @UploadedFiles() file: Express.Multer.File[],
+    @Param('id') id: string,
+  ) {
+    return this.eventService.updateStratigicPartners(file, id);
+  }
 }
-

@@ -4,10 +4,12 @@ import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { University } from './model';
 import { CourseSpecialization } from '../course-specialization/model';
-import { MetaData } from '../metaData/meta.model';
+import { MetaData } from '../MetaData/meta.model';
 
 @Module({
-  imports: [SequelizeModule.forFeature([University, CourseSpecialization,MetaData])],
+  imports: [
+    SequelizeModule.forFeature([University, CourseSpecialization, MetaData]),
+  ],
   controllers: [UniversityController],
   providers: [UniversityService],
 })
