@@ -46,7 +46,7 @@ export class AssociationService extends GenericService<
     }
 
     await association.update({
-      image: '/media/association/' + file.filename,
+      image: '/media/course-specialization/extras/' + file.filename,
     });
     return 'Association Image Uploaded Successfully';
   }

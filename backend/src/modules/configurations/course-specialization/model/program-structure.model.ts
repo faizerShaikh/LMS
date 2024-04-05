@@ -38,6 +38,9 @@ export class ProgramStructure extends Model<ProgramStructure> {
   name: string;
 
   @Column
+  description:string
+
+  @Column
   image: string;
 
   @Column({

@@ -46,7 +46,7 @@ export class ProgramHighlightService extends GenericService<
     }
 
     await programHighlight.update({
-        image: '/media/programHighlight/' + file.filename,
+        image: '/media/course-specialization/extras/' + file.filename,
     });
     return 'Admission Process Image Uploaded Successfully';
   }

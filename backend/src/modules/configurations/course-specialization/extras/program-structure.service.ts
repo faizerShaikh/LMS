@@ -46,7 +46,7 @@ export class ProgramStructureService extends GenericService<
     }
 
     await programStructure.update({
-      image: '/media/programStructure/' + file.filename,
+      image: '/media/course-specialization/extras/' + file.filename,
     });
     return 'Program Structure Image Uploaded Successfully';
   }
