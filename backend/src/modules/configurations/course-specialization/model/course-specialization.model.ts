@@ -151,6 +151,11 @@ export class CourseSpecialization extends MyBaseModel {
   is_published: boolean;
 
   @Column({
+    type: DataType.TEXT
+  })
+  notes: string;
+
+  @Column({
     type: DataType.INTEGER,
     defaultValue: 0,
   })
@@ -193,6 +198,11 @@ export class CourseSpecialization extends MyBaseModel {
     allowNull: true,
   })
   beneficiaries: string;
+
+  @Column({
+    type: DataType.TEXT
+  })
+  syllabus:string
 
   // @Column({
   //   type: DataType.TEXT,

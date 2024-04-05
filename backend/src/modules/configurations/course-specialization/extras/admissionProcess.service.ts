@@ -46,10 +46,10 @@ export class AdmissionProcessService extends GenericService<
         });
       }
 
-      await admissionProcess.update({
-        image: '/media/admissionProcess/' + file.filename,
-      });
-    }
+    await admissionProcess.update({
+        image: '/media/course-specialization/extras/' + file.filename,
+    });
     return 'Admission Process Image Uploaded Successfully';
   }
+}
 }

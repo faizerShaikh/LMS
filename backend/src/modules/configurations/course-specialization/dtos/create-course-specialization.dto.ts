@@ -82,6 +82,14 @@ export class CreateCourseSpecializationDTO {
   @IsNotEmpty()
   course_id: string;
 
+  @IsString()
+  @IsOptional()
+  notes:string
+
+  @IsString()
+  @IsOptional()
+  syllabus:string
+
   @IsBoolean()
   internationalRegonization: boolean;
 
@@ -131,4 +139,5 @@ export class CreateCourseSpecializationDTO {
   @IsString()
   @IsNotEmpty()
   slug: string;
+
 }

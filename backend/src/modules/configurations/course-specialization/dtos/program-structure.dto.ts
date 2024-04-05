@@ -9,6 +9,10 @@ export class ProgramStructureDTO {
   @IsOptional()
   image: string;
 
+  @IsOptional()
+  @IsString()
+  description:string
+
   @IsNotEmpty()
     @IsString()
     course_specialization_id:string

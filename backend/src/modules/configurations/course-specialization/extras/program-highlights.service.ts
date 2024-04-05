@@ -46,10 +46,10 @@ export class ProgramHighlightService extends GenericService<
         });
       }
 
-      await programHighlight.update({
-        image: '/media/programHighlights/' + file.filename,
-      });
-    }
+    await programHighlight.update({
+        image: '/media/course-specialization/extras/' + file.filename,
+    });
     return 'Admission Process Image Uploaded Successfully';
   }
+}
 }
