@@ -1,4 +1,4 @@
-import { Controller } from "@nestjs/common";
+import { Controller, Get } from "@nestjs/common";
 import { GenericController } from "src/core/modules";
 import { Enquiry } from "./enquiry.model";
 import { EnquiryDto, UpdateEnquiryDTO } from "./dto";
@@ -12,5 +12,13 @@ export class EnquiryController extends GenericController<Enquiry,EnquiryDto,Upda
 }){
     constructor(private readonly EnquiryService : EnquiryService){
         super(EnquiryService)
+    }
+
+    @Get('export-enquiry')
+    async exportToExcel(){
+        const enquiry = await this.EnquiryService.getAll()
+        const filename = `enquiries-details`
+        const filePath = await this.EnquiryService.exportToExcel(enquiry,filename)
+        return {filePath}
     }
 }

@@ -1,39 +1,43 @@
-import { IsNotEmpty,IsString,IsBoolean, IsOptional, IsObject, ValidateNested } from "class-validator";
-import { MetaDataDto } from "../../metaData/dto";
-import { Type } from "class-transformer";
+import { IsNotEmpty, IsString, IsBoolean, IsOptional } from 'class-validator';
 
-export class GlobalPartnerDTO{
-    @IsNotEmpty()
-    @IsString()
-    name: string;
+export class GlobalPartnerDTO {
+  @IsNotEmpty()
+  @IsString()
+  name: string;
 
-    @IsOptional()
-    @IsString()
-    coverImage: string;
+  @IsNotEmpty()
+  @IsString()
+  description: string;
 
-    @IsOptional()
-    @IsString()
-    backgroundImage: string;
+  @IsNotEmpty()
+  @IsString()
+  vision: string;
 
+  @IsNotEmpty()
+  @IsString()
+  objective: string;
 
-    @IsNotEmpty()
-    @IsString()
-    description: string;
+  @IsNotEmpty()
+  @IsString()
+  popular_course: string;
 
-    @IsNotEmpty()
-    @IsString()
-    vision: string;
+  @IsString()
+  @IsNotEmpty()
+  slug: string;
 
-    @IsNotEmpty()
-    @IsString()
-    objective: string;
+  @IsString()
+  @IsNotEmpty()
+  address: string;
 
-    @IsNotEmpty()
-    @IsBoolean()
-    popular_course: boolean;
+  @IsString()
+  @IsNotEmpty()
+  phone: string;
 
-    @IsString()
-    @IsNotEmpty()
-    slug:string
+  @IsString()
+  @IsNotEmpty()
+  website: string;
 
+  @IsNotEmpty()
+  @IsString()
+  email: string;
 }

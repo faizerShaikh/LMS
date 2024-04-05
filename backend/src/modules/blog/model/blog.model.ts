@@ -1,9 +1,15 @@
-
 import { User } from 'src/modules/user/users/models/user.model';
 import { BlogCategory } from '../modules/blog-category/model';
-import { BelongsTo, Column, DataType, Default, ForeignKey, Table } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  Default,
+  ForeignKey,
+  Table,
+} from 'sequelize-typescript';
 import { MyBaseModel } from 'src/core/base.model';
-import { type } from 'src/modules/configurations/metaData/dto/type.enum';
+import { MetaDataType } from 'src/modules/configurations/MetaData/dto/type.enum';
 
 @Table({
   tableName: 'blogs',
@@ -11,7 +17,7 @@ import { type } from 'src/modules/configurations/metaData/dto/type.enum';
   paranoid: true,
 })
 export class Blog extends MyBaseModel {
-  override type = type.BLOG
+  override type = MetaDataType.BLOG;
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -48,9 +54,8 @@ export class Blog extends MyBaseModel {
 
   @Column({
     type: DataType.BOOLEAN,
-    })
+  })
   is_featured: boolean;
-
 
   //@Default('c28512ff-aa8a-4ff3-ada8-fce8f8164f83')
   @ForeignKey(() => User)
@@ -65,5 +70,4 @@ export class Blog extends MyBaseModel {
 
   @BelongsTo(() => BlogCategory)
   blog_category: BlogCategory;
-
 }

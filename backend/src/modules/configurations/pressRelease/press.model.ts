@@ -1,13 +1,19 @@
-import { Column, DataType, Default, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { MyBaseModel } from "src/core/base.model";
-import { type } from "../metaData/dto/type.enum";
+import {
+  Column,
+  DataType,
+  Default,
+  IsUUID,
+  Model,
+  PrimaryKey,
+  Table,
+} from 'sequelize-typescript';
 
 @Table({
-  tableName:'press-releases',
-  paranoid:true,
-  defaultScope:{
-    order:[["updatedAt","ASC"]],
-  }
+  tableName: 'press-releases',
+  paranoid: true,
+  defaultScope: {
+    order: [['updatedAt', 'ASC']],
+  },
 })
 export class Press extends Model {
   @IsUUID(4)

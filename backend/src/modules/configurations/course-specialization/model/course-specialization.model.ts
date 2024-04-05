@@ -6,8 +6,6 @@ import {
   ForeignKey,
   HasMany,
   HasOne,
-  IsUUID,
-  PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { Course } from '../../course/model';
@@ -15,7 +13,10 @@ import { University } from '../../university/model';
 import { ProgramStructure } from './program-structure.model';
 import { FeesStructure } from './fees-structure.model';
 import { MyBaseModel } from 'src/core/base.model';
-import { type } from '../../metaData/dto/type.enum';
+import { AdmissionProcessCards } from './admissionProcess.model';
+import { MetaDataType } from '../../MetaData/dto/type.enum';
+import { ProgramHighlight } from './program-highlights.model';
+import { Associations } from './associations.model';
 
 @Table({
   tableName: 'course-specializations',
@@ -23,7 +24,7 @@ import { type } from '../../metaData/dto/type.enum';
   paranoid: true,
 })
 export class CourseSpecialization extends MyBaseModel {
-  override type= type.COURSE_SPECIALIZATION;
+  override type = MetaDataType.COURSE_SPECIALIZATION;
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -95,35 +96,6 @@ export class CourseSpecialization extends MyBaseModel {
   credits: number;
 
   @Column({
-    type: DataType.BOOLEAN,
-    allowNull: false,
-    defaultValue: false,
-    validate: {
-      notNull: {
-        msg: 'Is Internationally Recognised can not be empty',
-      },
-      notEmpty: {
-        msg: 'Is Internationally Recognised can not be empty',
-      },
-    },
-  })
-  is_internationally_recognised: boolean;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Learning Pedagogy can not be empty',
-      },
-      notEmpty: {
-        msg: 'Learning Pedagogy can not be empty',
-      },
-    },
-  })
-  learning_pedagogy: string;
-
-  @Column({
     type: DataType.STRING,
     allowNull: false,
     validate: {
@@ -138,30 +110,8 @@ export class CourseSpecialization extends MyBaseModel {
   duration: string;
 
   @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Medium of Instructions can not be empty',
-      },
-      notEmpty: {
-        msg: 'Medium of Instructions can not be empty',
-      },
-    },
-  })
-  medium_of_instructions: string;
-
-  @Column({
     type: DataType.BOOLEAN,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Certificate Provided can not be empty',
-      },
-      notEmpty: {
-        msg: 'Certificate Provided can not be empty',
-      },
-    },
+    defaultValue: false,
   })
   certificate_provided: boolean;
 
@@ -199,6 +149,63 @@ export class CourseSpecialization extends MyBaseModel {
     },
   })
   is_published: boolean;
+
+  @Column({
+    type: DataType.INTEGER,
+    defaultValue: 0,
+  })
+  courses: number;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  webinar: boolean;
+
+  @Column({
+    type: DataType.STRING,
+  })
+  learningPath: string;
+
+  @Column({
+    type: DataType.STRING,
+  })
+  brouchre: string;
+
+  // @Column({
+  //   type: DataType.BOOLEAN,
+  // })
+  // internationalRegonization: boolean;
+  
+  @Column({
+    type: DataType.STRING,
+  })
+  learningPedagogy: string;
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: true,
+  })
+  specialization: string;
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: true,
+  })
+  beneficiaries: string;
+
+  // @Column({
+  //   type: DataType.TEXT,
+  //   allowNull: true,
+  //   get() {
+  //     const value = this.getDataValue('association');
+  //     return value ? JSON.parse(value) : null;
+  //   },
+  //   set(value: any) {
+  //     this.setDataValue('association', JSON.stringify(value));
+  //   },
+  // })
+  // association: { name: string; bio: string; image: string };
 
   @Column({
     type: DataType.STRING,
@@ -243,12 +250,32 @@ export class CourseSpecialization extends MyBaseModel {
   })
   program_structures: ProgramStructure[];
 
+  @HasMany(() => AdmissionProcessCards, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+  admissionProcess: AdmissionProcessCards[];
+
+  @HasMany(() => Associations, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+  association: Associations[];
+
+  @HasMany(() => ProgramHighlight, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+  programHiglights: ProgramHighlight[];
+
   @HasOne(() => FeesStructure, {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
-    foreignKey: 'course_specialization_id',
+    // foreignKey: 'course_specialization_id',
   })
   fees_structure: FeesStructure;
-
 }

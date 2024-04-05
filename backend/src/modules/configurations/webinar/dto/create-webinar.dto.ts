@@ -1,44 +1,36 @@
 
 import { Type } from 'class-transformer';
-import { IsNotEmpty, IsString, IsEmail, IsOptional, ValidateNested, isArray } from 'class-validator';
+import { IsNotEmpty, IsString, IsOptional, ValidateNested, isArray, IsObject } from 'class-validator';
+import { Events } from '../../event/event.model';
 
 
 export class CreateWebinarDto {
-    @IsNotEmpty()
-    @IsString()
-    title: string;
 
-    coverImage: string;
-
-    // @ValidateNested({ each: true })
-    // @Type(() => SpeakerDto)
-    // @IsOptional()
-    // speakers: SpeakerDto[];
-
-    @IsNotEmpty()
-    @IsString()
-    description: string;
+    @ValidateNested({ each: true })
+    @Type(() => SpeakerDto)
+    @IsOptional()
+    speakers: SpeakerDto[];
 
     @IsNotEmpty()
     @IsString()
     agenda: string;
 
-    @IsString()
+    @IsObject()
     @IsNotEmpty()
-    slug:string
-    
+    event:Events    
+
 }
 
 
-// export class SpeakerDto {
+export class SpeakerDto {
 
-//     @IsString()
-//     name: string;
+    @IsString()
+    name: string;
     
-//     @IsString()
-//     bio: string;
+    @IsString()
+    bio: string;
     
-//     @IsString()
-//     @IsOptional()
-//     image: string;
-// }
+    @IsString()
+    @IsOptional()
+    image: string='/media/Author.png';
+}

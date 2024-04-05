@@ -7,23 +7,23 @@ import {
 } from 'sequelize-typescript';
 import { gallery } from '../Gallery/gallery.model';
 import { MyBaseModel } from 'src/core/base.model';
-import { type } from '../metaData/dto/type.enum';
+import { MetaDataType } from '../MetaData/dto/type.enum';
 
 @Table({
   tableName: 'page-contents',
-  paranoid:true,
-  defaultScope:{
-    order:[["orderBy","ASC"]]
-  }
+  paranoid: true,
+  defaultScope: {
+    order: [['orderBy', 'ASC']],
+  },
 })
-export class PageContent extends MyBaseModel { 
-  override type= type.PAGE_CONTENT;
+export class PageContent extends MyBaseModel {
+  override type = MetaDataType.PAGE_CONTENT;
 
   @Column
-  orderBy:number
-  
+  orderBy: number;
+
   @Column({
-    unique:true
+    unique: true,
   })
   name: string;
 
@@ -50,5 +50,4 @@ export class PageContent extends MyBaseModel {
     hooks: true,
   })
   gallery: gallery;
-
 }

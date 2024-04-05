@@ -5,9 +5,8 @@ import { CreateCourseDTO, UpdateCourseDTO } from './dtos';
 import { InjectModel } from '@nestjs/sequelize';
 import { unlink } from 'fs';
 import { join } from 'path';
-import { MetaData } from '../metaData/meta.model';
-import { type } from '../metaData/dto/type.enum';
-import * as fs from 'fs'
+import { MetaData } from '../MetaData/meta.model';
+import * as fs from 'fs';
 @Injectable()
 export class CourseService extends GenericService<
   Course,
@@ -17,7 +16,7 @@ export class CourseService extends GenericService<
   defaultFindOptions: {
     include: [MetaData],
   },
-  includes:[MetaData]
+  includes: [MetaData],
 }) {
   constructor(
     @InjectModel(Course) private course: typeof Course,
@@ -29,19 +28,20 @@ export class CourseService extends GenericService<
 
   async updateCourseImage(file: Express.Multer.File, id: string) {
     const course = await this.getOne<Course>(id);
-    const defaultImagePath='backend/src/public/media/default.png'; 
-    const filePath= join(__dirname, '../../../../', '/src/public/' + course.course_image)
+    const defaultImagePath = 'backend/src/public/media/default.png';
+    const filePath = join(
+      __dirname,
+      '../../../../',
+      '/src/public/' + course.course_image,
+    );
 
     if (fs.existsSync(filePath)) {
-      unlink(
-        filePath,
-        (err) => {
-          if (err) {
-            throw new InternalServerErrorException(err);
-          }
-          console.log('file deleted...');
-        },
-      );
+      unlink(filePath, (err) => {
+        if (err) {
+          throw new InternalServerErrorException(err);
+        }
+        console.log('file deleted...');
+      });
     }
 
     await course.update({
