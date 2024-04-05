@@ -149,7 +149,7 @@ export class CourseSpecializationService extends GenericService<
     await this.admissionProcess.bulkCreate(
       dto.admissionProcess.map((item) => ({
         ...item,
-        image: `/media/course-specialization/extras/${item?.image}`,
+        // image: `/media/course-specialization/extras/${item?.image}`,
         courseSpecialization: courseSpecialization.id,
       })),
     );
@@ -163,7 +163,7 @@ export class CourseSpecializationService extends GenericService<
     await this.programHighlight.bulkCreate(
       dto.program_highlight.map((item) => ({
         ...item,
-        image: `/media/course-specialization/extras/${item?.image}`,
+        // image: `/media/course-specialization/extras/${item?.image}`,
         course_specialization_id: courseSpecialization.id,
       })),
     );
@@ -177,18 +177,18 @@ export class CourseSpecializationService extends GenericService<
   }
 
   async createFeesStructure(
-    dto: FeesStructureDTO ,
-    course_specialization_id:string
+    dto: FeesStructureDTO,
+    course_specialization_id: string,
   ) {
     const data = await this.feesStructure.findOne({
-      where: { course_specialization_id:course_specialization_id },
+      where: { course_specialization_id: course_specialization_id },
     });
     if (data) {
       await this.feesStructure.update<FeesStructure>(
         { ...dto },
         {
           where: {
-            course_specialization_id:course_specialization_id,
+            course_specialization_id: course_specialization_id,
           },
         },
       );
@@ -197,7 +197,7 @@ export class CourseSpecializationService extends GenericService<
       await this.feesStructure.create({
         ...dto,
 
-        course_specialization_id:course_specialization_id,
+        course_specialization_id: course_specialization_id,
       });
       return 'Fees Structure Created Successfully';
     }

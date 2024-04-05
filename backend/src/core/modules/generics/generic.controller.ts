@@ -48,6 +48,7 @@ export function GenericController<Model, CreateObjDTO, UpdateObjDTO>({
     @HttpCode(HttpStatus.OK)
     getAllObj() {
       this.validateMethod(methodOptions.getAll);
+
       return this.service?.getAll({});
     }
 
@@ -69,7 +70,6 @@ export function GenericController<Model, CreateObjDTO, UpdateObjDTO>({
     @HttpCode(HttpStatus.OK)
     getOneObj(@Param('id') id: string) {
       this.validateMethod(methodOptions.getOne);
-
       return this.service?.getOne(id);
     }
 

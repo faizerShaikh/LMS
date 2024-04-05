@@ -2,13 +2,11 @@ import { Module } from '@nestjs/common';
 import { DatabaseModule, JwtModule, RequestParamsModule } from './core/modules';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_INTERCEPTOR, APP_GUARD } from '@nestjs/core';
+import { ConfigModule } from '@nestjs/config';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ResponseInterceptor } from './core/interceptors';
 import { UsersModule } from './modules/user';
 import { configurationsModule } from './modules/configurations/configurations.module';
-import { MailModule } from './modules/configurations/enquiry/mail/mail.module';
-import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
   imports: [
@@ -20,15 +18,13 @@ import { MailerModule } from '@nestjs-modules/mailer';
     // Globle Modules
     RequestParamsModule,
     JwtModule,
-  
+
     //User Module
     UsersModule,
 
     //configurations Module
     configurationsModule,
     //Blogs Module
-
-    MailModule,
 
     // ConfigModule.forRoot(),
     // MailerModule.forRootAsync({
@@ -44,7 +40,6 @@ import { MailerModule } from '@nestjs-modules/mailer';
     //     }
     //   })
     // })
-    
   ],
   providers: [
     {

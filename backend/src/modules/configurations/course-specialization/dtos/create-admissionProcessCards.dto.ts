@@ -1,21 +1,15 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateAdmissionProcessCardsDTO{
+export class CreateAdmissionProcessCardsDTO {
+  @IsString()
+  @IsNotEmpty()
+  title: string;
 
+  @IsNotEmpty()
+  @IsString()
+  description: string;
 
-    @IsString()
-    @IsOptional()
-    image:string
-
-    @IsString()
-    @IsNotEmpty()
-    title:string
-
-    @IsNotEmpty()
-    @IsString()
-    description:string
-
-    @IsNotEmpty()
-    @IsString()
-    course_specialization_id:string
+  @IsNotEmpty()
+  @IsString()
+  course_specialization_id: string;
 }

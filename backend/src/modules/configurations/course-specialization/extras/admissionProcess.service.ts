@@ -28,26 +28,28 @@ export class AdmissionProcessService extends GenericService<
   }
 
   async updateAdmissionProcessImage(file: Express.Multer.File, id: string) {
-    const admissionProcess = await this.getOne<AdmissionProcessCards>(id);
-    const defaultImagePath = 'backend/src/public/media/default.png';
-    const filePath = join(
-      __dirname,
-      '../../../../',
-      '/src/public/' + admissionProcess.image,
-    );
+    if (file) {
+      const admissionProcess = await this.getOne<AdmissionProcessCards>(id);
+      const defaultImagePath = 'backend/src/public/media/default.png';
+      const filePath = join(
+        __dirname,
+        '../../../../',
+        '/src/public/' + admissionProcess.image,
+      );
 
-    if (fs.existsSync(filePath)) {
-      unlink(filePath, (err) => {
-        if (err) {
-          throw new InternalServerErrorException(err);
-        }
-        console.log('file deleted...');
-      });
-    }
+      if (fs.existsSync(filePath)) {
+        unlink(filePath, (err) => {
+          if (err) {
+            throw new InternalServerErrorException(err);
+          }
+          console.log('file deleted...');
+        });
+      }
 
     await admissionProcess.update({
         image: '/media/course-specialization/extras/' + file.filename,
     });
     return 'Admission Process Image Uploaded Successfully';
   }
+}
 }
