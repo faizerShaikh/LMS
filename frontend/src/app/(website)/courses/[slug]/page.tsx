@@ -18,7 +18,7 @@ export default async function SingleCourse({
         <div className="flex container items-center py-8 m-auto">
           <div className="w-2/4">
             <Image
-              src={`${process.env.BASE_MEDIA_URL}/${data.course.course_image}`}
+              src={`${process.env.BASE_MEDIA_URL}/${data.course?.course_image}`}
               height={400}
               width={300}
               alt=""

@@ -9,7 +9,6 @@ import { CaretDown } from "@carbon/icons-react";
 export interface FAQProps {
   specialization: Topics;
 }
-console.log();
 
 export function FAQ({ specialization }: FAQProps) {
   const [expanded, setExpanded] = useState<string | false>(false);

@@ -36,7 +36,6 @@ const EventWebinarForm = ({
   apiEndPointImage,
   isWebinar,
 }: Props) => {
-  console.log(`${apiEndPoint}/${id}`);
   const router = useRouter();
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate ? `${apiEndPoint}/${id}` : apiEndPoint,
@@ -62,7 +61,6 @@ const EventWebinarForm = ({
     onSuccess: VoidFunction
   ) => {
     const newFormData = new FormData();
-    console.log(files, { files: "files" });
 
     Array.from(files).forEach((file: File) => {
       newFormData.append(`stratigicPartners`, file);
@@ -79,7 +77,6 @@ const EventWebinarForm = ({
   ) => {
     const fields = ["speakers_images", "bio", "name"];
     const fd = new FormData();
-    console.log(files);
 
     for (const [index, file] of Object.entries(files) as any) {
       fd.append(`images[${index}]`, file.image);
@@ -95,7 +92,6 @@ const EventWebinarForm = ({
     <Formik
       initialValues={{ ...initialValues }}
       onSubmit={(values, { resetForm }) => {
-        console.log(values);
         mutate(
           {
             ...values,

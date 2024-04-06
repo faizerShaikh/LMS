@@ -1,6 +1,5 @@
 "use client";
 import { EventInterface } from "interfaces/event";
-import { getSingleEvent } from "lib/get-data/event";
 import React from "react";
 import EventWebinarForm from "components/admin/EventWebinarForm";
 import { Tabs } from "components/layout";
@@ -20,7 +19,6 @@ type Props = {
 
 const EventContentForm = ({
   initialValues,
-  type,
   data,
   isUpdate,
   apiEndPointImage,

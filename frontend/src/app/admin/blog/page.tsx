@@ -79,7 +79,7 @@ const columns = [
   },
 ];
 
-export default function MediaPage() {
+export default function BlogPage() {
   const { data } = useGetAll({ key: "/configurations/blog" });
   return (
     <>

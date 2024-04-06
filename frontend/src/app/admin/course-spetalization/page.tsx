@@ -24,6 +24,24 @@ const columns = [
       return removeTags(descriptionValue);
     },
   },
+  {
+    headerName: "Eligibilty",
+    field: "eligibilty",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
+  {
+    headerName: "Delivery Mode",
+    field: "delivery_mode",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
+  {
+    headerName: "Credits",
+    field: "credits",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
 
   {
     headerName: "Action",
@@ -33,7 +51,7 @@ const columns = [
     renderCell: (params: { row: CourseSpecializationInterface }) => {
       return (
         <>
-          <IconButton href={`/admin/course-specialization/${params.row.slug}`}>
+          <IconButton href={`/admin/course-spetalization/${params.row.slug}`}>
             <Edit />
           </IconButton>
           <DeleteBox
@@ -57,14 +75,14 @@ const columns = [
   },
 ];
 
-export default function MediaPage() {
+export default function CourseSpecializationPage() {
   const { data } = useGetAll({ key: "/configurations/course-specialization" });
   return (
     <>
       <PageHeader title="course specialization" />
       <DataGrid
         addButton={
-          <Button href="/admin/course-specialization/add">
+          <Button href="/admin/course-spetalization/add">
             Add course specialization
           </Button>
         }

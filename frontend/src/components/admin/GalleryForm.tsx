@@ -96,7 +96,6 @@ export const GalleryForm = ({
                       const { push, remove, form } = FieldArrayProp;
                       const { values } = form;
                       const { gallery } = values;
-                      console.log("gallerygallerygallerygallery", gallery);
                       return (
                         <div>
                           {gallery.map((item: any, index: number) => (

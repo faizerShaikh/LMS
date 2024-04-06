@@ -32,10 +32,9 @@ const columns = [
     cellClassName: "text-dark",
     renderCell: (params: { row: MediaPressReleaseInterface }) => {
       const checkboxProps = params.row.isFeatured
-      
-      ? {disabled:true,  checked: true }
+        ? { disabled: true, checked: true }
         : {};
-      return <Checkbox {...checkboxProps} disabled/>;
+      return <Checkbox {...checkboxProps} disabled />;
     },
   },
   {
@@ -70,7 +69,6 @@ const columns = [
 
 export default function MediaPage() {
   const { data } = useGetAll({ key: "/configurations/press-release" });
-  console.log(data, "<==================ahsdfjhasvfjh")
   return (
     <>
       <PageHeader title="Press Release" />

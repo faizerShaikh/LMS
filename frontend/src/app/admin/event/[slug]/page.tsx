@@ -40,11 +40,9 @@ const SingleEvent = async ({ params: { slug } }: Props) => {
       initialValues = { ...initialValues, ...data };
       if (data.metaData) {
         metadata = { ...data.metaData };
-        console.log(metadata);
       }
     }
   }
-  console.log("data:", data);
   return (
     <>
       <PageHeader title={"Add Event"} className="mb-2"></PageHeader>

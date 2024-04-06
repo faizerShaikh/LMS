@@ -55,7 +55,6 @@ export const FaqForm = ({
           validationSchema={validationSchema}
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
-            console.log("valuesvalues", values);
             mutate(values, {
               onSuccess() {
                 resetForm();

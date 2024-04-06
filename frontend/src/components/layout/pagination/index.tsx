@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   gridPageCountSelector,
@@ -13,13 +14,13 @@ import { Select } from "../inputs/select";
 
 const paginationStyles = {
   "& .MuiPaginationItem-root": {
-    "background": colors.tertiary.light,
-    "fontFamily": "'Century Gothic', sans-serif",
-    "padding": "10px",
-    "minWidth": "auto",
-    "width": "26px",
-    "height": "32px",
-    "fontSize": "12px",
+    background: colors.tertiary.light,
+    fontFamily: "'Century Gothic', sans-serif",
+    padding: "10px",
+    minWidth: "auto",
+    width: "26px",
+    height: "32px",
+    fontSize: "12px",
     "&:hover": {
       opacity: 0.8,
     },
@@ -57,17 +58,17 @@ export const Pagination = () => {
   const total = useGridSelector(apiRef, gridRowCountSelector);
 
   return (
-    <Box className='flex justify-between items-center w-full py-5'>
-      <Box className='flex items-center justify-start text-xs'>
+    <Box className="flex justify-between items-center w-full py-5">
+      <Box className="flex items-center justify-start text-xs">
         <div
-          className='border-r-2 p-2 century-gothic'
+          className="border-r-2 p-2 century-gothic"
           style={{ color: "#333333" }}
         >
           Showing {page * pageSize || 1} to {page * pageSize + pageSize} of{" "}
           {total} entries
         </div>
         <div
-          className='p-2 flex items-center century-gothic'
+          className="p-2 flex items-center century-gothic"
           style={{
             fontFamily: "'Century Gothic', sans-serif",
             color: "#333333",
@@ -103,8 +104,8 @@ export const Pagination = () => {
       <MuiPagination
         sx={paginationStyles}
         count={pageCount}
-        shape='rounded'
-        size='large'
+        shape="rounded"
+        size="large"
         page={page + 1}
         onChange={(_, value) => apiRef.current.setPage(value - 1)}
       />

@@ -7,7 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import removeTags from "utils/removeTags";
 import CarouselCard from "./event/components/CarouselCard";
-import { UniversityInterface } from "interfaces";
+import { CourseSpecializationInterface, UniversityInterface } from "interfaces";
+import { CourseTabs } from "components/home/tabs";
 
 export const revalidate = 60;
 export default async function Home() {
@@ -16,7 +17,7 @@ export default async function Home() {
     `${process.env.BASE_API_URL}/configurations/faq`
   );
   FAQData = response.data.data.rows;
-  console.log(FAQData);
+  // console.log(FAQData);
 
   let events: EventInterface[];
   const res = await axios.get(
@@ -29,9 +30,18 @@ export default async function Home() {
     `${process.env.BASE_API_URL}/configurations/university`
   );
   universityData = uniResponse.data.data.rows;
-  console.log(universityData);
   let carouselData = universityData?.map(
     (item: UniversityInterface) => item?.university_image
+  );
+
+  let CourseSpecializationCardData: CourseSpecializationInterface[];
+  const specializationResponse = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/course-specialization`
+  );
+  CourseSpecializationCardData = specializationResponse.data.data.rows;
+  console.log(
+    specializationResponse.data.data.rows,
+    "<<<<<<<<<<<CourseSpecializationCardData"
   );
   return (
     <>
@@ -125,6 +135,14 @@ export default async function Home() {
           <h2 className="text-center text-3xl">Our Top University Partners</h2>
           <div>
             <CarouselCard data={carouselData}></CarouselCard>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="container m-auto">
+          <h2>Master's Degree</h2>
+          <div>
+            <CourseTabs cardsdata={CourseSpecializationCardData} />
           </div>
         </div>
       </section>

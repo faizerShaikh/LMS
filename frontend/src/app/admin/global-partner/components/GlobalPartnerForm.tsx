@@ -20,7 +20,6 @@ type Props = {
 };
 
 const GlobalPartnerForm = ({ initialValues, isUpdate, id }: Props) => {
-  console.log(`/configurations/global-partner/update-coverImage/${id}`);
   const router = useRouter();
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate
