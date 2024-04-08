@@ -13,7 +13,10 @@ const GlobalPartnerMenu = () => {
 
   return (
     <>
-      <DropDown buttonText="Global Partner">
+      <DropDown
+        buttonText="Global Partner"
+        buttonProps={{ className: "laptop:!text-xs desktop:!text-lg" }}
+      >
         {data &&
           data.rows.map((item: GlobalPartnerInterface) => (
             <MenuItem className="w-full min-w-full" key={item.id}>

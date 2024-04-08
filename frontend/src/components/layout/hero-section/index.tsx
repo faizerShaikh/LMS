@@ -20,9 +20,9 @@ export function HeroSection({
   buttonText,
 }: prop) {
   return (
-    <section className="bg-gray-50 py-24 ">
-      <div className="flex justify-between items-center container  gap-10  m-auto">
-        <div className="w-1/2 flex flex-col justify-center ">
+    <section className="bg-gray-50 desktop:py-24 py-16">
+      <div className="flex justify-between items-center container gap-10 desktop:container px-4 desktop:py-8 m-auto flex-col-reverse desktop:flex-row laptop:container laptop:flex-row">
+        <div className="desktop:w-1/2 w-full flex flex-col justify-center">
           <Image
             alt="test"
             width={0}
@@ -30,11 +30,11 @@ export function HeroSection({
             sizes="100vw"
             style={{ width: "100%" }}
             src={HeroImage}
-            className="object-center "
+            className="object-center rounded-xl"
           />
         </div>
-        <div className="w-1/2 px-8">
-          <h1 className="font-extrabold text-[40px] leading-[56px] mt-0 mb-4">
+        <div className="desktop:w-1/2 w-full">
+          <h1 className="desktop:font-extrabold font-semibold text-[40px] leading-[56px] mt-0 mb-4">
             {Herotitle}
           </h1>
           <div

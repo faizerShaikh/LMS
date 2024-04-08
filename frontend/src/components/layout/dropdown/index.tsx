@@ -42,7 +42,6 @@ export function DropDown({
           </IconButton>
         ) : (
           <Button
-            className="bg-transparent shadow-none text-blue-900 uppercase font-semibold text-base p-0 mt-1"
             id="basic-button"
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
@@ -50,6 +49,12 @@ export function DropDown({
             onClick={handleClick}
             variant="contained"
             {...buttonProps}
+            className={
+              "bg-transparent shadow-none text-blue-900 uppercase font-semibold text-base p-0 mt-1" +
+              (buttonProps && buttonProps?.className
+                ? " " + buttonProps?.className
+                : "")
+            }
           >
             {buttonText}
           </Button>
