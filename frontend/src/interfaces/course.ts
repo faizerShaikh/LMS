@@ -52,6 +52,8 @@ export interface CourseSpecializationInterface {
   metaID?: string;
   metaData?: MetaDataInterface;
   fees_structure?: FeesStructureInterface;
+  programHiglights?: ProgramHiglightsInterface[];
+  association?: AssociationInterface[];
 }
 
 export interface FeesStructureInterface {

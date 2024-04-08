@@ -9,7 +9,6 @@ export default async function GlobalPartner({
   params: { slug: string };
 }) {
   const data = await getSingleGlobalPartner(slug);
-
   if (!data) return redirect("/404");
 
   return (
