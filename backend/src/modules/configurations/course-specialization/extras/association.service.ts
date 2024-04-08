@@ -49,10 +49,9 @@ export class AssociationService extends GenericService<
         });
       }
 
-      await association.update({
-        image: '/media/associations/' + file.filename,
-      });
-    }
+    await association.update({
+      image: '/media/course-specialization/extras/' + file.filename,
+    });
     return 'Association Image Uploaded Successfully';
   }
-}
+}}
