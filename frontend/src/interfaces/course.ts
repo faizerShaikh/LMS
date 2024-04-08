@@ -54,6 +54,7 @@ export interface CourseSpecializationInterface {
   fees_structure?: FeesStructureInterface;
   programHiglights?: ProgramHiglightsInterface[];
   association?: AssociationInterface[];
+  admissionProcess?: AdmissionProcessInterface[];
 }
 
 export interface FeesStructureInterface {

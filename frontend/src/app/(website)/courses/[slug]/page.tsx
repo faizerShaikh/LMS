@@ -2,6 +2,7 @@ import { Download } from "@carbon/icons-react";
 import axios from "axios";
 import { Button } from "components/layout/buttons";
 import {
+  AdmissionProcessInterface,
   AssociationInterface,
   CourseSpecializationInterface,
   ProgramHiglightsInterface,
@@ -82,7 +83,9 @@ export default async function SingleCourse({
             </div>
             <div className="">
               <p className="font-bold text-xl">Webinars</p>
-              <p className="font-medium text-lg m-0">{data.webinar}</p>
+              <p className="font-medium text-lg m-0">
+                {data.webinar ? "Yes" : "No"}
+              </p>
             </div>
           </div>
           <div className="w-1/4 pl-6 ">
@@ -133,7 +136,7 @@ export default async function SingleCourse({
             {data.association?.map((item: AssociationInterface) => (
               <div className="text-center">
                 <Image
-                  src={`${process.env.BASE_MEDIA_URL}/${item.image}}`}
+                  src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
                   alt="test"
                   width={100}
                   height={100}
@@ -146,7 +149,32 @@ export default async function SingleCourse({
           </div>
         </div>
       </section>
-
+      <section className="bg-gray-100">
+        <div className="container py-16 m-auto">
+          <h2 className="text-center m-0 mb-14 text-3xl font-semibold">
+            Admission Process
+          </h2>
+          <div className="flex justify-center gap-10">
+            {data.admissionProcess?.map((item: AdmissionProcessInterface) => (
+              <div className="bg-white w-[30%] rounded-3xl py-8 px-6 shadow-2xl">
+                <div className="flex justify-center">
+                  <Image
+                    src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
+                    alt="test"
+                    width={130}
+                    height={130}
+                    className="justify-center"
+                  />
+                </div>
+                <h2 className="font-medium">{item.title}</h2>
+                <div
+                  dangerouslySetInnerHTML={{ __html: item.description }}
+                ></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="container m-auto mb-20">
         <div className="border py-4 px-4 rounded-md border-black ">
           <h2 className="font-bold text-2xl mb-2">Introduction</h2>
