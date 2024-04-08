@@ -17,40 +17,49 @@ const config: Config = {
       },
 
       colors: {
-        "dark": "#4D4D4D",
-        "light": "#616161",
-        "main": "#828282",
-        "primary": "#344b88",
+        dark: "#4D4D4D",
+        light: "#616161",
+        main: "#828282",
+        primary: "#344b88",
         "primary-light": "#e8ebf2",
-        "secondary": "#ffb606",
+        secondary: "#ffb606",
         "secondary-light": "#fff8e6",
-        "tertiary": "#78909C",
+        tertiary: "#78909C",
         "tertiary-light": "#F2F5F7",
         "fc-dark": "#4D4D4D",
         "fc-light": "#616161",
         "fc-main": "#828282",
-        "initiated": "#1ABBB9",
-        "inProgress": "#FFB508",
-        "success": "#18AB56",
-        "cancelled": "#EB5757",
-        "grid": "#333333",
-        "chip": "#F7FDEE",
+        initiated: "#1ABBB9",
+        inProgress: "#FFB508",
+        success: "#18AB56",
+        cancelled: "#EB5757",
+        grid: "#333333",
+        chip: "#F7FDEE",
       },
 
       fontSize: {
         "semi-base": "15px", //"0.938rem",
       },
     },
+    screens: {
+      tablet: "640px",
+      // => @media (min-width: 640px) { ... }
 
+      laptop: "1024px",
+      // => @media (min-width: 1024px) { ... }
+
+      desktop: "1280px",
+      // => @media (min-width: 1280px) { ... }
+    },
     fontFamily: {
       // "aller": ["Aller", "sans-serif"],
       // "aller-display": ["Aller Display", "sans-serif"],
       // "aller-light": ["Aller Light", "sans-serif"],
       // "century-gotic": ["Century Gothic", "sans-serif"],
-      Inter: ['Inter var', 'sans-serif'],
+      Inter: ["Inter var", "sans-serif"],
     },
     container: {
-      padding: "8rem"
+      padding: "8rem",
     },
   },
   plugins: [require("@tailwindcss/line-clamp")],
