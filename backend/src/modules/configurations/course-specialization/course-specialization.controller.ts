@@ -76,4 +76,19 @@ export class CourseSpecializationController extends GenericController<
   ) {
     return this.courseService.createFeesStructure(body,id);
   }
+
+  @Put('update-syllabus')
+  @UseInterceptors(
+    MulterIntercepter({
+      type: MulterEnum.single,
+      fieldName: 'syllabus',
+      path: '/documents',
+    }),
+  )
+  async updateSyllabus(
+    @UploadedFile() file: Express.Multer.File,
+    @Param('id') id: string,
+  ){
+    return this.courseService.updatesyllabus(file,id)
+  }
 }

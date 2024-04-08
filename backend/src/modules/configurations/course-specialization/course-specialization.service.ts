@@ -86,6 +86,21 @@ export class CourseSpecializationService extends GenericService<
       console.error('Error occurred in update method:', err);
     }
   }
+
+  async updatesyllabus(file:Express.Multer.File, id:string){
+    const courseSpecialization=await this.getOne<CourseSpecialization>(id);
+    const filePath=join('../../../../','src/public/documents'+courseSpecialization.syllabus)
+    if(fs.existsSync(filePath)){
+      unlink(filePath,(err)=>{
+        if(err){
+          throw new InternalServerErrorException(err)
+        }
+      })
+    }
+    await courseSpecialization.update({
+      syllabus: file?.path?.split('src/public')[1],
+    });
+  }
   async updateCourseSpecializationImage(file: Express.Multer.File, id: string) {
     const courseSpecialization = await this.getOne<CourseSpecialization>(id);
     const defaultImagePath = 'backend/src/public/media/default.png';
@@ -107,7 +122,7 @@ export class CourseSpecializationService extends GenericService<
     await courseSpecialization.update({
       cover_image: file?.path?.split('src/public')[1],
     });
-    return 'Course Specialization Cover Image Uploaded Successfully';
+    return 'syllabus updated successfully';
   }
 
   async createOtherObjects(
