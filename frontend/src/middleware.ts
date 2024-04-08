@@ -13,6 +13,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|.*\\.png|.*\\.svg|$|blogs|career|contact-us|courses|event|media|webinar|global-partner|about|certificate|website/:name)(?!.*/:slug\b)(?!.*/:name\b).*)",
+    "/((?!api|_next/static|img2|img|_next/image|.*\\.png|.*\\.svg|$|blogs|career|contact-us|courses|event|media|webinar|global-partner|about|certificate|website/:name)(?!.*/:slug\b)(?!.*/:name\b).*)",
   ],
 };

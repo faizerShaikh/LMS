@@ -13,31 +13,34 @@ export default async function Media() {
 
   return (
     <>
-      <section className="bg-gray-50 h-[400px] ">
-        <div className="flex container m-auto">
-          <div className="w-1/2 ">
-            <Image
-              height={400}
-              width={500}
-              alt="test"
-              src="/img2/Media-Page.jpg"
-            />
+      <section className="bg-gray-50 desktop:h-[400px]">
+        <div className="flex desktop:container px-4 py-8 m-auto flex-col-reverse desktop:flex-row laptop:container laptop:flex-row">
+          <div className="desktop:w-1/2">
+            <div className="desktop:w-[500px] desktop:h-[350px] laptop:w-[500px] laptop:h-[350px] w-full relative h-[300px] tablet:h-[400px]">
+              <Image
+                // height={400}
+                // width={500}
+                layout="fill"
+                alt="test"
+                src="/img2/Media-Page.jpg"
+              />
+            </div>
           </div>
-          <div className="w-1/2 m-auto px-4">
-            <h2 className="font-extrabold text-5xl leading-[56px] m-0 mb-2">
+          <div className="desktop:w-1/2 m-auto">
+            <h2 className="desktop:font-extrabold tablet:font-extrabold font-semibold desktop:text-5xl text-4xl leading-[56px] m-0 mb-2 text-center desktop:text-left laptop:text-left laptop:pl-4">
               Media
             </h2>
-            <h3 className="text-2xl m-0 mb-2 font-medium ">
+            <h3 className="desktop:text-2xl m-0 mb-2 desktop:font-medium :text-2xl :font-medium text-sm text-center laptop:text-left laptop:pl-4">
               Press Releases, announcements, interviews & comments. For
               press-related questions, e-mails.
             </h3>
-            <ul className="list-disc pl-12">
-              <li className=" mb-2 text-xl">
+            <ul className="list-disc desktop:pl-12 pl-8">
+              <li className="mb-2 desktop:text-xl text-sm">
                 Please contact us for media enquires and interviews with
                 Dr.Tausif Malik, founder. He comments on affordable education,
                 social entrepreneurship & startups. info@riseback.org
               </li>
-              <li className=" text-xl">
+              <li className="desktop:text-xl text-sm">
                 Explore additional news, highlights, and stories from Coursera
                 and our community by visiting the following.
               </li>
@@ -46,17 +49,18 @@ export default async function Media() {
         </div>
       </section>
       <section className=" py-16">
-        <h2 className="font-bold text-4xl text-center mb-8">
+        <h2 className="desktop:font-bold desktop:text-4xl text-center mb-8 font-semibold text-4xl">
           {" "}
           Published Articles
         </h2>
-        <div className="flex flex-wrap container m-auto justify-around items-center gap-1">
+        <div className="desktop:container desktop:m-auto laptop:container laptop:m-auto mx-8 justify-around items-center grid laptop:grid-cols-3 desktop:grid-cols-3 tablet:grid-cols-2 tablet:mx-20 gap-5">
           {PressRealeseCards.map((PressRealeseCard: any) => {
             return (
-              <div className="w-[30%] p-4 border border-black mb-8 rounded-md">
+              <div className="p-4 border border-black rounded-md">
                 <Image
                   height={200}
                   width={200}
+                  // layout="fill"
                   alt="tets"
                   src={`${process.env.BASE_MEDIA_URL}/${PressRealeseCard.coverImage}`}
                   className="mb-4 w-full"
