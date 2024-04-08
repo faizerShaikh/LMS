@@ -21,9 +21,10 @@ export default async function ContactUs() {
       <section className=" text-center bg-slate-100">
         <div className="py-12 container m-auto">
           <h2 className="font-semibold text-4xl m-0 pb-12">Enquiries</h2>
-          <div className="flex flex-wrap items-center justify-around">
-            <div className=" flex flex-col items-center mb-8 w-96  bg-white py-4 shadow-2xl rounded-md">
-              <div className="bg-blue-900 rounded-full size-20 mt-4 ">
+          {/* <div className="flex flex-wrap items-center justify-around"> */}
+          <div className="desktop:flex flex-wrap items-center justify-around laptop:grid laptop:grid-cols-2 gap-5">
+            <div className=" flex flex-col items-center mb-8 w-96 bg-white py-4 shadow-2xl rounded-md">
+              <div className="bg-blue-900 rounded-full size-20 mt-4">
                 <Image
                   src="/img2/University-Degree.png"
                   alt=""
