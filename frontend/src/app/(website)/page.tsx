@@ -39,10 +39,7 @@ export default async function Home() {
     `${process.env.BASE_API_URL}/configurations/course-specialization`
   );
   CourseSpecializationCardData = specializationResponse.data.data.rows;
-  console.log(
-    specializationResponse.data.data.rows,
-    "<<<<<<<<<<<CourseSpecializationCardData"
-  );
+
   return (
     <>
       <section className=" bg-gray-100 h-[400px] ">

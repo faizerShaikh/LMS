@@ -10,6 +10,7 @@ import { Add, Edit } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
 import { API } from "configs";
+import TextEditor from "components/admin/richTextEditor";
 
 export const AdmissionProcessFrom = ({
   data,
@@ -85,48 +86,55 @@ export const AdmissionProcessFrom = ({
             );
           }}
         >
-          <Form>
-            <Grid container columnSpacing={10} className="" gap={3}>
-              <Grid xs={12} item>
-                <Box>
-                  <Label text="Upload your image" required />
-                  <DropZone name="image" />
-                </Box>
+          {({ setFieldValue, values }) => (
+            <Form>
+              <Grid container columnSpacing={10} className="" gap={3}>
+                <Grid xs={12} item>
+                  <Box>
+                    <Label text="Upload your image" required />
+                    <DropZone name="image" />
+                  </Box>
 
-                <Box className="mt-4">
-                  <Label text="Title" required />
-                  <Input name="title" />
-                </Box>
-                <Box className="mt-4">
-                  <Label text="Description" required />
-                  <Input name="description" />
-                </Box>
+                  <Box className="mt-4">
+                    <Label text="Title" required />
+                    <Input name="title" />
+                  </Box>
+                  <Box className="mt-4">
+                    <Label text="Description" required />
+                    <TextEditor
+                      name="description"
+                      label="Description"
+                      setFieldValue={setFieldValue}
+                      value={values?.description}
+                    />
+                  </Box>
+                </Grid>
+                <Grid xs={12} item>
+                  <Box className="flex justify-end">
+                    <Button
+                      color="secondary"
+                      className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
+                      variant="contained"
+                      disabled={isLoading}
+                      onClick={() => {
+                        onClose();
+                      }}
+                    >
+                      Discard
+                    </Button>
+                    <Button
+                      variant="contained"
+                      className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
+                      type="submit"
+                      isLoading={isLoading}
+                    >
+                      Save
+                    </Button>
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid xs={12} item>
-                <Box className="flex justify-end">
-                  <Button
-                    color="secondary"
-                    className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
-                    variant="contained"
-                    disabled={isLoading}
-                    onClick={() => {
-                      onClose();
-                    }}
-                  >
-                    Discard
-                  </Button>
-                  <Button
-                    variant="contained"
-                    className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
-                    type="submit"
-                    isLoading={isLoading}
-                  >
-                    Save
-                  </Button>
-                </Box>
-              </Grid>
-            </Grid>
-          </Form>
+            </Form>
+          )}
         </Formik>
       )}
     </Dialog>

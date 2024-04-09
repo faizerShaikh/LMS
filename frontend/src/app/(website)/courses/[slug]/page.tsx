@@ -1,5 +1,12 @@
+import { Download } from "@carbon/icons-react";
 import axios from "axios";
-import { CourseSpecializationInterface } from "interfaces";
+import { Button } from "components/layout/buttons";
+import {
+  AdmissionProcessInterface,
+  AssociationInterface,
+  CourseSpecializationInterface,
+  ProgramHiglightsInterface,
+} from "interfaces";
 import Image from "next/image";
 
 export default async function SingleCourse({
@@ -11,7 +18,7 @@ export default async function SingleCourse({
   let url = `${process.env.BASE_API_URL}/configurations/course-specialization/slug/${params.slug}/`;
   const response = await axios.get(url);
   data = response.data.data;
-  // console.log(url, "<<<<<<<<<<<<<<<");
+  console.log(data, "<<<<<<<<<<<<<<<");
   return (
     <>
       <section className="bg-gray-100">
@@ -27,41 +34,147 @@ export default async function SingleCourse({
           </div>
           <div className="w-2/4 px-8  ">
             <h2 className="font-bold text-2xl m-0 pb-6">{data.name}</h2>
-            <p className="font-semibold mb-10">{data.description}</p>
+            <div
+              className="font-semibold mb-10"
+              dangerouslySetInnerHTML={{ __html: data.description }}
+            ></div>
 
-            <div className="flex justify-between">
-              <button className="py-2 px-28 rounded-md hover:bg-blue-900 hover:text-white border-2 border-black">
-                Apply Now
-              </button>
-              <button className=" py-2 px-28 rounded-md  hover:bg-blue-900 hover:text-white  border-2 border-black">
+            <div className="flex justify-between gap-5">
+              <div className="border border-black w-1/2">
+                <Button className="py-2 w-full  bg-white text-black">
+                  Apply Now
+                </Button>
+              </div>
+              <Button className=" py-2  w-1/2  ">
+                <Download className="mr-3 size-5" />
                 Syllabus
-              </button>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
       <section className="container m-auto my-14">
-        <div className="flex justify-center text-center  shadow-2xl rounde ">
-          <div className="border-r-2  border-black px-8 w-1/4 my-8">
-            <i className="fa-regular fa-clock text-3xl mb-8"></i>
-            <p>60 Hours (8 to 24 Weeks)</p>
+        <div className="flex border-2 rounded-2xl shadow-2xl  py-8">
+          <div className="w-1/4 border-r-2 border-black pl-6">
+            <div className="mb-8">
+              <p className="font-bold text-xl m-0">Mode</p>
+              <p className="font-medium text-lg">{data.delivery_mode}</p>
+            </div>
+            <div className="">
+              <p className="font-bold text-xl">Courses</p>
+              <p className="font-medium text-lg m-0">{data.courses}</p>
+            </div>
           </div>
-          <div className="border-r-2  border-black px-8 w-1/4 my-8">
-            <i className="fa-regular fa-calendar-days text-3xl mb-8"></i>
-            <p>Daily / Weekly Classes</p>
+          <div className="w-1/4 border-r-2 border-black pl-6">
+            <div className="mb-8">
+              <p className="font-bold text-xl m-0">Learning Path</p>
+              <p className="font-medium text-lg">{data.learningPath}</p>
+            </div>
+            <div className="">
+              <p className="font-bold text-xl">Credits</p>
+              <p className="font-medium text-lg m-0">{data.credits}</p>
+            </div>
           </div>
-          <div className="border-r-2  border-black px-8 w-1/4 my-8">
-            <i className="fa-solid fa-file text-3xl mb-8"></i>
-            <p>4 Case Studies & 1 Live Project</p>
+          <div className="w-1/4 border-r-2 border-black pl-6">
+            <div className="mb-8">
+              <p className="font-bold text-xl m-0">Course Duration</p>
+              <p className="font-medium text-lg">{data.duration}</p>
+            </div>
+            <div className="">
+              <p className="font-bold text-xl">Webinars</p>
+              <p className="font-medium text-lg m-0">
+                {data.webinar ? "Yes" : "No"}
+              </p>
+            </div>
           </div>
-          <div className="w-1/4 my-8">
-            <i className="fa-solid fa-hand-holding-dollar text-3xl mb-8"></i>
-            <p>$ 350/</p>
+          <div className="w-1/4 pl-6 ">
+            <div className="mb-8">
+              <p className="font-bold text-xl m-0">Fees</p>
+              <p className="font-medium text-lg">
+                Indian : INR {data.fees_structure?.indian_annual_fees}
+              </p>
+              <p className="font-medium text-lg">
+                Foreigners : $ {data.fees_structure?.foreign_annual_fees}
+              </p>
+              <p className="font-medium text-lg">
+                {data.fees_structure?.notes}
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
+      <section>
+        <div className="container m-auto py-16">
+          <h2 className="text-center m-0 mb-12 text-3xl">
+            Programme Highlights
+          </h2>
+          <div className="flex px-20">
+            <div className="w-1/2">
+              {data.programHiglights?.map((item: ProgramHiglightsInterface) => (
+                <div className="items-center flex">
+                  <Image
+                    src={`${process.env.BASE_MEDIA_URL}/${item.image}}`}
+                    alt="test"
+                    width={80}
+                    height={80}
+                  />{" "}
+                  <p>{item.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-blue-900 text-white">
+        <div className="container py-16 m-auto">
+          <div className="text-center">
+            <h2 className="text-3xl m-0 mb-12">Recognization & Association</h2>
+          </div>
+          <div className="flex justify-center gap-12 ">
+            {data.association?.map((item: AssociationInterface) => (
+              <div className="text-center">
+                <Image
+                  src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
+                  alt="test"
+                  width={100}
+                  height={100}
+                  className="rounded-full mb-0"
+                />
+                <h2 className="mb-0 mt-1">{item.title}</h2>
+                <p className="m-0">{item.subTitle}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="bg-gray-100">
+        <div className="container py-16 m-auto">
+          <h2 className="text-center m-0 mb-14 text-3xl font-semibold">
+            Admission Process
+          </h2>
+          <div className="flex justify-center gap-10">
+            {data.admissionProcess?.map((item: AdmissionProcessInterface) => (
+              <div className="bg-white w-[30%] rounded-3xl py-8 px-6 shadow-2xl">
+                <div className="flex justify-center">
+                  <Image
+                    src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
+                    alt="test"
+                    width={130}
+                    height={130}
+                    className="justify-center"
+                  />
+                </div>
+                <h2 className="font-medium">{item.title}</h2>
+                <div
+                  dangerouslySetInnerHTML={{ __html: item.description }}
+                ></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="container m-auto mb-20">
         <div className="border py-4 px-4 rounded-md border-black ">
           <h2 className="font-bold text-2xl mb-2">Introduction</h2>
