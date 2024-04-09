@@ -49,20 +49,20 @@ export default async function EventsPage({
   return (
     <>
       <section className="bg-gray-100 hover:text-white">
-        <div className="py-10 ">
+        <div className="py-8 laptop:py-10 desktop:py-10">
           <Events buttons={EventsButtons} defaultValue={searchParams?.date} />
         </div>
       </section>
-      <section className=" py-12">
-        <div className="flex container m-auto ">
+      <section className="py-12">
+        <div className="flex flex-col-reverse laptop:flex-row desktop:flex-row desktop:container desktop:m-auto mx-6 ">
           {!events || !events.length ? (
-            <div className="w-3/4 ">
+            <div className="w-3/4">
               <NoDataOverlay text={"No data found with applied filters"} />
             </div>
           ) : (
-            <div className="w-3/4  flex  flex-wrap ">
+            <div className="desktop:w-3/4 w-full flex flex-wrap grid laptop:grid-cols-3 desktop:grid-cols-3 tablet:grid-cols-2 gap-5">
               {events.map((item: EventInterface) => (
-                <div className="w-[30%] mx-2  h-[330px] shadow-2xl rounded-md mb-4">
+                <div className="Desktop:w-[30%] mx-2 h-[330px] shadow-2xl rounded-md mb-4">
                   <Image
                     src={`${process.env.BASE_MEDIA_URL}${item.eventImage}`}
                     width={200}
