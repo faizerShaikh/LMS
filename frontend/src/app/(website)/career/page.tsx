@@ -3,28 +3,32 @@ import Image from "next/image";
 export default function Career() {
   return (
     <>
-      <section className=" bg-gray-100 h-[400px] ">
-        <div className="flex container m-auto">
-          <div className="w-1/2">
-            <Image
-              height={400}
-              width={500}
-              alt="test"
-              src="/img2/Career-Page.jpg"
-            />
+      {/* <section className=" bg-gray-100 h-[400px] "> */}
+      <section className=" bg-gray-100 h-auto desktop:h-[400px]">
+        <div className="flex desktop:container m-auto flex-col-reverse desktop:flex-row laptop:container laptop:flex-row">
+          <div className="desktop:w-1/2">
+            <div className="desktop:w-[500px] desktop:h-[350px] laptop:w-[500px] laptop:h-[350px] w-full relative h-[300px] tablet:h-[400px]">
+              <Image
+                // height={400}
+                // width={500}
+                layout="fill"
+                alt="test"
+                src="/img2/Career-Page.jpg"
+              />
+            </div>
           </div>
-          <div className="w-1/2 px-4 ">
-            <p className="font-medium text-xl mb-1 ">
+          <div className="desktop:w-1/2 desktop:px-4 laptop:px-4 px-8 pb-4">
+            <p className="font-medium desktop:text-xl mb-1">
               Join RiseBack's dynamic team at the forefront of EdTech
               innovation, connecting Indian universities with global students.
             </p>
-            <p className="font-medium text-xl m-0 mb-1">
+            <p className="font-medium desktop:text-xl m-0 mb-1">
               We're looking for passionate team members to contribute to
               reshaping the future of education. If you'r edriven by
               empowerment, innovation,
               andcollaboration,seizetheopportunitytomake a meaningful impact.
             </p>
-            <p className="font-medium text-xl m-0 mb-6 ">
+            <p className="font-medium desktop:text-xl m-0 mb-6 ">
               Join us at RiseBack, where your talents meet purpose in
               transforming the education landscape
             </p>
@@ -35,23 +39,23 @@ export default function Career() {
         </div>
       </section>
       <section className=" py-12">
-        <div className="flex my-12 container  m-auto">
-          <div className="w-1/4 bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
-            <h2 className=" font-bold text-2xl">Diversity</h2>
+        <div className="my-12 desktop:container m-auto grid laptop:grid-cols-2 desktop:grid-cols-4 tablet:grid-cols-2 gap-5">
+          <div className="desktop:w-full bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
+            <h2 className="font-bold text-2xl">Diversity</h2>
             <p className="text-lg">
               We are committed to fostering an inclusive culture that values
               diversity. Our teams consist of individuals from various
               backgrounds, each contributing their unique experiences.
             </p>
           </div>
-          <div className="w-1/4 bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
+          <div className="desktop:w-full bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
             <h2 className="font-bold text-2xl">Innovation</h2>
             <p className="text-lg">
               Embracing a culture of innovation and prioritizing technology, our
               experiences and processes are in a constant state of evolution.
             </p>
           </div>
-          <div className="w-1/4 bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
+          <div className="desktop:w-full bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
             <h2 className=" font-bold text-2xl">Creativity</h2>
             <p className="text-lg">
               Elevate your career in a space that celebrates creativity. Join
@@ -59,7 +63,7 @@ export default function Career() {
               potential with us.
             </p>
           </div>
-          <div className="w-1/4 bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
+          <div className="desktop:w-full bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
             <h2 className=" font-bold text-2xl">Empowerment</h2>
             <p className="text-lg">
               Empowerment is our ethos. Join us to contribute your talent to a
@@ -199,7 +203,7 @@ export default function Career() {
                   <td>Product Management</td>
                   <td>United States</td>
                 </tr>
-                
+
                 <tr className="border-b-2">
                   <td>Machine Learning Engineer</td>
                   <td>Data Science</td>
@@ -237,11 +241,12 @@ export default function Career() {
           <p className="text-lg">
             RiseBack.org strictly prohibits any recruitment fees from
             candidates. Be cautious of fraudulent recruitment offers Please
-            apply <br/> with a covering letter & resume with expected
+            apply <br /> with a covering letter & resume with expected
             remuneration via email{" "}
-            <span className="text-blue-500">info@riseback.org</span><br/>
-             Only shortlisted candidates would be contacted. Please don’t
-            call to enquire about positions or regarding your application.
+            <span className="text-blue-500">info@riseback.org</span>
+            <br />
+            Only shortlisted candidates would be contacted. Please don’t call to
+            enquire about positions or regarding your application.
           </p>
         </div>
       </section>
