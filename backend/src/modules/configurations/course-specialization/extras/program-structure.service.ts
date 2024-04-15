@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { InjectModel } from '@nestjs/sequelize';
 import { join } from 'path';
@@ -62,4 +62,24 @@ export class ProgramStructureService extends GenericService<
       throw new InternalServerErrorException(error.message);
     }
   }
+
+
+  async getProgramStructuresByCourseSpecializationId(courseSpecializationId: string) {
+    try {
+      console.log('Fetching program structures for course specialization ID:', courseSpecializationId);
+      const programStructures = await ProgramStructure.findAll({
+        where: { course_specialization_id: courseSpecializationId },
+      });
+      console.log('Found program structures:', programStructures);
+      if (!programStructures) {
+        console.log('No program structures found');
+        throw new NotFoundException('Program structures not found for the given course specialization ID');
+      }
+      return programStructures;
+    } catch (error) {
+      console.error('Error fetching program structures:', error);
+      throw new InternalServerErrorException(error.message);
+    }
+  }
+  
 }
