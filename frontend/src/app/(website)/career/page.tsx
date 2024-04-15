@@ -40,8 +40,8 @@ export default function Career() {
         </div>
       </section>
       <section className=" py-12 overflow-hidden">
-        <div className="my-12 desktop:container laptop:container m-auto grid laptop:grid-cols-2 desktop:grid-cols-4 tablet:grid-cols-2 gap-5">
-          <div className="desktop:w-full bg-gray-100 mx-8 text-center p-4 rounded-md shadow-lg">
+        <div className="my-12 desktop:container laptop:container laptop:mx-auto desktop:mx-auto mx-8 grid laptop:grid-cols-2 desktop:grid-cols-4 tablet:grid-cols-2 gap-5">
+          <div className="desktop:w-full bg-gray-100 text-center p-4 rounded-md shadow-lg">
             <h2 className="font-bold text-2xl">Diversity</h2>
             <p className="text-lg">
               We are committed to fostering an inclusive culture that values
@@ -49,14 +49,14 @@ export default function Career() {
               backgrounds, each contributing their unique experiences.
             </p>
           </div>
-          <div className="desktop:w-full bg-gray-100 mx-8 text-center p-4 rounded-md shadow-lg">
+          <div className="desktop:w-full bg-gray-100 text-center p-4 rounded-md shadow-lg">
             <h2 className="font-bold text-2xl">Innovation</h2>
             <p className="text-lg">
               Embracing a culture of innovation and prioritizing technology, our
               experiences and processes are in a constant state of evolution.
             </p>
           </div>
-          <div className="desktop:w-full bg-gray-100 mx-8 text-center p-4 rounded-md shadow-lg">
+          <div className="desktop:w-full bg-gray-100 text-center p-4 rounded-md shadow-lg">
             <h2 className=" font-bold text-2xl">Creativity</h2>
             <p className="text-lg">
               Elevate your career in a space that celebrates creativity. Join
@@ -64,7 +64,7 @@ export default function Career() {
               potential with us.
             </p>
           </div>
-          <div className="desktop:w-full bg-gray-100 mx-8 text-center p-4 rounded-md shadow-lg">
+          <div className="desktop:w-full bg-gray-100 text-center p-4 rounded-md shadow-lg">
             <h2 className=" font-bold text-2xl">Empowerment</h2>
             <p className="text-lg">
               Empowerment is our ethos. Join us to contribute your talent to a
@@ -175,8 +175,8 @@ export default function Career() {
                 Job Near Me
               </Button>
             </div>
-            <div className="grid laptop:grid-cols-3 desktop:grid-cols-3 tablet:grid-cols-2 gap-3 w-full">
-              <div className="tablet:w-1/2 desktop:w-full laptop:w-full flex flex-col items-center desktop:items-start laptop:items-start tablet:items-start">
+            <div className="grid laptop:grid-cols-3 desktop:grid-cols-3 tablet:grid-cols-2 gap-3 w-full tablet:mx-8 laptop:mx-0 desktop:mx-0">
+              <div className="desktop:w-full laptop:w-full flex flex-col items-center desktop:items-start laptop:items-start tablet:items-start">
                 <h3 className="text-start m-1">Title</h3>
                 <p className="text-start m-1">Staff Accountant</p>
                 <p className="text-start m-1">
@@ -193,7 +193,7 @@ export default function Career() {
                 </p>
                 <p className="text-start m-0">Senior Tax Analyst</p>
               </div>
-              <div className="tablet:w-1/2 desktop:w-full laptop:w-full flex flex-col items-center desktop:items-start laptop:items-start tablet:items-start">
+              <div className="desktop:w-full laptop:w-full flex flex-col items-center desktop:items-start laptop:items-start tablet:items-start">
                 <h3 className="text-start m-1">Department</h3>
                 <p className="text-start m-1">Accounting</p>
                 <p className="text-start m-1">Credentials & Content</p>
@@ -206,7 +206,7 @@ export default function Career() {
                 <p className="text-start m-1">Data Science</p>
                 <p className="text-start m-0">Accounting</p>
               </div>
-              <div className="tablet:w-1/2 desktop:w-full laptop:w-full flex flex-col items-center desktop:items-start laptop:items-start tablet:items-start">
+              <div className="desktop:w-full laptop:w-full flex flex-col items-center desktop:items-start laptop:items-start tablet:items-start">
                 <h3 className="text-start m-1">Location</h3>
                 <p className="text-start m-1">India</p>
                 <p className="text-start m-1">India</p>
