@@ -6,7 +6,7 @@ export const Footer = () => {
     <>
       <footer className="bg-black desktop:px-24 px-8">
         <div className="text-white flex py-8 flex-col desktop:grid desktop:grid-cols-2 tablet:grid tablet:grid-cols-2 tablet:mx-20">
-          <div className="desktop:w-1/5">
+          <div>
             <Image
               height={50}
               width={200}
@@ -39,7 +39,7 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="desktop:w-1/5 flex flex-col">
+          <div className="flex flex-col">
             <h2 className="mb-4 text-lg">LINKS</h2>
             <span className="border-b-2 w-4 mb-4"></span>
             <a href="#" className="mb-2 text-white">
@@ -52,7 +52,7 @@ export const Footer = () => {
               Master Degree’s
             </a>
           </div>
-          <div className="desktop:w-1/5 flex flex-col">
+          <div className="flex flex-col">
             <h2 className="mb-4 text-lg">COMPANY</h2>
             <span className="border-b-2 w-4 mb-4"></span>
             <a href="#" className="mb-2 text-white">
@@ -65,7 +65,7 @@ export const Footer = () => {
               Career
             </a>
           </div>
-          <div className="desktop:w-1/5 flex flex-col">
+          <div className="flex flex-col">
             <h2 className="mb-4 text-lg">SUPPORT</h2>
             <span className="border-b-2 w-4 mb-4"></span>
             <a href="#" className="mb-2 text-white">
