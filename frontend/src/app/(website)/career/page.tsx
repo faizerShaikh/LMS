@@ -1,3 +1,4 @@
+import { Button } from "components/layout/buttons";
 import Image from "next/image";
 
 export default function Career() {
@@ -17,7 +18,7 @@ export default function Career() {
               />
             </div>
           </div>
-          <div className="desktop:w-1/2 desktop:px-4 laptop:px-4 px-8 pb-4">
+          <div className="desktop:w-1/2 desktop:px-4 laptop:px-4 px-10 pb-4">
             <p className="font-medium desktop:text-xl mb-1">
               Join RiseBack's dynamic team at the forefront of EdTech
               innovation, connecting Indian universities with global students.
@@ -25,8 +26,8 @@ export default function Career() {
             <p className="font-medium desktop:text-xl m-0 mb-1">
               We're looking for passionate team members to contribute to
               reshaping the future of education. If you'r edriven by
-              empowerment, innovation,
-              andcollaboration,seizetheopportunitytomake a meaningful impact.
+              empowerment, innovation, andcollaboration,
+              seizetheopportunitytomake a meaningful impact.
             </p>
             <p className="font-medium desktop:text-xl m-0 mb-6 ">
               Join us at RiseBack, where your talents meet purpose in
@@ -38,9 +39,9 @@ export default function Career() {
           </div>
         </div>
       </section>
-      <section className=" py-12">
+      <section className=" py-12 overflow-hidden">
         <div className="my-12 desktop:container laptop:container m-auto grid laptop:grid-cols-2 desktop:grid-cols-4 tablet:grid-cols-2 gap-5">
-          <div className="desktop:w-full bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
+          <div className="desktop:w-full bg-gray-100 mx-8 text-center p-4 rounded-md shadow-lg">
             <h2 className="font-bold text-2xl">Diversity</h2>
             <p className="text-lg">
               We are committed to fostering an inclusive culture that values
@@ -48,14 +49,14 @@ export default function Career() {
               backgrounds, each contributing their unique experiences.
             </p>
           </div>
-          <div className="desktop:w-full bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
+          <div className="desktop:w-full bg-gray-100 mx-8 text-center p-4 rounded-md shadow-lg">
             <h2 className="font-bold text-2xl">Innovation</h2>
             <p className="text-lg">
               Embracing a culture of innovation and prioritizing technology, our
               experiences and processes are in a constant state of evolution.
             </p>
           </div>
-          <div className="desktop:w-full bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
+          <div className="desktop:w-full bg-gray-100 mx-8 text-center p-4 rounded-md shadow-lg">
             <h2 className=" font-bold text-2xl">Creativity</h2>
             <p className="text-lg">
               Elevate your career in a space that celebrates creativity. Join
@@ -63,7 +64,7 @@ export default function Career() {
               potential with us.
             </p>
           </div>
-          <div className="desktop:w-full bg-gray-100 mx-4 text-center p-4 rounded-md shadow-lg">
+          <div className="desktop:w-full bg-gray-100 mx-8 text-center p-4 rounded-md shadow-lg">
             <h2 className=" font-bold text-2xl">Empowerment</h2>
             <p className="text-lg">
               Empowerment is our ethos. Join us to contribute your talent to a
@@ -74,7 +75,7 @@ export default function Career() {
         </div>
 
         <div className="flex justify-between desktop:flex-row laptop:flex-row flex-col desktop:container laptop:container mb-8 m-auto">
-          <div className="desktop:w-1/5 laptop:w-1/5 w-full mx-4">
+          <div className="desktop:w-1/5 laptop:w-1/5 mx-8">
             <div>
               <form
                 action=""
@@ -160,19 +161,19 @@ export default function Career() {
               </form>
             </div>
           </div>
-          <div className="desktop:w-3/4 laptop:w-3/4 w-full mx-4">
-            <div className="mb-8 flex justify-center desktop:justify-start laptop:justify-start items-center mt-2 desktop:mt-0 laptop:mt-0">
+          <div className="desktop:w-3/4 laptop:w-3/4 w-full">
+            <div className="mb-8 flex justify-center flex-wrap  desktop:justify-start laptop:justify-start items-center mt-8 desktop:mt-0 laptop:mt-0">
               <input
                 type="text"
                 placeholder="Search by job title, location, department, catagory, etc."
-                className=" border-2 p-2 mr-2 w-[60%] laptop:w-[63%]"
+                className=" border-2 p-2 mr-2 w-[60%] laptop:w-[63%] mb-2"
               />
-              <button className="bg-blue-600 py-2 px-4 border text-white rounded-md hover:bg-white hover:border-blue-700 hover:text-blue-700 mr-2">
+              <Button className="h-8 py-2 px-4 border  mr-2 mb-2">
                 Search
-              </button>
-              <button className="bg-blue-600 py-2 px-4 border rounded-md text-white hover:bg-white hover:border-blue-700 hover:text-blue-700">
+              </Button>
+              <Button className="h-8 py-2 px-4 border rounded-md mb-2">
                 Job Near Me
-              </button>
+              </Button>
             </div>
             <div className="grid laptop:grid-cols-3 desktop:grid-cols-3 tablet:grid-cols-2 gap-3 w-full">
               <div className="tablet:w-1/2 desktop:w-full laptop:w-full flex flex-col items-center desktop:items-start laptop:items-start tablet:items-start">
@@ -280,7 +281,7 @@ export default function Career() {
                 </tr>
               </table> */}
             </div>
-            <p className="mt-8">
+            <p className="mt-8 text-center">
               Displaying <span className="font-bold">all 10 </span>entries
             </p>
           </div>
