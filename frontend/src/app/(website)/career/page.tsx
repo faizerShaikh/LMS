@@ -174,8 +174,8 @@ export default function Career() {
                 Job Near Me
               </button>
             </div>
-            <div>
-              {/* <div className="tablet:w-1/2 desktop:w-full laptop:w-full">
+            <div className="grid laptop:grid-cols-3 desktop:grid-cols-3 tablet:grid-cols-2 gap-3 w-full">
+              <div className="tablet:w-1/2 desktop:w-full laptop:w-full flex flex-col items-center desktop:items-start laptop:items-start tablet:items-start">
                 <h3 className="text-start m-1">Title</h3>
                 <p className="text-start m-1">Staff Accountant</p>
                 <p className="text-start m-1">
@@ -191,8 +191,34 @@ export default function Career() {
                   Staff ML Scientist (Recommender System)
                 </p>
                 <p className="text-start m-0">Senior Tax Analyst</p>
-              </div> */}
-              <table className="w-full">
+              </div>
+              <div className="tablet:w-1/2 desktop:w-full laptop:w-full flex flex-col items-center desktop:items-start laptop:items-start tablet:items-start">
+                <h3 className="text-start m-1">Department</h3>
+                <p className="text-start m-1">Accounting</p>
+                <p className="text-start m-1">Credentials & Content</p>
+                <p className="text-start m-1">Product and Content Services</p>
+                <p className="text-start m-1">IT</p>
+                <p className="text-start m-1">Product Management</p>
+                <p className="text-start m-1">Data Science</p>
+                <p className="text-start m-1">Marketing</p>
+                <p className="text-start m-1"> Degree Marketing</p>
+                <p className="text-start m-1">Data Science</p>
+                <p className="text-start m-0">Accounting</p>
+              </div>
+              <div className="tablet:w-1/2 desktop:w-full laptop:w-full flex flex-col items-center desktop:items-start laptop:items-start tablet:items-start">
+                <h3 className="text-start m-1">Location</h3>
+                <p className="text-start m-1">India</p>
+                <p className="text-start m-1">India</p>
+                <p className="text-start m-1">Canada</p>
+                <p className="text-start m-1">India</p>
+                <p className="text-start m-1">United States</p>
+                <p className="text-start m-1">India</p>
+                <p className="text-start m-1">Colombia</p>
+                <p className="text-start m-1">Colombia</p>
+                <p className="text-start m-1">United States</p>
+                <p className="text-start m-0">United States</p>
+              </div>
+              {/* <table className="w-full">
                 <tr>
                   <th className="text-start">Title</th>
                   <th className="text-start">Department</th>
@@ -252,11 +278,11 @@ export default function Career() {
                   <td>Accounting</td>
                   <td>United States</td>
                 </tr>
-              </table>
-              <p className="mt-8">
-                Displaying <span className="font-bold">all 10 </span>entries
-              </p>
+              </table> */}
             </div>
+            <p className="mt-8">
+              Displaying <span className="font-bold">all 10 </span>entries
+            </p>
           </div>
         </div>
 
