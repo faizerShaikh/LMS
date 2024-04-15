@@ -19,6 +19,12 @@ export default async function SingleCourse({
   const response = await axios.get(url);
   data = response.data.data;
   console.log(data, "<<<<<<<<<<<<<<<");
+
+  const programHiglightsData: ProgramHiglightsInterface[] =
+    data.programHiglights ?? [];
+  const middleIndex = Math.ceil(programHiglightsData.length / 2);
+  const firstHalf = programHiglightsData.slice(0, middleIndex);
+  const secondHalf = programHiglightsData.slice(middleIndex);
   return (
     <>
       <section className="bg-gray-100">
@@ -104,77 +110,106 @@ export default async function SingleCourse({
           </div>
         </div>
       </section>
+      {data?.programHiglights && data.programHiglights.length > 0 ? (
+        <section>
+          <div className="container m-auto py-16">
+            <h2 className="text-center m-0 mb-12 text-3xl">
+              Programme Highlights
+            </h2>
+            <div className="flex px-20">
+              <div className="flex justify-between gap-10">
+                <div className="!w-1/2">
+                  {firstHalf?.map((item: ProgramHiglightsInterface) => (
+                    <div className="items-center flex">
+                      <Image
+                        src={`${process.env.BASE_MEDIA_URL}/${item.image}}`}
+                        alt="test"
+                        width={80}
+                        height={80}
+                      />{" "}
+                      <p>{item.name}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="!w-1/2">
+                  {secondHalf?.map((item: ProgramHiglightsInterface) => (
+                    <div className="items-center flex">
+                      <Image
+                        src={`${process.env.BASE_MEDIA_URL}/${item.image}}`}
+                        alt="test"
+                        width={80}
+                        height={80}
+                      />{" "}
+                      <p>{item.name}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : (
+        ""
+      )}
 
-      <section>
-        <div className="container m-auto py-16">
-          <h2 className="text-center m-0 mb-12 text-3xl">
-            Programme Highlights
-          </h2>
-          <div className="flex px-20">
-            <div className="w-1/2">
-              {data.programHiglights?.map((item: ProgramHiglightsInterface) => (
-                <div className="items-center flex">
+      {data?.association && data.association?.length > 0 ? (
+        <section className="bg-blue-900 text-white">
+          <div className="container py-16 m-auto">
+            <div className="text-center">
+              <h2 className="text-3xl m-0 mb-12">
+                Recognization & Association
+              </h2>
+            </div>
+            <div className="flex justify-center gap-12 ">
+              {data.association?.map((item: AssociationInterface) => (
+                <div className="text-center">
                   <Image
-                    src={`${process.env.BASE_MEDIA_URL}/${item.image}}`}
+                    src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
                     alt="test"
-                    width={80}
-                    height={80}
-                  />{" "}
-                  <p>{item.name}</p>
+                    width={100}
+                    height={100}
+                    className="rounded-full mb-0"
+                  />
+                  <h2 className="mb-0 mt-1">{item.title}</h2>
+                  <p className="m-0">{item.subTitle}</p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
-      <section className="bg-blue-900 text-white">
-        <div className="container py-16 m-auto">
-          <div className="text-center">
-            <h2 className="text-3xl m-0 mb-12">Recognization & Association</h2>
-          </div>
-          <div className="flex justify-center gap-12 ">
-            {data.association?.map((item: AssociationInterface) => (
-              <div className="text-center">
-                <Image
-                  src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
-                  alt="test"
-                  width={100}
-                  height={100}
-                  className="rounded-full mb-0"
-                />
-                <h2 className="mb-0 mt-1">{item.title}</h2>
-                <p className="m-0">{item.subTitle}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="bg-gray-100">
-        <div className="container py-16 m-auto">
-          <h2 className="text-center m-0 mb-14 text-3xl font-semibold">
-            Admission Process
-          </h2>
-          <div className="flex justify-center gap-10">
-            {data.admissionProcess?.map((item: AdmissionProcessInterface) => (
-              <div className="bg-white w-[30%] rounded-3xl py-8 px-6 shadow-2xl">
-                <div className="flex justify-center">
-                  <Image
-                    src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
-                    alt="test"
-                    width={130}
-                    height={130}
-                    className="justify-center"
-                  />
+        </section>
+      ) : (
+        ""
+      )}
+
+      {data?.admissionProcess && data?.admissionProcess?.length > 0 ? (
+        <section className="bg-gray-100">
+          <div className="container py-16 m-auto">
+            <h2 className="text-center m-0 mb-14 text-3xl font-semibold">
+              Admission Process
+            </h2>
+            <div className="flex justify-center gap-10">
+              {data.admissionProcess?.map((item: AdmissionProcessInterface) => (
+                <div className="bg-white w-[30%] rounded-3xl py-8 px-6 shadow-2xl">
+                  <div className="flex justify-center">
+                    <Image
+                      src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
+                      alt="test"
+                      width={130}
+                      height={130}
+                      className="justify-center"
+                    />
+                  </div>
+                  <h2 className="font-medium">{item.title}</h2>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: item.description }}
+                  ></div>
                 </div>
-                <h2 className="font-medium">{item.title}</h2>
-                <div
-                  dangerouslySetInnerHTML={{ __html: item.description }}
-                ></div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
+
       <section className="container m-auto mb-20">
         <div className="border py-4 px-4 rounded-md border-black ">
           <h2 className="font-bold text-2xl mb-2">Introduction</h2>

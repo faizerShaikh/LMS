@@ -28,6 +28,7 @@ export interface CourseSpecializationInterface {
   id: string;
   name: string;
   description: string;
+  notes: string;
   eligibilty: string;
   delivery_mode: string;
   credits: number;
@@ -55,6 +56,7 @@ export interface CourseSpecializationInterface {
   programHiglights?: ProgramHiglightsInterface[];
   association?: AssociationInterface[];
   admissionProcess?: AdmissionProcessInterface[];
+  program_structures?: programmeStructure[];
 }
 
 export interface FeesStructureInterface {
@@ -94,4 +96,10 @@ export interface AdmissionProcessInterface {
   image: string;
   course_specialization_id?: string;
   courseSpecialization?: CourseSpecializationInterface;
+}
+
+export interface programmeStructure {
+  id?: string;
+  image: string;
+  title: string;
 }
