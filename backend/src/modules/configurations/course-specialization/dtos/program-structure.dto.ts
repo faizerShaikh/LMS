@@ -2,9 +2,8 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class ProgramStructureDTO {
   @IsString()
-  @IsNotEmpty()
   name: string;
-  
+
 image:string
 
   @IsNotEmpty()

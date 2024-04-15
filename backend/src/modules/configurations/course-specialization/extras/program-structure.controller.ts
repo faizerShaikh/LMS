@@ -1,4 +1,13 @@
-import { Body, Controller, Param, Put, UploadedFile, UseInterceptors,Post, Get } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Param,
+  Put,
+  UploadedFile,
+  UseInterceptors,
+  Post,
+  Get,
+} from '@nestjs/common';
 import { GenericController } from 'src/core/modules';
 import { MulterIntercepter } from 'src/core/interceptors';
 import { MulterEnum } from 'src/core/interfaces';
@@ -15,23 +24,29 @@ export class ProgramStructureController extends GenericController<
   createObjDTO: ProgramStructureDTO,
   updateObjDTO: ProgramStructureDTO,
 }) {
-  constructor(private readonly programStructureService: ProgramStructureService) {
+  constructor(
+    private readonly programStructureService: ProgramStructureService,
+  ) {
     super(programStructureService);
   }
 
-  @Post('course-specilaiztion/:course_specialization_id')
+  @Post('course-specialization/:id')
   async createProgramStructure(
-    @Param('course_specialization_id') courseSpecializationId: string,
-    @Body() data: ProgramStructure,
+    @Param('id') courseSpecializationId: string,
+    @Body() programStructureDTO: ProgramStructure,
   ) {
-    return this.programStructureService.createProgramStructure(courseSpecializationId, data);
+    return this.programStructureService.createProgramStructure(programStructureDTO, courseSpecializationId);
   }
 
   @Get('course-specialization/:id')
-  async getProgramStructuresByCourseSpecializationId(@Param('id') courseSpecializationId: string): Promise<ProgramStructure[]>  {
-    return this.programStructureService.getProgramStructuresByCourseSpecializationId(courseSpecializationId);
+  async getProgramStructuresByCourseSpecializationId(
+    @Param('id') courseSpecializationId: string,
+  ): Promise<ProgramStructure[]> {
+    return this.programStructureService.getProgramStructuresByCourseSpecializationId(
+      courseSpecializationId,
+    );
   }
-  
+
   @Put('update-image/:id')
   @UseInterceptors(
     MulterIntercepter({
