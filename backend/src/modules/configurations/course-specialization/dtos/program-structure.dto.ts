@@ -5,10 +5,6 @@ export class ProgramStructureDTO {
   @IsNotEmpty()
   name: string;
 
-  @IsOptional()
-  @IsString()
-  description:string
-
   @IsNotEmpty()
   @IsString()
   course_specialization_id:string
