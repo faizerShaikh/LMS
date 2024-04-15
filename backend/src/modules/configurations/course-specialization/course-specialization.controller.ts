@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  InternalServerErrorException,
   Param,
   Post,
   Put,
@@ -11,13 +12,17 @@ import {
 import { GenericController } from 'src/core/modules';
 import { CourseSpecialization } from './model';
 import {
+  CreateAdmissionProcessCardsDTO,
   CreateCourseSpecializationDTO,
   FeesStructureDTO,
+  ProgramStructureDTO,
   UpdateCourseSpecializationDTO,
 } from './dtos';
 import { CourseSpecializationService } from './course-specialization.service';
 import { MulterIntercepter } from 'src/core/interceptors';
 import { MulterEnum } from 'src/core/interfaces';
+import { AssociationsDTO } from './dtos/associations.dto';
+import { ProgramHighlightDTO } from './dtos/program-highlights.dto';
 
 @Controller('configurations/course-specialization')
 export class CourseSpecializationController extends GenericController<
@@ -75,6 +80,58 @@ export class CourseSpecializationController extends GenericController<
      @Param('id') id : string
   ) {
     return this.courseService.createFeesStructure(body,id);
+  }
+
+  @Post('program-structures/:id')
+  async createProgramStructures(
+    @Body() body: ProgramStructureDTO[],
+    @Param('id') id: string
+  ) {
+    try {
+      const message = await this.courseService.createProgramStructures(body, id);
+      return { message };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to create program structures.');
+    }
+  }
+
+  @Post('program-highlights/:id')
+  async createProgramHighlights(
+    @Body() body: ProgramHighlightDTO[],
+    @Param('id') id: string
+  ) {
+    try {
+      const message = await this.courseService.createProgramHighlights(body, id);
+      return { message };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to create program highlights.');
+    }
+  }
+
+  @Post('admission-processes/:id')
+  async createAdmissionProcesses(
+    @Body() body: CreateAdmissionProcessCardsDTO[],
+    @Param('id') id: string
+  ) {
+    try {
+      const message = await this.courseService.createAdmissionProcesses(body, id);
+      return { message };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to create admission processes.');
+    }
+  }
+
+  @Post('associations/:id')
+  async createAssociations(
+    @Body() body: AssociationsDTO[],
+    @Param('id') id: string
+  ) {
+    try {
+      const message = await this.courseService.createAssociations(body, id);
+      return { message };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to create associations.');
+    }
   }
 
   @Put('update-syllabus')
