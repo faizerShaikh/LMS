@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { InjectModel } from '@nestjs/sequelize';
 import { join } from 'path';
@@ -50,6 +50,24 @@ export class ProgramHighlightService extends GenericService<
         image: '/media/course-specialization/extras/' + file.filename,
     });
     return 'Admission Process Image Uploaded Successfully';
+  }
+}
+
+async findProgramHighlightsByCourseSpecializationId(courseSpecializationId: string) {
+  try {
+    console.log('Fetching program highlights for course specialization ID:', courseSpecializationId);
+    const programHighlights = await this.programHighlight.findAll({
+      where: { course_specialization_id: courseSpecializationId },
+    });
+    console.log('Found program highlights:', programHighlights);
+    if (!programHighlights || programHighlights.length === 0) {
+      console.log('No program highlights found');
+      throw new NotFoundException('Program highlights not found for the given course specialization ID');
+    }
+    return programHighlights;
+  } catch (error) {
+    console.error('Error fetching program highlights:', error);
+    throw new InternalServerErrorException(error.message);
   }
 }
 }

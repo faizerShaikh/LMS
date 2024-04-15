@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Put, UploadedFile, UseInterceptors,Post } from '@nestjs/common';
+import { Body, Controller, Param, Put, UploadedFile, UseInterceptors,Post, Get } from '@nestjs/common';
 import { GenericController } from 'src/core/modules';
 import { MulterIntercepter } from 'src/core/interceptors';
 import { MulterEnum } from 'src/core/interfaces';
@@ -25,6 +25,11 @@ export class ProgramStructureController extends GenericController<
     @Body() data: ProgramStructure,
   ) {
     return this.programStructureService.createProgramStructure(courseSpecializationId, data);
+  }
+
+  @Get('course-specialization/:id')
+  async getProgramStructuresByCourseSpecializationId(@Param('id') courseSpecializationId: string): Promise<ProgramStructure[]>  {
+    return this.programStructureService.getProgramStructuresByCourseSpecializationId(courseSpecializationId);
   }
   
   @Put('update-image/:id')
