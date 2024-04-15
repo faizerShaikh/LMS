@@ -14,7 +14,7 @@ import { ProgramHighlight } from '../model/program-highlights.model';
 import { ProgramHighlightDTO } from '../dtos/program-highlights.dto';
 import { ProgramHighlightService } from './program-highlights.service';
 
-@Controller('course-specialization/program-highlights')
+@Controller('configurations/program-highlights')
 export class ProgramHighlightController extends GenericController<
   ProgramHighlight,
   ProgramHighlightDTO,
