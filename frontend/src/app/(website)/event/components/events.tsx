@@ -46,6 +46,7 @@ export const Events = ({ buttons, defaultValue }: Props) => {
   return (
     <ButtonGroup
       defaultValue={defaultValue}
+      buttonClasses="px-2 text-xs tablet:text-sm tablet:px-4 laptop:px-4 desktop:px-4"
       buttons={buttons.map(({ text, url, key, query }) => ({
         text,
         clickHandler: () => handleClick(url, query),
