@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { AdmissionProcessCards } from '../model/admissionProcess.model';
 import { InjectModel } from '@nestjs/sequelize';
@@ -26,6 +26,43 @@ export class AdmissionProcessService extends GenericService<
   ) {
     super(admissionProcess, reqParams);
   }
+  async createAdmissionProcess(courseSpecializationId: string, dto: CreateAdmissionProcessCardsDTO) {
+    try {
+      console.log('Creating admission process for course specialization ID:', courseSpecializationId);
+
+      // Create the admission process with the provided data and course specialization ID
+      const admissionProcess = await this.admissionProcess.create({
+        ...dto,
+        course_specialization_id: courseSpecializationId,
+      });
+
+      console.log('Admission process created:', admissionProcess);
+
+      return admissionProcess;
+    } catch (error) {
+      console.error('Error creating admission process:', error);
+      throw new InternalServerErrorException('Error creating admission process');
+    }
+  }
+
+  async getAdmissionProcessByCourseSpecializationId(courseSpecializationId: string) {
+    try {
+      console.log('Fetching admission processes for course specialization ID:', courseSpecializationId);
+      const admissionProcesses = await this.admissionProcess.findAll({
+        where: { course_specialization_id: courseSpecializationId },
+      });
+      console.log('Found admission processes:', admissionProcesses);
+      if (!admissionProcesses || admissionProcesses.length === 0) {
+        console.log('No admission processes found');
+        throw new NotFoundException('Admission processes not found for the given course specialization ID');
+      }
+      return admissionProcesses;
+    } catch (error) {
+      console.error('Error fetching admission processes:', error);
+      throw new InternalServerErrorException('Error fetching admission processes');
+    }
+  }
+
 
   async updateAdmissionProcessImage(file: Express.Multer.File, id: string) {
     if (file) {

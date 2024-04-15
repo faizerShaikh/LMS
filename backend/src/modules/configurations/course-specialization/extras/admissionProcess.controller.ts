@@ -1,6 +1,8 @@
 import {
   Body,
   Controller,
+  Get,
+  InternalServerErrorException,
   Param,
   Post,
   Put,
@@ -28,6 +30,33 @@ export class AdmissionProcessController extends GenericController<
     private readonly admissionProcessService: AdmissionProcessService,
   ) {
     super(admissionProcessService);
+  }
+
+  @Post('course-specialization/:courseSpecializationId')
+  async createAdmissionProcess(
+    @Param('courseSpecializationId') courseSpecializationId: string,
+    @Body() dto: CreateAdmissionProcessCardsDTO,
+  ) {
+    try {
+      const admissionProcess = await this.admissionProcessService.createAdmissionProcess(courseSpecializationId, dto);
+      return admissionProcess;
+    } catch (error) {
+      console.error('Error creating admission process:', error);
+      throw new InternalServerErrorException('Error creating admission process');
+    }
+  }
+
+  @Get('course-specialization/:courseSpecializationId')
+  async getAdmissionProcessByCourseSpecializationId(
+    @Param('courseSpecializationId') courseSpecializationId: string,
+  ) {
+    try {
+      const admissionProcesses = await this.admissionProcessService.getAdmissionProcessByCourseSpecializationId(courseSpecializationId);
+      return admissionProcesses;
+    } catch (error) {
+      console.error('Error fetching admission processes:', error);
+      throw new InternalServerErrorException('Error fetching admission processes');
+    }
   }
 
   @Put('update-image/:id')
