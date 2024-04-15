@@ -12,7 +12,7 @@ import { AssociationService } from './association.service';
 import { Associations } from '../model/associations.model';
 import { AssociationsDTO } from '../dtos/associations.dto';
 
-@Controller('course-specialization/associations')
+@Controller('configurations/associations')
 export class AssociationController extends GenericController<
   Associations,
   AssociationsDTO,

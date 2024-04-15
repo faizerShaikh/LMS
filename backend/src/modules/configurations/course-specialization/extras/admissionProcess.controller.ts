@@ -15,7 +15,7 @@ import { AdmissionProcessCards } from '../model/admissionProcess.model';
 import { CreateAdmissionProcessCardsDTO } from '../dtos';
 import { AdmissionProcessService } from './admissionProcess.service';
 
-@Controller('course-specialization/admission-process')
+@Controller('configurations/admission-process')
 export class AdmissionProcessController extends GenericController<
   AdmissionProcessCards,
   CreateAdmissionProcessCardsDTO,

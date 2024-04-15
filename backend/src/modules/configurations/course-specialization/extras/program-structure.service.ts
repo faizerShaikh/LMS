@@ -50,4 +50,16 @@ export class ProgramStructureService extends GenericService<
     });
     return 'Program Structure Image Uploaded Successfully';
   }
+
+  async createProgramStructure(courseSpecializationId: string, data: ProgramStructureDTO) {
+    try {
+      console.log('========================================>',data)
+      const programStructureData = { ...data, course_specialization_id: courseSpecializationId };
+      console.log('=============================================>>>>>>>',programStructureData)
+      const programStructure = await ProgramStructure.create(programStructureData);
+      return programStructure;
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+  }
 }
