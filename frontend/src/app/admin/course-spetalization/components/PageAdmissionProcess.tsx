@@ -36,12 +36,12 @@ const columns = [
           <AdmissionProcessFrom
             isUpdate={true}
             data={params.row}
-            refetchURL="/configurations/admission-process"
+            refetchURL={`configurations/admission-process/course-specialization/${params.row.course_specialization_id}`}
             pageId={params.row?.course_specialization_id}
           />
           <DeleteBox
             url={`/configurations/admission-process`}
-            refetchUrl="/configurations/admission-process"
+            refetchUrl={`configurations/admission-process/course-specialization/${params.row.course_specialization_id}`}
             title={`${params.row.description}`}
             data={params.row.id}
           />
@@ -53,7 +53,7 @@ const columns = [
 
 export default function PageAdmissionProcess({ pageId }: any) {
   const { data } = useGetAll({
-    key: `/configurations/admission-process/${pageId}`,
+    key: `configurations/admission-process/course-specialization/${pageId}`,
   });
 
   return (

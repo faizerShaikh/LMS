@@ -6,7 +6,7 @@ import { AssociationForm } from "./AssociationForm";
 
 const columns = [
   {
-    headerName: "TiTle",
+    headerName: "Title",
     field: "title",
     flex: 1,
     cellClassName: "text-dark",

@@ -1,8 +1,4 @@
-import {
-  CreateUpdateDialogBaseProps,
-  ProgramHiglightsInterface,
-  programmeStructure,
-} from "interfaces";
+import { CreateUpdateDialogBaseProps, programmeStructure } from "interfaces";
 import { Button, Dialog, DropZone, Input, Label } from "../../../../components";
 import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "hooks";
@@ -31,9 +27,9 @@ export const ProgrammeStructureForm = ({
         : `/configurations/program-structures/course-specialization/${pageId}`,
     method: isUpdate ? "put" : "post",
   });
-  ``;
+
   const handleFileUpload = async (
-    file: File,
+    file: File | string,
     id: string,
     onSuccess: VoidFunction
   ) => {
@@ -64,7 +60,7 @@ export const ProgrammeStructureForm = ({
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(
-              { ...values, course_specialization_id: pageId },
+              { name: values.name, course_specialization_id: pageId },
               {
                 onSuccess(resp) {
                   handleFileUpload(values.image, resp.data.data.id, () => {
