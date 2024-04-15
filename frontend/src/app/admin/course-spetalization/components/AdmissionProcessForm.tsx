@@ -29,7 +29,7 @@ export const AdmissionProcessFrom = ({
     url:
       isUpdate && data
         ? `/configurations/admission-process/${data.id}`
-        : `/configurations/admission-process/${pageId}`,
+        : `/configurations/admission-process/course-specialization/${pageId}`,
     method: isUpdate ? "put" : "post",
   });
 
@@ -65,7 +65,11 @@ export const AdmissionProcessFrom = ({
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(
-              { ...values, course_specialization_id: pageId },
+              {
+                title: values.title,
+                description: values.description,
+                course_specialization_id: pageId,
+              },
               {
                 onSuccess(resp) {
                   handleFileUpload(values.image, resp.data.data.id, () => {
@@ -99,7 +103,7 @@ export const AdmissionProcessFrom = ({
                     <Label text="Title" required />
                     <Input name="title" />
                   </Box>
-                  <Box className="mt-4">
+                  <Box className="mt-4 mb-16">
                     <Label text="Description" required />
                     <TextEditor
                       name="description"

@@ -32,7 +32,7 @@ export const ProgramingHighlightsForm = ({
   });
 
   const handleFileUpload = async (
-    file: File,
+    file: File | string,
     id: string,
     onSuccess: VoidFunction
   ) => {
@@ -65,7 +65,7 @@ export const ProgramingHighlightsForm = ({
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(
-              { ...values, course_specialization_id: pageId },
+              { name: values.name, course_specialization_id: pageId },
               {
                 onSuccess(resp) {
                   handleFileUpload(values.image, resp.data.data.id, () => {
