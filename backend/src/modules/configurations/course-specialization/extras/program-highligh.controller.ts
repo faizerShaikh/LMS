@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  InternalServerErrorException,
   NotFoundException,
   Param,
   Post,
@@ -29,6 +30,20 @@ export class ProgramHighlightController extends GenericController<
     private readonly programHighlightService: ProgramHighlightService,
   ) {
     super(programHighlightService);
+  }
+
+  @Post('course-specialization/:courseSpecializationId')
+  async createProgramHighlight(
+    @Param('courseSpecializationId') courseSpecializationId: string,
+    @Body() otherData: any,
+  ) {
+    try {
+      const programHighlight = await this.programHighlightService.createProgramHighlight(courseSpecializationId, otherData);
+      return programHighlight;
+    } catch (error) {
+      console.error('Error creating program highlight:', error);
+      throw new InternalServerErrorException('Error creating program highlight');
+    }
   }
 
   @Put('update-image/:id')

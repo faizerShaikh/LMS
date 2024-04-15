@@ -51,18 +51,23 @@ export class ProgramStructureService extends GenericService<
     return 'Program Structure Image Uploaded Successfully';
   }
 
-  async createProgramStructure(courseSpecializationId: string, data: ProgramStructureDTO) {
+  async createProgramStructure(programStructureDTO: ProgramStructureDTO, courseSpecializationId: string) {
     try {
-      console.log('========================================>',data)
-      const programStructureData = { ...data, course_specialization_id: courseSpecializationId };
-      console.log('=============================================>>>>>>>',programStructureData)
-      const programStructure = await ProgramStructure.create(programStructureData);
+      console.log('Creating program highlight for course specialization ID:', courseSpecializationId);
+      
+      // Here you can create your program structure based on the provided data
+      const programStructure = await this.programStructureModel.create({
+        ...programStructureDTO, course_specialization_id: courseSpecializationId,
+      });
+  
+      console.log('Program structureprogramStructure created:', programStructure);
+  
       return programStructure;
     } catch (error) {
-      throw new InternalServerErrorException(error.message);
+      console.error('Error creating program structureprogramStructure:', error);
+      throw new InternalServerErrorException('Error creating program structureprogramStructure');
     }
   }
-
 
   async getProgramStructuresByCourseSpecializationId(courseSpecializationId: string) {
     try {
