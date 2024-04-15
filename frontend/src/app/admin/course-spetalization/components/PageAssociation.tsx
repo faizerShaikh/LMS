@@ -2,7 +2,6 @@
 import { DataGrid, DeleteBox } from "components/layout";
 import { useGetAll } from "hooks";
 import { AssociationInterface } from "interfaces";
-import { AdmissionProcessFrom } from "./AdmissionProcessForm";
 import { AssociationForm } from "./AssociationForm";
 
 const columns = [
@@ -30,12 +29,12 @@ const columns = [
           <AssociationForm
             isUpdate={true}
             data={params.row}
-            refetchURL="/course-specialization/associations"
+            refetchURL={`configurations/associations/course-specialization/${params.row.course_specialization_id}`}
             pageId={params.row?.course_specialization_id}
           />
           <DeleteBox
-            url={`/course-specialization/associations`}
-            refetchUrl="/course-specialization/associations"
+            url={`/configurations/associations`}
+            refetchUrl={`configurations/associations/course-specialization/${params.row.course_specialization_id}`}
             title={`${params.row.title}`}
             data={params.row.id}
           />
@@ -47,7 +46,7 @@ const columns = [
 
 export default function PageAssociation({ pageId }: any) {
   const { data } = useGetAll({
-    key: `/course-specialization/associations`,
+    key: `configurations/associations/course-specialization/${pageId}`,
   });
   return (
     <>

@@ -101,5 +101,6 @@ export interface AdmissionProcessInterface {
 export interface programmeStructure {
   id?: string;
   image: string;
-  title: string;
+  name: string;
+  course_specialization_id?: string;
 }

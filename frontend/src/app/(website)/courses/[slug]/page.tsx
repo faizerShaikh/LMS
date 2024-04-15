@@ -6,6 +6,7 @@ import {
   AssociationInterface,
   CourseSpecializationInterface,
   ProgramHiglightsInterface,
+  programmeStructure,
 } from "interfaces";
 import Image from "next/image";
 
@@ -46,7 +47,7 @@ export default async function SingleCourse({
             ></div>
 
             <div className="flex justify-between gap-5">
-              <div className="border border-black w-1/2">
+              <div className="border rounded-md border-black w-1/2">
                 <Button className="py-2 w-full  bg-white text-black">
                   Apply Now
                 </Button>
@@ -59,7 +60,6 @@ export default async function SingleCourse({
           </div>
         </div>
       </section>
-
       <section className="container m-auto my-14">
         <div className="flex border-2 rounded-2xl shadow-2xl  py-8">
           <div className="w-1/4 border-r-2 border-black pl-6">
@@ -110,6 +110,31 @@ export default async function SingleCourse({
           </div>
         </div>
       </section>
+      {data.program_structures && data.program_structures.length > 0 ? (
+        <section className="bg-gray-100">
+          <div className="container py-16 m-auto">
+            <h2 className="text-center m-0 mb-14 text-3xl font-semibold">
+              Programme Structure
+            </h2>
+            <div className="flex justify-center gap-10">
+              {data.program_structures?.map((item: programmeStructure) => (
+                <div className="bg-white w-[30%] rounded-3xl py-8 px-6 shadow-2xl">
+                  <div className="flex justify-center">
+                    <Image
+                      src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
+                      alt="test"
+                      width={130}
+                      height={130}
+                      className="justify-center"
+                    />
+                  </div>
+                  <h2 className="font-medium">{item.name}</h2>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
       {data?.programHiglights && data.programHiglights.length > 0 ? (
         <section>
           <div className="container m-auto py-16">
@@ -117,7 +142,7 @@ export default async function SingleCourse({
               Programme Highlights
             </h2>
             <div className="flex px-20">
-              <div className="flex justify-between gap-10">
+              <div className="flex justify-between gap-10 w-full">
                 <div className="!w-1/2">
                   {firstHalf?.map((item: ProgramHiglightsInterface) => (
                     <div className="items-center flex">
@@ -127,7 +152,7 @@ export default async function SingleCourse({
                         width={80}
                         height={80}
                       />{" "}
-                      <p>{item.name}</p>
+                      <p className="ml-4">{item.name}</p>
                     </div>
                   ))}
                 </div>
@@ -148,10 +173,7 @@ export default async function SingleCourse({
             </div>
           </div>
         </section>
-      ) : (
-        ""
-      )}
-
+      ) : null}
       {data?.association && data.association?.length > 0 ? (
         <section className="bg-blue-900 text-white">
           <div className="container py-16 m-auto">
@@ -177,10 +199,7 @@ export default async function SingleCourse({
             </div>
           </div>
         </section>
-      ) : (
-        ""
-      )}
-
+      ) : null}
       {data?.admissionProcess && data?.admissionProcess?.length > 0 ? (
         <section className="bg-gray-100">
           <div className="container py-16 m-auto">
@@ -209,7 +228,6 @@ export default async function SingleCourse({
           </div>
         </section>
       ) : null}
-
       <section className="container m-auto mb-20">
         <div className="border py-4 px-4 rounded-md border-black ">
           <h2 className="font-bold text-2xl mb-2">Introduction</h2>
@@ -245,18 +263,9 @@ export default async function SingleCourse({
           </p>
         </div>
       </section>
-
       <section className="container m-auto mb-20">
         <div className="shadow-2xl mx-32 p-4 rounded-md ">
-          <p>
-            <span className="font-bold">Note: </span>As per our policy, we start
-            the course/training/internship within 10 days from the date of
-            enrollment. If you enroll for future month/date, our schedule team
-            will coordinate with you and assign your class. To communicate with
-            our schedule team for preferred timing, email to
-            info@riseback.org.com. All courses/internships can be scheduled in
-            customised manner as per your requirements.
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: data.notes }}></div>
         </div>
       </section>
     </>

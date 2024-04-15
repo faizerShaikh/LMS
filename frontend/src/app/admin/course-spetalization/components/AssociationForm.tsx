@@ -24,8 +24,8 @@ export const AssociationForm = ({
   const { mutate, isLoading } = useCreateOrUpdate({
     url:
       isUpdate && data
-        ? `/course-specialization/associations/${data.id}`
-        : "/course-specialization/associations",
+        ? `/configurations/associations/${data.id}`
+        : `/configurations/associations/${pageId}`,
     method: isUpdate ? "put" : "post",
   });
 

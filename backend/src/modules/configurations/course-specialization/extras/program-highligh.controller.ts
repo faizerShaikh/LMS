@@ -38,11 +38,18 @@ export class ProgramHighlightController extends GenericController<
     @Body() otherData: any,
   ) {
     try {
-      const programHighlight = await this.programHighlightService.createProgramHighlight(courseSpecializationId, otherData);
+      const programHighlight =
+        await this.programHighlightService.createProgramHighlight(
+          courseSpecializationId,
+          otherData,
+        );
+
       return programHighlight;
     } catch (error) {
       console.error('Error creating program highlight:', error);
-      throw new InternalServerErrorException('Error creating program highlight');
+      throw new InternalServerErrorException(
+        'Error creating program highlight',
+      );
     }
   }
 
@@ -62,10 +69,17 @@ export class ProgramHighlightController extends GenericController<
   }
 
   @Get('course-specialization/:courseSpecializationId')
-  async getProgramHighlightsByCourseSpecializationId(@Param('courseSpecializationId') courseSpecializationId: string): Promise<ProgramHighlight[]> {
-    const programHighlights = await this.programHighlightService.findProgramHighlightsByCourseSpecializationId(courseSpecializationId);
+  async getProgramHighlightsByCourseSpecializationId(
+    @Param('courseSpecializationId') courseSpecializationId: string,
+  ): Promise<ProgramHighlight[]> {
+    const programHighlights =
+      await this.programHighlightService.findProgramHighlightsByCourseSpecializationId(
+        courseSpecializationId,
+      );
     if (!programHighlights) {
-      throw new NotFoundException(`Program highlights not found for course specialization ID ${courseSpecializationId}`);
+      throw new NotFoundException(
+        `Program highlights not found for course specialization ID ${courseSpecializationId}`,
+      );
     }
     return programHighlights;
   }

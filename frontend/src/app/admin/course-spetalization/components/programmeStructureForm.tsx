@@ -1,6 +1,7 @@
 import {
   CreateUpdateDialogBaseProps,
   ProgramHiglightsInterface,
+  programmeStructure,
 } from "interfaces";
 import { Button, Dialog, DropZone, Input, Label } from "../../../../components";
 import { Form, Formik } from "formik";
@@ -11,13 +12,13 @@ import { useQueryClient } from "react-query";
 import { toast } from "utils";
 import { API } from "configs";
 
-export const ProgramingHighlightsForm = ({
+export const ProgrammeStructureForm = ({
   data,
   isUpdate,
   pageId,
   refetchURL,
 }: CreateUpdateDialogBaseProps) => {
-  const initialValues: ProgramHiglightsInterface = {
+  const initialValues: programmeStructure = {
     name: "",
     image: "",
     course_specialization_id: "",
@@ -26,11 +27,11 @@ export const ProgramingHighlightsForm = ({
   const { mutate, isLoading } = useCreateOrUpdate({
     url:
       isUpdate && data
-        ? `/configurations/program-highlights/${data.id}`
-        : `/configurations/program-highlights/course-specialization/${pageId}`,
+        ? `/configurations/program-structures/${data.id}`
+        : `/configurations/program-structures/course-specialization/${pageId}`,
     method: isUpdate ? "put" : "post",
   });
-
+  ``;
   const handleFileUpload = async (
     file: File,
     id: string,
@@ -39,7 +40,7 @@ export const ProgramingHighlightsForm = ({
     const formData = new FormData();
     formData.append("image", file);
     await API.put(
-      `/configurations/program-highlights/update-image/${id}`,
+      `/configurations/program-structures/update-image/${id}`,
       formData
     );
     onSuccess();
@@ -53,12 +54,10 @@ export const ProgramingHighlightsForm = ({
             <Edit />
           </IconButton>
         ) : (
-          <Button startIcon={<Add />}>Programing Highlights</Button>
+          <Button startIcon={<Add />}>Programme Structure</Button>
         )
       }
-      title={
-        isUpdate ? "Edit Programing Highlights" : "Add Programing Highlights"
-      }
+      title={isUpdate ? "Edit Programme Structure" : "Add Programme Structure"}
     >
       {({ onClose }) => (
         <Formik
@@ -75,7 +74,7 @@ export const ProgramingHighlightsForm = ({
                       stale: true,
                     });
                     toast(
-                      `Programing Highlights ${
+                      `Programme Structure ${
                         isUpdate ? "updated" : "added"
                       } successfully`
                     );

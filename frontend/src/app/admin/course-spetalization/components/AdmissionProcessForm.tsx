@@ -28,8 +28,8 @@ export const AdmissionProcessFrom = ({
   const { mutate, isLoading } = useCreateOrUpdate({
     url:
       isUpdate && data
-        ? `/course-specialization/admission-process/${data.id}`
-        : "/course-specialization/admission-process",
+        ? `/configurations/admission-process/${data.id}`
+        : `/configurations/admission-process/${pageId}`,
     method: isUpdate ? "put" : "post",
   });
 
@@ -41,7 +41,7 @@ export const AdmissionProcessFrom = ({
     const formData = new FormData();
     formData.append("image", file);
     await API.put(
-      `/course-specialization/admission-process/update-image/${id}`,
+      `/configurations/admission-process/update-image/${id}`,
       formData
     );
     onSuccess();
