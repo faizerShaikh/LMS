@@ -7,7 +7,7 @@ export default function Career() {
       {/* <section className=" bg-gray-100 h-[400px] "> */}
       <section className=" bg-gray-100 h-auto desktop:h-[400px]">
         <div className="flex desktop:container m-auto flex-col-reverse desktop:flex-row laptop:container laptop:flex-row">
-          <div className="desktop:w-1/2">
+          <div className="desktop:w-1/2 desktop:my-auto laptop:my-auto">
             <div className="desktop:w-[500px] desktop:h-[350px] laptop:w-[500px] laptop:h-[350px] w-full relative h-[300px] tablet:h-[400px]">
               <Image
                 // height={400}
@@ -40,7 +40,7 @@ export default function Career() {
         </div>
       </section>
       <section className=" py-12 overflow-hidden">
-        <div className="my-12 desktop:container laptop:container laptop:mx-auto desktop:mx-auto mx-8 grid laptop:grid-cols-2 desktop:grid-cols-4 tablet:grid-cols-2 gap-5">
+        <div className="my-12 desktop:container laptop:container laptop:mx-auto desktop:mx-auto m-8 grid laptop:grid-cols-2 desktop:grid-cols-4 tablet:grid-cols-2 gap-5">
           <div className="desktop:w-full bg-gray-100 text-center p-4 rounded-md shadow-lg">
             <h2 className="font-bold text-2xl">Diversity</h2>
             <p className="text-lg">
