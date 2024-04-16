@@ -50,6 +50,10 @@ export class CreateCourseSpecializationDTO {
   @IsNotEmpty()
   is_published: boolean;
 
+  @IsString()
+  @IsNotEmpty()
+  textarea:string
+
   @IsNumber()
   @IsOptional()
   student_enrolled: number;
