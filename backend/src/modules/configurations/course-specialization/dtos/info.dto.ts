@@ -5,6 +5,11 @@ export class InfoDTO {
   @IsNotEmpty()
   description: string;
 
+  
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
   @IsNotEmpty()
   course_specialization_id: string;
 }
