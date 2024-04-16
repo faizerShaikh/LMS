@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CoursesCard } from "components/layout/cards/CourseCard";
 import CourseCategoryFilter from "./components/CourseFilterForm";
 import { Button } from "components/layout/buttons";
+import ViewMore from "./components/ViewMore";
 
 interface CoursesSearchParams {
   category?: string;
@@ -31,15 +32,15 @@ export default async function courses({
     if (limit) queryParams.limit = limit;
 
     const response = await axios.get(
-      `${process.env.BASE_API_URL}/configurations/course-specialization`,
+      `${process.env.BASE_API_URL}/configurations/course-specialization?infinite=true `,
       {
         params: queryParams,
       }
     );
     CoursesCardData = response.data.data.courseSpecializations;
-    LoadMoreButtondata = CatagorieResponse.data.data.hasMore;
+    LoadMoreButtondata = response.data.data;
     // console.log(
-    //   CoursesCardData,
+    //   LoadMoreButtondata,
     //   "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
     // );
   } catch (error) {
@@ -118,9 +119,10 @@ export default async function courses({
           </div>
 
           <div className="flex justify-evenly my-12">
-            <Button className="bg-blue-900 text-white py-2 px-4 rounded-md">
-              View all
-            </Button>
+            {/* <Button className="bg-blue-900 text-white py-2 px-4 rounded-md">
+              View More
+            </Button> */}
+            {LoadMoreButtondata ? <ViewMore /> : ""}
           </div>
         </div>
       </section>

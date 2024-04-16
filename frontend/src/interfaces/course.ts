@@ -29,7 +29,7 @@ export interface CourseSpecializationInterface {
   name: string;
   description: string;
   notes: string;
-  textarea: string;
+  textarea?: string;
   eligibilty: string;
   delivery_mode: string;
   credits: number;
@@ -50,7 +50,7 @@ export interface CourseSpecializationInterface {
   deletedAt?: string | null;
   courses: number;
   course?: Course | null;
-  university: UniversityInterface;
+  university?: UniversityInterface;
   metaID?: string;
   metaData?: MetaDataInterface;
   fees_structure?: FeesStructureInterface;
@@ -58,7 +58,7 @@ export interface CourseSpecializationInterface {
   association?: AssociationInterface[];
   admissionProcess?: AdmissionProcessInterface[];
   program_structures?: programmeStructure[];
-  info: InvestmentForLifeInterface;
+  info?: InvestmentForLifeInterface;
 }
 
 export interface FeesStructureInterface {

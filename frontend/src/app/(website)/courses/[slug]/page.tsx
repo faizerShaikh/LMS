@@ -148,7 +148,7 @@ export default async function SingleCourse({
         <div className="container m-auto flex py-8">
           <div className="w-1/2 flex justify-center items-center">
             <Image
-              src={data.university?.university_image}
+              src={data.university?.university_image || ""}
               width={300}
               height={200}
               alt="university image"
@@ -156,7 +156,9 @@ export default async function SingleCourse({
           </div>
           <div
             className="w-1/2"
-            dangerouslySetInnerHTML={{ __html: data.university.description }}
+            dangerouslySetInnerHTML={{
+              __html: data.university?.description || "",
+            }}
           ></div>
         </div>
       </section>

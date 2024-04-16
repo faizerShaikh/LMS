@@ -15,6 +15,7 @@ const SingleCourseSpecialization = async ({ params: { slug } }: Props) => {
     id: "",
     name: "",
     notes: "",
+    textarea: "",
     description: "",
     eligibilty: "",
     delivery_mode: "",
@@ -33,6 +34,7 @@ const SingleCourseSpecialization = async ({ params: { slug } }: Props) => {
     courses: 0,
   };
   const courseData = await GetCourse();
+
   let universityData = await GetUniversity();
   let data: CourseSpecializationInterface | null = null;
   if (isUpdate) {
