@@ -2,22 +2,28 @@ import {
   Body,
   Controller,
   Get,
+  InternalServerErrorException,
   Param,
   Post,
   Put,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { GenericController } from 'src/core/modules';
 import { CourseSpecialization } from './model';
 import {
+  CreateAdmissionProcessCardsDTO,
   CreateCourseSpecializationDTO,
   FeesStructureDTO,
+  ProgramStructureDTO,
   UpdateCourseSpecializationDTO,
 } from './dtos';
 import { CourseSpecializationService } from './course-specialization.service';
 import { MulterIntercepter } from 'src/core/interceptors';
 import { MulterEnum } from 'src/core/interfaces';
+import { AssociationsDTO } from './dtos/associations.dto';
+import { ProgramHighlightDTO } from './dtos/program-highlights.dto';
 
 @Controller('configurations/course-specialization')
 export class CourseSpecializationController extends GenericController<
@@ -63,6 +69,19 @@ export class CourseSpecializationController extends GenericController<
   // ) {
   //   return this.courseService.createOtherObjects(dto, body,true);
   // }
+  @Get()
+  async Coursespecializations(
+    @Query('category') category: string,
+    @Query('limit') limit: string,
+    @Query('page') page: string,
+  ) {
+    const { courseSpecializations, hasMore } = await this.courseService.CourseSpecializations(
+      category,
+      limit,
+      page,
+    );
+    return { courseSpecializations, hasMore };
+  }
 
   @Get('courses-list/:courseId')
   async findByCourseId(@Param('courseId') courseId: string): Promise<CourseSpecialization[]> {
@@ -75,6 +94,58 @@ export class CourseSpecializationController extends GenericController<
      @Param('id') id : string
   ) {
     return this.courseService.createFeesStructure(body,id);
+  }
+
+  @Post('program-structures/:id')
+  async createProgramStructures(
+    @Body() body: ProgramStructureDTO[],
+    @Param('id') id: string
+  ) {
+    try {
+      const message = await this.courseService.createProgramStructures(body, id);
+      return { message };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to create program structures.');
+    }
+  }
+
+  @Post('program-highlights/:id')
+  async createProgramHighlights(
+    @Body() body: ProgramHighlightDTO[],
+    @Param('id') id: string
+  ) {
+    try {
+      const message = await this.courseService.createProgramHighlights(body, id);
+      return { message };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to create program highlights.');
+    }
+  }
+
+  @Post('admission-processes/:id')
+  async createAdmissionProcesses(
+    @Body() body: CreateAdmissionProcessCardsDTO[],
+    @Param('id') id: string
+  ) {
+    try {
+      const message = await this.courseService.createAdmissionProcesses(body, id);
+      return { message };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to create admission processes.');
+    }
+  }
+
+  @Post('associations/:id')
+  async createAssociations(
+    @Body() body: AssociationsDTO[],
+    @Param('id') id: string
+  ) {
+    try {
+      const message = await this.courseService.createAssociations(body, id);
+      return { message };
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to create associations.');
+    }
   }
 
   @Put('update-syllabus')

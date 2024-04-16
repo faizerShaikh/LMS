@@ -17,7 +17,6 @@ export default async function Home() {
     `${process.env.BASE_API_URL}/configurations/faq`
   );
   FAQData = response.data.data.rows;
-  // console.log(FAQData);
 
   let events: EventInterface[];
   const res = await axios.get(
@@ -38,7 +37,8 @@ export default async function Home() {
   const specializationResponse = await axios.get(
     `${process.env.BASE_API_URL}/configurations/course-specialization`
   );
-  CourseSpecializationCardData = specializationResponse.data.data.rows;
+  CourseSpecializationCardData =
+    specializationResponse.data.data.courseSpecializations;
 
   return (
     <>

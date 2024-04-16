@@ -17,7 +17,7 @@ export interface UniversityInterface extends BaseObjInterface {
   id: string;
   short_name: string;
   description: string;
-  university_image: string | null;
+  university_image: string;
   no_of_courses?: number;
   metaID?: string;
   metaData?: MetaDataInterface;
@@ -29,6 +29,7 @@ export interface CourseSpecializationInterface {
   name: string;
   description: string;
   notes: string;
+  textarea: string;
   eligibilty: string;
   delivery_mode: string;
   credits: number;
@@ -49,7 +50,7 @@ export interface CourseSpecializationInterface {
   deletedAt?: string | null;
   courses: number;
   course?: Course | null;
-  university?: UniversityInterface | null;
+  university: UniversityInterface;
   metaID?: string;
   metaData?: MetaDataInterface;
   fees_structure?: FeesStructureInterface;
@@ -57,6 +58,7 @@ export interface CourseSpecializationInterface {
   association?: AssociationInterface[];
   admissionProcess?: AdmissionProcessInterface[];
   program_structures?: programmeStructure[];
+  info: InvestmentForLifeInterface;
 }
 
 export interface FeesStructureInterface {
@@ -101,5 +103,15 @@ export interface AdmissionProcessInterface {
 export interface programmeStructure {
   id?: string;
   image: string;
+  name: string;
+  course_specialization_id?: string;
+}
+
+export interface InvestmentForLifeInterface {
+  id?: string;
   title: string;
+  description: string;
+  image: string;
+  course_specialization_id?: string;
+  courseSpecialization?: CourseSpecializationInterface;
 }

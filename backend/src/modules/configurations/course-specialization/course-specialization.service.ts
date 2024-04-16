@@ -2,8 +2,10 @@ import { Injectable, InternalServerErrorException, NotFoundException } from '@ne
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { CourseSpecialization } from './model';
 import {
+  CreateAdmissionProcessCardsDTO,
   CreateCourseSpecializationDTO,
   FeesStructureDTO,
+  ProgramStructureDTO,
   UpdateCourseSpecializationDTO,
 } from './dtos';
 import { InjectModel } from '@nestjs/sequelize';
@@ -18,6 +20,9 @@ import * as fs from 'fs';
 import { AdmissionProcessCards } from './model/admissionProcess.model';
 import { ProgramHighlight } from './model/program-highlights.model';
 import { Associations } from './model/associations.model';
+import { AssociationsDTO } from './dtos/associations.dto';
+import { ProgramHighlightDTO } from './dtos/program-highlights.dto';
+import { Infos } from './model/info.model';
 @Injectable()
 export class CourseSpecializationService extends GenericService<
   CourseSpecialization,
@@ -34,6 +39,7 @@ export class CourseSpecializationService extends GenericService<
       ProgramHighlight,
       ProgramStructure,
       Associations,
+      Infos
     ],
   },
   includes: [
@@ -45,6 +51,7 @@ export class CourseSpecializationService extends GenericService<
     ProgramHighlight,
     ProgramStructure,
     Associations,
+    Infos
   ],
 }) {
   constructor(
@@ -60,6 +67,8 @@ export class CourseSpecializationService extends GenericService<
     private associations: typeof Associations,
     @InjectModel(AdmissionProcessCards)
     private admissionProcess: typeof AdmissionProcessCards,
+    @InjectModel(Course)
+    private course:typeof Course,
 
     private reqParams: RequestParamsService,
   ) {
@@ -171,7 +180,7 @@ export class CourseSpecializationService extends GenericService<
     await this.programStructure.bulkCreate(
       dto.program_structures.map((item) => ({
         ...item,
-        image: `/media/course-specialization/extras/${item?.image}`,
+        //image: `/media/course-specialization/extras/${item?.image}`,
         course_specialization_id: courseSpecialization.id,
       })),
     );
@@ -218,6 +227,64 @@ export class CourseSpecializationService extends GenericService<
     }
   }
 
+  async createProgramStructures(
+    dto: ProgramStructureDTO[],
+    course_specialization_id: string,
+  ) {
+    // Bulk create program structures
+    await this.programStructure.bulkCreate(
+      dto.map((item) => ({
+        ...item,
+        //image: `/media/course-specialization/extras/${item?.image}`,
+        course_specialization_id: course_specialization_id,
+      })),
+    );
+    return 'Program Structures Created Successfully';
+  }
+  
+  async createProgramHighlights(
+    dto: ProgramHighlightDTO[],
+    course_specialization_id: string,
+  ) {
+    // Bulk create program highlights
+    await this.programHighlight.bulkCreate(
+      dto.map((item) => ({
+        ...item,
+        course_specialization_id: course_specialization_id,
+      })),
+    );
+    return 'Program Highlights Created Successfully';
+  }
+  
+  async createAdmissionProcesses(
+    dto: CreateAdmissionProcessCardsDTO[],
+    course_specialization_id: string,
+  ) {
+    // Bulk create admission process cards
+    await this.admissionProcess.bulkCreate(
+      dto.map((item) => ({
+        ...item,
+        course_specialization_id: course_specialization_id,
+      })),
+    );
+    return 'Admission Processes Created Successfully';
+  }
+  
+  async createAssociations(
+    dto: AssociationsDTO[],
+    course_specialization_id: string,
+  ) {
+    // Bulk create associations
+    await this.associations.bulkCreate(
+      dto.map((item) => ({
+        ...item,
+        //image: `/media/course-specialization/extras/${item?.image}`,
+        course_specialization_id: course_specialization_id,
+      })),
+    );
+    return 'Associations Created Successfully';
+  }
+
   async findbyCourses(courseID: string): Promise<CourseSpecialization[]> {
     try {
       const specializations = await CourseSpecialization.findAll({
@@ -233,4 +300,45 @@ export class CourseSpecializationService extends GenericService<
       throw error;
     }
   }
+
+ async CourseSpecializations(slug: string, limit: string, page: string) {
+    const pageNumber = parseInt(page) || 1;
+    const limits = parseInt(limit) || 6;
+    const offset = (pageNumber - 1) * limits;
+    let hasMore = false;
+    let category;
+
+    try {
+        let whereClause: any = {};
+        if (slug) {
+            category = await this.course.findOne({ where: { slug: slug } });
+            if (!category) {
+                throw new Error('Course not found');
+            }
+            whereClause.course_id = category.id;
+        }
+
+        const [totalCourseSpecializations, courseSpecializations] = await Promise.all([
+            slug ? this.courseSpecialization.count({ where: whereClause }) : this.courseSpecialization.count(),
+            this.courseSpecialization.findAll({
+                include: [MetaData, Course, University, AdmissionProcessCards, FeesStructure, ProgramHighlight, ProgramStructure, Associations, Infos],
+                where: whereClause,
+                order: [['createdAt', 'DESC']],
+                limit: limits,
+                offset: offset,
+            })
+        ]);
+
+        if (totalCourseSpecializations > offset + limits) {
+            hasMore = true;
+        }
+
+        return { courseSpecializations, hasMore };
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+  
 }

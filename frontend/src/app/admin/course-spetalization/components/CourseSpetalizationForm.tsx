@@ -26,14 +26,13 @@ type Props = {
 const CourseSpecializationForm = ({
   initialValues,
   isUpdate,
-  id,
   courseData,
   universityData,
 }: Props) => {
   const router = useRouter();
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate
-      ? `/configurations/course-specialization/${id}`
+      ? `/configurations/course-specialization/${initialValues.id}`
       : "/configurations/course-specialization",
     method: isUpdate ? "put" : "post",
   });
@@ -172,6 +171,26 @@ const CourseSpecializationForm = ({
               <Label text="Brouchre" />
               <Input name="brouchre" />
             </Grid>
+          </Grid>
+
+          <Grid xs={12} flexDirection={"column"} className="mb-16 mt-8">
+            <Label text="Page Description" />
+            <TextEditor
+              name="textarea"
+              label="textarea"
+              setFieldValue={setFieldValue}
+              value={values?.textarea}
+            />
+          </Grid>
+
+          <Grid xs={12} flexDirection={"column"} className="mb-16 mt-8">
+            <Label text="Notes / Disclaimer" />
+            <TextEditor
+              name="notes"
+              label="notes"
+              setFieldValue={setFieldValue}
+              value={values?.notes}
+            />
           </Grid>
 
           <Grid xs={12} item className="mt-8">

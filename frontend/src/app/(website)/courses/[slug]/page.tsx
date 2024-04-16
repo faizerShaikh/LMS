@@ -6,6 +6,7 @@ import {
   AssociationInterface,
   CourseSpecializationInterface,
   ProgramHiglightsInterface,
+  programmeStructure,
 } from "interfaces";
 import Image from "next/image";
 
@@ -18,7 +19,6 @@ export default async function SingleCourse({
   let url = `${process.env.BASE_API_URL}/configurations/course-specialization/slug/${params.slug}/`;
   const response = await axios.get(url);
   data = response.data.data;
-  console.log(data, "<<<<<<<<<<<<<<<");
 
   const programHiglightsData: ProgramHiglightsInterface[] =
     data.programHiglights ?? [];
@@ -46,7 +46,7 @@ export default async function SingleCourse({
             ></div>
 
             <div className="flex justify-between gap-5">
-              <div className="border border-black w-1/2">
+              <div className="border rounded-md border-black w-1/2">
                 <Button className="py-2 w-full  bg-white text-black">
                   Apply Now
                 </Button>
@@ -59,37 +59,40 @@ export default async function SingleCourse({
           </div>
         </div>
       </section>
-
       <section className="container m-auto my-14">
         <div className="flex border-2 rounded-2xl shadow-2xl  py-8">
           <div className="w-1/4 border-r-2 border-black pl-6">
             <div className="mb-8">
               <p className="font-bold text-xl m-0">Mode</p>
-              <p className="font-medium text-lg">{data.delivery_mode}</p>
+              <p className="font-medium text-lg m-0 mt-2">
+                {data.delivery_mode}
+              </p>
             </div>
             <div className="">
-              <p className="font-bold text-xl">Courses</p>
-              <p className="font-medium text-lg m-0">{data.courses}</p>
+              <p className="font-bold text-xl m-0">Courses</p>
+              <p className="font-medium text-lg m-0 mt-2">{data.courses}</p>
             </div>
           </div>
           <div className="w-1/4 border-r-2 border-black pl-6">
             <div className="mb-8">
               <p className="font-bold text-xl m-0">Learning Path</p>
-              <p className="font-medium text-lg">{data.learningPath}</p>
+              <p className="font-medium text-lg  m-0 mt-2">
+                {data.learningPath}
+              </p>
             </div>
             <div className="">
-              <p className="font-bold text-xl">Credits</p>
-              <p className="font-medium text-lg m-0">{data.credits}</p>
+              <p className="font-bold text-xl m-0">Credits</p>
+              <p className="font-medium text-lg m-0 mt-2">{data.credits}</p>
             </div>
           </div>
           <div className="w-1/4 border-r-2 border-black pl-6">
             <div className="mb-8">
               <p className="font-bold text-xl m-0">Course Duration</p>
-              <p className="font-medium text-lg">{data.duration}</p>
+              <p className="font-medium text-lg  m-0 mt-2">{data.duration}</p>
             </div>
             <div className="">
-              <p className="font-bold text-xl">Webinars</p>
-              <p className="font-medium text-lg m-0">
+              <p className="font-bold text-xl m-0">Webinars</p>
+              <p className="font-medium text-lg m-0 mt-2">
                 {data.webinar ? "Yes" : "No"}
               </p>
             </div>
@@ -97,16 +100,80 @@ export default async function SingleCourse({
           <div className="w-1/4 pl-6 ">
             <div className="mb-8">
               <p className="font-bold text-xl m-0">Fees</p>
-              <p className="font-medium text-lg">
+              <p className="font-medium text-lg m-0 mt-2">
                 Indian : INR {data.fees_structure?.indian_annual_fees}
               </p>
-              <p className="font-medium text-lg">
+              <p className="font-medium text-lg m-0 mt-2">
                 Foreigners : $ {data.fees_structure?.foreign_annual_fees}
               </p>
-              <p className="font-medium text-lg">
+              <p className="font-medium text-lg m-0 mt-2">
                 {data.fees_structure?.notes}
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+      {data.program_structures && data.program_structures.length > 0 ? (
+        <section className="bg-gray-100">
+          <div className="container py-16 m-auto">
+            <h2 className="text-center m-0 mb-14 text-3xl font-semibold">
+              Programme Structure
+            </h2>
+            <div className="flex flex-wrap justify-center gap-10">
+              {data.program_structures?.map((item: programmeStructure) => (
+                <div className="bg-white !w-[30%] rounded-3xl py-8 px-6 shadow-2xl">
+                  <div className="flex justify-center">
+                    <Image
+                      src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
+                      alt="test"
+                      width={130}
+                      height={130}
+                      className="justify-center"
+                    />
+                  </div>
+                  <h2 className="font-medium text-center">{item.name}</h2>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+      <section>
+        <div className="container m-auto py-12">
+          <h2 className="text-2xl">Eligibilty Criteria</h2>
+          <p className="font-semibold">{data.eligibilty}</p>
+        </div>
+      </section>
+      <section className=" bg-gray-100">
+        <div className="container m-auto flex py-8">
+          <div className="w-1/2 flex justify-center items-center">
+            <Image
+              src={data.university?.university_image}
+              width={300}
+              height={200}
+              alt="university image"
+            />
+          </div>
+          <div
+            className="w-1/2"
+            dangerouslySetInnerHTML={{ __html: data.university.description }}
+          ></div>
+        </div>
+      </section>
+      <section>
+        <div className="container m-auto py-12 flex items-center">
+          <div className="w-[80%]">
+            <h2>
+              Unlock Your Future : Embrace Digital Marketing with Confidence!{" "}
+            </h2>
+            <p className="font-medium ">
+              Join us to Equip Yourself with the Essential Skills Sought After
+              by Employers Worldwide, Empowering you to Propel your Career to
+              new Heights."{" "}
+            </p>
+          </div>
+          <div className="w-[20%]">
+            <Button href="#">Enroll Now</Button>
           </div>
         </div>
       </section>
@@ -117,7 +184,7 @@ export default async function SingleCourse({
               Programme Highlights
             </h2>
             <div className="flex px-20">
-              <div className="flex justify-between gap-10">
+              <div className="flex justify-between gap-10 w-full">
                 <div className="!w-1/2">
                   {firstHalf?.map((item: ProgramHiglightsInterface) => (
                     <div className="items-center flex">
@@ -127,7 +194,7 @@ export default async function SingleCourse({
                         width={80}
                         height={80}
                       />{" "}
-                      <p>{item.name}</p>
+                      <p className="ml-4">{item.name}</p>
                     </div>
                   ))}
                 </div>
@@ -148,10 +215,7 @@ export default async function SingleCourse({
             </div>
           </div>
         </section>
-      ) : (
-        ""
-      )}
-
+      ) : null}
       {data?.association && data.association?.length > 0 ? (
         <section className="bg-blue-900 text-white">
           <div className="container py-16 m-auto">
@@ -177,10 +241,7 @@ export default async function SingleCourse({
             </div>
           </div>
         </section>
-      ) : (
-        ""
-      )}
-
+      ) : null}
       {data?.admissionProcess && data?.admissionProcess?.length > 0 ? (
         <section className="bg-gray-100">
           <div className="container py-16 m-auto">
@@ -209,54 +270,56 @@ export default async function SingleCourse({
           </div>
         </section>
       ) : null}
+      {data && data.info ? (
+        <section className="py-12 ">
+          <div className="container m-auto ">
+            <div className="border shadow-lg flex">
+              <div className="w-1/2 px-6">
+                <h2 className="text-center">{data.info.title}</h2>
+                <div
+                  dangerouslySetInnerHTML={{ __html: data.info.description }}
+                ></div>
+              </div>
+              <div className="w-1/2 ">
+                <Image
+                  src={data.info.image}
+                  width={200}
+                  height={200}
+                  alt="test"
+                  className="
+              !w-full !h-full"
+                ></Image>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+      {data && data.textarea ? (
+        <section className="container m-auto py-12">
+          <div
+            className="border py-4 px-4 rounded-md border-black "
+            dangerouslySetInnerHTML={{ __html: data.textarea }}
+          ></div>
+        </section>
+      ) : null}
 
-      <section className="container m-auto mb-20">
-        <div className="border py-4 px-4 rounded-md border-black ">
-          <h2 className="font-bold text-2xl mb-2">Introduction</h2>
-          <p className="mb-4">
-            Riseback is a highly innovative and effective skill-based IT
-            training program that has been designed to meet the evolving demands
-            of the modern job market. The program is designed to equip
-            individuals with the skills and knowledge needed to excel in the
-            highly competitive world of information technology. Riseback's
-            approach to training is highly personalized and tailored to the
-            needs of each individual learner, making it a highly effective way
-            to learn new skills and advance one's in the IT industry.
-          </p>
-          <h2 className="font-bold text-2xl mb-2">Course Description</h2>
-          <p className="mb-4">
-            This course helps participants understand what data scientists do,
-            the problems they solve, and the tools and techniques they use.
-            Through in-class simulations, participants apply data science
-            methods to real-world challenges in different industries and,
-            ultimately, prepare for data scientist roles in the field...
-          </p>
-          <h2 className="font-bold text-2xl mb-2">Career Opportunities</h2>
-          <p className="mb-4">
-            Data science is a highly sought-after field with a range of career
-            opportunities and high salary potential. The median annual salary
-            for a Data Scientist is around $120,000, while a Data Analyst can
-            earn upwards of $70,000 per year. Other high-paying job roles in
-            data science include Machine Learning Engineer, Data Architect, and
-            Business Intelligence Analyst, with salaries ranging from $90,000 to
-            $140,000 per year, depending on experience and skills. With the
-            increasing demand for data-driven insights, the salary prospects for
-            those in this field are expected to continue growing.
-          </p>
+      <section>
+        <div className="container m-auto">
+          <div className=" text-center">
+            <p className="font-medium">Want moree details?</p>
+            <p className="font-medium">
+              Expolre the coures thoroughly by downloading the brochure
+            </p>
+            <Button href="#">
+              <Download className="mr-2 size-5" />
+              Download Brochure
+            </Button>
+          </div>
         </div>
       </section>
-
-      <section className="container m-auto mb-20">
+      <section className="container m-auto  py-12">
         <div className="shadow-2xl mx-32 p-4 rounded-md ">
-          <p>
-            <span className="font-bold">Note: </span>As per our policy, we start
-            the course/training/internship within 10 days from the date of
-            enrollment. If you enroll for future month/date, our schedule team
-            will coordinate with you and assign your class. To communicate with
-            our schedule team for preferred timing, email to
-            info@riseback.org.com. All courses/internships can be scheduled in
-            customised manner as per your requirements.
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: data.notes }}></div>
         </div>
       </section>
     </>

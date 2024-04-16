@@ -7,6 +7,7 @@ import { Add, Edit } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
 import { API } from "configs";
+import { subtle } from "crypto";
 
 export const AssociationForm = ({
   data,
@@ -24,8 +25,8 @@ export const AssociationForm = ({
   const { mutate, isLoading } = useCreateOrUpdate({
     url:
       isUpdate && data
-        ? `/course-specialization/associations/${data.id}`
-        : "/course-specialization/associations",
+        ? `/configurations/associations/${data.id}`
+        : `/configurations/associations/course-specialization/${pageId}`,
     method: isUpdate ? "put" : "post",
   });
 
@@ -36,10 +37,7 @@ export const AssociationForm = ({
   ) => {
     const formData = new FormData();
     formData.append("image", file);
-    await API.put(
-      `/course-specialization/associations/update-image/${id}`,
-      formData
-    );
+    await API.put(`/configurations/associations/update-image/${id}`, formData);
     onSuccess();
   };
 
@@ -61,7 +59,11 @@ export const AssociationForm = ({
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(
-              { ...values, course_specialization_id: pageId },
+              {
+                title: values.title,
+                subTitle: values.subTitle,
+                course_specialization_id: pageId,
+              },
               {
                 onSuccess(resp) {
                   handleFileUpload(values.image, resp.data.data.id, () => {

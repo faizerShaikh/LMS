@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { InjectModel } from '@nestjs/sequelize';
 import { join } from 'path';
@@ -46,10 +50,59 @@ export class ProgramHighlightService extends GenericService<
         });
       }
 
-    await programHighlight.update({
+      await programHighlight.update({
         image: '/media/course-specialization/extras/' + file.filename,
-    });
-    return 'Admission Process Image Uploaded Successfully';
+      });
+      return 'Admission Process Image Uploaded Successfully';
+    }
   }
-}
+
+  async createProgramHighlight(courseSpecializationId: string, otherData: any) {
+    try {
+      console.log(
+        'Creating program highlight for course specialization ID:',
+        courseSpecializationId,
+      );
+
+      // Here you can create your program structure based on the provided data
+      const programHighlight = await this.programHighlight.create({
+        ...otherData,
+        course_specialization_id: courseSpecializationId,
+      });
+
+      console.log('Program highlight created:', programHighlight);
+
+      return programHighlight;
+    } catch (error) {
+      console.error('Error creating program highlight:', error);
+      throw new InternalServerErrorException(
+        'Error creating program highlight',
+      );
+    }
+  }
+
+  async findProgramHighlightsByCourseSpecializationId(
+    courseSpecializationId: string,
+  ) {
+    try {
+      console.log(
+        'Fetching program highlights for course specialization ID:',
+        courseSpecializationId,
+      );
+      const programHighlights = await this.programHighlight.findAll({
+        where: { course_specialization_id: courseSpecializationId },
+      });
+      console.log('Found program highlights:', programHighlights);
+      if (!programHighlights || programHighlights.length === 0) {
+        console.log('No program highlights found');
+        throw new NotFoundException(
+          'Program highlights not found for the given course specialization ID',
+        );
+      }
+      return programHighlights;
+    } catch (error) {
+      console.error('Error fetching program highlights:', error);
+      throw new InternalServerErrorException(error.message);
+    }
+  }
 }

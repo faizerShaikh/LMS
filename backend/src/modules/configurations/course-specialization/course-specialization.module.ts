@@ -17,6 +17,12 @@ import { AssociationService } from './extras/association.service';
 import { ProgramHighlightService } from './extras/program-highlights.service';
 import { ProgramStructureController } from './extras/program-structure.controller';
 import { ProgramStructureService } from './extras/program-structure.service';
+import { Infos } from './model/info.model';
+import { InfoController } from './extras/info.controller';
+import { InfoService } from './extras/info.service';
+import { Course } from '../course/model';
+import { CourseService } from '../course/course.service';
+import { CourseController } from '../course/course.controller';
 
 @Module({
   imports: [
@@ -28,6 +34,8 @@ import { ProgramStructureService } from './extras/program-structure.service';
       MetaData,
       ProgramHighlight,
       Associations,
+      Infos,
+      Course
     ]),
   ],
   controllers: [
@@ -36,6 +44,8 @@ import { ProgramStructureService } from './extras/program-structure.service';
     AssociationController,
     ProgramHighlightController,
     ProgramStructureController,
+    InfoController,
+    CourseController
   ],
   providers: [
     CourseSpecializationService,
@@ -43,6 +53,8 @@ import { ProgramStructureService } from './extras/program-structure.service';
     AssociationService,
     ProgramHighlightService,
     ProgramStructureService,
+    InfoService,
+    CourseService
   ],
 })
 export class CourseSpecializationModule {}

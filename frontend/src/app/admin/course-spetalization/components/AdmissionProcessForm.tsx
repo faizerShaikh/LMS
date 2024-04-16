@@ -28,8 +28,8 @@ export const AdmissionProcessFrom = ({
   const { mutate, isLoading } = useCreateOrUpdate({
     url:
       isUpdate && data
-        ? `/course-specialization/admission-process/${data.id}`
-        : "/course-specialization/admission-process",
+        ? `/configurations/admission-process/${data.id}`
+        : `/configurations/admission-process/course-specialization/${pageId}`,
     method: isUpdate ? "put" : "post",
   });
 
@@ -41,7 +41,7 @@ export const AdmissionProcessFrom = ({
     const formData = new FormData();
     formData.append("image", file);
     await API.put(
-      `/course-specialization/admission-process/update-image/${id}`,
+      `/configurations/admission-process/update-image/${id}`,
       formData
     );
     onSuccess();
@@ -65,7 +65,11 @@ export const AdmissionProcessFrom = ({
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
             mutate(
-              { ...values, course_specialization_id: pageId },
+              {
+                title: values.title,
+                description: values.description,
+                course_specialization_id: pageId,
+              },
               {
                 onSuccess(resp) {
                   handleFileUpload(values.image, resp.data.data.id, () => {
@@ -99,7 +103,7 @@ export const AdmissionProcessFrom = ({
                     <Label text="Title" required />
                     <Input name="title" />
                   </Box>
-                  <Box className="mt-4">
+                  <Box className="mt-4 mb-16">
                     <Label text="Description" required />
                     <TextEditor
                       name="description"

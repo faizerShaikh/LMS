@@ -9,7 +9,6 @@ export interface CourseSpecializationCardProps {
 export const CourseSpecializationCard = ({
   data,
 }: CourseSpecializationCardProps) => {
-  // console.log(data, "datadata");
   return (
     <section className="">
       <CustomCarousel>

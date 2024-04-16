@@ -5,7 +5,6 @@ import { Formik, Form } from "formik";
 import { useCreateOrUpdate } from "hooks";
 import { FeesStructureInterface } from "interfaces";
 
-import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "utils";
 
@@ -20,7 +19,6 @@ const FeesForm = ({ isUpdate, id, data }: any) => {
     ...data,
   };
 
-  const router = useRouter();
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate
       ? `/configurations/course-specialization/fees/${id}`
@@ -43,7 +41,7 @@ const FeesForm = ({ isUpdate, id, data }: any) => {
             foreign_annual_fees: +values.foreign_annual_fees,
           },
           {
-            onSuccess(resp) {
+            onSuccess() {
               resetForm();
               toast(
                 `Fees Structure ${

@@ -17,6 +17,7 @@ import { AdmissionProcessCards } from './admissionProcess.model';
 import { MetaDataType } from '../../MetaData/dto/type.enum';
 import { ProgramHighlight } from './program-highlights.model';
 import { Associations } from './associations.model';
+import { Infos } from './info.model';
 
 @Table({
   tableName: 'course-specializations',
@@ -52,6 +53,20 @@ export class CourseSpecialization extends MyBaseModel {
     },
   })
   description: string;
+
+  @Column({
+    type: DataType.TEXT,
+    // allowNull: false,
+    // validate: {
+    //   notNull: {
+    //     msg: 'textarea can not be empty',
+    //   },
+    //   notEmpty: {
+    //     msg: 'textarea can not be empty',
+    //   },
+    // },
+  })
+  textarea: string;
 
   @Column({
     type: DataType.STRING,
@@ -288,4 +303,13 @@ export class CourseSpecialization extends MyBaseModel {
     // foreignKey: 'course_specialization_id',
   })
   fees_structure: FeesStructure;
+
+  
+  @HasOne(() => Infos, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+    // foreignKey: 'course_specialization_id',
+  })
+  info: Infos;
 }

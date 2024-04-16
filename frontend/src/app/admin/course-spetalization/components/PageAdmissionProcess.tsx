@@ -1,8 +1,12 @@
 "use client";
 import { DataGrid, DeleteBox } from "components/layout";
 import { useGetAll } from "hooks";
-import { ProgramHiglightsInterface } from "interfaces";
+import {
+  AdmissionProcessInterface,
+  ProgramHiglightsInterface,
+} from "interfaces";
 import { AdmissionProcessFrom } from "./AdmissionProcessForm";
+import removeTags from "utils/removeTags";
 
 const columns = [
   {
@@ -16,25 +20,29 @@ const columns = [
     field: "description",
     flex: 1,
     cellClassName: "text-dark",
+    renderCell: (params: { row: AdmissionProcessInterface }) => {
+      const descriptionValue = params.row.description;
+      return removeTags(descriptionValue);
+    },
   },
   {
     headerName: "Action",
     field: "action",
     flex: 1,
     cellClassName: "text-dark",
-    renderCell: (params: { row: ProgramHiglightsInterface }) => {
+    renderCell: (params: { row: AdmissionProcessInterface }) => {
       return (
         <>
           <AdmissionProcessFrom
             isUpdate={true}
             data={params.row}
-            refetchURL="/course-specialization/admission-process"
+            refetchURL={`configurations/admission-process/course-specialization/${params.row.course_specialization_id}`}
             pageId={params.row?.course_specialization_id}
           />
           <DeleteBox
-            url={`/course-specialization/admission-process`}
-            refetchUrl="/course-specialization/admission-process"
-            title={`${params.row.name}`}
+            url={`/configurations/admission-process`}
+            refetchUrl={`configurations/admission-process/course-specialization/${params.row.course_specialization_id}`}
+            title={`${params.row.title}`}
             data={params.row.id}
           />
         </>
@@ -45,7 +53,7 @@ const columns = [
 
 export default function PageAdmissionProcess({ pageId }: any) {
   const { data } = useGetAll({
-    key: `/course-specialization/admission-process`,
+    key: `configurations/admission-process/course-specialization/${pageId}`,
   });
 
   return (

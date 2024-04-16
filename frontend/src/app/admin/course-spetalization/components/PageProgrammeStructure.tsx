@@ -1,8 +1,8 @@
 "use client";
 import { DataGrid, DeleteBox } from "components/layout";
 import { useGetAll } from "hooks";
-import { ProgramHiglightsInterface } from "interfaces";
-import { ProgramingHighlightsForm } from "./ProgramingHighlightsForm";
+import { programmeStructure } from "interfaces";
+import { ProgrammeStructureForm } from "./programmeStructureForm";
 
 const columns = [
   {
@@ -17,18 +17,18 @@ const columns = [
     field: "action",
     flex: 1,
     cellClassName: "text-dark",
-    renderCell: (params: { row: ProgramHiglightsInterface }) => {
+    renderCell: (params: { row: programmeStructure }) => {
       return (
         <>
-          <ProgramingHighlightsForm
+          <ProgrammeStructureForm
             isUpdate={true}
             data={params.row}
-            refetchURL={`configurations/program-highlights/course-specialization/${params.row.course_specialization_id}`}
+            refetchURL={`configurations/program-structures/course-specialization/${params.row.course_specialization_id}`}
             pageId={params.row?.course_specialization_id}
           />
           <DeleteBox
-            url={`/configurations/program-highlights`}
-            refetchUrl={`configurations/program-highlights/course-specialization/${params.row.course_specialization_id}`}
+            url={`/configurations/program-structures`}
+            refetchUrl={`configurations/program-structures/course-specialization/${params.row.course_specialization_id}`}
             title={`${params.row.name}`}
             data={params.row.id}
           />
@@ -38,14 +38,14 @@ const columns = [
   },
 ];
 
-export default function PageProgramingHighlights({ pageId }: any) {
+export default function PageProgrammeStructure({ pageId }: any) {
   const { data } = useGetAll({
-    key: `configurations/program-highlights/course-specialization/${pageId}`,
+    key: `configurations/program-structures/course-specialization/${pageId}`,
   });
   return (
     <>
       <DataGrid
-        addButton={<ProgramingHighlightsForm pageId={pageId} />}
+        addButton={<ProgrammeStructureForm pageId={pageId} />}
         columns={columns}
         rows={data}
       />
