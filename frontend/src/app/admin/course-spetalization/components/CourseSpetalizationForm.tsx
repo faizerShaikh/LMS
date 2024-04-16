@@ -174,6 +174,16 @@ const CourseSpecializationForm = ({
           </Grid>
 
           <Grid xs={12} flexDirection={"column"} className="mb-16 mt-8">
+            <Label text="Page Description" />
+            <TextEditor
+              name="textarea"
+              label="textarea"
+              setFieldValue={setFieldValue}
+              value={values?.textarea}
+            />
+          </Grid>
+
+          <Grid xs={12} flexDirection={"column"} className="mb-16 mt-8">
             <Label text="Notes / Disclaimer" />
             <TextEditor
               name="notes"

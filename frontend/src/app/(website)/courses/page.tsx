@@ -2,19 +2,50 @@ import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
 import { CoursesCard } from "components/layout/cards/CourseCard";
+import CourseCategoryFilter from "./components/CourseFilterForm";
+import { Button } from "components/layout/buttons";
 
-async function courses() {
+interface CoursesSearchParams {
+  category?: string;
+  limit?: string;
+}
+export default async function courses({
+  searchParams: { category, limit },
+}: {
+  searchParams: { category: string; limit: string };
+}) {
+  let CoursesCardData: any = [];
   let CoursesCatagoriData = [];
+  let LoadMoreButtondata = false;
   const CatagorieResponse = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/course`
+    `${process.env.BASE_API_URL}/configurations/course`,
+    {
+      params: category ? { category } : "",
+    }
   );
   CoursesCatagoriData = CatagorieResponse.data.data.rows;
-  let CoursesCardData: any = [];
-  const response = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/course-specialization`
-  );
-  CoursesCardData = response.data.data.rows;
-  // console.log(response, "<<<<<<<response");
+
+  try {
+    const queryParams: CoursesSearchParams = {};
+    if (category) queryParams.category = category;
+    if (limit) queryParams.limit = limit;
+
+    const response = await axios.get(
+      `${process.env.BASE_API_URL}/configurations/course-specialization`,
+      {
+        params: queryParams,
+      }
+    );
+    CoursesCardData = response.data.data.courseSpecializations;
+    LoadMoreButtondata = CatagorieResponse.data.data.hasMore;
+    // console.log(
+    //   CoursesCardData,
+    //   "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+    // );
+  } catch (error) {
+    console.error("Error fetching Courses data:", error);
+  }
+
   return (
     <>
       <section className="bg-gray-100 h-[400px] ">
@@ -40,9 +71,12 @@ async function courses() {
               applications, cloud computing, and blockchain, and gain the skills
               needed to navigate the dynamic digital landscape.
             </p>
-            <button className="bg-blue-900 py-2 text-xl px-4 text-white cursor-pointer">
+            <Button
+              href="#"
+              className="bg-blue-900 py-2 text-xl px-4 text-white cursor-pointer"
+            >
               Explore Professional Courses
-            </button>
+            </Button>
           </div>
         </div>
       </section>
@@ -68,20 +102,25 @@ async function courses() {
             <div className="w-1/4 shadow-2xl mb-4 rounded-md p-4 border-2">
               <h2 className="text-xl font-bold m-0 ">Categories</h2>
               <ul className="p-0">
-                <button className="bg-blue-100 py-3 w-full text-start  text-blue-700  rounded-md">
+                <Button
+                  href="/courses"
+                  className="bg-blue-100 py-3 w-full text-start  text-blue-700  rounded-md"
+                >
                   Most Popular
-                </button>
-                {CoursesCatagoriData.map((item: any) => (
-                  <p key={item.slug}>{item.name}</p>
-                ))}
+                </Button>
+
+                <CourseCategoryFilter
+                  category={category}
+                  CourseCategories={CoursesCatagoriData}
+                ></CourseCategoryFilter>
               </ul>
             </div>
           </div>
 
           <div className="flex justify-evenly my-12">
-            <button className="bg-blue-900 text-white py-2 px-4 rounded-md">
-              View all(14 more)
-            </button>
+            <Button className="bg-blue-900 text-white py-2 px-4 rounded-md">
+              View all
+            </Button>
           </div>
         </div>
       </section>
@@ -147,7 +186,5 @@ async function courses() {
     </>
   );
 }
-
-export default courses;
 
 export const revalidate = 60;

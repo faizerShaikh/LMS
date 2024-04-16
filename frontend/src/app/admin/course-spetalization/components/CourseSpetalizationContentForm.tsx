@@ -12,6 +12,7 @@ import PageProgramingHighlights from "./pageProgramingHighlights";
 import PageAssociation from "./PageAssociation";
 import PageAdmissionProcess from "./PageAdmissionProcess";
 import PageProgrammeStructure from "./PageProgrammeStructure";
+import { InvestmentForLifeForm } from "./InvestmentForLifeForm";
 
 type Props = {
   initialValues: CourseSpecializationInterface;
@@ -78,6 +79,16 @@ const CourseSpetalizationContentForm = ({
                 id: 5,
                 buttonLabel: "Admission Process",
                 component: <PageAdmissionProcess pageId={initialValues.id} />,
+              },
+              {
+                id: 6,
+                buttonLabel: "Investment for Life",
+                component: (
+                  <InvestmentForLifeForm
+                    pageId={initialValues.id}
+                    data={initialValues.info}
+                  />
+                ),
               },
             ]}
           />

@@ -1,6 +1,7 @@
 import { CourseSpecializationInterface } from "interfaces";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../buttons";
 
 export interface CrousesCardProps {
   specialization: CourseSpecializationInterface;
@@ -8,7 +9,7 @@ export interface CrousesCardProps {
 
 export function CoursesCard({ specialization }: CrousesCardProps) {
   return (
-    <div className="w-[30%]  mx-2  shadow-2xl rounded-md mb-4">
+    <div className="w-[30%] h-[240px] mx-2  shadow-2xl rounded-md mb-4">
       <Image
         width={500}
         height={160}
@@ -26,9 +27,9 @@ export function CoursesCard({ specialization }: CrousesCardProps) {
         </div>
         <div className="px-4 mb-3">
           <Link href={`courses/${specialization.slug}`} className="text-white">
-            <button className="bg-blue-900 py-2 w-full rounded-md text-white">
+            <Button className="bg-blue-900 py-2 w-full rounded-md text-white">
               View Details{" "}
-            </button>
+            </Button>
           </Link>
         </div>
       </div>

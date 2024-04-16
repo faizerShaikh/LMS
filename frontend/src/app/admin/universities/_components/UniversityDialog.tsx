@@ -8,6 +8,7 @@ import { useQueryClient } from "react-query";
 import { toast } from "utils";
 import * as Yup from "yup";
 import { API } from "configs";
+import TextEditor from "components/admin/richTextEditor";
 
 const initialValues: UniversityInterface = {
   id: "",
@@ -91,7 +92,7 @@ export const UniversityDialog = ({
             });
           }}
         >
-          {({ values }) => (
+          {({ setFieldValue, values }) => (
             <Form>
               <Grid container columnSpacing={10} className="mt-2  " gap={3}>
                 <Grid xs={12} item>
@@ -112,9 +113,14 @@ export const UniversityDialog = ({
                     <Label text="Short name" required />
                     <Input name="short_name" />
                   </Box>
-                  <Box className="mt-4">
+                  <Box className="mt-4 mb-20">
                     <Label text="Description" required />
-                    <Input name="description" />
+                    <TextEditor
+                      name="description"
+                      label="Description"
+                      setFieldValue={setFieldValue}
+                      value={values?.description}
+                    />
                   </Box>
                   <Box className="mt-4">
                     <Label text="Number of courses" required />

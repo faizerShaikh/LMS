@@ -42,7 +42,7 @@ const columns = [
           <DeleteBox
             url={`/configurations/admission-process`}
             refetchUrl={`configurations/admission-process/course-specialization/${params.row.course_specialization_id}`}
-            title={`${params.row.description}`}
+            title={`${params.row.title}`}
             data={params.row.id}
           />
         </>

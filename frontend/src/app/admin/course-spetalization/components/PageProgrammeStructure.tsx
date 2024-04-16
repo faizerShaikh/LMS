@@ -23,12 +23,12 @@ const columns = [
           <ProgrammeStructureForm
             isUpdate={true}
             data={params.row}
-            refetchURL="/configurations/program-structures"
+            refetchURL={`configurations/program-structures/course-specialization/${params.row.course_specialization_id}`}
             pageId={params.row?.course_specialization_id}
           />
           <DeleteBox
             url={`/configurations/program-structures`}
-            refetchUrl="/configurations/program-structures"
+            refetchUrl={`configurations/program-structures/course-specialization/${params.row.course_specialization_id}`}
             title={`${params.row.name}`}
             data={params.row.id}
           />
