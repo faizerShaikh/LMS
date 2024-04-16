@@ -19,12 +19,12 @@ export class Info extends Model{
         type:DataType.TEXT,
         allowNull:false,
         validate:{
-           notnull: {
-                msg: 'Title can not be empty',
-              },
-              notEmpty: {
-                msg: 'Title can not be empty',
-              },
+          notNull: {
+            msg: 'description can not be empty',
+          },
+          notEmpty: {
+            msg: 'description can not be empty',
+          },
         }
     })
     description:string
