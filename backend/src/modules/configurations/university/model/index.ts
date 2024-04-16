@@ -46,7 +46,7 @@ export class University extends MyBaseModel {
   short_name: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false,
     validate: {
       notNull: {
