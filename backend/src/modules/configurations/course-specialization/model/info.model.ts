@@ -27,6 +27,13 @@ export class Infos extends Model{
     })
     description:string
 
+    @Column({
+      type:DataType.STRING,
+  })
+  title:string
+
+
+
     @Default('/media/default.png')
     @Column
     image:string
