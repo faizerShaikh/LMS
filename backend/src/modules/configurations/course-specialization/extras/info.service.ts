@@ -2,7 +2,7 @@ import { Injectable, InternalServerErrorException, NotFoundException } from '@ne
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { InjectModel } from '@nestjs/sequelize';
 import { InfoDTO } from '../dtos/info.dto';
-import { Info } from '../model/info.model';
+import { Infos } from '../model/info.model';
 import { unlink } from 'fs';
 import { join } from 'path';
 import * as fs from 'fs';
@@ -10,7 +10,7 @@ import * as fs from 'fs';
 
 @Injectable()
 export class InfoService extends GenericService<
-  Info,
+  Infos,
   InfoDTO,
   InfoDTO
 >({
@@ -20,15 +20,15 @@ export class InfoService extends GenericService<
   includes: [],
 }) {
   constructor(
-    @InjectModel(Info)
-    private infoModel: typeof Info,
+    @InjectModel(Infos)
+    private infoModel: typeof Infos,
 
     private reqParams: RequestParamsService,
   ) {
     super(infoModel, reqParams);
   }
   async updateInfoImage(file: Express.Multer.File, id: string) {
-    const info = await this.getOne<Info>(id);
+    const info = await this.getOne<Infos>(id);
     const defaultImagePath = 'backend/src/public/media/default.png';
     const filePath = join(
       __dirname,
@@ -48,7 +48,7 @@ export class InfoService extends GenericService<
     await info.update({
       image: '/media/default.png', // Update with your desired path
     });
-    return 'Info Image Uploaded Successfully';
+    return 'Infos Image Uploaded Successfully';
   }
 
   async createInfoForCourseSpecialization(courseSpecializationId: string, infoDTO: any) {
@@ -60,7 +60,7 @@ export class InfoService extends GenericService<
         ...infoDTO, course_specialization_id: courseSpecializationId,
       });
   
-      console.log('Info created:', info);
+      console.log('Infos created:', info);
   
       return info;
     } catch (error) {
@@ -72,13 +72,13 @@ export class InfoService extends GenericService<
   async getInfoByCourseSpecializationId(courseSpecializationId: string) {
     try {
       console.log('Fetching info for course specialization ID:', courseSpecializationId);
-      const info = await Info.findAll({
+      const info = await Infos.findAll({
         where: { course_specialization_id: courseSpecializationId },
       });
       console.log('Found info:', info);
       if (!info) {
         console.log('No info found');
-        throw new NotFoundException('Info not found for the given course specialization ID');
+        throw new NotFoundException('Infos not found for the given course specialization ID');
       }
       return info;
     } catch (error) {

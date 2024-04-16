@@ -1,13 +1,11 @@
-import { validate } from "class-validator";
-import { UUIDV4 } from "sequelize";
-import { AllowNull, BelongsTo, Column, DataType, Default, ForeignKey, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, Default, ForeignKey, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { CourseSpecialization } from "./course-specialization.model";
 
 @Table({
     tableName:'infos',
     paranoid:true
 })
-export class Info extends Model{
+export class Infos extends Model{
 
     @IsUUID(4)
     @PrimaryKey
