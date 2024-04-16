@@ -38,9 +38,9 @@ export default async function courses({
       }
     );
     CoursesCardData = response.data.data.courseSpecializations;
-    LoadMoreButtondata = response.data.data;
+    LoadMoreButtondata = response.data.data.hasMore;
     // console.log(
-    //   LoadMoreButtondata,
+    //   response.data.data,
     //   "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
     // );
   } catch (error) {

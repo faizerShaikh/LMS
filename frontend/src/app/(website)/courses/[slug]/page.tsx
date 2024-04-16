@@ -148,7 +148,9 @@ export default async function SingleCourse({
         <div className="container m-auto flex py-8">
           <div className="w-1/2 flex justify-center items-center">
             <Image
-              src={data.university?.university_image || ""}
+              src={`${process.env.BASE_MEDIA_URL}/${
+                data.university?.university_image || ""
+              }`}
               width={300}
               height={200}
               alt="university image"
@@ -284,7 +286,7 @@ export default async function SingleCourse({
               </div>
               <div className="w-1/2 ">
                 <Image
-                  src={data.info.image}
+                  src={`${process.env.BASE_MEDIA_URL}${data.info.image}`}
                   width={200}
                   height={200}
                   alt="test"

@@ -37,8 +37,11 @@ export default async function Home() {
   const specializationResponse = await axios.get(
     `${process.env.BASE_API_URL}/configurations/course-specialization`
   );
-  CourseSpecializationCardData =
-    specializationResponse.data.data.courseSpecializations;
+  // console.log(
+  //   specializationResponse.data.data,
+  //   "<specializationResponsespecializationResponse"
+  // );
+  CourseSpecializationCardData = specializationResponse.data.data.rows;
 
   return (
     <>
