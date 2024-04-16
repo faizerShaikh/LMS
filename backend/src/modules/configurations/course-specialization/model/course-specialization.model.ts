@@ -17,7 +17,7 @@ import { AdmissionProcessCards } from './admissionProcess.model';
 import { MetaDataType } from '../../MetaData/dto/type.enum';
 import { ProgramHighlight } from './program-highlights.model';
 import { Associations } from './associations.model';
-import { Info } from './info.model';
+import { Infos } from './info.model';
 
 @Table({
   tableName: 'course-specializations',
@@ -305,11 +305,11 @@ export class CourseSpecialization extends MyBaseModel {
   fees_structure: FeesStructure;
 
   
-  @HasOne(() => Info, {
+  @HasOne(() => Infos, {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
     // foreignKey: 'course_specialization_id',
   })
-  info: Info;
+  info: Infos;
 }

@@ -17,7 +17,7 @@ import { AssociationService } from './extras/association.service';
 import { ProgramHighlightService } from './extras/program-highlights.service';
 import { ProgramStructureController } from './extras/program-structure.controller';
 import { ProgramStructureService } from './extras/program-structure.service';
-import { Info } from './model/info.model';
+import { Infos } from './model/info.model';
 import { InfoController } from './extras/info.controller';
 import { InfoService } from './extras/info.service';
 
@@ -31,7 +31,7 @@ import { InfoService } from './extras/info.service';
       MetaData,
       ProgramHighlight,
       Associations,
-      Info
+      Infos
     ]),
   ],
   controllers: [

@@ -11,13 +11,13 @@ import {
   import { GenericController } from 'src/core/modules';
   import { MulterIntercepter } from 'src/core/interceptors';
   import { MulterEnum } from 'src/core/interfaces';
-  import { Info } from '../model/info.model';
+  import { Infos } from '../model/info.model';
   import { InfoDTO } from '../dtos/info.dto';
   import { InfoService } from './info.service';
   
   @Controller('configurations/infos')
   export class InfoController extends GenericController<
-    Info,
+    Infos,
     InfoDTO,
     InfoDTO
   >({
@@ -41,7 +41,7 @@ import {
     @Get('course-specialization/:id')
     async getInfoByCourseSpecializationId(
       @Param('id') courseSpecializationId: string,
-    ): Promise<Info[]> {
+    ): Promise<Infos[]> {
       return this.infoService.getInfoByCourseSpecializationId(courseSpecializationId);
     }
   
