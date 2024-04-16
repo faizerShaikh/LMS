@@ -22,6 +22,7 @@ import { ProgramHighlight } from './model/program-highlights.model';
 import { Associations } from './model/associations.model';
 import { AssociationsDTO } from './dtos/associations.dto';
 import { ProgramHighlightDTO } from './dtos/program-highlights.dto';
+import { Infos } from './model/info.model';
 @Injectable()
 export class CourseSpecializationService extends GenericService<
   CourseSpecialization,
@@ -38,6 +39,7 @@ export class CourseSpecializationService extends GenericService<
       ProgramHighlight,
       ProgramStructure,
       Associations,
+      Infos
     ],
   },
   includes: [
@@ -49,6 +51,7 @@ export class CourseSpecializationService extends GenericService<
     ProgramHighlight,
     ProgramStructure,
     Associations,
+    Infos
   ],
 }) {
   constructor(

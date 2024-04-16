@@ -16,6 +16,7 @@ import { CreateAdmissionProcessCardsDTO } from './create-admissionProcessCards.d
 import { AssociationsDTO } from './associations.dto';
 import { ProgramHighlightDTO } from './program-highlights.dto';
 import { Associations } from '../model/associations.model';
+import { Infos } from '../model/info.model';
 
 export class CreateCourseSpecializationDTO {
   @IsString()
@@ -116,6 +117,10 @@ export class CreateCourseSpecializationDTO {
   @ValidateNested({ each: true })
   @Type(() => Associations)
   associations: Associations[];
+
+  @ValidateNested({each:true})
+  @Type(()=>Infos)
+  infos:Infos
 
   // @IsNumber()
   // @IsNotEmpty()
