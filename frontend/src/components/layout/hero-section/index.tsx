@@ -21,7 +21,7 @@ export function HeroSection({
 }: prop) {
   return (
     <section className="bg-gray-50 desktop:py-24 py-16">
-      <div className="flex justify-between items-center container gap-10 desktop:container px-4 desktop:py-8 m-auto flex-col-reverse desktop:flex-row laptop:container laptop:flex-row">
+      <div className="flex justify-between items-center container gap-10 desktop:container px-8 desktop:py-8 m-auto flex-col-reverse desktop:flex-row laptop:container laptop:flex-row">
         <div className="desktop:w-1/2 w-full flex flex-col justify-center">
           <Image
             alt="test"
@@ -34,7 +34,7 @@ export function HeroSection({
           />
         </div>
         <div className="desktop:w-1/2 w-full">
-          <h1 className="desktop:font-extrabold font-semibold text-[40px] leading-[56px] mt-0 mb-4">
+          <h1 className="desktop:font-extrabold font-semibold desktop:text-[40px] laptop:text-[40px] text-[30px] desktop:leading-[56px] laptop:leading-[56px] mt-0 mb-4">
             {Herotitle}
           </h1>
           <div
