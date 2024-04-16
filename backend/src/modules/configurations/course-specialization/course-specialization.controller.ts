@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -68,6 +69,19 @@ export class CourseSpecializationController extends GenericController<
   // ) {
   //   return this.courseService.createOtherObjects(dto, body,true);
   // }
+  @Get()
+  async Coursespecializations(
+    @Query('category') category: string,
+    @Query('limit') limit: string,
+    @Query('page') page: string,
+  ) {
+    const { courseSpecializations, hasMore } = await this.courseService.CourseSpecializations(
+      category,
+      limit,
+      page,
+    );
+    return { courseSpecializations, hasMore };
+  }
 
   @Get('courses-list/:courseId')
   async findByCourseId(@Param('courseId') courseId: string): Promise<CourseSpecialization[]> {
