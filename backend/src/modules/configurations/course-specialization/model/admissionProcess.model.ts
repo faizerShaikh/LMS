@@ -21,7 +21,6 @@ export class AdmissionProcessCards extends Model {
   @Column
   id: string;
 
-  @Default('/media/default.png')
   @Column
   image: string;
 

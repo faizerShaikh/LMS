@@ -34,7 +34,6 @@ export class Infos extends Model{
 
 
 
-    @Default('/media/default.png')
     @Column
     image:string
 
