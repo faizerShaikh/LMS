@@ -15,7 +15,7 @@ import {
   import { InfoDTO } from '../dtos/info.dto';
   import { InfoService } from './info.service';
   
-  @Controller('infos')
+  @Controller('configurations/infos')
   export class InfoController extends GenericController<
     Info,
     InfoDTO,
