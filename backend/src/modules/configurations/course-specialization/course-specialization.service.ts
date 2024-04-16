@@ -67,6 +67,8 @@ export class CourseSpecializationService extends GenericService<
     private associations: typeof Associations,
     @InjectModel(AdmissionProcessCards)
     private admissionProcess: typeof AdmissionProcessCards,
+    @InjectModel(Course)
+    private course:typeof Course,
 
     private reqParams: RequestParamsService,
   ) {
@@ -298,4 +300,45 @@ export class CourseSpecializationService extends GenericService<
       throw error;
     }
   }
+
+ async CourseSpecializations(slug: string, limit: string, page: string) {
+    const pageNumber = parseInt(page) || 1;
+    const limits = parseInt(limit) || 6;
+    const offset = (pageNumber - 1) * limits;
+    let hasMore = false;
+    let category;
+
+    try {
+        let whereClause: any = {};
+        if (slug) {
+            category = await this.course.findOne({ where: { slug: slug } });
+            if (!category) {
+                throw new Error('Course not found');
+            }
+            whereClause.course_id = category.id;
+        }
+
+        const [totalCourseSpecializations, courseSpecializations] = await Promise.all([
+            slug ? this.courseSpecialization.count({ where: whereClause }) : this.courseSpecialization.count(),
+            this.courseSpecialization.findAll({
+                include: [MetaData, Course, University, AdmissionProcessCards, FeesStructure, ProgramHighlight, ProgramStructure, Associations, Infos],
+                where: whereClause,
+                order: [['createdAt', 'DESC']],
+                limit: limits,
+                offset: offset,
+            })
+        ]);
+
+        if (totalCourseSpecializations > offset + limits) {
+            hasMore = true;
+        }
+
+        return { courseSpecializations, hasMore };
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+  
 }
