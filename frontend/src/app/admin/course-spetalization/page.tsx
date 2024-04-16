@@ -76,7 +76,8 @@ const columns = [
 ];
 
 export default function CourseSpecializationPage() {
-  const { data } = useGetAll({ key: "/configurations/course-specialization" });
+  let { data } = useGetAll({ key: "/configurations/course-specialization" });
+
   return (
     <>
       <PageHeader title="course specialization" />
