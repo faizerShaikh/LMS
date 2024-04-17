@@ -6,6 +6,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { CreateEventDTO } from '../../../dtos';
+import { Events } from '../../../event.model';
 
 export class CreateWebinarDto extends CreateEventDTO {
   @ValidateNested({ each: true })
@@ -16,6 +17,11 @@ export class CreateWebinarDto extends CreateEventDTO {
   @IsNotEmpty()
   @IsString()
   agenda: string;
+
+  
+  @Type(() => CreateEventDTO)
+  @ValidateNested({ each: true })
+  event:CreateEventDTO
 }
 
 export class SpeakerDto {

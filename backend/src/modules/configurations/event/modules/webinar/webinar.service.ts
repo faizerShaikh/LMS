@@ -37,6 +37,7 @@ export class WebinarService extends GenericService<
   }
 
   async create<Webinar>(dto: CreateWebinarDto): Promise<Webinar> {
+    console.log('======================>>>>>>>>.',dto.event)
     const webinar = await super.create(dto);
     await this.CreateEventObject(dto, webinar, true);
     return this.getOne(webinar.id);
@@ -82,15 +83,16 @@ export class WebinarService extends GenericService<
     webinar: Webinar,
     isNewRecord: boolean,
   ) {
+    console.log('===============-=--=-=-=-=-=->>>',dto.event)
     if (isNewRecord) {
       await this.event.create({
-        ...dto,
+        ...dto.event,
         webinarId: webinar.id,
       });
     } else {
-      if (dto) {
+      if (dto.event) {
         await this.event.update<Events>(
-          { ...dto },
+          { ...dto.event },
           {
             where: {
               webinarId: webinar.id,

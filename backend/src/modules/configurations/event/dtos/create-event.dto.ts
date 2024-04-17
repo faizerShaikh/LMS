@@ -11,7 +11,7 @@ export class CreateEventDTO {
 
   @IsString()
   @IsOptional()
-  startDayTime: string;
+  startDayTime: Date;
 
   @IsString()
   @IsOptional()
