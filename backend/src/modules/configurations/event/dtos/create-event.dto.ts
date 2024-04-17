@@ -45,7 +45,5 @@ export class CreateEventDTO {
   @IsOptional()
   webinarId: string;
 
-  @IsString()
-  @IsOptional()
   syllabus:string
 }
