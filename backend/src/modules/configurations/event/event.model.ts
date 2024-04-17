@@ -116,29 +116,29 @@ export class Events extends MyBaseModel {
   override type: MetaDataType.EVENT;
   @Column({
     type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Name can not be empty',
-      },
-      notEmpty: {
-        msg: 'Name can not be empty',
-      },
-    },
+    // allowNull: false,
+    // validate: {
+    //   notNull: {
+    //     msg: 'Name can not be empty',
+    //   },
+    //   notEmpty: {
+    //     msg: 'Name can not be empty',
+    //   },
+    // },
   })
   name: string;
 
   @Column({
     type: DataType.TEXT,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Description can not be empty',
-      },
-      notEmpty: {
-        msg: 'Description can not be empty',
-      },
-    },
+    // allowNull: false,
+    // validate: {
+    //   notNull: {
+    //     msg: 'Description can not be empty',
+    //   },
+    //   notEmpty: {
+    //     msg: 'Description can not be empty',
+    //   },
+    // },
   })
   description: string;
 
@@ -176,6 +176,9 @@ export class Events extends MyBaseModel {
 
   @Column(DataType.BOOLEAN)
   isFeatured: boolean;
+
+  @Column
+  syllabus:string
 
   @ForeignKey(() => User)
   created_by_id: string;

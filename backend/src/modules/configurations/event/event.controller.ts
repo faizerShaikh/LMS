@@ -48,6 +48,21 @@ export class EventController extends GenericController<
     return this.eventService.updateEventImage(file, id);
   }
 
+  @Put('update-syllabus')
+  @UseInterceptors(
+    MulterIntercepter({
+      type: MulterEnum.single,
+      fieldName: 'syllabus',
+      path: '/documents',
+    }),
+  )
+  updateSyllabus(
+    @UploadedFile() file: Express.Multer.File,
+    @Param('id') id: string,
+  ){
+    return this.eventService.updateSyllabus(file,id)
+  }
+
   @Put('strategic-partner/:id')
   @UseInterceptors(
     MulterIntercepter({

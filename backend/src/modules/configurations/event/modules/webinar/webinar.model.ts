@@ -38,6 +38,11 @@ export class Webinar extends Model {
   })
   agenda: string;
 
-  @HasOne(() => Events)
+  @HasOne(() => Events,{
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+   
+  })
   event: Events;
 }

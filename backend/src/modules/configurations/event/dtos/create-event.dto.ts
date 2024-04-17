@@ -11,7 +11,7 @@ export class CreateEventDTO {
 
   @IsString()
   @IsOptional()
-  startDayTime: string;
+  startDayTime: Date;
 
   @IsString()
   @IsOptional()
@@ -44,4 +44,8 @@ export class CreateEventDTO {
   @IsString()
   @IsOptional()
   webinarId: string;
+
+  @IsString()
+  @IsOptional()
+  syllabus:string
 }
