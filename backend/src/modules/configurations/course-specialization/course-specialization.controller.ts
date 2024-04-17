@@ -155,7 +155,7 @@ export class CourseSpecializationController extends GenericController<
     }
   }
 
-  @Put('update-syllabus')
+  @Put('update-syllabus/:id')
   @UseInterceptors(
     MulterIntercepter({
       type: MulterEnum.single,
