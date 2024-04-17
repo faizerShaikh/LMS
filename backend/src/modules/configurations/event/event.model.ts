@@ -177,6 +177,9 @@ export class Events extends MyBaseModel {
   @Column(DataType.BOOLEAN)
   isFeatured: boolean;
 
+  @Column
+  syllabus:string
+
   @ForeignKey(() => User)
   created_by_id: string;
 

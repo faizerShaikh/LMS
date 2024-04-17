@@ -74,6 +74,21 @@ export class EventService extends GenericService<
     return super.create(dto);
   }
 
+  async updateSyllabus(file:Express.Multer.File, id:string){
+    const event = await this.getOne<Events>(id);
+    const filePath=join('../../../../','src/public/documents'+event.syllabus)
+    if(fs.existsSync(filePath)){
+      unlink(filePath,(err)=>{
+        if(err){
+          throw new InternalServerErrorException(err)
+        }
+      })
+    }
+    await event.update({
+      syllabus: file?.path?.split('src/public')[1],
+    });
+  }
+
   async updateEventImage(file: Express.Multer.File, id: string) {
     try {
       const events = await this.event.findByPk<Events>(id);
