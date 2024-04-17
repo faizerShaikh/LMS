@@ -19,7 +19,8 @@ export interface WebinarResponseInterface extends CreateUpdateDialogBaseProps {
   id?: string;
   agenda: string;
   title?: string;
-  event: {
+  event?: {
+    id: string;
     name: string;
     eventImage?: string;
     description: string;

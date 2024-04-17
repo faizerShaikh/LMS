@@ -2,7 +2,6 @@ import axios from "axios";
 import { EnquiryForm } from "components/enquiry-form";
 import { PageContentInterface, GalleryInterface } from "interfaces/commonPage";
 import Image from "next/image";
-import Link from "next/link";
 import { HeroSection } from "components/layout/hero-section";
 export let metadata = {};
 export default async function SinglePage({

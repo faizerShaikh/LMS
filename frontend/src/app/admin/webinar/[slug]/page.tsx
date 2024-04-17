@@ -4,6 +4,7 @@ import EventWebinarForm from "components/admin/EventWebinarForm";
 import { WebinarInterface, WebinarResponseInterface } from "interfaces/webinar";
 import { getSingleWebinar } from "lib";
 import { EventInterface } from "interfaces/event";
+import WebinarContentForm from "../components/WebinarContentForm";
 
 type Props = {
   params: { slug: string };
@@ -54,18 +55,27 @@ const SingleWebinar = async ({ params: { slug } }: Props) => {
       };
     }
   }
-
+  console.log(data, "<<<<<<webinar data");
   return (
     <>
       <PageHeader title={"Add Webinar"}></PageHeader>
-      <EventWebinarForm
+      {/* <EventWebinarForm
         initialValues={initialValues}
         id={data ? data!.id : undefined}
         isUpdate={isUpdate}
         apiEndPoint={apiEndPoint}
         apiEndPointImage={apiEndPointImage}
         isWebinar={isWebinar}
-      />
+      /> */}
+      <WebinarContentForm
+        initialValues={initialValues}
+        slug={slug}
+        data={data || initialValues}
+        isUpdate={isUpdate}
+        apiEndPoint={apiEndPoint}
+        apiEndPointImage={apiEndPointImage}
+        isWebinar={isWebinar}
+      ></WebinarContentForm>
     </>
   );
 };
