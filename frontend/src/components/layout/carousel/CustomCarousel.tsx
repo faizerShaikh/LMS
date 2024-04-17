@@ -26,24 +26,35 @@ function PrevArrow({ onClick }: any) {
   );
 }
 
-export const CustomCarousel = ({ children }: { children: React.ReactNode }) => {
+export const CustomCarousel = ({
+  children,
+  dots,
+  slidesToShow,
+  autoplay,
+}: {
+  children: React.ReactNode;
+  dots?: boolean;
+  slidesToShow?: number;
+  autoplay?: boolean;
+}) => {
   const settings = {
-    dots: false,
-    infinite: false,
-    slidesToShow: 3,
+    dots: dots || false,
+    infinite: true,
+    slidesToShow: slidesToShow || 3,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: autoplay || true,
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
+  console.log("settingssettingssettings", settings);
   return (
     <div className="slider-container">
       <Slider
         {...settings}
-        className="flex justify-center items-center gap-5 z-10"
+        className="flex justify-center items-center desktop:gap-5 laptop:gap-5 gap-0 z-10"
       >
         {children}
       </Slider>
