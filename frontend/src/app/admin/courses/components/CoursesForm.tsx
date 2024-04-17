@@ -9,11 +9,7 @@ import { Form, Formik } from "formik";
 import { toast } from "utils";
 import { API } from "configs";
 
-export const CourseForm = ({
-  data,
-  isUpdate,
-  refetchURL,
-}: CreateUpdateDialogBaseProps) => {
+export const CourseForm = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
   const initialValues: Course = {
     id: "",
     slug: "",

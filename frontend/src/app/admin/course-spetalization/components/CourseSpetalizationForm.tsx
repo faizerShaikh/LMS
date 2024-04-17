@@ -1,7 +1,14 @@
 "use client";
 import { Grid, Box, Checkbox } from "@mui/material";
 import TextEditor from "components/admin/richTextEditor";
-import { AutoComplete, Button, Input, Label } from "components/layout";
+import {
+  AutoComplete,
+  Button,
+  DropZone,
+  Input,
+  Label,
+} from "components/layout";
+import { API } from "configs";
 import { Formik, Form } from "formik";
 import { useCreateOrUpdate } from "hooks";
 import {
@@ -30,13 +37,27 @@ const CourseSpecializationForm = ({
   universityData,
 }: Props) => {
   const router = useRouter();
+
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate
       ? `/configurations/course-specialization/${initialValues.id}`
       : "/configurations/course-specialization",
     method: isUpdate ? "put" : "post",
   });
+  const handleFileUpload = async (
+    file: File | string,
+    id: string,
+    onSuccess: VoidFunction
+  ) => {
+    const formData = new FormData();
+    formData.append("syllabus", file);
+    await API.put(
+      `/configurations/course-specialization/update-syllabus/${id}`,
+      formData
+    );
 
+    onSuccess();
+  };
   return (
     <Formik
       initialValues={initialValues}
@@ -52,13 +73,16 @@ const CourseSpecializationForm = ({
           },
           {
             onSuccess(resp) {
-              resetForm();
-              toast(
-                `Course Specialization ${
-                  isUpdate ? "Updated" : "Created"
-                } Successfully`
-              );
-              router.push(`/admin/course-spetalization/${values.slug}`);
+              console.log(resp, "<<<<<<<<resp");
+              handleFileUpload(values.syllabus, initialValues.id, () => {
+                resetForm();
+                toast(
+                  `Course Specialization ${
+                    isUpdate ? "Updated" : "Created"
+                  } Successfully`
+                );
+                router.push(`/admin/course-spetalization/${values.slug}`);
+              });
             },
           }
         );
@@ -67,6 +91,15 @@ const CourseSpecializationForm = ({
       {({ setFieldValue, values }) => (
         <Form>
           <Grid container className="" gap={3}>
+            <Grid xs={12} flexDirection={"column"}>
+              <Label text="Syllabus" />
+              <DropZone
+                accept={{
+                  "application/pdf": [".pdf"],
+                }}
+                name="syllabus"
+              />
+            </Grid>
             <Grid xs={5.9} flexDirection={"column"}>
               <Label text="Slug" />
               <Input name="slug" />

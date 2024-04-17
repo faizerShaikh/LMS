@@ -29,6 +29,7 @@ export interface CourseSpecializationInterface {
   name: string;
   description: string;
   notes: string;
+  syllabus: string;
   textarea?: string;
   eligibilty: string;
   delivery_mode: string;

@@ -145,14 +145,16 @@ const EventWebinarForm = ({
         <Form>
           <Grid container columnSpacing={10} gap={3}>
             <Grid xs={12} item>
+              <Box>
+                <Label text="Upload Your Image" />
+                <DropZone name="eventImage" />
+              </Box>
+
               <Box className="mt-4">
                 <Label text="Name" />
                 <Input name="name" />
               </Box>
-              <Box>
-                <Label text="Upload Your Image" />
-                <DropZone name="syllabus" />
-              </Box>
+
               <Box className="mt-4 mb-16">
                 <Label text="Description" />
                 <TextEditor
