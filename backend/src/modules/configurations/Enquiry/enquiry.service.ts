@@ -4,7 +4,7 @@ import { Enquiry } from './enquiry.model';
 import { EnquiryDto, UpdateEnquiryDTO } from './dto';
 import { InjectModel } from '@nestjs/sequelize';
 import * as XLSX from 'xlsx';
-import { join } from 'path';
+import { join, relative } from 'path';
 import { existsSync, mkdirSync, readFileSync } from 'fs';
 import { MailerServices } from './mail/mail.service';
 import { MailsService } from 'src/common/modules';
@@ -51,12 +51,16 @@ export class EnquiryService extends GenericService<
       const filePath = join(directory, `${filename}.xlsx`);
       require('fs').writeFileSync(filePath, excelBuffer);
 
-      return filePath;
+      // Convert the absolute path to a relative path
+      const relativePath = relative(join(process.cwd(), 'src', 'public'), filePath);
+
+      return relativePath.replace(/\\/g, '/'); // Replace backslashes with forward slashes
     } catch (error) {
       console.error(`Error exporting Excel File: ${error.message}`);
       throw error;
     }
   }
+
 
   async create<Enquiry extends {} = any>(dto: EnquiryDto): Promise<Enquiry> {
     try {
