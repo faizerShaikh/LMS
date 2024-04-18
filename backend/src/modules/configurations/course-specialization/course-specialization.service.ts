@@ -114,7 +114,7 @@ export class CourseSpecializationService extends GenericService<
       );
 
       if (file && file.filename) {
-        const newImagePath = '/documents/courses-syllabus' + file.filename;
+        const newImagePath = '/documents/courses-syllabus/' + file.filename;
 
         if (fs.existsSync(filePath)) {
           unlink(filePath, (err) => {
