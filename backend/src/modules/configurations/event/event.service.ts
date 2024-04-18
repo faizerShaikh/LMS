@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { EventFeature, Events } from './event.model';
 import { InjectModel } from '@nestjs/sequelize';
@@ -74,20 +74,45 @@ export class EventService extends GenericService<
     return super.create(dto);
   }
 
-  async updateSyllabus(file:Express.Multer.File, id:string){
-    const event = await this.getOne<Events>(id);
-    const filePath=join('../../../../','src/public/documents'+event.syllabus)
-    if(fs.existsSync(filePath)){
-      unlink(filePath,(err)=>{
-        if(err){
-          throw new InternalServerErrorException(err)
+  async updateSyllabus(file: Express.Multer.File, id: string) {
+    try {
+      const events = await this.event.findByPk<Events>(id);
+      if (!events) {
+        throw new InternalServerErrorException('Event not found');
+      }
+
+      const filePath = join(
+        __dirname,
+        '../../../../',
+        'backend/src/public/' + events.eventImage,
+      );
+
+      if (file && file.filename) {
+        const newImagePath = '/documents/' + file.filename;
+
+        if (fs.existsSync(filePath)) {
+          unlink(filePath, (err) => {
+            if (err) {
+              console.error('Error deleting old image:', err);
+            } else {
+              console.log('Old image deleted...');
+            }
+          });
         }
-      })
+
+        await events.update({
+          syllabus: newImagePath,
+        });
+
+        return 'Events Image Uploaded Successfully';
+      } else {
+        return 'No file provided for Image Update';
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
     }
-    await event.update({
-      syllabus: file?.path?.split('src/public')[1],
-    });
-  }
+}
+
 
   async updateEventImage(file: Express.Multer.File, id: string) {
     try {

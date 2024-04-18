@@ -167,6 +167,6 @@ export class CourseSpecializationController extends GenericController<
     @UploadedFile() file: Express.Multer.File,
     @Param('id') id: string,
   ){
-    return this.courseService.updatesyllabus(file,id)
+    return this.courseService.updateSyllabus(file,id)
   }
 }
