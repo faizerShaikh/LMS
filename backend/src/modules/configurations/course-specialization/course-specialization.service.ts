@@ -95,21 +95,44 @@ export class CourseSpecializationService extends GenericService<
       console.error('Error occurred in update method:', err);
     }
   }
+  async updateSyllabus(file: Express.Multer.File, id: string) {
+    try {
+      const events = await this.courseSpecialization.findByPk<CourseSpecialization>(id);
+      if (!events) {
+        throw new InternalServerErrorException('Event not found');
+      }
 
-  async updatesyllabus(file:Express.Multer.File, id:string){
-    const courseSpecialization=await this.getOne<CourseSpecialization>(id);
-    const filePath=join('../../../../','src/public/documents'+courseSpecialization.syllabus)
-    if(fs.existsSync(filePath)){
-      unlink(filePath,(err)=>{
-        if(err){
-          throw new InternalServerErrorException(err)
+      const filePath = join(
+        __dirname,
+        '../../../../',
+        'backend/src/public/' + events.syllabus,
+      );
+
+      if (file && file.filename) {
+        const newImagePath = '/documents/courses-syllabus' + file.filename;
+
+        if (fs.existsSync(filePath)) {
+          unlink(filePath, (err) => {
+            if (err) {
+              console.error('Error deleting old image:', err);
+            } else {
+              console.log('Old image deleted...');
+            }
+          });
         }
-      })
+
+        await events.update({
+          syllabus: newImagePath,
+        });
+
+        return 'course syllabus Uploaded Successfully';
+      } else {
+        return 'No file provided for syllabus Update';
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
     }
-    await courseSpecialization.update({
-      syllabus: file?.path?.split('src/public')[1],
-    });
-  }
+}
   async updateCourseSpecializationImage(file: Express.Multer.File, id: string) {
     const courseSpecialization = await this.getOne<CourseSpecialization>(id);
     const defaultImagePath = 'backend/src/public/media/default.png';
