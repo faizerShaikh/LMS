@@ -35,7 +35,10 @@ export class ProgramStructureController extends GenericController<
     @Param('id') courseSpecializationId: string,
     @Body() programStructureDTO: any,
   ) {
-    return this.programStructureService.createProgramStructure(courseSpecializationId,programStructureDTO);
+    return this.programStructureService.createProgramStructure(
+      courseSpecializationId,
+      programStructureDTO,
+    );
   }
 
   @Get('course-specialization/:id')

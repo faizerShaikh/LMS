@@ -40,7 +40,7 @@ export interface CourseSpecializationInterface {
   duration: string;
   medium_of_instructions: string;
   certificate_provided: boolean;
-  cover_image?: string | null;
+  cover_image: string;
   student_enrolled: number;
   is_published: boolean;
   webinar: boolean;

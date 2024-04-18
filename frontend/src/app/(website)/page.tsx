@@ -187,49 +187,93 @@ export default async function Home() {
           <p className="border-t-2 border-black w-14"> </p>
         </div>
 
-        {events.slice(0, 3).map((event: any) => (
-          <div className="flex mb-8">
-            <div className="w-1/4">
-              <h2>
-                <span style={{ color: "#ffcc00", fontSize: "60px" }}>
-                  {new Date(event.createdAt).getDate()}
-                </span>
-              </h2>
-              <p>
-                {new Date(event.createdAt).toLocaleString("en-US", {
-                  month: "long",
-                })}
-              </p>
-            </div>
-            <div className="w-1/2 px-2">
-              <h2 className="font-bold mb-4 text-lg ">
-                <Link
-                  href={`${event.webinarId ? "webinar" : "event"}/${
-                    event.slug
-                  }`}
-                  className="text-black"
-                >
-                  {event.name}
-                </Link>
-              </h2>
-              <p className="mb-4">
-                🕒{moment(event.startDayTime).format("h:mm A")} –{" "}
-                {moment(event.endDayTime).format("h:mm A")}
-              </p>
-              <div className="line-clamp-2">
-                {removeTags(event.description)}
+        {events.length > 3
+          ? events.slice(0, 3).map((event: any) => (
+              <div className="flex mb-8">
+                <div className="w-1/4">
+                  <h2>
+                    <span style={{ color: "#ffcc00", fontSize: "60px" }}>
+                      {new Date(event.createdAt).getDate()}
+                    </span>
+                  </h2>
+                  <p>
+                    {new Date(event.createdAt).toLocaleString("en-US", {
+                      month: "long",
+                    })}
+                  </p>
+                </div>
+                <div className="w-1/2 px-2">
+                  <h2 className="font-bold mb-4 text-lg ">
+                    <Link
+                      href={`${event.webinarId ? "webinar" : "event"}/${
+                        event.slug
+                      }`}
+                      className="text-black"
+                    >
+                      {event.name}
+                    </Link>
+                  </h2>
+                  <p className="mb-4">
+                    🕒{moment(event.startDayTime).format("h:mm A")} –{" "}
+                    {moment(event.endDayTime).format("h:mm A")}
+                  </p>
+                  <div className="line-clamp-2">
+                    {removeTags(event.description)}
+                  </div>
+                </div>
+                <div className="w-1/4 m-auto px-4">
+                  <Image
+                    height={150}
+                    width={300}
+                    src={`${process.env.BASE_MEDIA_URL}${event.eventImage}`}
+                    alt=""
+                  />
+                </div>
               </div>
-            </div>
-            <div className="w-1/4 m-auto px-4">
-              <Image
-                height={150}
-                width={300}
-                src={`${process.env.BASE_MEDIA_URL}${event.eventImage}`}
-                alt=""
-              />
-            </div>
-          </div>
-        ))}
+            ))
+          : events.map((event: any) => (
+              <div className="flex mb-8">
+                <div className="w-1/4">
+                  <h2>
+                    <span style={{ color: "#ffcc00", fontSize: "60px" }}>
+                      {new Date(event.createdAt).getDate()}
+                    </span>
+                  </h2>
+                  <p>
+                    {new Date(event.createdAt).toLocaleString("en-US", {
+                      month: "long",
+                    })}
+                  </p>
+                </div>
+                <div className="w-1/2 px-2">
+                  <h2 className="font-bold mb-4 text-lg ">
+                    <Link
+                      href={`${event.webinarId ? "webinar" : "event"}/${
+                        event.slug
+                      }`}
+                      className="text-black"
+                    >
+                      {event.name}
+                    </Link>
+                  </h2>
+                  <p className="mb-4">
+                    🕒{moment(event.startDayTime).format("h:mm A")} –{" "}
+                    {moment(event.endDayTime).format("h:mm A")}
+                  </p>
+                  <div className="line-clamp-2">
+                    {removeTags(event.description)}
+                  </div>
+                </div>
+                <div className="w-1/4 m-auto px-4">
+                  <Image
+                    height={150}
+                    width={300}
+                    src={`${process.env.BASE_MEDIA_URL}${event.eventImage}`}
+                    alt=""
+                  />
+                </div>
+              </div>
+            ))}
       </section>
     </>
   );

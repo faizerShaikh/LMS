@@ -21,6 +21,7 @@ const SingleCourseSpecialization = async ({ params: { slug } }: Props) => {
     eligibilty: "",
     delivery_mode: "",
     credits: 0,
+    cover_image: "",
     internationalRegonization: false,
     learningPedagogy: "",
     learningPath: "",
