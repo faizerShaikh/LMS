@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { EventFeature, Events } from './event.model';
 import { InjectModel } from '@nestjs/sequelize';

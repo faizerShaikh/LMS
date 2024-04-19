@@ -34,4 +34,9 @@ export class SpeakerDto {
   @IsString()
   @IsOptional()
   image: string = '/media/Author.png';
+
+  
+  @IsString()
+  @IsOptional()
+  linkdIn:string
 }
