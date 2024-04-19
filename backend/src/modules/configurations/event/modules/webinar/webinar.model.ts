@@ -31,7 +31,7 @@ export class Webinar extends Model {
       this.setDataValue('speakers', JSON.stringify(value));
     },
   })
-  speakers: { name: string; bio: string; image: string }[];
+  speakers: { name: string; bio: string; image: string ;linkdIn:string}[];
 
   @Column({
     type: DataType.TEXT,
