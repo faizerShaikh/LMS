@@ -17,7 +17,7 @@ export const Navbar = ({ values }: any) => {
     <header>
       <MobileNav />
       <>
-        <nav className="bg-blue-900 h-12 hidden justify-between items-center desktop:px-16 laptop:flex laptop:px-8">
+        <nav className="bg-blue-900 fixed !w-full !z-50 left-0 right-0 h-12 hidden justify-between items-center desktop:px-16 laptop:flex laptop:px-8">
           <div className="flex  items-center space-x-2">
             <Link href="https://www.facebook.com/campaign/landing.php?campaign_id=14884913640&extra_1=s%7aCc%7C550525804797%7Cb%7Cfacebook%7C&placement=&creative=550525804797&keyword=facebook&partner_id=googlesem&extra_2=campaignid%3D14884913640%26adgroupid%3D128696220912%26matchtype%3Db%26network%3Dg%26source%3Dnotmobile%26search_or_content%3Ds%26device%3Dc%26devicemodel%3D%26adposition%3D%26target%3D%26targetid%3Dkwd-592856129%26loc_physical_ms%3D9062116%26loc_interest_ms%3D%26feeditemid%3D%26param1%3D%26param2%3D&gclid=CjwKCAiAzJOtBhALEiwAtwj8tlRLfa3D8Xk-IzJia0f_qOBSkzf_lcm107Mv-YvgJLFknd5DKEA7mhoCCwQQAvD_BwE">
               <Image
@@ -128,7 +128,7 @@ export const Navbar = ({ values }: any) => {
             </ul>
           </div>
         </nav>
-        <nav className="h-16 hidden justify-between items-center desktop:px-16 laptop:flex laptop:px-8">
+        <nav className="h-16 hidden fixed top-12 !w-full !z-50 bg-white justify-between items-center desktop:px-16 laptop:flex laptop:px-8">
           <div className="desktop:w-[200px] desktop:h-[100px] laptop:w-[150px] laptop:h-[80px] relative">
             <Link href={"/"}>
               <Image

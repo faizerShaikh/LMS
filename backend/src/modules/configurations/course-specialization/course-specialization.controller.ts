@@ -76,13 +76,12 @@ export class CourseSpecializationController extends GenericController<
     @Query('page') page: string,
     @Query('infinite') infinite: boolean,
   ) {
-    if (infinite) {
-      const { courseSpecializations, hasMore } =
-        await this.courseService.CourseSpecializations(category, limit, page);
-      return { courseSpecializations, hasMore };
-    } else {
-      return this.courseService.getAll({});
-    }
+    return this.courseService.CourseSpecializations(
+      infinite,
+      category,
+      limit,
+      page,
+    );
   }
 
   @Get('courses-list/:courseId')

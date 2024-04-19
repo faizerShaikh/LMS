@@ -5,7 +5,7 @@ import { CustomCarousel } from "components/layout/carousel";
 export default function CarouselCard({ data }: any) {
   return (
     <>
-      <CustomCarousel>
+      <CustomCarousel slidesToShow={4}>
         {data.map((item: string) => {
           return (
             <Image
@@ -13,7 +13,7 @@ export default function CarouselCard({ data }: any) {
               height={150}
               width={200}
               alt="test"
-              className="shadow-2xl !w-auto my-10 object-none"
+              className="shadow-xl !w-[279px] my-10 mx-0 object-none"
             />
           );
         })}

@@ -6,18 +6,18 @@ import {
   WebinarResponseInterface,
 } from "interfaces/webinar";
 import { WebinarForm } from "../_components/webinarForm";
+import Link from "next/link";
 
 async function SingleWebinarPage({ params }: { params: { slug: string } }) {
   let data: WebinarResponseInterface;
   let url = `${process.env.BASE_API_URL}/configurations/webinar/slug/${params.slug}`;
   const response = await axios.get(url);
   data = response.data.data;
-  console.log(data, "<<<<<<<<<<<<<webinar data");
   return (
     <>
-      <>
+      <section className="relative">
         <section>
-          <div className=" container m-auto ">
+          <div className=" container m-auto flex">
             <div className=" py-16 flex justify-between">
               <div className=" w-[60%] ">
                 <div className="">
@@ -44,7 +44,24 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
                               className="size-28 object-fill"
                             />
                             <h2 className="font-medium">{item.name}</h2>
-                            <p>{item.bio}</p>
+                            <p className="m-0">{item.bio}</p>
+                            <div className="flex items-center text-center">
+                              <Image
+                                alt="img"
+                                height={100}
+                                width={100}
+                                src="/img2/linkedin-svgrepo-com.svg"
+                                className="size-7 mr-2 "
+                              />
+                              <p className="text-black ">
+                                <Link
+                                  href={item.linkdIn}
+                                  className="text-black"
+                                >
+                                  {item.linkdIn}
+                                </Link>{" "}
+                              </p>
+                            </div>
                           </div>
                         </>
                       );
@@ -52,8 +69,9 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
                   </div>
                 </div>
               </div>
-
-              <div className="w-[30%] sticky top-0">
+            </div>
+            <div className="w-[30%]  sticky top-0">
+              <div className="sticky top-0">
                 <WebinarForm title="Webinar Ragistration Form" />
               </div>
             </div>
@@ -75,14 +93,14 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
             <div className="w-[60%] py-10">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: data.event.description || "",
+                  __html: data?.event?.description || "",
                 }}
                 className="font-medium break-words"
               ></div>
             </div>
           </div>
         </section>
-      </>
+      </section>
     </>
   );
 }

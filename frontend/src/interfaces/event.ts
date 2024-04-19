@@ -9,7 +9,6 @@ export interface EventInterface extends BaseObjInterface {
   startDayTime?: string;
   endDayTime?: string;
   deadLine?: string;
-
   eventType?: string;
   eventLocation?: string;
   isFeatured?: boolean;

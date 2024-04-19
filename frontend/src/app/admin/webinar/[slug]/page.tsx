@@ -35,6 +35,7 @@ const SingleWebinar = async ({ params: { slug } }: Props) => {
         image: "",
         bio: "",
         name: "",
+        linkdIn: "",
       },
     ],
   };

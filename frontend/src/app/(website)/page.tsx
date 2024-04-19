@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import removeTags from "utils/removeTags";
 import CarouselCard from "./event/components/CarouselCard";
-import { CourseSpecializationInterface, UniversityInterface } from "interfaces";
+import { UniversityInterface } from "interfaces";
 import { CourseTabs } from "components/home/tabs";
 
 export const revalidate = 60;
@@ -33,16 +33,11 @@ export default async function Home() {
     (item: UniversityInterface) => item?.university_image
   );
 
-  let CourseSpecializationCardData: CourseSpecializationInterface[];
-  const specializationResponse = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/course-specialization`
+  let CoursesCatagoriData = [];
+  const CatagorieResponse = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/course`
   );
-  // console.log(
-  //   specializationResponse.data.data,
-  //   "<specializationResponsespecializationResponse"
-  // );
-  CourseSpecializationCardData = specializationResponse.data.data.rows;
-
+  CoursesCatagoriData = CatagorieResponse.data.data.rows;
   return (
     <>
       <section className=" bg-gray-100 h-[400px] ">
@@ -133,7 +128,7 @@ export default async function Home() {
       <section>
         <div className="container m-auto">
           <h2 className="text-center text-3xl">Our Top University Partners</h2>
-          <div>
+          <div className="w-3/4 m-auto">
             <CarouselCard data={carouselData}></CarouselCard>
           </div>
         </div>
@@ -142,7 +137,7 @@ export default async function Home() {
         <div className="container m-auto">
           <h2>Master's Degree</h2>
           <div>
-            <CourseTabs cardsdata={CourseSpecializationCardData} />
+            <CourseTabs CoursesCatagoriData={CoursesCatagoriData} />
           </div>
         </div>
       </section>
@@ -214,7 +209,8 @@ export default async function Home() {
                     </Link>
                   </h2>
                   <p className="mb-4">
-                    🕒{moment(event.startDayTime).format("h:mm A")} –{" "}
+                    <span className="mr-2">🕒</span>
+                    {moment(event.startDayTime).format("h:mm A")} –{" "}
                     {moment(event.endDayTime).format("h:mm A")}
                   </p>
                   <div className="line-clamp-2">
@@ -257,7 +253,8 @@ export default async function Home() {
                     </Link>
                   </h2>
                   <p className="mb-4">
-                    🕒{moment(event.startDayTime).format("h:mm A")} –{" "}
+                    <span className="mr-2">🕒</span>
+                    {moment(event.startDayTime).format("h:mm A")} –{" "}
                     {moment(event.endDayTime).format("h:mm A")}
                   </p>
                   <div className="line-clamp-2">

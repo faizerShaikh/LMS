@@ -52,15 +52,17 @@ export default async function SingleCourse({
                   Apply Now
                 </Button>
               </div>
-              <a
-                href={`${process.env.NEXT_PUBLIC_BASE_API_URL}${data.syllabus}`}
-                download
-              >
-                <Button className=" py-2  w-1/2  ">
+
+              <Button className=" py-2 w-1/2  ">
+                <a
+                  href={`${process.env.NEXT_PUBLIC_BASE_API_URL}${data.syllabus}`}
+                  download
+                  className=" text-white"
+                >
                   <Download className="mr-3 size-5" />
                   Syllabus
-                </Button>
-              </a>
+                </a>
+              </Button>
             </div>
           </div>
         </div>

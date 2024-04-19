@@ -75,7 +75,7 @@ const EventWebinarForm = ({
     id: string,
     onSuccess: VoidFunction
   ) => {
-    const fields = ["speakers_images", "bio", "name"];
+    const fields = ["speakers_images", "bio", "name", "linkdIn"];
     const fd = new FormData();
 
     for (const [index, file] of Object.entries(files) as any) {
@@ -275,6 +275,13 @@ const EventWebinarForm = ({
                                 <Label text="Name" />
                                 <Input
                                   name={`speakers.${index}.name`}
+                                  className="mb-4"
+                                />
+                              </Grid>
+                              <Grid xs={6} item>
+                                <Label text="Linkdin Link" />
+                                <Input
+                                  name={`speakers.${index}.linkdIn`}
                                   className="mb-4"
                                 />
                               </Grid>

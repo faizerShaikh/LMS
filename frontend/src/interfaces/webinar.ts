@@ -2,7 +2,7 @@ import { CreateUpdateDialogBaseProps, MetaDataInterface } from "./base";
 
 export interface WebinarInterface extends CreateUpdateDialogBaseProps {
   id?: string;
-  speakers: { name: string; bio: string; image: string }[];
+  speakers: { name: string; bio: string; image: string; linkdIn?: string }[];
   slug?: string;
   title?: string;
   coverImage?: string;
@@ -38,4 +38,5 @@ export interface SpeakersInterface extends CreateUpdateDialogBaseProps {
   name: string;
   bio: string;
   image: string;
+  linkdIn: string;
 }

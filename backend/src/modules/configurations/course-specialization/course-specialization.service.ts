@@ -340,7 +340,12 @@ export class CourseSpecializationService extends GenericService<
     }
   }
 
-  async CourseSpecializations(slug: string, limit: string, page: string) {
+  async CourseSpecializations(
+    isInfinite: boolean,
+    slug: string,
+    limit: string,
+    page: string,
+  ) {
     const pageNumber = parseInt(page) || 1;
     const limits = parseInt(limit) || 6;
     const offset = (pageNumber - 1) * limits;
@@ -355,6 +360,11 @@ export class CourseSpecializationService extends GenericService<
           throw new Error('Course not found');
         }
         whereClause.course_id = category.id;
+      }
+
+      let pagination = {};
+      if (isInfinite) {
+        pagination = { limit: limits, offset: offset };
       }
 
       const [totalCourseSpecializations, courseSpecializations] =
@@ -376,8 +386,7 @@ export class CourseSpecializationService extends GenericService<
             ],
             where: whereClause,
             order: [['createdAt', 'DESC']],
-            limit: limits,
-            offset: offset,
+            ...pagination,
           }),
         ]);
 
@@ -385,7 +394,9 @@ export class CourseSpecializationService extends GenericService<
         hasMore = true;
       }
 
-      return { courseSpecializations, hasMore };
+      return isInfinite
+        ? { courseSpecializations, hasMore }
+        : { count: totalCourseSpecializations, rows: courseSpecializations };
     } catch (error) {
       throw error;
     }
