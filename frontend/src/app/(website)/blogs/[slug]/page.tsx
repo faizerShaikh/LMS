@@ -33,12 +33,13 @@ export default async function SingleBlog({
           <div>
             <Image
               src={`${process.env.BASE_MEDIA_URL}/${data.blog.blog_image}`}
-              height={550}
-              width={700}
+              layout="fill"
+              // height={550}
+              // width={700}
               alt=""
               className="w-full mt-4 object-fill"
             />
-            <h2 className="mt-4 font-semibold py-4 text-3xl mb-8">
+            <h2 className="mt-4 font-semibold py-4 desktop:text-3xl laptop:text-3xl text-2xl mb-8">
               {data.blog.title}
             </h2>
           </div>

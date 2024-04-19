@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <>
       <Navbar values={values} />
-      <div className="pt-28">{children}</div>
+      <div className="desktop:pt-28 laptop:pt-28">{children}</div>
       <Footer />
     </>
   );
