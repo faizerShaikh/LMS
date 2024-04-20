@@ -61,7 +61,6 @@ export default function EventWebinarRagistration({ id }: any) {
   const { data } = useGetAll({
     key: `/configurations/event-webinar/registration/by-event/${id}`,
   });
-  console.log(data, "<<<,data");
   return (
     <>
       <DataGrid

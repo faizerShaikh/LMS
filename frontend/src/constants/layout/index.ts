@@ -33,4 +33,9 @@ export const menuItems: menuType[] = [
   { icon: "Events", title: "Webinar's", path: "/admin/webinar" },
   { icon: "Events", title: "Event's", path: "/admin/event" },
   { icon: "Events", title: "Global Partners's", path: "/admin/global-partner" },
+  {
+    icon: "Events",
+    title: "Application's",
+    path: "/admin/applicationForms",
+  },
 ];

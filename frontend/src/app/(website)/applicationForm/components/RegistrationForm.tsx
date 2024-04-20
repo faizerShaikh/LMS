@@ -5,8 +5,10 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import axios from "axios";
 import { toast } from "utils";
-import { Button } from "components/layout";
+import { AutoComplete, Button } from "components/layout";
+import DatePicker from "react-datepicker";
 
+import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import {
   CitySelect,
@@ -14,26 +16,36 @@ import {
   StateSelect,
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
+import PhoneNumberField from "app/(website)/webinar/_components/pgoneInpute";
+
+import { useGetAll } from "hooks";
 
 export const RegistrationForm = ({ from }: any) => {
+  // let courseData = [];
+  // let response = useGetAll({ key: "/configurations/course" });
+  // courseData = response?.data?.rows;
+  // console.log(response);
   const [countryid, setCountryid] = useState(0);
   const [stateid, setstateid] = useState(0);
+  const [startDate, setStartDate] = useState(new Date());
   const formik = useFormik({
     initialValues: {
-      name: "",
+      fullName: "",
       mobileNumber: "",
-      email: "",
-      dateOfBirth: "",
+      emailID: "",
       gender: "",
       nationality: "",
-      governmentIdType: "",
+      governmentIDType: "",
       country: "",
       state: "",
       city: "",
-      howDoYouKnowAboutRiseback: "",
+      howDoYouKnowAboutRiseBack: "",
       universityName: "",
       selectCourse: "",
       specialization: "",
+      updatedAt: "",
+      createdAt: "",
+      dateOfBirth: "",
     },
 
     onSubmit: (values, { resetForm }) => {
@@ -50,7 +62,6 @@ export const RegistrationForm = ({ from }: any) => {
         .catch((err) => {
           console.log(err);
         });
-      console.log(values, "<<<<<<<<<<<<<<values");
     },
   });
 
@@ -59,10 +70,10 @@ export const RegistrationForm = ({ from }: any) => {
       className="border-2  px-12 py-8 bg-white border-black w-auto  "
       onSubmit={formik.handleSubmit}
     >
-      <div className="flex flex-wrap gap-5 border-b-2 mb-4 py-8">
+      <div className="flex flex-wrap gap-5 items-center border-b-2 mb-4 py-8">
         <TextField
-          id="name"
-          label="Name: "
+          id="fullName"
+          label="FullName: "
           variant="outlined"
           fullWidth
           sx={{
@@ -77,19 +88,28 @@ export const RegistrationForm = ({ from }: any) => {
           margin="normal"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.name}
-          error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={formik.touched.name && formik.errors.name}
+          value={formik.values.fullName}
+          error={formik.touched.fullName && Boolean(formik.errors.fullName)}
+          helperText={formik.touched.fullName && formik.errors.fullName}
           className="!w-[48%]"
         />
+        <div className="border py-3 !w-[48%] px-4 my-2 mt-4 rounded-md border-gray-400">
+          <PhoneNumberField
+            id="mobileNumber"
+            value={formik.values.mobileNumber}
+            onChange={(value: string) =>
+              formik.setFieldValue("mobileNumber", value)
+            }
+          ></PhoneNumberField>
+        </div>
 
         <TextField
           className="!w-[48%]"
-          id="email"
+          id="emailID"
           label="Email (Only official email) : "
           variant="outlined"
           margin="normal"
-          type="email"
+          type="emailID"
           fullWidth
           sx={{
             "&  .MuiFormLabel-root ": {
@@ -102,10 +122,21 @@ export const RegistrationForm = ({ from }: any) => {
           }}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.email}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
+          value={formik.values.emailID}
+          error={formik.touched.emailID && Boolean(formik.errors.emailID)}
+          helperText={formik.touched.emailID && formik.errors.emailID}
         />
+        {/* the date is geting selected and sending through api also but the change is not showing in the ui */}
+        <div className="border py-3 !w-[48%] px-4 my-2 mt-4 rounded-md border-gray-400">
+          <DatePicker
+            name="dateOfBirth"
+            selected={startDate}
+            onChange={(date) => {
+              console.log("Selected Date:", date);
+              formik.setFieldValue("dateOfBirth", date);
+            }}
+          />
+        </div>
 
         <TextField
           className="!w-[48%]"
@@ -173,7 +204,7 @@ export const RegistrationForm = ({ from }: any) => {
 
         <TextField
           className="!w-[48%]"
-          id="governmentIdType"
+          id="governmentIDType"
           select
           label="Select Government Id Type"
           variant="outlined"
@@ -190,14 +221,14 @@ export const RegistrationForm = ({ from }: any) => {
           margin="normal"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          name="governmentIdType"
-          value={formik.values.governmentIdType}
+          name="governmentIDType"
+          value={formik.values.governmentIDType}
           error={
-            formik.touched.governmentIdType &&
-            Boolean(formik.errors.governmentIdType)
+            formik.touched.governmentIDType &&
+            Boolean(formik.errors.governmentIDType)
           }
           helperText={
-            formik.touched.governmentIdType && formik.errors.governmentIdType
+            formik.touched.governmentIDType && formik.errors.governmentIDType
           }
         >
           <MenuItem value="" disabled>
@@ -209,13 +240,12 @@ export const RegistrationForm = ({ from }: any) => {
         </TextField>
       </div>
 
-      <div className="!w-full flex flex-wrap gap-5 items-center">
+      <div className="!w-full flex flex-wrap gap-5 items-center border-b-2 mb-4 py-8">
         <div className="!w-[48%]">
           <CountrySelect
             onChange={(e: any) => {
               setCountryid(e.id);
-              formik.setFieldValue("country", e.name); // Update formik value for country
-              console.log(e.name, "<<<<<<<<name");
+              formik.setFieldValue("country", e.name);
             }}
             placeHolder="Select Country"
           />
@@ -225,7 +255,7 @@ export const RegistrationForm = ({ from }: any) => {
             countryid={countryid}
             onChange={(e: any) => {
               setstateid(e.id);
-              formik.setFieldValue("state", e.name); // Update formik value for state
+              formik.setFieldValue("state", e.name);
             }}
             name="state"
             placeHolder="Select State"
@@ -236,8 +266,7 @@ export const RegistrationForm = ({ from }: any) => {
             countryid={countryid}
             stateid={stateid}
             onChange={(e: any) => {
-              formik.setFieldValue("city", e.name); // Update formik value for city
-              console.log(e);
+              formik.setFieldValue("city", e.name);
             }}
             placeHolder="Select City"
           />
@@ -258,22 +287,62 @@ export const RegistrationForm = ({ from }: any) => {
               },
             }}
             margin="normal"
-            name="howDoYouKnowAboutRiseback"
+            name="howDoYouKnowAboutRiseBack"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.howDoYouKnowAboutRiseback}
+            value={formik.values.howDoYouKnowAboutRiseBack}
             error={
-              formik.touched.howDoYouKnowAboutRiseback &&
-              Boolean(formik.errors.howDoYouKnowAboutRiseback)
+              formik.touched.howDoYouKnowAboutRiseBack &&
+              Boolean(formik.errors.howDoYouKnowAboutRiseBack)
             }
             helperText={
-              formik.touched.howDoYouKnowAboutRiseback &&
-              formik.errors.howDoYouKnowAboutRiseback
+              formik.touched.howDoYouKnowAboutRiseBack &&
+              formik.errors.howDoYouKnowAboutRiseBack
             }
           />
         </div>
       </div>
 
+      <div className="flex flex-wrap gap-5 items-center  mb-4 py-8">
+        {/* <TextField
+          className="!w-[48%]"
+          id="gender"
+          select
+          label="Select Gender"
+          variant="outlined"
+          fullWidth
+          sx={{
+            "& .MuiFormLabel-root": {
+              fontSize: 14,
+              marginY: -0.7,
+            },
+            "& .MuiInputBase-input": {
+              padding: 1,
+            },
+          }}
+          margin="normal"
+          onChange={(e) => {
+            const selectedCourse = e.target.value;
+            formik.setFieldValue("selectCourse", selectedCourse);
+          }}
+          onBlur={formik.handleBlur}
+          name="selectCourse"
+          value={formik.values.selectCourse}
+          error={
+            formik.touched.selectCourse && Boolean(formik.errors.selectCourse)
+          }
+          helperText={formik.touched.selectCourse && formik.errors.selectCourse}
+        >
+          <MenuItem value="" disabled>
+            Select an option
+          </MenuItem>
+          {courseData.map((item: any) => (
+            <MenuItem key={item.id} value={item.name}>
+              {item.name}
+            </MenuItem>
+          ))}
+        </TextField> */}
+      </div>
       <Button
         variant="contained"
         color="primary"
