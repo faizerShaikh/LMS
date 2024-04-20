@@ -43,7 +43,7 @@ export const EnquiryForm = ({ from }: any) => {
 
   return (
     <form
-      className="border-2  w-[500px] px-12 py-8 bg-white border-black"
+      className="border-2 desktop:w-1/2 laptop:w-1/2 tablet:w-auto px-12 py-8 bg-white border-black w-auto mx-8 desktop:mx-0 laptop:mx-0"
       onSubmit={formik.handleSubmit}
     >
       <p className="font-semibold text-lg mt-0 mb-4">

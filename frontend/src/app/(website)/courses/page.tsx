@@ -5,6 +5,8 @@ import { CoursesCard } from "components/layout/cards/CourseCard";
 import CourseCategoryFilter from "./components/CourseFilterForm";
 import { Button } from "components/layout/buttons";
 import ViewMore from "./components/ViewMore";
+import { WebinarInterface } from "interfaces/webinar";
+import WebinarCarousel from "./components/webinarCarousel";
 
 interface CoursesSearchParams {
   category?: string;
@@ -25,7 +27,6 @@ export default async function courses({
     }
   );
   CoursesCatagoriData = CatagorieResponse.data.data.rows;
-
   try {
     const queryParams: CoursesSearchParams = {};
     if (category) queryParams.category = category;
@@ -38,14 +39,21 @@ export default async function courses({
       }
     );
     CoursesCardData = response.data.data.courseSpecializations;
-    LoadMoreButtondata = response.data.data;
+    LoadMoreButtondata = response.data.data.hasMore;
     // console.log(
-    //   LoadMoreButtondata,
+    //   response.data.data,
     //   "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
     // );
   } catch (error) {
     console.error("Error fetching Courses data:", error);
   }
+
+  let data: WebinarInterface[];
+  const response = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/webinar`
+  );
+  data = response.data.data.rows;
+  console.log(data, "<<<,,,data");
 
   return (
     <>
@@ -183,6 +191,13 @@ export default async function courses({
               Webinar
             </Link>
           </button>
+        </div>
+      </section>
+      <section>
+        <div className="container m-auto ">
+          <div>
+            <WebinarCarousel data={data}></WebinarCarousel>
+          </div>
         </div>
       </section>
     </>

@@ -7,6 +7,8 @@ import {
   relatedBlogInterface,
 } from "interfaces/blog";
 import moment from "moment";
+import CarouselCard from "app/(website)/event/components/CarouselCard";
+import RelatedBlogCarousl from "../Components/CarouselCard";
 
 export default async function SingleBlog({
   params,
@@ -27,16 +29,17 @@ export default async function SingleBlog({
   return (
     <>
       <section className="m-auto">
-        <div className="container  m-auto">
+        <div className="container m-auto">
           <div>
             <Image
               src={`${process.env.BASE_MEDIA_URL}/${data.blog.blog_image}`}
-              height={550}
-              width={700}
+              layout="fill"
+              // height={550}
+              // width={700}
               alt=""
               className="w-full mt-4 object-fill"
             />
-            <h2 className="mt-4 font-semibold py-4 text-3xl mb-8">
+            <h2 className="mt-4 font-semibold py-4 desktop:text-3xl laptop:text-3xl text-2xl mb-8">
               {data.blog.title}
             </h2>
           </div>
@@ -44,7 +47,7 @@ export default async function SingleBlog({
       </section>
       <section>
         <div className="container m-auto">
-          <div className="flex justify-between items-center  mb-8">
+          <div className="flex flex-col desktop:flex-row laptop:flex-row justify-between desktop:items-center laptop:items-center items-start mb-8">
             <div className="flex items-center">
               <Image
                 src="/img2/Author.svg"
@@ -151,7 +154,7 @@ export default async function SingleBlog({
       <section className=" mb-20">
         <div className="container m-auto">
           <h2 className="text-3xl font-bold mb-8">YOU MAY ALSO LIKE</h2>
-          <div className="flex justify-around gap-8">
+          <div className="laptop:flex desktop:flex justify-around gap-8 hidden">
             {data.relatedBlogs.length
               ? data.relatedBlogs.map((item: relatedBlogInterface) => {
                   return (
@@ -176,6 +179,10 @@ export default async function SingleBlog({
                 })
               : ""}
           </div>
+          <RelatedBlogCarousl
+            data={data.relatedBlogs}
+            className="desktop:hidden laptop:hidden"
+          />
         </div>
       </section>
     </>

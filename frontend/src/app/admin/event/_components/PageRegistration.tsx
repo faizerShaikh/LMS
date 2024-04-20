@@ -1,12 +1,9 @@
 "use client";
 import { DataGrid, DeleteBox } from "components/layout";
 import { useGetAll } from "hooks";
-import {
-  CommonContentEventInterface,
-  EventWebinarRagistrationInterface,
-} from "interfaces/event";
-import { CommonEventContentForm } from "./CommonEventContentForm";
+import { EventWebinarRagistrationInterface } from "interfaces/event";
 import { EventWebinarRagistrationForm } from "./EventWebinarRagistrationForm";
+import { ExelExportRagistrationEnquries } from "./RegistratioEnquriesExport";
 
 const columns = [
   {
@@ -64,9 +61,18 @@ export default function EventWebinarRagistration({ id }: any) {
   const { data } = useGetAll({
     key: `/configurations/event-webinar/registration/by-event/${id}`,
   });
+  console.log(data, "<<<,data");
   return (
     <>
-      <DataGrid columns={columns} rows={data} />
+      <DataGrid
+        addButton={
+          <ExelExportRagistrationEnquries pageId={id}>
+            Download Registration Enquiries
+          </ExelExportRagistrationEnquries>
+        }
+        columns={columns}
+        rows={data}
+      />
     </>
   );
 }

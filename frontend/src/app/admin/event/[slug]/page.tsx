@@ -26,6 +26,7 @@ const SingleEvent = async ({ params: { slug } }: Props) => {
     deadLine: "",
     eventType: "",
     eventLocation: "",
+
     isFeatured: false,
     stratigicPartners: [],
   };

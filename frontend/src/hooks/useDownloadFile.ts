@@ -7,20 +7,20 @@ export const useDownloadFile = (path: string, onSuccess?: VoidFunction) => {
     key: path,
     select: (data: any) => data?.data,
     enabled: false,
-    onSuccess: (data:any) => {
+    onSuccess: (data: any) => {
       let a = document.createElement("a");
 
-      a.href = `${process.env.NEXT_PUBLIC_API_URL?.split("/api/v1")[0]}${
-        data?.message
-      }`;
+      a.href = `${process.env.NEXT_PUBLIC_BASE_MEDIA_URL}/${data?.data?.filePath}`;
 
       a.target = "_blank";
       a.download =
-        data?.message.split("/")[data?.message.split("/")?.length - 1];
+        data?.data?.filePath.split("/")[
+          data?.data?.filePath.split("/")?.length - 1
+        ];
       a.click();
       onSuccess && onSuccess();
     },
-    onError(err:Error) {
+    onError(err: Error) {
       onError(err);
     },
   });

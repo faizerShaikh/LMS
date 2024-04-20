@@ -19,6 +19,7 @@ export default async function SingleCourse({
   let url = `${process.env.BASE_API_URL}/configurations/course-specialization/slug/${params.slug}/`;
   const response = await axios.get(url);
   data = response.data.data;
+  console.log(data, "<<<<<<<<<<data");
 
   const programHiglightsData: ProgramHiglightsInterface[] =
     data.programHiglights ?? [];
@@ -31,7 +32,7 @@ export default async function SingleCourse({
         <div className="flex container items-center py-8 m-auto">
           <div className="w-2/4">
             <Image
-              src={`${process.env.BASE_MEDIA_URL}/${data.course?.course_image}`}
+              src={`${process.env.BASE_MEDIA_URL}/${data.cover_image}`}
               height={400}
               width={300}
               alt=""
@@ -51,9 +52,16 @@ export default async function SingleCourse({
                   Apply Now
                 </Button>
               </div>
-              <Button className=" py-2  w-1/2  ">
-                <Download className="mr-3 size-5" />
-                Syllabus
+
+              <Button className=" py-2 w-1/2  ">
+                <a
+                  href={`${process.env.NEXT_PUBLIC_BASE_API_URL}${data.syllabus}`}
+                  download
+                  className=" text-white"
+                >
+                  <Download className="mr-3 size-5" />
+                  Syllabus
+                </a>
               </Button>
             </div>
           </div>
@@ -148,7 +156,9 @@ export default async function SingleCourse({
         <div className="container m-auto flex py-8">
           <div className="w-1/2 flex justify-center items-center">
             <Image
-              src={data.university?.university_image || ""}
+              src={`${process.env.BASE_MEDIA_URL}/${
+                data.university?.university_image || ""
+              }`}
               width={300}
               height={200}
               alt="university image"
@@ -191,7 +201,7 @@ export default async function SingleCourse({
                   {firstHalf?.map((item: ProgramHiglightsInterface) => (
                     <div className="items-center flex">
                       <Image
-                        src={`${process.env.BASE_MEDIA_URL}/${item.image}}`}
+                        src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
                         alt="test"
                         width={80}
                         height={80}
@@ -204,7 +214,7 @@ export default async function SingleCourse({
                   {secondHalf?.map((item: ProgramHiglightsInterface) => (
                     <div className="items-center flex">
                       <Image
-                        src={`${process.env.BASE_MEDIA_URL}/${item.image}}`}
+                        src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
                         alt="test"
                         width={80}
                         height={80}
@@ -284,7 +294,7 @@ export default async function SingleCourse({
               </div>
               <div className="w-1/2 ">
                 <Image
-                  src={data.info.image}
+                  src={`${process.env.BASE_MEDIA_URL}${data.info.image}`}
                   width={200}
                   height={200}
                   alt="test"

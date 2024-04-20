@@ -45,6 +45,7 @@ const CourseSpetalizationContentForm = ({
                     isUpdate={isUpdate}
                     slug={slug}
                     universityData={universityData}
+                    pageId={initialValues.id}
                   />
                 ),
               },

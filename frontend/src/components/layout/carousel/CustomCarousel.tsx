@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "@carbon/icons-react";
 function NextArrow({ onClick }: any) {
   return (
     <div
-      className="hover:bg-gray-50 cursor-pointer rounded-full p-3 flex justify-center items-center"
+      className="hover:bg-gray-50 cursor-pointer rounded-full p-3 flex justify-center items-center "
       onClick={onClick}
     >
       <ChevronRight size={32} />
@@ -26,24 +26,36 @@ function PrevArrow({ onClick }: any) {
   );
 }
 
-export const CustomCarousel = ({ children }: { children: React.ReactNode }) => {
+export const CustomCarousel = ({
+  children,
+  dots,
+  slidesToShow,
+  autoplay,
+  infinite = true,
+}: {
+  children: React.ReactNode;
+  dots?: boolean;
+  slidesToShow?: number;
+  autoplay?: boolean;
+  infinite?: boolean;
+}) => {
   const settings = {
-    dots: false,
-    infinite: false,
-    slidesToShow: 3,
+    dots: dots || false,
+    infinite: infinite,
+    slidesToShow: slidesToShow || 3,
     slidesToScroll: 1,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
+    autoplay: autoplay || true,
+    speed: 3000,
+    autoplaySpeed: 3000,
     cssEase: "linear",
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
   return (
-    <div className="slider-container">
+    <div className="slider-container  ">
       <Slider
         {...settings}
-        className="flex justify-center items-center gap-5 z-10"
+        className="flex justify-center items-center desktop:gap-5 laptop:gap-5 gap-0 z-10"
       >
         {children}
       </Slider>

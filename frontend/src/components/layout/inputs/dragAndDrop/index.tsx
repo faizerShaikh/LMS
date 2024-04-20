@@ -13,6 +13,7 @@ interface DropZoneProps extends DropzoneProps {
   name: string;
   label?: string;
   onChange?: any;
+  accept?: any;
 }
 
 const DropZoneImage = ({ file }: { file: File | string }) => {
@@ -37,6 +38,7 @@ export const DropZone = <T extends {}>({
   name,
   label,
   onChange,
+  accept,
   ...otherProps
 }: DropZoneProps) => {
   const { setFieldValue, values } = useFormikContext<T | any>();
@@ -47,7 +49,7 @@ export const DropZone = <T extends {}>({
   return (
     <Dropzone
       minSize={0}
-      accept={{ "image/*": [".png", ".gif", ".jpeg", ".jpg"] }}
+      accept={accept || { "image/*": [".png", ".gif", ".jpeg", ".jpg"] }}
       onDrop={(acceptedFiles, rejectedFiles) => {
         if (!acceptedFiles.length) {
           let err: string[] = [];

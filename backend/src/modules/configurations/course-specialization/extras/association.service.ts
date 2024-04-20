@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { InjectModel } from '@nestjs/sequelize';
 import { join } from 'path';
@@ -32,8 +36,11 @@ export class AssociationService extends GenericService<
 
   async createAssociation(courseSpecializationId: string, otherData: any) {
     try {
-      console.log('Creating association for course specialization ID:', courseSpecializationId);
-      
+      console.log(
+        'Creating association for course specialization ID:',
+        courseSpecializationId,
+      );
+
       // Create the association with the provided data
       const association = await this.associationModel.create({
         ...otherData,
@@ -49,16 +56,23 @@ export class AssociationService extends GenericService<
     }
   }
 
-  async getAssociationsByCourseSpecializationId(courseSpecializationId: string) {
+  async getAssociationsByCourseSpecializationId(
+    courseSpecializationId: string,
+  ) {
     try {
-      console.log('Fetching associations for course specialization ID:', courseSpecializationId);
+      console.log(
+        'Fetching associations for course specialization ID:',
+        courseSpecializationId,
+      );
       const associations = await this.associationModel.findAll({
         where: { course_specialization_id: courseSpecializationId },
       });
       console.log('Found associations:', associations);
       if (!associations || associations.length === 0) {
         console.log('No associations found');
-        throw new NotFoundException('Associations not found for the given course specialization ID');
+        throw new NotFoundException(
+          'Associations not found for the given course specialization ID',
+        );
       }
       return associations;
     } catch (error) {
@@ -86,9 +100,10 @@ export class AssociationService extends GenericService<
         });
       }
 
-    await association.update({
-      image: '/media/course-specialization/extras/' + file.filename,
-    });
-    return 'Association Image Uploaded Successfully';
+      await association.update({
+        image: '/media/associations/' + file.filename,
+      });
+      return 'Association Image Uploaded Successfully';
+    }
   }
-}}
+}

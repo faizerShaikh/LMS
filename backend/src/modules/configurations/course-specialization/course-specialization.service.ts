@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { CourseSpecialization } from './model';
 import {
@@ -39,7 +43,7 @@ export class CourseSpecializationService extends GenericService<
       ProgramHighlight,
       ProgramStructure,
       Associations,
-      Infos
+      Infos,
     ],
   },
   includes: [
@@ -51,7 +55,7 @@ export class CourseSpecializationService extends GenericService<
     ProgramHighlight,
     ProgramStructure,
     Associations,
-    Infos
+    Infos,
   ],
 }) {
   constructor(
@@ -68,7 +72,7 @@ export class CourseSpecializationService extends GenericService<
     @InjectModel(AdmissionProcessCards)
     private admissionProcess: typeof AdmissionProcessCards,
     @InjectModel(Course)
-    private course:typeof Course,
+    private course: typeof Course,
 
     private reqParams: RequestParamsService,
   ) {
@@ -97,7 +101,8 @@ export class CourseSpecializationService extends GenericService<
   }
   async updateSyllabus(file: Express.Multer.File, id: string) {
     try {
-      const events = await this.courseSpecialization.findByPk<CourseSpecialization>(id);
+      const events =
+        await this.courseSpecialization.findByPk<CourseSpecialization>(id);
       if (!events) {
         throw new InternalServerErrorException('Event not found');
       }
@@ -132,7 +137,7 @@ export class CourseSpecializationService extends GenericService<
     } catch (error) {
       throw new InternalServerErrorException(error.message);
     }
-}
+  }
   async updateCourseSpecializationImage(file: Express.Multer.File, id: string) {
     const courseSpecialization = await this.getOne<CourseSpecialization>(id);
     const defaultImagePath = 'backend/src/public/media/default.png';
@@ -150,10 +155,19 @@ export class CourseSpecializationService extends GenericService<
           console.log('file deleted...');
         });
       }
+    console.log(file, file?.path?.split('src/public')[1]);
 
-    await courseSpecialization.update({
-      cover_image: file?.path?.split('src/public')[1],
-    });
+    await this.courseSpecialization.update(
+      {
+        cover_image:
+          '/media/course-specialization/cover-image/' + file.filename,
+      },
+      {
+        where: {
+          id,
+        },
+      },
+    );
     return 'syllabus updated successfully';
   }
 
@@ -264,7 +278,7 @@ export class CourseSpecializationService extends GenericService<
     );
     return 'Program Structures Created Successfully';
   }
-  
+
   async createProgramHighlights(
     dto: ProgramHighlightDTO[],
     course_specialization_id: string,
@@ -278,7 +292,7 @@ export class CourseSpecializationService extends GenericService<
     );
     return 'Program Highlights Created Successfully';
   }
-  
+
   async createAdmissionProcesses(
     dto: CreateAdmissionProcessCardsDTO[],
     course_specialization_id: string,
@@ -292,7 +306,7 @@ export class CourseSpecializationService extends GenericService<
     );
     return 'Admission Processes Created Successfully';
   }
-  
+
   async createAssociations(
     dto: AssociationsDTO[],
     course_specialization_id: string,
@@ -315,7 +329,9 @@ export class CourseSpecializationService extends GenericService<
       });
 
       if (!specializations || specializations.length === 0) {
-        throw new NotFoundException(`No specializations found for course ID ${courseID}`);
+        throw new NotFoundException(
+          `No specializations found for course ID ${courseID}`,
+        );
       }
 
       return specializations;
@@ -324,7 +340,12 @@ export class CourseSpecializationService extends GenericService<
     }
   }
 
- async CourseSpecializations(slug: string, limit: string, page: string) {
+  async CourseSpecializations(
+    isInfinite: boolean,
+    slug: string,
+    limit: string,
+    page: string,
+  ) {
     const pageNumber = parseInt(page) || 1;
     const limits = parseInt(limit) || 6;
     const offset = (pageNumber - 1) * limits;
@@ -332,36 +353,52 @@ export class CourseSpecializationService extends GenericService<
     let category;
 
     try {
-        let whereClause: any = {};
-        if (slug) {
-            category = await this.course.findOne({ where: { slug: slug } });
-            if (!category) {
-                throw new Error('Course not found');
-            }
-            whereClause.course_id = category.id;
+      let whereClause: any = {};
+      if (slug) {
+        category = await this.course.findOne({ where: { slug: slug } });
+        if (!category) {
+          throw new Error('Course not found');
         }
+        whereClause.course_id = category.id;
+      }
 
-        const [totalCourseSpecializations, courseSpecializations] = await Promise.all([
-            slug ? this.courseSpecialization.count({ where: whereClause }) : this.courseSpecialization.count(),
-            this.courseSpecialization.findAll({
-                include: [MetaData, Course, University, AdmissionProcessCards, FeesStructure, ProgramHighlight, ProgramStructure, Associations, Infos],
-                where: whereClause,
-                order: [['createdAt', 'DESC']],
-                limit: limits,
-                offset: offset,
-            })
+      let pagination = {};
+      if (isInfinite) {
+        pagination = { limit: limits, offset: offset };
+      }
+
+      const [totalCourseSpecializations, courseSpecializations] =
+        await Promise.all([
+          slug
+            ? this.courseSpecialization.count({ where: whereClause })
+            : this.courseSpecialization.count(),
+          this.courseSpecialization.findAll({
+            include: [
+              MetaData,
+              Course,
+              University,
+              AdmissionProcessCards,
+              FeesStructure,
+              ProgramHighlight,
+              ProgramStructure,
+              Associations,
+              Infos,
+            ],
+            where: whereClause,
+            order: [['createdAt', 'DESC']],
+            ...pagination,
+          }),
         ]);
 
-        if (totalCourseSpecializations > offset + limits) {
-            hasMore = true;
-        }
+      if (totalCourseSpecializations > offset + limits) {
+        hasMore = true;
+      }
 
-        return { courseSpecializations, hasMore };
+      return isInfinite
+        ? { courseSpecializations, hasMore }
+        : { count: totalCourseSpecializations, rows: courseSpecializations };
     } catch (error) {
-        throw error;
+      throw error;
     }
-}
-
-
-  
+  }
 }

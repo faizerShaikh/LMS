@@ -104,7 +104,7 @@ export default function EnquiriesPage() {
   const { data } = useGetAll({ key: "/configurations/global-partner" });
   return (
     <>
-      <PageHeader title="Event's" />
+      <PageHeader title="GLOBAL PARTNER'S" />
       <DataGrid
         addButton={
           <Button href="/admin/global-partner/add">ADD GLOBAL PARTNER </Button>

@@ -3,6 +3,7 @@ import { DataGrid, DeleteBox, PageHeader } from "components/layout";
 import { useGetAll } from "hooks";
 import { EnquiriesPageInterface } from "interfaces/enquiriesPage";
 import { EnquiryDialog } from "./_compunents/EnquiryDialog";
+import { ExelExport } from "./_compunents/ExelExpoet";
 
 const columns = [
   {
@@ -53,7 +54,7 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
   },
-  
+
   {
     headerName: "Action",
     field: "action",
@@ -62,8 +63,11 @@ const columns = [
     renderCell: (params: { row: EnquiriesPageInterface }) => {
       return (
         <>
-          <EnquiryDialog isUpdate={true} data={params.row} 
-          refetchURL="/configurations/enquiry"/>
+          <EnquiryDialog
+            isUpdate={true}
+            data={params.row}
+            refetchURL="/configurations/enquiry"
+          />
           <DeleteBox
             title={`Item`}
             url={`/configurations/enquiry`}
@@ -76,11 +80,15 @@ const columns = [
   },
 ];
 export default function EnquiriesPage() {
-  const { data } = useGetAll({ key: '/configurations/enquiry' })
+  const { data } = useGetAll({ key: "/configurations/enquiry" });
   return (
     <>
       <PageHeader title="Enquiries" />
-      <DataGrid columns={columns} rows={data} />
+      <DataGrid
+        addButton={<ExelExport>Download Enquiries</ExelExport>}
+        columns={columns}
+        rows={data}
+      />
     </>
   );
 }

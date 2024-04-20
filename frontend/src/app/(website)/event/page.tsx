@@ -60,9 +60,9 @@ export default async function EventsPage({
               <NoDataOverlay text={"No data found with applied filters"} />
             </div>
           ) : (
-            <div className="desktop:w-3/4 w-full flex flex-wrap grid laptop:grid-cols-3 desktop:grid-cols-3 tablet:grid-cols-2 gap-5">
+            <div className="mr-4 desktop:w-3/4 w-full flex-wrap grid laptop:grid-cols-3 desktop:grid-cols-3 tablet:grid-cols-2 grid-cols-1 gap-5">
               {events.map((item: EventInterface) => (
-                <div className="Desktop:w-[30%] mx-2 h-[330px] shadow-2xl rounded-md mb-4">
+                <div className="h-[330px] shadow-2xl rounded-md mb-4 w-full">
                   <Image
                     src={`${process.env.BASE_MEDIA_URL}${item.eventImage}`}
                     width={200}

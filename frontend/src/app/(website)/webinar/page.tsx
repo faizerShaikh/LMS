@@ -94,3 +94,4 @@ async function webinar() {
 }
 
 export default webinar;
+export const revalidate = 60;

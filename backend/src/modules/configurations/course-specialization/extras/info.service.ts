@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { InjectModel } from '@nestjs/sequelize';
 import { InfoDTO } from '../dtos/info.dto';
@@ -7,13 +11,8 @@ import { unlink } from 'fs';
 import { join } from 'path';
 import * as fs from 'fs';
 
-
 @Injectable()
-export class InfoService extends GenericService<
-  Infos,
-  InfoDTO,
-  InfoDTO
->({
+export class InfoService extends GenericService<Infos, InfoDTO, InfoDTO>({
   defaultFindOptions: {
     include: [],
   },
@@ -46,22 +45,29 @@ export class InfoService extends GenericService<
     }
 
     await info.update({
-      image: '/media/default.png', // Update with your desired path
+      image: '/media/infos/' + file.filename, // Update with your desired path
     });
     return 'Infos Image Uploaded Successfully';
   }
 
-  async createInfoForCourseSpecialization(courseSpecializationId: string, infoDTO: any) {
+  async createInfoForCourseSpecialization(
+    courseSpecializationId: string,
+    infoDTO: any,
+  ) {
     try {
-      console.log('Creating info for course specialization ID:', courseSpecializationId);
-      
+      console.log(
+        'Creating info for course specialization ID:',
+        courseSpecializationId,
+      );
+
       // Here you can create your info based on the provided data
       const info = await this.infoModel.create({
-        ...infoDTO, course_specialization_id: courseSpecializationId,
+        ...infoDTO,
+        course_specialization_id: courseSpecializationId,
       });
-  
+
       console.log('Infos created:', info);
-  
+
       return info;
     } catch (error) {
       console.error('Error creating info:', error);
@@ -71,14 +77,19 @@ export class InfoService extends GenericService<
 
   async getInfoByCourseSpecializationId(courseSpecializationId: string) {
     try {
-      console.log('Fetching info for course specialization ID:', courseSpecializationId);
+      console.log(
+        'Fetching info for course specialization ID:',
+        courseSpecializationId,
+      );
       const info = await Infos.findAll({
         where: { course_specialization_id: courseSpecializationId },
       });
       console.log('Found info:', info);
       if (!info) {
         console.log('No info found');
-        throw new NotFoundException('Infos not found for the given course specialization ID');
+        throw new NotFoundException(
+          'Infos not found for the given course specialization ID',
+        );
       }
       return info;
     } catch (error) {
@@ -86,6 +97,4 @@ export class InfoService extends GenericService<
       throw new InternalServerErrorException(error.message);
     }
   }
-
- 
 }

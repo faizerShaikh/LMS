@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import removeTags from "utils/removeTags";
 import CarouselCard from "./event/components/CarouselCard";
-import { CourseSpecializationInterface, UniversityInterface } from "interfaces";
+import { UniversityInterface } from "interfaces";
 import { CourseTabs } from "components/home/tabs";
 
 export const revalidate = 60;
@@ -33,13 +33,11 @@ export default async function Home() {
     (item: UniversityInterface) => item?.university_image
   );
 
-  let CourseSpecializationCardData: CourseSpecializationInterface[];
-  const specializationResponse = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/course-specialization`
+  let CoursesCatagoriData = [];
+  const CatagorieResponse = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/course`
   );
-  CourseSpecializationCardData =
-    specializationResponse.data.data.courseSpecializations;
-
+  CoursesCatagoriData = CatagorieResponse.data.data.rows;
   return (
     <>
       <section className=" bg-gray-100 h-[400px] ">
@@ -130,7 +128,7 @@ export default async function Home() {
       <section>
         <div className="container m-auto">
           <h2 className="text-center text-3xl">Our Top University Partners</h2>
-          <div>
+          <div className="w-3/4 m-auto">
             <CarouselCard data={carouselData}></CarouselCard>
           </div>
         </div>
@@ -139,7 +137,7 @@ export default async function Home() {
         <div className="container m-auto">
           <h2>Master's Degree</h2>
           <div>
-            <CourseTabs cardsdata={CourseSpecializationCardData} />
+            <CourseTabs CoursesCatagoriData={CoursesCatagoriData} />
           </div>
         </div>
       </section>
@@ -184,49 +182,95 @@ export default async function Home() {
           <p className="border-t-2 border-black w-14"> </p>
         </div>
 
-        {events.slice(0, 3).map((event: any) => (
-          <div className="flex mb-8">
-            <div className="w-1/4">
-              <h2>
-                <span style={{ color: "#ffcc00", fontSize: "60px" }}>
-                  {new Date(event.createdAt).getDate()}
-                </span>
-              </h2>
-              <p>
-                {new Date(event.createdAt).toLocaleString("en-US", {
-                  month: "long",
-                })}
-              </p>
-            </div>
-            <div className="w-1/2 px-2">
-              <h2 className="font-bold mb-4 text-lg ">
-                <Link
-                  href={`${event.webinarId ? "webinar" : "event"}/${
-                    event.slug
-                  }`}
-                  className="text-black"
-                >
-                  {event.name}
-                </Link>
-              </h2>
-              <p className="mb-4">
-                🕒{moment(event.startDayTime).format("h:mm A")} –{" "}
-                {moment(event.endDayTime).format("h:mm A")}
-              </p>
-              <div className="line-clamp-2">
-                {removeTags(event.description)}
+        {events.length > 3
+          ? events.slice(0, 3).map((event: any) => (
+              <div className="flex mb-8">
+                <div className="w-1/4">
+                  <h2>
+                    <span style={{ color: "#ffcc00", fontSize: "60px" }}>
+                      {new Date(event.createdAt).getDate()}
+                    </span>
+                  </h2>
+                  <p>
+                    {new Date(event.createdAt).toLocaleString("en-US", {
+                      month: "long",
+                    })}
+                  </p>
+                </div>
+                <div className="w-1/2 px-2">
+                  <h2 className="font-bold mb-4 text-lg ">
+                    <Link
+                      href={`${event.webinarId ? "webinar" : "event"}/${
+                        event.slug
+                      }`}
+                      className="text-black"
+                    >
+                      {event.name}
+                    </Link>
+                  </h2>
+                  <p className="mb-4">
+                    <span className="mr-2">🕒</span>
+                    {moment(event.startDayTime).format("h:mm A")} –{" "}
+                    {moment(event.endDayTime).format("h:mm A")}
+                  </p>
+                  <div className="line-clamp-2">
+                    {removeTags(event.description)}
+                  </div>
+                </div>
+                <div className="w-1/4 m-auto px-4">
+                  <Image
+                    height={150}
+                    width={300}
+                    src={`${process.env.BASE_MEDIA_URL}${event.eventImage}`}
+                    alt=""
+                  />
+                </div>
               </div>
-            </div>
-            <div className="w-1/4 m-auto px-4">
-              <Image
-                height={150}
-                width={300}
-                src={`${process.env.BASE_MEDIA_URL}${event.eventImage}`}
-                alt=""
-              />
-            </div>
-          </div>
-        ))}
+            ))
+          : events.map((event: any) => (
+              <div className="flex mb-8">
+                <div className="w-1/4">
+                  <h2>
+                    <span style={{ color: "#ffcc00", fontSize: "60px" }}>
+                      {new Date(event.createdAt).getDate()}
+                    </span>
+                  </h2>
+                  <p>
+                    {new Date(event.createdAt).toLocaleString("en-US", {
+                      month: "long",
+                    })}
+                  </p>
+                </div>
+                <div className="w-1/2 px-2">
+                  <h2 className="font-bold mb-4 text-lg ">
+                    <Link
+                      href={`${event.webinarId ? "webinar" : "event"}/${
+                        event.slug
+                      }`}
+                      className="text-black"
+                    >
+                      {event.name}
+                    </Link>
+                  </h2>
+                  <p className="mb-4">
+                    <span className="mr-2">🕒</span>
+                    {moment(event.startDayTime).format("h:mm A")} –{" "}
+                    {moment(event.endDayTime).format("h:mm A")}
+                  </p>
+                  <div className="line-clamp-2">
+                    {removeTags(event.description)}
+                  </div>
+                </div>
+                <div className="w-1/4 m-auto px-4">
+                  <Image
+                    height={150}
+                    width={300}
+                    src={`${process.env.BASE_MEDIA_URL}${event.eventImage}`}
+                    alt=""
+                  />
+                </div>
+              </div>
+            ))}
       </section>
     </>
   );
