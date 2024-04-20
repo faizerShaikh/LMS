@@ -1810,6 +1810,11 @@ quill@^1.3.7:
     parchment "^1.1.4"
     quill-delta "^3.6.2"
 
+react-country-state-city@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/react-country-state-city/-/react-country-state-city-1.1.0.tgz"
+  integrity sha512-HT2VkqB9bwmzu1TE1EmrBet0lSIiH5WEh/FTuiW4jZxVNjs4Qv2MrzY8htcQ8V7d4kvuQ6j/swhnuXIH1CevpA==
+
 react-cropper@^2.3.3:
   version "2.3.3"
   resolved "https://registry.npmjs.org/react-cropper/-/react-cropper-2.3.3.tgz"
