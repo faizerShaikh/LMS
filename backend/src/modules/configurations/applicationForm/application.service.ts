@@ -2,12 +2,12 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { GenericService, RequestParamsService } from "src/core/modules";
-import { ApplicationFormDTO } from "./dto/create-application.dto";
+import { ApplicationForm } from "./application.model";
 
 @Injectable()
 export class ApplicationService extends GenericService({}) {
   constructor(
-    @InjectModel(ApplicationFormDTO) private applicationModel: typeof ApplicationFormDTO,
+    @InjectModel(ApplicationForm) private applicationModel: typeof ApplicationForm,
     private reqParams: RequestParamsService
   ) {
     super(applicationModel, reqParams);

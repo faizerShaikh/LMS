@@ -13,6 +13,7 @@ import { ContactModule } from './cotacDetails/contact.module';
 import { WebinarModule } from './event/modules/webinar/webinar.module';
 import { FAQModule } from './FAQ/faq.module';
 import { MetaDataModule } from './MetaData/meta.module';
+import { ApplicationModule } from './applicationForm/application.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { MetaDataModule } from './MetaData/meta.module';
     GlobalPartnerModule,
     ContactModule,
     WebinarModule,
+    ApplicationModule
   ],
   controllers: [],
   providers: [],

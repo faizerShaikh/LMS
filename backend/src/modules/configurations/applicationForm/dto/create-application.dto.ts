@@ -5,33 +5,43 @@ import {
 } from 'class-validator';
 
 export class ApplicationFormDTO {
+    @IsOptional()
     @IsString()
     fullName: string;
 
+    @IsOptional()
     @IsString()
     mobileNumber: string;
 
+    @IsOptional()
     @IsString()
     emailID: string;
 
-    @IsDate()
+    @IsOptional()
+    @IsString()
     dateOfBirth: Date;
 
+    @IsOptional()
     @IsString()
     gender: string;
 
+    @IsOptional()
     @IsString()
     nationality: string;
 
+    @IsOptional()
     @IsString()
     governmentIDType: string;
 
+    @IsOptional()
     @IsString()
     country: string;
 
+    @IsOptional()
     @IsString()
     state: string;
 
+    @IsOptional()
     @IsString()
     city: string;
 
@@ -39,12 +49,15 @@ export class ApplicationFormDTO {
     @IsString()
     howDoYouKnowAboutRiseBack: string;
 
+    @IsOptional()
     @IsString()
     universityName: string;
 
+    @IsOptional()
     @IsString()
     selectCourse: string;
 
+    @IsOptional()
     @IsString()
     specialization: string;
 }
