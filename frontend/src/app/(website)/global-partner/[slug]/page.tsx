@@ -1,6 +1,7 @@
 import { HeroSection } from "components/layout/hero-section";
 import { getSingleGlobalPartner } from "lib";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function GlobalPartner({
@@ -130,9 +131,16 @@ export default async function GlobalPartner({
         </div>
       </section>
       <section
-        className="container m-auto text-center mb-20"
+        className="container m-auto text-center mb-10"
         dangerouslySetInnerHTML={{ __html: data.vision }}
       ></section>
+      <section className="container m-auto ">
+        <p className="text-center font-semibold mb-10">
+          <Link href="#">
+            Click here to know more about Rise N Start Ignite and registration.
+          </Link>
+        </p>
+      </section>
     </>
   );
 }

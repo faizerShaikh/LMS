@@ -35,7 +35,7 @@ export default async function SinglePage({
       />
 
       <section className="py-24 ">
-        <div className="flex flex-wrap justify-center text-center gap-5 m-auto container">
+        <div className="flex flex-wrap justify-between text-center gap-5 m-auto container">
           {commonPageData?.gallery.map((item: GalleryInterface) => {
             return (
               <div className="w-[300px]  rounded-xl shadow-xl ">

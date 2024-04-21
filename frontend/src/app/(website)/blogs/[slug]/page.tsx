@@ -25,7 +25,6 @@ export default async function SingleBlog({
   let url = `${process.env.BASE_API_URL}/configurations/blog/blog-detail/${params.slug}`;
   const response = await axios.get(url);
   data = response.data.data;
-  console.log(url);
   return (
     <>
       <section className="m-auto">
@@ -33,9 +32,9 @@ export default async function SingleBlog({
           <div>
             <Image
               src={`${process.env.BASE_MEDIA_URL}/${data.blog.blog_image}`}
-              layout="fill"
-              // height={550}
-              // width={700}
+              // layout="fill"
+              height={550}
+              width={700}
               alt=""
               className="w-full mt-4 object-fill"
             />
@@ -153,7 +152,8 @@ export default async function SingleBlog({
 
       <section className=" mb-20">
         <div className="container m-auto">
-          <h2 className="text-3xl font-bold mb-8">YOU MAY ALSO LIKE</h2>
+          <h2 className="text-3xl font-bold mb-3">YOU MAY ALSO LIKE</h2>
+          <div className="border-b-4 w-12 border-black mb-10"></div>
           <div className="laptop:flex desktop:flex justify-around gap-8 hidden">
             {data.relatedBlogs.length
               ? data.relatedBlogs.map((item: relatedBlogInterface) => {
