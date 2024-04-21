@@ -13,8 +13,9 @@ export class ApplicationService extends GenericService({}) {
     private reqParams: RequestParamsService
   ) {
     super(applicationModel, reqParams);
+  }
 
-    async exportToExcel(data: any, eventName: string): Promise<string> {
+  async exportToExcel(data: any, eventName: string): Promise<string> {
     try {
       if (!data || !Array.isArray(data.rows) || data.rows.length === 0) {
         return 'No registrations yet';
@@ -51,6 +52,5 @@ export class ApplicationService extends GenericService({}) {
       console.error(`Error exporting Excel file: ${error.message}`);
       throw error;
     }
-  }
   }
 }
