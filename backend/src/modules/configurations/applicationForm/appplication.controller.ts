@@ -14,4 +14,24 @@ export class ApplicationController extends GenericController<ApplicationForm, Ap
   constructor(private readonly applicationService: ApplicationService) {
     super(applicationService);
   }
+   @Get('export')
+  async exportToExcel() {
+    try {
+      // Fetch application form details by ID
+      const applicationForm = await this.applicationFormService.getAll();
+
+      if (!applicationForm) {
+        throw new NotFoundException('Application form not found');
+      }
+
+      const filename = `application_Forms`;
+
+      const filePath = await this.applicationFormService.exportToExcel(applicationForm, filename);
+
+      return { filePath };
+    } catch (error) {
+      console.error('Error exporting Excel file:', error);
+      throw error;
+    }
+  }
 }
