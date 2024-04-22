@@ -140,7 +140,7 @@ export default async function SingleBlog({
             <p className="mb-2 text-gray-500 text-xl font-semibold">
               Next post
             </p>
-            <h2 className="font-bold mb-2 text-lg">
+            <h2 className="font-bold mb-2 text-lg ">
               <Link href={`/blogs/${data.next.slug}`} className="text-black">
                 {data.next.title}
               </Link>

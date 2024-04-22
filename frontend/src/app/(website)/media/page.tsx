@@ -13,21 +13,22 @@ export default async function Media() {
 
   return (
     <>
-      <section className="bg-gray-50 desktop:h-[400px]">
-        <div className="flex desktop:container px-4 py-8 m-auto flex-col-reverse desktop:flex-row laptop:container laptop:flex-row">
+      <section className="bg-gray-100 desktop:h-[400px] mb-8">
+        <div className="flex desktop:container px-4  m-auto flex-col-reverse desktop:flex-row laptop:container laptop:flex-row">
           <div className="desktop:w-1/2">
             <div className="desktop:w-[500px] desktop:h-[350px] laptop:w-[500px] laptop:h-[350px] w-full relative h-[300px] tablet:h-[400px]">
               <Image
-                // height={400}
-                // width={500}
-                layout="fill"
+                height={400}
+                width={500}
+                // layout="fill"
                 alt="test"
                 src="/img2/Media-Page.jpg"
+                className="w-full desktop:w-[500px] desktop:h-[400px] laptop:h-[350px] h-[300px] tablet:h-[400px]"
               />
             </div>
           </div>
           <div className="desktop:w-1/2 m-auto">
-            <h2 className="desktop:font-extrabold tablet:font-extrabold font-semibold desktop:text-5xl text-4xl leading-[56px] m-0 mb-2 text-center desktop:text-left laptop:text-left laptop:pl-4">
+            <h2 className="desktop:font-extrabold tablet:font-extrabold font-semibold desktop:text-3xl text-4xl leading-[56px] m-0 mb-2 text-center desktop:text-left laptop:text-left laptop:pl-4">
               Media
             </h2>
             <h3 className="desktop:text-2xl m-0 mb-2 desktop:font-medium :text-2xl :font-medium text-sm text-center laptop:text-left laptop:pl-4">
@@ -35,12 +36,12 @@ export default async function Media() {
               press-related questions, e-mails.
             </h3>
             <ul className="list-disc desktop:pl-12 pl-8">
-              <li className="mb-2 desktop:text-xl text-sm">
+              <li className="mb-2 desktop:font-medium desktop:text-xl text-sm">
                 Please contact us for media enquires and interviews with
                 Dr.Tausif Malik, founder. He comments on affordable education,
                 social entrepreneurship & startups. info@riseback.org
               </li>
-              <li className="desktop:text-xl text-sm">
+              <li className="desktop:text-xl desktop:font-medium text-sm">
                 Explore additional news, highlights, and stories from Coursera
                 and our community by visiting the following.
               </li>
@@ -48,8 +49,8 @@ export default async function Media() {
           </div>
         </div>
       </section>
-      <section className=" py-16">
-        <h2 className="desktop:font-bold desktop:text-4xl text-center mb-8 font-semibold text-4xl">
+      <section className=" desktop:py-16 mb-6">
+        <h2 className="desktop:font-bold desktop:text-4xl text-center mb-8 font-semibold text-3xl">
           {" "}
           Published Articles
         </h2>

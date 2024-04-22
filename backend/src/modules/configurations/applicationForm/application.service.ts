@@ -5,9 +5,14 @@ import { ApplicationForm } from './application.model';
 import * as XLSX from 'xlsx';
 import { join, relative } from 'path';
 import { existsSync, promises as fsPromises, mkdirSync } from 'fs';
+import { CourseSpecialization } from '../course-specialization/model';
+import { Course } from '../course/model';
+import { University } from '../university/model';
 
 @Injectable()
-export class ApplicationService extends GenericService({}) {
+export class ApplicationService extends GenericService({
+  includes: [CourseSpecialization, Course, University],
+}) {
   constructor(
     @InjectModel(ApplicationForm)
     private applicationModel: typeof ApplicationForm,

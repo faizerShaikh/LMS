@@ -33,21 +33,33 @@ const columns = [
   },
   {
     headerName: "University Name",
-    field: "universityName",
+    field: "university",
     flex: 1,
     cellClassName: "text-dark",
+    renderCell: (params: { row: any }) => {
+      const courseValue = params.row.university.name;
+      return courseValue;
+    },
   },
   {
     headerName: "Select Course",
-    field: "selectCourse",
+    field: "course",
     flex: 1,
     cellClassName: "text-dark",
+    renderCell: (params: { row: any }) => {
+      const courseValue = params.row.course.name;
+      return courseValue;
+    },
   },
   {
     headerName: "Specialization",
     field: "specialization",
     flex: 1,
     cellClassName: "text-dark",
+    renderCell: (params: { row: any }) => {
+      const courseValue = params.row.specialization.name;
+      return courseValue;
+    },
   },
 
   {
@@ -65,15 +77,15 @@ const columns = [
   },
 ];
 
-export default function BlogPage({ id }: any) {
+export default function AppicationFormPage({ id }: any) {
   const { data } = useGetAll({ key: `/configurations/application-form` });
   return (
     <>
-      <PageHeader title="Application Forms's" />
+      <PageHeader title="Application Form's" />
       <DataGrid
         addButton={
           <ApplicationFormExelExport>
-            Downliad Application Forms
+            Download Application Forms
           </ApplicationFormExelExport>
         }
         columns={columns}

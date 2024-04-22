@@ -10,18 +10,19 @@ export default async function AboutUs() {
   data = response.rows;
   return (
     <>
-      <section className="bg-gray-100 flex justify-between h-[400px] ">
-        <div className="container flex m-auto">
-          <div className="w-1/2 ">
+      <section className="bg-gray-100 flex flex-col desktop:flex-row desktop:justify-between tablet:flex-row  desktop:h-[400px] ">
+        <div className="container flex flex-col desktop:flex-row  m-auto ">
+          <div className="w-full desktop:w-1/2  ">
             <Image
               width={500}
               height={400}
               src={"/img2/About-Us-page.jpg"}
               alt="IMG"
+              className="w-full desktop:w-[500px] desktop:h-[400px]"
             />
           </div>
-          <div className="flex items-center w-1/2">
-            <p className=" text-[36px] leading-[48px]">
+          <div className="flex items-center w-full desktop:w-1/2">
+            <p className="text-2xl desktop:text-4xl desktop:leading-[48px]">
               Inspired by the Native American adage{" "}
               <span className="font-bold">"RiseBack like Phoenix”</span>, the
               platform embodies renewal, hope, and empowerment.
@@ -29,9 +30,11 @@ export default async function AboutUs() {
           </div>
         </div>
       </section>
-      <section className="my-32 text-center">
+      <section className="my-10 desktop:my-32 text-center">
         <div className="container m-auto">
-          <h2 className="text-4xl font-bold mt-0 mb-6">Our Story</h2>
+          <h2 className="text-3xl desktop:text-4xl font-bold mt-0 mb-6">
+            Our Story
+          </h2>
           <p className="text-xl text-gray-700 mb-4">
             Inspired by the Native American adage "RiseBack like Phoenix”, the
             platform embodies renewal, hope, and empowerment. Founded by
@@ -52,11 +55,13 @@ export default async function AboutUs() {
           </p>
         </div>
       </section>
-      <section className="bg-gray-100 py-32 ">
+      <section className="bg-gray-100 desktop:py-32 py-10">
         <div className="container  m-auto">
-          <div className="flex  mb-24 items-center">
-            <div className="w-2/4 text-center  pr-12 flex flex-col items-center">
-              <h2 className="text-4xl font-bold mb-2 ">Vision</h2>
+          <div className="flex flex-col-reverse desktop:flex-row  mb-24 items-center">
+            <div className="w-full desktop:w-2/4  text-center  desktop:pr-12 flex flex-col  items-center ">
+              <h2 className="text-3xl desktop:text-4xl font-bold mb-2 ">
+                Vision
+              </h2>
               <p className="text-xl text-gray-700 px-8">
                 Our vision at RiseBack is to create a world where access to
                 affordable education empowers individuals, transcending barriers
@@ -64,7 +69,7 @@ export default async function AboutUs() {
                 professional growth.
               </p>
             </div>
-            <div className="w-2/4 text-center">
+            <div className="w-full desktop:w-2/4 text-center">
               <Image
                 width={500}
                 height={400}
@@ -74,8 +79,8 @@ export default async function AboutUs() {
               />
             </div>
           </div>
-          <div className="flex  items-center">
-            <div className="w-2/4 text-center">
+          <div className="flex flex-col desktop:flex-row  items-center">
+            <div className="w-full desktop:w-2/4 text-center">
               <Image
                 width={500}
                 height={400}
@@ -84,8 +89,10 @@ export default async function AboutUs() {
                 alt="img"
               />
             </div>
-            <div className="w-2/4 text-center pl-12">
-              <h2 className="text-4xl font-bold mb-6 ">Mission</h2>
+            <div className="w-full desktop:w-2/4 text-center desktop:pl-12">
+              <h2 className="text-3xl desktop:text-4xl font-bold mb-6 ">
+                Mission
+              </h2>
               <p className="text-xl text-gray-700 px-8">
                 Our mission is to empower students and professional swith
                 affordable education, fostering a pathway to knowledge and
@@ -95,12 +102,16 @@ export default async function AboutUs() {
           </div>
         </div>
       </section>
-      <section className="bg-blue-900 py-32">
+      <section className="bg-blue-900 desktop:py-32 py-10">
         <div className=" text-center text-white container  m-auto">
-          <h2 className="pb-8 text-4xl m-0">Our Core Values</h2>
-          <div className="flex ">
+          <h2 className="desktop:pb-8 text-3xl desktop:text-4xl m-0">
+            Our Core Values
+          </h2>
+          <div className="flex flex-col  items-center desktop:flex-row ">
             <div className="w-2/4">
-              <h2 className="text-2xl font-medium	">Empowerment</h2>
+              <h2 className="text-xl desktop:text-2xl font-medium	">
+                Empowerment
+              </h2>
               <Image
                 width={150}
                 height={150}
@@ -109,7 +120,9 @@ export default async function AboutUs() {
               />
             </div>
             <div className="w-2/4">
-              <h2 className="text-2xl font-medium	">Development</h2>
+              <h2 className="text-xl desktop:text-2xl font-medium	">
+                Development
+              </h2>
               <Image
                 width={150}
                 height={150}
@@ -118,7 +131,9 @@ export default async function AboutUs() {
               />
             </div>
             <div className="w-2/4">
-              <h2 className="text-2xl font-medium	">Entrepreneurship</h2>
+              <h2 className="text-xl desktop:text-2xl font-medium	">
+                Entrepreneurship
+              </h2>
               <Image
                 width={150}
                 height={150}
@@ -127,7 +142,7 @@ export default async function AboutUs() {
               />
             </div>
             <div className="w-2/4">
-              <h2 className="text-2xl font-medium	">Growth</h2>
+              <h2 className="text-xl desktop:text-2xl font-medium	">Growth</h2>
               <Image
                 width={150}
                 height={150}
@@ -138,9 +153,9 @@ export default async function AboutUs() {
           </div>
         </div>
       </section>
-      <section className=" text-center py-32">
+      <section className=" text-center desktop:py-32 py-10">
         <div className="container m-auto">
-          <h2 className=" text-4xl  m-0">Global Partnership</h2>
+          <h2 className="text-2xl desktop:text-4xl  m-0">Global Partnership</h2>
           <p className="text-xl text-gray-700 pb-8">
             pursuit of our commitment to affordable education, RiseBack has
             forged partnerships with individuals and organizations worldwide,
