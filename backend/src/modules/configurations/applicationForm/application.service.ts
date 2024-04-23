@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { GenericService, RequestParamsService } from 'src/core/modules';
-import { ApplicationForm } from './application.model';
 import * as XLSX from 'xlsx';
-import { join,  relative } from 'path';
+import { join, relative } from 'path';
 import { existsSync, promises as fsPromises, mkdirSync } from 'fs';
 import { CourseSpecialization } from '../course-specialization/model';
 import { Course } from '../course/model';
 import { University } from '../university/model';
+import { ApplicationForm } from '../applicationForm/application.model';
+import { MailerServices } from '../Enquiry/mail/mail.service';
 
 @Injectable()
 export class ApplicationService extends GenericService({
@@ -17,6 +18,7 @@ export class ApplicationService extends GenericService({
     @InjectModel(ApplicationForm)
     private applicationModel: typeof ApplicationForm,
     private reqParams: RequestParamsService,
+    private mailerService: MailerServices, // Inject the mail service
   ) {
     super(applicationModel, reqParams);
   }
@@ -27,9 +29,9 @@ export class ApplicationService extends GenericService({
         return 'No registrations yet';
       }
 
-      const registrations: ApplicationForm[] = data.rows; // Assuming Application is the model class
+      const registrations: ApplicationForm[] = data.rows;
       const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(
-        registrations.map((reg) => reg.toJSON()), // toJSON() to convert Sequelize instance to plain object
+        registrations.map((reg) => reg.toJSON()),
       );
       const workbook: XLSX.WorkBook = {
         Sheets: { data: worksheet },
@@ -52,9 +54,8 @@ export class ApplicationService extends GenericService({
 
       const filename = `${eventName}.xlsx`;
       const filePath = join(directory, filename);
-      await fsPromises.writeFile(filePath, excelBuffer); // Using async file write
+      await fsPromises.writeFile(filePath, excelBuffer);
 
-      // Convert the absolute path to a relative path
       const relativePath = relative(
         join(process.cwd(), 'src', 'public'),
         filePath,
@@ -66,6 +67,26 @@ export class ApplicationService extends GenericService({
       return relativePath;
     } catch (error) {
       console.error(`Error exporting Excel file: ${error.message}`);
+      throw error;
+    }
+  }
+
+  // Override the create method to send email after application creation
+  async create<ApplicationForm extends {} = any>(dto: any): Promise<ApplicationForm> {
+    try {
+      const application = await super.create(dto);
+      console.log('Application created successfully');
+
+      // Prepare email content
+      const emailSubject = 'New Application Created';
+      const emailContent = `Hello,\n\nA new application has been created.\n\nThank you.`;
+
+      // Send email after application creation
+      await this.mailerService.sendMail(dto.emailID, emailSubject, emailContent);
+
+      return application;
+    } catch (error) {
+      console.error('Error creating application:', error);
       throw error;
     }
   }
