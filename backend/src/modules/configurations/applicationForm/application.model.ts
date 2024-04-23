@@ -8,6 +8,7 @@ import {
   IsUUID,
   BelongsTo,
   ForeignKey,
+  BeforeCreate,
 } from 'sequelize-typescript';
 import { CourseSpecialization } from '../course-specialization/model';
 import { Course } from '../course/model';
@@ -111,4 +112,31 @@ export class ApplicationForm extends Model<ApplicationForm> {
 
   @BelongsTo(() => CourseSpecialization)
   specialization: CourseSpecialization;
+
+  
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  srNo: string;
+
+  
+  @BeforeCreate
+  static async generateSerialNumber(instance: ApplicationForm) {
+    const latestRecord = await ApplicationForm.findOne({
+      order: [['createdAt', 'DESC']]
+    });
+
+    let serialNumber = 'APL000001';
+
+    if (latestRecord) {
+      const lastSerialNumber = latestRecord.getDataValue('srNo');
+      const lastSerialNumberInt = parseInt(lastSerialNumber.substring(3), 10);
+      const nextSerialNumberInt = lastSerialNumberInt + 1;
+      const nextSerialNumber = nextSerialNumberInt.toString().padStart(6, '0');
+      serialNumber = `APL${nextSerialNumber}`;
+    }
+
+    instance.setDataValue('srNo', serialNumber);
+  }
 }
