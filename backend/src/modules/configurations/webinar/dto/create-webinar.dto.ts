@@ -16,8 +16,9 @@ export class CreateWebinarDto {
     @IsString()
     agenda: string;
 
-    @IsObject()
-    @IsNotEmpty()
+    
+  @Type(() => CreateEventDTO)
+  @ValidateNested({ each: true })
     event:CreateEventDTO
 
 }

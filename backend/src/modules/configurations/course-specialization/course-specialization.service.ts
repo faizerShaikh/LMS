@@ -177,37 +177,44 @@ export class CourseSpecializationService extends GenericService<
       throw new InternalServerErrorException(error.message);
     }
   }
-  async updateCourseSpecializationImage(file: Express.Multer.File, id: string) {
-    const courseSpecialization = await this.courseSpecialization.findByPk<CourseSpecialization>(id);
-    const defaultImagePath = 'backend/src/public/media/default.png';
-    const filePath = join(
-      __dirname,
-      '../../../../',
-      'src/public/media' + courseSpecialization.cover_image,
-    );
-    if (!defaultImagePath)
-      if (fs.existsSync(filePath)) {
-        unlink(filePath, (err) => {
-          if (err) {
-            throw new InternalServerErrorException(err);
-          }
-          console.log('file deleted...');
-        });
+  async updateCoverImage(file: Express.Multer.File, id: string) {
+    try {
+      const events = await this.courseSpecialization.findByPk<CourseSpecialization>(id);
+      if (!events) {
+        throw new InternalServerErrorException('Event not found');
       }
-    console.log(file, file?.path?.split('src/public')[1]);
 
-    await courseSpecialization.update(
-      {
-        cover_image:
-          '/media/course-specialization/cover-image/' + file.filename,
-      },
-      {
-        where: {
-          id,
-        },
-      },
-    );
-    return 'syllabus updated successfully';
+      const defaultImagePath = 'backend/src/public/media/default.png';
+      const filePath = join(
+        __dirname,
+        '../../../../',
+        'backend/src/public/' + events.cover_image,
+      );
+
+      if (file && file.filename) {
+        const newImagePath = '/media/courseSpecialization/' + file.filename;
+
+        if (fs.existsSync(filePath) && filePath != defaultImagePath) {
+          unlink(filePath, (err) => {
+            if (err) {
+              console.error('Error deleting old image:', err);
+            } else {
+              console.log('Old image deleted...');
+            }
+          });
+        }
+
+        await events.update({
+          eventImage: newImagePath,
+        });
+
+        return 'course specialization Image Uploaded Successfully';
+      } else {
+        return 'No file provided for Image Update';
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
   }
 
   async createOtherObjects(

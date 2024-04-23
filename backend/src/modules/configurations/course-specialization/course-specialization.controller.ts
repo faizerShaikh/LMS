@@ -50,7 +50,7 @@ export class CourseSpecializationController extends GenericController<
     @UploadedFile() file: Express.Multer.File,
     @Param('id') id: string,
   ) {
-    return this.courseService.updateCourseSpecializationImage(file, id);
+    return this.courseService.updateCoverImage(file, id);
   }
 
   // @Put('update-obj-image/:id')
