@@ -56,4 +56,8 @@ export class ApplicationFormDTO {
   @IsOptional()
   @IsString()
   specialization_id: string;
+
+  @IsOptional()
+  @IsString()
+  srNo: string;
 }

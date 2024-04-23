@@ -116,6 +116,7 @@ export class ApplicationForm extends Model<ApplicationForm> {
   
   @Column({
     type: DataType.STRING,
+    allowNull: false,
   })
   srNo: string;
 

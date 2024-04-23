@@ -12,6 +12,11 @@ import { MailerServices } from '../Enquiry/mail/mail.service';
 
 @Injectable()
 export class ApplicationService extends GenericService({
+  defaultFindOptions:{
+    include:[
+      CourseSpecialization, Course, University
+    ]
+  },
   includes: [CourseSpecialization, Course, University],
 }) {
   constructor(
