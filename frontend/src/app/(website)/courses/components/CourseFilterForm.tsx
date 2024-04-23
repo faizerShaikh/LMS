@@ -23,7 +23,7 @@ export default function CourseCategoryFilter({
         onClick={() => handleClick(item)}
         className={`cursor-pointer ${
           category === item.slug ? "font-semibold text-primary" : ""
-        } border-b-2 pb-2`}
+        }  pb-2`}
       >
         {item.name}
       </p>

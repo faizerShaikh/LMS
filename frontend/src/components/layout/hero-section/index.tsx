@@ -22,7 +22,7 @@ export function HeroSection({
   return (
     <section className="bg-gray-50 desktop:py-24 py-16">
       <div className="flex justify-between items-center container gap-10 desktop:container px-8 desktop:py-8 m-auto flex-col-reverse desktop:flex-row laptop:container laptop:flex-row">
-        <div className="desktop:w-1/2 w-full flex flex-col justify-center">
+        <div className="desktop:w-1/2 h-[250px] w-full flex flex-col justify-center">
           <Image
             alt="test"
             width={0}
@@ -38,7 +38,7 @@ export function HeroSection({
             {Herotitle}
           </h1>
           <div
-            className="text-lg leading-6 font-Inter mb-7"
+            className="text-lg leading-6 desktop:text-[30px] desktop:leading-8 laptop:text-[30px] font-Inter mb-7"
             dangerouslySetInnerHTML={{ __html: description }}
           ></div>
           {viewButton && linkText && (

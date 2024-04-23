@@ -18,8 +18,8 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
       <section className="relative">
         <section>
           <div className=" container m-auto flex">
-            <div className=" py-16 flex justify-between">
-              <div className=" w-[60%] ">
+            <div className=" py-16 w-full flex justify-between">
+              <div className=" w-[80%] ">
                 <div className="">
                   <Image
                     src={`${process.env.BASE_MEDIA_URL}/${data.event?.eventImage}`}

@@ -65,7 +65,7 @@ export default async function Blogs({
         <h2 className="font-extrabold text-5xl leading-[56px]">
           RiseBack Blogs
         </h2>
-        <p>
+        <p className="font-semibold text-xl">
           Updates on the latest career opportunities, Online Education, Online
           Universities, <span className="font-medium">& More</span>
         </p>
@@ -80,9 +80,12 @@ export default async function Blogs({
             {`Showing Blogs of ${selectedCategory.name}`}
           </h2>
         ) : (
-          <h2 className="font-semibold text-xl text-gray-600 font-Inter uppercase mb-12">
-            Latest Blogs
-          </h2>
+          <>
+            <h2 className="font-semibold text-xl text-gray-600 font-Inter uppercase mb-3">
+              Latest Blogs
+            </h2>
+            <div className=" border-b-4 border-black w-12 mb-10"></div>
+          </>
         )}
 
         <div className="flex">

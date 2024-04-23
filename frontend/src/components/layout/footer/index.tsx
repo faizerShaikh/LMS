@@ -5,7 +5,7 @@ export const Footer = () => {
   return (
     <>
       <footer className="bg-black desktop:px-24 px-8">
-        <div className="text-white flex py-8 flex-col desktop:grid desktop:grid-cols-2 tablet:grid tablet:grid-cols-2 tablet:mx-20">
+        <div className="text-white flex py-8 flex-col desktop:flex desktop:flex-row desktop:justify-between tablet:grid tablet:grid-cols-2 tablet:mx-20">
           <div>
             <Image
               height={50}

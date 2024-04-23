@@ -7,6 +7,7 @@ import { Button } from "components/layout/buttons";
 import ViewMore from "./components/ViewMore";
 import { WebinarInterface } from "interfaces/webinar";
 import WebinarCarousel from "./components/webinarCarousel";
+import { ChevronRight } from "@carbon/icons-react";
 
 interface CoursesSearchParams {
   category?: string;
@@ -113,9 +114,10 @@ export default async function courses({
               <ul className="p-0">
                 <Button
                   href="/courses"
-                  className="bg-blue-100 py-3 w-full text-start  text-blue-700  rounded-md"
+                  className="bg-blue-100 py-3 w-full text-start flex justify-between  text-blue-700  rounded-md"
                 >
                   Most Popular
+                  <ChevronRight></ChevronRight>
                 </Button>
 
                 <CourseCategoryFilter

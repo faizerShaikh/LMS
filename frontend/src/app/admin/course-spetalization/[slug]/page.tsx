@@ -45,7 +45,6 @@ const SingleCourseSpecialization = async ({ params: { slug } }: Props) => {
       initialValues = { ...initialValues, ...data };
     }
   }
-  console.log(data, "<<<<<<<<<<<<<<<<<data");
   return (
     <>
       <PageHeader title="Add Course Specialization" />

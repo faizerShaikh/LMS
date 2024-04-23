@@ -1,56 +1,114 @@
-import { Model, Column, Table, PrimaryKey, DataType, Default, IsUUID } from "sequelize-typescript";
+import {
+  Model,
+  Column,
+  Table,
+  PrimaryKey,
+  DataType,
+  Default,
+  IsUUID,
+  BelongsTo,
+  ForeignKey,
+} from 'sequelize-typescript';
+import { CourseSpecialization } from '../course-specialization/model';
+import { Course } from '../course/model';
+import { University } from '../university/model';
 
 @Table({
-    tableName: 'ApplicationForms', // Changed to camelCase
-    paranoid: true
+  tableName: 'application-forms', // Changed to camelCase
+  modelName: 'ApplicationForm',
+  paranoid: true,
 })
 export class ApplicationForm extends Model<ApplicationForm> {
+  @IsUUID(4)
+  @Default(DataType.UUIDV4)
+  @PrimaryKey
+  @Column
+  id: string;
 
-    @IsUUID(4)
-    @Default(DataType.UUIDV4)
-    @PrimaryKey
-    @Column
-    id: string;  
+  @Column
+  fullName: string;
 
-    @Column
-    fullName: string;
+  @Column
+  mobileNumber: string;
 
-    @Column
-    mobileNumber: string;
+  @Column
+  emailID: string;
 
-    @Column
-    emailID: string;
+  @Column
+  dateOfBirth: Date; // Changed to Date type
 
-    @Column
-    dateOfBirth: Date; // Changed to Date type
+  @Column
+  gender: string;
 
-    @Column
-    gender: string;
+  @Column
+  nationality: string;
 
-    @Column
-    nationality: string;
+  @Column
+  governmentIDType: string;
 
-    @Column
-    governmentIDType: string;
+  @Column
+  country: string;
 
-    @Column
-    country: string;
+  @Column
+  state: string;
 
-    @Column
-    state: string;
+  @Column
+  city: string;
 
-    @Column
-    city: string;
+  @Column
+  howDoYouKnowAboutRiseBack: string;
 
-    @Column
-    howDoYouKnowAboutRiseBack: string; 
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: 'University id can not be empty',
+      },
+      notEmpty: {
+        msg: 'University id can not be empty',
+      },
+    },
+  })
+  @ForeignKey(() => University)
+  university_id: string;
 
-    @Column
-    universityName: string;
+  @BelongsTo(() => University)
+  university: University;
 
-    @Column
-    selectCourse: string;
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: 'Course id can not be empty',
+      },
+      notEmpty: {
+        msg: 'Course id can not be empty',
+      },
+    },
+  })
+  @ForeignKey(() => Course)
+  course_id: string;
 
-    @Column
-    specialization: string;
+  @BelongsTo(() => Course)
+  course: Course;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: 'Course Secialization id can not be empty',
+      },
+      notEmpty: {
+        msg: 'Course Secialization id can not be empty',
+      },
+    },
+  })
+  @ForeignKey(() => CourseSpecialization)
+  specialization_id: string;
+
+  @BelongsTo(() => CourseSpecialization)
+  specialization: CourseSpecialization;
 }

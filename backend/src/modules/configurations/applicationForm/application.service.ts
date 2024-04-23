@@ -1,17 +1,19 @@
-import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/sequelize";
-import { GenericService, RequestParamsService } from "src/core/modules";
-import { ApplicationForm } from "./application.model";
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
+import { GenericService, RequestParamsService } from 'src/core/modules';
+import { ApplicationForm } from './application.model';
 import * as XLSX from 'xlsx';
-import { join, relative } from 'path';
-import { existsSync, promises as fsPromises, mkdirSync } from 'fs';
-import { Application } from "express";
+import { join, existsSync, mkdirSync, relative } from 'path';
+import { promises as fsPromises } from 'fs';
 
 @Injectable()
-export class ApplicationService extends GenericService({}) {
+export class ApplicationService extends GenericService({
+  includes: [CourseSpecialization, Course, University],
+}) {
   constructor(
-    @InjectModel(ApplicationForm) private applicationModel: typeof ApplicationForm,
-    private reqParams: RequestParamsService
+    @InjectModel(ApplicationForm)
+    private applicationModel: typeof ApplicationForm,
+    private reqParams: RequestParamsService,
   ) {
     super(applicationModel, reqParams);
   }
@@ -22,9 +24,9 @@ export class ApplicationService extends GenericService({}) {
         return 'No registrations yet';
       }
 
-      const registrations: Application[] = data.rows; // Assuming Application is the model class
+      const registrations: ApplicationForm[] = data.rows; // Assuming Application is the model class
       const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(
-        registrations.map(reg => reg.toJSON()), // toJSON() to convert Sequelize instance to plain object
+        registrations.map((reg) => reg.toJSON()), // toJSON() to convert Sequelize instance to plain object
       );
       const workbook: XLSX.WorkBook = {
         Sheets: { data: worksheet },
@@ -35,7 +37,12 @@ export class ApplicationService extends GenericService({}) {
         type: 'buffer',
       });
 
-      const directory = join(process.cwd(), 'src', 'public', 'event-registration');
+      const directory = join(
+        process.cwd(),
+        'src',
+        'public',
+        'event-registration',
+      );
       if (!existsSync(directory)) {
         mkdirSync(directory, { recursive: true });
       }
@@ -45,8 +52,13 @@ export class ApplicationService extends GenericService({}) {
       await fsPromises.writeFile(filePath, excelBuffer); // Using async file write
 
       // Convert the absolute path to a relative path
-      const relativePath = relative(join(process.cwd(), 'src', 'public'), filePath).replace(/\\/g, '/');
-      console.log(`Excel file '${filename}' successfully exported to '${relativePath}'.`);
+      const relativePath = relative(
+        join(process.cwd(), 'src', 'public'),
+        filePath,
+      ).replace(/\\/g, '/');
+      console.log(
+        `Excel file '${filename}' successfully exported to '${relativePath}'.`,
+      );
 
       return relativePath;
     } catch (error) {
