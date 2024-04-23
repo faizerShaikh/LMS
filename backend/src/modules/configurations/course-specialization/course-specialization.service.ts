@@ -196,7 +196,7 @@ export class CourseSpecializationService extends GenericService<
       }
     console.log(file, file?.path?.split('src/public')[1]);
 
-    await this.courseSpecialization.update(
+    await courseSpecialization.update(
       {
         cover_image:
           '/media/course-specialization/cover-image/' + file.filename,
