@@ -26,27 +26,44 @@ export class CourseService extends GenericService<
     super(course, reqParams);
   }
 
+
   async updateCourseImage(file: Express.Multer.File, id: string) {
-    const course = await this.getOne<Course>(id);
-    const defaultImagePath = 'backend/src/public/media/default.png';
-    const filePath = join(
-      __dirname,
-      '../../../../',
-      '/src/public/' + course.course_image,
-    );
+    try {
+      const events = await this.course.findByPk<Course>(id);
+      if (!events) {
+        throw new InternalServerErrorException('Event not found');
+      }
 
-    if (fs.existsSync(filePath)) {
-      unlink(filePath, (err) => {
-        if (err) {
-          throw new InternalServerErrorException(err);
+      const defaultImagePath = 'backend/src/public/media/default.png';
+      const filePath = join(
+        __dirname,
+        '../../../../',
+        'backend/src/public/' + events.course_image,
+      );
+
+      if (file && file.filename) {
+        const newImagePath = '/media/course/' + file.filename;
+
+        if (fs.existsSync(filePath) && filePath != defaultImagePath) {
+          unlink(filePath, (err) => {
+            if (err) {
+              console.error('Error deleting old image:', err);
+            } else {
+              console.log('Old image deleted...');
+            }
+          });
         }
-        console.log('file deleted...');
-      });
-    }
 
-    await course.update({
-      course_image: '/media/course/' + file.filename,
-    });
-    return 'Course Image Uploaded Successfully';
+        await events.update({
+          eventImage: newImagePath,
+        });
+
+        return 'course Image Uploaded Successfully';
+      } else {
+        return 'No file provided for Image Update';
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
   }
 }

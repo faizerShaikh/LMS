@@ -12,7 +12,7 @@ export class UsersController extends GenericController<
 >({
   createObjDTO: CreateUserDTO,
   updateObjDTO: UpdateUserDTO,
-}) {
+}) { 
   constructor(private readonly usersService: UsersService) {
     super(usersService);
   }

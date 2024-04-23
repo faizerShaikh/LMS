@@ -19,7 +19,7 @@ export class BlogService extends GenericService<
   defaultFindOptions: {
     include: [User, MetaData],
   },
-  includes: [User],
+  includes: [User,MetaData],
 }) {
   constructor(
     @InjectModel(Blog) private blog: typeof Blog,
