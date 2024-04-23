@@ -5,6 +5,7 @@ import { Webinar} from './webinar.model';
 import { CreateWebinarDto } from './dto/create-webinar.dto';
 import { UpdateWebinarDto } from './dto/update-webinar.dto';
 import { Events } from '../event/event.model';
+import { MetaData } from '../MetaData/meta.model';
 
 @Injectable()
 export class WebinarService extends GenericService<
@@ -13,9 +14,9 @@ export class WebinarService extends GenericService<
   UpdateWebinarDto
 >({
   defaultFindOptions:{
-    include:[Events],
+    include:[Events,MetaData],
   },
-  includes:[Events]
+  includes:[Events,MetaData]
 }) {
   constructor(
     @InjectModel(Webinar) private webinar: typeof Webinar,

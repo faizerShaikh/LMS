@@ -178,7 +178,7 @@ export class CourseSpecializationService extends GenericService<
     }
   }
   async updateCourseSpecializationImage(file: Express.Multer.File, id: string) {
-    const courseSpecialization = await this.getOne<CourseSpecialization>(id);
+    const courseSpecialization = await this.courseSpecialization.findByPk<CourseSpecialization>(id);
     const defaultImagePath = 'backend/src/public/media/default.png';
     const filePath = join(
       __dirname,
