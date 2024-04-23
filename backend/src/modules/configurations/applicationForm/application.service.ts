@@ -1,10 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { GenericService, RequestParamsService } from "src/core/modules";
-import { Application } from "./application.model";
+import { ApplicationForm } from "./application.model";
 import * as XLSX from 'xlsx';
-import { join, existsSync, mkdirSync, relative } from 'path';
-import { promises as fsPromises } from 'fs';
+import { join, relative } from 'path';
+import { existsSync, promises as fsPromises, mkdirSync } from 'fs';
+import { Application } from "express";
 
 @Injectable()
 export class ApplicationService extends GenericService({}) {

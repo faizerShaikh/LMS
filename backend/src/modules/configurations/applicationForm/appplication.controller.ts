@@ -1,5 +1,5 @@
 // application.controller.ts
-import { Controller } from "@nestjs/common";
+import { Controller, Get, NotFoundException } from "@nestjs/common";
 import { GenericController } from "src/core/modules";
 import { ApplicationService } from "./application.service";
 import { ApplicationForm } from "./application.model";
@@ -18,7 +18,7 @@ export class ApplicationController extends GenericController<ApplicationForm, Ap
   async exportToExcel() {
     try {
       // Fetch application form details by ID
-      const applicationForm = await this.applicationFormService.getAll();
+      const applicationForm = await this.applicationService.getAll();
 
       if (!applicationForm) {
         throw new NotFoundException('Application form not found');
@@ -26,7 +26,7 @@ export class ApplicationController extends GenericController<ApplicationForm, Ap
 
       const filename = `application_Forms`;
 
-      const filePath = await this.applicationFormService.exportToExcel(applicationForm, filename);
+      const filePath = await this.applicationService.exportToExcel(applicationForm, filename);
 
       return { filePath };
     } catch (error) {
