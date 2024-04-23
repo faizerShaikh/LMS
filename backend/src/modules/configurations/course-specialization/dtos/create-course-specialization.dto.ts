@@ -147,4 +147,8 @@ export class CreateCourseSpecializationDTO {
   @IsNotEmpty()
   slug: string;
 
+  @IsString()
+  @IsNotEmpty()
+  brouchure:string
+
 }

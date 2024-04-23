@@ -177,4 +177,19 @@ export class CourseSpecializationController extends GenericController<
   ) {
     return this.courseService.updateSyllabus(file, id);
   }
+
+  @Put('update-brouchure/:id')
+  @UseInterceptors(
+    MulterIntercepter({
+      type: MulterEnum.single,
+      fieldName: 'brouchure',
+      path: '/documents',
+    }),
+  )
+  async updatebrouchure(
+    @UploadedFile() file: Express.Multer.File,
+    @Param('id') id: string,
+  ) {
+    return this.courseService.updatebrouchure(file, id);
+  }
 }

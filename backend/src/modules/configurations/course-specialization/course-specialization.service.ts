@@ -138,6 +138,45 @@ export class CourseSpecializationService extends GenericService<
       throw new InternalServerErrorException(error.message);
     }
   }
+  async updatebrouchure(file: Express.Multer.File, id: string) {
+    try {
+      const events =
+        await this.courseSpecialization.findByPk<CourseSpecialization>(id);
+      if (!events) {
+        throw new InternalServerErrorException('Course spl not found');
+      }
+
+      const filePath = join(
+        __dirname,
+        '../../../../',
+        'backend/src/public/brouchure' + events.brouchure,
+      );
+
+      if (file && file.filename) {
+        const newImagePath = '/documents/brouchure/' + file.filename;
+
+        if (fs.existsSync(filePath)) {
+          unlink(filePath, (err) => {
+            if (err) {
+              console.error('Error deleting old image:', err);
+            } else {
+              console.log('Old image deleted...');
+            }
+          });
+        }
+
+        await events.update({
+          syllabus: newImagePath,
+        });
+
+        return 'course syllabus Uploaded Successfully';
+      } else {
+        return 'No file provided for syllabus Update';
+      }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+  }
   async updateCourseSpecializationImage(file: Express.Multer.File, id: string) {
     const courseSpecialization = await this.getOne<CourseSpecialization>(id);
     const defaultImagePath = 'backend/src/public/media/default.png';

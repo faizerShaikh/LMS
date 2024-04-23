@@ -312,4 +312,9 @@ export class CourseSpecialization extends MyBaseModel {
     // foreignKey: 'course_specialization_id',
   })
   info: Infos;
+
+  @Column({
+    type:DataType.STRING
+  })
+  brouchure:string
 }
