@@ -11,6 +11,8 @@ import { UniversityInterface } from "interfaces";
 import { CourseTabs } from "components/home/tabs";
 import { ArrowRight } from "@carbon/icons-react";
 import { ItCourseTabs } from "components/home/itCoursesTabs";
+import Banner from "components/layout/banner";
+export let metadata = {};
 
 export const revalidate = 60;
 export default async function Home() {
@@ -31,6 +33,9 @@ export default async function Home() {
     `${process.env.BASE_API_URL}/configurations/university`
   );
   universityData = uniResponse.data.data.rows;
+  // if(universityData.metaData){
+  //   metadata = universityData.metaData
+  // }
   let carouselData = universityData?.map(
     (item: UniversityInterface) => item?.university_image
   );
@@ -42,7 +47,7 @@ export default async function Home() {
   CoursesCatagoriData = CatagorieResponse.data.data.rows;
   return (
     <>
-      <section className=" bg-gray-100 h-[400px] ">
+      <section className=" bg-gray-50 h-[400px] ">
         <div className="flex justify-between items-center gap-10 container m-auto">
           <div className=" ">
             <Image
@@ -66,7 +71,11 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
+      <section className="mt-16">
+        <div className=" container m-auto  ">
+          <Banner></Banner>
+        </div>
+      </section>
       <section className="container m-auto py-24">
         <div className="flex justify-between">
           <h2 className="font-semibold text-4xl">

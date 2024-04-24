@@ -4,6 +4,7 @@ import { CustomCarousel } from "components/layout/carousel";
 import moment from "moment";
 
 export default function WebinarCarousel({ data }: any) {
+  console.log(data, "<<<<<<,,data");
   return (
     <>
       <CustomCarousel dots={true} slidesToShow={1}>

@@ -2,6 +2,7 @@ import axios from "axios";
 import Image from "next/image";
 import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
 import Link from "next/link";
+export let metadata = {};
 
 export default async function Media() {
   let PressRealeseCards: Array<MediaPressReleaseInterface>;
@@ -9,8 +10,7 @@ export default async function Media() {
     `${process.env.BASE_API_URL}/configurations/press-release`
   );
   PressRealeseCards = PressREaleseCardResponse.data.data.rows;
-  console.log(PressRealeseCards);
-
+  // console.log(PressRealeseCards);
   return (
     <>
       <section className="bg-gray-100 desktop:h-[400px] mb-8">

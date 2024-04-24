@@ -4,6 +4,7 @@ import { PageContentInterface, GalleryInterface } from "interfaces/commonPage";
 import Image from "next/image";
 import { HeroSection } from "components/layout/hero-section";
 export let metadata = {};
+
 export default async function SinglePage({
   params,
 }: {
@@ -15,14 +16,10 @@ export default async function SinglePage({
   );
 
   commonPageData = res?.data?.data;
-  // console.log(
-  //   commonPageData,
-  //   "<============================================================================hello"
-  // );
-  // console.log("Name :", params.slug);
-  // if (commonPageData.metaData) {
-  //   metadata = commonPageData.metaData;
-  // }
+
+  if (commonPageData.metaData) {
+    metadata = commonPageData.metaData;
+  }
 
   return (
     <>
@@ -35,10 +32,11 @@ export default async function SinglePage({
       />
 
       <section className="desktop:py-24 py-10">
-        <div className="desktop:flex desktop:flex-wrap desktop:justify-between flex flex-col justify-center items-center text-center gap-5 m-auto container">
+        {/* <div className="desktop:flex desktop:flex-wrap desktop:justify-between flex flex-col justify-center items-center text-center flex-wrap gap-5 m-auto  container"> */}
+        <div className=" grid desktop:grid-cols-4 tablet:grid-cols-2  text-center gap-5 m-auto   container ">
           {commonPageData?.gallery.map((item: GalleryInterface) => {
             return (
-              <div className="w-[300px]  rounded-xl shadow-xl ">
+              <div className="w-[300px] mx-auto rounded-xl shadow-xl ">
                 <Image
                   alt="Gallery image"
                   height={180}

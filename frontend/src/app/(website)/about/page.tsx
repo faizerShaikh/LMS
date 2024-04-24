@@ -18,7 +18,7 @@ export default async function AboutUs() {
               height={400}
               src={"/img2/About-Us-page.jpg"}
               alt="IMG"
-              className="w-full desktop:w-[500px] desktop:h-[400px]"
+              className="w-full desktop:w-[500px] desktop:h-[400px] h-[300px]"
             />
           </div>
           <div className="flex items-center w-full desktop:w-1/2">
@@ -62,7 +62,7 @@ export default async function AboutUs() {
               <h2 className="text-3xl desktop:text-4xl font-bold mb-2 ">
                 Vision
               </h2>
-              <p className="text-xl text-gray-700 px-8">
+              <p className="text-xl text-gray-700 desktop:px-8">
                 Our vision at RiseBack is to create a world where access to
                 affordable education empowers individuals, transcending barriers
                 and unlocking bound less opportunities for personal and
@@ -74,7 +74,7 @@ export default async function AboutUs() {
                 width={500}
                 height={400}
                 src="/img2/businessman-big-office.jpg"
-                className=" w-full rounded-lg"
+                className=" w-full rounded-lg h-[300px] desktop:w-full desktop:h-[400px]"
                 alt="img"
               />
             </div>
@@ -85,7 +85,7 @@ export default async function AboutUs() {
                 width={500}
                 height={400}
                 src="/img2/motivational-composition-goal.jpg"
-                className="w-full rounded-lg"
+                className="w-full rounded-lg  h-[300px] desktop:w-full desktop:h-[400px]"
                 alt="img"
               />
             </div>
@@ -93,7 +93,7 @@ export default async function AboutUs() {
               <h2 className="text-3xl desktop:text-4xl font-bold mb-6 ">
                 Mission
               </h2>
-              <p className="text-xl text-gray-700 px-8">
+              <p className="text-xl text-gray-700 desktop:px-8">
                 Our mission is to empower students and professional swith
                 affordable education, fostering a pathway to knowledge and
                 success..
@@ -107,8 +107,8 @@ export default async function AboutUs() {
           <h2 className="desktop:pb-8 text-3xl desktop:text-4xl m-0">
             Our Core Values
           </h2>
-          <div className="flex flex-col  items-center desktop:flex-row ">
-            <div className="w-2/4">
+          <div className="grid laptop:grid-cols-2 desktop:grid-cols-4 tablet:grid-cols-2 gap-5 justify-center items-center desktop:flex-row ">
+            <div className="w-2/4 desktop:m-auto  tablet:m-auto ">
               <h2 className="text-xl desktop:text-2xl font-medium	">
                 Empowerment
               </h2>
@@ -119,7 +119,7 @@ export default async function AboutUs() {
                 src="/img2/Empowerment.svg"
               />
             </div>
-            <div className="w-2/4">
+            <div className="w-2/4 desktop:m-auto  tablet:m-auto ">
               <h2 className="text-xl desktop:text-2xl font-medium	">
                 Development
               </h2>
@@ -130,7 +130,7 @@ export default async function AboutUs() {
                 src="/img2/Developement.svg"
               />
             </div>
-            <div className="w-2/4">
+            <div className="w-2/4 desktop:m-auto  tablet:m-auto ">
               <h2 className="text-xl desktop:text-2xl font-medium	">
                 Entrepreneurship
               </h2>
@@ -141,7 +141,7 @@ export default async function AboutUs() {
                 src="/img2/Entrepreneurship.svg"
               />
             </div>
-            <div className="w-2/4">
+            <div className="w-2/4 desktop:m-auto  tablet:m-auto  ">
               <h2 className="text-xl desktop:text-2xl font-medium	">Growth</h2>
               <Image
                 width={150}

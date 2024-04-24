@@ -33,12 +33,12 @@ export function HeroSection({
             className="object-center rounded-xl"
           />
         </div>
-        <div className="desktop:w-1/2 w-full">
+        <div className="desktop:w-1/2 w-full mb-4">
           <h1 className="desktop:font-extrabold font-semibold desktop:text-[40px] laptop:text-[40px] text-[30px] desktop:leading-[56px] laptop:leading-[56px] mt-0 mb-4">
             {Herotitle}
           </h1>
           <div
-            className="text-lg leading-6 desktop:text-[30px] desktop:leading-8 laptop:text-[30px] font-Inter mb-7"
+            className="text-lg leading-6 desktop:font-medium desktop:mb-4 desktop:text-2xl font-Inter mb-7"
             dangerouslySetInnerHTML={{ __html: description }}
           ></div>
           {viewButton && linkText && (

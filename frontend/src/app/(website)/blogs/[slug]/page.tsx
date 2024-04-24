@@ -9,6 +9,8 @@ import {
 import moment from "moment";
 import CarouselCard from "app/(website)/event/components/CarouselCard";
 import RelatedBlogCarousl from "../Components/CarouselCard";
+import { ChevronLeft, ChevronRight } from "@carbon/icons-react";
+export let metadata = {};
 
 export default async function SingleBlog({
   params,
@@ -25,6 +27,10 @@ export default async function SingleBlog({
   let url = `${process.env.BASE_API_URL}/configurations/blog/blog-detail/${params.slug}`;
   const response = await axios.get(url);
   data = response.data.data;
+
+  if (data.blog.metaData) {
+    metadata = data.blog.metaData;
+  }
   return (
     <>
       <section className="m-auto">
@@ -36,9 +42,9 @@ export default async function SingleBlog({
               height={550}
               width={700}
               alt=""
-              className="w-full mt-4 object-fill"
+              className="w-full desktop:h-[550px] h-[350px] mt-4 object-fill"
             />
-            <h2 className="mt-4 font-semibold py-4 desktop:text-3xl laptop:text-3xl text-2xl mb-8">
+            <h2 className="desktop:mt-4 font-semibold py-4 desktop:text-3xl laptop:text-3xl m-0 text-xl desktop:mb-8">
               {data.blog.title}
             </h2>
           </div>
@@ -46,7 +52,7 @@ export default async function SingleBlog({
       </section>
       <section>
         <div className="container m-auto">
-          <div className="flex flex-col desktop:flex-row laptop:flex-row justify-between desktop:items-center laptop:items-center items-start mb-8">
+          <div className="flex flex-col desktop:flex-row laptop:flex-row justify-between desktop:items-center laptop:items-center items-start m-0 desktop:mb-8">
             <div className="flex items-center">
               <Image
                 src="/img2/Author.svg"
@@ -122,30 +128,42 @@ export default async function SingleBlog({
         </div>
 
         <div className="flex mb-4 container m-auto">
-          <div className="text-right border-l-2 border-t-2 border-b-2 px-6 w-1/2">
-            <p className="mb-2 text-gray-500 text-xl font-semibold">
-              Previous post
-            </p>
-            <h2 className="font-bold mb-2 text-lg">
-              <Link
-                href={`/blogs/${data.previous.slug}`}
-                className="text-black"
-              >
-                {data.previous.title}
-              </Link>
-            </h2>
-            <p className="mb-2 text-gray-400 font-semibold">January 3 2023</p>
+          <div className="text-right border-l-2 border-t-2 border-b-2 desktop:px-6 tablet:px-6 px-2 w-1/2">
+            <div className="flex items-center justify-between">
+              <ChevronLeft className="desktop:hidden size-5 " />
+              <p className="desktop:mb-2 text-gray-500 text-lg desktop:text-xl tablet:text-xl font-semibold">
+                Previous post
+              </p>
+            </div>
+            <div className="hidden desktop:block">
+              <h2 className="font-bold mb-2 text-lg">
+                <Link
+                  href={`/blogs/${data.previous.slug}`}
+                  className="text-black"
+                >
+                  {data.previous.title}
+                </Link>
+              </h2>
+              <p className="mb-2 text-gray-400 font-semibold">January 3 2023</p>
+            </div>
           </div>
-          <div className=" border-2 px-6 w-1/2">
-            <p className="mb-2 text-gray-500 text-xl font-semibold">
-              Next post
-            </p>
-            <h2 className="font-bold mb-2 text-lg ">
-              <Link href={`/blogs/${data.next.slug}`} className="text-black">
-                {data.next.title}
-              </Link>
-            </h2>
-            <p className="mb-2 text-gray-400 font-semibold">September 9 2023</p>
+          <div className=" border-2 desktop:px-6 tablet:px-6 px-2 w-1/2">
+            <div className="flex items-center justify-between">
+              <p className="desktop:mb-2 text-gray-500 desktop:text-xl tablet:text-xl text-lg font-semibold">
+                Next post
+              </p>
+              <ChevronRight className="desktop:hidden size-5" />
+            </div>
+            <div className="hidden desktop:block">
+              <h2 className="font-bold mb-2 text-lg ">
+                <Link href={`/blogs/${data.next.slug}`} className="text-black">
+                  {data.next.title}
+                </Link>
+              </h2>
+              <p className="mb-2 text-gray-400 font-semibold">
+                September 9 2023
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -164,7 +182,7 @@ export default async function SingleBlog({
                         height={200}
                         width={250}
                         alt=""
-                        className="w-full h-52 mb-4"
+                        className="w-[200px] desktop:w-[350px] tablet:w-[200px] h-52 mb-4"
                       />
                       <Link href={`/blogs/${item.slug}`} className="text-black">
                         <h2 className="font-bold px-2 mb-2 m-0 text-lg">

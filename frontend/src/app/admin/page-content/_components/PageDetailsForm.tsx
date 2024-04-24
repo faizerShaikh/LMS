@@ -86,7 +86,7 @@ const PageDetailsForm = (props: Props) => {
                 color="secondary"
                 className="mr-2"
                 disabled={isLoading}
-                href="/admin/pageContent"
+                href="/admin/page-content"
               >
                 Discard
               </Button>

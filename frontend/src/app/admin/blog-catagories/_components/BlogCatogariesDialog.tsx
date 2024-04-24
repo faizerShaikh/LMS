@@ -66,7 +66,7 @@ export const BlogCategoryDialog = ({
                   <Label text="Name" required />
                   <Input name="name" />
                 </Grid>
-                <Grid xs={6} item>
+                <Grid xs={12} item>
                   <Label text="Slug" required />
                   <Input name="slug" />
                 </Grid>

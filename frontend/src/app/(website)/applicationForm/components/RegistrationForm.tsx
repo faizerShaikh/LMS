@@ -23,7 +23,6 @@ export const RegistrationForm = ({ from }: any) => {
   let courseSpecializationData = [];
   let response = useGetAll({ key: "/configurations/course-specialization" });
   courseSpecializationData = response?.data?.rows;
-  console.log(response, " <<<<<<<<<<<");
 
   const [countryid, setCountryid] = useState(0);
   const [stateid, setstateid] = useState(0);

@@ -4,6 +4,7 @@ import { useGetAll } from "hooks";
 import { UniversityInterface } from "interfaces";
 import { UniversityDialog } from "./_components/UniversityDialog";
 import { MetaDataForm } from "components/admin";
+import removeTags from "utils/removeTags";
 
 const columns = [
   {
@@ -23,6 +24,10 @@ const columns = [
     field: "description",
     flex: 1,
     cellClassName: "text-dark",
+    renderCell: (params: { row: UniversityInterface }) => {
+      const descriptionValue = params.row.description;
+      return removeTags(descriptionValue);
+    },
   },
   {
     headerName: "No of Courses",
@@ -38,8 +43,11 @@ const columns = [
     renderCell: (params: { row: UniversityInterface }) => {
       return (
         <>
-          <UniversityDialog isUpdate={true} data={params.row} 
-          refetchURL="/configurations/university"/>
+          <UniversityDialog
+            isUpdate={true}
+            data={params.row}
+            refetchURL="/configurations/university"
+          />
           <DeleteBox
             title={`Item`}
             url={`/configurations/university`}
@@ -52,9 +60,8 @@ const columns = [
               params.row.metaData
                 ? params.row.metaData
                 : { id: params.row.metaID }
-          
             }
-            refetchURL = "/configurations/university"
+            refetchURL="/configurations/university"
           />
         </>
       );

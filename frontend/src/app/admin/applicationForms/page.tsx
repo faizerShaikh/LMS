@@ -8,6 +8,12 @@ import { ApplicationFormExelExport } from "./components/ApplicationFormsExelExpo
 
 const columns = [
   {
+    headerName: "Srl No",
+    field: "srNo",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
+  {
     headerName: "Full Name",
     field: "fullName",
     flex: 1,
@@ -37,7 +43,7 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: any }) => {
-      const courseValue = params.row.university.name;
+      const courseValue = params?.row?.university?.name;
       return courseValue;
     },
   },
@@ -47,7 +53,7 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: any }) => {
-      const courseValue = params.row.course.name;
+      const courseValue = params?.row?.course?.name;
       return courseValue;
     },
   },
@@ -57,7 +63,7 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: any }) => {
-      const courseValue = params.row.specialization.name;
+      const courseValue = params?.row?.specialization?.name;
       return courseValue;
     },
   },

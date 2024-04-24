@@ -10,7 +10,7 @@ function NextArrow({ onClick }: any) {
       className="hover:bg-gray-50 cursor-pointer rounded-full p-3 flex justify-center items-center "
       onClick={onClick}
     >
-      <ChevronRight size={32} />
+      <ChevronRight size={32} className="hidden desktop:block" />
     </div>
   );
 }
@@ -21,7 +21,7 @@ function PrevArrow({ onClick }: any) {
       className="hover:bg-gray-50 cursor-pointer rounded-full p-3 flex justify-center items-center"
       onClick={onClick}
     >
-      <ChevronLeft size={32} />
+      <ChevronLeft size={32} className="hidden desktop:block" />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import {
   programmeStructure,
 } from "interfaces";
 import Image from "next/image";
+export let metadata = {};
 
 export default async function SingleCourse({
   params,
@@ -19,13 +20,14 @@ export default async function SingleCourse({
   let url = `${process.env.BASE_API_URL}/configurations/course-specialization/slug/${params.slug}/`;
   const response = await axios.get(url);
   data = response.data.data;
-  console.log(data, "<<<<<<<<<<data");
-
   const programHiglightsData: ProgramHiglightsInterface[] =
     data.programHiglights ?? [];
   const middleIndex = Math.ceil(programHiglightsData.length / 2);
   const firstHalf = programHiglightsData.slice(0, middleIndex);
   const secondHalf = programHiglightsData.slice(middleIndex);
+  if (data.metaData) {
+    metadata = data.metaData;
+  }
   return (
     <>
       <section className="bg-gray-100">

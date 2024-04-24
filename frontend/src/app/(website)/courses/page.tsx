@@ -196,7 +196,7 @@ export default async function courses({
         </div>
       </section>
       <section>
-        <div className="container m-auto ">
+        <div className="container m-auto pb-12">
           <div>
             <WebinarCarousel data={data}></WebinarCarousel>
           </div>

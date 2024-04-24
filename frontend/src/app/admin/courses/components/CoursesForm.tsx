@@ -1,5 +1,12 @@
 import React from "react";
-import { Button, Dialog, DropZone, Input, Label } from "../../../../components";
+import {
+  AutoComplete,
+  Button,
+  Dialog,
+  DropZone,
+  Input,
+  Label,
+} from "../../../../components";
 import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
 import { Add, Edit } from "@carbon/icons-react";
@@ -9,7 +16,11 @@ import { Form, Formik } from "formik";
 import { toast } from "utils";
 import { API } from "configs";
 
-export const CourseForm = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
+export const CourseForm = ({
+  data,
+  isUpdate,
+  refetchURL,
+}: CreateUpdateDialogBaseProps) => {
   const initialValues: Course = {
     id: "",
     slug: "",
@@ -58,7 +69,7 @@ export const CourseForm = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
               onSuccess(resp) {
                 handleFileUpload(values.course_image, resp.data.data.id, () => {
                   resetForm();
-                  queryClient.refetchQueries(`/configurations/course`, {
+                  queryClient.refetchQueries(refetchURL, {
                     exact: false,
                     stale: true,
                   });
@@ -86,6 +97,14 @@ export const CourseForm = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
                 <Grid xs={12} item>
                   <Label text="Slug" required />
                   <Input name="slug" />
+                </Grid>
+                <Grid xs={12} item>
+                  <AutoComplete
+                    name="category"
+                    options={["Masters", "Undergraduate", "Cirtificate Course"]}
+                    getOptionLabel={(value: any) => value}
+                    label="Category"
+                  ></AutoComplete>
                 </Grid>
                 <Grid xs={12} item>
                   <Label text="Course Image" required />

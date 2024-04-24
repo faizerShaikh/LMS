@@ -6,11 +6,16 @@ import { CommonContentEventInterface, EventInterface } from "interfaces/event";
 import moment from "moment";
 import removeTags from "utils/removeTags";
 import CarouselCard from "../components/CarouselCard";
+export let metadata = {};
+
 async function SingleEventPage({ params }: { params: { slug: string } }) {
   let data: EventInterface;
   let url = `${process.env.BASE_API_URL}/configurations/event/slug/${params.slug}`;
   const response = await axios.get(url);
   data = response.data.data;
+  if (data.metaData) {
+    metadata = data.metaData;
+  }
   return (
     <>
       <section>

@@ -38,7 +38,13 @@ export const ApplicationRegistrationView = ({
     >
       {({ onClose }) => (
         <Formik
-          initialValues={{ ...initialValues, ...data }}
+          initialValues={{
+            ...initialValues,
+            ...data,
+            universityName: data.university.name,
+            selectCourse: data.course.name,
+            // specialization: data.specialization.name,
+          }}
           onSubmit={() => {}}
         >
           <Form>

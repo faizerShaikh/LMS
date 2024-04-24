@@ -81,6 +81,7 @@ const columns = [
 
 export default function BlogPage() {
   const { data } = useGetAll({ key: "/configurations/blog" });
+  // console.log(data, "<<<<<<<<<");
   return (
     <>
       <PageHeader title="Blog's" />

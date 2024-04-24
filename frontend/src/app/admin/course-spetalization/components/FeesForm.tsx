@@ -42,7 +42,6 @@ const FeesForm = ({ isUpdate, id, data }: any) => {
           },
           {
             onSuccess() {
-              resetForm();
               toast(
                 `Fees Structure ${
                   isUpdate ? "Updated" : "Created"

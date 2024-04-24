@@ -56,7 +56,6 @@ export const InvestmentForLifeForm = ({
           {
             onSuccess(resp) {
               handleFileUpload(values.image, resp.data.data.id, () => {
-                resetForm();
                 queryClient.refetchQueries(refetchURL, {
                   exact: false,
                   stale: true,
@@ -102,7 +101,7 @@ export const InvestmentForLifeForm = ({
                   className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
                   variant="contained"
                   disabled={isLoading}
-                  href="/configurations/course-specialization"
+                  href="/configurations/course-spetalization"
                 >
                   Discard
                 </Button>

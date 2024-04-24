@@ -38,4 +38,9 @@ export const menuItems: menuType[] = [
     title: "Application's",
     path: "/admin/applicationForms",
   },
+  {
+    icon: "Events",
+    title: "Users's",
+    path: "/admin/users",
+  },
 ];

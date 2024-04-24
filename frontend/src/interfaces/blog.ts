@@ -13,7 +13,7 @@ export interface Created_By extends BaseObjInterface {
 }
 
 export interface SingleBlogInterface extends BaseObjInterface {
-  slug ?: string;
+  slug?: string;
   id?: string;
   title: string;
   description: string;
@@ -31,7 +31,7 @@ export interface SingleBlogInterface extends BaseObjInterface {
   // relatedBlogs ?: relatedBlogInterface;
 }
 
-export interface BlogDetailsInterface  {
+export interface BlogDetailsInterface {
   blog: SingleBlogInterface;
   relatedBlogs: relatedBlogInterface[];
   next: nextPreviousInterface;
@@ -51,11 +51,9 @@ export interface relatedBlogInterface {
   deletedAt: string | null;
   metaID: string;
   blog_category_id: string;
-
 }
 
-
-export interface nextPreviousInterface  {
+export interface nextPreviousInterface {
   id: string;
   slug: string;
   title: string;
