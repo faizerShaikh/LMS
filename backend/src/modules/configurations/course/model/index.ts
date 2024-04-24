@@ -8,6 +8,7 @@ import {
 import { CourseSpecialization } from '../../course-specialization/model';
 import { MyBaseModel } from 'src/core/base.model';
 import { MetaDataType } from '../../MetaData/dto/type.enum';
+import { CourseLevel } from '../dtos/enum';
 
 @Table({
   tableName: 'courses',
@@ -44,10 +45,16 @@ export class Course extends MyBaseModel {
   @Column
   name: string;
 
+  @Column({
+    type:DataType.STRING
+  })
+  course_level:CourseLevel;
+
   @HasMany(() => CourseSpecialization, {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
   })
   specializations: CourseSpecialization[];
+
 }
