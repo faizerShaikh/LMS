@@ -27,6 +27,7 @@ export const CourseForm = ({
     name: "",
     description: "",
     course_image: "",
+    course_level: "",
   };
 
   const queryClient = useQueryClient();
@@ -100,10 +101,10 @@ export const CourseForm = ({
                 </Grid>
                 <Grid xs={12} item>
                   <AutoComplete
-                    name="category"
-                    options={["Masters", "Undergraduate", "Cirtificate Course"]}
+                    name="course_level"
+                    options={["Masters", "Undergraduate"]}
                     getOptionLabel={(value: any) => value}
-                    label="Category"
+                    label="Course Level"
                   ></AutoComplete>
                 </Grid>
                 <Grid xs={12} item>

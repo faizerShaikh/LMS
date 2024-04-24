@@ -6,6 +6,7 @@ export interface Course {
   name: string;
   description: string;
   course_image: string;
+  course_level: string;
   createdAt?: string;
   updatedAt?: string;
   deletedAt?: string | null;
