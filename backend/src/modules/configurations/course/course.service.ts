@@ -26,6 +26,31 @@ export class CourseService extends GenericService<
     super(course, reqParams);
   }
 
+  async getCoursesGroupedByLevel() {
+    try {
+      const mastersCourses = await this.course.findAll<Course>({
+        where: { course_level: 'masters' },
+        include: [MetaData],
+      });
+      const bachelorCourses = await this.course.findAll<Course>({
+        where: { course_level: 'bachelor' },
+        include: [MetaData],
+      });
+      
+      const underGrad = await this.course.findAll<Course>({
+        where: { course_level: 'underGrad' },
+        include: [MetaData],
+      });
+      return [
+        { course_level: 'Masters', courses: mastersCourses },
+        { course_level: 'Bachelor', courses: bachelorCourses },
+        { course_level: 'underGrad', courses: underGrad },
+
+      ];
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
+  }
 
   async updateCourseImage(file: Express.Multer.File, id: string) {
     try {

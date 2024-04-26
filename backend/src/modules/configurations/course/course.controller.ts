@@ -1,5 +1,6 @@
 import {
   Controller,
+  Get,
   Param,
   Put,
   UploadedFile,
@@ -33,6 +34,12 @@ export class CourseController extends GenericController<
       path: '/media/course',
     }),
   )
+
+  @Get('level')
+  async getCoursesGroupedByLevel() {
+    return await this.courseService.getCoursesGroupedByLevel();
+  }
+
   updateCourseImage(
     @UploadedFile() file: Express.Multer.File,
     @Param('id') id: string,
