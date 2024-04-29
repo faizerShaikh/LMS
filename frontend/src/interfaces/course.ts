@@ -61,6 +61,7 @@ export interface CourseSpecializationInterface {
   admissionProcess?: AdmissionProcessInterface[];
   program_structures?: programmeStructure[];
   info?: InvestmentForLifeInterface;
+  brouchure?:string
 }
 
 export interface FeesStructureInterface {

@@ -190,7 +190,7 @@ export class CourseSpecialization extends MyBaseModel {
   @Column({
     type: DataType.STRING,
   })
-  brouchre: string;
+  brouchure: string;
 
   // @Column({
   //   type: DataType.BOOLEAN,
@@ -313,8 +313,4 @@ export class CourseSpecialization extends MyBaseModel {
   })
   info: Infos;
 
-  @Column({
-    type:DataType.STRING
-  })
-  brouchure:string
 }

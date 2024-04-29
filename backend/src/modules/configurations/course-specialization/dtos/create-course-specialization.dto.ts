@@ -77,7 +77,7 @@ export class CreateCourseSpecializationDTO {
 
   @IsString()
   @IsNotEmpty()
-  brouchre: string;
+  brouchure: string;
 
   @IsString()
   @IsNotEmpty()
@@ -146,9 +146,4 @@ export class CreateCourseSpecializationDTO {
   @IsString()
   @IsNotEmpty()
   slug: string;
-
-  @IsString()
-  @IsNotEmpty()
-  brouchure:string
-
 }

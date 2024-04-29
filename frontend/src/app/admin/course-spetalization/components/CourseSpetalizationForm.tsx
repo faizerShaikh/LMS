@@ -235,8 +235,8 @@ const CourseSpecializationForm = ({
               <Input name="learningPedagogy" />
             </Grid>
             <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="Brouchre" />
-              <Input name="brouchre" />
+              <Label text="brouchure" />
+              <Input name="brouchure" />
             </Grid>
           </Grid>
 

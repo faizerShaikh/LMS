@@ -43,36 +43,40 @@ export class PageContentService extends GenericService<
   }
 
   async updatePageImage(file: Express.Multer.File, id: string) {
-    const page = await this.getOne<PageContent>(id);
-    const filepath = join(
-      __dirname,
-      '../../../../',
-      '/src/public/' + page.coverImage,
-    );
-    const defaultImagePath = join(
-      __dirname,
-      '../../../../',
-      '/src/public/media/default.png',
-    );
-
-    if (filepath != defaultImagePath)
-      if (fs.existsSync(filepath)) {
-        unlink(filepath, (err) => {
-          if (err) {
-            throw new InternalServerErrorException(err);
-          }
-          console.log('file deleted...');
-        });
+    
+    try {
+      const page = await this.getOne<PageContent>(id);
+      if (!page) {
+        throw new InternalServerErrorException("Card not found");
+      } 
+      
+      const defaultImagePath = 'backend/src/public/media/default.png'; 
+      const filePath = join(__dirname, '../../../../', 'backend/src/public/' + page.coverImage);
+      
+      if (file && file.filename) {
+        const newImagePath = '/media/pageContent/' + file.filename;
+  
+        if (fs.existsSync(filePath)&& filePath!=defaultImagePath) {
+          unlink(filePath, (err) => {
+            if (err) {
+              console.error("Error deleting old image:", err);
+            } else {
+              console.log('Old image deleted...');
+            }
+          });
+        }
+  
         await page.update({
-          coverImage: '/media/pageContent/' + file.filename,
+          coverImage: newImagePath,
         });
-        return 'Cover Image Uploaded Successfully';
+  
+        return 'page Image Uploaded Successfully';
       } else {
-        await page.update({
-          coverImage: '/media/pageContent/' + file.filename,
-        });
-        return 'Cover Image Uploaded Successfully';
+        return 'No file provided for Image Update';
       }
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
   }
 
   async findOneByName(slug: string): Promise<PageContent | null> {
