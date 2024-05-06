@@ -34,7 +34,7 @@ export function HeroSection({
           />
         </div>
         <div className="desktop:w-1/2 w-full mb-4">
-          <h1 className="desktop:font-extrabold font-semibold desktop:text-[40px] laptop:text-[40px] text-[30px] desktop:leading-[56px] laptop:leading-[56px] mt-0 mb-4">
+          <h1 className="desktop:font-extrabold font-semibold desktop:text-[40px] laptop:text-[40px] text-[30px] desktop:leading-[56px] laptop:leading-[56px] mt-0 desktop:mb-4">
             {Herotitle}
           </h1>
           <div

@@ -4,15 +4,11 @@ import { Tabs } from "..";
 import { CourseSpecializationCard } from "components/layout/cards/CourseSpecializationCard";
 import { Course } from "interfaces";
 
-export const CourseTabs = ({
-  CoursesCatagoriData,
-}: {
-  CoursesCatagoriData: Course[];
-}) => {
+export const CourseTabs = ({ CoursesData }: { CoursesData: [] }) => {
   return (
     <div>
       <Tabs
-        tabs={CoursesCatagoriData.map((item, index) => ({
+        tabs={CoursesData.map((item: any, index: any) => ({
           id: index,
           buttonLabel: item.name,
           component: <CourseSpecializationCard item={item} />,

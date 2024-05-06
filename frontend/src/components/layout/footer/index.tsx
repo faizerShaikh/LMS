@@ -11,7 +11,7 @@ export const Footer = () => {
               height={50}
               width={200}
               src="/img2/RiseBack-Final-Logo.png"
-              className="mb-4 size-24"
+              className="mb-4 rounded-full size-24"
               alt="ks"
             />
             <div className="flex mb-4">

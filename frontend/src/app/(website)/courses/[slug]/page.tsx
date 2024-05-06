@@ -31,17 +31,17 @@ export default async function SingleCourse({
   return (
     <>
       <section className="bg-gray-100">
-        <div className="flex container items-center py-8 m-auto">
-          <div className="w-2/4">
+        <div className="desktop:flex container items-center py-8 m-auto">
+          <div className="desktop:w-2/4 w-full mb-4 desktop:mb-0">
             <Image
               src={`${process.env.BASE_MEDIA_URL}/${data.cover_image}`}
               height={400}
               width={300}
               alt=""
-              className="w-full"
+              className="w-full desktop:h-[400px] h-[300px]"
             />
           </div>
-          <div className="w-2/4 px-8  ">
+          <div className="desktop:w-2/4 w-full desktop:px-8  ">
             <h2 className="font-bold text-2xl m-0 pb-6">{data.name}</h2>
             <div
               className="font-semibold mb-10"
@@ -70,44 +70,44 @@ export default async function SingleCourse({
         </div>
       </section>
       <section className="container m-auto my-14">
-        <div className="flex border-2 rounded-2xl shadow-2xl  py-8">
-          <div className="w-1/4 border-r-2 border-black pl-6">
+        <div className="desktop:flex border-2 rounded-2xl shadow-2xl  py-8">
+          <div className="desktop:w-1/4 desktop:border-r-2 border-black pl-6">
             <div className="mb-8">
               <p className="font-bold text-xl m-0">Mode</p>
               <p className="font-medium text-lg m-0 mt-2">
                 {data.delivery_mode}
               </p>
             </div>
-            <div className="">
+            <div className="mb-8">
               <p className="font-bold text-xl m-0">Courses</p>
               <p className="font-medium text-lg m-0 mt-2">{data.courses}</p>
             </div>
           </div>
-          <div className="w-1/4 border-r-2 border-black pl-6">
+          <div className="desktop:w-1/4 desktop:border-r-2 border-black pl-6">
             <div className="mb-8">
               <p className="font-bold text-xl m-0">Learning Path</p>
               <p className="font-medium text-lg  m-0 mt-2">
                 {data.learningPath}
               </p>
             </div>
-            <div className="">
+            <div className="mb-8">
               <p className="font-bold text-xl m-0">Credits</p>
               <p className="font-medium text-lg m-0 mt-2">{data.credits}</p>
             </div>
           </div>
-          <div className="w-1/4 border-r-2 border-black pl-6">
+          <div className="desktop:w-1/4 desktop:border-r-2 border-black pl-6">
             <div className="mb-8">
               <p className="font-bold text-xl m-0">Course Duration</p>
               <p className="font-medium text-lg  m-0 mt-2">{data.duration}</p>
             </div>
-            <div className="">
+            <div className="mb-8">
               <p className="font-bold text-xl m-0">Webinars</p>
               <p className="font-medium text-lg m-0 mt-2">
                 {data.webinar ? "Yes" : "No"}
               </p>
             </div>
           </div>
-          <div className="w-1/4 pl-6 ">
+          <div className="desktop:w-1/4 pl-6 ">
             <div className="mb-8">
               <p className="font-bold text-xl m-0">Fees</p>
               <p className="font-medium text-lg m-0 mt-2">
@@ -129,9 +129,9 @@ export default async function SingleCourse({
             <h2 className="text-center m-0 mb-14 text-3xl font-semibold">
               Programme Structure
             </h2>
-            <div className="flex flex-wrap justify-center gap-10">
+            <div className="desktop:flex desktop:flex-wrap justify-center gap-10">
               {data.program_structures?.map((item: programmeStructure) => (
-                <div className="bg-white !w-[30%] rounded-3xl py-8 px-6 shadow-2xl">
+                <div className="bg-white desktop:!w-[30%] rounded-3xl py-8 px-6 mb-8 desktop:mb-0 shadow-2xl">
                   <div className="flex justify-center">
                     <Image
                       src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
@@ -155,8 +155,8 @@ export default async function SingleCourse({
         </div>
       </section>
       <section className=" bg-gray-100">
-        <div className="container m-auto flex py-8">
-          <div className="w-1/2 flex justify-center items-center">
+        <div className="container m-auto desktop:flex py-8">
+          <div className="desktop:w-1/2 flex justify-center items-center">
             <Image
               src={`${process.env.BASE_MEDIA_URL}/${
                 data.university?.university_image || ""
@@ -164,10 +164,11 @@ export default async function SingleCourse({
               width={300}
               height={200}
               alt="university image"
+              className="mb-4 desktop:mb-0"
             />
           </div>
           <div
-            className="w-1/2"
+            className="desktop:w-1/2"
             dangerouslySetInnerHTML={{
               __html: data.university?.description || "",
             }}
@@ -197,9 +198,9 @@ export default async function SingleCourse({
             <h2 className="text-center m-0 mb-12 text-3xl">
               Programme Highlights
             </h2>
-            <div className="flex px-20">
-              <div className="flex justify-between gap-10 w-full">
-                <div className="!w-1/2">
+            <div className="desktop:flex desktop:px-20">
+              <div className="desktop:flex desktop:justify-between desktop:gap-10 w-full">
+                <div className="desktop:!w-1/2 w-full mb-4 desktop:mb-0">
                   {firstHalf?.map((item: ProgramHiglightsInterface) => (
                     <div className="items-center flex">
                       <Image
@@ -212,7 +213,7 @@ export default async function SingleCourse({
                     </div>
                   ))}
                 </div>
-                <div className="!w-1/2">
+                <div className="desktop:!w-1/2">
                   {secondHalf?.map((item: ProgramHiglightsInterface) => (
                     <div className="items-center flex">
                       <Image
@@ -262,9 +263,9 @@ export default async function SingleCourse({
             <h2 className="text-center m-0 mb-14 text-3xl font-semibold">
               Admission Process
             </h2>
-            <div className="flex justify-center gap-10">
+            <div className="desktop:flex justify-center gap-10">
               {data.admissionProcess?.map((item: AdmissionProcessInterface) => (
-                <div className="bg-white w-[30%] rounded-3xl py-8 px-6 shadow-2xl">
+                <div className="bg-white desktop:w-[30%] mb-10 desktop:mb-0 rounded-3xl py-8 px-6 shadow-2xl">
                   <div className="flex justify-center">
                     <Image
                       src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
@@ -287,14 +288,14 @@ export default async function SingleCourse({
       {data && data.info ? (
         <section className="py-12 ">
           <div className="container m-auto ">
-            <div className="border shadow-lg flex">
-              <div className="w-1/2 px-6">
+            <div className="border shadow-lg desktop:flex">
+              <div className="desktop:w-1/2 px-6  mb-4 desktop:mb-0">
                 <h2 className="text-center">{data.info.title}</h2>
                 <div
                   dangerouslySetInnerHTML={{ __html: data.info.description }}
                 ></div>
               </div>
-              <div className="w-1/2 ">
+              <div className="desktop:w-1/2 ">
                 <Image
                   src={`${process.env.BASE_MEDIA_URL}${data.info.image}`}
                   width={200}
@@ -332,7 +333,7 @@ export default async function SingleCourse({
         </div>
       </section>
       <section className="container m-auto  py-12">
-        <div className="shadow-2xl mx-32 p-4 rounded-md ">
+        <div className="shadow-2xl desktop:mx-32 p-4 rounded-md ">
           <div dangerouslySetInnerHTML={{ __html: data.notes }}></div>
         </div>
       </section>
