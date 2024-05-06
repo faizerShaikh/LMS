@@ -97,11 +97,11 @@ export const RegistrationForm = ({ from }: any) => {
 
   return (
     <form
-      className="border-2  px-12 py-8 bg-white rounded-b-xl border-black w-auto  "
+      className="border-2  desktop:px-12 laptop:px-12 px-4 py-8 bg-white rounded-b-xl border-black w-auto  "
       onSubmit={formik.handleSubmit}
     >
-      <div className="flex flex-wrap justify-between items-center border-b-2  py-8">
-        <div className="!w-[48%] mb-3">
+      <div className="desktop:flex desktop:flex-wrap laptop:flex laptop:flex-wrap justify-between items-center border-b-2  desktop:py-8 laptop:py-8 py-3">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full mb-3">
           <p className="m-0">
             Full Name <span className="text-red-700">*</span>{" "}
           </p>
@@ -128,7 +128,7 @@ export const RegistrationForm = ({ from }: any) => {
             className="!w-full mt-1"
           />
         </div>
-        <div className="!w-[48%] mb-3">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full  mb-3">
           <p className="m-0 ">
             Mobile Number <span className="text-red-700">*</span>{" "}
           </p>
@@ -144,7 +144,7 @@ export const RegistrationForm = ({ from }: any) => {
           </div>
         </div>
 
-        <div className="!w-[48%] mb-3">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full  mb-3">
           <p className="m-0">
             Email ID <span className="text-red-700">*</span>{" "}
           </p>
@@ -172,7 +172,7 @@ export const RegistrationForm = ({ from }: any) => {
             helperText={formik.touched.emailID && formik.errors.emailID}
           />
         </div>
-        <div className="!w-[48%] mb-3">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full  mb-3">
           <p className="m-0 ">
             Date Of Birth <span className="text-red-700">*</span>{" "}
           </p>
@@ -189,7 +189,7 @@ export const RegistrationForm = ({ from }: any) => {
             />
           </div>
         </div>
-        <div className="!w-[48%] mb-3">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full  mb-3">
           <p className="m-0 ">
             Gender <span className="text-red-700">*</span>{" "}
           </p>
@@ -225,7 +225,7 @@ export const RegistrationForm = ({ from }: any) => {
           </TextField>
         </div>
 
-        <div className="!w-[48%] mb-3">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full  mb-3">
           <p className="m-0 ">
             Nationality <span className="text-red-700">*</span>{" "}
           </p>
@@ -263,7 +263,7 @@ export const RegistrationForm = ({ from }: any) => {
           </TextField>
         </div>
 
-        <div className="!w-[48%] mb-3">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full  mb-3">
           <p className="m-0 ">
             Government Id Type <span className="text-red-700">*</span>{" "}
           </p>
@@ -306,8 +306,8 @@ export const RegistrationForm = ({ from }: any) => {
         </div>
       </div>
 
-      <div className="!w-full flex flex-wrap justify-between items-center border-b-2 mb-4 py-8">
-        <div className="!w-[48%] mb-4">
+      <div className="!w-full desktop:flex desktop:flex-wrap laptop:flex laptop:flex-wrap justify-between items-center border-b-2 mb-4 py-8">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full mb-4">
           <p className="m-0 ">
             Country <span className="text-red-700">*</span>{" "}
           </p>
@@ -321,7 +321,7 @@ export const RegistrationForm = ({ from }: any) => {
             />
           </div>
         </div>
-        <div className="!w-[48%] mb-4">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full mb-4">
           <p className="m-0 ">
             State <span className="text-red-700">*</span>{" "}
           </p>
@@ -338,7 +338,7 @@ export const RegistrationForm = ({ from }: any) => {
           </div>
         </div>
 
-        <div className="!w-[48%] mb-4">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full mb-4">
           <p className="m-0 ">
             City <span className="text-red-700">*</span>{" "}
           </p>
@@ -353,7 +353,7 @@ export const RegistrationForm = ({ from }: any) => {
             />
           </div>
         </div>
-        <div className="!w-[48%] mb-4">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full mb-4">
           <p className="m-0 ">
             How do you know about Riseback{" "}
             <span className="text-red-700">*</span>{" "}
@@ -392,8 +392,8 @@ export const RegistrationForm = ({ from }: any) => {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-between items-center  mb-4 py-8">
-        <div className="!w-[48%] mb-4">
+      <div className="desktop:flex desktop:flex-wrap laptop:flex laptop:flex-wrap justify-between items-center  mb-4 py-8">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full mb-4">
           <p className="m-0 ">
             Specialization <span className="text-red-700">*</span>{" "}
           </p>
@@ -438,7 +438,7 @@ export const RegistrationForm = ({ from }: any) => {
           </TextField>
         </div>
 
-        <div className="!w-[48%] mb-4">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full mb-4">
           <p className="m-0 ">
             Select Course <span className="text-red-700">*</span>{" "}
           </p>
@@ -490,7 +490,7 @@ export const RegistrationForm = ({ from }: any) => {
               })}
           </TextField>
         </div>
-        <div className="!w-[48%] mb-4">
+        <div className="desktop:!w-[48%] laptop:!w-[48%] w-full mb-4">
           <p className="m-0 ">
             Select University Name <span className="text-red-700">*</span>{" "}
           </p>

@@ -13,7 +13,7 @@ export default async function Media() {
   // console.log(PressRealeseCards);
   return (
     <>
-      <section className="bg-gray-100 desktop:h-[400px] mb-8">
+      <section className="bg-gray-100 desktop:h-[400px] mb-8 py-10 desktop:py-0">
         <div className="flex desktop:container px-4  m-auto flex-col-reverse desktop:flex-row laptop:container laptop:flex-row">
           <div className="desktop:w-1/2">
             <div className="desktop:w-[500px] desktop:h-[350px] laptop:w-[500px] laptop:h-[350px] w-full relative h-[300px] tablet:h-[400px]">

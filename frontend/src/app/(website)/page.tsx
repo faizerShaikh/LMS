@@ -42,9 +42,14 @@ export default async function Home() {
 
   let CoursesCatagoriData = [];
   const CatagorieResponse = await axios.get(
-    `${process.env.BASE_API_URL}/configurations/course`
+    `${process.env.BASE_API_URL}/configurations/course/course-level`
   );
-  CoursesCatagoriData = CatagorieResponse.data.data.rows;
+  console.log(CatagorieResponse.data.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+  CoursesCatagoriData = CatagorieResponse.data.data;
+
+  const mastersData = CoursesCatagoriData.Master;
+  const bachlorssData = CoursesCatagoriData.Bachelor;
+  const underGradData = CoursesCatagoriData.underGrad;
   return (
     <>
       <section className=" bg-gray-50 h-[400px] ">
@@ -100,11 +105,23 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section>
-        <div className="container m-auto">
+      <section className="container m-auto">
+        <div>
           <h2>Master's Degree</h2>
           <div>
-            <CourseTabs CoursesCatagoriData={CoursesCatagoriData} />
+            <CourseTabs CoursesData={mastersData} />
+          </div>
+        </div>
+        <div>
+          <h2>Bachlor's Degree</h2>
+          <div>
+            <CourseTabs CoursesData={bachlorssData} />
+          </div>
+        </div>
+        <div>
+          <h2>Undergradute's Degree</h2>
+          <div>
+            <CourseTabs CoursesData={underGradData} />
           </div>
         </div>
       </section>

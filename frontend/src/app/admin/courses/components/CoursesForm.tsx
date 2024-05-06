@@ -102,7 +102,7 @@ export const CourseForm = ({
                 <Grid xs={12} item>
                   <AutoComplete
                     name="course_level"
-                    options={["Masters", "Undergraduate"]}
+                    options={["master", "bachelor", "underGrad"]}
                     getOptionLabel={(value: any) => value}
                     label="Course Level"
                   ></AutoComplete>

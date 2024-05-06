@@ -42,7 +42,7 @@ export default async function SingleBlog({
               height={550}
               width={700}
               alt=""
-              className="w-full desktop:h-[550px] h-[350px] mt-4 object-fill"
+              className="w-full desktop:h-[550px] h-[300px] mt-4 object-fill"
             />
             <h2 className="desktop:mt-4 font-semibold py-4 desktop:text-3xl laptop:text-3xl m-0 text-xl desktop:mb-8">
               {data.blog.title}
