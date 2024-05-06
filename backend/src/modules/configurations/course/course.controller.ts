@@ -29,14 +29,14 @@ export class CourseController extends GenericController<
   @Put('course-image/:id')
   @UseInterceptors(
     MulterIntercepter({
-      type: MulterEnum.single,
+      type: MulterEnum.single,  
       fieldName: 'course_image',
       path: '/media/course',
     }),
   )
 
-  @Get('level')
-  async getCoursesGroupedByLevel() {
+  @Get('course-level')
+  async send(){
     return await this.courseService.getCoursesGroupedByLevel();
   }
 
