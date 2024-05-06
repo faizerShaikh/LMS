@@ -9,11 +9,11 @@ export interface CrousesCardProps {
 
 export function CoursesCard({ specialization }: CrousesCardProps) {
   return (
-    <div className="w-[30%] h-[300px] mx-2  shadow-2xl rounded-md mb-4">
+    <div className="desktop:w-[30%] h-[300px] mx-2  shadow-2xl rounded-md mb-4">
       <Image
         width={500}
         height={160}
-        src={`${process.env.BASE_MEDIA_URL}${specialization?.course?.course_image}`}
+        src={`${process.env.NEXT_PUBLIC_BASE_MEDIA_URL}${specialization?.course?.course_image}`}
         alt="img"
         className="w-full rounded-t-md"
       />

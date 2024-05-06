@@ -4,10 +4,10 @@ import { CustomCarousel } from "components/layout/carousel";
 import moment from "moment";
 
 export default function WebinarCarousel({ data }: any) {
-  console.log(data, "<<<<<<,,data");
+  // console.log(data, "<<<<<<,,data");
   return (
     <>
-      <CustomCarousel dots={true} slidesToShow={1}>
+      <CustomCarousel dots={true} slidesToShow={1} autoplay={false}>
         {data.map((item: any) => {
           return (
             <div className="!flex items-center">

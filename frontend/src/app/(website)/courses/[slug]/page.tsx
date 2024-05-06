@@ -20,6 +20,7 @@ export default async function SingleCourse({
   let url = `${process.env.BASE_API_URL}/configurations/course-specialization/slug/${params.slug}/`;
   const response = await axios.get(url);
   data = response.data.data;
+  console.log(data, "<<<<<<<<<<<<Data");
   const programHiglightsData: ProgramHiglightsInterface[] =
     data.programHiglights ?? [];
   const middleIndex = Math.ceil(programHiglightsData.length / 2);
@@ -31,14 +32,14 @@ export default async function SingleCourse({
   return (
     <>
       <section className="bg-gray-100">
-        <div className="desktop:flex container items-center py-8 m-auto">
+        <div className="desktop:flex container items-center py-8 m-auto ">
           <div className="desktop:w-2/4 w-full mb-4 desktop:mb-0">
             <Image
               src={`${process.env.BASE_MEDIA_URL}/${data.cover_image}`}
               height={400}
               width={300}
               alt=""
-              className="w-full desktop:h-[400px] h-[300px]"
+              className="w-full desktop:h-[400px] h-[280px]"
             />
           </div>
           <div className="desktop:w-2/4 w-full desktop:px-8  ">
@@ -176,8 +177,8 @@ export default async function SingleCourse({
         </div>
       </section>
       <section>
-        <div className="container m-auto py-12 flex items-center">
-          <div className="w-[80%]">
+        <div className="container m-auto py-12 desktop:flex laptop:flex items-center">
+          <div className="desktop:w-[80%] laptop:w-[80%]">
             <h2>
               Unlock Your Future : Embrace Digital Marketing with Confidence!{" "}
             </h2>
@@ -187,7 +188,7 @@ export default async function SingleCourse({
               new Heights."{" "}
             </p>
           </div>
-          <div className="w-[20%]">
+          <div className="desktop:w-[20%] laptop:w-[20%]">
             <Button href="#">Enroll Now</Button>
           </div>
         </div>
@@ -239,9 +240,9 @@ export default async function SingleCourse({
                 Recognization & Association
               </h2>
             </div>
-            <div className="flex justify-center gap-12 ">
+            <div className="desktop:flex  laptop:flex justify-center gap-12  ">
               {data.association?.map((item: AssociationInterface) => (
-                <div className="text-center">
+                <div className="text-center mb-8 desktop:mb-0">
                   <Image
                     src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
                     alt="test"
@@ -309,14 +310,14 @@ export default async function SingleCourse({
           </div>
         </section>
       ) : null}
-      {data && data.textarea ? (
+      {/* {data && data.textarea ? (
         <section className="container m-auto py-12">
           <div
             className="border py-4 px-4 rounded-md border-black "
             dangerouslySetInnerHTML={{ __html: data.textarea }}
           ></div>
         </section>
-      ) : null}
+      ) : null} */}
 
       <section>
         <div className="container m-auto">

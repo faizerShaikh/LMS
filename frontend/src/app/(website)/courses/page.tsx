@@ -58,18 +58,19 @@ export default async function courses({
 
   return (
     <>
-      <section className="bg-gray-100 h-[400px] ">
-        <div className="flex container  m-auto">
-          <div className="w-2/4 flex justify-around">
+      <section className="bg-gray-100 desktop:h-[400px] laptop:h-[400px]  ">
+        <div className="desktop:flex laptop:flex container py-8 desktop:py-0 m-auto">
+          <div className="desktop:w-2/4  laptop:w-2/4 flex justify-around">
             <Image
               height={400}
               width={450}
               src="/img2/IT-Course-page.jpg"
               alt=""
+              className="w-full desktop:w-[450px] desktop:h-[400px] h-[300px]"
             />
           </div>
-          <div className="w-2/4 px-8 ">
-            <h2 className="ffont-extrabold text-5xl leading-[56px]  mb-4">
+          <div className="desktop:w-2/4 laptop:w-2/4 desktop:px-8 laptop:px-8 px-4">
+            <h2 className="font-extrabold desktop:text-5xl text-2xl desktop:leading-[56px]  mb-4">
               Popular IT Courses
             </h2>
             <p className="font-medium text-xl mb-4">
@@ -83,7 +84,7 @@ export default async function courses({
             </p>
             <Button
               href="#"
-              className="bg-blue-900 py-2 text-xl px-4 text-white cursor-pointer"
+              className="bg-blue-900 desktop:py-2 laptop:py-2 desktop:text-xl laptop:text-xl text-center px-4 text-white cursor-pointer"
             >
               Explore Professional Courses
             </Button>
@@ -92,7 +93,7 @@ export default async function courses({
       </section>
 
       <section>
-        <div className="container m-auto">
+        <div className="container m-auto ">
           <div className="text-center my-16">
             <h2 className="font-semibold text-4xl mb-4">
               Start a Brand-New Career in as few as Six Weeks !
@@ -102,14 +103,14 @@ export default async function courses({
             </p>
           </div>
 
-          <div className="flex">
-            <div className="w-3/4 flex flex-wrap">
+          <div className="desktop:flex laptop:flex">
+            <div className="desktop:w-3/4  desktop:flex desktop:flex-wrap laptop:w-3/4  laptop:flex laptop:flex-wrap">
               {CoursesCardData.map((item: any) => {
                 return <CoursesCard specialization={item} />;
               })}
             </div>
 
-            <div className="w-1/4 shadow-2xl mb-4 rounded-md p-4 border-2">
+            <div className="desktop:w-1/4 laptop:w-1/4 shadow-2xl mb-4 rounded-md p-4 border-2">
               <h2 className="text-xl font-bold m-0 ">Categories</h2>
               <ul className="p-0">
                 <Button
