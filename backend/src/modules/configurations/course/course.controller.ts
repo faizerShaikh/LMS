@@ -35,6 +35,12 @@ export class CourseController extends GenericController<
     }),
   )
 
+  @Get('levels')
+  async getCourses(): Promise<any> {
+    //return await this.courseService.getCoursesGroupedByLevel();
+    return 'hello'
+  }
+  
   @Get('course-level')
   async send(){
     return await this.courseService.getCoursesGroupedByLevel();
