@@ -45,11 +45,11 @@ export class CourseService extends GenericService<
       });
   
       // Format the response according to the desired structure
-      const groupedCourses = [
-        { Master: mastersCourses },
-        { Batchelors: bachelorCourses },
-        { Undergrad: underGradCourses },
-      ];
+      const groupedCourses = {
+      Master:  mastersCourses ,
+      Bachelor:bachelorCourses ,
+      underGrad:underGradCourses ,
+    };
   
       return groupedCourses;
     } catch (error) {
