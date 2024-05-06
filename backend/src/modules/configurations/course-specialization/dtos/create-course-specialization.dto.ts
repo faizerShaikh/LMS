@@ -52,7 +52,7 @@ export class CreateCourseSpecializationDTO {
   is_published: boolean;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   textarea:string
 
   @IsNumber()

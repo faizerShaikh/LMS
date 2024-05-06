@@ -56,7 +56,7 @@ export class CourseSpecialization extends MyBaseModel {
 
   @Column({
     type: DataType.TEXT,
-    // allowNull: false,
+    allowNull: true,
     // validate: {
     //   notNull: {
     //     msg: 'textarea can not be empty',
