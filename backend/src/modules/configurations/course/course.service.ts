@@ -29,29 +29,33 @@ export class CourseService extends GenericService<
   async getCoursesGroupedByLevel() {
     try {
       const mastersCourses = await this.course.findAll<Course>({
-        where: { course_level: 'masters' },
+        where: { course_level: 'master' },
         include: [MetaData],
       });
+  
       const bachelorCourses = await this.course.findAll<Course>({
         where: { course_level: 'bachelor' },
         include: [MetaData],
       });
       
-      const underGrad = await this.course.findAll<Course>({
+      // Assuming 'underGrad' is meant to be 'Undergrad'
+      const underGradCourses = await this.course.findAll<Course>({
         where: { course_level: 'underGrad' },
         include: [MetaData],
       });
-      return [
+  
+      // Format the response according to the desired structure
+      const groupedCourses = [
         { course_level: 'Masters', courses: mastersCourses },
-        { course_level: 'Bachelor', courses: bachelorCourses },
-        { course_level: 'underGrad', courses: underGrad },
-
+        { course_level: 'Batchelors', courses: bachelorCourses },
+        { course_level: 'Undergrad', courses: underGradCourses },
       ];
+  
+      return groupedCourses;
     } catch (error) {
       throw new InternalServerErrorException(error.message);
     }
   }
-
   async updateCourseImage(file: Express.Multer.File, id: string) {
     try {
       const events = await this.course.findByPk<Course>(id);

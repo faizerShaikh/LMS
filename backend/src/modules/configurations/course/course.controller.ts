@@ -34,22 +34,16 @@ export class CourseController extends GenericController<
       path: '/media/course',
     }),
   )
-
-  @Get('levels')
-  async getCourses(): Promise<any> {
-    //return await this.courseService.getCoursesGroupedByLevel();
-    return 'hello'
-  }
-  
-  @Get('course-level')
-  async send(){
-    return await this.courseService.getCoursesGroupedByLevel();
-  }
-
   updateCourseImage(
     @UploadedFile() file: Express.Multer.File,
     @Param('id') id: string,
   ) {
     return this.courseService.updateCourseImage(file, id);
   }
+
+  @Get('course-level')
+  async send(){
+    return await this.courseService.getCoursesGroupedByLevel();
+  }
+
 }
