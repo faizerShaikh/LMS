@@ -87,30 +87,30 @@ export class CourseSpecializationService extends GenericService<
     return courseSpecialization;
   }
 
-  async update<CourseSpecialization>(
-    data: UpdateCourseSpecializationDTO,
-    id: string,
-  ): Promise<CourseSpecialization> {
-    try {
-      const courseSpecialization = await super.update(data, id);
-      await this.createOtherObjects(data, courseSpecialization, false);
-      return courseSpecialization;
-    } catch (err) {
-      console.error('Error occurred in update method:', err);
-    }
-  }
+  // async update<CourseSpecialization>(
+  //   data: UpdateCourseSpecializationDTO,
+  //   id: string,
+  // ): Promise<CourseSpecialization> {
+  //   try {
+  //     const courseSpecialization = await super.update(data, id);
+  //     await this.createOtherObjects(data, courseSpecialization, false);
+  //     return courseSpecialization;
+  //   } catch (err) {
+  //     console.error('Error occurred in update method:', err);
+  //   }
+  // }
   async updateSyllabus(file: Express.Multer.File, id: string) {
     try {
-      const events =
+      const courseSpecialization =
         await this.courseSpecialization.findByPk<CourseSpecialization>(id);
-      if (!events) {
+      if (!courseSpecialization) {
         throw new InternalServerErrorException('Event not found');
       }
 
       const filePath = join(
         __dirname,
         '../../../../',
-        'backend/src/public/' + events.syllabus,
+        'backend/src/public/' + courseSpecialization.syllabus,
       );
 
       if (file && file.filename) {
@@ -126,7 +126,7 @@ export class CourseSpecializationService extends GenericService<
           });
         }
 
-        await events.update({
+        await courseSpecialization.update({
           syllabus: newImagePath,
         });
 
@@ -140,16 +140,16 @@ export class CourseSpecializationService extends GenericService<
   }
   async updatebrouchure(file: Express.Multer.File, id: string) {
     try {
-      const events =
+      const courseSpecialization =
         await this.courseSpecialization.findByPk<CourseSpecialization>(id);
-      if (!events) {
+      if (!courseSpecialization) {
         throw new InternalServerErrorException('Course spl not found');
       }
 
       const filePath = join(
         __dirname,
         '../../../../',
-        'backend/src/public/brouchure' + events.brouchure,
+        'backend/src/public/brouchure' + courseSpecialization.brouchure,
       );
 
       if (file && file.filename) {
@@ -165,7 +165,7 @@ export class CourseSpecializationService extends GenericService<
           });
         }
 
-        await events.update({
+        await courseSpecialization.update({
           syllabus: newImagePath,
         });
 
@@ -179,22 +179,20 @@ export class CourseSpecializationService extends GenericService<
   }
   async updateCoverImage(file: Express.Multer.File, id: string) {
     try {
-      const events = await this.courseSpecialization.findByPk<CourseSpecialization>(id);
-      if (!events) {
-        throw new InternalServerErrorException('Event not found');
+      const courseSpecialization = await this.courseSpecialization.findByPk<CourseSpecialization>(id);
+      if (!courseSpecialization) {
+        throw new InternalServerErrorException('course_spl not found');
       }
 
-      const defaultImagePath = 'backend/src/public/media/default.png';
       const filePath = join(
         __dirname,
         '../../../../',
-        'backend/src/public/' + events.cover_image,
+        'backend/src/public/' + courseSpecialization.cover_image,
       );
 
       if (file && file.filename) {
-        const newImagePath = '/media/courseSpecialization/' + file.filename;
+        const newImagePath = '/media/course-specialization/cover-image/' + file.filename;
 
-        if (fs.existsSync(filePath) && filePath != defaultImagePath) {
           unlink(filePath, (err) => {
             if (err) {
               console.error('Error deleting old image:', err);
@@ -202,10 +200,10 @@ export class CourseSpecializationService extends GenericService<
               console.log('Old image deleted...');
             }
           });
-        }
+      
 
-        await events.update({
-          eventImage: newImagePath,
+        await courseSpecialization.update({
+          cover_image: newImagePath,
         });
 
         return 'course specialization Image Uploaded Successfully';

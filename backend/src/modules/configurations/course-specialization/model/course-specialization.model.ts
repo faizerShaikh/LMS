@@ -275,31 +275,27 @@ export class CourseSpecialization extends MyBaseModel {
   program_structures: ProgramStructure[];
 
   @HasMany(() => AdmissionProcessCards, {
-    onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
   })
   admissionProcess: AdmissionProcessCards[];
 
   @HasMany(() => Associations, {
-    onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
   })
   association: Associations[];
 
   @HasMany(() => ProgramHighlight, {
-    onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
   })
   programHiglights: ProgramHighlight[];
 
   @HasOne(() => FeesStructure, {
-    onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
-    // foreignKey: 'course_specialization_id',
+    // foreignKey: 'course_specialization_id', 
   })
   fees_structure: FeesStructure;
 
