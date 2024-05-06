@@ -46,9 +46,9 @@ export class CourseService extends GenericService<
   
       // Format the response according to the desired structure
       const groupedCourses = [
-        { course_level: 'Masters', courses: mastersCourses },
-        { course_level: 'Batchelors', courses: bachelorCourses },
-        { course_level: 'Undergrad', courses: underGradCourses },
+        { Master: mastersCourses },
+        { Batchelors: bachelorCourses },
+        { Undergrad: underGradCourses },
       ];
   
       return groupedCourses;
