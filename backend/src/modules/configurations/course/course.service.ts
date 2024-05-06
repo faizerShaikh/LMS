@@ -58,8 +58,8 @@ export class CourseService extends GenericService<
   }
   async updateCourseImage(file: Express.Multer.File, id: string) {
     try {
-      const events = await this.course.findByPk<Course>(id);
-      if (!events) {
+      const course = await this.course.findByPk<Course>(id);
+      if (!course) {
         throw new InternalServerErrorException('Event not found');
       }
 
@@ -67,7 +67,7 @@ export class CourseService extends GenericService<
       const filePath = join(
         __dirname,
         '../../../../',
-        'backend/src/public/' + events.course_image,
+        'backend/src/public/' + course.course_image,
       );
 
       if (file && file.filename) {
@@ -83,8 +83,8 @@ export class CourseService extends GenericService<
           });
         }
 
-        await events.update({
-          eventImage: newImagePath,
+        await course.update({
+          course_image: newImagePath,
         });
 
         return 'course Image Uploaded Successfully';
