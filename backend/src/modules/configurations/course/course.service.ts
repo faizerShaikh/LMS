@@ -71,7 +71,7 @@ export class CourseService extends GenericService<
       );
 
       if (file && file.filename) {
-        const newImagePath = '/media/course/' + file.filename;
+        const newImagePath = 'media/course/' + file.filename;
 
         if (fs.existsSync(filePath) && filePath != defaultImagePath) {
           unlink(filePath, (err) => {
