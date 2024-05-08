@@ -25,7 +25,9 @@ export function BlogCard({
 }: BlogCardProps) {
   if (variant === "primary") {
     return (
-      <div className={`w-full shadow-2xl ${extraClasses}`}>
+      <div
+        className={`w-full shadow-2xl mb-6 desktop:mb-0 laptop:mb-0 ${extraClasses}`}
+      >
         <Image
           height={sizes[size].imageHeight}
           width={500}
@@ -47,13 +49,13 @@ export function BlogCard({
     );
   } else if (variant === "secondary") {
     return (
-      <div className="w-[45%] shadow-2xl rounded mb-10">
+      <div className="desktop:w-[45%] laptop:w-[45%] w-full shadow-2xl rounded pb-2 desktop:pb-0 laptop:pb-0 mb-10">
         <Image
-          height={200}
+          height={250}
           width={400}
           alt="Test"
           src={`${process.env.BASE_MEDIA_URL}${specialization.blog_image}`}
-          className="w-full mb-4 rounded-t-md object-center object-cover"
+          className="w-full mb-4 rounded-t-md object-center object-cover desktop:h-[250px] laptop:h-[250px]  "
         />
         <div className="px-4">
           <p className="text-gray-500 !mb-1 m-0">

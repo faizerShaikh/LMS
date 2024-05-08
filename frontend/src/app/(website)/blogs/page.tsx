@@ -88,8 +88,8 @@ export default async function Blogs({
           </>
         )}
 
-        <div className="flex">
-          <div className="w-[70%] flex flex-wrap justify-between">
+        <div className="desktop:flex desktop:flex-row laptop:flex laptop:flex-row flex flex-col-reverse">
+          <div className="desktop:w-[70%] laptop:w-[70%] desktop:flex desktop:flex-wrap desktop:justify-between laptop:flex laptop:flex-wrap laptop:justify-between">
             {BlogCardData.map((item: any) => (
               <BlogCard
                 variant="secondary"
@@ -99,7 +99,7 @@ export default async function Blogs({
             ))}
           </div>
 
-          <div className="w-[30%] px-8">
+          <div className="desktop:w-[30%] laptop:w-[30%] desktop:px-8 laptop:px-8">
             <input
               type="text"
               placeholder="Search here"

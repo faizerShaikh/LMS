@@ -13,7 +13,7 @@ export function CoursesCard({ specialization }: CrousesCardProps) {
       <Image
         width={500}
         height={160}
-        src={`${process.env.NEXT_PUBLIC_BASE_MEDIA_URL}${specialization?.course?.course_image}`}
+        src={`${process.env.NEXT_PUBLIC_BASE_MEDIA_URL}${specialization?.cover_image}`}
         alt="img"
         className="w-full rounded-t-md"
       />

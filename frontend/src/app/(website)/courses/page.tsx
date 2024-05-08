@@ -41,10 +41,10 @@ export default async function courses({
     );
     CoursesCardData = response.data.data.courseSpecializations;
     LoadMoreButtondata = response.data.data.hasMore;
-    // console.log(
-    //   response.data.data,
-    //   "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-    // );
+    console.log(
+      response.data.data,
+      "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+    );
   } catch (error) {
     console.error("Error fetching Courses data:", error);
   }
@@ -54,12 +54,12 @@ export default async function courses({
     `${process.env.BASE_API_URL}/configurations/webinar`
   );
   data = response.data.data.rows;
-  console.log(data, "<<<,,,data");
+  // console.log(data, "<<<,,,data");
 
   return (
     <>
       <section className="bg-gray-100 desktop:h-[400px] laptop:h-[400px]  ">
-        <div className="desktop:flex laptop:flex container py-8 desktop:py-0 m-auto">
+        <div className="desktop:flex laptop:flex container py-10 desktop:py-0 m-auto">
           <div className="desktop:w-2/4  laptop:w-2/4 flex justify-around">
             <Image
               height={400}
@@ -69,8 +69,8 @@ export default async function courses({
               className="w-full desktop:w-[450px] desktop:h-[400px] h-[300px]"
             />
           </div>
-          <div className="desktop:w-2/4 laptop:w-2/4 desktop:px-8 laptop:px-8 px-4">
-            <h2 className="font-extrabold desktop:text-5xl text-2xl desktop:leading-[56px]  mb-4">
+          <div className="desktop:w-2/4 laptop:w-2/4 desktop:px-8 laptop:px-8 ">
+            <h2 className="font-extrabold desktop:text-5xl text-3xl desktop:leading-[56px]  mb-4">
               Popular IT Courses
             </h2>
             <p className="font-medium text-xl mb-4">
@@ -95,15 +95,15 @@ export default async function courses({
       <section>
         <div className="container m-auto ">
           <div className="text-center my-16">
-            <h2 className="font-semibold text-4xl mb-4">
+            <h2 className="font-semibold desktop:text-4xl laptop:text-4xl text-2xl mb-4">
               Start a Brand-New Career in as few as Six Weeks !
             </h2>
-            <p className="font-medium text-2xl">
+            <p className="font-medium desktop:text-2xl laptop:text-2xl text-xl">
               Accelerate Your Future : Acquire In-Demand IT Technologies
             </p>
           </div>
 
-          <div className="desktop:flex laptop:flex">
+          <div className="desktop:flex desktop:flex-row laptop:flex laptop:flex-row flex flex-col-reverse">
             <div className="desktop:w-3/4  desktop:flex desktop:flex-wrap laptop:w-3/4  laptop:flex laptop:flex-wrap">
               {CoursesCardData.map((item: any) => {
                 return <CoursesCard specialization={item} />;
@@ -141,7 +141,7 @@ export default async function courses({
       <section className="bg-gray-100">
         <div className="container py-16 m-auto">
           <div className="mb-8">
-            <h2 className="text-center font-semibold text-3xl mb-6 ">
+            <h2 className="text-center font-semibold desktop:text-3xl laptop:text-3xl text-2xl  mb-6 ">
               Unlocking Global Opportunities: Navigating the Digital Landscape
               with IT Courses
             </h2>
@@ -158,7 +158,7 @@ export default async function courses({
             </p>
           </div>
           <div>
-            <h2 className="text-center font-semibold text-3xl mb-6 ">
+            <h2 className="text-center font-semibold desktop:text-3xl laptop:text-3xl text-2xl mb-6 ">
               The Growing Relevance of IT Courses
             </h2>
             <p className="font-medium text-xl mb-4">
