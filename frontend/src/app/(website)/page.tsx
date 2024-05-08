@@ -52,19 +52,19 @@ export default async function Home() {
   const underGradData = CoursesCatagoriData.underGrad;
   return (
     <>
-      <section className=" bg-gray-50 h-[400px] ">
-        <div className="flex justify-between items-center gap-10 container m-auto">
-          <div className=" ">
+      <section className=" bg-gray-50 desktop:h-[400px]  py-10 desktop:py-0 tablet:py-0 laptop:py-0">
+        <div className="desktop:flex desktop:justify-between desktop:items-center desktop:gap-10  container m-auto">
+          <div className="">
             <Image
               width={500}
               height={400}
               alt="test"
               src="/img2/Home Page.jpg"
-              className="w-3/4"
+              className="desktop:w-3/4  desktop:!h-[400px] h-[300px] laptop:h-[350px] tablet:h-[350px] w-full"
             />
           </div>
-          <div className="w-1/2 ">
-            <h2 className="font-extrabold text-[52px] leading-[56px] mb-4">
+          <div className="desktop:w-1/2  ">
+            <h2 className="font-extrabold desktop:text-[52px] desktop:leading-[56px] mb-4">
               Educate, Empower, Elevate & Excel
             </h2>
             <p className="font-medium mb-4 text-xl">
@@ -82,15 +82,15 @@ export default async function Home() {
         </div>
       </section>
       <section className="container m-auto py-24">
-        <div className="flex justify-between">
-          <h2 className="font-semibold text-4xl">
+        <div className="desktop:flex laptop:flex tablet-flex justify-between">
+          <h2 className="font-semibold desktop:text-4xl">
             Explore courses to enhance your career
           </h2>
-          <p className="flex items-center text-2xl ">
+          <p className="flex items-center desktop:text-2xl ">
             <Link href="#" className="text-black">
               View all courses
             </Link>
-            <ArrowRight className="size-10 ml-5" />
+            <ArrowRight className="desktop:size-10 ml-5" />
           </p>
         </div>
         <div>
@@ -100,7 +100,7 @@ export default async function Home() {
       <section>
         <div className="container m-auto">
           <h2 className="text-center text-3xl">Our Top University Partners</h2>
-          <div className="w-[1464px] m-auto">
+          <div className="desktop:w-[1464px] m-auto">
             <CarouselCard data={carouselData}></CarouselCard>
           </div>
         </div>
@@ -140,13 +140,13 @@ export default async function Home() {
                   <h2 className="font-semibold  m-0  mb-4 text-2xl">
                     {item.question}
                   </h2>
-                  <div className="flex gap-2">
-                    <div className="w-1/2">
+                  <div className="desktop:flex laptop:flex tablet:flex gap-2">
+                    <div className="desktop:w-1/2 laptop:w-1/2 tablet:w-1/2  ">
                       {firstHalf.map((item: any) => (
                         <FAQ specialization={item} />
                       ))}
                     </div>
-                    <div className="w-1/2">
+                    <div className="desktop:w-1/2 laptop:w-1/2 tablet:w-1/2">
                       {secondHalf.map((item: any) => (
                         <FAQ specialization={item} />
                       ))}
@@ -168,8 +168,8 @@ export default async function Home() {
 
         {events.length > 3
           ? events.slice(0, 3).map((event: any) => (
-              <div className="flex mb-8">
-                <div className="w-1/4">
+              <div className="desktop:flex tablet:flex laptop:flex mb-8">
+                <div className="desktop:w-1/4 laptop:w-1/4 tablet:w-1/4">
                   <h2>
                     <span style={{ color: "#ffcc00", fontSize: "60px" }}>
                       {new Date(event.createdAt).getDate()}
@@ -181,7 +181,7 @@ export default async function Home() {
                     })}
                   </p>
                 </div>
-                <div className="w-1/2 px-2">
+                <div className="desktop:w-1/2 laptop:w-1/2 tablet:w-1/2 px-2">
                   <h2 className="font-bold mb-4 text-lg ">
                     <Link
                       href={`${event.webinarId ? "webinar" : "event"}/${
@@ -201,19 +201,20 @@ export default async function Home() {
                     {removeTags(event.description)}
                   </div>
                 </div>
-                <div className="w-1/4 m-auto px-4">
+                <div className="desktop:w-1/4 desktop:m-auto tablet:w-1/4 tablet:m-auto laptop:w-1/4 laptop:m-auto px-2 mt-4 desktop:mt-0 tablet:mt-0 laptop:mt-0">
                   <Image
                     height={150}
                     width={300}
                     src={`${process.env.BASE_MEDIA_URL}${event.eventImage}`}
                     alt=""
+                    className="desktop:!w-[300px] tablet:!w-[172px]"
                   />
                 </div>
               </div>
             ))
           : events.map((event: any) => (
               <div className="flex mb-8">
-                <div className="w-1/4">
+                <div className="desktop:w-1/4 laptop:w-1/4 tablet:w-1/4">
                   <h2>
                     <span style={{ color: "#ffcc00", fontSize: "60px" }}>
                       {new Date(event.createdAt).getDate()}
@@ -225,7 +226,7 @@ export default async function Home() {
                     })}
                   </p>
                 </div>
-                <div className="w-1/2 px-2">
+                <div className="desktop:w-1/2 desktop:px-2 laptop:px-2 tablet:px-2">
                   <h2 className="font-bold mb-4 text-lg ">
                     <Link
                       href={`${event.webinarId ? "webinar" : "event"}/${
@@ -245,12 +246,13 @@ export default async function Home() {
                     {removeTags(event.description)}
                   </div>
                 </div>
-                <div className="w-1/4 m-auto px-4">
+                <div className="desktop:w-1/4 desktop:m-auto tablet:w-1/4 tablet:m-auto laptop:w-1/4 laptop:m-auto px-2 mt-4 desktop:mt-0 tablet:mt-0 laptop:mt-0">
                   <Image
                     height={150}
                     width={300}
                     src={`${process.env.BASE_MEDIA_URL}${event.eventImage}`}
                     alt=""
+                    className="tablet:!w-[172px]"
                   />
                 </div>
               </div>

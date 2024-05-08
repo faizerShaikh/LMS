@@ -34,8 +34,8 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
           <div className="text-center">
             <h2 className="text-3xl font-semibold m-0 mb-8">{data.name}</h2>
           </div>
-          <div className="flex items-center mb-12">
-            <div className="w-1/2 ">
+          <div className="desktop:flex  desktop:items-center mb-12">
+            <div className="desktop:w-1/2 laptop:w1/2 text-center desktop:text-start laptop:text-start ">
               <p className="text-lg">
                 <span className="text-blue-900 font-semibold">
                   Event Start Date:
@@ -72,7 +72,7 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
                 courses
               </p>
             </div>
-            <div className="w-1/2 flex justify-end">
+            <div className="desktop:w-1/2 laptop:w-1/2 desktop:flex desktop:justify-end laptop:flex laptop:justify-end flex justify-around">
               <WebinarForm
                 title="Event Registration Form"
                 eventId={data.id}
@@ -94,18 +94,18 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
           <div className="text-center">
             <h2 className="uppercase text-3xl">what to expect</h2>
           </div>
-          <div className="flex flex-wrap justify-evenly gap-8">
+          <div className="desktop:flex desktop:flex-wrap desktop:justify-evenly desktop:gap-8 laptop:flex laptop:flex-wrap laptop:justify-evenly laptop:gap-8">
             {data.eventFeatures?.map((item: CommonContentEventInterface) => {
               return (
-                <div className="relative   w-[35%] overflow-hidden ">
+                <div className="relative desktop:w-[35%] laptop:w-[35%] overflow-hidden mb-5 shadow-xl h-72">
                   <Image
                     src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
                     width={300}
                     height={300}
                     alt="test "
-                    className="w-full h-64 rounded-md"
+                    className="w-full h-72 rounded-md brightness-50 "
                   />
-                  <div className="absolute inset-0 text-center flex flex-col justify-end">
+                  <div className="absolute inset-0 text-center flex flex-col justify-end px-4">
                     <h2 className="text-white font-semibold m-0">
                       {item.title}
                     </h2>
@@ -124,8 +124,8 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
             {data.applicationProcess?.map(
               (item: CommonContentEventInterface) => {
                 return (
-                  <div className="w-1/2 flex justify-between bg-blue-900 px-8 py-4 rounded-full h-48 mb-8">
-                    <div className="flex items-center  mr-6 rounded-full bg-white w-[30%]">
+                  <div className="desktop:w-1/2 desktop:flex desktop:justify-between laptop:w-1/2 laptop:flex laptop:justify-between  px-8 py-4 desktop:rounded-full laptop:rounded-full text-center rounded-lg desktop:h-48 laptop:h-48 mb-8 shadow-xl bg-blue-900">
+                    <div className="flex items-center m-auto  desktop:mr-6 laptop:mr-6 mb-4 rounded-full bg-white w-[30%]">
                       <Image
                         src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
                         alt="logo"
@@ -134,11 +134,11 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
                         className="m-auto "
                       />
                     </div>
-                    <div className="text-white w-[70%]">
-                      <h2 className="m-0 text-lg mb-2 font-medium">
+                    <div className="text-white desktop:w-[70%] laptop:w-[70%] text-center">
+                      <h2 className="desktop:m-0 laptop:m-0 desktop:text-lg mb-2 font-bold">
                         {item.title}
                       </h2>
-                      <p className="m-0 font-light text-[15px]">
+                      <p className="m-0 font-light desktop:text-[15px] laptop:text-[15px] text-sm">
                         {item.desription}
                       </p>
                     </div>
@@ -156,21 +156,21 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
           <div className="flex flex-col  items-center">
             {data.selectionProcess?.map((item: CommonContentEventInterface) => {
               return (
-                <div className="w-1/2 flex justify-between  px-8 py-4 rounded-full h-48 mb-8 shadow-xl">
-                  <div className="flex items-center  mr-6 rounded-full bg-blue-900  w-[30%]">
+                <div className="desktop:w-1/2 desktop:flex desktop:justify-between laptop:w-1/2 laptop:flex laptop:justify-between  px-8 py-4 desktop:rounded-full laptop:rounded-full text-center rounded-lg desktop:h-48 laptop:h-48 mb-8 shadow-xl">
+                  <div className="flex items-center  desktop:mr-6 laptop:mr-6 m-auto rounded-full bg-blue-900  w-[30%]">
                     <Image
                       src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
                       alt="logo"
                       width={100}
                       height={100}
-                      className="m-auto "
+                      className="m-auto  "
                     />
                   </div>
-                  <div className=" w-[70%]">
-                    <h2 className="m-0 text-lg mb-2 font-medium">
+                  <div className=" desktop:w-[70%] laptop:w-[70%]">
+                    <h3 className="desktop:m-0 laptop:m-0 desktop:text-lg mb-2 font-bold">
                       {item.title}
-                    </h2>
-                    <p className="m-0 font-light text-[15px]">
+                    </h3>
+                    <p className="m-0 font-light desktop:text-[15px] laptop:text-[15px] text-sm">
                       {item.desription}
                     </p>
                   </div>
@@ -185,10 +185,10 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
           <h2 className="text-center m-0 mb-12 text-3xl font-semibold">
             Winners
           </h2>
-          <div className="flex flex-wrap justify-between gap-5">
+          <div className="desktop:flex desktop:flex-wrap desktop:justify-between desktop:gap-5 laptop:flex laptop:flex-wrap laptop:justify-between laptop:gap-5">
             {data.winners?.map((item: CommonContentEventInterface) => {
               return (
-                <div className="w-[23%] text-center rounded-xl bg-white py-10 px-2  shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+                <div className="desktop:w-[23%] laptop:w-[23%] mb-5 desktop:mb-0 text-center rounded-xl bg-white py-10 px-2  shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
                   <Image
                     src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
                     height={100}

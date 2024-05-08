@@ -13,9 +13,9 @@ const Banner = () => {
       <Fragment>
         {show ? (
           <Paper square elevation={0}>
-            <div className="!w-full flex  py-5 px-4 justify-between text-center !bg-gray-100">
+            <div className="!w-full desktop:flex laptop:flex tablet:flex  py-5 px-4 desktop:justify-between  text-center !bg-gray-100">
               <div>
-                <Typography className="text-2xl">
+                <Typography className="desktop:text-2xl">
                   <span className="font-bold ">
                     Best offer of the year :{" "}
                     <span className="underline"> Save $200</span>{" "}
@@ -25,7 +25,7 @@ const Banner = () => {
                   acess for your team.
                 </Typography>
               </div>
-              <div className="border border-black">
+              <div className="border h-[39px] w-[66px] m-auto mt-4 desktop:mt-0 laptop:mt-0 tablet:mt-0 border-black">
                 <Button onClick={Dismiss} className="bg-white text-black ">
                   x
                 </Button>

@@ -10,7 +10,7 @@ export const CourseSpecializationCard = (item: any) => {
     key: `/configurations/course-specialization?category=${item.item.slug}`,
   });
   return (
-    <section className="w-full px-10 pb-10">
+    <section className="w-full desktop:px-10 pb-10">
       {isLoading && (
         <CustomCarousel infinite={false} slidesToShow={3}>
           <Variants></Variants>
@@ -23,12 +23,12 @@ export const CourseSpecializationCard = (item: any) => {
       )}
       {!isLoading && !!data?.rows?.length && (
         <CustomCarousel
-          infinite={data.rows.length >= 3}
+          infinite={data.rows.length >= 3 ? true : false}
           slidesToShow={data.rows.length >= 3 ? 3 : data.rows.length}
         >
           {data.rows.map((item: CourseSpecializationInterface) => {
             return (
-              <div className="border !w-[350px] h-[470px] rounded-2xl  shadow-lg  m-0">
+              <div className="border desktop:!w-[350px] tablet:w-[300px] laptop:w-[300px] !w-[280px] h-[470px] rounded-2xl  shadow-lg  m-0">
                 <div className="border-b-2 mb-3 ">
                   <Image
                     width={200}

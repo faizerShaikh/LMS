@@ -4,10 +4,10 @@ import { Button } from "..";
 export const ItCoursesCard = () => {
   return (
     <>
-      <div className="flex items-center border border-black rounded-2xl">
-        <div className="w-1/2 p-8">
-          <h2 className="font-bold text-4xl m-0 mb-2">Data Science</h2>
-          <p className="font-medium text-lg mb-6">
+      <div className="desktop:flex desktop:flex-row flex flex-col-reverse items-center border border-black rounded-2xl">
+        <div className="desktop:w-1/2 py-4 !px-4">
+          <h2 className="font-bold desktop:text-4xl m-0 mb-2">Data Science</h2>
+          <p className="font-medium desktop:text-lg mb-6">
             This Data Science, Artificial Intelligence, and Machine learning
             using python course dives into the basices of machine learning using
             an approchable, and well known, programming language
@@ -26,7 +26,7 @@ export const ItCoursesCard = () => {
                 <p className="font-bold m-0">4 Month</p>
               </div>
             </div>
-            <div className="flex items-center w-1/2 px-4">
+            <div className="flex items-center desktop:w-1/2 px-4">
               <Image
                 src="/img2/Star.png"
                 alt=""
@@ -41,18 +41,18 @@ export const ItCoursesCard = () => {
             </div>
           </div>
 
-          <div className="flex justify-between">
-            <Button className="border py-3  text-white text-center w-[49%] rounded-md">
+          <div className="desktop:flex justify-between">
+            <Button className="border desktop:py-3  text-white text-center desktop:w-[49%] w-full rounded-md mb-4">
               Know More
             </Button>
-            <div className="border border-black  w-[49%]">
-              <Button className=" py-3 bg-white text-black text-center w-full rounded-md">
+            <div className="border border-black rounded-md desktop:h-[51px] desktop:w-[49%]">
+              <Button className=" desktop:py-3 bg-white text-black text-center w-full rounded-md">
                 Book a Free Live Session
               </Button>
             </div>
           </div>
         </div>
-        <div className="w-1/2  p-8">
+        <div className="desktop:w-1/2  p-4">
           <Image
             width={500}
             height={400}

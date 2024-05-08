@@ -49,10 +49,7 @@ export function Tabs({ tabs, query }: TabsProps) {
 
   return (
     <Box className="w-full h-full overflow-y-auto">
-      <Box
-        sx={{ borderBottom: 1, borderColor: "divider" }}
-        className="h-full overflow-y-auto"
-      >
+      <div className="overflow-x-auto">
         <MuiTabs
           value={value}
           onChange={handleChange}
@@ -71,7 +68,7 @@ export function Tabs({ tabs, query }: TabsProps) {
             />
           ))}
         </MuiTabs>
-      </Box>
+      </div>
       <Box className="mt-5 pt-1">
         {tabs.map((item) => (
           <TabPanel value={value} index={item.id} key={item.id}>

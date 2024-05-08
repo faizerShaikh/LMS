@@ -17,9 +17,9 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
     <>
       <section className="relative">
         <section>
-          <div className=" container m-auto flex">
+          <div className=" container m-auto desktop:flex">
             <div className=" py-16 w-full flex justify-between">
-              <div className=" w-[80%] ">
+              <div className=" desktop:w-[80%] ">
                 <div className="">
                   <Image
                     src={`${process.env.BASE_MEDIA_URL}/${data.event?.eventImage}`}
@@ -30,8 +30,8 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
                   />
                 </div>
                 <div>
-                  <h2 className="text-4xl">Speakers</h2>
-                  <div className=" flex justify-between">
+                  <h2 className="desktop:text-4xl text-3xl">Speakers</h2>
+                  <div className=" desktop:flex laptop:flex tablet:flex justify-between">
                     {data.speakers.map((item: SpeakersInterface) => {
                       return (
                         <>
@@ -45,7 +45,7 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
                             />
                             <h2 className="font-medium">{item.name}</h2>
                             <p className="m-0">{item.bio}</p>
-                            <div className="flex items-center text-center">
+                            <div className="flex items-center justify-center text-center">
                               <Image
                                 alt="img"
                                 height={100}
@@ -70,8 +70,8 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
                 </div>
               </div>
             </div>
-            <div className="w-[30%]  sticky top-0">
-              <div className="sticky top-0">
+            <div className="desktop:w-[30%] laptop:w-[30%] sticky top-0 pb-10 desktop:pb-0 laptop:pb-0 tablet:pb-10">
+              <div className="sticky top-0 ">
                 <WebinarForm title="Webinar Ragistration Form" />
               </div>
             </div>
@@ -80,7 +80,7 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
 
         <section className="bg-gray-100">
           <div className="container m-auto">
-            <div className="w-[60%] py-10">
+            <div className="desktop:w-[60%] py-10">
               <div
                 dangerouslySetInnerHTML={{ __html: data.agenda || "" }}
                 className="font-medium break-words"
@@ -90,7 +90,7 @@ async function SingleWebinarPage({ params }: { params: { slug: string } }) {
         </section>
         <section>
           <div className="container m-auto">
-            <div className="w-[60%] py-10">
+            <div className="desktop:w-[60%] py-10">
               <div
                 dangerouslySetInnerHTML={{
                   __html: data?.event?.description || "",

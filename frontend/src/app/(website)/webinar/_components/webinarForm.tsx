@@ -59,7 +59,7 @@ export const WebinarForm = ({ title, eventId }: any) => {
 
   return (
     <form
-      className="border-2  w-[400px] px-4 pb-8 bg-white border-black"
+      className="border-2 w-full desktop:w-[400px] laptop:w-[400px] px-4 pb-8 bg-white border-black"
       onSubmit={formik.handleSubmit}
     >
       <p className="font-semibold text-center text-2xl mb-1 mt-4">{title}</p>
