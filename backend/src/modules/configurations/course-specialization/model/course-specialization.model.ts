@@ -114,7 +114,6 @@ export class CourseSpecialization extends MyBaseModel {
 
   @Column({
     type:DataType.STRING,
-    allowNull:false,
   })
   courseType:CourseType
 
