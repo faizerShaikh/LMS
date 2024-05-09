@@ -80,7 +80,7 @@ export class CreateCourseSpecializationDTO {
   brouchure: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   university_id: string;
 
   @IsString()

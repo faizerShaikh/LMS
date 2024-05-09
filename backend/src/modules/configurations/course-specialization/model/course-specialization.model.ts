@@ -1,4 +1,5 @@
 import {
+  AllowNull,
   BelongsTo,
   Column,
   DataType,
@@ -18,6 +19,7 @@ import { MetaDataType } from '../../MetaData/dto/type.enum';
 import { ProgramHighlight } from './program-highlights.model';
 import { Associations } from './associations.model';
 import { Infos } from './info.model';
+import { CourseType } from '../dtos/course-type.enum';
 
 @Table({
   tableName: 'course-specializations',
@@ -109,6 +111,12 @@ export class CourseSpecialization extends MyBaseModel {
     },
   })
   credits: number;
+
+  @Column({
+    type:DataType.STRING,
+    allowNull:false,
+  })
+  courseType:CourseType
 
   @Column({
     type: DataType.STRING,
