@@ -28,7 +28,7 @@ export default async function GlobalPartner({
           Contact Details
         </h2>
         <div className="  justify-between text-center gap-7 grid laptop:grid-cols-2 desktop:grid-cols-4 tablet:grid-cols-2 ">
-          <div className="w-full rounded-md py-8 px-8 shadow-xl mx-auto  grow-1">
+          <div className="w-full rounded-md py-8 px-8 shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] mx-auto  grow-1">
             <Image
               src="/img2/Location.png"
               alt=""
@@ -39,7 +39,7 @@ export default async function GlobalPartner({
             <h2>Address</h2>
             <p className="font-medium">{data.address}</p>
           </div>
-          <div className="w-full  rounded-md py-8 px-8 mx-auto  shadow-xl  grow-1">
+          <div className="w-full  rounded-md py-8 px-8 mx-auto  shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px]  grow-1">
             <Image
               src="/img2/Phone.png"
               alt=""
@@ -50,7 +50,7 @@ export default async function GlobalPartner({
             <h2>Phone</h2>
             <p className="font-medium">{data.phone}</p>
           </div>
-          <div className="w-full  rounded-md py-8 px-8 mx-auto shadow-xl grow-1">
+          <div className="w-full  rounded-md py-8 px-8 mx-auto shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] grow-1">
             <Image
               src="/img2/website.png"
               alt=""
@@ -61,7 +61,7 @@ export default async function GlobalPartner({
             <h2>Website</h2>
             <p className="font-medium">{data.website}</p>
           </div>
-          <div className="w-full  rounded-md py-8 px-8 mx-auto shadow-xl  grow-1">
+          <div className="w-full  rounded-md py-8 px-8 mx-auto shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px]  grow-1">
             <Image
               src="/img2/Mail.png"
               alt=""

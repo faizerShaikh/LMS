@@ -62,7 +62,7 @@ export default async function EventsPage({
           ) : (
             <div className="mr-4 desktop:w-3/4 w-full flex-wrap grid laptop:grid-cols-3 desktop:grid-cols-3 tablet:grid-cols-2 grid-cols-1 gap-5">
               {events.map((item: EventInterface) => (
-                <div className="h-[330px] shadow-2xl rounded-md mb-4 w-full">
+                <div className="h-[330px] shadow-[rgba(17,_17,_26,_0.3)_0px_0px_16px] rounded-md mb-4 w-full">
                   <Image
                     src={`${process.env.BASE_MEDIA_URL}${item.eventImage}`}
                     width={200}

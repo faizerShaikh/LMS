@@ -4,6 +4,8 @@ import { CourseSpecializationInterface } from "interfaces";
 import { CustomCarousel } from "../carousel";
 import { useGetAll } from "hooks";
 import Variants from "components/home/skeleton";
+import Link from "next/link";
+import { Download } from "@carbon/icons-react";
 
 export const CourseSpecializationCard = (item: any) => {
   const { data, isLoading } = useGetAll({
@@ -83,11 +85,19 @@ export const CourseSpecializationCard = (item: any) => {
                       WES Regonised
                     </p>
                   </div>
-                  <div className="flex justify-between px-3 mb-3">
-                    <Button className="px-1 py-2 border-2 w-[49%] rounded-lg ">
-                      View program
-                    </Button>
-                    <Button className="px-1 py-2 border-2 w-[49%] rounded-lg bg-blue-900 text-white ">
+                  <div className="flex justify-between  px-3 mb-3">
+                    <div className="border border-gray-400 w-[49%] rounded-lg">
+                      <Button className="px-1 py-2 border-2 w-full  bg-white text-black rounded-lg ">
+                        <Link
+                          href={`/courses/${item?.slug}`}
+                          className="text-black"
+                        >
+                          View program
+                        </Link>
+                      </Button>
+                    </div>
+                    <Button className="px-1 py-2 border-2 w-[49%] rounded-lg gap-3 bg-blue-900 text-white ">
+                      <Download className="size-5" />
                       Syllabus
                     </Button>
                   </div>

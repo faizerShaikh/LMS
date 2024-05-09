@@ -36,7 +36,7 @@ export default async function SinglePage({
         <div className=" grid desktop:grid-cols-4 tablet:grid-cols-2  text-center gap-5 m-auto   container ">
           {commonPageData?.gallery.map((item: GalleryInterface) => {
             return (
-              <div className="w-[300px] mx-auto rounded-xl shadow-xl ">
+              <div className="w-[300px] mx-auto rounded-xl shadow-[rgba(17,_17,_26,_0.3)_0px_0px_16px] ">
                 <Image
                   alt="Gallery image"
                   height={180}

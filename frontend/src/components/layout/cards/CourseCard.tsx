@@ -9,7 +9,7 @@ export interface CrousesCardProps {
 
 export function CoursesCard({ specialization }: CrousesCardProps) {
   return (
-    <div className="desktop:w-[30%] h-[300px] mx-2  shadow-2xl rounded-md mb-4">
+    <div className="desktop:w-[30%] h-[300px] mx-2  shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] rounded-md mb-4">
       <Image
         width={500}
         height={160}

@@ -4,8 +4,8 @@ import Link from "next/link";
 export const Footer = () => {
   return (
     <>
-      <footer className="bg-black desktop:px-24 px-8">
-        <div className="text-white flex py-8 flex-col desktop:flex desktop:flex-row desktop:justify-between tablet:grid tablet:grid-cols-2 tablet:mx-20 gap-5">
+      <footer className="bg-black ">
+        <div className="text-white container flex py-8 flex-col desktop:flex desktop:flex-row desktop:justify-between tablet:grid tablet:grid-cols-2  gap-5">
           <div>
             <Image
               height={50}
@@ -128,7 +128,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="text-gray-300 pb-4 tablet:mx-20">
+        <div className="text-gray-300 pb-4 container">
           <p>Copyright © 2022. All right reserved by Riseback Edutech.</p>
           <p>
             Design & Developed By{" "}

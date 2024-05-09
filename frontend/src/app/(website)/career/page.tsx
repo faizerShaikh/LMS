@@ -10,11 +10,12 @@ export default function Career() {
           <div className="desktop:w-1/2 desktop:my-auto laptop:my-auto">
             <div className="desktop:w-[500px] desktop:h-[350px] laptop:w-[500px] laptop:h-[350px] w-full relative h-[300px] tablet:h-[400px]">
               <Image
-                // height={400}
-                // width={500}
-                layout="fill"
+                height={400}
+                width={500}
+                // layout="fill"
                 alt="test"
                 src="/img2/Career-Page.jpg"
+                className="desktop:w-[500px] w-full"
               />
             </div>
           </div>

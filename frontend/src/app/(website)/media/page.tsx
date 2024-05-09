@@ -2,6 +2,7 @@ import axios from "axios";
 import Image from "next/image";
 import { MediaPressReleaseInterface } from "interfaces/midiaPressRelese";
 import Link from "next/link";
+import LinkPreview from "./components/Preview";
 export let metadata = {};
 
 export default async function Media() {
@@ -10,7 +11,7 @@ export default async function Media() {
     `${process.env.BASE_API_URL}/configurations/press-release`
   );
   PressRealeseCards = PressREaleseCardResponse.data.data.rows;
-  // console.log(PressRealeseCards);
+  console.log(PressRealeseCards);
   return (
     <>
       <section className="bg-gray-100 desktop:h-[400px] mb-8 py-10 desktop:py-0">
@@ -58,14 +59,15 @@ export default async function Media() {
           {PressRealeseCards.map((PressRealeseCard: any) => {
             return (
               <div className="p-4 border border-black rounded-md">
-                <Image
+                {/* <Image
                   height={200}
                   width={200}
                   // layout="fill"
                   alt="tets"
                   src={`${process.env.BASE_MEDIA_URL}/${PressRealeseCard.coverImage}`}
                   className="mb-4 w-full"
-                />
+                /> */}
+                <LinkPreview url={PressRealeseCard.link}></LinkPreview>
                 <div className="h-20">
                   <Link
                     href={PressRealeseCard.link}

@@ -1,5 +1,4 @@
-"use client";
-import { Grid, Box, Checkbox } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import TextEditor from "components/admin/richTextEditor";
 import {
   AutoComplete,
@@ -9,35 +8,38 @@ import {
   Label,
 } from "components/layout";
 import { API } from "configs";
-import { log } from "console";
 import { Formik, Form } from "formik";
 import { useCreateOrUpdate } from "hooks";
-import {
-  Course,
-  CourseSpecializationInterface,
-  UniversityInterface,
-} from "interfaces/course";
-
+import { CreateUpdateDialogBaseProps } from "interfaces";
+import { Course, CourseSpecializationInterface } from "interfaces/course";
+import { GetCourse } from "lib";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "utils";
 
-type Props = {
-  initialValues: CourseSpecializationInterface;
-  isUpdate: boolean;
-  slug: string;
-  pageId?: string;
-  courseData: Course[];
-  universityData: UniversityInterface[];
-};
-
-const CourseSpecializationForm = ({
-  initialValues,
+const CustomCourseSpecializationForm = async ({
+  data,
   isUpdate,
-  courseData,
-  universityData,
-  pageId,
-}: Props) => {
+  refetchURL,
+}: CreateUpdateDialogBaseProps) => {
+  const initialValues: CourseSpecializationInterface = {
+    id: "",
+    slug: "",
+    name: "",
+    description: "",
+    duration: "",
+    course_id: "",
+    cover_image: "",
+    days: "",
+    syllabus: "",
+    shortInfo: "",
+    notes: "",
+    textarea: "",
+    fees_structure:
+  };
+  let courseData: Course[] = [];
+  let courseDataResponse = await GetCourse();
+  courseData = courseDataResponse?.rows;
   const router = useRouter();
 
   const { mutate, isLoading } = useCreateOrUpdate({
@@ -78,20 +80,15 @@ const CourseSpecializationForm = ({
     <Formik
       initialValues={{
         ...initialValues,
-        university_id: initialValues.university,
         course_id: initialValues.course,
       }}
       onSubmit={(values, { resetForm }) => {
-        console.log(values, "<<<<<<<<<<<values");
+        // console.log(values, "<<<<<<<<<<<values");
 
         mutate(
           {
             ...values,
-            university_id: (values?.university_id as any)?.id,
             course_id: (values?.course_id as any)?.id,
-            credits: +values.credits,
-            student_enrolled: +values.student_enrolled,
-            courses: +values.courses,
           },
           {
             onSuccess(resp) {
@@ -149,6 +146,14 @@ const CourseSpecializationForm = ({
               <Label text="Name" />
               <Input name="name" />
             </Grid>
+            <Grid xs={5.9} flexDirection={"column"}>
+              <Label text="Days" />
+              <Input name="days" />
+            </Grid>
+            <Grid xs={5.9} flexDirection={"column"}>
+              <Label text="Short Info" />
+              <Input name="shortInfo" />
+            </Grid>
             <Grid xs={12} flexDirection={"column"} className="mb-8">
               <Label text="Description" />
               <TextEditor
@@ -158,24 +163,7 @@ const CourseSpecializationForm = ({
                 value={values?.description}
               />
             </Grid>
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="Eligibilty" />
-              <Input name="eligibilty" />
-            </Grid>
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="Delivery Mode" />
-              <Input name="delivery_mode" />
-            </Grid>
-            <Grid xs={5.9} flexDirection={"column"}>
-              <AutoComplete
-                name="university_id"
-                options={universityData || []}
-                getOptionLabel={(value: any) => {
-                  return value.name;
-                }}
-                label="Select University"
-              ></AutoComplete>
-            </Grid>
+
             <Grid xs={5.9} flexDirection={"column"}>
               <AutoComplete
                 name="course_id"
@@ -184,68 +172,10 @@ const CourseSpecializationForm = ({
                 label="Select Course"
               ></AutoComplete>
             </Grid>
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="Credits" />
-              <Input name="credits" />
-            </Grid>
+
             <Grid xs={5.9} flexDirection={"column"}>
               <Label text="Duration" />
               <Input name="duration" />
-            </Grid>
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="Student Enrolled" />
-              <Input name="student_enrolled" />
-            </Grid>
-
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="Is Published" />
-              <Checkbox
-                name="is_published"
-                checked={values.is_published}
-                onChange={(item: any) => {
-                  setFieldValue("is_featured", item.target.checked);
-                }}
-              />
-            </Grid>
-
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="Webinar" />
-              <Checkbox
-                name="webinar"
-                checked={values.webinar}
-                onChange={(item: any) => {
-                  setFieldValue("webinar", item.target.checked);
-                }}
-              />
-            </Grid>
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="International Regonization " />
-              <Checkbox
-                name="internationalRegonization "
-                checked={values.internationalRegonization}
-                onChange={(item: any) => {
-                  setFieldValue(
-                    "internationalRegonization",
-                    item.target.checked
-                  );
-                }}
-              />
-            </Grid>
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="Courses" />
-              <Input name="courses" />
-            </Grid>
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="Learning Path" />
-              <Input name="learningPath" />
-            </Grid>
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="Learning Pedagogy" />
-              <Input name="learningPedagogy" />
-            </Grid>
-            <Grid xs={5.9} flexDirection={"column"}>
-              <Label text="brouchure" />
-              <Input name="brouchure" />
             </Grid>
           </Grid>
 
@@ -296,4 +226,4 @@ const CourseSpecializationForm = ({
   );
 };
 
-export default CourseSpecializationForm;
+export default CustomCourseSpecializationForm;

@@ -16,8 +16,13 @@ export const menuItems: menuType[] = [
   { icon: "Catalog", title: "Courses", path: "/admin/courses" },
   {
     icon: "Catalog",
-    title: "Courses Specialization",
+    title: "University Courses Specialization",
     path: "/admin/course-spetalization",
+  },
+  {
+    icon: "Catalog",
+    title: "Custom Courses Specialization",
+    path: "/admin/custom-course-specialization",
   },
   // { icon: "Events", title: "Students", path: "/admin/students" },
   { icon: "Events", title: "Page Content", path: "/admin/page-content" },

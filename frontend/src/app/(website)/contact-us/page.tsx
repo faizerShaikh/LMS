@@ -23,7 +23,7 @@ export default async function ContactUs() {
           <h2 className="font-semibold text-4xl m-0 pb-12">Enquiries</h2>
           {/* <div className="flex flex-wrap items-center justify-around"> */}
           <div className="desktop:flex flex-wrap items-center justify-around laptop:grid laptop:grid-cols-2 gap-5">
-            <div className=" flex flex-col items-center mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-2xl rounded-md">
+            <div className=" flex flex-col items-center mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] rounded-md">
               <div className="bg-blue-900 rounded-full size-20 mt-4">
                 <Image
                   src="/img2/University-Degree.png"
@@ -44,7 +44,7 @@ export default async function ContactUs() {
                 />
               </Link>
             </div>
-            <div className=" flex flex-col items-center mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-2xl rounded-md">
+            <div className=" flex flex-col items-center mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] rounded-md">
               <div className="bg-blue-900 rounded-full size-20 mt-4 ">
                 <Image
                   alt="hehje"
@@ -65,7 +65,7 @@ export default async function ContactUs() {
                 />
               </Link>
             </div>
-            <div className=" flex flex-col items-center mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-2xl rounded-md">
+            <div className=" flex flex-col items-center mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] rounded-md">
               <div className="bg-blue-900 rounded-full size-20 mt-4 ">
                 <Image
                   alt="hehje"
@@ -86,7 +86,7 @@ export default async function ContactUs() {
                 />
               </Link>
             </div>
-            <div className=" flex flex-col items-center  mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-2xl rounded-md">
+            <div className=" flex flex-col items-center  mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] rounded-md">
               <div className="bg-blue-900 rounded-full size-20 mt-4 ">
                 <Image
                   alt="hehje"
@@ -107,7 +107,7 @@ export default async function ContactUs() {
                 />
               </Link>
             </div>
-            <div className=" flex flex-col items-center  mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-2xl rounded-md">
+            <div className=" flex flex-col items-center  mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] rounded-md">
               <div className="bg-blue-900 rounded-full size-20 mt-4 ">
                 <Image
                   alt="hehje"
@@ -128,7 +128,7 @@ export default async function ContactUs() {
                 />
               </Link>
             </div>
-            <div className=" flex flex-col items-center  mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-2xl rounded-md">
+            <div className=" flex flex-col items-center  mb-8 w-[100%] desktop:w-96 bg-white py-4 shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] rounded-md">
               <div className="bg-blue-900 rounded-full size-20 mt-4 ">
                 <Image
                   alt="hehje"

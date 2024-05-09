@@ -61,7 +61,7 @@ export const InvestmentForLifeForm = ({
                   stale: true,
                 });
                 toast(
-                  `Admission Process ${
+                  `Investment For life  ${
                     isUpdate ? "updated" : "added"
                   } successfully`
                 );
@@ -101,7 +101,7 @@ export const InvestmentForLifeForm = ({
                   className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
                   variant="contained"
                   disabled={isLoading}
-                  href="/configurations/course-spetalization"
+                  href="/admin/course-spetalization"
                 >
                   Discard
                 </Button>

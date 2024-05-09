@@ -41,10 +41,10 @@ export default async function courses({
     );
     CoursesCardData = response.data.data.courseSpecializations;
     LoadMoreButtondata = response.data.data.hasMore;
-    console.log(
-      response.data.data,
-      "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-    );
+    // console.log(
+    //   response.data.data,
+    //   "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+    // );
   } catch (error) {
     console.error("Error fetching Courses data:", error);
   }
@@ -110,7 +110,7 @@ export default async function courses({
               })}
             </div>
 
-            <div className="desktop:w-1/4 laptop:w-1/4 shadow-2xl mb-4 rounded-md p-4 border-2">
+            <div className="desktop:w-1/4 laptop:w-1/4 shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] mb-4 rounded-md p-4 border-2">
               <h2 className="text-xl font-bold m-0 ">Categories</h2>
               <ul className="p-0">
                 <Button

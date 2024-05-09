@@ -56,7 +56,7 @@ const FilterForm = () => {
       }}
     >
       {({ values, setFieldValue, resetForm }) => (
-        <Form className="desktop:w-1/4 laptop:w-1/4 tablet:w-1/2 w-full shadow-2xl h-fit mb-4 rounded-md p-4 border-2">
+        <Form className="desktop:w-1/4 laptop:w-1/4 tablet:w-1/2 w-full shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] h-fit mb-4 rounded-md p-4 border-2">
           <div className="mb-8 pb-8 border-b-2 border-dashed border-black">
             <h2 className="text-xl font-semibold mb-4">Event Types</h2>
             <MyRadioButtons
