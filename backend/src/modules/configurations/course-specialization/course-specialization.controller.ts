@@ -192,4 +192,24 @@ export class CourseSpecializationController extends GenericController<
   ) {
     return this.courseService.updatebrouchure(file, id);
   }
+
+  @Get('university')
+  async getUniversityCourses() {
+    try {
+      const universityCourses = await this.courseService.UniversityCourses();
+      return universityCourses;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @Get('custom')
+  async getCustomCourses() {
+    try {
+      const customCourses = await this.courseService.customCourses();
+      return customCourses;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
