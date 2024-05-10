@@ -183,6 +183,12 @@ export class CourseSpecialization extends MyBaseModel {
     type: DataType.STRING,
     allowNull:true
   })
+  fees: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull:true
+  })
   @ForeignKey(() => University)
   university_id: string;
 
