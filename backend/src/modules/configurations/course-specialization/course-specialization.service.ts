@@ -400,7 +400,7 @@ export class CourseSpecializationService extends GenericService<
           Infos,
         ],
         where: {
-          universityId: {
+          university_id: {
             [Op.not]: null
           }
         }

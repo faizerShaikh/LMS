@@ -63,6 +63,14 @@ export class CreateCourseSpecializationDTO {
   @IsOptional()
   webinar: boolean;
 
+  @IsString()
+  @IsOptional()
+  days:string
+
+  @IsString()
+  @IsOptional()
+  shortInfo:string
+
   @IsNumber()
   @IsOptional()
   courses: number;
@@ -99,6 +107,7 @@ export class CreateCourseSpecializationDTO {
   syllabus:string
 
   @IsBoolean()
+  @IsOptional()
   internationalRegonization: boolean;
 
   @IsString()
@@ -111,17 +120,21 @@ export class CreateCourseSpecializationDTO {
 
   @ValidateNested({ each: true })
   @Type(() => AssociationsDTO)
+  @IsOptional()
   association: AssociationsDTO[];
 
   @ValidateNested({ each: true })
   @Type(() => ProgramHighlightDTO)
+  @IsOptional()
   program_highlight: ProgramHighlightDTO[];
 
   @ValidateNested({ each: true })
+  @IsOptional()
   @Type(() => Associations)
   associations: Associations[];
 
   @ValidateNested({each:true})
+  @IsOptional()
   @Type(()=>Infos)
   infos:Infos
 
@@ -132,6 +145,7 @@ export class CreateCourseSpecializationDTO {
   // @IsOptional()
   // @IsArray()
   @Type(() => ProgramStructureDTO)
+  @IsOptional()
   @ValidateNested({ each: true })
   program_structures: ProgramStructureDTO[];
 
@@ -145,6 +159,7 @@ export class CreateCourseSpecializationDTO {
   // @IsOptional()
   // @IsArray()
   @Type(() => CreateAdmissionProcessCardsDTO)
+  @IsOptional()
   @ValidateNested({ each: true })
   admissionProcess: CreateAdmissionProcessCardsDTO[];
 
