@@ -25,7 +25,7 @@ export class FeesStructure extends Model<FeesStructure> {
 
   @Column({
     type: DataType.INTEGER,
-    // allowNull: false,
+    allowNull: true,
     // validate: {
     //   notNull: {
     //     msg: 'Indian Semester Fees can not be empty',
@@ -39,7 +39,7 @@ export class FeesStructure extends Model<FeesStructure> {
 
   @Column({
     type: DataType.INTEGER,
-    // allowNull: false,
+    allowNull: true,
     // validate: {
     //   notNull: {
     //     msg: 'Indian Annual Fees can not be empty',
@@ -53,7 +53,7 @@ export class FeesStructure extends Model<FeesStructure> {
 
   @Column({
     type: DataType.INTEGER,
-    // allowNull: false,
+    allowNull: true,
     // validate: {
     //   notNull: {
     //     msg: 'Foreign Semester Fees can not be empty',
@@ -67,7 +67,7 @@ export class FeesStructure extends Model<FeesStructure> {
 
   @Column({
     type: DataType.INTEGER,
-    // allowNull: false,
+    allowNull: true,
     // validate: {
     //   notNull: {
     //     msg: 'Foreign Annual Fees can not be empty',
@@ -81,7 +81,7 @@ export class FeesStructure extends Model<FeesStructure> {
 
   @Column({
     type: DataType.TEXT,
-    // allowNull: false,
+    allowNull: true,
     // validate: {
     //   notNull: {
     //     msg: 'Notes can not be empty',
@@ -95,7 +95,7 @@ export class FeesStructure extends Model<FeesStructure> {
 
   @Column({
     type: DataType.STRING,
-    // allowNull: false,
+    allowNull: true,
     // validate: {
     //   notNull: {
     //     msg: 'Course Specialization can not be empty',
