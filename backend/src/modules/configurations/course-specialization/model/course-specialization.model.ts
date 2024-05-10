@@ -30,29 +30,11 @@ export class CourseSpecialization extends MyBaseModel {
   override type = MetaDataType.COURSE_SPECIALIZATION;
   @Column({
     type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Name can not be empty',
-      },
-      notEmpty: {
-        msg: 'Name can not be empty',
-      },
-    },
   })
   name: string;
 
   @Column({
     type: DataType.TEXT,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Description can not be empty',
-      },
-      notEmpty: {
-        msg: 'Description can not be empty',
-      },
-    },
   })
   description: string;
 
@@ -72,62 +54,27 @@ export class CourseSpecialization extends MyBaseModel {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Eligibilty can not be empty',
-      },
-      notEmpty: {
-        msg: 'Eligibilty can not be empty',
-      },
-    },
   })
   eligibilty: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Delivery Mode can not be empty',
-      },
-      notEmpty: {
-        msg: 'Delivery Mode can not be empty',
-      },
-    },
   })
   delivery_mode: string;
 
   @Column({
     type: DataType.INTEGER,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Credits can not be empty',
-      },
-      notEmpty: {
-        msg: 'Credits can not be empty',
-      },
-    },
   })
   credits: number;
 
   @Column({
     type:DataType.STRING,
+    defaultValue:'customCourse'
   })
   courseType:CourseType
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Duration Pedagogy can not be empty',
-      },
-      notEmpty: {
-        msg: 'Duration Pedagogy can not be empty',
-      },
-    },
   })
   duration: string;
 
@@ -145,29 +92,11 @@ export class CourseSpecialization extends MyBaseModel {
   @Column({
     type: DataType.INTEGER,
     defaultValue: 0,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Students Enrolled can not be empty',
-      },
-      notEmpty: {
-        msg: 'Students Enrolled can not be empty',
-      },
-    },
   })
   students_enrolled: number;
 
   @Column({
     type: DataType.BOOLEAN,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Is Published can not be empty',
-      },
-      notEmpty: {
-        msg: 'Is Published can not be empty',
-      },
-    },
   })
   is_published: boolean;
 
@@ -225,6 +154,18 @@ export class CourseSpecialization extends MyBaseModel {
   })
   syllabus:string
 
+  @Column({
+    type: DataType.TEXT
+  })
+  shortInfo:string
+
+  @Column({
+    type:DataType.STRING
+  })
+  days:string
+
+  
+
   // @Column({
   //   type: DataType.TEXT,
   //   allowNull: true,
@@ -240,15 +181,6 @@ export class CourseSpecialization extends MyBaseModel {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'University can not be empty',
-      },
-      notEmpty: {
-        msg: 'University can not be empty',
-      },
-    },
   })
   @ForeignKey(() => University)
   university_id: string;
@@ -258,15 +190,6 @@ export class CourseSpecialization extends MyBaseModel {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Course can not be empty',
-      },
-      notEmpty: {
-        msg: 'Course can not be empty',
-      },
-    },
   })
   @ForeignKey(() => Course)
   course_id: string;

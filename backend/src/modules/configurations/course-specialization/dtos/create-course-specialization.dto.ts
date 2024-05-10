@@ -20,27 +20,27 @@ import { Infos } from '../model/info.model';
 
 export class CreateCourseSpecializationDTO {
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   name: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   description: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   eligibilty: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   delivery_mode: string;
 
   @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   credits: number;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   duration: string;
 
   @IsBoolean()
@@ -48,7 +48,7 @@ export class CreateCourseSpecializationDTO {
   certificate_provided: boolean;
 
   @IsBoolean()
-  @IsNotEmpty()
+  @IsOptional()
   is_published: boolean;
 
   @IsString()
@@ -60,28 +60,28 @@ export class CreateCourseSpecializationDTO {
   student_enrolled: number;
 
   @IsBoolean()
-  @IsNotEmpty()
+  @IsOptional()
   webinar: boolean;
 
   @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   courses: number;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   learningPath: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   learningPedagogy: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   brouchure: string;
 
   
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   courseType: string;
 
   @IsString()
@@ -89,7 +89,7 @@ export class CreateCourseSpecializationDTO {
   university_id: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   course_id: string;
 
   @IsString()
@@ -126,29 +126,29 @@ export class CreateCourseSpecializationDTO {
   infos:Infos
 
   // @IsNumber()
-  // @IsNotEmpty()
+  // @IsOptional()
   // course: number;
 
-  // @IsNotEmpty()
+  // @IsOptional()
   // @IsArray()
   @Type(() => ProgramStructureDTO)
   @ValidateNested({ each: true })
   program_structures: ProgramStructureDTO[];
 
-  // @IsNotEmpty()
+  // @IsOptional()
   // @IsObject()
   @IsOptional()
   @Type(() => FeesStructureDTO)
   @ValidateNested({ each: true })
   fees_structure: FeesStructureDTO;
 
-  // @IsNotEmpty()
+  // @IsOptional()
   // @IsArray()
   @Type(() => CreateAdmissionProcessCardsDTO)
   @ValidateNested({ each: true })
   admissionProcess: CreateAdmissionProcessCardsDTO[];
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   slug: string;
 }

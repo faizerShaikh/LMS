@@ -27,6 +27,7 @@ import { Associations } from './model/associations.model';
 import { AssociationsDTO } from './dtos/associations.dto';
 import { ProgramHighlightDTO } from './dtos/program-highlights.dto';
 import { Infos } from './model/info.model';
+import { Op, where } from 'sequelize';
 @Injectable()
 export class CourseSpecializationService extends GenericService<
   CourseSpecialization,
@@ -193,14 +194,14 @@ export class CourseSpecializationService extends GenericService<
       if (file && file.filename) {
         const newImagePath = '/media/course-specialization/cover-image/' + file.filename;
 
-          unlink(filePath, (err) => {
-            if (err) {
-              console.error('Error deleting old image:', err);
-            } else {
-              console.log('Old image deleted...');
-            }
-          });
-      
+        unlink(filePath, (err) => {
+          if (err) {
+            console.error('Error deleting old image:', err);
+          } else {
+            console.log('Old image deleted...');
+          }
+        });
+
 
         await courseSpecialization.update({
           cover_image: newImagePath,
@@ -383,6 +384,57 @@ export class CourseSpecializationService extends GenericService<
       throw error;
     }
   }
+
+  async UniversityCourses() {
+    try {
+      const courseSpl = await this.courseSpecialization.findAll({
+        include: [
+          MetaData,
+          Course,
+          University,
+          AdmissionProcessCards,
+          FeesStructure,
+          ProgramHighlight,
+          ProgramStructure,
+          Associations,
+          Infos,
+        ],
+        where: {
+          universityId: {
+            [Op.not]: null
+          }
+        }
+      });
+      return courseSpl;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async customCourses() {
+    try {
+      const courseSpl = await this.courseSpecialization.findAll({
+        include: [
+          MetaData,
+          Course,
+          University,
+          AdmissionProcessCards,
+          FeesStructure,
+          ProgramHighlight,
+          ProgramStructure,
+          Associations,
+          Infos,
+        ],
+        where: {
+          courseType: 'customCourse'
+        }
+      });
+      return courseSpl;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 
   async CourseSpecializations(
     isInfinite: boolean,
