@@ -5,6 +5,7 @@ import {
   BasePaginatedDataInterface,
   Course,
   CourseSpecializationInterface,
+  CustomCourseInterface,
 } from "interfaces";
 
 export async function getSingleCourse(
@@ -29,5 +30,19 @@ export async function GetCourse(): Promise<BasePaginatedDataInterface<Course>> {
   } catch (error) {
     console.log(error);
     return { rows: [], count: 0 };
+  }
+}
+
+export async function getSingleCustomCourse(
+  slug: string
+): Promise<CustomCourseInterface | null> {
+  try {
+    const resp = await API.get(
+      "configurations/course-specialization/slug/" + slug
+    );
+    return resp?.data.data;
+  } catch (error) {
+    console.log(error);
+    return null;
   }
 }

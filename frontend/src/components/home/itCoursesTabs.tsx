@@ -1,21 +1,17 @@
 "use client";
 import React from "react";
 import { Tabs } from "..";
-import { CourseSpecializationCard } from "components/layout/cards/CourseSpecializationCard";
-import { Course } from "interfaces";
 import { ItCoursesCard } from "./itCoursesCard";
 
-export const ItCourseTabs = ({}: {}) => {
+export const ItCourseTabs = ({ CoursesData }: { CoursesData: [] }) => {
   return (
     <div>
       <Tabs
-        tabs={[
-          {
-            id: 0,
-            buttonLabel: "Data science ",
-            component: <ItCoursesCard />,
-          },
-        ]}
+        tabs={CoursesData.map((item: any, index: any) => ({
+          id: index,
+          buttonLabel: item.name,
+          component: <ItCoursesCard item={item} />,
+        }))}
       />
     </div>
   );

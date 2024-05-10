@@ -1,3 +1,4 @@
+"use client";
 import { Grid, Box } from "@mui/material";
 import TextEditor from "components/admin/richTextEditor";
 import {
@@ -10,38 +11,22 @@ import {
 import { API } from "configs";
 import { Formik, Form } from "formik";
 import { useCreateOrUpdate } from "hooks";
-import { CreateUpdateDialogBaseProps } from "interfaces";
-import { Course, CourseSpecializationInterface } from "interfaces/course";
-import { GetCourse } from "lib";
-import { useRouter } from "next/navigation";
+import { Course, CustomCourseInterface } from "interfaces/course";
 import React from "react";
 import { toast } from "utils";
 
-const CustomCourseSpecializationForm = async ({
-  data,
+type Props = {
+  initialValues: CustomCourseInterface;
+  isUpdate: boolean;
+  slug: string;
+  id?: string;
+  courseData: Course[];
+};
+const CustomCourseSpecializationForm = ({
+  initialValues,
   isUpdate,
-  refetchURL,
-}: CreateUpdateDialogBaseProps) => {
-  const initialValues: CourseSpecializationInterface = {
-    id: "",
-    slug: "",
-    name: "",
-    description: "",
-    duration: "",
-    course_id: "",
-    cover_image: "",
-    days: "",
-    syllabus: "",
-    shortInfo: "",
-    notes: "",
-    textarea: "",
-    fees_structure:
-  };
-  let courseData: Course[] = [];
-  let courseDataResponse = await GetCourse();
-  courseData = courseDataResponse?.rows;
-  const router = useRouter();
-
+  courseData,
+}: Props) => {
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate
       ? `/configurations/course-specialization/${initialValues.id}`
@@ -83,8 +68,6 @@ const CustomCourseSpecializationForm = async ({
         course_id: initialValues.course,
       }}
       onSubmit={(values, { resetForm }) => {
-        // console.log(values, "<<<<<<<<<<<values");
-
         mutate(
           {
             ...values,
@@ -98,7 +81,7 @@ const CustomCourseSpecializationForm = async ({
                 () => {
                   resetForm();
                   toast(
-                    `Course Specialization ${
+                    `Custom Course Specialization ${
                       isUpdate ? "Updated" : "Created"
                     } Successfully`
                   );
@@ -110,11 +93,10 @@ const CustomCourseSpecializationForm = async ({
                 () => {
                   resetForm();
                   toast(
-                    `Course Specialization ${
+                    `Custom Course Specialization ${
                       isUpdate ? "Updated" : "Created"
                     } Successfully`
                   );
-                  router.push(`/admin/course-spetalization/${values.slug}`);
                 }
               );
             },
@@ -177,6 +159,10 @@ const CustomCourseSpecializationForm = async ({
               <Label text="Duration" />
               <Input name="duration" />
             </Grid>
+            <Grid xs={5.9} flexDirection={"column"}>
+              <Label text="Fees" />
+              <Input name="fees" />
+            </Grid>
           </Grid>
 
           <Grid xs={12} flexDirection={"column"} className="mb-16 mt-8">
@@ -206,7 +192,7 @@ const CustomCourseSpecializationForm = async ({
                 className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
                 variant="contained"
                 disabled={isLoading}
-                href="/admin/course-spetalization"
+                href="/admin/custom-course-specialization"
               >
                 Discard
               </Button>

@@ -2,7 +2,6 @@
 import React from "react";
 import { Tabs } from "..";
 import { CourseSpecializationCard } from "components/layout/cards/CourseSpecializationCard";
-import { Course } from "interfaces";
 
 export const CourseTabs = ({ CoursesData }: { CoursesData: [] }) => {
   return (

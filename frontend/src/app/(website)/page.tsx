@@ -44,12 +44,13 @@ export default async function Home() {
   const CatagorieResponse = await axios.get(
     `${process.env.BASE_API_URL}/configurations/course/course-level`
   );
-  // console.log(CatagorieResponse.data.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+  console.log(CatagorieResponse.data.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
   CoursesCatagoriData = CatagorieResponse.data.data;
 
   const mastersData = CoursesCatagoriData.Master;
   const bachlorssData = CoursesCatagoriData.Bachelor;
   const underGradData = CoursesCatagoriData.underGrad;
+  const customCourseData = CoursesCatagoriData.CustomCourse;
   return (
     <>
       <section className=" bg-gray-50 desktop:h-[400px]  py-10 desktop:py-0 tablet:py-0 laptop:py-0">
@@ -94,7 +95,7 @@ export default async function Home() {
           </p>
         </div>
         <div>
-          <ItCourseTabs />
+          <ItCourseTabs CoursesData={customCourseData} />
         </div>
       </section>
       <section>
