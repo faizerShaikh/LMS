@@ -104,6 +104,9 @@ export class CreateCourseSpecializationDTO {
   @IsOptional()
   notes:string
 
+  
+  @IsString()
+  @IsOptional()
   syllabus:string
 
   @IsBoolean()
