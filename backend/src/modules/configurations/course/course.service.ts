@@ -7,6 +7,7 @@ import { unlink } from 'fs';
 import { join } from 'path';
 import { MetaData } from '../MetaData/meta.model';
 import * as fs from 'fs';
+import { CourseSpecialization } from '../course-specialization/model';
 @Injectable()
 export class CourseService extends GenericService<
   Course,
@@ -14,9 +15,9 @@ export class CourseService extends GenericService<
   UpdateCourseDTO
 >({
   defaultFindOptions: {
-    include: [MetaData],
+    include: [MetaData,CourseSpecialization],
   },
-  includes: [MetaData],
+  includes: [MetaData,CourseSpecialization],
 }) {
   constructor(
     @InjectModel(Course) private course: typeof Course,
@@ -45,14 +46,21 @@ export class CourseService extends GenericService<
       });
   
       const University = await this.course.findAll<Course>({
-        where: { courseType: 'university' },
-        include: [MetaData],
+        include: [
+          {
+            model: CourseSpecialization,
+            where: { courseType: 'university' },
+          },
+        ],
       });
       
-      // Assuming 'underGrad' is meant to be 'Undergrad'
       const customCourse = await this.course.findAll<Course>({
-        where: { courseType: 'customCoures' },
-        include: [MetaData],
+        include: [
+          {
+            model: CourseSpecialization,
+            where: { courseType: 'customCourse' }, // Corrected typo 'customCoures' to 'customCourse'
+          },
+        ],
       });
       // Format the response according to the desired structure
       const groupedCourses = {
