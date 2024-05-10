@@ -83,11 +83,13 @@ export class CourseSpecializationService extends GenericService<
   async create<CourseSpecialization>(
     dto: CreateCourseSpecializationDTO,
   ): Promise<CourseSpecialization> {
+    if (dto.university_id) {
+      dto.courseType = 'university';
+    }
     const courseSpecialization = await super.create(dto);
-    // await this.createOtherObjects(dto, courseSpecialization, true);
     return courseSpecialization;
   }
-
+  
   // async update<CourseSpecialization>(
   //   data: UpdateCourseSpecializationDTO,
   //   id: string,

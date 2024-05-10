@@ -44,11 +44,23 @@ export class CourseService extends GenericService<
         include: [MetaData],
       });
   
+      const University = await this.course.findAll<Course>({
+        where: { courseType: 'university' },
+        include: [MetaData],
+      });
+      
+      // Assuming 'underGrad' is meant to be 'Undergrad'
+      const customCourse = await this.course.findAll<Course>({
+        where: { courseType: 'customCoures' },
+        include: [MetaData],
+      });
       // Format the response according to the desired structure
       const groupedCourses = {
       Master:  mastersCourses ,
       Bachelor:bachelorCourses ,
       underGrad:underGradCourses ,
+      CustomCourse:customCourse,
+      University:University
     };
   
       return groupedCourses;
