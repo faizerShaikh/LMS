@@ -166,4 +166,9 @@ export class CreateCourseSpecializationDTO {
   @IsString()
   @IsOptional()
   slug: string;
+
+  
+  @IsString()
+  @IsOptional()
+  fees: string;
 }
