@@ -20,7 +20,7 @@ export default async function SingleCourse({
   let url = `${process.env.BASE_API_URL}/configurations/course-specialization/slug/${params.slug}/`;
   const response = await axios.get(url);
   data = response.data.data;
-  console.log(data, "<<<<<<<<<<<<Data");
+  console.log(data, "<<<<<<<<<<<<CourseSpecializationInterface Data");
   const programHiglightsData: ProgramHiglightsInterface[] =
     data.programHiglights ?? [];
   const middleIndex = Math.ceil(programHiglightsData.length / 2);
@@ -70,60 +70,104 @@ export default async function SingleCourse({
           </div>
         </div>
       </section>
-      <section className="container m-auto my-14">
-        <div className="desktop:flex border-2 rounded-2xl shadow-2xl  py-8">
-          <div className="desktop:w-1/4 desktop:border-r-2 border-black pl-6">
-            <div className="mb-8">
-              <p className="font-bold text-xl m-0">Mode</p>
-              <p className="font-medium text-lg m-0 mt-2">
-                {data.delivery_mode}
-              </p>
+      {data.courseType === "customCourse" ? (
+        <section className="container m-auto my-14">
+          <div className="desktop:flex border-2 rounded-2xl shadow-2xl  py-8">
+            <div className="desktop:w-1/4 desktop:border-r-2 text-center border-black pl-6">
+              <Image
+                src={"/img2/Watch.svg"}
+                alt="test"
+                width={70}
+                height={70}
+              ></Image>
+              <p className="text-lg font-medium">{data.duration}</p>
             </div>
-            <div className="mb-8">
-              <p className="font-bold text-xl m-0">Courses</p>
-              <p className="font-medium text-lg m-0 mt-2">{data.courses}</p>
+            <div className="desktop:w-1/4 desktop:border-r-2 text-center border-black pl-6">
+              <Image
+                src={"/img2/calendar_2278049.svg"}
+                alt="test"
+                width={70}
+                height={70}
+              ></Image>
+              <p className="text-lg font-medium">{data.days}</p>
             </div>
-          </div>
-          <div className="desktop:w-1/4 desktop:border-r-2 border-black pl-6">
-            <div className="mb-8">
-              <p className="font-bold text-xl m-0">Learning Path</p>
-              <p className="font-medium text-lg  m-0 mt-2">
-                {data.learningPath}
-              </p>
+            <div className="desktop:w-1/4 desktop:border-r-2 text-center border-black pl-6">
+              <Image
+                src={"/img2/Case-Study.svg"}
+                alt="test"
+                width={70}
+                height={70}
+              ></Image>
+              <p className="text-lg font-medium"> {data.shortInfo} </p>
             </div>
-            <div className="mb-8">
-              <p className="font-bold text-xl m-0">Credits</p>
-              <p className="font-medium text-lg m-0 mt-2">{data.credits}</p>
-            </div>
-          </div>
-          <div className="desktop:w-1/4 desktop:border-r-2 border-black pl-6">
-            <div className="mb-8">
-              <p className="font-bold text-xl m-0">Course Duration</p>
-              <p className="font-medium text-lg  m-0 mt-2">{data.duration}</p>
-            </div>
-            <div className="mb-8">
-              <p className="font-bold text-xl m-0">Webinars</p>
-              <p className="font-medium text-lg m-0 mt-2">
-                {data.webinar ? "Yes" : "No"}
-              </p>
-            </div>
-          </div>
-          <div className="desktop:w-1/4 pl-6 ">
-            <div className="mb-8">
-              <p className="font-bold text-xl m-0">Fees</p>
-              <p className="font-medium text-lg m-0 mt-2">
-                Indian : INR {data.fees_structure?.indian_annual_fees}
-              </p>
-              <p className="font-medium text-lg m-0 mt-2">
-                Foreigners : $ {data.fees_structure?.foreign_annual_fees}
-              </p>
-              <p className="font-medium text-lg m-0 mt-2">
-                {data.fees_structure?.notes}
-              </p>
+            <div className="desktop:w-1/4  text-center  pl-6">
+              <Image
+                src={"/img2/money.svg"}
+                alt="test"
+                width={70}
+                height={70}
+              ></Image>
+              <p className="text-lg font-medium">&#x24; {data.fees}</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="container m-auto my-14">
+          <div className="desktop:flex border-2 rounded-2xl shadow-2xl  py-8">
+            <div className="desktop:w-1/4 desktop:border-r-2 border-black pl-6">
+              <div className="mb-8">
+                <p className="font-bold text-xl m-0">Mode</p>
+                <p className="font-medium text-lg m-0 mt-2">
+                  {data.delivery_mode}
+                </p>
+              </div>
+              <div className="mb-8">
+                <p className="font-bold text-xl m-0">Courses</p>
+                <p className="font-medium text-lg m-0 mt-2">{data.courses}</p>
+              </div>
+            </div>
+            <div className="desktop:w-1/4 desktop:border-r-2 border-black pl-6">
+              <div className="mb-8">
+                <p className="font-bold text-xl m-0">Learning Path</p>
+                <p className="font-medium text-lg  m-0 mt-2">
+                  {data.learningPath}
+                </p>
+              </div>
+              <div className="mb-8">
+                <p className="font-bold text-xl m-0">Credits</p>
+                <p className="font-medium text-lg m-0 mt-2">{data.credits}</p>
+              </div>
+            </div>
+            <div className="desktop:w-1/4 desktop:border-r-2 border-black pl-6">
+              <div className="mb-8">
+                <p className="font-bold text-xl m-0">Course Duration</p>
+                <p className="font-medium text-lg  m-0 mt-2">{data.duration}</p>
+              </div>
+              <div className="mb-8">
+                <p className="font-bold text-xl m-0">Webinars</p>
+                <p className="font-medium text-lg m-0 mt-2">
+                  {data.webinar ? "Yes" : "No"}
+                </p>
+              </div>
+            </div>
+            <div className="desktop:w-1/4 pl-6 ">
+              <div className="mb-8">
+                <p className="font-bold text-xl m-0">Fees</p>
+                <p className="font-medium text-lg m-0 mt-2">
+                  Indian : INR {data.fees_structure?.indian_annual_fees}
+                </p>
+                <p className="font-medium text-lg m-0 mt-2">
+                  Foreigners : $ {data.fees_structure?.foreign_annual_fees}
+                </p>
+                <p className="font-medium text-lg m-0 mt-2">
+                  {data.fees_structure?.notes}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {data.program_structures && data.program_structures.length > 0 ? (
         <section className="bg-gray-100">
           <div className="container py-16 m-auto">
@@ -149,50 +193,65 @@ export default async function SingleCourse({
           </div>
         </section>
       ) : null}
-      <section>
-        <div className="container m-auto py-12">
-          <h2 className="text-2xl">Eligibilty Criteria</h2>
-          <p className="font-semibold">{data.eligibilty}</p>
-        </div>
-      </section>
-      <section className=" bg-gray-100">
-        <div className="container m-auto desktop:flex py-8">
-          <div className="desktop:w-1/2 flex justify-center items-center">
-            <Image
-              src={`${process.env.BASE_MEDIA_URL}/${
-                data.university?.university_image || ""
-              }`}
-              width={300}
-              height={200}
-              alt="university image"
-              className="mb-4 desktop:mb-0"
-            />
+      {data.courseType === "customCourse" ? (
+        ""
+      ) : (
+        <section>
+          <div className="container m-auto py-12">
+            <h2 className="text-2xl">Eligibilty Criteria</h2>
+            <p className="font-semibold">{data.eligibilty}</p>
           </div>
-          <div
-            className="desktop:w-1/2"
-            dangerouslySetInnerHTML={{
-              __html: data.university?.description || "",
-            }}
-          ></div>
-        </div>
-      </section>
-      <section>
-        <div className="container m-auto py-12 desktop:flex laptop:flex items-center">
-          <div className="desktop:w-[80%] laptop:w-[80%]">
-            <h2>
-              Unlock Your Future : Embrace Digital Marketing with Confidence!{" "}
-            </h2>
-            <p className="font-medium ">
-              Join us to Equip Yourself with the Essential Skills Sought After
-              by Employers Worldwide, Empowering you to Propel your Career to
-              new Heights."{" "}
-            </p>
+        </section>
+      )}
+
+      {data.courseType === "customCourse" ? (
+        ""
+      ) : (
+        <section className=" bg-gray-100">
+          <div className="container m-auto desktop:flex py-8">
+            <div className="desktop:w-1/2 flex justify-center items-center">
+              <Image
+                src={`${process.env.BASE_MEDIA_URL}/${
+                  data.university?.university_image || ""
+                }`}
+                width={300}
+                height={200}
+                alt="university image"
+                className="mb-4 desktop:mb-0"
+              />
+            </div>
+            <div
+              className="desktop:w-1/2"
+              dangerouslySetInnerHTML={{
+                __html: data.university?.description || "",
+              }}
+            ></div>
           </div>
-          <div className="desktop:w-[20%] laptop:w-[20%]">
-            <Button href="#">Enroll Now</Button>
+        </section>
+      )}
+
+      {data.courseType === "customCourse" ? (
+        ""
+      ) : (
+        <section>
+          <div className="container m-auto py-12 desktop:flex laptop:flex items-center">
+            <div className="desktop:w-[80%] laptop:w-[80%]">
+              <h2>
+                Unlock Your Future : Embrace Digital Marketing with Confidence!{" "}
+              </h2>
+              <p className="font-medium ">
+                Join us to Equip Yourself with the Essential Skills Sought After
+                by Employers Worldwide, Empowering you to Propel your Career to
+                new Heights."{" "}
+              </p>
+            </div>
+            <div className="desktop:w-[20%] laptop:w-[20%]">
+              <Button href="#">Enroll Now</Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
       {data?.programHiglights && data.programHiglights.length > 0 ? (
         <section>
           <div className="container m-auto py-16">
@@ -310,29 +369,34 @@ export default async function SingleCourse({
           </div>
         </section>
       ) : null}
-      {/* {data && data.textarea ? (
+      {data && data.textarea ? (
         <section className="container m-auto py-12">
           <div
             className="border py-4 px-4 rounded-md border-black "
             dangerouslySetInnerHTML={{ __html: data.textarea }}
           ></div>
         </section>
-      ) : null} */}
+      ) : null}
 
-      <section>
-        <div className="container m-auto">
-          <div className=" text-center">
-            <p className="font-medium">Want moree details?</p>
-            <p className="font-medium">
-              Expolre the coures thoroughly by downloading the brochure
-            </p>
-            <Button href="#">
-              <Download className="mr-2 size-5" />
-              Download Brochure
-            </Button>
+      {data.courseType === "customCourse" ? (
+        ""
+      ) : (
+        <section>
+          <div className="container m-auto">
+            <div className=" text-center">
+              <p className="font-medium">Want moree details?</p>
+              <p className="font-medium">
+                Expolre the coures thoroughly by downloading the brochure
+              </p>
+              <Button href="#">
+                <Download className="mr-2 size-5" />
+                Download Brochure
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
       <section className="container m-auto  py-12">
         <div className="shadow-2xl desktop:mx-32 p-4 rounded-md ">
           <div dangerouslySetInnerHTML={{ __html: data.notes }}></div>

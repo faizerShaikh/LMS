@@ -64,6 +64,8 @@ export interface CourseSpecializationInterface {
   brouchure?: string;
   days?: string;
   shortInfo?: string;
+  courseType?: string;
+  fees?: number;
 }
 
 export interface FeesStructureInterface {

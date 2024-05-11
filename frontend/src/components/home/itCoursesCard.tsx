@@ -44,7 +44,7 @@ export const ItCoursesCard = (item: any) => {
                         <p className="m-0 mb-1">Duration</p>
                         <div
                           className="font-bold m-0"
-                          dangerouslySetInnerHTML={{ __html: item.duration }}
+                          dangerouslySetInnerHTML={{ __html: item.days }}
                         ></div>
                       </div>
                     </div>

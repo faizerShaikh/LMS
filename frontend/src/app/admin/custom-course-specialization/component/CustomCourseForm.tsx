@@ -12,6 +12,7 @@ import { API } from "configs";
 import { Formik, Form } from "formik";
 import { useCreateOrUpdate } from "hooks";
 import { Course, CustomCourseInterface } from "interfaces/course";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "utils";
 
@@ -27,6 +28,8 @@ const CustomCourseSpecializationForm = ({
   isUpdate,
   courseData,
 }: Props) => {
+  const router = useRouter();
+
   const { mutate, isLoading } = useCreateOrUpdate({
     url: isUpdate
       ? `/configurations/course-specialization/${initialValues.id}`
@@ -97,6 +100,7 @@ const CustomCourseSpecializationForm = ({
                       isUpdate ? "Updated" : "Created"
                     } Successfully`
                   );
+                  router.push("/admin/custom-course-specialization");
                 }
               );
             },

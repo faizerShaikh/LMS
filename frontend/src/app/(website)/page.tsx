@@ -44,7 +44,7 @@ export default async function Home() {
   const CatagorieResponse = await axios.get(
     `${process.env.BASE_API_URL}/configurations/course/course-level`
   );
-  console.log(CatagorieResponse.data.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+  // console.log(CatagorieResponse.data.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
   CoursesCatagoriData = CatagorieResponse.data.data;
 
   const mastersData = CoursesCatagoriData.Master;
