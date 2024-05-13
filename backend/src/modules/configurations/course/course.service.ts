@@ -64,7 +64,7 @@ export class CourseService extends GenericService<
             model: CourseSpecialization,
             where: {
               courseType: { [Op.not]: 'customCourse' } // Add condition to exclude customCourse
-            }
+            } 
           },
           MetaData
         ]
@@ -92,9 +92,7 @@ export class CourseService extends GenericService<
         Master: mastersCourses,
         Bachelor: bachelorCourses,
         underGrad: underGradCourses,
-        CustomCourse: customCourse,
-        University: University
-      };
+        CustomCourse: customCourse};
 
       return groupedCourses;
     } catch (error) {

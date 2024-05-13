@@ -451,7 +451,9 @@ export class CourseSpecializationService extends GenericService<
     let category;
 
     try {
-      let whereClause: any = {};
+      let whereClause: any = {
+        courseType: { [Op.not]: 'customCourse' } // Add condition to exclude customCourse
+      };
       if (slug) {
         category = await this.course.findOne({ where: { slug: slug } });
         if (!category) {
