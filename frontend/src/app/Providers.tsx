@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 import { theme } from "configs";

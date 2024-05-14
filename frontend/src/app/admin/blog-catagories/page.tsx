@@ -1,45 +1,25 @@
-"use client";
-
-import { DataGrid, DeleteBox, PageHeader } from "components/layout";
-import { useGetAll } from "hooks";
-import { Created_By } from "interfaces/blog";
+import { PageHeader } from "components/layout/pageHeader/index";
+import { DataGrid } from "components/layout/dataGrid/index";
 import { BlogCategoryDialog } from "./_components/BlogCatogariesDialog";
+import { columns } from "./columns";
+import axios from "axios";
 
-const columns = [
-  {
-    headerName: "Name",
-    field: "name",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Action",
-    field: "action",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: Created_By }) => {
-      return (
-        <>
-         <BlogCategoryDialog isUpdate={true} data={params.row}/>
-          <DeleteBox
-            url={`/configurations/blog/blog-category`}
-            refetchUrl= "/configurations/blog/blog-category"
-            title={`Delete ${params.row.name}`}
-            data={params.row.id}
-          />
-        </>
-      );
-    },
-  },
-  
-];
-
-export default function MediaPage() {
-  const { data } = useGetAll({ key: "/configurations/blog/blog-category" });
+async function getData() {
+  const res = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/blog/blog-category`
+  );
+  return res.data.data.rows;
+}
+export default async function MediaPage() {
+  const data = await getData();
   return (
     <>
       <PageHeader title="Blog's Category" />
-      <DataGrid addButton={<BlogCategoryDialog />} columns={columns} rows={data} />
+      <DataGrid
+        addButton={<BlogCategoryDialog />}
+        columns={columns}
+        rows={data}
+      />
     </>
   );
 }

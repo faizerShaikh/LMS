@@ -37,23 +37,23 @@ export function SideNav(props: Props) {
       <CssBaseline />
       <AppBar handleDrawerToggle={handleDrawerToggle} />
       <Box
-        component='nav'
+        component="nav"
         sx={{
           width: { sm: width.current, lg: 280, xl: 300 },
           flexShrink: { sm: 0 },
         }}
-        aria-label='mailbox folders'
+        aria-label="mailbox folders"
       >
         <Drawer
           container={container.current}
-          variant='temporary'
+          variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
             keepMounted: true,
           }}
           sx={{
-            "display": { xs: "block", sm: "none" },
+            display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: width.current,
@@ -63,9 +63,9 @@ export function SideNav(props: Props) {
           <DrawerBody />
         </Drawer>
         <Drawer
-          variant='permanent'
+          variant="permanent"
           sx={{
-            "display": { xs: "none", sm: "block" },
+            display: { xs: "none", sm: "block" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: {
@@ -81,7 +81,7 @@ export function SideNav(props: Props) {
         </Drawer>
       </Box>
       <Box
-        component='main'
+        component="main"
         sx={{
           flexGrow: 1,
           p: 3,
@@ -94,7 +94,7 @@ export function SideNav(props: Props) {
       >
         <Toolbar />
         <Box
-          className='px-5 pt-2 pb-6'
+          className="px-5 pt-2 pb-6"
           sx={{
             border: `1px solid ${colors.secondary.dark}60`,
             height: "calc(100vh - 110px)",

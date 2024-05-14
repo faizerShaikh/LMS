@@ -1,3 +1,4 @@
+"use client";
 import { Box, Grid, IconButton } from "@mui/material";
 import React from "react";
 import { Button, Dialog, Input, Label } from "../../../../components";
