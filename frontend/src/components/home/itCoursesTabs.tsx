@@ -4,6 +4,7 @@ import { Tabs } from "..";
 import { ItCoursesCard } from "./itCoursesCard";
 
 export const ItCourseTabs = ({ CoursesData }: { CoursesData: [] }) => {
+  // console.log(CoursesData, "<<<vdvdhvdhv");
   return (
     <div>
       <Tabs

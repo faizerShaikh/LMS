@@ -1,4 +1,3 @@
-"use client";
 import { PageHeader } from "components/layout/pageHeader";
 import React from "react";
 import { WebinarInterface, WebinarResponseInterface } from "interfaces/webinar";

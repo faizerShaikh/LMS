@@ -5,8 +5,7 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import axios from "axios";
 import { toast } from "utils";
-import { AutoComplete, Button, Checkbox } from "components/layout";
-import DatePicker from "react-datepicker";
+import { AutoComplete, Button, Checkbox, DatePicker } from "components/layout";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
@@ -18,6 +17,7 @@ import {
 import "react-country-state-city/dist/react-country-state-city.css";
 import PhoneNumberField from "app/(website)/webinar/_components/pgoneInpute";
 import { useGetAll } from "hooks";
+import ReactDatePicker from "react-datepicker";
 
 export const RegistrationForm = ({ from }: any) => {
   let courseSpecializationData = [];
@@ -178,7 +178,8 @@ export const RegistrationForm = ({ from }: any) => {
           </p>
           {/* the date is geting selected and sending through api also but the change is not showing in the ui */}
           <div className="border py-2 mt-1 px-4 h-[39px]  rounded-md border-gray-300">
-            <DatePicker
+            <ReactDatePicker
+              // value={formik.values.dateOfBirth}
               name="dateOfBirth"
               selected={startDate}
               onChange={(date) => {

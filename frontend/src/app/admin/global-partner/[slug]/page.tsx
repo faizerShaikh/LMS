@@ -1,4 +1,3 @@
-"use client";
 import { PageHeader } from "components/layout/pageHeader";
 import React from "react";
 import { GlobalPartnerInterface } from "interfaces/globalPartner";

@@ -61,7 +61,7 @@ export default async function Blogs({
 
   return (
     <>
-      <section className="text-center container m-auto mb-6">
+      <section className="text-center container px-8 m-auto mb-6">
         <h2 className="font-extrabold text-5xl leading-[56px]">
           RiseBack Blogs
         </h2>
@@ -74,7 +74,7 @@ export default async function Blogs({
         <FeaturedBlog FeaturedBlogData={FeaturedBlogData}></FeaturedBlog>
       )}
 
-      <section className="container pb-24 pt-12 m-auto">
+      <section className="container px-8 pb-24 pt-12 m-auto">
         {category ? (
           <h2 className="font-semibold text-xl font-Inter mb-12 text-gray-600 m-0">
             {`Showing Blogs of ${selectedCategory.name}`}
@@ -99,18 +99,19 @@ export default async function Blogs({
             ))}
           </div>
 
-          <div className="desktop:w-[30%] laptop:w-[30%] desktop:px-8 laptop:px-8">
+          <div className="desktop:w-[30%] laptop:w-[30%] desktop:px-8 laptop:px-8 hidden desktop:block laptop:block tablet:block">
             <input
               type="text"
               placeholder="Search here"
               className="border w-full mb-4 p-3"
             />
             <h2 className="font-bold mb-4">Categories</h2>
-
-            <BlogCategoryFilter
-              category={category}
-              blogCategories={BlogCatagoriData}
-            ></BlogCategoryFilter>
+            <div>
+              <BlogCategoryFilter
+                category={category}
+                blogCategories={BlogCatagoriData}
+              ></BlogCategoryFilter>
+            </div>
           </div>
         </div>
         {LoadMoreButtondata ? <LoadMoreButton /> : ""}

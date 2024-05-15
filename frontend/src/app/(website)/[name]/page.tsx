@@ -33,7 +33,7 @@ export default async function SinglePage({
 
       <section className="desktop:py-24 py-10">
         {/* <div className="desktop:flex desktop:flex-wrap desktop:justify-between flex flex-col justify-center items-center text-center flex-wrap gap-5 m-auto  container"> */}
-        <div className=" grid desktop:grid-cols-4 tablet:grid-cols-2  text-center gap-5 m-auto   container ">
+        <div className=" grid desktop:grid-cols-4 tablet:grid-cols-2  text-center gap-5 m-auto px-8  container ">
           {commonPageData?.gallery.map((item: GalleryInterface) => {
             return (
               <div className="w-[300px] mx-auto rounded-xl shadow-[rgba(17,_17,_26,_0.3)_0px_0px_16px] ">
@@ -58,8 +58,8 @@ export default async function SinglePage({
         </div>
       </section>
       <section className="py-8 desktop:py-14 bg-slate-100  ">
-        <div className=" items-center flex flex-col desktop:flex-row laptop:flex-row justify-between container m-auto">
-          <div className="desktop:w-1/2 laptop:w-1/2 w-full p-4">
+        <div className=" items-center flex flex-col desktop:flex-row laptop:flex-row justify-between container m-auto px-8">
+          <div className="desktop:w-1/2 laptop:w-1/2 w-full ">
             <p className="font-medium desktop:text-3xl laptop:text-2xl text-xl">
               {commonPageData?.pageDescription}
             </p>

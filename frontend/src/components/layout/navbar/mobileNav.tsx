@@ -107,14 +107,15 @@ const MobileNav = ({ values }: any) => {
             {/* <ListItemButton>
             <GlobalPartnerMenu />
           </ListItemButton> */}
-            <ListItemButton>
-              <Link href={"/blogs"} className="text-black font-bold">
-                <ListItemText primary={"Blog"} />
-              </Link>
-            </ListItemButton>
+
             <ListItemButton>
               <Link href={"/event"} className="text-black font-bold">
                 <ListItemText primary={"Events"} />
+              </Link>
+            </ListItemButton>
+            <ListItemButton>
+              <Link href={"/blogs"} className="text-black font-bold">
+                <ListItemText primary={"Blog"} />
               </Link>
             </ListItemButton>
             <ListItemButton>

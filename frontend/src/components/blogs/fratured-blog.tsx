@@ -8,7 +8,7 @@ type props = {
 export default function FeaturedBlog({ FeaturedBlogData }: props) {
   return (
     <>
-      <section className="container mt-12 m-auto">
+      <section className="container px-8 mt-12 m-auto">
         <h2 className="font-bold mb-2">FEATURED BLOG POSTS</h2>
         <div className=" border-b-4 border-black w-12 mb-4"></div>
         <div className="desktop:grid desktop:grid-cols-3 desktop:gap-8 laptop:grid laptop:grid-cols-3 laptop:gap-8 ">

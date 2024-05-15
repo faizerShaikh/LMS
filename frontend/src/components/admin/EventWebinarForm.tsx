@@ -250,7 +250,7 @@ const EventWebinarForm = ({
 
               {!isWebinar && (
                 <Box>
-                  <Label text="Upload Your Image" />
+                  <Label text="Upload Universities Images" />
                   <DropZone multiple name="stratigicPartners" />
                 </Box>
               )}

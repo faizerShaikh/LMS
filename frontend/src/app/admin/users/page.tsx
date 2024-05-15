@@ -1,59 +1,15 @@
-"use client";
-import { DataGrid, DeleteBox, PageHeader } from "components/layout";
-import { useGetAll } from "hooks";
-import { UsersInterface } from "interfaces/users";
 import UserCreateForm from "./_components/UsersCreateForm";
+import axios from "axios";
+import { PageHeader } from "components/layout/pageHeader/index";
+import { DataGrid } from "components/layout/dataGrid/index";
+import { columns } from "./columns";
 
-const columns = [
-  {
-    headerName: "Name",
-    field: "name",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Email",
-    field: "email",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Contact Number",
-    field: "contactNumber",
-    flex: 2,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Role",
-    field: "role",
-    flex: 2,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Action",
-    field: "action",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: UsersInterface }) => {
-      return (
-        <>
-          <UserCreateForm isUpdate={true} data={params.row}></UserCreateForm>
-          <DeleteBox
-            url={`/user`}
-            refetchUrl="/user"
-            title={`Delete ${params.row.name}`}
-            data={params.row.id}
-          />
-        </>
-      );
-    },
-  },
-];
-
-export default function PageContent() {
-  const { data } = useGetAll({
-    key: "/user",
-  });
+async function getData() {
+  const res = await axios.get(`${process.env.BASE_API_URL}/user`);
+  return res.data.data;
+}
+export default async function PageContent() {
+  let data = await getData();
   return (
     <>
       <PageHeader title="User's" />

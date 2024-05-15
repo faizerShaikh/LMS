@@ -57,7 +57,7 @@ export const CommonEventContentForm = ({
             <Edit />
           </IconButton>
         ) : (
-          <Button startIcon={<Add />}>ADD NEW Feature</Button>
+          <Button startIcon={<Add />}>Add New Feature</Button>
         )
       }
       title={isUpdate ? "Edit content" : "Add content"}

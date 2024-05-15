@@ -1,3 +1,4 @@
+import { Email, Phone } from "@carbon/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,7 +6,7 @@ export const Footer = () => {
   return (
     <>
       <footer className="bg-black ">
-        <div className="text-white container flex py-8 flex-col desktop:flex desktop:flex-row desktop:justify-between tablet:grid tablet:grid-cols-2  gap-5">
+        <div className="text-white container flex py-8 px-8 flex-col desktop:flex desktop:flex-row desktop:justify-between tablet:grid tablet:grid-cols-2  gap-5">
           <div>
             <Image
               height={50}
@@ -15,8 +16,8 @@ export const Footer = () => {
               alt="ks"
             />
             <div className="flex mb-4">
-              <div className=" flex items-center">
-                <i className="fa-solid fa-phone pr-3"></i>
+              <div className=" flex items-center mr-4">
+                <Phone className="size-5" />
               </div>
               <div>
                 <a href="#" className="pb-3 text-white">
@@ -28,9 +29,9 @@ export const Footer = () => {
                 </a>
               </div>
             </div>
-            <div className="w-1/5 flex">
-              <div className="flex items-center">
-                <i className="fa-solid fa-envelope pr-3"></i>
+            <div className="w-1/5 flex ">
+              <div className="flex items-center mr-4">
+                <Email className="size-5" />
               </div>
               <div>
                 <a href="#" className="text-white">
@@ -128,7 +129,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="text-gray-300 pb-4 container">
+        <div className="text-gray-300 pb-4 container px-8">
           <p>Copyright © 2022. All right reserved by Riseback Edutech.</p>
           <p>
             Design & Developed By{" "}

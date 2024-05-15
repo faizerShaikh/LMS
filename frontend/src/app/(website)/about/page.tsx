@@ -11,7 +11,7 @@ export default async function AboutUs() {
   return (
     <>
       <section className="bg-gray-100 flex flex-col desktop:flex-row desktop:justify-between tablet:flex-row  desktop:h-[400px] ">
-        <div className="container flex flex-col desktop:flex-row  m-auto ">
+        <div className="container px-8 flex flex-col desktop:flex-row  m-auto ">
           <div className="w-full desktop:w-1/2  ">
             <Image
               width={500}
@@ -21,7 +21,7 @@ export default async function AboutUs() {
               className="w-full desktop:w-[500px] desktop:h-[400px] h-[300px]"
             />
           </div>
-          <div className="flex items-center w-full desktop:w-1/2">
+          <div className="flex items-center w-full py-4 desktop:py-0 desktop:w-1/2">
             <p className="text-2xl desktop:text-4xl desktop:leading-[48px]">
               Inspired by the Native American adage{" "}
               <span className="font-bold">"RiseBack like Phoenix”</span>, the
@@ -30,7 +30,7 @@ export default async function AboutUs() {
           </div>
         </div>
       </section>
-      <section className="my-10 desktop:my-32 text-center">
+      <section className="my-10 px-8 desktop:my-32 text-center">
         <div className="container m-auto">
           <h2 className="text-3xl desktop:text-4xl font-bold mt-0 mb-6">
             Our Story
@@ -55,7 +55,7 @@ export default async function AboutUs() {
           </p>
         </div>
       </section>
-      <section className="bg-gray-100 desktop:py-32 py-10">
+      <section className="bg-gray-100 px-8 desktop:py-32 py-10">
         <div className="container  m-auto">
           <div className="flex flex-col-reverse desktop:flex-row  mb-24 items-center">
             <div className="w-full desktop:w-2/4  text-center  desktop:pr-12 flex flex-col  items-center ">
@@ -74,7 +74,7 @@ export default async function AboutUs() {
                 width={500}
                 height={400}
                 src="/img2/businessman-big-office.jpg"
-                className=" w-full rounded-lg h-[300px] desktop:w-full desktop:h-[400px]"
+                className=" w-full rounded-lg h-[270px] desktop:w-full desktop:h-[400px]"
                 alt="img"
               />
             </div>
@@ -85,7 +85,7 @@ export default async function AboutUs() {
                 width={500}
                 height={400}
                 src="/img2/motivational-composition-goal.jpg"
-                className="w-full rounded-lg  h-[300px] desktop:w-full desktop:h-[400px]"
+                className="w-full rounded-lg  h-[270px] desktop:w-full desktop:h-[400px]"
                 alt="img"
               />
             </div>
@@ -102,9 +102,9 @@ export default async function AboutUs() {
           </div>
         </div>
       </section>
-      <section className="bg-blue-900 desktop:py-32 py-10">
+      <section className="bg-blue-900 px-8 desktop:py-32 py-10">
         <div className=" text-center text-white container  m-auto">
-          <h2 className="desktop:pb-8 text-3xl desktop:text-4xl m-0">
+          <h2 className="desktop:pb-8 text-3xl desktop:text-4xl mb-3 desktop:mb-0  m-0">
             Our Core Values
           </h2>
           <div className="grid laptop:grid-cols-2 desktop:grid-cols-4 tablet:grid-cols-2 gap-5 justify-center items-center desktop:flex-row ">
@@ -153,7 +153,7 @@ export default async function AboutUs() {
           </div>
         </div>
       </section>
-      <section className=" text-center desktop:py-32 py-10">
+      <section className=" text-center desktop:py-32 px-8 py-10">
         <div className="container m-auto">
           <h2 className="text-2xl desktop:text-4xl  m-0">Global Partnership</h2>
           <p className="text-xl text-gray-700 pb-8">

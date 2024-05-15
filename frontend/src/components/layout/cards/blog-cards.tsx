@@ -39,7 +39,7 @@ export function BlogCard({
           <Link href={`/blogs/${specialization.slug}`}>
             {" "}
             <h2
-              className={`font-bold text-xl line-clamp-3 text-black py-2 m-auto ${sizes[size].fontSize}`}
+              className={`font-bold text-xl line-clamp-2 desktop:line-clamp-3 text-black py-2 m-auto ${sizes[size].fontSize}`}
             >
               {specialization.title}
             </h2>
