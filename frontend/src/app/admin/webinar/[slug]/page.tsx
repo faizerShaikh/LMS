@@ -1,6 +1,6 @@
+"use client";
 import { PageHeader } from "components/layout/pageHeader";
 import React from "react";
-import EventWebinarForm from "components/admin/EventWebinarForm";
 import { WebinarInterface, WebinarResponseInterface } from "interfaces/webinar";
 import { getSingleWebinar } from "lib";
 import { EventInterface } from "interfaces/event";

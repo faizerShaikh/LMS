@@ -1,85 +1,18 @@
-"use client";
-import { Button, DataGrid, DeleteBox, PageHeader } from "components/layout";
-import { useGetAll } from "hooks";
-import { MetaDataForm } from "components/admin";
-import removeTags from "utils/removeTags";
-import { IconButton } from "@mui/material";
-import { Edit } from "@carbon/icons-react";
-import { CourseSpecializationInterface } from "interfaces";
+import { columns } from "./columns";
+import { PageHeader } from "components/layout/pageHeader/index";
+import { DataGrid } from "components/layout/dataGrid/index";
+import { Button } from "components/layout/buttons/button/index";
+import axios from "axios";
 
-const columns = [
-  {
-    headerName: "Name",
-    field: "name",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Description",
-    field: "description",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: CourseSpecializationInterface }) => {
-      const descriptionValue = params.row.description;
-      return removeTags(descriptionValue);
-    },
-  },
-  {
-    headerName: "Eligibilty",
-    field: "eligibilty",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Delivery Mode",
-    field: "delivery_mode",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Credits",
-    field: "credits",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-
-  {
-    headerName: "Action",
-    field: "action",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: CourseSpecializationInterface }) => {
-      return (
-        <>
-          <IconButton href={`/admin/course-spetalization/${params.row.slug}`}>
-            <Edit />
-          </IconButton>
-          <DeleteBox
-            url={`/configurations/course-specialization`}
-            refetchUrl="/configurations/course-specialization"
-            title={`${params.row.name}`}
-            data={params.row.id}
-          />
-          <MetaDataForm
-            isUpdate={true}
-            data={
-              params.row.metaData
-                ? params.row.metaData
-                : { id: params.row.metaID }
-            }
-            refetchURL="/configurations/course-specialization"
-          />
-        </>
-      );
-    },
-  },
-];
-
-export default function CourseSpecializationPage() {
-  let { data } = useGetAll({
-    key: "/configurations/course-specialization/university",
-  });
-  console.log(data, "<<<<<<<<<<< specialization");
+async function getData() {
+  const res = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/course-specialization/university`
+  );
+  console.log(res.data.data);
+  return res?.data?.data;
+}
+export default async function CourseSpecializationPage() {
+  const data = await getData();
   return (
     <>
       <PageHeader title="course specialization" />

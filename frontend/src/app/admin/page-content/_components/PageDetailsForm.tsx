@@ -1,3 +1,4 @@
+"use client";
 import { Grid, Box, Button } from "@mui/material";
 import { API } from "configs";
 import { Formik, Form } from "formik";

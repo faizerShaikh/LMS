@@ -1,3 +1,4 @@
+"use client";
 import { CreateUpdateDialogBaseProps, GalleryInterface } from "interfaces";
 import { Button, Dialog, DropZone, Input, Label } from "../../../../components";
 import { Form, Formik } from "formik";
@@ -17,7 +18,7 @@ export const GalleryForm1 = ({
   const initialValues: GalleryInterface = {
     name: "",
     description: "",
-    orderBy:0,
+    orderBy: 0,
     coverImage: "",
     pageId: pageId,
   };
@@ -61,7 +62,6 @@ export const GalleryForm1 = ({
         <Formik
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
-            
             mutate(
               { ...values, orderBy: +values.orderBy },
               {
@@ -99,7 +99,7 @@ export const GalleryForm1 = ({
                   <Input name="description" />
                 </Box>
                 <Box className="mt-4">
-                  <Label text="Order By" required/>
+                  <Label text="Order By" required />
                   <Input name="orderBy" />
                 </Box>
               </Grid>

@@ -1,113 +1,18 @@
-"use client";
-import { Button, DataGrid, DeleteBox, PageHeader } from "components/layout";
-import { useGetAll } from "hooks";
-import { MetaDataForm } from "components/admin";
-import removeTags from "utils/removeTags";
-import { CustomCourseInterface } from "interfaces";
-import { IconButton } from "@mui/material";
-import { Edit } from "@carbon/icons-react";
+import { PageHeader } from "components/layout/pageHeader/index";
+import { DataGrid } from "components/layout/dataGrid/index";
+import { columns } from "./columns";
+import { Button } from "components/layout/buttons/button/index";
+import axios from "axios";
 
-const columns = [
-  {
-    headerName: "Name",
-    field: "name",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Description",
-    field: "description",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: CustomCourseInterface }) => {
-      const descriptionValue = params.row.description;
-      return removeTags(descriptionValue);
-    },
-  },
-  {
-    headerName: "Page Description",
-    field: "textarea",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: CustomCourseInterface }) => {
-      const textareaValue = params?.row?.textarea;
-      return removeTags(textareaValue);
-    },
-  },
-  {
-    headerName: "Notes",
-    field: "note",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: CustomCourseInterface }) => {
-      const noteValue = params.row.notes;
-      return removeTags(noteValue);
-    },
-  },
-  {
-    headerName: "Duration",
-    field: "duration",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Days",
-    field: "days",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Info",
-    field: "shortInfo",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Fees",
-    field: "fees",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-
-  {
-    headerName: "Action",
-    field: "action",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: CustomCourseInterface }) => {
-      return (
-        <>
-          <IconButton
-            href={`/admin/custom-course-specialization/${params.row.slug}`}
-          >
-            <Edit />
-          </IconButton>
-          <DeleteBox
-            url={`/configurations/course-specialization`}
-            refetchUrl="/configurations/course-specialization/custom"
-            title={`${params.row.name}`}
-            data={params.row.id}
-          />
-          <MetaDataForm
-            isUpdate={true}
-            data={
-              params.row.metaData
-                ? params.row.metaData
-                : { id: params.row.metaID }
-            }
-            refetchURL="/configurations/course-specialization/custom"
-          />
-        </>
-      );
-    },
-  },
-];
-
-export default function CustomCourseSpecializationPage() {
-  let { data } = useGetAll({
-    key: "/configurations/course-specialization/custom",
-  });
-  console.log(data, "<<<<<<<<<<<");
+async function getDate() {
+  const res = await axios.get(
+    `${process.env.BASE_API_URL}/configurations/course-specialization/custom`
+  );
+  // console.log(res.data.data, "<<");
+  return res.data.data;
+}
+export default async function CustomCourseSpecializationPage() {
+  let data = await getDate();
 
   return (
     <>

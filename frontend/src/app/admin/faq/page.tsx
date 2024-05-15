@@ -1,76 +1,15 @@
-"use client";
-import { Checkbox } from "@mui/material";
-import { DataGrid, DeleteBox, PageHeader } from "components/layout";
-import { useGetAll } from "hooks";
-import { FaqInterface } from "interfaces/faq";
+import { DataGrid } from "components/layout/dataGrid/index";
 import FaqDialog from "./_components/FaqDialog";
-import { FaqForm } from "./_components/FaqForm";
+import { columns } from "./columns";
+import axios from "axios";
+import { PageHeader } from "components/layout/pageHeader/index";
 
-const columns = [
-  {
-    headerName: "Header",
-    field: "question",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "No of FAQ'S",
-    field: "answer",
-    flex: 1,
-    cellClassName: "text-dark",
-    valueGetter: (params: { row: FaqInterface }) => {
-      return params.row.faqTopic.length;
-    },
-  },
-  {
-    headerName: "Order",
-    field: "orderBy",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Is Feturead",
-    field: "isFeatured",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: FaqInterface }) => {
-      const checkboxProps = params.row.isFeatured
-        ? { disabled: true, checked: true }
-        : {};
-      return <Checkbox {...checkboxProps} disabled />;
-    },
-  },
-  {
-    headerName: "Action",
-    field: "action",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: FaqInterface }) => {
-      return (
-        <>
-          <FaqDialog isUpdate={true} data={params.row} />
-          <DeleteBox
-            url={`/configurations/faq`}
-            refetchUrl="/configurations/faq"
-            title={`Delete ${params.row.qustion}`}
-            data={params.row.id}
-          />
-          <FaqForm
-            refetchURL="/configurations/faq"
-            isUpdate={true}
-            data={
-              params.row?.faqTopic?.length > 0 && { faq: params.row.faqTopic }
-            }
-            faqId={params.row.id || ""}
-          />
-        </>
-      );
-    },
-  },
-];
-
-export default function FaqPage() {
-  const { data } = useGetAll({ key: "/configurations/faq" });
+async function getData() {
+  const res = await axios.get(`${process.env.BASE_API_URL}/configurations/faq`);
+  return res.data.data;
+}
+export default async function FaqPage() {
+  let data = await getData();
   return (
     <>
       <PageHeader title="FAQ'S" />

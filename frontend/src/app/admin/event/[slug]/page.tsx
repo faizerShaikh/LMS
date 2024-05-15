@@ -1,3 +1,4 @@
+"use client";
 import { PageHeader } from "components/layout/pageHeader";
 import { EventInterface } from "interfaces/event";
 import { getSingleEvent } from "lib/get-data/event";

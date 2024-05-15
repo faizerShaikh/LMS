@@ -1,3 +1,4 @@
+"use client";
 import { AssociationInterface, CreateUpdateDialogBaseProps } from "interfaces";
 import { Button, Dialog, DropZone, Input, Label } from "../../../../components";
 import { Form, Formik } from "formik";

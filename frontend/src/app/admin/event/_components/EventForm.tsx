@@ -1,6 +1,5 @@
 "use client";
 
-import EventWebinarForm from "components/admin/EventWebinarForm";
 import { EventInterface } from "interfaces/event";
 
 import { Box, Checkbox, Grid } from "@mui/material";

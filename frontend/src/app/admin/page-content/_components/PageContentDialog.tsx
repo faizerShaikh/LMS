@@ -1,8 +1,9 @@
+"use client";
 import { CreateUpdateDialogBaseProps, PageContentInterface } from "interfaces";
 import { Button, Dialog, DropZone, Input, Label } from "../../../../components";
-import {  Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "hooks";
-import { Box, Grid,  IconButton } from "@mui/material";
+import { Box, Grid, IconButton } from "@mui/material";
 import { MetaDataInitial } from "initials";
 import { Edit } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
@@ -11,7 +12,7 @@ import { API } from "configs";
 import * as Yup from "yup";
 
 const initialValues: PageContentInterface = {
-  id:"",
+  id: "",
   slug: "",
   name: "",
   title: "",
@@ -38,8 +39,6 @@ export const PageContentDialog = ({
     method: "put",
   });
 
-  
-
   const handleFileUpload = async (
     file: File,
     id: string,
@@ -64,7 +63,7 @@ export const PageContentDialog = ({
     >
       {({ onClose }) => (
         <Formik
-        // validationSchema={validationSchema}
+          // validationSchema={validationSchema}
 
           initialValues={{ ...initialValues, ...data }}
           onSubmit={(values, { resetForm }) => {
@@ -86,8 +85,6 @@ export const PageContentDialog = ({
               },
             });
           }}
-
-         
         >
           <Form>
             <Grid container columnSpacing={10} className="mt-8" gap={3}>

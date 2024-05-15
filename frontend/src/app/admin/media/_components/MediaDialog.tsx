@@ -1,4 +1,5 @@
-import { CreateUpdateDialogBaseProps} from "interfaces";
+"use client";
+import { CreateUpdateDialogBaseProps } from "interfaces";
 import {
   Button,
   Checkbox,
@@ -7,7 +8,7 @@ import {
   Input,
   Label,
 } from "../../../../components";
-import { Form, Formik} from "formik";
+import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "hooks";
 import { Box, Grid, IconButton } from "@mui/material";
 import { Add, Edit } from "@carbon/icons-react";
@@ -18,7 +19,6 @@ import * as Yup from "yup";
 import { API } from "configs";
 
 const initialValues: MediaPressReleaseInterface = {
-  
   title: "",
   link: "",
   description: "",
@@ -26,9 +26,10 @@ const initialValues: MediaPressReleaseInterface = {
   coverImage: "",
 };
 const validationSchema = Yup.object({
-  
   title: Yup.string().required("Title is Required"),
-  link: Yup.string().required("Link is Required").url("Privioded value must be a URL"),
+  link: Yup.string()
+    .required("Link is Required")
+    .url("Privioded value must be a URL"),
   description: Yup.string().required("Description is Required"),
   coverImage: Yup.string().required("Cover Image Required"),
 });
@@ -57,7 +58,10 @@ export const MediaDialog = ({
   ) => {
     const formData = new FormData();
     formData.append("coverImage", file);
-    await API.put(`/configurations/press-release/update-press-image/${id}`,formData);
+    await API.put(
+      `/configurations/press-release/update-press-image/${id}`,
+      formData
+    );
     onSuccess();
   };
 
@@ -99,61 +103,63 @@ export const MediaDialog = ({
           }}
         >
           {({ setFieldValue, values }) => (
-          <Form>
-            <Grid container columnSpacing={10} className="" gap={3}>
-              <Grid xs={12} item>
-                <Box>
-                  <Label text="Upload your image" required/>
-                  <DropZone name="coverImage" />
-                  {/* <Input name="file" type="file" onChange={handleImage} /> */}
-                </Box>
-                
-                <Box className="mt-4">
-                  <Label text="Title" required/>
-                  <Input name="title" />
-                </Box>
-                <Box className="mt-4">
-                  <Label text="Description" required/>
-                  <Input name="description" />
-                </Box>
-                <Box className="mt-4">
-                  <Label text="Link" required/>
-                  <Input name="link" />
-                </Box>
-                <Box className="mt-4">
-                  <Label text="Is Featured" />
-                  <Checkbox name="isFeatured" 
-                   checked={values.isFeatured}
-                   onChange={(e: any) => {
-                     setFieldValue("isFeatured", e.target.checked);
-                   }}/>
-                </Box>
+            <Form>
+              <Grid container columnSpacing={10} className="" gap={3}>
+                <Grid xs={12} item>
+                  <Box>
+                    <Label text="Upload your image" required />
+                    <DropZone name="coverImage" />
+                    {/* <Input name="file" type="file" onChange={handleImage} /> */}
+                  </Box>
+
+                  <Box className="mt-4">
+                    <Label text="Title" required />
+                    <Input name="title" />
+                  </Box>
+                  <Box className="mt-4">
+                    <Label text="Description" required />
+                    <Input name="description" />
+                  </Box>
+                  <Box className="mt-4">
+                    <Label text="Link" required />
+                    <Input name="link" />
+                  </Box>
+                  <Box className="mt-4">
+                    <Label text="Is Featured" />
+                    <Checkbox
+                      name="isFeatured"
+                      checked={values.isFeatured}
+                      onChange={(e: any) => {
+                        setFieldValue("isFeatured", e.target.checked);
+                      }}
+                    />
+                  </Box>
+                </Grid>
+                <Grid xs={12} item>
+                  <Box className="flex justify-end">
+                    <Button
+                      color="secondary"
+                      className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
+                      variant="contained"
+                      disabled={isLoading}
+                      onClick={() => {
+                        onClose();
+                      }}
+                    >
+                      Discard
+                    </Button>
+                    <Button
+                      variant="contained"
+                      className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
+                      type="submit"
+                      isLoading={isLoading}
+                    >
+                      Save
+                    </Button>
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid xs={12} item>
-                <Box className="flex justify-end">
-                  <Button
-                    color="secondary"
-                    className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
-                    variant="contained"
-                    disabled={isLoading}
-                    onClick={() => {
-                      onClose();
-                    }}
-                  >
-                    Discard
-                  </Button>
-                  <Button
-                    variant="contained"
-                    className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
-                    type="submit"
-                    isLoading={isLoading}
-                  >
-                    Save
-                  </Button>
-                </Box>
-              </Grid>
-            </Grid>
-          </Form>
+            </Form>
           )}
         </Formik>
       )}

@@ -1,3 +1,4 @@
+"use client";
 import { CreateUpdateDialogBaseProps } from "interfaces";
 import {
   AutoComplete,
@@ -6,24 +7,24 @@ import {
   Input,
   Label,
 } from "../../../../components";
-import { Form, Formik} from "formik";
+import { Form, Formik } from "formik";
 import { useCreateOrUpdate } from "hooks";
 import { Box, Grid, IconButton } from "@mui/material";
-import {  Edit } from "@carbon/icons-react";
+import { Edit } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
 import * as Yup from "yup";
 import { EnquiriesPageInterface } from "interfaces/enquiriesPage";
 
 const initialValues: EnquiriesPageInterface = {
-    name: "",
-    organization: "",
-    title: "",
-    email: "",
-    type: "",
-    status: "",
-    from: "",
-    note: "",
+  name: "",
+  organization: "",
+  title: "",
+  email: "",
+  type: "",
+  status: "",
+  from: "",
+  note: "",
 };
 const validationSchema = Yup.object({
   name: Yup.string().required("Required"),
@@ -45,63 +46,67 @@ export const EnquiryDialog = ({
       : "/configurations/enquiry",
     method: isUpdate ? "put" : "post",
   });
-  
-  const optionsType = ["online", "university"]
-  const optionsStatus = ["new", "in-process", "closed"]
+
+  const optionsType = ["online", "university"];
+  const optionsStatus = ["new", "in-process", "closed"];
   return (
     <Dialog
-    button={<IconButton ><Edit /></IconButton>}
-    title={"Enquiry Form"}
+      button={
+        <IconButton>
+          <Edit />
+        </IconButton>
+      }
+      title={"Enquiry Form"}
     >
-       {({ onClose }) => (
-      <Formik
-        validationSchema={validationSchema}
-        initialValues={{ ...initialValues, ...data }}
-        onSubmit={(values, { resetForm }) => {
-          mutate(values, {
-            onSuccess() {
-              resetForm();
-              queryClient.refetchQueries(`/configurations/enquiry`, {
-                exact: false,
-                stale: true,
-              });
-              toast("Enquiries Form Updated successfully");
-              onClose();
-            },
-          });
-        }}
+      {({ onClose }) => (
+        <Formik
+          validationSchema={validationSchema}
+          initialValues={{ ...initialValues, ...data }}
+          onSubmit={(values, { resetForm }) => {
+            mutate(values, {
+              onSuccess() {
+                resetForm();
+                queryClient.refetchQueries(`/configurations/enquiry`, {
+                  exact: false,
+                  stale: true,
+                });
+                toast("Enquiries Form Updated successfully");
+                onClose();
+              },
+            });
+          }}
         >
           <Form>
             <Grid container columnSpacing={10} className="" gap={3}>
               <Grid xs={12} item>
-              <Box className="mt-4">
-                  <Label text="Name" required/>
+                <Box className="mt-4">
+                  <Label text="Name" required />
                   <Input name="name" />
                 </Box>
                 <Box className="mt-4">
-                  <Label text="Organization" required/>
+                  <Label text="Organization" required />
                   <Input name="organization" />
                 </Box>
                 <Box className="mt-4">
-                  <Label text="Title" required/>
+                  <Label text="Title" required />
                   <Input name="title" />
                 </Box>
                 <Box className="mt-4">
-                  <Label text="Email" required/>
+                  <Label text="Email" required />
                   <Input name="email" />
                 </Box>
                 <Box className="mt-4">
-                  <Label text="Type" required/>
+                  <Label text="Type" required />
                   <AutoComplete
-                  name="type"
-                  options={optionsType}
+                    name="type"
+                    options={optionsType}
                   ></AutoComplete>
                 </Box>
                 <Box className="mt-4">
-                  <Label text="Status" required/>
+                  <Label text="Status" required />
                   <AutoComplete
-                  name="status"
-                  options={optionsStatus}
+                    name="status"
+                    options={optionsStatus}
                   ></AutoComplete>
                 </Box>
                 <Box className="mt-4">
