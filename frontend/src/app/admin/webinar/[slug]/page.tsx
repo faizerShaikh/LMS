@@ -11,24 +11,19 @@ type Props = {
 
 const SingleWebinar = async ({ params: { slug } }: Props) => {
   const isUpdate = slug !== "add";
-  let initialValues: WebinarInterface & EventInterface = {
+  let initialValues: WebinarResponseInterface = {
     id: "",
-    slug: "",
-    title: "",
-    coverImage: "",
-    description: "",
     agenda: "",
-    createdAt: "",
-    updatedAt: "",
-    deletedAt: "",
-    startDayTime: "",
-    endDayTime: "",
-    deadLine: "",
-    eventType: "",
-    eventLocation: "",
-    eventImage: "",
-    name: "",
-    isFeatured: false,
+    title: "",
+    event: {
+      id: "",
+      name: "",
+      eventImage: "",
+      description: "",
+      metaID: "",
+      slug: "",
+    },
+
     speakers: [
       {
         image: "",

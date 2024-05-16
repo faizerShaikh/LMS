@@ -1,5 +1,5 @@
 "use client";
-import { DataGrid } from "components/layout";
+import { DataGrid, DeleteBox } from "components/layout";
 import { useGetAll } from "hooks";
 import { GalleryInterface, PageContentInterface } from "interfaces";
 import { GalleryForm1 } from "./GalleryForm";
@@ -36,6 +36,12 @@ const columns = [
             data={params.row}
             refetchURL={`/configurations/gallery/get-by-page/${params.row.slug}`}
             pageId={params.row?.pageContent?.id || ""}
+          />
+          <DeleteBox
+            url={`/configurations/gallery`}
+            refetchUrl={`/configurations/gallery/get-by-page/${params.row.slug}`}
+            title={`Delete ${params.row.name}`}
+            data={params.row.id}
           />
         </>
       );

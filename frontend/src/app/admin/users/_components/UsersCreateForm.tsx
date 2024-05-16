@@ -1,23 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   AutoComplete,
   Button,
-  Checkbox,
   Dialog,
-  DropZone,
   Input,
   Label,
 } from "../../../../components";
-import { FaqInterface, Topics } from "interfaces/faq";
-import { useQueryClient } from "react-query";
 import { useCreateOrUpdate } from "hooks";
-import { Add, Edit, IbmWatsonKnowledgeCatalog } from "@carbon/icons-react";
+import { Add, Edit } from "@carbon/icons-react";
 import { Box, Grid, IconButton } from "@mui/material";
 import { CreateUpdateDialogBaseProps } from "interfaces";
 import { Form, Formik } from "formik";
 import { toast } from "utils";
 import { UsersInterface } from "interfaces/users";
+import { useQueryClient } from "react-query";
 
 const initialValues: UsersInterface[] = [
   {

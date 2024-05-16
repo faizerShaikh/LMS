@@ -45,14 +45,14 @@ export const columns: GridColDef[] = [
         <>
           <UniversityDialog
             isUpdate={true}
-            data={params.row}
             refetchURL="/configurations/university"
+            data={params.row}
           />
           <DeleteBox
+            refetchUrl="/configurations/university"
             title={`Item`}
             url={`/configurations/university`}
             data={params.row.id}
-            refetchUrl="/configurations/university"
           />
           <MetaDataForm
             isUpdate={true}

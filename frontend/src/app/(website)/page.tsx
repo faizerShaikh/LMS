@@ -55,13 +55,13 @@ export default async function Home() {
     <>
       <section className=" bg-gray-50 desktop:h-[400px]  py-10 desktop:py-0 tablet:py-0 laptop:py-0">
         <div className="desktop:flex desktop:justify-between desktop:items-center desktop:gap-10  container m-auto">
-          <div className="">
+          <div className="desktop:w-1/2">
             <Image
               width={500}
               height={400}
               alt="test"
               src="/img2/Home Page.jpg"
-              className="desktop:w-3/4  desktop:!h-[400px] h-[300px] laptop:h-[350px] tablet:h-[350px] w-full"
+              className="desktop:w-full object-contain  desktop:!h-[400px] h-[300px] laptop:h-[350px] tablet:h-[350px] w-full"
             />
           </div>
           <div className="desktop:w-1/2  ">
@@ -88,7 +88,7 @@ export default async function Home() {
             Explore courses to enhance your career
           </h2>
           <p className="flex items-center desktop:text-2xl ">
-            <Link href="#" className="text-black">
+            <Link href="/courses" className="text-black">
               View all courses
             </Link>
             <ArrowRight className="desktop:size-10 ml-5" />

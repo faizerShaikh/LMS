@@ -9,6 +9,7 @@ import {
   programmeStructure,
 } from "interfaces";
 import Image from "next/image";
+import Link from "next/link";
 export let metadata = {};
 
 export default async function SingleCourse({
@@ -51,9 +52,11 @@ export default async function SingleCourse({
 
             <div className="flex justify-between gap-5">
               <div className="border rounded-md border-black w-1/2">
-                <Button className="py-2 w-full  bg-white text-black">
-                  Apply Now
-                </Button>
+                <Link href={"/applicationForm"}>
+                  <Button className="py-2 w-full  bg-white text-black">
+                    Apply Now
+                  </Button>
+                </Link>
               </div>
 
               <Button className=" py-2 w-1/2  ">

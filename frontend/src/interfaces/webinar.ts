@@ -30,6 +30,7 @@ export interface WebinarResponseInterface extends CreateUpdateDialogBaseProps {
   createdAt?: string;
   updatedAt?: string;
   deletedAt?: string;
+  metaID?: string;
   metaData?: MetaDataInterface;
   speakers: SpeakersInterface[];
 }

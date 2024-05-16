@@ -6,7 +6,7 @@ import { ItCoursesCard } from "./itCoursesCard";
 export const ItCourseTabs = ({ CoursesData }: { CoursesData: [] }) => {
   // console.log(CoursesData, "<<<vdvdhvdhv");
   return (
-    <div>
+    <div className="w-full">
       <Tabs
         tabs={CoursesData.map((item: any, index: any) => ({
           id: index,

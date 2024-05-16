@@ -1,4 +1,3 @@
-"use client";
 import { PageHeader } from "components/layout/pageHeader";
 import { CourseSpecializationInterface } from "interfaces/course";
 import { GetCourse, GetUniversity, getSingleCourse } from "lib";

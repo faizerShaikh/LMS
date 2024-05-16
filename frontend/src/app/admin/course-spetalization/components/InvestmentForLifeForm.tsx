@@ -111,6 +111,7 @@ export const InvestmentForLifeForm = ({
                   className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
                   type="submit"
                   isLoading={isLoading}
+                  href="/admin/course-spetalization"
                 >
                   Save
                 </Button>

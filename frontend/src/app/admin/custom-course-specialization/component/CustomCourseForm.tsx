@@ -151,11 +151,12 @@ const CustomCourseSpecializationForm = ({
             </Grid>
 
             <Grid xs={5.9} flexDirection={"column"}>
+              <Label text="Select Course" />
+
               <AutoComplete
                 name="course_id"
                 options={courseData || []}
                 getOptionLabel={(value: any) => value.name}
-                label="Select Course"
               ></AutoComplete>
             </Grid>
 

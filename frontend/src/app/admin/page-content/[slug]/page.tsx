@@ -1,4 +1,3 @@
-"use client";
 import { PageHeader } from "components/layout/pageHeader";
 import { MetaDataInitial } from "initials";
 import { PageContentInterface } from "interfaces";

@@ -101,6 +101,7 @@ const EventWebinarForm = ({
                   image: typeof item.image === "string" ? item.image : null,
                 }))
               : undefined,
+            event: isWebinar ? { ...values } : undefined,
           },
           {
             onSuccess(resp) {

@@ -47,15 +47,19 @@ export const columns: GridColDef[] = [
     renderCell: (params: { row: FaqInterface }) => {
       return (
         <>
-          <FaqDialog isUpdate={true} data={params.row} />
+          <FaqDialog
+            isUpdate={true}
+            data={params.row}
+            refetchURL="configurations/faq"
+          />
           <DeleteBox
             url={`/configurations/faq`}
-            refetchUrl="/configurations/faq"
+            refetchUrl="configurations/faq"
             title={`Delete ${params.row.qustion}`}
             data={params.row.id}
           />
           <FaqForm
-            refetchURL="/configurations/faq"
+            refetchURL="configurations/faq"
             isUpdate={true}
             data={
               params.row?.faqTopic?.length > 0 && { faq: params.row.faqTopic }

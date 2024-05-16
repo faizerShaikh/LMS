@@ -2,8 +2,12 @@
 import { Image } from "components/layout";
 import { useState, useEffect } from "react";
 
+interface PreviewData {
+  image: string;
+}
+
 function LinkPreview({ url }: any) {
-  const [previewData, setPreviewData] = useState(null);
+  const [previewData, setPreviewData] = useState<PreviewData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,17 +17,12 @@ function LinkPreview({ url }: any) {
         const data = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, "text/html");
-        const title = doc.querySelector("title")?.textContent || "";
-        const description =
-          doc
-            .querySelector('meta[name="description"]')
-            ?.getAttribute("content") || "";
         const image =
           doc
             .querySelector('meta[property="og:image"]')
             ?.getAttribute("content") || "";
 
-        setPreviewData({ image });
+        setPreviewData({ image: image });
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -59,7 +58,7 @@ function LinkPreview({ url }: any) {
     <div onClick={handleClick} style={{ cursor: "pointer" }}>
       {previewData?.image && (
         <Image
-          src={previewData?.image}
+          src={previewData.image}
           height={200}
           width={200}
           alt="Link Preview"

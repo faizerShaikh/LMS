@@ -6,7 +6,7 @@ import Link from "next/link";
 import { CustomCarousel } from "components/layout/carousel";
 
 export const ItCoursesCard = (item: any) => {
-  console.log(item, "<<<<<<<<<<<<<<<<<<<<item");
+  // console.log(item, "<<<<<<<<<<<<<<<<<<<<item");
 
   // let { data, isLoading } = useGetAll({
   //   key: `/configurations/course-specialization?category=${item.item.slug}`,
@@ -21,7 +21,7 @@ export const ItCoursesCard = (item: any) => {
       >
         {item.item.specializations.map((item: CustomCourseInterface) => {
           return (
-            <div className="desktop:!flex desktop:flex-row flex flex-col-reverse items-center border border-black rounded-2xl">
+            <div className="desktop:!flex  desktop:flex-row flex flex-col-reverse items-center border border-black rounded-2xl">
               <div className="desktop:w-1/2 py-4 !px-4">
                 <h2 className="font-bold desktop:text-4xl m-0 mb-2">
                   {item.name}

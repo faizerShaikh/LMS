@@ -7,7 +7,7 @@ import EventWebinarRagistration from "app/admin/event/_components/PageRegistrati
 import { WebinarInterface, WebinarResponseInterface } from "interfaces/webinar";
 
 type Props = {
-  initialValues: WebinarInterface & EventInterface;
+  initialValues: WebinarResponseInterface;
   type?: string;
   slug: string;
   data: WebinarResponseInterface;

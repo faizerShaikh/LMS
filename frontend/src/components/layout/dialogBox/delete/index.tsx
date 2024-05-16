@@ -52,8 +52,7 @@ export const DeleteBox = ({
               sx={{
                 lineHeight: "18px",
               }}
-            >
-            </Typography>
+            ></Typography>
           </Button>
         )
       }

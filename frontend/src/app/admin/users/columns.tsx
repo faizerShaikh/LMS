@@ -1,5 +1,4 @@
 "use client";
-
 import { GridColDef } from "@mui/x-data-grid";
 import { UsersInterface } from "interfaces/users";
 import UserCreateForm from "./_components/UsersCreateForm";
@@ -41,11 +40,11 @@ export const columns: GridColDef[] = [
           <UserCreateForm
             isUpdate={true}
             data={params.row}
-            refetchURL="/configurations/user"
+            refetchURL="/user"
           ></UserCreateForm>
           <DeleteBox
             url={`/user`}
-            refetchUrl="/configurations/user"
+            refetchUrl="/user"
             title={`Delete ${params.row.name}`}
             data={params.row.id}
           />

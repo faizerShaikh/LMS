@@ -70,7 +70,7 @@ export const FaqDialog = ({
                     exact: false,
                     stale: true,
                   });
-                  toast(" successfull");
+                  toast("FAQ Created successfull");
                   onClose();
                 },
               }
