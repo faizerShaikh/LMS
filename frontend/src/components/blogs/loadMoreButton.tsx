@@ -1,6 +1,7 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { Button } from "..";
 
 type prop = {};
 export default function LoadMoreButton({}: prop) {
@@ -27,12 +28,12 @@ export default function LoadMoreButton({}: prop) {
 
   return (
     <div className="flex justify-center">
-      <button
+      <Button
         className="bg-blue-700 text-white px-4 py-2"
         onClick={handleClick}
       >
         Load More
-      </button>
+      </Button>
     </div>
   );
 }

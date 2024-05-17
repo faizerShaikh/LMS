@@ -43,26 +43,26 @@ export const Footer = () => {
           <div className="flex flex-col">
             <h2 className="mb-4 text-lg">LINKS</h2>
             <span className="border-b-2 w-4 mb-4"></span>
-            <a href="#" className="mb-2 text-white">
+            <a href="/courses" className="mb-2 text-white">
               Professional Courses
             </a>
-            <a href="#" className="mb-2 text-white">
+            <a href="/courses" className="mb-2 text-white">
               Undergraduate Degree’s
             </a>
-            <a href="#" className="mb-2 text-white">
+            <a href="/courses" className="mb-2 text-white">
               Master Degree’s
             </a>
           </div>
           <div className="flex flex-col">
             <h2 className="mb-4 text-lg">COMPANY</h2>
             <span className="border-b-2 w-4 mb-4"></span>
-            <a href="#" className="mb-2 text-white">
+            <a href="/about" className="mb-2 text-white">
               About Us
             </a>
-            <a href="#" className="mb-2 text-white">
+            <a href="/contact-us" className="mb-2 text-white">
               Contact
             </a>
-            <a href="#" className="mb-2 text-white">
+            <a href="/career" className="mb-2 text-white">
               Career
             </a>
           </div>

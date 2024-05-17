@@ -6,6 +6,7 @@ import { CommonContentEventInterface, EventInterface } from "interfaces/event";
 import moment from "moment";
 import removeTags from "utils/removeTags";
 import CarouselCard from "../components/CarouselCard";
+import { Button } from "components/layout/buttons/button/index";
 export let metadata = {};
 
 async function SingleEventPage({ params }: { params: { slug: string } }) {
@@ -34,15 +35,15 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
           <div className="text-center">
             <h2 className="text-3xl font-semibold m-0 mb-8">{data.name}</h2>
           </div>
-          <div className="desktop:flex  desktop:items-center mb-12">
+          <div className="desktop:flex justify-center desktop:items-center mb-12">
             <div className="desktop:w-1/2 laptop:w1/2 text-center desktop:text-start laptop:text-start ">
-              <p className="text-lg">
+              <p className="text-lg text-center">
                 <span className="text-blue-900 font-semibold">
                   Event Start Date:
                 </span>{" "}
                 {moment(data.startDayTime).format("MMMM Do YYYY")}
               </p>
-              <p className="text-lg">
+              <p className="text-lg text-center">
                 <span className="text-blue-900 font-semibold">Time:</span>{" "}
                 {moment(data.startDayTime).format("h:mm:ss a")}
               </p>
@@ -53,31 +54,36 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
                 </span>{" "}
                 {moment(data.endDayTime).format("MMMM Do YYYY")}
               </p> */}
+              <div className="text-center">
+                <Button href="https://forms.gle/wfa7pL6Hq48Sv3jeA">
+                  Register Now
+                </Button>
+              </div>
 
-              <p className="text-lg">
+              <p className="text-lg text-center">
                 <span className="text-blue-900 font-semibold">
                   Registration Deadline:
                 </span>{" "}
                 {moment(data.deadLine).format("MMMM Do YYYY")}
               </p>
-              <p className="text-lg">
+              {/* <p className="text-lg">
                 <span className="text-blue-900 font-semibold">
                   Event Location:
                 </span>{" "}
                 {data.eventLocation}
-              </p>
+              </p> */}
 
-              <p className="font-semibold">
+              <p className="font-semibold text-center">
                 All Registered students would receive 20% Scholarship on IT
                 courses
               </p>
             </div>
-            <div className="desktop:w-1/2 laptop:w-1/2 desktop:flex desktop:justify-end laptop:flex laptop:justify-end flex justify-around">
+            {/* <div className="desktop:w-1/2 laptop:w-1/2 desktop:flex desktop:justify-end laptop:flex laptop:justify-end flex justify-around">
               <WebinarForm
                 title="Event Registration Form"
                 eventId={data.id}
               ></WebinarForm>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -124,8 +130,8 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
             {data.applicationProcess?.map(
               (item: CommonContentEventInterface) => {
                 return (
-                  <div className="desktop:w-1/2 desktop:flex desktop:justify-between laptop:w-1/2 laptop:flex laptop:justify-between  px-8 py-4 desktop:rounded-full laptop:rounded-full text-center rounded-lg desktop:h-48 laptop:h-48 mb-8 shadow-xl bg-blue-900">
-                    <div className="flex items-center m-auto  desktop:mr-6 laptop:mr-6 mb-4 rounded-full bg-white w-[30%]">
+                  <div className="desktop:w-1/2 desktop:flex items-center desktop:justify-between laptop:w-1/2 laptop:flex laptop:justify-between  px-8 py-4 desktop:rounded-full laptop:rounded-full text-center rounded-lg desktop:h-48 laptop:h-48 mb-8 shadow-xl bg-blue-900">
+                    <div className="flex items-center m-auto  desktop:mr-6 laptop:mr-6  rounded-full bg-white w-[30%]">
                       <Image
                         src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
                         alt="logo"
@@ -134,7 +140,7 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
                         className="m-auto "
                       />
                     </div>
-                    <div className="text-white desktop:w-[70%] laptop:w-[70%] text-center">
+                    <div className="text-white items-center desktop:w-[70%] laptop:w-[70%] text-center">
                       <h2 className="desktop:m-0 laptop:m-0 desktop:text-lg mb-2 font-bold">
                         {item.title}
                       </h2>
@@ -156,7 +162,7 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
           <div className="flex flex-col  items-center">
             {data.selectionProcess?.map((item: CommonContentEventInterface) => {
               return (
-                <div className="desktop:w-1/2 desktop:flex desktop:justify-between laptop:w-1/2 laptop:flex laptop:justify-between  px-8 py-4 desktop:rounded-full laptop:rounded-full text-center rounded-lg desktop:h-48 laptop:h-48 mb-8 shadow-xl">
+                <div className="desktop:w-1/2 desktop:flex items-center desktop:justify-between laptop:w-1/2 laptop:flex laptop:justify-between  px-8 py-4 desktop:rounded-full laptop:rounded-full text-center rounded-lg desktop:h-48 laptop:h-48 mb-8 shadow-xl">
                   <div className="flex items-center  desktop:mr-6 laptop:mr-6 m-auto rounded-full bg-blue-900  w-[30%]">
                     <Image
                       src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
