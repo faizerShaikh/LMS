@@ -53,7 +53,7 @@ export default async function EventsPage({
           <Events buttons={EventsButtons} defaultValue={searchParams?.date} />
         </div>
       </section>
-      <section className="py-12">
+      <section className="py-12 ">
         <div className="flex flex-col-reverse laptop:flex-row desktop:flex-row desktop:container desktop:m-auto mx-6 ">
           {!events || !events.length ? (
             <div className="w-3/4">

@@ -6,7 +6,6 @@ import MenuItem from "@mui/material/MenuItem";
 import axios from "axios";
 import { toast } from "utils";
 import { Button, Checkbox, Input } from "components/layout";
-
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import {
@@ -26,7 +25,6 @@ export const RegistrationForm = ({ from }: any) => {
 
   const [countryid, setCountryid] = useState(0);
   const [stateid, setstateid] = useState(0);
-  const [startDate, setStartDate] = useState(new Date());
 
   const [selectedSpecialization, setSelectedSpecialization] = useState("");
 
@@ -343,12 +341,14 @@ export const RegistrationForm = ({ from }: any) => {
               // sx={{
               //   "&  .stsearch-box": {
               //     padding: 0,
-              //     // background:
               //   },
               //   ".stdropdown-input": {
               //     padding: 0,
               //   },
               //   " .stdropdown-container": {
+              //     border: 0,
+              //   },
+              //   ".stsearch-box input": {
               //     border: 0,
               //   },
               // }}

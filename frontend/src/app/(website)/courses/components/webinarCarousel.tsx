@@ -4,7 +4,7 @@ import { CustomCarousel } from "components/layout/carousel";
 import moment from "moment";
 
 export default function WebinarCarousel({ data }: any) {
-  // console.log(data, "<<<<<<,,data");
+  console.log(data, "<<<<<<,,data");
   return (
     <>
       <CustomCarousel
@@ -44,7 +44,9 @@ export default function WebinarCarousel({ data }: any) {
                     {moment(item?.event.startDayTime).format("h:mm A")}
                   </p>
                 </div>
-                <Button>Register Now</Button>
+                <Button href={`webinar/${item?.event?.slug}`}>
+                  Register Now
+                </Button>
               </div>
             </div>
           );

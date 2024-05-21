@@ -31,7 +31,7 @@ export default async function AboutUs() {
         </div>
       </section>
       <section className="my-10 px-8 desktop:my-32 text-center">
-        <div className="container m-auto">
+        <div className="container m-auto px-0">
           <h2 className="text-3xl desktop:text-4xl font-bold mt-0 mb-6">
             Our Story
           </h2>
@@ -56,7 +56,7 @@ export default async function AboutUs() {
         </div>
       </section>
       <section className="bg-gray-100 px-8 desktop:py-32 py-10">
-        <div className="container  m-auto">
+        <div className="container px-0 m-auto">
           <div className="flex flex-col-reverse desktop:flex-row  mb-24 items-center">
             <div className="w-full desktop:w-2/4  text-center  desktop:pr-12 flex flex-col  items-center ">
               <h2 className="text-3xl desktop:text-4xl font-bold mb-2 ">
@@ -103,7 +103,7 @@ export default async function AboutUs() {
         </div>
       </section>
       <section className="bg-blue-900 px-8 desktop:py-32 py-10">
-        <div className=" text-center text-white container  m-auto">
+        <div className=" text-center px-0 text-white container  m-auto">
           <h2 className="desktop:pb-8 text-3xl desktop:text-4xl mb-3 desktop:mb-0  m-0">
             Our Core Values
           </h2>
@@ -154,7 +154,7 @@ export default async function AboutUs() {
         </div>
       </section>
       <section className=" text-center desktop:py-32 px-8 py-10">
-        <div className="container m-auto">
+        <div className="container px-0 m-auto">
           <h2 className="text-2xl desktop:text-4xl  m-0">Global Partnership</h2>
           <p className="text-xl text-gray-700 pb-8">
             pursuit of our commitment to affordable education, RiseBack has

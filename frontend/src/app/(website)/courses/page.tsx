@@ -1,13 +1,11 @@
 import Image from "next/image";
 import axios from "axios";
-import Link from "next/link";
 import { CoursesCard } from "components/layout/cards/CourseCard";
 import CourseCategoryFilter from "./components/CourseFilterForm";
 import { Button } from "components/layout/buttons";
 import ViewMore from "./components/ViewMore";
 import { WebinarInterface } from "interfaces/webinar";
 import WebinarCarousel from "./components/webinarCarousel";
-import { ChevronRight } from "@carbon/icons-react";
 
 interface CoursesSearchParams {
   category?: string;
@@ -58,8 +56,8 @@ export default async function courses({
 
   return (
     <>
-      <section className="bg-gray-100 desktop:h-[400px] laptop:h-[400px]  ">
-        <div className="desktop:flex laptop:flex container py-10 desktop:py-0 m-auto">
+      <section className="bg-gray-100 px-8 desktop:h-[400px] laptop:h-[400px]  ">
+        <div className="desktop:flex laptop:flex container py-10 desktop:py-0 m-auto px-0">
           <div className="desktop:w-2/4  laptop:w-2/4 flex justify-around">
             <Image
               height={400}
@@ -92,8 +90,8 @@ export default async function courses({
         </div>
       </section>
 
-      <section>
-        <div className="container m-auto ">
+      <section className="px-8">
+        <div className="container px-0 m-auto ">
           <div className="text-center my-16">
             <h2 className="font-semibold desktop:text-4xl laptop:text-4xl text-2xl mb-4">
               Start a Brand-New Career in as few as Six Weeks !
@@ -113,13 +111,13 @@ export default async function courses({
             <div className="desktop:w-1/4 laptop:w-1/4 shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] mb-4 rounded-md p-4 border-2">
               <h2 className="text-xl font-bold m-0 ">Categories</h2>
               <ul className="p-0">
-                <Button
+                {/* <Button
                   href="/courses"
                   className="bg-blue-100 py-3 w-full text-start flex justify-between  text-blue-700  rounded-md"
                 >
                   Most Popular
                   <ChevronRight></ChevronRight>
-                </Button>
+                </Button> */}
 
                 <CourseCategoryFilter
                   category={category}
@@ -138,8 +136,8 @@ export default async function courses({
         </div>
       </section>
 
-      <section className="bg-gray-100">
-        <div className="container py-16 m-auto">
+      <section className="bg-gray-100 px-8">
+        <div className="container py-16 px-0 m-auto">
           <div className="mb-8">
             <h2 className="text-center font-semibold desktop:text-3xl laptop:text-3xl text-2xl  mb-6 ">
               Unlocking Global Opportunities: Navigating the Digital Landscape
@@ -187,7 +185,7 @@ export default async function courses({
           </div>
         </div>
       </section>
-      <section className="py-16">
+      {/* <section className="py-16">
         <div className="text-center m-auto">
           <button className=" border-2 bg-white border-blue-900  px-4 text-lg rounded-3xl">
             <Link href="/event" className="text-blue-900">
@@ -195,8 +193,8 @@ export default async function courses({
             </Link>
           </button>
         </div>
-      </section>
-      <section>
+      </section> */}
+      <section className="py-16">
         <div className="container m-auto pb-12">
           <div>
             <WebinarCarousel data={data}></WebinarCarousel>

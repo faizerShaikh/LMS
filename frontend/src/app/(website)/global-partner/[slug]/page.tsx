@@ -23,8 +23,8 @@ export default async function GlobalPartner({
         description={`${data?.description}`}
         viewButton={false}
       ></HeroSection>
-      <section className="container m-auto my-16">
-        <h2 className="text-center text-3xl mb-12 font-medium">
+      <section className="container px-8 m-auto my-16">
+        <h2 className="text-center px-0 text-3xl mb-12 font-medium">
           Contact Details
         </h2>
         <div className="  justify-between text-center gap-7 grid laptop:grid-cols-2 desktop:grid-cols-4 tablet:grid-cols-2 ">
@@ -74,7 +74,7 @@ export default async function GlobalPartner({
           </div>
         </div>
       </section>
-      <section className="container m-auto mt-4 ">
+      <section className="container px-8 m-auto mt-4 ">
         <h2 className="text-center text-3xl">Professional IT Courses</h2>
         <div className="desktop:flex desktop:justify-center mb-8">
           <ul className="w-full tablet:m-0 m-0 desktop:w-1/2">
@@ -138,10 +138,10 @@ export default async function GlobalPartner({
         </div>
       </section>
       <section
-        className="container m-auto text-center mb-10"
+        className="container m-auto text-center px-8 mb-10"
         dangerouslySetInnerHTML={{ __html: data.vision }}
       ></section>
-      <section className="container m-auto ">
+      <section className="container px-8 m-auto ">
         <p className="text-center font-semibold mb-10">
           <Link href="#">
             Click here to know more about Rise N Start Ignite and registration.

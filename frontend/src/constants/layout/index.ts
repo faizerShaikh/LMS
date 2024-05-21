@@ -44,7 +44,7 @@ export const menuItems: menuType[] = [
     path: "/admin/applicationForms",
   },
   {
-    icon: "Events",
+    icon: "ShareKnowledge",
     title: "Users's",
     path: "/admin/users",
   },
