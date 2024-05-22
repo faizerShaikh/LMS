@@ -105,19 +105,30 @@ export class WebinarService extends GenericService<
   }
 
 
-  async webinars(
-  ) {
-    return await this.webinar.findAll<Webinar>({
-      where: { course_level: 'master' },
-      include: [
-        {
-          model: Events,
-          
-          include:[MetaData]
-        }
+  async webinars() {
+    try {
+      const webinars = await this.webinar.findAll<Webinar>({
+        include: [
+          {
+            model: Events,
+            include: [MetaData]
+          }
         ],
-    });
-
+      });
+      return {
+        
+          count: webinars.length,
+          rows: webinars
+      };
+    } catch (error) {
+      return {
+        success: false,
+        status: 500,
+        message: 'An error occurred while fetching webinars',
+        error: error.message
+      };
+    }
   }
+  
 
 }

@@ -33,7 +33,7 @@ export class MyBaseModel extends Model {
 
   @Default(null)
   @Column({
-    type: DataType.VIRTUAL,
+    type: DataType.STRING,
   })
   type: MetaDataType;
 

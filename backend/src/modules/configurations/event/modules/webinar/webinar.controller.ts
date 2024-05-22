@@ -28,6 +28,11 @@ export class WebinarController extends GenericController<
     super(webinarService);
   }
 
+  @Get()
+  async getallebinar(){
+   return await this.webinarService.webinars( )
+  }
+
   @Put('update-image/:id')
   @UseInterceptors(
     MulterIntercepter({
