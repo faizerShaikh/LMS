@@ -219,4 +219,10 @@ export class Events extends MyBaseModel {
   @ForeignKey(() => Webinar)
   @Column
   webinarId: string;
+
+  @BelongsTo(()=>Webinar,{
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  webinar:Webinar[]
 }

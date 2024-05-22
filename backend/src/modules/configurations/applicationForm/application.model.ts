@@ -93,7 +93,7 @@ export class ApplicationForm extends Model<ApplicationForm> {
   course_id: string;
 
   @BelongsTo(() => Course)
-  course: Course;
+  course: Course; 
 
   @Column({
     type: DataType.STRING,
@@ -126,7 +126,7 @@ export class ApplicationForm extends Model<ApplicationForm> {
     const latestRecord = await ApplicationForm.findOne({
       order: [['createdAt', 'DESC']]
     });
-
+ 
     let serialNumber = 'APL000001';
 
     if (latestRecord) {
