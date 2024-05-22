@@ -4,6 +4,7 @@ import BlogCategoryFilter from "components/blogs/blog-category";
 import FeaturedBlog from "components/blogs/fratured-blog";
 import { BlogCategory } from "interfaces/blogCategory";
 import LoadMoreButton from "components/blogs/loadMoreButton";
+import { Button } from "components/layout/buttons/index";
 
 interface BlogSearchParams {
   category?: string;
@@ -111,6 +112,7 @@ export default async function Blogs({
                 category={category}
                 blogCategories={BlogCatagoriData}
               ></BlogCategoryFilter>
+              <Button href="/blogs">Clear Filters</Button>
             </div>
           </div>
         </div>

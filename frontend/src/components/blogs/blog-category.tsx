@@ -22,7 +22,9 @@ export default function BlogCategoryFilter({
         key={item.id}
         onClick={() => handleClick(item)}
         className={`cursor-pointer ${
-          category === item.slug ? "font-semibold text-primary" : ""
+          category === item.slug
+            ? "bg-blue-100 py-3 w-full text-start flex justify-between px-2  text-blue-700  rounded-md"
+            : ""
         } border-b-2 pb-2`}
       >
         {item.name}

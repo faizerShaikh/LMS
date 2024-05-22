@@ -1,7 +1,5 @@
 import { PageHeader } from "components/layout/pageHeader/index";
 import { DataGrid } from "components/layout/dataGrid/index";
-import { useGetAll } from "hooks";
-
 import { ApplicationFormExelExport } from "./components/ApplicationFormsExelExport";
 import { columns } from "./columns";
 import axios from "axios";
@@ -30,3 +28,4 @@ export default async function AppicationFormPage({ id }: any) {
     </>
   );
 }
+export const revalidate = 60;
