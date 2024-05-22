@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import axios from "axios";
+import * as Yup from "yup";
 import { toast } from "utils";
 import { Button, Checkbox, Input } from "components/layout";
 import "react-datepicker/dist/react-datepicker.css";
@@ -22,7 +23,7 @@ export const RegistrationForm = ({ from }: any) => {
   let courseSpecializationData: any = [];
   let response = useGetAll({ key: "/configurations/course-specialization" });
   courseSpecializationData = response?.data?.rows;
-
+  const [checked, setChecked] = useState(false);
   const [countryid, setCountryid] = useState(0);
   const [stateid, setstateid] = useState(0);
 
@@ -33,7 +34,10 @@ export const RegistrationForm = ({ from }: any) => {
     setSelectedSpecialization(selectedSpecialization);
     formik.setFieldValue("specialization", selectedSpecialization);
   };
-
+  const handleCheckboxChange = (e: any) => {
+    setChecked(e.target.checked);
+    formik.setFieldValue("isChecked", e.target.checked);
+  };
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -55,8 +59,30 @@ export const RegistrationForm = ({ from }: any) => {
       updatedAt: "",
       createdAt: "",
       dateOfBirth: moment().format("YYYY-MM-DD"),
+      isChecked: checked,
     },
-
+    validationSchema: Yup.object({
+      fullName: Yup.string().required("Please enter your full name"),
+      mobileNumber: Yup.number().required("Please enter your mobile number"),
+      emailID: Yup.string().email("Invalid email address").required("Required"),
+      gender: Yup.string().required("Please select Gender"),
+      nationality: Yup.string().required("Please select Nationality"),
+      // governmentIDType: Yup.string().required(
+      //   "Please select Government ID Type"
+      // ),
+      country: Yup.string().required("Please select Country"),
+      state: Yup.string().required("Please select State"),
+      city: Yup.string().required("Please select City"),
+      howDoYouKnowAboutRiseBack: Yup.string().required(
+        "Please select How Do You Know About RiseBack"
+      ),
+      universityName: Yup.string().required("Please select University Name"),
+      selectCourse: Yup.string().required("Please select Course Name"),
+      specialization: Yup.string().required(
+        "Please select Course Specialization"
+      ),
+      dateOfBirth: Yup.string().required("Please Enter Date Of Birth"),
+    }),
     onSubmit: (values, { resetForm }) => {
       const selectedSpecializationValue = courseSpecializationData.find(
         (item: any) => item.name === values.specialization
@@ -190,10 +216,16 @@ export const RegistrationForm = ({ from }: any) => {
             {/* <Label text="dateOfBirth" /> */}
 
             <Input
-              type="datetime-local"
+              type="date"
               id="dateOfBirth"
               value={formik.values.dateOfBirth}
               onChange={formik.handleChange}
+              error={
+                formik.touched.dateOfBirth && Boolean(formik.errors.dateOfBirth)
+              }
+              helperText={
+                formik.touched.dateOfBirth && formik.errors.dateOfBirth
+              }
               className="!bg-white"
               sx={{
                 "& .MuiInputBase-input": {
@@ -352,6 +384,8 @@ export const RegistrationForm = ({ from }: any) => {
               //     border: 0,
               //   },
               // }}
+              // error={formik.touched.country && Boolean(formik.errors.country)}
+              // helperText={formik.touched.country && formik.errors.country}
             />
           </div>
         </div>
@@ -579,11 +613,11 @@ export const RegistrationForm = ({ from }: any) => {
         </div>
         <p className="text-red-700">
           <span className="font-semibold ">Disclaimer :</span>
-          Application submission does not guarantee admission .Admissionis
+          Application submission does not guarantee admission. Admissionis
           subject to meeting eligibility criteria and seat availability.
         </p>
         <div className="flex">
-          <Checkbox></Checkbox>
+          <Checkbox checked={checked} onChange={handleCheckboxChange} />
           <p className="text-xs">
             Yes , I accept to receive promotional news letters or information
             about courses and programs. I accept the Terms of Use and Privacy
@@ -599,6 +633,7 @@ export const RegistrationForm = ({ from }: any) => {
           type="submit"
           fullWidth
           className="mt-3 w-[300px] "
+          disabled={!checked}
         >
           Submit
         </Button>
