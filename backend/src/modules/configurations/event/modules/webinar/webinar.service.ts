@@ -5,6 +5,7 @@ import { Webinar } from './webinar.model';
 import { CreateWebinarDto } from './dto/create-webinar.dto';
 import { UpdateWebinarDto } from './dto/update-webinar.dto';
 import { Events } from '../../event.model';
+import { MetaData } from 'src/modules/configurations/MetaData/meta.model';
 
 @Injectable()
 export class WebinarService extends GenericService<
@@ -102,4 +103,21 @@ export class WebinarService extends GenericService<
       }
     }
   }
+
+
+  async webinars(
+  ) {
+    return await this.webinar.findAll<Webinar>({
+      where: { course_level: 'master' },
+      include: [
+        {
+          model: Events,
+          
+          include:[MetaData]
+        }
+        ],
+    });
+
+  }
+
 }
