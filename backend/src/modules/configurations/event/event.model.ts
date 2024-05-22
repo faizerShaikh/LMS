@@ -178,7 +178,7 @@ export class Events extends MyBaseModel {
   isFeatured: boolean;
 
   @Column
-  syllabus:string
+  syllabus: string;
 
   @ForeignKey(() => User)
   created_by_id: string;
@@ -220,9 +220,9 @@ export class Events extends MyBaseModel {
   @Column
   webinarId: string;
 
-  @BelongsTo(()=>Webinar,{
+  @BelongsTo(() => Webinar, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  webinar:Webinar[]
+  webinar: Webinar[];
 }

@@ -14,7 +14,7 @@ export default async function University() {
   let data = await getData();
   return (
     <>
-      <PageHeader title="Univerities" />
+      <PageHeader title="Universities" />
       <DataGrid
         addButton={<UniversityDialog />}
         columns={columns}

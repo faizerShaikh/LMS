@@ -8,6 +8,7 @@ async function getData() {
   const res = await axios.get(
     `${process.env.BASE_API_URL}/configurations/webinar`
   );
+  console.log(res.data.data.rows);
   return res.data.data;
 }
 export default async function MediaPage() {

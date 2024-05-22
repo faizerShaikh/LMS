@@ -59,8 +59,8 @@ export const columns: GridColDef[] = [
           <MetaDataForm
             isUpdate={true}
             data={
-              params.row.metaData
-                ? params.row.metaData
+              params.row.event.metaData
+                ? params.row.event.metaData
                 : { id: params?.row?.event?.metaID }
             }
             refetchURL="/configurations/webinar"

@@ -2,8 +2,8 @@ import React from "react";
 import { Button, Image } from "..";
 import { CourseSpecializationInterface } from "interfaces";
 import { CustomCarousel } from "../carousel";
-import { useGetAll } from "hooks";
-import Variants from "components/home/skeleton";
+// import { useGetAll } from "hooks";
+// import Variants from "components/home/skeleton";
 import Link from "next/link";
 import { Download } from "@carbon/icons-react";
 
@@ -11,6 +11,7 @@ export const CourseSpecializationCard = (item: any) => {
   // const { data, isLoading } = useGetAll({
   //   key: `/configurations/course-specialization?category=${item.item.slug}`,
   // });
+
   return (
     <section className="w-full desktop:px-10 pb-10">
       {/* {isLoading && (

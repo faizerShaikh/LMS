@@ -89,9 +89,10 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
       </section>
       <section className="bg-blue-900">
         <div className="container text-center py-8 m-auto">
-          <p className="text-white text-lg mb-6">
-            {removeTags(data.description)}
-          </p>
+          <div
+            className="text-white text-lg mb-6"
+            dangerouslySetInnerHTML={{ __html: data.description }}
+          ></div>
         </div>
       </section>
 
@@ -109,9 +110,9 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
                     width={300}
                     height={300}
                     alt="test "
-                    className="w-full h-72 rounded-md brightness-50 "
+                    className="w-full h-72 rounded-md  "
                   />
-                  <div className="absolute inset-0 text-center flex flex-col justify-end px-4">
+                  <div className="absolute inset-0 text-center flex flex-col justify-end px-4 backdrop-brightness-90">
                     <h2 className="text-white font-semibold m-0">
                       {item.title}
                     </h2>
@@ -130,17 +131,19 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
             {data.applicationProcess?.map(
               (item: CommonContentEventInterface) => {
                 return (
-                  <div className="desktop:w-1/2 desktop:flex items-center desktop:justify-between laptop:w-1/2 laptop:flex laptop:justify-between  px-8 py-4 desktop:rounded-full laptop:rounded-full text-center rounded-lg desktop:h-48 laptop:h-48 mb-8 shadow-xl bg-blue-900">
-                    <div className="flex items-center m-auto  desktop:mr-6 laptop:mr-6  rounded-full bg-white w-[30%]">
-                      <Image
-                        src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
-                        alt="logo"
-                        width={100}
-                        height={100}
-                        className="m-auto "
-                      />
+                  <div className="desktop:w-1/2 desktop:flex items-center desktop:justify-between laptop:w-1/2 laptop:flex laptop:justify-between   desktop:rounded-full laptop:rounded-full text-center rounded-lg desktop:h-48 laptop:h-48 mb-8 shadow-xl bg-blue-900">
+                    <div className=" desktop:mr-6 laptop:mr-6 h-[150px]  !rounded-full  w-[20%] px-4">
+                      <div className=" h-[150px]  !rounded-full bg-white w-[150px]  ">
+                        <Image
+                          src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
+                          alt="logo"
+                          width={150}
+                          height={150}
+                          className="!rounded-full "
+                        />
+                      </div>
                     </div>
-                    <div className="text-white items-center desktop:w-[70%] laptop:w-[70%] text-center">
+                    <div className="text-white items-center desktop:w-[70%] laptop:w-[70%] text-center px-4 py-4">
                       <h2 className="desktop:m-0 laptop:m-0 desktop:text-lg mb-2 font-bold">
                         {item.title}
                       </h2>
@@ -162,20 +165,22 @@ async function SingleEventPage({ params }: { params: { slug: string } }) {
           <div className="flex flex-col  items-center">
             {data.selectionProcess?.map((item: CommonContentEventInterface) => {
               return (
-                <div className="desktop:w-1/2 desktop:flex items-center desktop:justify-between laptop:w-1/2 laptop:flex laptop:justify-between  px-8 py-4 desktop:rounded-full laptop:rounded-full text-center rounded-lg desktop:h-48 laptop:h-48 mb-8 shadow-xl">
-                  <div className="flex items-center  desktop:mr-6 laptop:mr-6 m-auto rounded-full bg-blue-900  w-[30%]">
-                    <Image
-                      src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
-                      alt="logo"
-                      width={100}
-                      height={100}
-                      className="m-auto  "
-                    />
+                <div className="desktop:w-1/2 desktop:flex items-center desktop:justify-between laptop:w-1/2 laptop:flex laptop:justify-between   desktop:rounded-full laptop:rounded-full text-center rounded-lg desktop:h-48 laptop:h-48 mb-8 shadow-[rgba(17,_17,_26,_0.3)_0px_0px_16px] bg-white">
+                  <div className=" desktop:mr-6 laptop:mr-6 h-[150px]  !rounded-full  w-[20%] px-4">
+                    <div className=" h-[150px]  !rounded-full bg-blue-900 w-[150px]  ">
+                      <Image
+                        src={`${process.env.BASE_MEDIA_URL}/${item.image}`}
+                        alt="logo"
+                        width={150}
+                        height={150}
+                        className="!rounded-full "
+                      />
+                    </div>
                   </div>
-                  <div className=" desktop:w-[70%] laptop:w-[70%]">
-                    <h3 className="desktop:m-0 laptop:m-0 desktop:text-lg mb-2 font-bold">
+                  <div className="items-center desktop:w-[70%] laptop:w-[70%] text-center px-4 py-4">
+                    <h2 className="desktop:m-0 laptop:m-0 desktop:text-lg mb-2 font-bold">
                       {item.title}
-                    </h3>
+                    </h2>
                     <p className="m-0 font-light desktop:text-[15px] laptop:text-[15px] text-sm">
                       {item.desription}
                     </p>

@@ -18,6 +18,12 @@ export const columns: GridColDef[] = [
     cellClassName: "text-dark",
   },
   {
+    headerName: "Course Level",
+    field: "course_level",
+    flex: 1,
+    cellClassName: "text-dark",
+  },
+  {
     headerName: "Action",
     field: "action",
     flex: 1,

@@ -9,15 +9,21 @@ import removeTags from "utils/removeTags";
 
 export const columns: GridColDef[] = [
   {
-    headerName: "Vision",
-    field: "vision",
+    headerName: "Name",
+    field: "name",
     flex: 1,
     cellClassName: "text-dark",
-    renderCell: (params: { row: GlobalPartnerInterface }) => {
-      const visionValue = params.row?.vision;
-      return removeTags(visionValue);
-    },
   },
+  // {
+  //   headerName: "Vision",
+  //   field: "vision",
+  //   flex: 1,
+  //   cellClassName: "text-dark",
+  //   renderCell: (params: { row: GlobalPartnerInterface }) => {
+  //     const visionValue = params.row?.vision;
+  //     return removeTags(visionValue);
+  //   },
+  // },
   {
     headerName: "Description",
     field: "description",
@@ -28,40 +34,40 @@ export const columns: GridColDef[] = [
       return removeTags(descriptionValue);
     },
   },
-  {
-    headerName: "Objective",
-    field: "objective",
-    flex: 1,
-    cellClassName: "text-dark",
-    renderCell: (params: { row: GlobalPartnerInterface }) => {
-      const objectiveValue = params.row?.objective;
-      return removeTags(objectiveValue);
-    },
-  },
-  {
-    headerName: "Popular Course",
-    field: "popular_course",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
-  {
-    headerName: "Address",
-    field: "address",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
+  // {
+  //   headerName: "Objective",
+  //   field: "objective",
+  //   flex: 1,
+  //   cellClassName: "text-dark",
+  //   renderCell: (params: { row: GlobalPartnerInterface }) => {
+  //     const objectiveValue = params.row?.objective;
+  //     return removeTags(objectiveValue);
+  //   },
+  // },
+  // {
+  //   headerName: "Popular Course",
+  //   field: "popular_course",
+  //   flex: 1,
+  //   cellClassName: "text-dark",
+  // },
+  // {
+  //   headerName: "Address",
+  //   field: "address",
+  //   flex: 1,
+  //   cellClassName: "text-dark",
+  // },
   {
     headerName: "Phone",
     field: "phone",
     flex: 1,
     cellClassName: "text-dark",
   },
-  {
-    headerName: "Website",
-    field: "website",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
+  // {
+  //   headerName: "Website",
+  //   field: "website",
+  //   flex: 1,
+  //   cellClassName: "text-dark",
+  // },
   {
     headerName: "Email",
     field: "email",

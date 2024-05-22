@@ -93,7 +93,7 @@ export default async function Cources() {
   const data = await getData();
   return (
     <>
-      <PageHeader title="Cources" />
+      <PageHeader title="Courses" />
       <DataGrid addButton={<CourseForm />} columns={columns} rows={data} />
     </>
   );
