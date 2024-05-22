@@ -9,6 +9,7 @@ import { MetaData } from '../MetaData/meta.model';
 import * as fs from 'fs';
 import { CourseSpecialization } from '../course-specialization/model';
 import { Op } from 'sequelize';
+import { University } from '../university/model';
 @Injectable()
 export class CourseService extends GenericService<
   Course,
@@ -16,9 +17,9 @@ export class CourseService extends GenericService<
   UpdateCourseDTO
 >({
   defaultFindOptions: {
-    include: [MetaData, CourseSpecialization],
+    include: [MetaData, CourseSpecialization,University],
   },
-  includes: [MetaData, CourseSpecialization],
+  includes: [MetaData, CourseSpecialization,University],
 }) {
   constructor(
     @InjectModel(Course) private course: typeof Course,
@@ -50,7 +51,8 @@ export class CourseService extends GenericService<
             model: CourseSpecialization,
             where: {
               courseType: { [Op.not]: 'customCourse' } // Add condition to exclude customCourse
-            }
+            },
+            include:[University]
           }
           ,
           MetaData],
@@ -68,15 +70,6 @@ export class CourseService extends GenericService<
           },
           MetaData
         ]
-      });
-
-      const University = await this.course.findAll<Course>({
-        include: [
-          {
-            model: CourseSpecialization,
-            where: { courseType: 'university' },
-          }, MetaData
-        ],
       });
 
       const customCourse = await this.course.findAll<Course>({
