@@ -8,27 +8,32 @@ import Link from "next/link";
 import { Download } from "@carbon/icons-react";
 
 export const CourseSpecializationCard = (item: any) => {
-  const { data, isLoading } = useGetAll({
-    key: `/configurations/course-specialization?category=${item.item.slug}`,
-  });
+  // const { data, isLoading } = useGetAll({
+  //   key: `/configurations/course-specialization?category=${item.item.slug}`,
+  // });
   return (
     <section className="w-full desktop:px-10 pb-10">
-      {isLoading && (
+      {/* {isLoading && (
         <CustomCarousel infinite={false} slidesToShow={3}>
           <Variants></Variants>
           <Variants></Variants>
           <Variants></Variants>
         </CustomCarousel>
       )}
-      {!isLoading && (!data || !data?.rows.length) && (
+      {!isLoading && (!data || !data?.rows.length) && ( 
         <div>No Course For Selected Category</div>
-      )}
-      {!isLoading && !!data?.rows?.length && (
-        <CustomCarousel
-          infinite={data.rows.length >= 3 ? true : false}
-          slidesToShow={data.rows.length >= 3 ? 3 : data.rows.length}
-        >
-          {data.rows.map((item: CourseSpecializationInterface) => {
+      )} */}
+      {/* {!isLoading && !!data?.rows?.length && ( */}
+      <CustomCarousel
+        infinite={item.item.specializations.length >= 3 ? true : false}
+        slidesToShow={
+          item.item.specializations.length >= 3
+            ? 3
+            : item.item.specializations.length
+        }
+      >
+        {item.item.specializations.map(
+          (item: CourseSpecializationInterface) => {
             return (
               <div className="border desktop:!w-[350px] tablet:w-[300px] laptop:w-[300px] !w-[280px] h-[470px] rounded-2xl  shadow-lg  m-0">
                 <div className="border-b-2 mb-3 ">
@@ -104,9 +109,10 @@ export const CourseSpecializationCard = (item: any) => {
                 </div>
               </div>
             );
-          })}
-        </CustomCarousel>
-      )}
+          }
+        )}
+      </CustomCarousel>
+      {/* )} */}
     </section>
   );
 };

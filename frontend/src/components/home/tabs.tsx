@@ -4,6 +4,7 @@ import { Tabs } from "..";
 import { CourseSpecializationCard } from "components/layout/cards/CourseSpecializationCard";
 
 export const CourseTabs = ({ CoursesData }: { CoursesData: [] }) => {
+  console.log(CoursesData);
   return (
     <div>
       <Tabs

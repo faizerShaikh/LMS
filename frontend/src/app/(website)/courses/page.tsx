@@ -123,6 +123,9 @@ export default async function courses({
                   category={category}
                   CourseCategories={CoursesCatagoriData}
                 ></CourseCategoryFilter>
+                <Button href="/courses" className="w-full">
+                  Clear Filters
+                </Button>
               </ul>
             </div>
           </div>

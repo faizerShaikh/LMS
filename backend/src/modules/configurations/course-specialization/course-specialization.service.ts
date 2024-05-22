@@ -89,7 +89,7 @@ export class CourseSpecializationService extends GenericService<
     const courseSpecialization = await super.create(dto);
     return courseSpecialization;
   }
-  
+
   // async update<CourseSpecialization>(
   //   data: UpdateCourseSpecializationDTO,
   //   id: string,
@@ -182,7 +182,8 @@ export class CourseSpecializationService extends GenericService<
   }
   async updateCoverImage(file: Express.Multer.File, id: string) {
     try {
-      const courseSpecialization = await this.courseSpecialization.findByPk<CourseSpecialization>(id);
+      const courseSpecialization =
+        await this.courseSpecialization.findByPk<CourseSpecialization>(id);
       if (!courseSpecialization) {
         throw new InternalServerErrorException('course_spl not found');
       }
@@ -194,7 +195,8 @@ export class CourseSpecializationService extends GenericService<
       );
 
       if (file && file.filename) {
-        const newImagePath = '/media/course-specialization/cover-image/' + file.filename;
+        const newImagePath =
+          '/media/course-specialization/cover-image/' + file.filename;
 
         unlink(filePath, (err) => {
           if (err) {
@@ -203,7 +205,6 @@ export class CourseSpecializationService extends GenericService<
             console.log('Old image deleted...');
           }
         });
-
 
         await courseSpecialization.update({
           cover_image: newImagePath,
@@ -403,9 +404,9 @@ export class CourseSpecializationService extends GenericService<
         ],
         where: {
           university_id: {
-            [Op.not]: null
-          }
-        }
+            [Op.not]: null,
+          },
+        },
       });
       return courseSpl;
     } catch (error) {
@@ -428,15 +429,14 @@ export class CourseSpecializationService extends GenericService<
           Infos,
         ],
         where: {
-          courseType: 'customCourse'
-        }
+          courseType: 'customCourse',
+        },
       });
       return courseSpl;
     } catch (error) {
       throw error;
     }
   }
-
 
   async CourseSpecializations(
     isInfinite: boolean,
@@ -452,7 +452,7 @@ export class CourseSpecializationService extends GenericService<
 
     try {
       let whereClause: any = {
-        courseType: { [Op.not]: 'customCourse' } // Add condition to exclude customCourse
+        // courseType: { [Op.not]: 'customCourse' }, // Add condition to exclude customCourse
       };
       if (slug) {
         category = await this.course.findOne({ where: { slug: slug } });
