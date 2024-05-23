@@ -13,10 +13,10 @@ export class Leads extends Model {
     @PrimaryKey
     @Column
     id: string;
-  
-
+                
     @Column({
-        type: DataType.STRING
+        type: DataType.STRING,
+        defaultValue:"new"
     })
     leadStatus:leadStatusEnum
 
