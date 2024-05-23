@@ -1,4 +1,4 @@
-import { Controller} from "@nestjs/common";
+import { Controller, Get} from "@nestjs/common";
 import { GenericController } from "src/core/modules";
 import { CreateLeadDto, UpdateLeadDto } from "./dto";
 import { Leads } from "./lead.model";
@@ -11,5 +11,10 @@ export class LeadController extends GenericController<Leads,CreateLeadDto,Update
 }){
     constructor(private readonly leadService: LeadService){
         super(leadService);
+    }
+
+    @Get()
+    async getAllLeads(){
+        return await this.leadService.getAllLead()
     }
 }
