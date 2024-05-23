@@ -18,7 +18,12 @@ export class UsersController extends GenericController<
   }
 
   @Get('Sales-Team')
+<<<<<<< HEAD
   getBySalesTeam() {
     return this.usersService.getSalesTeam();
+=======
+  getBySalesTeam(){
+    return this.usersService.getSalesTeam()
+>>>>>>> fa6865585cd3505fafa1b8b6d8f8ef1e739d9243
   }
 }

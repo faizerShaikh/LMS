@@ -1,4 +1,4 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, Default, ForeignKey, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { User } from "src/modules/user/users/models/user.model";
 import { ApplicationForm } from "../applicationForm/application.model";
 import { leadStatusEnum } from "./dto";
@@ -8,6 +8,12 @@ import { leadStatusEnum } from "./dto";
     tableName:'leads'
 })
 export class Leads extends Model {
+    @IsUUID(4)
+    @Default(DataType.UUIDV4)
+    @PrimaryKey
+    @Column
+    id: string;
+  
 
     @Column({
         type: DataType.STRING
