@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './models/user.model';
 import { CreateUserDTO, UpdateUserDTO } from './dtos';
@@ -15,5 +15,10 @@ export class UsersController extends GenericController<
 }) { 
   constructor(private readonly usersService: UsersService) {
     super(usersService);
+  }
+
+  @Get('Sales Team')
+  getBySalesTeam(){
+    return this.usersService.getSalesTeam()
   }
 }
