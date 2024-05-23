@@ -22,7 +22,7 @@ const GlobalPartnerMenu = () => {
             <MenuItem className="w-full min-w-full" key={item.id}>
               <Link
                 href={"/global-partner/" + item.slug}
-                className=" text-blue-900 uppercase font-semibold w-full"
+                className=" text-blue-900 uppercase font-semibold w-full mt-0"
               >
                 {item.name}
               </Link>

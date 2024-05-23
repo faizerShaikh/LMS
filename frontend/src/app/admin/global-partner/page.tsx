@@ -10,7 +10,7 @@ async function getData() {
   );
   return res.data.data;
 }
-export default async function EnquiriesPage() {
+export default async function GlobalPartnerPage() {
   let data = await getData();
   return (
     <>
