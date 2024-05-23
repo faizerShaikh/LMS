@@ -54,4 +54,9 @@ export const menuItems: menuType[] = [
     title: "Sales Team Users's",
     path: "/admin/salesTeam",
   },
+  {
+    icon: "ShareKnowledge",
+    title: "Leads",
+    path: "/admin/leads",
+  },
 ];

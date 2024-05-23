@@ -18,3 +18,31 @@ export interface ApplicaationFormInterface extends BaseObjInterface {
   createdAt: string;
   dateOfBirth: string;
 }
+
+export interface LeadsInterface extends BaseObjInterface {
+  id: string;
+  leadStatus: string;
+  assignedTo: string;
+  applicationId: string;
+  applicationForm: {
+    id: string;
+    fullName: string;
+    mobileNumber: string;
+    emailID: string;
+    dateOfBirth: string;
+    gender: string;
+    nationality: string;
+    governmentIDType: string;
+    country: string;
+    state: string;
+    city: string;
+    howDoYouKnowAboutRiseBack: string;
+    university_id: string;
+    course_id: string;
+    specialization_id: string;
+    srNo: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
+  };
+}

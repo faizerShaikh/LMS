@@ -49,7 +49,7 @@ export const UserCreateForm = ({
           <Button startIcon={<Add />}>Add New User</Button>
         )
       }
-      title={"Add FAQ Data"}
+      title={"Add New User"}
     >
       {({ onClose }) => (
         <Formik
