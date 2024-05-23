@@ -181,7 +181,7 @@ export class UsersService extends GenericService<
 
 async getSalesTeam(){
     const leads = await this.user.findAll({
-      where : {role:'Sales Team'}
+      where : {role:'SalesTeam'}
     }) 
     return {
       count : leads.length,

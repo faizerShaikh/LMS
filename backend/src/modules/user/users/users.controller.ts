@@ -17,7 +17,7 @@ export class UsersController extends GenericController<
     super(usersService);
   }
 
-  @Get('Sales Team')
+  @Get('Sales-Team')
   getBySalesTeam(){
     return this.usersService.getSalesTeam()
   }
