@@ -3,4 +3,5 @@ export enum RoleEnum {
   STUDENT = 'Student',
   FACULTY = 'Faculty',
   FINANCE = 'Finance',
+  SALES_TEAM='SalesTeam'
 }

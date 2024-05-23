@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import * as XLSX from 'xlsx';
 import { join, relative } from 'path';
-import { existsSync, promises as fsPromises, mkdirSync } from 'fs';
+import { existsSync, promises as fsPromises, mkdirSync, readFileSync } from 'fs';
 import { CourseSpecialization } from '../course-specialization/model';
 import { Course } from '../course/model';
 import { University } from '../university/model';
@@ -84,7 +84,8 @@ export class ApplicationService extends GenericService({
 
       // Prepare email content
       const emailSubject = 'New Application Created';
-      const emailContent = `Hello,\n\nA new application has been created.\n\nThank you.`;
+      const emailTemplatePath= 'backend/src/public/email-templates/applicationForm.hbs';
+      const emailContent = readFileSync(emailTemplatePath,'utf-8');
 
       // Send email after application creation
       await this.mailerService.sendMail(dto.emailID, emailSubject, emailContent);
