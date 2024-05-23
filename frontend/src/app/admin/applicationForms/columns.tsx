@@ -2,6 +2,7 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { ApplicaationFormInterface } from "interfaces/applicationForm";
 import { ApplicationRegistrationView } from "./components/applicationFormDialog";
+import { LeadAssignForm } from "./components/LeadAssignFrom";
 
 export const columns: GridColDef[] = [
   {
@@ -74,6 +75,7 @@ export const columns: GridColDef[] = [
       return (
         <>
           <ApplicationRegistrationView data={params.row} />
+          <LeadAssignForm></LeadAssignForm>
         </>
       );
     },

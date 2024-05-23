@@ -12,13 +12,13 @@ export class UsersController extends GenericController<
 >({
   createObjDTO: CreateUserDTO,
   updateObjDTO: UpdateUserDTO,
-}) { 
+}) {
   constructor(private readonly usersService: UsersService) {
     super(usersService);
   }
 
-  @Get('Sales Team')
-  getBySalesTeam(){
-    return this.usersService.getSalesTeam()
+  @Get('Sales-Team')
+  getBySalesTeam() {
+    return this.usersService.getSalesTeam();
   }
 }

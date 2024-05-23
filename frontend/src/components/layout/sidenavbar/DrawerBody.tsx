@@ -53,6 +53,7 @@ let Icons: { [key: string]: () => React.ReactNode } = {
   ShareKnowledge: () => <ShareKnowledge fill={colors.primary.dark} size={24} />,
 };
 
+/// get the user data using cookies and then compare it if the user role is admin then admin menu items or if its seals team then show seals team menu items
 const DrawerBody = () => {
   const pathname = usePathname();
   const [menus, setMenus] = useState(menuItems);
