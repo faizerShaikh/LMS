@@ -1,8 +1,7 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, Default, ForeignKey, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { User } from "src/modules/user/users/models/user.model";
 import { ApplicationForm } from "../applicationForm/application.model";
 import { leadStatusEnum } from "./dto";
-import { AbstractDataTypeConstructor } from "sequelize";
 
 @Table({
     paranoid:true,
@@ -32,18 +31,4 @@ export class Leads extends Model {
     @BelongsTo(()=>ApplicationForm)
     applicationForm : ApplicationForm
 
-}
-
-function IsUUID(arg0: number): (target: Leads, propertyKey: "id") => void {
-    throw new Error("Function not implemented.");
-}
-
-
-function Default(UUIDV4: AbstractDataTypeConstructor): (target: Leads, propertyKey: "id") => void {
-    throw new Error("Function not implemented.");
-}
-
-
-function PrimaryKey(target: Leads, propertyKey: "id"): void {
-    throw new Error("Function not implemented.");
 }
