@@ -7,10 +7,12 @@ import {
   Default,
   Model,
   HasMany,
+  HasOne,
 } from 'sequelize-typescript';
 import { RoleEnum } from '../../interface';
 import { Blog } from 'src/modules/blog/model';
 import { Events } from 'src/modules/configurations/event/event.model';
+import { Leads } from 'src/modules/configurations/Lead/lead.model';
 
 @Table({
   tableName: 'users',
@@ -111,5 +113,12 @@ export class User extends Model<User> {
     hooks: true,
   })
   event: Event[];
+
+  @HasOne(()=>Leads,{
+    onUpdate:'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true
+  })
+  lead:Leads
   
 }

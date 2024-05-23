@@ -9,10 +9,12 @@ import {
   BelongsTo,
   ForeignKey,
   BeforeCreate,
+  HasOne,
 } from 'sequelize-typescript';
 import { CourseSpecialization } from '../course-specialization/model';
 import { Course } from '../course/model';
 import { University } from '../university/model';
+import { Leads } from '../Lead/lead.model';
 
 @Table({
   tableName: 'application-forms', // Changed to camelCase
@@ -112,6 +114,9 @@ export class ApplicationForm extends Model<ApplicationForm> {
 
   @BelongsTo(() => CourseSpecialization)
   specialization: CourseSpecialization;
+
+  @HasOne(()=>Leads)
+  lead : Leads
 
   
   @Column({

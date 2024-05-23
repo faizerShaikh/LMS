@@ -9,13 +9,19 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { Events } from '../event/event.model';
-import { MyBaseModel } from 'src/core/base.model';
 
 @Table({
   tableName: 'webinars',
   paranoid: true,
 })
-export class Webinar extends MyBaseModel {
+export class Webinar extends Model {
+  
+  @IsUUID(4)
+  @Default(DataType.UUIDV4)
+  @PrimaryKey
+  @Column
+  id: string;
+
   @Column({
     type: DataType.TEXT,
     get() {

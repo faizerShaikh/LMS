@@ -178,4 +178,14 @@ export class UsersService extends GenericService<
     }
     return 'You have entered an invalid email address';
   }
+
+async getLeads(){
+    const leads = await this.user.findAll({
+      where : {role:'Sales Team'}
+    }) 
+    return {
+      count : leads.length,
+      rows : leads
+    }
+  }
 }

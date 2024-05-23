@@ -14,6 +14,7 @@ import { WebinarModule } from './event/modules/webinar/webinar.module';
 import { FAQModule } from './FAQ/faq.module';
 import { MetaDataModule } from './MetaData/meta.module';
 import { ApplicationModule } from './applicationForm/application.module';
+import { LeadModule } from './Lead/lead.module';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { ApplicationModule } from './applicationForm/application.module';
     GlobalPartnerModule,
     ContactModule,
     WebinarModule,
-    ApplicationModule
+    ApplicationModule,
+    LeadModule
   ],
   controllers: [],
   providers: [],
