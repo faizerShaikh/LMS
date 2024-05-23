@@ -4,7 +4,6 @@ import { Global, Module } from '@nestjs/common';
 import { MailsService } from './mails.service';
 import { BullModule } from '@nestjs/bull';
 import { MAILS_QUEUE } from './constants';
-import * as dotenv from 'dotenv';
 import { ConfigService } from '@nestjs/config';
 import { MailsProcessor } from './mails.processor';
 
