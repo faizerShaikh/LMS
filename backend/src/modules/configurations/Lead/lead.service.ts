@@ -23,6 +23,17 @@ export class LeadService extends GenericService<Leads, CreateLeadDto, UpdateLead
     super(lead, reqParams);
   }
 
+  async findByApplicationId(id:string){
+    return await this.lead.findOne({
+      where : {applicationId:id}
+    })
+  }
+
+async update<Model extends {} = any>(data: UpdateLeadDto, id: string): Promise<Model> {
+  const lead= await this.findByApplicationId(id) 
+ return await super.update(data,lead.id)
+}
+
   async getAllLead(){
     const lead = await this.lead.findAll({
       include : [{
