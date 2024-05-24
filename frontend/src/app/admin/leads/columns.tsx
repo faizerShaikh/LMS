@@ -1,8 +1,7 @@
 "use client";
 import { GridColDef } from "@mui/x-data-grid";
-import { ApplicaationFormInterface } from "interfaces/applicationForm";
-import { ApplicationRegistrationView } from "./components/applicationFormDialog";
-import { LeadAssignForm } from "./components/LeadAssignFrom";
+import { LeadsInterface } from "interfaces/applicationForm";
+import { LeadsForm } from "./components/LeadsForm";
 
 export const columns: GridColDef[] = [
   {
@@ -10,38 +9,49 @@ export const columns: GridColDef[] = [
     field: "srNo",
     flex: 1,
     cellClassName: "text-dark",
+    renderCell: (params: { row: any }) => {
+      const srNoValue = params?.row?.applicationForm.srNo;
+      return srNoValue;
+    },
   },
   {
     headerName: "Full Name",
     field: "fullName",
     flex: 1,
     cellClassName: "text-dark",
+    renderCell: (params: { row: any }) => {
+      const fullNameValue = params?.row?.applicationForm.fullName;
+      return fullNameValue;
+    },
   },
   {
     headerName: "Mobile Number",
     field: "mobileNumber",
     flex: 1,
     cellClassName: "text-dark",
+    renderCell: (params: { row: any }) => {
+      const mobileNumberValue = params?.row?.applicationForm.mobileNumber;
+      return mobileNumberValue;
+    },
   },
   {
     headerName: "Email ID",
     field: "emailID",
     flex: 1,
     cellClassName: "text-dark",
+    renderCell: (params: { row: any }) => {
+      const emailIDValue = params?.row?.applicationForm.emailID;
+      return emailIDValue;
+    },
   },
-  {
-    headerName: "Country",
-    field: "country",
-    flex: 1,
-    cellClassName: "text-dark",
-  },
+
   {
     headerName: "University Name",
     field: "university",
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: any }) => {
-      const courseValue = params?.row?.university?.name;
+      const courseValue = params?.row?.applicationForm.university?.name;
       return courseValue;
     },
   },
@@ -51,7 +61,7 @@ export const columns: GridColDef[] = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: any }) => {
-      const courseValue = params?.row?.course?.name;
+      const courseValue = params?.row?.applicationForm.course?.name;
       return courseValue;
     },
   },
@@ -61,7 +71,7 @@ export const columns: GridColDef[] = [
     flex: 1,
     cellClassName: "text-dark",
     renderCell: (params: { row: any }) => {
-      const courseValue = params?.row?.specialization?.name;
+      const courseValue = params?.row?.applicationForm.specialization?.name;
       return courseValue;
     },
   },
@@ -71,11 +81,13 @@ export const columns: GridColDef[] = [
     field: "action",
     flex: 1,
     cellClassName: "text-dark",
-    renderCell: (params: { row: ApplicaationFormInterface }) => {
+    renderCell: (params: { row: LeadsInterface }) => {
       return (
         <>
-          <ApplicationRegistrationView data={params.row} />
-          <LeadAssignForm pageId={params.row.id}></LeadAssignForm>
+          <LeadsForm
+            isUpdate={true}
+            data={params.row.applicationForm}
+          ></LeadsForm>
         </>
       );
     },

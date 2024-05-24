@@ -50,7 +50,7 @@ export function DropDown({
             variant="contained"
             {...buttonProps}
             className={
-              "bg-transparent shadow-none text-blue-900 uppercase font-semibold text-base p-0 mt-1" +
+              "bg-transparent shadow-none text-blue-900 uppercase font-semibold text-base p-0 " +
               (buttonProps && buttonProps?.className
                 ? " " + buttonProps?.className
                 : "")

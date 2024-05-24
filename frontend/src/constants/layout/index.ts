@@ -8,6 +8,7 @@ export interface menuType {
   children?: menuType[];
 }
 
+// create diffrent menu items for seals team and admin  sealse team will have only tow pagess access dashbord and leads assigns
 export const menuItems: menuType[] = [
   { icon: "DashboardReference", title: "Dashboard", path: "/" },
   // { icon: "Settings", title: "Components", path: "/components" },
@@ -47,5 +48,15 @@ export const menuItems: menuType[] = [
     icon: "ShareKnowledge",
     title: "Users's",
     path: "/admin/users",
+  },
+  {
+    icon: "ShareKnowledge",
+    title: "Sales Team Users's",
+    path: "/admin/salesTeam",
+  },
+  {
+    icon: "ShareKnowledge",
+    title: "Leads",
+    path: "/admin/leads",
   },
 ];
