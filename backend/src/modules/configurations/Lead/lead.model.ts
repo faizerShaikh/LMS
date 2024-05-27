@@ -31,4 +31,7 @@ export class Leads extends Model {
     @BelongsTo(()=>ApplicationForm)
     applicationForm : ApplicationForm
 
+    @BelongsTo(()=>User)
+    assignedUser:User
+
 }
