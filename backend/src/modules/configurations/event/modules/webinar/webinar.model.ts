@@ -1,4 +1,5 @@
 import {
+  AfterDestroy,
   Column,
   DataType,
   Default,
@@ -9,13 +10,14 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { Events } from '../../event.model';
+import { ConsoleLogger } from '@nestjs/common';
 
 @Table({
   tableName: 'webinars',
   paranoid: true,
 })
 export class Webinar extends Model {
-    
+
   @IsUUID(4)
   @Default(DataType.UUIDV4)
   @PrimaryKey
@@ -45,4 +47,18 @@ export class Webinar extends Model {
     hooks: true,
   })
   event: Events;
+
+  @AfterDestroy
+  static async deleteWebinar(instance: Webinar) {
+    console.log('AfterDestroy hook triggered for Webinar with ID:', instance.id);
+    
+    const event = await instance.$get('event');
+    if (event) {
+      console.log('Associated event found:', event.id);
+      await event.update({ deletedAt: new Date() });
+      console.log('upadted successfully')
+    } else {
+      console.log('No associated event found for Webinar with ID:', instance.id);
+    }
+  }
 }

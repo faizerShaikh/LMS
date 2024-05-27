@@ -11,6 +11,7 @@ import { MetaDataType } from './dto/type.enum';
 
 @Table({
   tableName: 'meta-data',
+  paranoid: true
 })
 export class MetaData extends Model {
   @IsUUID(4)
