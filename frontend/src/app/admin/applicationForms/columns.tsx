@@ -75,7 +75,10 @@ export const columns: GridColDef[] = [
       return (
         <>
           <ApplicationRegistrationView data={params.row} />
-          <LeadAssignForm pageId={params.row.id}></LeadAssignForm>
+          <LeadAssignForm
+            pageId={params.row.id}
+            data={params.row}
+          ></LeadAssignForm>
         </>
       );
     },

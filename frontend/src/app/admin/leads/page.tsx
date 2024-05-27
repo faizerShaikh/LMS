@@ -2,7 +2,6 @@ import axios from "axios";
 import { PageHeader } from "components/layout/pageHeader/index";
 import { DataGrid } from "components/layout/dataGrid/index";
 import { columns } from "./columns";
-import { LeadsForm } from "./components/LeadsForm";
 
 async function getData() {
   const res = await axios.get(
@@ -12,6 +11,7 @@ async function getData() {
 }
 export default async function SalesTeamUser() {
   let data = await getData();
+  console.log(data, "<<<<<<<<");
   return (
     <>
       <PageHeader title="Sales Team User's" />

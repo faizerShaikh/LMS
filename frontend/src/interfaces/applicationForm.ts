@@ -17,6 +17,7 @@ export interface ApplicaationFormInterface extends BaseObjInterface {
   updatedAt: string;
   createdAt: string;
   dateOfBirth: string;
+  lead: LeadCreateInterface;
 }
 
 export interface LeadsInterface extends BaseObjInterface {
@@ -45,4 +46,10 @@ export interface LeadsInterface extends BaseObjInterface {
     updatedAt: string;
     deletedAt: string;
   };
+}
+
+export interface LeadCreateInterface extends BaseObjInterface {
+  assignedTo: string;
+  leadStatus?: string;
+  applicationId?: string;
 }

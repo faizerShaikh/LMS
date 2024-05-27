@@ -75,6 +75,16 @@ export const columns: GridColDef[] = [
       return courseValue;
     },
   },
+  {
+    headerName: "Status",
+    field: "leadStatus",
+    flex: 1,
+    cellClassName: "text-dark",
+    // renderCell: (params: { row: any }) => {
+    //   const courseValue = params?.row?.applicationForm.specialization?.name;
+    //   return courseValue;
+    // },
+  },
 
   {
     headerName: "Action",

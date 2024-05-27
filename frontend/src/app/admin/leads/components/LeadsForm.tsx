@@ -59,11 +59,13 @@ export const LeadsForm = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
           initialValues={{
             ...initialValues,
             ...data,
-            // universityName: data.university.name,
-            // selectCourse: data.course.name,
-            // specialization: data.specialization.name,
+            universityName: data.university.name,
+            selectCourse: data.course.name,
+            specialization: data.specialization.name,
+            leadStatus: initialValues.leadStatus,
           }}
           onSubmit={(values, { resetForm }) => {
+            console.log(values);
             mutate(
               { ...values },
               {

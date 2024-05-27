@@ -27,6 +27,11 @@ export const ApplicationRegistrationView = ({
     updatedAt: "",
     createdAt: "",
     dateOfBirth: "",
+    lead: {
+      assignedTo: "",
+      leadStatus: "",
+      applicationId: "",
+    },
   };
   return (
     <Dialog

@@ -6,9 +6,10 @@ import { Box, Grid, IconButton } from "@mui/material";
 import { Edit, UserData } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
+import { LeadCreateInterface } from "interfaces/applicationForm";
 
 export const LeadAssignForm = ({ pageId }: CreateUpdateDialogBaseProps) => {
-  const initialValues = {
+  const initialValues: LeadCreateInterface = {
     applicationId: pageId,
     assignedTo: "",
   };
@@ -36,7 +37,10 @@ export const LeadAssignForm = ({ pageId }: CreateUpdateDialogBaseProps) => {
     >
       {({ onClose }) => (
         <Formik
-          initialValues={{ ...initialValues }}
+          initialValues={{
+            ...initialValues,
+            assignedTo: initialValues.assignedTo,
+          }}
           onSubmit={(values, { resetForm }) => {
             mutate(
               { ...values, assignedTo: values.assignedTo.id },
