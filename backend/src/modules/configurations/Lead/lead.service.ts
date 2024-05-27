@@ -27,13 +27,16 @@ export class LeadService extends GenericService<Leads, CreateLeadDto, UpdateLead
 
   async findByApplicationId(id:string){
     return await this.lead.findOne({
-      where : {[Op.or]:[{applicationId:id},{id:id}]}
+      where : {[Op.or]:[{applicationId:id},{id:id}]},
+      include: [ApplicationForm,User]
     })
   }
 
-async update<Model extends {} = any>(data: UpdateLeadDto, id: string): Promise<Model> {
-  const lead= await this.findByApplicationId(id) 
- return await super.update(data,lead.id)
+async update<Model extends {} = any>(data: UpdateLeadDto, id: string): Promise<any> {
+  let lead= await this.findByApplicationId(id) 
+  lead =  await super.update(data,lead.id)
+  lead = await this.findByApplicationId(lead.id)
+  return lead
 }
 
   async getAllLead(){
@@ -41,7 +44,7 @@ async update<Model extends {} = any>(data: UpdateLeadDto, id: string): Promise<M
       include : [{
         model : ApplicationForm,
         include : [University,Course,CourseSpecialization]
-      }]
+      }, User]
     })
     return {
       count : lead.length,
