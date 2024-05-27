@@ -38,4 +38,9 @@ export class ApplicationController extends GenericController<
       throw error;
     }
   }
+
+  @Get()
+  async getApplication(){
+    return await this.applicationService.application()
+  }
 }

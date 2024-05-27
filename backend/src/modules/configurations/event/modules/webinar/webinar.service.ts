@@ -115,7 +115,7 @@ export class WebinarService extends GenericService<
           }
         ],
       });
-      return {
+      return {  
         
           count: webinars.length,
           rows: webinars
