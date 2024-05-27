@@ -34,7 +34,7 @@ export class ApplicationService extends GenericService({
         include:[{
           model: Leads,
           include:[User]
-        }]
+        },CourseSpecialization, Course, University,Leads]
     })
     return{
       count: application.length,
