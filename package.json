@@ -1,6 +1,10 @@
 {
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "phone-input": "^3.1.4",
     "react-slick": "^0.30.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6"
   }
 }

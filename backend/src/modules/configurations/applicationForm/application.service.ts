@@ -10,6 +10,7 @@ import { University } from '../university/model';
 import { ApplicationForm } from '../applicationForm/application.model';
 import { MailerServices } from '../Enquiry/mail/mail.service';
 import { Leads } from '../Lead/lead.model';
+import { User } from 'src/modules/user/users/models/user.model';
 
 @Injectable()
 export class ApplicationService extends GenericService({
@@ -28,7 +29,18 @@ export class ApplicationService extends GenericService({
   ) {
     super(applicationModel, reqParams);
   }
-
+  async application(){
+    const application = await this.applicationModel.findAll({
+        include:[{
+          model: Leads,
+          include:[User]
+        }]
+    })
+    return{
+      count: application.length,
+      rows: application
+    }
+  }
   async exportToExcel(data: any, eventName: string): Promise<string> {
     try {
       if (!data || !Array.isArray(data.rows) || data.rows.length === 0) {
