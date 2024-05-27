@@ -21,7 +21,7 @@ export default async function SingleCourse({
   let url = `${process.env.BASE_API_URL}/configurations/course-specialization/slug/${params.slug}/`;
   const response = await axios.get(url);
   data = response.data.data;
-  console.log(data, "<<<<<<<<<<<<CourseSpecializationInterface Data");
+  // console.log(data, "<<<<<<<<<<<<CourseSpecializationInterface Data");
   const programHiglightsData: ProgramHiglightsInterface[] =
     data.programHiglights ?? [];
   const middleIndex = Math.ceil(programHiglightsData.length / 2);

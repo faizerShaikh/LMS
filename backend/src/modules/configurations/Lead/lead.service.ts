@@ -9,13 +9,18 @@ import { Course } from '../course/model';
 import { CourseSpecialization } from '../course-specialization/model';
 import { count } from 'console';
 import { Op } from 'sequelize';
+import { User } from 'src/modules/user/users/models/user.model';
 
 @Injectable()
-export class LeadService extends GenericService<Leads, CreateLeadDto, UpdateLeadDto>({
-  defaultFindOptions:{
-    include:[ApplicationForm]
+export class LeadService extends GenericService<
+  Leads,
+  CreateLeadDto,
+  UpdateLeadDto
+>({
+  defaultFindOptions: {
+    include: [ApplicationForm, User],
   },
-  includes:[ApplicationForm]
+  includes: [ApplicationForm, User],
 }) {
   constructor(
     @InjectModel(Leads) private lead: typeof Leads,
@@ -24,27 +29,32 @@ export class LeadService extends GenericService<Leads, CreateLeadDto, UpdateLead
     super(lead, reqParams);
   }
 
-  async findByApplicationId(id:string){
+  async findByApplicationId(id: string) {
     return await this.lead.findOne({
-      where : {[Op.or]:[{applicationId:id},{id:id}]}
-    })
+      where: { [Op.or]: [{ applicationId: id }, { id: id }] },
+    });
   }
 
-async update<Model extends {} = any>(data: UpdateLeadDto, id: string): Promise<Model> {
-  const lead= await this.findByApplicationId(id) 
- return await super.update(data,lead.id)
-}
+  async update<Model extends {} = any>(
+    data: UpdateLeadDto,
+    id: string,
+  ): Promise<Model> {
+    const lead = await this.findByApplicationId(id);
+    return await super.update(data, lead.id);
+  }
 
-  async getAllLead(){
+  async getAllLead() {
     const lead = await this.lead.findAll({
-      include : [{
-        model : ApplicationForm,
-        include : [University,Course,CourseSpecialization]
-      }]
-    })
+      include: [
+        {
+          model: ApplicationForm,
+          include: [University, Course, CourseSpecialization],
+        },
+      ],
+    });
     return {
-      count : lead.length,
-      rows : lead
-    }
+      count: lead.length,
+      rows: lead,
+    };
   }
 }

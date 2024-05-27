@@ -65,7 +65,7 @@ export const LeadsForm = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
             leadStatus: initialValues.leadStatus,
           }}
           onSubmit={(values, { resetForm }) => {
-            console.log(values);
+            console.log(data.leadStatus, "<<<<<<<<<values");
             mutate(
               { ...values },
               {

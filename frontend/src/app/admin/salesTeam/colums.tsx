@@ -43,7 +43,7 @@ export const columns: GridColDef[] = [
             refetchURL="/salesTeam"
           ></SalesTeamUserForm>
           <DeleteBox
-            url={`/salesTeam`}
+            url={`/user`}
             refetchUrl="/salesTeam"
             title={`Delete ${params.row.name}`}
             data={params.row.id}

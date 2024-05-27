@@ -49,7 +49,7 @@ export const ApplicationRegistrationView = ({
             ...data,
             universityName: data.university.name,
             selectCourse: data.course.name,
-            // specialization: data.specialization.name,
+            specialization: data.specialization.name,
           }}
           onSubmit={() => {}}
         >

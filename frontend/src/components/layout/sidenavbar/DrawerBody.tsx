@@ -11,7 +11,6 @@ import {
   ListItemText,
 } from "@mui/material";
 import { colors } from "constants/theme";
-import { menuItems } from "constants/layout";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -26,7 +25,11 @@ import {
   Settings,
   ShareKnowledge,
   TaskComplete,
+  UserData,
 } from "@carbon/icons-react";
+import cookie from "cookie";
+import { adminMenuItems, salesTeamMenuItems } from "constants/layout";
+import { getCookies } from "lib/handel-cookies";
 
 const activeMenuStyles = {
   background: colors.primary.light,
@@ -56,12 +59,35 @@ let Icons: { [key: string]: () => React.ReactNode } = {
 /// get the user data using cookies and then compare it if the user role is admin then admin menu items or if its seals team then show seals team menu items
 const DrawerBody = () => {
   const pathname = usePathname();
-  const [menus, setMenus] = useState(menuItems);
+  const [menus, setMenus] = useState(adminMenuItems);
 
   const [selectedPath, setSelectedMenu] = useState("");
 
   useEffect(() => {
     setSelectedMenu(pathname);
+    // const userData = getCookies("userData");
+    // console.log(userData, "<<<<<<<userData");
+    // if (role === "admin") {
+    //   setMenus(adminMenuItems);
+    // } else if (role === "SalesTeam") {
+    //   setMenus(salesTeamMenuItems);
+    // }
+    const fetchData = async () => {
+      try {
+        const userDataString = await getCookies("userData");
+        const userData = JSON.parse(userDataString);
+        // console.log("Parsed user data:", userData);
+        const role = userData.role;
+        if (role === "admin") {
+          setMenus(adminMenuItems);
+        } else if (role === "SalesTeam") {
+          setMenus(salesTeamMenuItems);
+        }
+      } catch (error) {
+        console.error("Error getting user data:", error);
+      }
+    };
+    fetchData();
   }, [pathname]);
 
   return (

@@ -23,7 +23,7 @@ const LoginForm = (props: Props) => {
   const login = (values: { email: string; password: string }) => {
     mutate(values, {
       onSuccess(data) {
-        setCookies("userData", data.data.data.user);
+        setCookies("userData", JSON.stringify(data.data.data.user));
         setCookies("token", data.data.data.token);
         router.push("/admin");
       },
