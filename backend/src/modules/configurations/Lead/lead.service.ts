@@ -9,13 +9,14 @@ import { Course } from '../course/model';
 import { CourseSpecialization } from '../course-specialization/model';
 import { count } from 'console';
 import { Op } from 'sequelize';
+import { User } from 'src/modules/user/users/models/user.model';
 
 @Injectable()
 export class LeadService extends GenericService<Leads, CreateLeadDto, UpdateLeadDto>({
   defaultFindOptions:{
-    include:[ApplicationForm]
+    include:[ApplicationForm,User]
   },
-  includes:[ApplicationForm]
+  includes:[ApplicationForm,User]
 }) {
   constructor(
     @InjectModel(Leads) private lead: typeof Leads,
