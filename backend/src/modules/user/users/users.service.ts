@@ -8,6 +8,7 @@ import { unlink } from 'fs';
 import { join } from 'path';
 import { GenericService, RequestParamsService } from 'src/core/modules';
 import { InjectModel } from '@nestjs/sequelize';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class UsersService extends GenericService<
@@ -187,5 +188,15 @@ export class UsersService extends GenericService<
       count: leads.length,
       rows: leads,
     };
+  }
+
+  async getUsers(){
+    const users = await this.user.findAll({
+      where: {role:{[Op.not]:'SalesTeam'}}
+    })
+    return{
+      count: users.length,
+      rows: users
+    }
   }
 }
