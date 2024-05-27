@@ -25,6 +25,10 @@ export class FaqTopic extends Model{
     @ForeignKey(()=>Faq)
     faqId:string
 
-    @BelongsTo(()=>Faq)
+    @BelongsTo(()=>Faq,{
+        onDelete:'CASCADE',
+        onUpdate:'CASCADE',
+        hooks:true,
+    })
     faq:Faq
 }

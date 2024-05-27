@@ -180,6 +180,11 @@ export class Events extends MyBaseModel {
   @Column
   syllabus: string;
 
+  @Column({
+    type: DataType.DATE
+  })
+  deletedAt: Date;
+
   @ForeignKey(() => User)
   created_by_id: string;
 
@@ -220,9 +225,6 @@ export class Events extends MyBaseModel {
   @Column
   webinarId: string;
 
-  @BelongsTo(() => Webinar, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
-  })
+  @BelongsTo(() => Webinar)
   webinar: Webinar[];
 }

@@ -42,6 +42,8 @@ export class Webinar extends Model {
   @HasOne(() => Events, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
+    foreignKey: 'webinarId',
+    foreignKeyConstraint: true
   })
   event: Events;
 }

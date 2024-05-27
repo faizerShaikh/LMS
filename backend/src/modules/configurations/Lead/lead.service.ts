@@ -8,6 +8,7 @@ import { University } from '../university/model';
 import { Course } from '../course/model';
 import { CourseSpecialization } from '../course-specialization/model';
 import { count } from 'console';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class LeadService extends GenericService<Leads, CreateLeadDto, UpdateLeadDto>({
@@ -22,6 +23,17 @@ export class LeadService extends GenericService<Leads, CreateLeadDto, UpdateLead
   ) {
     super(lead, reqParams);
   }
+
+  async findByApplicationId(id:string){
+    return await this.lead.findOne({
+      where : {[Op.or]:[{applicationId:id},{id:id}]}
+    })
+  }
+
+async update<Model extends {} = any>(data: UpdateLeadDto, id: string): Promise<Model> {
+  const lead= await this.findByApplicationId(id) 
+ return await super.update(data,lead.id)
+}
 
   async getAllLead(){
     const lead = await this.lead.findAll({

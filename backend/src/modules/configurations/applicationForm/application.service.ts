@@ -9,15 +9,16 @@ import { Course } from '../course/model';
 import { University } from '../university/model';
 import { ApplicationForm } from '../applicationForm/application.model';
 import { MailerServices } from '../Enquiry/mail/mail.service';
+import { Leads } from '../Lead/lead.model';
 
 @Injectable()
 export class ApplicationService extends GenericService({
   defaultFindOptions:{
     include:[
-      CourseSpecialization, Course, University
+      CourseSpecialization, Course, University,Leads
     ]
   },
-  includes: [CourseSpecialization, Course, University],
+  includes: [CourseSpecialization, Course, University, Leads],
 }) {
   constructor(
     @InjectModel(ApplicationForm)

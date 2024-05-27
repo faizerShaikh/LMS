@@ -53,22 +53,7 @@ export class CourseSpecializationController extends GenericController<
     return this.courseService.updateCoverImage(file, id);
   }
 
-  // @Put('update-obj-image/:id')
-  // @UseInterceptors(
-  //   MulterIntercepter({
-  //     type: MulterEnum.any,
-  //     fieldName:'image',
-  //     path: '/media/course-specialization/extras',
-  //   }),
-  // )
-  // async createCourseSpecialization(
-  //   @UploadedFile() files: Express.Multer.File[],
-  //   @Param('id') id: string,
-  //    dto : CreateCourseSpecializationDTO,
-  //    @Body() body : CourseSpecialization
-  // ) {
-  //   return this.courseService.createOtherObjects(dto, body,true);
-  // }
+  
   @Get()
   async Coursespecializations(
     @Query('category') category: string,

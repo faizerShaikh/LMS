@@ -54,6 +54,7 @@ export class Course extends MyBaseModel {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
     hooks: true,
+    foreignKey:'course_id'
   })
   specializations: CourseSpecialization[];
 
