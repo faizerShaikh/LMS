@@ -11,7 +11,10 @@ import { LeadCreateInterface } from "interfaces/applicationForm";
 export const LeadAssignForm = ({ pageId }: CreateUpdateDialogBaseProps) => {
   const initialValues: LeadCreateInterface = {
     applicationId: pageId,
-    assignedTo: "",
+    assignedTo: {
+      name: "",
+      id: "",
+    },
   };
 
   const queryClient = useQueryClient();
@@ -19,13 +22,14 @@ export const LeadAssignForm = ({ pageId }: CreateUpdateDialogBaseProps) => {
     key: "/user/Sales-Team",
     select: (data) => data.data.data?.rows,
   });
-  console.log(SalesUsersData);
+  console.log(SalesUsersData, "<<<<<<");
 
   const { mutate, isLoading } = useCreateOrUpdate({
     url: "/configurations/leads",
     method: "post",
   });
 
+  console.log(initialValues);
   return (
     <Dialog
       button={
@@ -39,9 +43,10 @@ export const LeadAssignForm = ({ pageId }: CreateUpdateDialogBaseProps) => {
         <Formik
           initialValues={{
             ...initialValues,
-            assignedTo: initialValues.assignedTo,
+            assignedTo: initialValues.assignedTo.name,
           }}
           onSubmit={(values, { resetForm }) => {
+            console.log(values.assignedTo.name);
             mutate(
               { ...values, assignedTo: values.assignedTo.id },
               {

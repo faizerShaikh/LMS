@@ -50,6 +50,7 @@ export class LeadService extends GenericService<
           model: ApplicationForm,
           include: [University, Course, CourseSpecialization],
         },
+        User,
       ],
     });
     return {

@@ -49,7 +49,7 @@ export interface LeadsInterface extends BaseObjInterface {
 }
 
 export interface LeadCreateInterface extends BaseObjInterface {
-  assignedTo: string;
+  assignedTo: any;
   leadStatus?: string;
   applicationId?: string;
 }
