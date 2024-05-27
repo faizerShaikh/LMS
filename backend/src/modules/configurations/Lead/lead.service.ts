@@ -32,11 +32,10 @@ export class LeadService extends GenericService<Leads, CreateLeadDto, UpdateLead
     })
   }
 
-async update<Model extends {} = any>(data: UpdateLeadDto, id: string): Promise<any> {
-  let lead= await this.findByApplicationId(id) 
-  lead =  await super.update(data,lead.id)
-  lead = await this.findByApplicationId(lead.id)
-  return lead
+async update<Model extends {} = any>(data: UpdateLeadDto, id: string): Promise<Model> {
+  const lead= await this.findByApplicationId(id) 
+  return await super.update(data,lead.id)
+   
 }
 
   async getAllLead(){
