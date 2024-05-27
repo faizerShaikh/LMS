@@ -32,6 +32,7 @@ export class LeadService extends GenericService<
   async findByApplicationId(id: string) {
     return await this.lead.findOne({
       where: { [Op.or]: [{ applicationId: id }, { id: id }] },
+      include: [ApplicationForm, User],
     });
   }
 
@@ -50,7 +51,6 @@ export class LeadService extends GenericService<
           model: ApplicationForm,
           include: [University, Course, CourseSpecialization],
         },
-        User,
       ],
     });
     return {
