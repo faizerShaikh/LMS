@@ -20,6 +20,11 @@ export class Leads extends Model {
     })
     leadStatus:leadStatusEnum
 
+    @Column({
+        type: DataType.TEXT,
+    })
+    comment:string
+
     @ForeignKey(()=>User)
     @Column
     assignedTo : string
