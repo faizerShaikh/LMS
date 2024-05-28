@@ -3,7 +3,7 @@ import { adminMenuItemsList, salesTeamMenuItemsList } from "./constants";
 
 export function middleware(request: NextRequest) {
   const userData = request.cookies.get("userData")?.value;
-  console.log(userData, "userDataddddd\n\n\n\n\n\n\n\n");
+  // console.log(userData, "userDataddddd\n\n\n\n\n\n\n\n");
   if (userData && request.nextUrl.pathname.startsWith("/login")) {
     return NextResponse.redirect(new URL("/admin", request.url));
   }
@@ -33,6 +33,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/dynamic|_next/image|favicon.ico|.*\\.png|.*\\.svg|$|blogs|career|contact-us|courses|event|media|webinar|global-partner|about).*)",
+    "/((?!api|_next/static|_next/dynamic|_next/image|favicon.ico|.*\\.png|.*\\.svg|$|blogs|career|contact-us|courses|event|media|webinar|global-partner|about|for-government|for-organization|for-placement|for-universities|for-partnership).*)",
   ],
 };
