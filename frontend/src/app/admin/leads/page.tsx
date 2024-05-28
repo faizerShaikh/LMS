@@ -11,7 +11,7 @@ async function getData() {
 }
 export default async function SalesTeamUser() {
   let data = await getData();
-  console.log(data, "<<<<<<<<");
+  // console.log(data, "<<<<<<<<");
   return (
     <>
       <PageHeader title="Sales Team User's" />

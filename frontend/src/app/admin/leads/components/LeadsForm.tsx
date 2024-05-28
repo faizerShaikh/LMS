@@ -34,6 +34,7 @@ export const LeadsForm = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
     updatedAt: "",
     createdAt: "",
     dateOfBirth: "",
+    comment: "",
   };
   const queryClient = useQueryClient();
 
@@ -58,14 +59,13 @@ export const LeadsForm = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
         <Formik
           initialValues={{
             ...initialValues,
-            ...data,
-            universityName: data.university.name,
-            selectCourse: data.course.name,
-            specialization: data.specialization.name,
-            leadStatus: initialValues.leadStatus,
+            ...data.applicationForm,
+            universityName: data.applicationForm.university.name,
+            selectCourse: data.applicationForm.course.name,
+            specialization: data.applicationForm.specialization.name,
+            leadStatus: data.leadStatus,
           }}
           onSubmit={(values, { resetForm }) => {
-            console.log(data.leadStatus, "<<<<<<<<<values");
             mutate(
               { ...values },
               {
@@ -147,6 +147,10 @@ export const LeadsForm = ({ data, isUpdate }: CreateUpdateDialogBaseProps) => {
                     name="leadStatus"
                     options={optionsStatus}
                   ></AutoComplete>
+                </Box>
+                <Box className="mt-4">
+                  <Label text="Comment" required />
+                  <Input name="comment" />
                 </Box>
               </Grid>
               <Grid xs={12} item>

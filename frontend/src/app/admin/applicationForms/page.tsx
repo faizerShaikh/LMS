@@ -12,7 +12,7 @@ async function getData() {
 }
 export default async function AppicationFormPage({ id }: any) {
   const data = await getData();
-  console.log(data, "<<<<<<dsarta");
+  // console.log(data, "<<<<<<dsarta");
   return (
     <>
       <PageHeader title="Application Form's" />

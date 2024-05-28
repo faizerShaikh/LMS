@@ -65,6 +65,16 @@ export const columns: GridColDef[] = [
       return courseValue;
     },
   },
+  {
+    headerName: "Assigned To",
+    field: "assignedTo",
+    flex: 1,
+    cellClassName: "text-dark",
+    renderCell: (params: { row: any }) => {
+      const assignedToValue = params?.row?.lead?.assignedUser?.name;
+      return assignedToValue;
+    },
+  },
 
   {
     headerName: "Action",
@@ -78,6 +88,7 @@ export const columns: GridColDef[] = [
           <LeadAssignForm
             pageId={params.row.id}
             data={params.row}
+            // isUpdate={true}
           ></LeadAssignForm>
         </>
       );

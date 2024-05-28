@@ -1,3 +1,6 @@
 import { cookies } from "next/headers";
 
-export const cookieStore = cookies();
+export default function cookie() {
+  const cookieStore = cookies();
+  return cookieStore;
+}

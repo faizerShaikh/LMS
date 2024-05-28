@@ -82,7 +82,7 @@ const CourseSpecializationForm = ({
         course_id: initialValues.course,
       }}
       onSubmit={(values, { resetForm }) => {
-        console.log(values, "<<<<<<<<<<<values");
+        // console.log(values, "<<<<<<<<<<<values");
 
         mutate(
           {

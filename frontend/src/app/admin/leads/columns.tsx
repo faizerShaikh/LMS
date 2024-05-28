@@ -80,10 +80,6 @@ export const columns: GridColDef[] = [
     field: "leadStatus",
     flex: 1,
     cellClassName: "text-dark",
-    // renderCell: (params: { row: any }) => {
-    //   const courseValue = params?.row?.applicationForm.specialization?.name;
-    //   return courseValue;
-    // },
   },
 
   {
@@ -94,10 +90,7 @@ export const columns: GridColDef[] = [
     renderCell: (params: { row: LeadsInterface }) => {
       return (
         <>
-          <LeadsForm
-            isUpdate={true}
-            data={params.row.applicationForm}
-          ></LeadsForm>
+          <LeadsForm isUpdate={true} data={params.row}></LeadsForm>
         </>
       );
     },

@@ -6,10 +6,12 @@ import { Box, Grid, IconButton } from "@mui/material";
 import { Edit, UserData } from "@carbon/icons-react";
 import { useQueryClient } from "react-query";
 import { toast } from "utils";
-import { LeadCreateInterface } from "interfaces/applicationForm";
 
-export const LeadAssignForm = ({ pageId }: CreateUpdateDialogBaseProps) => {
-  const initialValues: LeadCreateInterface = {
+export const LeadAssignForm = ({
+  pageId,
+  data,
+}: CreateUpdateDialogBaseProps) => {
+  const initialValues = {
     applicationId: pageId,
     assignedTo: {
       name: "",
@@ -18,18 +20,19 @@ export const LeadAssignForm = ({ pageId }: CreateUpdateDialogBaseProps) => {
   };
 
   const queryClient = useQueryClient();
+  // console.log(data?.lead?.assignedUser?.name, "<<<<<<<<<<data");
   const { data: SalesUsersData } = useGetAll({
     key: "/user/Sales-Team",
     select: (data) => data.data.data?.rows,
   });
-  console.log(SalesUsersData, "<<<<<<");
 
   const { mutate, isLoading } = useCreateOrUpdate({
-    url: "/configurations/leads",
-    method: "post",
+    url: data.lead
+      ? `/configurations/leads/${data.lead.id}`
+      : "/configurations/leads",
+    method: data.lead ? "put" : "post",
   });
 
-  console.log(initialValues);
   return (
     <Dialog
       button={
@@ -43,10 +46,9 @@ export const LeadAssignForm = ({ pageId }: CreateUpdateDialogBaseProps) => {
         <Formik
           initialValues={{
             ...initialValues,
-            assignedTo: initialValues.assignedTo.name,
+            assignedTo: data?.lead?.assignedUser,
           }}
           onSubmit={(values, { resetForm }) => {
-            console.log(values.assignedTo.name);
             mutate(
               { ...values, assignedTo: values.assignedTo.id },
               {

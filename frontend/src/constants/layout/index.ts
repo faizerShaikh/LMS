@@ -7,9 +7,13 @@ export interface menuType {
   children?: menuType[];
 }
 
+// salesTeamMenuItems.map((j) => j.path)
+
+// !["/", "/admin/leads"].includes(req.url); return 404
+
 // create diffrent menu items for seals team and admin  sealse team will have only tow pagess access dashbord and leads assigns
 export const adminMenuItems: menuType[] = [
-  { icon: "DashboardReference", title: "Dashboard", path: "/" },
+  { icon: "DashboardReference", title: "Dashboard", path: "/admin" },
   // { icon: "Settings", title: "Components", path: "/components" },
   { icon: "ChatLaunch", title: "Universities", path: "/admin/universities" },
   // { icon: "Events", title: "Faculties", path: "/admin/faculty" },
@@ -61,10 +65,16 @@ export const adminMenuItems: menuType[] = [
 ];
 
 export const salesTeamMenuItems: menuType[] = [
-  { icon: "DashboardReference", title: "Dashboard", path: "/" },
+  { icon: "DashboardReference", title: "Dashboard", path: "/admin" },
   {
     icon: "ShareKnowledge",
     title: "Leads",
     path: "/admin/leads",
   },
 ];
+
+export const salesTeamMenuItemsList = salesTeamMenuItems.map(
+  (item) => item.path
+);
+
+export const adminMenuItemsList = adminMenuItems.map((item) => item.path);
