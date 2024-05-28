@@ -16,4 +16,8 @@ export class CreateLeadDto {
     @IsString() 
     applicationId : string
 
+    @IsOptional()
+    @IsString()
+    comment:string
+
 }
