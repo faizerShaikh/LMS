@@ -22,6 +22,12 @@ export class UsersController extends GenericController<
     return this.usersService.getSalesTeam();
   }
 
+  
+  @Get('Faculty')
+  getByFacultuy() {
+    return this.usersService.getFaculty();
+  } 
+
   @Get()
   getUsers(){
     return this.usersService.getUsers();

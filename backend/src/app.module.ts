@@ -3,10 +3,11 @@ import { DatabaseModule, JwtModule, RequestParamsModule } from './core/modules';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ResponseInterceptor } from './core/interceptors';
 import { UsersModule } from './modules/user';
 import { configurationsModule } from './modules/configurations/configurations.module';
+import { JwtAuthGuard } from './core/guards';
 
 @Module({
   imports: [

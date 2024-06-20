@@ -121,4 +121,6 @@ export class User extends Model<User> {
   })
   lead:Leads
   
+  @Column
+  region:string
 }

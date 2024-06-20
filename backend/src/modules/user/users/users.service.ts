@@ -190,6 +190,16 @@ export class UsersService extends GenericService<
     };
   }
 
+  async getFaculty() {
+    const faculty = await this.user.findAll({
+      where: { role: 'Faculty' },
+    });
+    return {
+      count: faculty.length,
+      rows: faculty,
+    };
+  }
+
   async getUsers(){
     const users = await this.user.findAll({
       where: {role:{[Op.not]:'SalesTeam'}}
