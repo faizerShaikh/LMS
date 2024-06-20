@@ -1,6 +1,5 @@
-'use client';
+"use client";
 import { DataGrid, PageHeader } from "components/layout";
-
 
 const columns = [
   {
@@ -15,12 +14,13 @@ const columns = [
     flex: 1,
     cellClassName: "text-dark",
   },
-]
+];
 
 export default function Students() {
-  return <>
-      <PageHeader title="Students"/>
-      <DataGrid columns={columns} rows={[]}/>
+  return (
+    <>
+      <PageHeader title="Students" />
+      <DataGrid columns={columns} rows={[]} />
     </>
-  }
-  
+  );
+}

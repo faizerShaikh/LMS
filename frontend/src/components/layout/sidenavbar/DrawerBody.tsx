@@ -28,7 +28,11 @@ import {
   UserData,
 } from "@carbon/icons-react";
 import cookie from "cookie";
-import { adminMenuItems, salesTeamMenuItems } from "constants/layout";
+import {
+  adminMenuItems,
+  facultyMenuItems,
+  salesTeamMenuItems,
+} from "constants/layout";
 import { getCookies } from "lib/handel-cookies";
 
 const activeMenuStyles = {
@@ -82,6 +86,8 @@ const DrawerBody = () => {
           setMenus(adminMenuItems);
         } else if (role === "SalesTeam") {
           setMenus(salesTeamMenuItems);
+        } else if (role === "Faculty") {
+          setMenus(facultyMenuItems);
         }
       } catch (error) {
         console.error("Error getting user data:", error);

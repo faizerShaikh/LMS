@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { adminMenuItemsList, salesTeamMenuItemsList } from "./constants";
+import {
+  adminMenuItemsList,
+  facultyMenuItemsList,
+  salesTeamMenuItemsList,
+} from "./constants";
 
 export function middleware(request: NextRequest) {
   const userData = request.cookies.get("userData")?.value;
@@ -22,6 +26,12 @@ export function middleware(request: NextRequest) {
       }
     } else if (role === "SalesTeam") {
       let list = salesTeamMenuItemsList;
+      if (userData && !list.includes(request.nextUrl.pathname)) {
+        return new NextResponse("Not Found", { status: 404 });
+      }
+    } else if (role === "Faculty") {
+      let list = facultyMenuItemsList;
+      // console.log(list);
       if (userData && !list.includes(request.nextUrl.pathname)) {
         return new NextResponse("Not Found", { status: 404 });
       }

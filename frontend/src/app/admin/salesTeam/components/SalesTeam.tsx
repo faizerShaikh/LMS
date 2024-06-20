@@ -15,6 +15,7 @@ import { Form, Formik } from "formik";
 import { toast } from "utils";
 import { SalesTeamInterface } from "interfaces/users";
 import { useQueryClient } from "react-query";
+import { CountrySelect } from "react-country-state-city";
 
 const initialValues: SalesTeamInterface = {
   name: "",
@@ -22,6 +23,7 @@ const initialValues: SalesTeamInterface = {
   password: "",
   contactNumber: 0,
   role: "SalesTeam",
+  region: "",
 };
 
 export const SalesTeamUserForm = ({
@@ -51,7 +53,11 @@ export const SalesTeamUserForm = ({
     >
       {({ onClose }) => (
         <Formik
-          initialValues={{ ...initialValues, ...data }}
+          initialValues={{
+            ...initialValues,
+            ...data,
+            // region: initialValues.region,
+          }}
           onSubmit={(values, { resetForm }) => {
             mutate(
               { ...values },
@@ -73,54 +79,84 @@ export const SalesTeamUserForm = ({
             );
           }}
         >
-          <Form>
-            <Grid container>
-              <Grid container spacing={2}>
-                <Grid xs={12} item>
-                  <Label text="Name" required />
-                  <Input name="name" />
-                </Grid>
-                <Grid xs={12} item>
-                  <Label text="Email" required />
-                  <Input name="email" />
-                </Grid>
-                <Grid xs={12} item>
-                  <Label text="Password" required />
-                  <Input name="password" type="password" />
-                </Grid>
-                <Grid xs={12} item>
-                  <Label text="Contact Number" required />
-                  <Input name="contactNumber" />
-                </Grid>
-                <Grid xs={12} item>
-                  <Input name="role" type="hidden" value="SalesTeam" />
-                </Grid>
-                <Grid xs={12} item>
-                  <Box className="flex justify-end">
-                    <Button
-                      color="secondary"
-                      className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
-                      variant="contained"
-                      disabled={isLoading}
-                      onClick={() => {
-                        onClose();
-                      }}
-                    >
-                      Discard
-                    </Button>
-                    <Button
-                      variant="contained"
-                      className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
-                      type="submit"
-                      isLoading={isLoading}
-                    >
-                      Save
-                    </Button>
-                  </Box>
+          {({ setFieldValue }) => (
+            <Form>
+              <Grid container>
+                <Grid container spacing={2}>
+                  <Grid xs={12} item>
+                    <Label text="Name" required />
+                    <Input name="name" />
+                  </Grid>
+                  <Grid xs={12} item>
+                    <Label text="Email" required />
+                    <Input name="email" />
+                  </Grid>
+                  <Grid xs={12} item>
+                    <Label text="Password" required />
+                    <Input name="password" type="password" />
+                  </Grid>
+                  <Grid xs={12} item>
+                    <Label text="Contact Number" required />
+                    <Input name="contactNumber" />
+                  </Grid>
+                  <Grid
+                    xs={12}
+                    item
+                    sx={{
+                      "&  .stsearch-box": {
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: "4px",
+
+                        // backgroundColor: "gray",
+                      },
+                      ".stdropdown-input input": {
+                        backgroundColor: "rgb(249 250 251)",
+                        width: "100%",
+                      },
+                    }}
+                  >
+                    <Label text="Region" required />
+                    {/* <Input name="region" /> */}
+                    <div className="w-full flex-row border-2 rounded-md bg-gray-50">
+                      <CountrySelect
+                        onChange={(e: any) => {
+                          setFieldValue("region", e.name);
+                        }}
+                      />
+                    </div>
+                  </Grid>
+
+                  <Grid xs={12} item>
+                    <Input name="role" type="hidden" value="SalesTeam" />
+                  </Grid>
+                  <Grid xs={12} item>
+                    <Box className="flex justify-end">
+                      <Button
+                        color="secondary"
+                        className="px-4 capitalize xl:text-sm 2xl:text-semi-base"
+                        variant="contained"
+                        disabled={isLoading}
+                        onClick={() => {
+                          onClose();
+                        }}
+                      >
+                        Discard
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className="capitalize ml-4 px-4 xl:text-sm 2xl:text-semi-base"
+                        type="submit"
+                        isLoading={isLoading}
+                      >
+                        Save
+                      </Button>
+                    </Box>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          </Form>
+            </Form>
+          )}
         </Formik>
       )}
     </Dialog>
