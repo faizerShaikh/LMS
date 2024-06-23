@@ -54,10 +54,10 @@ export class Blog extends MyBaseModel {
 
   @Column({
     type: DataType.BOOLEAN,
-  })
+  }) 
   is_featured: boolean;
 
-  //@Default('c28512ff-aa8a-4ff3-ada8-fce8f8164f83')
+  //@Default('f3ae4bcf-b2df-4d1a-bdff-bceab30cf4ee')
   @ForeignKey(() => User)
   @Column
   created_by_id: string;

@@ -20,6 +20,7 @@ import { ProgramHighlight } from './program-highlights.model';
 import { Associations } from './associations.model';
 import { Infos } from './info.model';
 import { CourseType } from '../dtos/course-type.enum';
+import { User } from 'src/modules/user/users/models/user.model';
 
 @Table({
   tableName: 'course-specializations',
@@ -88,6 +89,12 @@ export class CourseSpecialization extends MyBaseModel {
     type: DataType.STRING,
   })
   cover_image: string;
+
+  
+ // @Default('f3ae4bcf-b2df-4d1a-bdff-bceab30cf4ee')
+  @ForeignKey(() => User)
+  @Column
+  created_by_id: string;
 
   @Column({
     type: DataType.INTEGER,
