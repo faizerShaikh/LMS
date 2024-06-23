@@ -62,6 +62,16 @@ export const adminMenuItems: menuType[] = [
     title: "Leads",
     path: "/admin/leads",
   },
+  {
+    icon: "ShareKnowledge",
+    title: "Faculty",
+    path: "/admin/faculty",
+  },
+  {
+    icon: "ShareKnowledge",
+    title: "Accountant",
+    path: "/admin/finance",
+  },
 ];
 
 export const salesTeamMenuItems: menuType[] = [
@@ -73,8 +83,19 @@ export const salesTeamMenuItems: menuType[] = [
   },
 ];
 
+export const facultyMenuItems: menuType[] = [
+  { icon: "DashboardReference", title: "Dashboard", path: "/admin" },
+  {
+    icon: "Catalog",
+    title: "Custom Courses Specialization",
+    path: "/admin/custom-course-specialization",
+  },
+];
+
 export const salesTeamMenuItemsList = salesTeamMenuItems.map(
   (item) => item.path
 );
 
 export const adminMenuItemsList = adminMenuItems.map((item) => item.path);
+
+export const facultyMenuItemsList = facultyMenuItems.map((item) => item.path);

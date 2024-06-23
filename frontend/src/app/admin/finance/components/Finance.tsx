@@ -17,18 +17,16 @@ import { UsersInterface } from "interfaces/users";
 import { useQueryClient } from "react-query";
 import { CountrySelect } from "react-country-state-city";
 
-const initialValues: UsersInterface[] = [
-  {
-    name: "",
-    email: "",
-    password: "",
-    contactNumber: 0,
-    role: "",
-    region: "",
-  },
-];
+const initialValues: UsersInterface = {
+  name: "",
+  email: "",
+  password: "",
+  contactNumber: 0,
+  role: "Finance",
+  region: "",
+};
 
-export const UserCreateForm = ({
+export const FinanceTeamUserForm = ({
   data,
   isUpdate,
   refetchURL,
@@ -48,17 +46,20 @@ export const UserCreateForm = ({
             <Edit></Edit>
           </IconButton>
         ) : (
-          <Button startIcon={<Add />}>Add New User</Button>
+          <Button startIcon={<Add />}>Add New Accountant</Button>
         )
       }
-      title={"Add New User"}
+      title={isUpdate ? "Edit Accountant " : "Add Accountant "}
     >
       {({ onClose }) => (
         <Formik
-          initialValues={{ ...initialValues, ...data }}
+          initialValues={{
+            ...initialValues,
+            ...data,
+          }}
           onSubmit={(values, { resetForm }) => {
             mutate(
-              { ...values, orderBy: +values.orderBy },
+              { ...values },
               {
                 onSuccess() {
                   resetForm();
@@ -66,14 +67,18 @@ export const UserCreateForm = ({
                     exact: false,
                     stale: true,
                   });
-                  toast("User created successfull");
+                  toast(
+                    isUpdate
+                      ? "Accountant updated successfully"
+                      : "Accountant created successfully"
+                  );
                   onClose();
                 },
               }
             );
           }}
         >
-          {({ setFieldValue, values }) => (
+          {({ setFieldValue }) => (
             <Form>
               <Grid container>
                 <Grid container spacing={2}>
@@ -87,7 +92,7 @@ export const UserCreateForm = ({
                   </Grid>
                   <Grid xs={12} item>
                     <Label text="Password" required />
-                    <Input name="password" />
+                    <Input name="password" type="password" />
                   </Grid>
                   <Grid xs={12} item>
                     <Label text="Contact Number" required />
@@ -122,12 +127,7 @@ export const UserCreateForm = ({
                   </Grid>
 
                   <Grid xs={12} item>
-                    <Label text="Role" required />
-                    <AutoComplete
-                      name="role"
-                      options={["Admin", "Faculty", "Finance"]}
-                      getOptionLabel={(values: any) => values}
-                    ></AutoComplete>
+                    <Input name="role" type="hidden" value="SalesTeam" />
                   </Grid>
                   <Grid xs={12} item>
                     <Box className="flex justify-end">
@@ -162,4 +162,4 @@ export const UserCreateForm = ({
   );
 };
 
-export default UserCreateForm;
+export default FinanceTeamUserForm;

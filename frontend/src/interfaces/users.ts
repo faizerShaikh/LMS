@@ -7,6 +7,7 @@ export interface UsersInterface extends BaseObjInterface {
   password?: string;
   contactNumber?: number;
   role?: string;
+  region?: string;
   createdAt?: string;
   updatedAt?: string;
   deletedAt?: string | null;
@@ -19,6 +20,7 @@ export interface SalesTeamInterface extends BaseObjInterface {
   password?: string;
   contactNumber?: number;
   role?: string;
+  region?: string;
   createdAt?: string;
   updatedAt?: string;
   deletedAt?: string | null;
