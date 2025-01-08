@@ -11538,23 +11538,23 @@ module.exports = {
     // await queryInterface.bulkInsert('press_releases', press_releases, {});
     // console.log('press_releases seeded successfully.');
 
-    // const users = [
-    //   {
-    //     id: 'c28512ff-aa8a-4ff3-ada8-fce8f8164f83',
-    //     name: 'Faizer Sheikh',
-    //     email: 'faizer@mail.com',
-    //     password:
-    //       '$2a$10$YNyvmdTwnrAiniICYtJVZeeUCpHMCk/JfsLrEwMgqx4wTIeR0f/Ku',
-    //     contactNumber: '1234567890',
-    //     role: 'Admin',
-    //     createdAt: '2024-02-09T12:42:43.592Z',
-    //     updatedAt: '2024-02-09T12:42:43.592Z',
-    //     deletedAt: null,
-    //   },
-    // ];
+    const users = [
+      {
+        id: 'c28512ff-aa8a-4ff3-ada8-fce8f8164f83',
+        name: 'Faizer Sheikh',
+        email: 'faizer@mail.com',
+        password:
+          '$2a$10$YNyvmdTwnrAiniICYtJVZeeUCpHMCk/JfsLrEwMgqx4wTIeR0f/Ku',
+        contactNumber: '1234567890',
+        role: 'Admin',
+        createdAt: '2024-02-09T12:42:43.592Z',
+        updatedAt: '2024-02-09T12:42:43.592Z',
+        deletedAt: null,
+      },
+    ];
 
-    // await queryInterface.bulkInsert('users', users, {});
-    // console.log('users seeded successfully.');
+    await queryInterface.bulkInsert('users', users, {});
+    console.log('users seeded successfully.');
 
     const program_structures = [
       // {

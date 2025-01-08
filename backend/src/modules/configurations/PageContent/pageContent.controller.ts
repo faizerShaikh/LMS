@@ -21,7 +21,7 @@ export class PageContentController extends GenericController<
 >({
   createObjDTO: CreatePageDto,
   updateObjDTO: UpdatePageContent,
-  notAllowedMethods: [0, 4],
+  // notAllowedMethods: [0, 4],
 }) {
   constructor(private readonly PageContentService: PageContentService) {
     super(PageContentService);
