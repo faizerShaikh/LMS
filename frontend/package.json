@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@carbon/icons-react": "^11.33.0",
+    "@carbon/icons-react": "^11.53.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/lab": "^5.0.0-alpha.170",
