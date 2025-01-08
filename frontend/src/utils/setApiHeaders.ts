@@ -1,5 +1,4 @@
 import { API, serverAPI } from "configs/api";
-import { cookieStore } from "constants/cookies";
 import { getCookie } from "cookies-next";
 import { NextPageContext } from "next";
 

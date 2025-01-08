@@ -81,6 +81,9 @@ const DrawerBody = () => {
         const userDataString = await getCookies("userData");
         const userData = JSON.parse(userDataString);
         // console.log("Parsed user data:", userData);
+        if (!userDataString) {
+          throw new Error("User data not found in cookies.");
+        }
         const role = userData.role;
         if (role === "admin") {
           setMenus(adminMenuItems);
